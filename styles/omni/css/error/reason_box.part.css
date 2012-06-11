@@ -1,0 +1,16 @@
+.omni-style .reason-box {
+    border: 1px solid #de737c;
+    margin: 0px 0px 16px 0px;
+    padding: 12px 12px 12px 12px;
+}
+
+.omni-style .reason-box .reason-title {
+    color: #c9273f;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .reason-box .reason-title-description {
+    color: #4d4d4d;
+    margin: 4px 0px 0px 0px;
+}

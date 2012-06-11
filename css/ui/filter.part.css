@@ -1,0 +1,11 @@
+.filter .filter-options {
+    display: none;
+}
+
+.filter > .filter-no-results {
+    display: none;
+}
+
+.filter > .filter-more {
+    display: none;
+}

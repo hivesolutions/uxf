@@ -1,0 +1,24 @@
+.omni-style .tab-panel .tab-selectors {
+    border-bottom: 1px solid #eaeaea;
+    height: 20px;
+    list-style: none;
+    margin: 0px 0px 8px 0px;
+    padding: 0px 0px 0px 0px;
+}
+.omni-style .tab-panel .tab-selector {
+    color: #777777;
+    float: left;
+    font-size: 12px;
+    height: 20px;
+    margin-right: 12px;
+    text-transform: uppercase;
+}
+
+.omni-style .tab-panel .tab-selector.active {
+    background: transparent url(../images/tab-panel-arrow.png) no-repeat center bottom;
+    color: #3668c6;
+}
+
+.omni-style .tab-panel .tab-selector:hover {
+    color: #3668c6;
+}

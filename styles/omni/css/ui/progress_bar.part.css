@@ -1,0 +1,20 @@
+.omni-style .progress-bar {
+    border: 1px solid #dddddd;
+    height: 36px;
+    padding: 1px 1px 1px 1px;
+    width: 526px;
+}
+
+.omni-style .progress-bar .progress-bar-bar {
+    background-color: #5368c6;
+    color: #ffffff;
+    float: left;
+    height: 36px;
+    line-height: 36px;
+    text-align: right;
+}
+
+.omni-style .progress-bar .progress-bar-percentage {
+    font-size: 11px;
+    padding: 0px 6px 0px 6px;
+}

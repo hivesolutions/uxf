@@ -1,0 +1,63 @@
+.omni-print-style .field-set {
+    margin-left: 32px;
+}
+
+.omni-print-style .field {
+    margin-bottom: 22px;
+    width: 300px;
+}
+
+.omni-print-style .field label {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.omni-print-style .field div {
+    font-size: 18px;
+    margin-top: 4px;
+}
+
+.omni-print-style.small .field-set {
+    margin-left: 18px;
+}
+
+.omni-print-style.small .field {
+    margin-bottom: 12px;
+    width: 310px;
+}
+
+.omni-print-style.small .field label {
+    font-size: 10px;
+}
+
+.omni-print-style.small .field div {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.omni-print-style.receipt .field-set {
+    margin: 12px 0px 12px 0px;
+
+}
+
+.omni-print-style.receipt .field {
+    margin-bottom: 4px;
+    width: 260px;
+}
+
+.omni-print-style.receipt .field label {
+    display: block;
+    float: left;
+    font-size: 8px;
+    width: 80px;
+}
+
+.omni-print-style.receipt .field div {
+    float: left;
+    font-size: 10px;
+    line-height: 8px;
+    margin-top: 2px;
+    margin-top: 0px;
+    width: 180px;
+}

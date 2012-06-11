@@ -1,0 +1,23 @@
+.ulite-style .table.table-orders {
+    border-collapse: separate;
+    border-spacing: 0px;
+    font-size: 11px;
+    margin: 12px 0px 16px 0px;
+}
+
+.ulite-style .table.table-orders tbody tr:hover {
+    background-color: #f2f2f2;
+}
+
+.ulite-style .table.table-orders thead tr th {
+    color: #aaaaaa;
+    font-size: 10px;
+    font-weight: normal;
+    padding: 6px 6px 6px 6px;
+    text-transform: uppercase;
+}
+
+.ulite-style .table.table-orders tbody tr td {
+    padding: 5px 6px 5px 6px;
+    vertical-align: top;
+}

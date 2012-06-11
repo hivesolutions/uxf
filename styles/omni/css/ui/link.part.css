@@ -1,0 +1,60 @@
+.omni-style .link {
+    border-bottom: 1px solid transparent;
+    outline: none;
+    padding-bottom: 1px;
+    text-decoration: none;
+}
+
+.omni-style .link.link-blue {
+    color: #3668c6;
+}
+
+.omni-style .link.link-blue:hover,
+.omni-style .link.link-blue.selected {
+    border-bottom: 1px solid #3668c6;
+}
+
+.omni-style .link.link-green {
+    color: #32951b;
+}
+
+.omni-style .link.link-green:hover,
+.omni-style .link.link-green.selected {
+    border-bottom: 1px solid #32951b;
+}
+
+.omni-style .link.link-red {
+    color: #c31f30;
+}
+
+.omni-style .link.link-red:hover,
+.omni-style .link.link-red.selected {
+    border-bottom: 1px solid #c31f30;
+}
+
+.omni-style .link.link-grey {
+    color: #aaaaaa;
+}
+
+.omni-style .link.link-grey:hover,
+.omni-style .link.link-grey.selected {
+    border-bottom: 1px solid #aaaaaa;
+}
+
+.omni-style .link.link-grey-light {
+    color: #777777;
+}
+
+.omni-style .link.link-grey-light:hover,
+.omni-style .link.link-grey-light.selected {
+    border-bottom: 1px solid #777777;
+}
+
+.omni-style .link.link-grey-dark {
+    color: #4d4d4d;
+}
+
+.omni-style .link.link-grey-dark:hover,
+.omni-style .link.link-grey-dark.selected {
+    border-bottom: 1px solid #4d4d4d;
+}

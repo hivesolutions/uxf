@@ -1,0 +1,19 @@
+.drop-field {
+    user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+}
+
+.drop-field > .drop-field-no-results {
+    display: none;
+}
+
+.drop-field > .drop-field-contents {
+    display: none;
+    position: absolute;
+}
+
+.drop-field .hidden-field,
+.drop-field .hidden-template {
+    display: none;
+}

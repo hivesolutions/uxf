@@ -1,0 +1,36 @@
+.omni-style .tag,
+.omni-style .tag.grey {
+    background-color: #bfbfbf;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 4px 2px 4px;
+    text-transform: uppercase;
+}
+
+.omni-style .tag.success,
+.omni-style .tag.green {
+    background-color: #46a546;
+}
+
+.omni-style .tag.warning,
+.omni-style .tag.orange {
+    background-color: #f89406;
+}
+
+.omni-style .tag.important,
+.omni-style .tag.red {
+    background-color: #c43c35;
+}
+
+.omni-style .tag.notice,
+.omni-style .tag.blue {
+    background-color: #62cffc;
+}
+
+.omni-style .tag.lower {
+    opacity: 0.75;
+}

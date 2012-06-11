@@ -1,0 +1,12 @@
+.window {
+    display: none;
+    position: absolute;
+}
+
+.window .window-mask {
+    display: none;
+    left: 0px;
+    position: absolute;
+    text-align: center;
+    top: 0px;
+}

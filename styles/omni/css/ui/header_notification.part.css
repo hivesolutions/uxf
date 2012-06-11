@@ -1,0 +1,43 @@
+.omni-style .header-notifications-container {
+    height: 0px;
+    min-width: 960px;
+    position: fixed;
+    text-align: center;
+    top: 44px;
+    width: 100%;
+    z-index: 10;
+}
+
+.omni-style .header-notification {
+    background-color: #cee6c5;
+    border: 1px solid #86c795;
+    box-shadow: 0px 1px 6px #cccccc;
+    -moz-box-shadow: 0px 1px 6px #cccccc;
+    -webkit-box-shadow: 0px 1px 6px #cccccc;
+    color: #4d4d4d;
+    display: inline-block;
+    margin: 0px auto 0px auto;
+    padding: 8px 12px 8px 12px;
+}
+
+.omni-style .header-notification.success,
+.omni-style .header-notification.green {
+    background-color: #cee6c5;
+    border-color: #86c795;
+}
+
+.omni-style .header-notification.warning,
+.omni-style .header-notification.yellow {
+    background-color: #fcebbc;
+    border-color: #f6c167;
+}
+
+.omni-style .header-notification.error,
+.omni-style .header-notification.red {
+    background-color: #fcc0c0;
+    border-color: #f68f8f;
+}
+
+.omni-style .header-notification > .link-close {
+    margin-left: 8px;
+}

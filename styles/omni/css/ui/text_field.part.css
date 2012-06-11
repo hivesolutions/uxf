@@ -1,0 +1,134 @@
+.omni-style .text-field {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 1px 0px #ffffff;
+    -moz-box-shadow: 0px 1px 0px #ffffff;
+    -webkit-box-shadow: 0px 1px 0px #ffffff;
+    color: #4d4d4d;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    height: 32px;
+    padding: 2px 6px 2px 6px;
+}
+
+.omni-style .text-field.lower {
+    color: #aaaaaa;
+}
+
+.omni-style .text-field.active {
+    border: 1px solid #3668c6;
+    outline: none;
+}
+
+.omni-style .text-field.invalid {
+    border: 1px solid #f00329;
+    outline: none;
+}
+
+.omni-style .text-field:disabled {
+    background-color: #f8f8f8;
+    color: #888888;
+    -webkit-text-fill-color: #888888;
+}
+
+.omni-style .text-field.date {
+    background-image: url(../images/text-field-date.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.omni-style .text-field.time {
+    background-image: url(../images/text-field-time.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.omni-style .text-field.natural,
+.omni-style .text-field.integer,
+.omni-style .text-field.float {
+    background-image: url(../images/text-field-number.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.omni-style .text-field.percent {
+    background-image: url(../images/text-field-percent.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.omni-style .text-field.email {
+    background-image: url(../images/text-field-email.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+}
+
+.omni-style .text-field.no-icon {
+    background-image: none;
+}
+
+.omni-style .text-area {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    box-shadow: 0px 1px 0px #ffffff;
+    -moz-box-shadow: 0px 1px 0px #ffffff;
+    -webkit-box-shadow: 0px 1px 0px #ffffff;
+    color: #4d4d4d;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    height: 32px;
+    padding: 2px 6px 2px 6px;
+    resize: none;
+}
+
+.omni-style .text-area.lower {
+    color: #aaaaaa;
+}
+
+.omni-style .text-area.active {
+    border: 1px solid #3668c6;
+    outline: none;
+}
+
+.omni-style .text-area.invalid {
+    border: 1px solid #f00329;
+    outline: none;
+}
+
+.omni-style .text-area:disabled {
+    background-color: #f8f8f8;
+    color: #888888;
+    -webkit-text-fill-color: #888888;
+}
+
+.omni-style .text-field.strong {
+    color: #2d2d2d;
+}
+
+.omni-style .text-field.strong.lower {
+    color: #777777;
+}
+
+.omni-style .text-field.strong:disabled {
+    background-color: #f8f8f8;
+    color: #888888;
+    -webkit-text-fill-color: #888888;
+}
+
+.omni-style .text-area.strong {
+    color: #2d2d2d;
+}
+
+.omni-style .text-area.strong.lower {
+    color: #777777;
+}
+
+.omni-style .text-area.strong:disabled {
+    background-color: #f8f8f8;
+    color: #888888;
+    -webkit-text-fill-color: #888888;
+}
+
+.omni-style .text-field-calendar {
+    position: absolute;
+}

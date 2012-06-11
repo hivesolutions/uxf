@@ -1,0 +1,64 @@
+.omni-style .content-error {
+    border: 1px solid #eeeeee;
+    margin: 100px auto 100px auto;
+    padding: 24px 0px 24px 0px;
+    transition-duration: 0.5s;
+    -o-transition-duration: 0.5s;
+    -moz-transition-duration: 0.5s;
+    -webkit-transition-duration: 0.5s;
+    width: 532px;
+}
+
+.omni-style .content-error:hover {
+    border-color: #dddddd;
+    box-shadow: 0px 1px 4px #eeeeee;
+    -moz-box-shadow: 0px 1px 4px #eeeeee;
+    -webkit-box-shadow: 0px 1px 4px #eeeeee;
+}
+
+.omni-style .content-error .error {
+    padding: 0px 48px 0px 48px;
+    text-align: center;
+}
+
+.omni-style .content-error .error .title {
+    color: #484848;
+    font-size: 18px;
+    margin: 8px 0px 12px 0px;
+}
+
+.omni-style .content-error .error .message {
+    color: #c31f30;
+    font-weight: bold;
+    margin: 4px 0px 24px 0px;
+}
+
+.omni-style .content-error .error .traceback-contents {
+    color: #444444;
+    font-family: monospace;
+    font-size: 12px; ;
+    margin-bottom: 26px;
+}
+
+.omni-style .content-error .error .description {
+    color: #555555;
+    line-height: 22px;
+    margin: 24px 0px 24px 0px;
+}
+
+.omni-style.dark .content-error {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    box-shadow: 0px 0px 10px #3d3d3d;
+    -moz-box-shadow: 0px 0px 10px #3d3d3d;
+    -webkit-box-shadow: 0px 0px 10px #3d3d3d;
+}
+
+.omni-style.dark .content-error:hover {
+    box-shadow: 0px 0px 10px #3d3d3d;
+    -moz-box-shadow: 0px 0px 10px #3d3d3d;
+    -webkit-box-shadow: 0px 0px 10px #3d3d3d;
+}

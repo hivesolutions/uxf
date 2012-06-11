@@ -1,0 +1,29 @@
+.transform-flip {
+    -webkit-transform-style: preserve-3d;
+}
+
+.transform-face {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+}
+
+.transform-face-relative {
+    -webkit-backface-visibility: hidden;
+    position: relative;
+}
+
+.transform-face-front {
+    z-index: 1;
+}
+
+.transform-face-back {
+    -webkit-transform: rotateY(180deg);
+}
+
+.transform-flip.flip {
+    -webkit-transform: rotateY(180deg);
+}
+
+.transform-flip.flip .transform-face-front {
+    z-index: 0;
+}

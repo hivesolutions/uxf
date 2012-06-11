@@ -1,0 +1,150 @@
+.omni-style .button-group {
+    float: right;
+}
+
+.omni-style .button-group .button {
+    border: 1px solid #bfbfbf;
+    border-left: none;
+    cursor: pointer;
+    float: left;
+    text-align: center;
+}
+
+.omni-style .button-group .button > .button-icon {
+    opacity: 0.7;
+}
+
+.omni-style .button-group .button:hover > .button-icon {
+    opacity: 1.0;
+}
+
+.omni-style .button-group .button.selected > .button-icon {
+    opacity: 1.0;
+}
+
+.omni-style .button-group .button.disabled:hover > .button-icon {
+    opacity: 0.7;
+}
+
+.omni-style .button-group .button.disabled.selected > .button-icon {
+    opacity: 0.7;
+}
+
+.omni-style .button-group .button:first-child {
+    border-left: 1px solid #bfbfbf;
+}
+
+.omni-style .button-group .button.medium {
+    float: left;
+    height: 34px;
+    width: 44px;
+}
+
+.omni-style .button-group .button.medium {
+    background: transparent url(../images/button-group-button-medium.png) no-repeat left top;
+}
+
+.omni-style .button-group .button.medium:active {
+    background-position: 0px -36px;
+}
+
+.omni-style .button-group .button.medium.selected {
+    background-position: 0px -36px;
+}
+
+.omni-style .button-group .button.medium.disabled {
+    background-position: 0px -72px;
+}
+
+.omni-style .button-group .button.medium.valid {
+    background-position: 0px -108px;
+}
+
+.omni-style .button-group .button.medium.valid:active {
+    background-position: 0px -144px;
+}
+
+.omni-style .button-group .button.medium.valid.selected {
+    background-position: 0px -144px;
+}
+
+.omni-style .button-group .button.medium.valid.disabled {
+    background-position: 0px -180px;
+}
+
+.omni-style .button-group .button.medium.invalid {
+    background-position: 0px -216px;
+}
+
+.omni-style .button-group .button.medium.invalid:active {
+    background-position: 0px -252px;
+}
+
+.omni-style .button-group .button.medium.invalid.selected {
+    background-position: 0px -252px;
+}
+
+.omni-style .button-group .button.medium > .button-icon {
+    display: block;
+    height: 24px;
+    margin: 6px 0px 0px 10px;
+    width: 24px;
+}
+
+.omni-style .button-group .button.small {
+    background: transparent url(../images/button-group-button-small.png) repeat-x left top;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+}
+
+.omni-style .button-group .button.small:active {
+    background-position: left -30px;
+}
+
+.omni-style .button-group .button.small.selected {
+    background-position: left -30px;
+}
+
+.omni-style .button-group .button.small.disabled {
+    background-position: left -60px;
+}
+
+.omni-style .button-group .button.small.valid {
+    background-position: left -90px;
+}
+
+.omni-style .button-group .button.small.valid:active {
+    background-position: left -120px;
+}
+
+.omni-style .button-group .button.small.valid.selected {
+    background-position: left -120px;
+}
+
+.omni-style .button-group .button.small.valid.disabled {
+    background-position: left -150px;
+}
+
+.omni-style .button-group .button.small.invalid {
+    background-position: left -180px;
+}
+
+.omni-style .button-group .button.small.invalid:active {
+    background-position: left -210px;
+}
+
+.omni-style .button-group .button.small.invalid.selected {
+    background-position: left -210px;
+}
+
+.omni-style .button-group .button.small.disabled{
+    background-position: left -240px;
+}
+
+.omni-style .button-group .button.small > .button-icon {
+    display: block;
+    height: 24px;
+    margin: 2px 0px 0px 3px;
+    width: 24px;
+}

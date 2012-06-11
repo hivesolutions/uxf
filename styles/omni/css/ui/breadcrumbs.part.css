@@ -1,0 +1,24 @@
+.omni-style .breadcrumbs {
+    float: left;
+    margin: 0px 0px 0px 0px;
+    padding-left: 0px;
+}
+
+.omni-style .breadcrumbs li {
+    background: transparent url(../images/breadcrumbs-arrow.png) no-repeat left center;
+    color: #666666;
+    float: left;
+    list-style: none;
+    margin-right: 6px;
+    padding-left: 22px;
+}
+
+.omni-style .breadcrumbs li:first-child {
+    background: none;
+    padding-left: 0px;
+}
+
+.omni-style .breadcrumbs li.selected {
+    color: #4d4d4d;
+    font-weight: bold;
+}

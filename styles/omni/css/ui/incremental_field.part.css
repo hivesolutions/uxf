@@ -1,0 +1,45 @@
+.incremental-field {
+    height: auto;
+}
+
+.incremental-field .button {
+    background-color: #f4f4f4;
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #dddddd;
+    float: left;
+    font-size: 14px;
+    height: 30px;
+    line-height: 28px;
+    width: 30px;
+}
+
+.incremental-field .button:hover {
+    background-color: #f0f0f0;
+}
+
+.incremental-field .button:active {
+    background-color: #e8e8e8;
+}
+
+.incremental-field .button.minus {
+    background-image: url(../images/incremental-field-minus.png);
+    border-right: none;
+}
+
+.incremental-field .button.plus {
+    background-image: url(../images/incremental-field-plus.png);
+    border-left: none;
+}
+
+.incremental-field .textfield {
+    float: left;
+}
+
+.incremental-field.disabled .button:hover {
+    background-color: #f4f4f4;
+}
+
+.incremental-field.disabled .button:active {
+    background-color: #f4f4f4;
+}

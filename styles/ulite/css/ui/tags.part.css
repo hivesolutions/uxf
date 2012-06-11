@@ -1,0 +1,20 @@
+.ulite-style .tag,
+.ulite-style .tag.grey {
+    background-color: #bfbfbf;
+    border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    color: white;
+    font-size: 10px;
+    padding: 2px 4px 2px 4px;
+    text-transform: uppercase;
+}
+
+.ulite-style .tag.important,
+.ulite-style .tag.red {
+    background-color: #ff9999;
+}
+
+.ulite-style .tag.lower {
+    opacity: 0.75;
+}

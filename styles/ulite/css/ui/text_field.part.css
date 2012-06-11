@@ -1,0 +1,57 @@
+.ulite-style .text-field {
+    border: 1px solid #d9d9d9;
+    color: #4d4d4d;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+    font-size: 12px;
+    height: 26px;
+    padding: 0px 6px 0px 6px;
+}
+
+.ulite-style .text-field.active {
+    border-color: #efc698;
+    outline: none;
+}
+
+.ulite-style .text-field.invalid {
+    border-color: #de6c6c;
+}
+
+.ulite-style .text-field.lower {
+    color: #c0c0c0;
+    text-transform: uppercase;
+}
+
+.ulite-style .text-field.small {
+    height: 20px;
+    width: 114px;
+}
+
+.ulite-style .text-field.wide {
+    width: 260px;
+}
+
+.ulite-style .text-field.medium-wide {
+    width: 220px;
+}
+
+.ulite-style .text-field.search-field {
+    background: #ffffff url(../images/search-field.png) no-repeat 150px center;
+    border-bottom: 1px solid #d9d9d9;
+    border-left: 1px solid #d9d9d9;
+    border-right: none;
+    border-top: none;
+    padding-right: 28px;
+    width: 138px;
+}
+
+.ulite-style .text-field.search-field.active {
+    border-color: #efc698;
+}
+
+.ulite-style .text-field.quantity-text-field {
+    background: #ffffff url(../images/quantity-text-field.png) no-repeat 2px center;
+}
+
+.ulite-style .text-field-calendar {
+    position: absolute;
+}

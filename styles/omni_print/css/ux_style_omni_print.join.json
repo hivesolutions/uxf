@@ -1,0 +1,20 @@
+{
+    "_target_directories" : ["../bin/css",
+            "../../../bin/styles/omni_print/css",
+            "../../../externals/ux/styles/omni_print/css"],
+    "ux_style_omni_print.css" : {
+        "files" : ["header.part.css", "ui/field_set.part.css",
+                "ui/table.part.css", "footer.part.css"]
+    },
+    "ux_style_omni_print-min.css" : {
+        "files" : ["header.part.css", "ui/field_set.part.css",
+                "ui/table.part.css", "footer.part.css"],
+        "minify" : "css"
+    },
+    "ux_style_omni_print-min.css.gz" : {
+        "files" : ["header.part.css", "ui/field_set.part.css",
+                "ui/table.part.css", "footer.part.css"],
+        "minify" : "css",
+        "compress" : "gzip"
+    }
+}

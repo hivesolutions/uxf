@@ -1,0 +1,116 @@
+.omni-style .filter .filter-input {
+    height: 30px;
+}
+
+.omni-style .filter .filter-no-results {
+    padding: 20px 20px 20px 20px;
+    text-align: center;
+}
+
+.omni-style .filter .filter-no-results p {
+    color: #484848;
+    font-size: 18px;
+    margin: 8px 0px 8px 0px;
+    margin-bottom: 12px;
+}
+
+.omni-style .filter .green-text {
+    color: #3eb033;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .filter.entities-list {
+    list-style: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.omni-style .filter.entities-list .filter-contents {
+    padding: 6px 0px 4px 0px;
+}
+
+.omni-style .filter.entities-list li {
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid transparent;
+    cursor: default;
+    padding-bottom: 16px;
+    padding-top: 16px;
+    user-select: none;
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+}
+
+.omni-style .filter.entities-list li.selected {
+    background-color: #f8f8f8;
+    border-bottom: none;
+    border-left: 1px solid #d8d8d8;
+    border-right: 1px solid #d8d8d8;
+    border-top: 1px solid #d8d8d8;
+    box-shadow: 0px 0px 6px #e8e8e8;
+    -moz-box-shadow: 0px 0px 6px #e8e8e8;
+    -webkit-box-shadow: 0px 0px 6px #e8e8e8;
+    margin-left: -11px;
+    padding-bottom: 17px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 532px;
+}
+
+.omni-style .filter.entities-list li.selected.last {
+    border-bottom: 1px solid #d8d8d8;
+    padding-bottom: 16px;
+}
+
+.omni-style .filter.entities-list.table-list li {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
+.omni-style .filter.entities-list.table-list li.selected {
+    padding-bottom: 11px;
+}
+
+.omni-style .filter.entities-list.table-list li.selected.last {
+    padding-bottom: 10px;
+}
+
+.omni-style .filter.entities-list li .list-view,
+.omni-style .filter.entities-list li .table-view {
+    display: none;
+}
+
+.omni-style .filter.entities-list.list-list li .list-view {
+    display: block;
+}
+
+.omni-style .filter.entities-list.table-list li .table-view {
+    display: block;
+}
+
+.omni-style .filter.entities-list.table-list .context-menu {
+    display: none;
+}
+
+.omni-style .filter.entities-list .entity-name {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .filter.entities-list .entity-code {
+    font-weight: bold;
+}
+
+.omni-style .filter.entities-list .entity-details {
+    color: #777777;
+    margin: 10px 0px 0px 0px;
+}
+
+.omni-style .filter.entities-list .entity-information {
+    color: #777777;
+    font-size: 11px;
+    line-height: 16px;
+    margin: 0px 6px 0px 6px;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}

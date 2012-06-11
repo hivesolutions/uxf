@@ -1,0 +1,13 @@
+.omni-style .text-field {
+    -webkit-appearance: none;
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+}
+
+.omni-style .text-area {
+    -webkit-appearance: none;
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+}

@@ -1,0 +1,60 @@
+.omni-style .highlight-box-container {
+    border: 1px solid #eaeaea;
+    margin: 0px auto 0px auto;
+    padding: 20px 14px 14px 14px;
+    text-align: center;
+}
+
+.omni-style .hightlight-box {
+    display: inline-block;
+    list-style: none;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.omni-style .hightlight-box:after {
+    clear: both;
+    display: block;
+    height: 0px;
+    visibility: hidden;
+}
+
+.omni-style .hightlight-box .hightlight-box-item {
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #eaeaea;
+    float: left;
+    text-align: center;
+    width: 166px;
+}
+
+.omni-style .hightlight-box .hightlight-box-item:first-child {
+    border-left: none;
+}
+
+.omni-style .hightlight-box .hightlight-box-item:last-child {
+    border-right: none;
+}
+
+.omni-style .hightlight-box .hightlight-box-item > h3 {
+    color: #b3b3b3;
+    font-size: 12px;
+    font-weight: normal;
+    margin: 0px 0px 8px 0px;
+    text-transform: uppercase;
+}
+
+.omni-style .hightlight-box .hightlight-box-item > h1 {
+    color: #444444;
+    font-size: 42px;
+    font-weight: normal;
+    line-height: 42px;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .hightlight-box .hightlight-box-item.green > h1 {
+    color: #3eb033;
+}
+
+.omni-style .hightlight-box .hightlight-box-item.red > h1 {
+    color: #c31f30;
+}

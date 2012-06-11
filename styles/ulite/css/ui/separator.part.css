@@ -1,0 +1,29 @@
+.ulite-style .separator > .separator-contents {
+    background-color: #ffffff;
+    color: #c0c0c0;
+    font-size: 10px;
+    padding: 0px 12px 0px 12px;
+    text-transform: uppercase;
+}
+
+.ulite-style .separator.form-separator {
+    background: transparent url(../images/horizontal-separator.png) repeat-x center center;
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.ulite-style .separator.menu-separator {
+    background-color: #e2e2e2;
+    height: 1px;
+    margin: 3px auto 3px auto;
+    width: 420px;
+}
+
+.ulite-style .separator.small-separator {
+    background: transparent url(../images/small-separator.png) no-repeat left center;
+    font-size: 9px;
+    margin: 6px 0px 6px 0px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 131px;
+}

@@ -1,0 +1,7 @@
+.timestamp {
+    visibility: hidden;
+}
+
+.timestamp.processed {
+    visibility: visible;
+}

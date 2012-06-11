@@ -1,0 +1,50 @@
+.omni-style .notification {
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    box-shadow: 0px 0px 4px #eeeeee;
+    -moz-box-shadow: 0px 0px 4px #eeeeee;
+    -webkit-box-shadow: 0px 0px 4px #eeeeee;
+    padding: 12px 12px 12px 12px;
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    width: 340px;
+}
+
+.omni-style .notification .notification-close {
+    font-size: 10px;
+    position: absolute;
+    right: 12px;
+    text-align: right;
+    text-transform: uppercase;
+}
+
+.omni-style .notification .notification-header {
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 12px;
+}
+
+.omni-style .notification .notification-contents {
+    padding-top: 12px;
+}
+
+.omni-style .notification .notification-title {
+    color: #4d4d4d;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .notification .notification-sub-title {
+    color: #4d4d4d;
+    font-size: 10px;
+    font-weight: normal;
+    margin: 2px 0px 0px 0px;
+    text-transform: uppercase;
+}
+
+.omni-style .notification .notification-text {
+    color: #4d4d4d;
+    font-size: 12px;
+    line-height: 18px;
+    margin: 0px 0px 0px 0px;
+}

@@ -1,0 +1,8 @@
+.panel-stack > .panel {
+    display: none;
+}
+
+.panel-stack > .panel:first-child {
+    display: block;
+    visibility: hidden;
+}

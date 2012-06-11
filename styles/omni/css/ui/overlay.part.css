@@ -1,0 +1,10 @@
+.omni-style .overlay {
+    background-color: #dddddd;
+    opacity: 0.4;
+    z-index: 20;
+}
+
+.omni-style.dark .overlay {
+    background-color: #777777;
+    opacity: 0.3;
+}

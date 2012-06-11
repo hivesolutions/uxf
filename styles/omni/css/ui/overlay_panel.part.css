@@ -1,0 +1,37 @@
+.omni-style .overlay-panel.overlay-search {
+    background-color: #f6f6f6;
+    border: 1px solid #cccccc;
+    box-shadow: 0px 0px 4px #dddddd;
+    -moz-box-shadow: 0px 0px 4px #dddddd;
+    -webkit-box-shadow: 0px 0px 4px #dddddd;
+    padding: 12px 12px 12px 12px;
+    position: absolute;
+    z-index: 30;
+}
+
+.omni-style .overlay-panel.overlay-search .drop-field-contents {
+    margin-top: 44px;
+}
+
+.omni-style .overlay-panel.overlay-search .text-field {
+    font-size: 24px;
+    height: 38px;
+    width: 370px;
+}
+
+.omni-style.dark .overlay-panel.overlay-search {
+    border-color: #999999;
+    box-shadow: 0px 0px 6px #888888;
+    -moz-box-shadow: 0px 0px 6px #888888;
+    -webkit-box-shadow: 0px 0px 6px #888888;
+}
+
+.omni-style.dark .overlay-panel.overlay-search .drop-field-contents {
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.omni-style.dark .overlay-panel.overlay-search .drop-field-contents li:last-child {
+    border-bottom: none;
+}

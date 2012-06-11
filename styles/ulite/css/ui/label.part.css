@@ -1,0 +1,40 @@
+.ulite-style .label {
+    line-height: 20px;
+    text-transform: uppercase;
+}
+
+.ulite-style .label.green {
+    color: #619160;
+}
+
+.ulite-style .label.small {
+    font-size: 10px;
+    line-height: 16px;
+}
+
+.ulite-style .label.wide {
+    display: inline-block;
+    width: 266px;
+}
+
+.ulite-style .label.related-title {
+    color: #999999;
+    margin: 12px 0px 0px 24px;
+}
+
+.ulite-style .label.form-label {
+    color: #b0b0b0;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 16px;
+    margin-right: 6px;
+}
+
+.ulite-style .label.form-content-label {
+    display: inline-block;
+    line-height: 28px;
+    margin-left: 8px;
+    text-align: left;
+    text-transform: none;
+    width: 266px;
+}

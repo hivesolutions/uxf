@@ -1,0 +1,202 @@
+.omni-style .table {
+    width: 100%;
+}
+
+.omni-style .table tr {
+    height: 31px;
+}
+
+.omni-style .table thead tr {
+    height: 22px;
+}
+
+.omni-style .table tfoot tr {
+    height: auto;
+}
+
+.omni-style .table.table-show tr {
+    height: 26px;
+}
+
+.omni-style .table tr th {
+    color: #777777;
+    font-size: 10px;
+    font-weight: normal;
+    padding-left: 4px;
+    text-transform: uppercase;
+}
+
+.omni-style .table.table-show tr th {
+    padding-left: 0px;
+}
+
+.omni-style .table tr td {
+    padding: 0px 0px 0px 0px;
+}
+
+.omni-style .table tr td.selected {
+    border-color: #3668c6;
+}
+
+.omni-style .table .text-field {
+    background-color: transparent;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    height: 26px;
+    padding: 2px 0px 2px 0px;
+    text-indent: 6px;
+    width: 100%;
+}
+
+.omni-style .table .text-field.active {
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+}
+
+.omni-style .table .text-field.invalid {
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+}
+
+.omni-style .table .drop-field {
+    width: 100%;
+}
+
+.omni-style .table .table-add,
+.omni-style .table .table-remove {
+    cursor: pointer;
+    height: 36px;
+    opacity: 0.0;
+    position: absolute;
+    width: 18px;
+}
+
+.omni-style .table .table-add.visible,
+.omni-style .table .table-remove.visible {
+    opacity: 1.0;
+}
+
+.omni-style .table .table-add .inline-add,
+.omni-style .table .table-remove .inline-remove {
+    background: transparent none no-repeat no-scroll 0px 0px;
+    height: 11px;
+    margin-top: 10px;
+    width: 11px;
+}
+
+.omni-style .table .table-add:hover .inline-add,
+.omni-style .table .table-remove:hover .inline-remove {
+    background-position: 0px -11px;
+}
+
+.omni-style .table .table-add .inline-add {
+    background-image: url(../images/table-add.png);
+    margin-left: -12px;
+}
+
+.omni-style .table .table-remove .inline-remove {
+    background-image: url(../images/table-remove.png);
+    margin-left: 5px;
+}
+
+.omni-style .table .table-new-line-row {
+    padding: 7px 0px 0px 0px;
+    position: absolute;
+    text-align: center;
+    width: 532px;
+}
+
+.omni-style .table .table-new-line-row  > .table-new-line {
+    background-color: #908e8f;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    color: #ffffff;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px 2px 8px;
+    text-transform: uppercase;
+}
+
+.omni-style .table .table-new-line-row  > .table-new-line:hover {
+    background-color: #71ae48;
+}
+
+.omni-style .table.table-documentation {
+    border-left: 1px solid #eaeaea;
+    border-top: 1px solid #eaeaea;
+    color: #4d4d4d;
+    line-height: 20px;
+}
+
+.omni-style .table.table-documentation td {
+    border-bottom: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    padding: 4px 4px 4px 4px;
+}
+
+.omni-style .table .text-field.date,
+.omni-style .table .text-field.natural,
+.omni-style .table .text-field.integer,
+.omni-style .table .text-field.float,
+.omni-style .table .text-field.percent,
+.omni-style .table .text-field.email {
+    background-image: none;
+}
+
+.omni-style .table .drop-field .drop-field-contents {
+    margin-top: 32px;
+}
+
+.omni-style .table .drop-field > .text-field {
+    background-image: none;
+}
+
+.omni-style .table .drop-field.drop-field-lock > .text-field {
+    background-image: url(../images/drop-field-lock-small.png);
+    background-position: right bottom;
+}
+
+.omni-style .table .drop-field.drop-field-select.drop-field-lock > .text-field {
+    background-image: none;
+}
+
+.omni-style .table tr.last td .text-field {
+    border-bottom-width: 1px;
+}
+
+.omni-style .table tr td.last .text-field {
+    border-right-width: 1px;
+}
+
+.omni-style .table tr td.next-horizontal .text-field {
+    border-left-color: #3668c6;
+}
+
+.omni-style .table tr td.next-vertical .text-field {
+    border-top-color: #3668c6;
+}
+
+.omni-style .table tr td.next-horizontal-invalid .text-field {
+    border-left-color: #f00329;
+}
+
+.omni-style .table tr td.next-vertical-invalid .text-field {
+    border-top-color: #f00329;
+}
+
+.omni-style .table tr td.next-horizontal-invalid .text-field.active {
+    border-left-color: #3668c6;
+}
+
+.omni-style .table tr td.next-vertical-invalid .text-field.active {
+    border-top-color: #3668c6;
+}
+
+.omni-style .table tr td.next-horizontal-invalid .text-field.invalid {
+    border-left-color: #f00329;
+}
+
+.omni-style .table tr td.next-vertical-invalid .text-field.invalid {
+    border-top-color: #f00329;
+}

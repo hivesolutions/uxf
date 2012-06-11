@@ -1,0 +1,56 @@
+.omni-print-style .table {
+    border-collapse: collapse;
+    text-align: center;
+    width: 100%;
+}
+
+.omni-print-style .table td,
+.omni-print-style .table th {
+    padding: 3px 10px 3px 10px;
+}
+
+.omni-print-style .table thead th {
+    border-bottom: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    color: #484848;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 24px;
+    text-transform: uppercase;
+}
+
+.omni-print-style .table thead th:first-child,
+.omni-print-style .table tbody td:first-child  {
+    border-left: 0px none;
+}
+
+.omni-print-style .table tbody td {
+    border-left: 1px solid #dddddd;
+    color: #444444; ;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 24px;
+}
+
+.omni-print-style.small .table thead th {
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.omni-print-style.small .table tbody td {
+    font-size: 10px;
+    line-height: 20px;
+}
+
+.omni-print-style.receipt .table thead th {
+    border: none;
+}
+
+.omni-print-style.receipt .table tbody td {
+    border: none;
+    color: #000000;
+    font-size: 8px;
+    line-height: 12px;
+    padding: 0px 0px 0px 0px;
+    vertical-align: top;
+}

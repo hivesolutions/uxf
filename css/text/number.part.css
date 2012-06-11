@@ -1,0 +1,7 @@
+.number {
+    visibility: hidden;
+}
+
+.number.processed {
+    visibility: visible;
+}

@@ -1,0 +1,138 @@
+.omni-style .button.button-green {
+    background: #598543 url(../images/button-green.png) repeat-x left top;
+    border: 1px solid #598543;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 0px 18px 0px 18px;
+    text-shadow: 0px -1px 0px #4a7b38;
+}
+
+.omni-style .button.button-green:hover {
+    background-position: left -36px;
+}
+
+.omni-style .button.button-green:active {
+    background-position: left -72px;
+}
+
+.omni-style .button.button-green.disabled {
+    background-position: left top;
+    opacity: 0.6;
+}
+
+.omni-style .button.button-blue {
+    background: #596c8e url(../images/button-blue.png) repeat-x left top;
+    border: 1px solid #3a5070;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 0px 18px 0px 18px;
+    text-shadow: 0px -1px 0px #3a5070;
+}
+
+.omni-style .button.button-blue:hover {
+    background-position: left -36px;
+}
+
+.omni-style .button.button-blue:active {
+    background-position: left -72px;
+}
+
+.omni-style .button.button-blue.disabled {
+    background-position: left top;
+    opacity: 0.6;
+}
+
+.omni-style .button.button-red {
+    background: #cb5565 url(../images/button-red.png) repeat-x left top;
+    border: 1px solid #be5463;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 0px 18px 0px 18px;
+    text-shadow: 0px -1px 0px #9e4651;
+}
+
+.omni-style .button.button-red:hover {
+    background-position: left -36px;
+}
+
+.omni-style .button.button-red:active {
+    background-position: left -72px;
+}
+
+.omni-style .button.button-red.disabled {
+    background-position: left top;
+    opacity: 0.6;
+}
+
+.omni-style .button.button-grey {
+    background: #c5c5c5 url(../images/button-grey.png) repeat-x left top;
+    border: 1px solid #b3b3b3;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 36px;
+    padding: 0px 18px 0px 18px;
+    text-shadow: 0px -1px 0px #999999;
+}
+
+.omni-style .button.button-grey:hover {
+    background-position: left -36px;
+}
+
+.omni-style .button.button-grey:active {
+    background-position: left -72px;
+}
+
+.omni-style .button.button-grey.disabled {
+    background-position: left top;
+    opacity: 0.6;
+}
+
+.omni-style .button.button-more {
+    background: transparent url(../images/button-more.png) repeat-x left top;
+    border: 1px solid #bbbbbb;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    color: #777777;
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 36px;
+    margin-top: 12px;
+    text-align: center;
+    text-shadow: 0px 1px 0px #ffffff;
+    width: 100%;
+}
+
+.omni-style .button.button-more:hover {
+    box-shadow: 0px 0px 4px #cccccc;
+    -moz-box-shadow: 0px 0px 4px #cccccc;
+    -webkit-box-shadow: 0px 0px 4px #cccccc;
+    color: #777777;
+}
+
+.omni-style .button.button-more:active {
+    background-position: left -80px;
+}
+
+.omni-style .button.button-more.disabled {
+    background-position: left -120px;
+}
+
+.omni-style .button.button-more .spinner {
+    background: transparent url(../images/button-more-loading.gif) no-repeat center center;
+    display: none;
+    height: 20px;
+    margin: 8px auto 8px auto;
+    width: 20px;
+}
+
+.omni-style .button.button-more.loading .text {
+    display: none;
+}
+
+.omni-style .button.button-more.loading .spinner {
+    display: block;
+}

@@ -1,0 +1,7 @@
+.enumeration {
+    visibility: hidden;
+}
+
+.enumeration.processed {
+    visibility: visible;
+}
