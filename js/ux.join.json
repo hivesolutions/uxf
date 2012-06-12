@@ -1,5 +1,5 @@
 {
-    "_target_directories" : ["../bin/js", "../externals/ux/js"],
+    "_target_directories" : ["../bin/js"],
     "ux.js" : {
         "files" : ["header.part.js", "apply.part.js",
                 "attr/data_width.part.js", "data/data_query_json.part.js",
