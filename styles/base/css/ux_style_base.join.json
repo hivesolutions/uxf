@@ -2,18 +2,21 @@
     "_target_directories" : ["../bin/css", "../../../bin/styles/base/css",
             "../../../externals/ux/styles/base/css"],
     "ux_style_base.css" : {
-        "files" : ["header.part.css", "ui/button.part.css",
+        "files" : ["header.part.css", "layout/container.part.css",
+                "ui/button.part.css", "ui/content_bar.part.css",
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "footer.part.css"]
     },
     "ux_style_base-min.css" : {
-        "files" : ["header.part.css", "ui/button.part.css",
+        "files" : ["header.part.css", "layout/container.part.css",
+                "ui/button.part.css", "ui/content_bar.part.css",
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "footer.part.css"],
         "minify" : "css"
     },
     "ux_style_base-min.css.gz" : {
-        "files" : ["header.part.css", "ui/button.part.css",
+        "files" : ["header.part.css", "layout/container.part.css",
+                "ui/button.part.css", "ui/content_bar.part.css",
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "footer.part.css"],
         "minify" : "css",
