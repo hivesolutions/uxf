@@ -1,5 +1,5 @@
 {
-    "_target_directories" : ["../bin/css", "../externals/ux/css"],
+    "_target_directories" : ["../bin/css"],
     "ux.css" : {
         "files" : ["header.part.css", "data/data_source.part.css",
                 "error/error_box.part.css", "layout/replacer.part.css",
