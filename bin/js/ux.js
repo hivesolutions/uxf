@@ -14689,7 +14689,7 @@ jQuery(document).ready(function() {
         });
 
 // Hive Colony Framework
-// Copyright (C) 2008 Hive Solutions Lda.
+// Copyright (C) 2008-2012 Hive Solutions Lda.
 //
 // This file is part of Hive Colony Framework.
 //
@@ -14708,9 +14708,9 @@ jQuery(document).ready(function() {
 
 // __author__    = João Magalhães <joamag@hive.pt>
 // __version__   = 1.0.0
-// __revision__  = $LastChangedRevision: 2368 $
-// __date__      = $LastChangedDate: 2009-04-02 06:49:09 +0100 (qui, 02 Abr 2009) $
-// __copyright__ = Copyright (c) 2008 Hive Solutions Lda.
+// __revision__  = $LastChangedRevision$
+// __date__      = $LastChangedDate$
+// __copyright__ = Copyright (c) 2008-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
 var Date = Date || {};
@@ -14815,7 +14815,7 @@ Date.prototype.getTimeZoneStructure = function() {
 }
 
 // Hive Colony Framework
-// Copyright (C) 2008 Hive Solutions Lda.
+// Copyright (C) 2008-2012 Hive Solutions Lda.
 //
 // This file is part of Hive Colony Framework.
 //
@@ -14834,9 +14834,9 @@ Date.prototype.getTimeZoneStructure = function() {
 
 // __author__    = João Magalhães <joamag@hive.pt>
 // __version__   = 1.0.0
-// __revision__  = $LastChangedRevision: 9229 $
-// __date__      = $LastChangedDate: 2010-07-08 18:07:05 +0100 (qui, 08 Jul 2010) $
-// __copyright__ = Copyright (c) 2008 Hive Solutions Lda.
+// __revision__  = $LastChangedRevision$
+// __date__      = $LastChangedDate$
+// __copyright__ = Copyright (c) 2008-2012 Hive Solutions Lda.
 // __license__   = GNU General Public License (GPL), Version 3
 
 var Select = Select || {};
