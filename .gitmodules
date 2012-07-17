@@ -4,6 +4,6 @@
 [submodule "util"]
 	path = util
 	url = git@github.com:hivesolutions/js_util.git
-[submodule "utilasda"]
-	path = util/matias/tobias
+[submodule "utilaux"]
+	path = libs/util
 	url = git@github.com:hivesolutions/js_util.git
