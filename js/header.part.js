@@ -1,5 +1,5 @@
 // Hive UX Framework
-// Copyright (C) 2010 Hive Solutions Lda.
+// Copyright (C) 2010-2012 Hive Solutions Lda.
 //
 // This file is part of Hive UX Framework.
 //
@@ -17,5 +17,5 @@
 // __version__   = 1.0.0
 // __revision__  = $LastChangedRevision$
 // __date__      = $LastChangedDate$
-// __copyright__ = Copyright (c) 2010 Hive Solutions Lda.
+// __copyright__ = Copyright (c) 2010-2012 Hive Solutions Lda.
 // __license__   = Hive Solutions Confidential Usage License (HSCUL)

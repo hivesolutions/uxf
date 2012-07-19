@@ -7,7 +7,7 @@
  * @version 1.0
  * @date March 10, 2010
  * @category jQuery plugin
- * @copyright Copyright (c) 2010 Hive Solutions Lda.
+ * @copyright Copyright (c) 2010-2012 Hive Solutions Lda.
  * @license Hive Solutions Confidential Usage License (HSCUL) -
  *          http://www.hive.pt/licenses/
  * @credits Ariel Flesler <aflesler@gmail.com>
