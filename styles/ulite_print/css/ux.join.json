@@ -9,7 +9,7 @@
         "files" : ["header.part.css", "footer.part.css"],
         "minify" : "css"
     },
-    "u-min.css.gz" : {
+    "ux-min.css.gz" : {
         "files" : ["header.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
