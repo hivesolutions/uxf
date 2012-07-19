@@ -2,14 +2,14 @@
     "_target_directories" : ["../bin/css",
             "../../../bin/styles/ulite_print/css",
             "../../../externals/ux/styles/ulite_print/css"],
-    "ux_style_ulite_print.css" : {
+    "ux.css" : {
         "files" : ["header.part.css", "footer.part.css"]
     },
-    "ux_style_ulite_print-min.css" : {
+    "ux-min.css" : {
         "files" : ["header.part.css", "footer.part.css"],
         "minify" : "css"
     },
-    "ux_style_ulite_print-min.css.gz" : {
+    "u-min.css.gz" : {
         "files" : ["header.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
