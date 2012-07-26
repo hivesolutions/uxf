@@ -1109,7 +1109,8 @@
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
             var margin = jQuery(".margin");
-            var pageOffset = margin.offset().top || 0;
+            var marginOffset = margin.offset();
+            var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // tries to retrieve the dom element
             var _element = selectedListItem.get(0)
@@ -1180,7 +1181,8 @@
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
             var margin = jQuery(".margin");
-            var pageOffset = margin.offset().top || 0;
+            var marginOffset = margin.offset();
+            var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // in case the current first element is the pivot
             // need to use the last value as reference
@@ -1261,7 +1263,8 @@
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
             var margin = jQuery(".margin");
-            var pageOffset = margin.offset().top || 0;
+            var marginOffset = margin.offset();
+            var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // in case the current last element is the pivot
             // need to use the first value as reference
@@ -1307,7 +1310,8 @@
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
             var margin = jQuery(".margin");
-            var pageOffset = margin.offset().top || 0;
+            var marginOffset = margin.offset();
+            var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // retrieves the first item as the reference one
             var item = jQuery(selectedListItem[0]);
@@ -1359,7 +1363,8 @@
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
             var margin = jQuery(".margin");
-            var pageOffset = margin.offset().top || 0;
+            var marginOffset = margin.offset();
+            var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // retrieves the last item as the reference one
             var item = jQuery(selectedListItem[selectedListItem.length - 1]);
