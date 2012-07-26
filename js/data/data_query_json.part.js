@@ -88,7 +88,7 @@
             // object and then parse as integer as a fallback the default
             // timeout value is used, note that if the data source is
             // not dirty no timeout is used (instant query)
-            var timeout = matchedObject.attr("timeout");
+            var timeout = matchedObject.attr("data-timeout");
             timeout = !isDirty ? 0 : timeout
                     ? parseInt(timeout)
                     : DEFAULT_TIMEOUT;

@@ -100,6 +100,9 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // retrieves the window element reference
+            var _window = jQuery(window);
+
             // retrieves the document element reference
             var _document = jQuery(document);
 
@@ -120,6 +123,10 @@
             // true to avoid further registrations
             var isRegistered = _body.data("filter_click");
             matchedObject.length > 0 && _body.data("filter_click", true);
+
+            // tries to retrieve the value for the infinite loading
+            // support in the matched object (by default it's disabled)
+            var infinite = matchedObject.attr("data-infinite") || false;
 
             // registers for the key up in the filter input
             filterInput.keyup(function() {
@@ -392,6 +399,32 @@
                                 // updates the current selection
                                 _updateSelection(matchedObject, options);
                             });
+
+            // registers for the scroll event in the window in case
+            // the infinite scroll support is enabled
+            matchedObject.length > 0 && infinite && _window.scroll(function() {
+                        // sets the filter as the matched object, this
+                        // considered to be a global singleton handler
+                        var filter = matchedObject;
+
+                        // retrieves the top offset of the page, using
+                        // the margin element (from the margin top)
+                        var margin = jQuery(".margin");
+                        var marginOffset = margin.offset();
+                        var pageOffset = marginOffset ? marginOffset.top : 0;
+
+                        // retrieves the filter more element height as the
+                        // delta value for the visibility testing this way
+                        // the visibility test is done agains the top
+                        var delta = filterMore.outerHeight() * -1;
+
+                        // checks if the element is visible
+                        var isVisible = filterMore.length ? jQuery.uxvisible(
+                                filterMore, pageOffset, delta) : false;
+
+                        // updates the filter state
+                        isVisible && _update(filter, options);
+                    });
         };
 
         var _update = function(matchedObject, options) {

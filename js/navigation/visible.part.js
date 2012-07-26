@@ -1,7 +1,12 @@
-jQuery.uxvisible = function isScrolledIntoView(element, offset) {
+jQuery.uxvisible = function(element, offset, delta) {
     // retreives the offset value, talking into
     // acccount the default value
     offset = offset ? offset : 0;
+
+    // retrieves the delta value that can be used to
+    // control the poistion of the element to be teste
+    // for visibility (margin delta)
+    delta = delta ? delta : 0;
 
     // retrieves the window and the "proper"
     // element reference
@@ -17,7 +22,7 @@ jQuery.uxvisible = function isScrolledIntoView(element, offset) {
     var viewBottom = _window.scrollTop() + _window.height();
 
     // retrieves the element top and bottom positions
-    var elementTop = element.offset().top;
+    var elementTop = element.offset().top + delta;
     var elementBottom = elementTop + element.outerHeight();
 
     // runs the intersection test on the element against
