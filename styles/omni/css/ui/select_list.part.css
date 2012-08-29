@@ -1,0 +1,36 @@
+.omni-style .select-list {
+    border: 1px solid #dddddd;
+    height: 216px;
+    list-style: none;
+    margin: -1px 0px 0px 0px;
+    overflow-y: auto;
+    padding: 0px 0px 0px 0px;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    width: 246px;
+}
+
+.omni-style .select-list li {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
+    color: #4d4d4d;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 22px;
+    padding: 4px 6px 4px 6px;
+}
+
+.omni-style .select-list li:last-child {
+    border-bottom: none;
+}
+
+.omni-style .select-list li.selected {
+    background-color: #f0f0f0;
+}
+
+.omni-style .select-list li:hover {
+    background-color: #f0f0f0;
+}
