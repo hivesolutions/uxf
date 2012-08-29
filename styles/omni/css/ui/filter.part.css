@@ -36,8 +36,10 @@
     padding-bottom: 16px;
     padding-top: 16px;
     user-select: none;
-    -moz-user-select: -moz-none;
+    -o-user-select: none;
+    -moz-user-select: none;
     -khtml-user-select: none;
+    -webkit-user-select: none;
 }
 
 .omni-style .filter.entities-list li.selected {
