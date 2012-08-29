@@ -1,0 +1,51 @@
+.omni-style .cross-list h2 {
+    color: #777777;
+    font-size: 10px;
+    font-weight: normal;
+    margin: 0px 0px 6px 0px;
+    padding-left: 4px;
+    text-transform: uppercase;
+}
+
+.omni-style .cross-list .arrow {
+    background: transparent none no-repeat 0px 0px;
+    cursor: pointer;
+    float: left;
+    height: 16px;
+    margin: 8px 0px 8px 0px;
+    width: 16px;
+}
+
+.omni-style .cross-list .arrow:hover {
+    background-position: 0px -16px;
+}
+
+.omni-style .cross-list .arrow.arrow-left {
+    background-image: url(../images/cross-list-arrow-left.png);
+}
+
+.omni-style .cross-list .arrow.arrow-right {
+    background-image: url(../images/cross-list-arrow-right.png);
+}
+
+.omni-style .cross-list .section {
+    float: left;
+}
+
+.omni-style .cross-list .cross-section {
+    height: 149px;
+    margin: 112px 10px 0px 10px;
+    width: 16px;
+}
+
+.omni-style .cross-list .text-field {
+    background-image: url(../images/drop-field-dots.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    height: 26px;
+    padding-right: 28px;
+    width: 212px;
+}
