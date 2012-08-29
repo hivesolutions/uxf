@@ -66,6 +66,7 @@
             var link = jQuery(".link", matchedObject).not(".template .link");
             var linkConfirm = jQuery(".link-confirm", matchedObject).not(".template .link-confirm");
             var list = jQuery(".list", matchedObject).not(".template .list");
+            var selectList = jQuery(".select-list", matchedObject).not(".template .select-list");
             var progressBar = jQuery(".progress-bar", matchedObject).not(".template .progress-bar");
             var passwordMeter = jQuery(".password-meter", matchedObject).not(".template .password-meter");
             var changer = jQuery(".changer", matchedObject).not(".template .changer");
@@ -141,6 +142,7 @@
             link.uxlink();
             linkConfirm.uxlinkconfirm();
             list.uxlist();
+            selectList.uxselectlist();
             progressBar.uxprogressbar();
             passwordMeter.uxpasswordmeter();
             changer.uxchanger();
