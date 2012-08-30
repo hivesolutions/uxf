@@ -59,6 +59,7 @@
                 var elementName = _element.attr("name");
                 var sourceName = _element.attr("data-source");
                 var targetName = _element.attr("data-target");
+                var numberOptions = _element.attr("data-number_options");
 
                 // creates the various section elements
                 var sourceSection = jQuery("<div class=\"section source-section\"></div>");
@@ -102,6 +103,11 @@
                 dataSource.length && sourceList.append(dataSource);
                 elementName && targetList.attr("name", elementName);
 
+                // in case the number of options is set propagates the setting to the
+                // source list so that the number of options is limited
+                numberOptions
+                        && sourceList.attr("data-number_options", numberOptions);
+
                 // starts the target data source and then adds it to the target list
                 // this data source is going to be manipulated through the items
                 targetSource.uxdatasource();
@@ -118,15 +124,22 @@
                 sourceList.uxsourcelist();
                 targetList.uxsourcelist();
 
+                // in case the source and the target names are defined adds
+                // the titles to the corresponding sections
                 sourceName && sourceSection.append(sourceTitle);
                 targetName && targetSection.append(targetTitle);
 
+                // adds the source and target list to the corresponding
+                // sections (floating panels)
                 sourceSection.append(sourceList);
                 targetSection.append(targetList);
 
+                // adds both arrows to the cross section
                 crossSection.append(arrowRight);
                 crossSection.append(arrowLeft);
 
+                // adds the top level elements to the element, this should
+                // trigger the display of the element
                 _element.append(sourceSection);
                 _element.append(crossSection);
                 _element.append(targetSection);
@@ -163,6 +176,8 @@
                         var targetList = jQuery(".target-section .select-list",
                                 crossList);
 
+                        // retrieves the target data source and then
+                        // uses it to retrieve the items from its data
                         var targetSource = jQuery(
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
@@ -170,13 +185,22 @@
                         // removes the selected class from the element
                         element.removeClass("selected");
 
-                        var dataValue = element.html();
+                        // retrieves the data value from the element defaulting
+                        // to the html represention in case none is provided
+                        var dataValue = element.attr("data-value");
+                        var htmlValue = element.html();
+                        dataValue = dataValue ? dataValue : htmlValue;
 
+                        // in case the data value exists in the target items
+                        // must return immediately cannot add duplicates to
+                        // the target list
                         var exists = targetItems.indexOf(dataValue) != -1;
                         if (exists) {
                             return
                         }
 
+                        // adds the data value to the target items and then
+                        // apends the element to the target list
                         targetItems.push(dataValue);
                         targetList.append(element);
                     });
@@ -194,12 +218,21 @@
                         var sourceList = jQuery(".source-section .select-list",
                                 crossList);
 
+                        // retrieves the target data source and then
+                        // uses it to retrieve the items from its data
                         var targetSource = jQuery(
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
 
-                        var dataValue = element.html();
+                        // retrieves the data value from the element defaulting
+                        // to the html represention in case none is provided
+                        var dataValue = element.attr("data-value");
+                        var htmlValue = element.html();
+                        dataValue = dataValue ? dataValue : htmlValue;
 
+                        // retrieves the index of the data value in the
+                        // target items and then uses it to remove the item
+                        // from the list of target items
                         var index = targetItems.indexOf(dataValue);
                         targetItems.splice(index, 1);
 
@@ -213,30 +246,49 @@
             // able to tranfers the selected target elements back to
             // the source list
             arrowLeft.click(function() {
+                        // retrieves the current element and then uses it to
+                        // retrieve the parent cross list element
                         var element = jQuery(this);
                         var crossList = element.parents(".cross-list");
 
+                        // retrieves both the source list and the target list
+                        // to be able to "transfer" the selected items
                         var sourceList = jQuery(".source-section .select-list",
                                 crossList);
                         var targetList = jQuery(".target-section .select-list",
                                 crossList);
 
+                        // retrieves the target data source and then
+                        // uses it to retrieve the items from its data
                         var targetSource = jQuery(
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
 
+                        // retrieves the list of selected items in the target list
                         var selectedItems = jQuery("li.selected", targetList);
 
+                        // iterates over all the selected items to remove them from
+                        // the target items (data source)
                         for (var index = 0; index < selectedItems.length; index++) {
+                            // retrieves the current selected item in iteration
                             var selectedItem = selectedItems[index];
                             var _selectedItem = jQuery(selectedItem);
 
-                            var dataValue = _selectedItem.html();
+                            // retrieves the data value from the selected item defaulting
+                            // to the html represention in case none is provided
+                            var dataValue = _selectedItem.attr("data-value");
+                            var htmlValue = _selectedItem.html();
+                            dataValue = dataValue ? dataValue : htmlValue;
 
+                            // retrieves the index of the data value in the target
+                            // items list and then uses it to remove the item from
+                            // the list of target items
                             var _index = targetItems.indexOf(dataValue);
                             targetItems.splice(_index, 1);
                         }
 
+                        // removes the selected class from the selected items and then
+                        // appends the various selected items to the source list
                         selectedItems.removeClass("selected");
                         sourceList.append(selectedItems);
                     });
@@ -245,38 +297,61 @@
             // able to tranfers the selected source elements into
             // the target list
             arrowRight.click(function() {
+                        // retrieves the current element and then uses it to
+                        // retrieve the parent cross list element
                         var element = jQuery(this);
                         var crossList = element.parents(".cross-list");
 
+                        // retrieves both the source list and the target list
+                        // to be able to "transfer" the selected items
                         var sourceList = jQuery(".source-section .select-list",
                                 crossList);
                         var targetList = jQuery(".target-section .select-list",
                                 crossList);
 
+                        // retrieves the target data source and then
+                        // uses it to retrieve the items from its data
                         var targetSource = jQuery(
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
 
+                        // retrieves the list of selected items in the source list
+                        // and then removes the selected class from them
                         var selectedItems = jQuery("li.selected", sourceList);
                         selectedItems.removeClass("selected");
 
+                        // creates the list that will hold the various items
+                        // considered to be valid (no duplicates)
                         var validItems = [];
 
+                        // iterates over the list of selected items to filter the ones
+                        // that are duplicated values
                         for (var index = 0; index < selectedItems.length; index++) {
+                            // retrieves the current selected item in iteration
                             var selectedItem = selectedItems[index];
                             var _selectedItem = jQuery(selectedItem);
 
-                            var dataValue = _selectedItem.html();
+                            // retrieves the data value from the selected item defaulting
+                            // to the html represention in case none is provided
+                            var dataValue = _selectedItem.attr("data-value");
+                            var htmlValue = _selectedItem.html();
+                            dataValue = dataValue ? dataValue : htmlValue;
 
+                            // checks if the data value already exists in the list of target
+                            // items in case it does continues the loop (duplicated value)
                             var exists = targetItems.indexOf(dataValue) != -1;
                             if (exists) {
                                 continue;
                             }
 
+                            // adds the selected items to the valid items and adds the data
+                            // value to the list of target items (data source)
                             validItems.push(selectedItem);
                             targetItems.push(dataValue);
                         }
 
+                        // convers the list of valid items into an element and adds
+                        // it to the target list (should display the items visually)
                         var _validItems = jQuery(validItems);
                         targetList.append(_validItems);
                     });
