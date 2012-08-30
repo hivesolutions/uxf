@@ -154,6 +154,56 @@
                         // triggers the select event in the element
                         element.trigger("selected", [element]);
                     });
+
+            // iterates over each of the matched objects
+            // to register them agains the submission of the form
+            matchedObject.each(function(index, element) {
+                // retrieves the current element for iteration
+                var _element = jQuery(element);
+
+                // retrieves the containing form
+                var parentForm = _element.parents("form");
+
+                // registers for the submit event
+                parentForm.submit(function() {
+                            // retrieves the name of the element, this value is
+                            // going to be used in the input element to be create
+                            // in case the name does not exists no submission of
+                            // values is created (returns immediately)
+                            var elementName = _element.attr("name");
+                            if (!elementName) {
+                                return;
+                            }
+
+                            // removes all the input elements contained inside the
+                            // current select list (avoid duplicated submission)
+                            _element.remove("input");
+
+                            // retrieves the complete set of elements in the current
+                            // select list, this values are going to be used to create
+                            // the series of form input elements
+                            var listItems = jQuery("li", _element);
+
+                            // iterates over all the element in the list items to
+                            // creates the associated input values
+                            for (var index = 0; index < listItems.length; index++) {
+                                // retrieves the current list items in iteration
+                                // and retrieves the value to be used as data value
+                                // defaulting to the html value in case none is provided
+                                var listItem = jQuery(listItems[index]);
+                                var dataValue = listItem.attr("data-value");
+                                var htmlValue = listItem.html();
+                                dataValue = dataValue ? dataValue : htmlValue;
+
+                                // adds the input element representing the list item
+                                // to the list item itself
+                                _element.append("<input type=\"hidden\" name=\""
+                                        + elementName
+                                        + "\" value=\""
+                                        + dataValue + "\" />");
+                            }
+                        });
+            });
         };
 
         // switches over the method
