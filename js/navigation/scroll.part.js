@@ -3,7 +3,8 @@
         // the default values for the scrill
         var defaults = {
             offset : 0,
-            padding : 0
+            padding : 0,
+            parent : window
         };
 
         // sets the default options value
@@ -38,6 +39,7 @@
             // retrieves the offset and padding from the options
             var offset = options["offset"];
             var padding = options["padding"];
+            var parent = options["parent"];
 
             // retrieves the matched object height and
             // offset to top (from offset)
@@ -54,25 +56,41 @@
             var bodyTop = _body.scrollTop();
             var scrollTop = htmlScrollTop > bodyTop ? htmlScrollTop : bodyTop;
 
-            // retrieves the window to retrieve its size
-            var _window = jQuery(window);
-            var windowHeight = _window.height();
+            // updates the scroll top value taking into account if the
+            // current parent elemeent is the window
+            scrollTop = _parent[0] == window ? scrollTop : _parent.scrollTop();
+
+            // retrieves the parent to retrieve its size
+            var _parent = jQuery(parent);
+            var parentHeight = _parent[0] == window
+                    ? _parent.height()
+                    : _parent.outerHeight();
+
+            // calculates the top offset value for the parent element
+            // to be used for some calculus (in no window mode)
+            var parentOffset = _parent.offset();
+            var parentOffsetTop = parentOffset
+                    ? parentOffset.top - scrollTop
+                    : 0;
 
             // calculates the bottom position for the matched object
             // and uses the value to determine if the element is position
             // below of above the position of the scroll viewport
-            var bottomPosition = offsetTop + matchedObject.outerHeight();
-            var isBelow = scrollTop + windowHeight < bottomPosition;
+            var bottomPosition = offsetTop - parentOffsetTop
+                    + matchedObject.outerHeight();
+            var isBelow = scrollTop + parentHeight < bottomPosition;
 
             // calculates the appropriate (new) scroll top value taking
             // into account if the element is below the viewport or
             // abover, this calculus also takes into account the offset
             // and padding values
-            var scrollTop = isBelow ? offsetTop - windowHeight + height
-                    + padding : offsetTop - offset - padding;
+            var scrollTop = isBelow ? offsetTop - parentOffsetTop
+                    - parentHeight + height + padding : offsetTop
+                    - parentOffsetTop - offset - padding;
 
-            // changes the scroll top value in the top elements
-            topElements.scrollTop(scrollTop);
+            // changes the scroll top value in the parent element,
+            // this should make visible the matched object
+            _parent.scrollTop(scrollTop);
         };
 
         /**

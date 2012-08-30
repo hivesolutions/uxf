@@ -1146,7 +1146,7 @@
             var pageOffset = marginOffset ? marginOffset.top : 0;
 
             // tries to retrieve the dom element
-            var _element = selectedListItem.get(0)
+            var _element = selectedListItem.get(0);
 
             // cheks if the element is visible
             var isVisible = _element ? jQuery.uxvisible(selectedListItem,

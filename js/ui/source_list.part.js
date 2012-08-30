@@ -98,11 +98,65 @@
             textField.keyup(function(event) {
                         // retrieves th current element
                         var element = jQuery(this);
-                        var sourceList = element.parents(".source-list");
+                        var sourceList = element.parent(".source-list");
+                        var selectList = jQuery(".select-list", sourceList);
 
-                        // runs the update operation using the current
-                        // source list with the set of options
-                        _update(sourceList, options);
+                        // retrieves the event key code
+                        var eventKeyCode = event.keyCode
+                                ? event.keyCode
+                                : event.which;
+
+                        // switches over the event key code
+                        switch (eventKeyCode) {
+                            // in case it's the enter key
+                            case 13 :
+                                // retrieves the set of selected element
+                                var selectedItems = jQuery("li.selected",
+                                        sourceList);
+
+                                // triggers the select event in the select list
+                                selectList.trigger("selected", [selectedItems]);
+
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
+
+                            // in case it's the page up key
+                            case 33 :
+                                break;
+
+                            // in case it's the page down key
+                            case 34 :
+                                break;
+
+                            // in case it's the up key
+                            case 38 :
+                                // runs the up action in the source list
+                                _up(sourceList, options);
+
+                                // breaks the switch
+                                break;
+
+                            // in case it's the down key
+                            case 40 :
+                                // runs teh down action in the source list
+                                _down(sourceList, options);
+
+                                // breaks the switch
+                                break;
+
+                            default :
+                                // runs the update operation using the current
+                                // source list with the set of options
+                                _update(sourceList, options);
+
+                                // breaks the switch
+                                break;
+                        }
                     });
         };
 
@@ -226,6 +280,77 @@
                         // updates the source list value with the current
                         // text field value
                         sourceList.data("value", textFieldValue);
+                    });
+        };
+
+        var _up = function(matchedObject, options) {
+            // sets the source list as the currently
+            // matched object
+            var sourceList = matchedObject;
+
+            // retrieves the set of selected elements
+            // and removes the selected class from them
+            var selectedItems = jQuery("li.selected", sourceList);
+            selectedItems.removeClass("selected");
+
+            // retrieves the complete set of items in the source list
+            var items = jQuery("li", sourceList);
+
+            // retrieves the current index value defaulting to zero
+            // in case no item is currently selected
+            var index = selectedItems.length ? selectedItems.index() : 0;
+            var _index = index > items.length - 1 ? items.length - 1 : index
+                    + 1;
+
+            sourceList.data("index", _index);
+            _updateList(sourceList, options);
+        };
+
+        var _down = function(matchedObject, options) {
+            // sets the source list as the currently
+            // matched object
+            var sourceList = matchedObject;
+
+            // retrieves the set of selected element
+            var selectedItems = jQuery("li.selected", sourceList);
+            selectedItems.removeClass("selected");
+
+            if (selectedItems.length) {
+                var index = selectedItems.index() + 1;
+            } else {
+                var index = 0;
+            }
+
+            sourceList.data("index", index);
+            _updateList(sourceList, options);
+        };
+
+        var _updateList = function(matchedObject, options) {
+            // sets the source list as the currently
+            // matched object, then uses it to retrieve the
+            // associate select list element
+            var sourceList = matchedObject;
+            var selectList = jQuery(".select-list", sourceList);
+
+            // retrieves the current selected index value
+            // in the source list to select and focus it
+            var index = sourceList.data("index");
+
+            // retrieves the target item using the "just"
+            // provided index value
+            var targetItem = jQuery("li:nth-child(" + (index + 1) + ")",
+                    sourceList);
+            targetItem.addClass("selected");
+
+            // checks if the element is visible, this should be the
+            // main reason for the scrolling of the select list
+            var isVisible = targetItem ? jQuery.uxvisible(targetItem, 0, 0,
+                    selectList) : true;
+
+            // scrolls to the select list in case the
+            // target item is not visible
+            !isVisible && targetItem.uxscroll({
+                        parent : selectList
                     });
         };
 
