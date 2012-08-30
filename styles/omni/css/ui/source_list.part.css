@@ -1,0 +1,11 @@
+.omni-style .source-list .text-field {
+    background-image: url(../images/source-list-dots.png);
+    background-position: right center;
+    background-repeat: no-repeat;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    height: 26px;
+    padding-right: 28px;
+    width: 212px;
+}
