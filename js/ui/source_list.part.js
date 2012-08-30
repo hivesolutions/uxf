@@ -1,4 +1,3 @@
-
 /**
  * jQuery source list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a source list component.
@@ -94,7 +93,81 @@
             var sourceList = matchedObject;
             var textField = jQuery(".text-field", sourceList);
 
-            // registers for the key down even on the text field
+            // registers for the key down event on the text field
+            textField.keydown(function(event) {
+                        // retrieves th current element
+                        var element = jQuery(this);
+                        var sourceList = element.parent(".source-list");
+                        var selectList = jQuery(".select-list", sourceList);
+
+                        // retrieves the event key code
+                        var eventKeyCode = event.keyCode
+                                ? event.keyCode
+                                : event.which;
+
+                        // retrieves the event key code
+                        var eventKeyCode = event.keyCode
+                                ? event.keyCode
+                                : event.which;
+
+                        // switches over the event key code
+                        switch (eventKeyCode) {
+
+                            // in case it's the page up key
+                            case 33 :
+                                // runs the all up action in the source list
+                                _allUp(sourceList, options);
+
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
+
+                            // in case it's the page down key
+                            case 34 :
+                                // runs the all down action in the source list
+                                _allDown(sourceList, options);
+
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
+
+                            // in case it's the up key
+                            case 38 :
+                                // runs the up action in the source list
+                                _up(sourceList, options);
+
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
+
+                            // in case it's the down key
+                            case 40 :
+                                // runs teh down action in the source list
+                                _down(sourceList, options);
+
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
+                        }
+                    });
+
+            // registers for the key up even on the text field
             textField.keyup(function(event) {
                         // retrieves th current element
                         var element = jQuery(this);
@@ -121,30 +194,6 @@
                                 // (avoids extra problems in form)
                                 event.stopPropagation();
                                 event.preventDefault();
-
-                                // breaks the switch
-                                break;
-
-                            // in case it's the page up key
-                            case 33 :
-                                break;
-
-                            // in case it's the page down key
-                            case 34 :
-                                break;
-
-                            // in case it's the up key
-                            case 38 :
-                                // runs the up action in the source list
-                                _up(sourceList, options);
-
-                                // breaks the switch
-                                break;
-
-                            // in case it's the down key
-                            case 40 :
-                                // runs teh down action in the source list
-                                _down(sourceList, options);
 
                                 // breaks the switch
                                 break;
@@ -293,15 +342,13 @@
             var selectedItems = jQuery("li.selected", sourceList);
             selectedItems.removeClass("selected");
 
-            // retrieves the complete set of items in the source list
-            var items = jQuery("li", sourceList);
-
             // retrieves the current index value defaulting to zero
             // in case no item is currently selected
             var index = selectedItems.length ? selectedItems.index() : 0;
-            var _index = index > items.length - 1 ? items.length - 1 : index
-                    + 1;
+            var _index = index <= 0 ? 0 : index - 1;
 
+            // updates the index reference in the source list
+            // and runs the update list process
             sourceList.data("index", _index);
             _updateList(sourceList, options);
         };
@@ -311,16 +358,64 @@
             // matched object
             var sourceList = matchedObject;
 
-            // retrieves the set of selected element
+            // retrieves the set of selected elements
+            // and removes the selected class from them
             var selectedItems = jQuery("li.selected", sourceList);
             selectedItems.removeClass("selected");
 
-            if (selectedItems.length) {
-                var index = selectedItems.index() + 1;
-            } else {
-                var index = 0;
-            }
+            // retrieves the complete set of items in the source list
+            var items = jQuery("li", sourceList);
 
+            // retrieves the current index value defaulting to minus one
+            // in case no item is currently selected
+            var index = selectedItems.length ? selectedItems.index() : -1;
+            var _index = index >= items.length - 1 ? items.length - 1 : index
+                    + 1;
+
+            // updates the index reference in the source list
+            // and runs the update list process
+            sourceList.data("index", _index);
+            _updateList(sourceList, options);
+        };
+
+        var _allUp = function(matchedObject, options) {
+            // sets the source list as the currently
+            // matched object
+            var sourceList = matchedObject;
+
+            // retrieves the set of selected elements
+            // and removes the selected class from them
+            var selectedItems = jQuery("li.selected", sourceList);
+            selectedItems.removeClass("selected");
+
+            // sets the current index as zero (top element)
+            var index = 0;
+
+            // updates the index reference in the source list
+            // and runs the update list process
+            sourceList.data("index", index);
+            _updateList(sourceList, options);
+        };
+
+        var _allDown = function(matchedObject, options) {
+            // sets the source list as the currently
+            // matched object
+            var sourceList = matchedObject;
+
+            // retrieves the set of selected elements
+            // and removes the selected class from them
+            var selectedItems = jQuery("li.selected", sourceList);
+            selectedItems.removeClass("selected");
+
+            // retrieves the complete set of items in the source list
+            var items = jQuery("li", sourceList);
+
+            // sets the current index as the last of the items (last
+            // item selected)
+            var index = items.length - 1;
+
+            // updates the index reference in the source list
+            // and runs the update list process
             sourceList.data("index", index);
             _updateList(sourceList, options);
         };

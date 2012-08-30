@@ -56,12 +56,15 @@
             var bodyTop = _body.scrollTop();
             var scrollTop = htmlScrollTop > bodyTop ? htmlScrollTop : bodyTop;
 
+            // retrieves the parent element reference to
+            // be used for attribute calculation
+            var _parent = jQuery(parent);
+
             // updates the scroll top value taking into account if the
             // current parent elemeent is the window
             scrollTop = _parent[0] == window ? scrollTop : _parent.scrollTop();
 
-            // retrieves the parent to retrieve its size
-            var _parent = jQuery(parent);
+            // retrieves the height of the parent element
             var parentHeight = _parent[0] == window
                     ? _parent.height()
                     : _parent.outerHeight();
