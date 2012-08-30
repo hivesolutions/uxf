@@ -59,16 +59,27 @@
             var arrowLeft = jQuery(".arrow-left", matchedObject);
             var arrowRight = jQuery(".arrow-right", matchedObject);
 
+            // registers for the selected event on the source list to
+            // transfer the selected elements to the target list
             sourceList.bind("selected", function(event, element) {
+                        // removes the selected class from the element and
+                        // adds it to the target list
                         element.removeClass("selected");
                         targetList.append(element);
                     });
 
+            // registers for the selected event on the source list to
+            // transfer the selected elements to the target list
             targetList.bind("selected", function(event, element) {
+                        // removes the selected class from the element and
+                        // adds it to the source list
                         element.removeClass("selected");
                         sourceList.append(element);
                     });
 
+            // registers for the click event on the left arrow to be
+            // able to tranfers the selected target elements back to
+            // the source list
             arrowLeft.click(function() {
                         var element = jQuery(this);
                         var crossList = element.parents(".cross-list");
@@ -83,6 +94,9 @@
                         sourceList.append(selectedItems);
                     });
 
+            // registers for the click event on the right arrow to be
+            // able to tranfers the selected source elements into
+            // the target list
             arrowRight.click(function() {
                         var element = jQuery(this);
                         var crossList = element.parents(".cross-list");
