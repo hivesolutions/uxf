@@ -1,3 +1,4 @@
+
 /**
  * jQuery source list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a source list component.
@@ -64,6 +65,15 @@
             matchedObject.each(function(index, element) {
                         // retrieves the current element for iteration
                         var _element = jQuery(element);
+
+                        // retrieves the select list element associated
+                        // with the current element in iteration
+                        var selectList = jQuery(".select-list", _element);
+
+                        // retrieves the name of the current element and
+                        // in case it's valid set it in the select list
+                        var elementName = _element.attr("name");
+                        elementName && selectList.attr("name", elementName);
 
                         // updates the element data with parameters to
                         // be used in the component actions
@@ -152,6 +162,10 @@
                             return;
                         }
 
+                        // retrieves the list of item values to be excluded
+                        // fro the resulting list
+                        var exclusion = sourceList.data("exclusion");
+
                         // empties (clears) the select list
                         selectList.empty()
 
@@ -180,6 +194,15 @@
                                     + "\" data-value=\""
                                     + currentValueAttribute + "\">"
                                     + currentDisplayAttribute + "</li>");
+
+                            // checks if the current value is invalid (exists
+                            // in the item exclusion list) in case it does exist
+                            // must continue the loop (ignores element)
+                            var invalid = exclusion
+                                    && exclusion.indexOf(currentValueAttribute) != -1;
+                            if (invalid) {
+                                continue;
+                            }
 
                             // sets the current item in the template item data
                             // so that it can be used for latter template rendering
