@@ -16,6 +16,7 @@
 .omni-style .select-list li {
     background-color: #ffffff;
     border-bottom: 1px solid #f0f0f0;
+    border-top: 1px solid transparent;
     color: #4d4d4d;
     cursor: pointer;
     font-size: 12px;
@@ -29,4 +30,10 @@
 
 .omni-style .select-list li.selected {
     background-color: #f0f0f0;
+}
+
+.omni-style .select-list li.clone {
+    background-color: #fbfbfb;
+    border-bottom: 1px solid #f0f0f0;
+    border-top: 1px solid #f0f0f0;
 }
