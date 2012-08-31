@@ -74,6 +74,12 @@
                         var elementName = _element.attr("name");
                         elementName && selectList.attr("name", elementName);
 
+                        // retrieves the order of the current element and
+                        // in case it's valid set it in the select list
+                        var elementOrder = _element.attr("data-order");
+                        elementOrder
+                                && selectList.attr("data-order", elementOrder);
+
                         // updates the element data with parameters to
                         // be used in the component actions
                         _element.data("number_options", numberOptions);

@@ -57,6 +57,7 @@
                 // retrieves the various attributes from the element to
                 // be used in propagation and as options
                 var elementName = _element.attr("name");
+                var elementOrder = _element.attr("data-order");
                 var sourceName = _element.attr("data-source");
                 var targetName = _element.attr("data-target");
                 var numberOptions = _element.attr("data-number_options");
@@ -103,6 +104,7 @@
                 // list to provide correct form submission
                 dataSource.length && sourceList.append(dataSource);
                 elementName && targetList.attr("name", elementName);
+                elementOrder && targetList.attr("data-order", elementOrder);
 
                 // in case the number of options is set propagates the setting to the
                 // source list so that the number of options is limited
@@ -163,6 +165,57 @@
             // these "buttons" control the flow between sections
             var arrowLeft = jQuery(".arrow-left", matchedObject);
             var arrowRight = jQuery(".arrow-right", matchedObject);
+
+            // registers for the order changed event in the target
+            // list so that the local data source associated is changed
+            // to reflect the new order in the elements
+            targetList.bind("order_changed", function(event, element) {
+                // retrieves the current element and uses it to retrieve
+                // the associate top cross list element
+                var _element = jQuery(this);
+                var selectList = _element;
+                var crossList = _element.parents(".cross-list");
+
+                // retrieves the text field associated with the target
+                // section and in case it contains a value the ordering
+                // of the elements is ignored
+                var textField = jQuery(".target-section .text-field", crossList);
+                var textFieldValue = textField.attr("value");
+                if (textFieldValue) {
+                    return;
+                }
+
+                // retrieves the target data source and then
+                // uses it to retrieve the items from its data
+                var targetSource = jQuery(".target-section .data-source",
+                        crossList);
+                var targetItems = targetSource.data("items");
+
+                // retrieves the complete set of items in the select
+                // list (ignoring the clone element)
+                var items = jQuery("li:not(.clone)", selectList);
+
+                // clears the target element list from all the element
+                // inserted (going to reconstruct it)
+                targetItems.splice(0, targetItems.length)
+
+                // iterates over all the items currently in the target
+                // list to insert their value in the target items list
+                for (var index = 0; index < items.length; index++) {
+                    // retrieves the reference to the current item
+                    // to be added to the target items list
+                    var item = jQuery(items[index]);
+
+                    // retrieves the data value from the selected item defaulting
+                    // to the html represention in case none is provided
+                    var dataValue = item.attr("data-value");
+                    var htmlValue = item.html();
+                    dataValue = dataValue ? dataValue : htmlValue;
+
+                    // adds the data value to the target items list
+                    targetItems.push(dataValue);
+                }
+            });
 
             // registers for the selected event on the source list to
             // transfer the selected elements to the target list
