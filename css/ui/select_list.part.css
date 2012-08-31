@@ -1,0 +1,8 @@
+.select-list li.moving {
+    visibility: hidden;
+}
+
+.select-list li.clone {
+    cursor: move !important;
+    position: absolute;
+}
