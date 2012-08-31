@@ -1,7 +1,7 @@
 {
     "_target_directories" : ["../bin/css"],
     "ux.css" : {
-        "files" : ["header.part.css", "base.part.css",
+        "files" : ["header.part.css", "base/base.part.css",
                 "data/data_source.part.css", "error/error_box.part.css",
                 "layout/replacer.part.css", "text/enumeration.part.css",
                 "text/number.part.css", "text/template.part.css",
@@ -18,7 +18,7 @@
                 "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css"]
     },
     "ux-min.css" : {
-        "files" : ["header.part.css", "base.part.css",
+        "files" : ["header.part.css", "base/base.part.css",
                 "data/data_source.part.css", "error/error_box.part.css",
                 "layout/replacer.part.css", "text/enumeration.part.css",
                 "text/number.part.css", "text/template.part.css",
@@ -36,7 +36,7 @@
         "minify" : "css"
     },
     "ux-min.css.gz" : {
-        "files" : ["header.part.css", "base.part.css",
+        "files" : ["header.part.css", "base/base.part.css",
                 "data/data_source.part.css", "error/error_box.part.css",
                 "layout/replacer.part.css", "text/enumeration.part.css",
                 "text/number.part.css", "text/template.part.css",
