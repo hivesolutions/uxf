@@ -188,7 +188,10 @@
                                         sourceList);
 
                                 // triggers the select event in the select list
-                                selectList.trigger("selected", [selectedItems]);
+                                // only in case there are items selected
+                                selectedItems.length
+                                        && selectList.trigger("selected",
+                                                [selectedItems]);
 
                                 // stops the event propagation
                                 // (avoids extra problems in form)
@@ -439,8 +442,8 @@
 
             // checks if the element is visible, this should be the
             // main reason for the scrolling of the select list
-            var isVisible = targetItem ? jQuery.uxvisible(targetItem, 0, 0,
-                    selectList) : true;
+            var isVisible = targetItem && targetItem.length ? jQuery.uxvisible(
+                    targetItem, 0, 0, selectList) : true;
 
             // scrolls to the select list in case the
             // target item is not visible

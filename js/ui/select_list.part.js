@@ -51,13 +51,180 @@
             // in the select list
             var listItems = jQuery("li", matchedObject);
 
+            listItems.mousedown(function() {
+                // retrieves the current element reference and uses
+                // it to retrive the current select list
+                var element = jQuery(this);
+                var selectList = element.parent(".select-list");
+
+                // tries to retrieve the order attribute from the
+                // select list in case it's not set ignore the behaviour
+                var order = selectList.attr("data-order") || false;
+                if (!order) {
+                    return;
+                }
+
+                // retrieves the reference to the body
+                // element for event registration
+                var _body = jQuery("body");
+
+                // retrieves the current with for the select
+                // list to be used for the contruction of the
+                // cloned element
+                var selectListWidth = selectList.width();
+
+                // clones the current element and sets it
+                // up by adding the clone class then updates its
+                // with to reflect the one in the element
+                var cloned = element.clone(true);
+                cloned.addClass("clone");
+                cloned.width(selectListWidth - 12);
+
+                // adds the cloned element to the select list
+                // to make its position relative to the select list
+                selectList.prepend(cloned);
+
+                // retrieves the top an left position of the element
+                // and uses them to position the cloned element
+                var elementTop = element.offset().top;
+                var elementLeft = element.offset().left;
+                cloned.css("top", elementTop + "px");
+                cloned.css("left", elementLeft + "px");
+
+                // adds the no select and moving classes to the body
+                // element to avoid the selection of any input element
+                // and the moving cursor display
+                _body.addClass("no-select");
+                _body.addClass("do-moving");
+
+                var move = function(event) {
+                    // retrives the previous data from the select list
+                    // and uses it to set the mouse position
+                    var previousOffsetY = selectList.data("offset_y");
+                    var previousY = selectList.data("mouse_y");
+                    var previousX = selectList.data("mouse_x");
+                    var mouseY = event.pageY || previousY;
+                    var mouseX = event.pageX || previousX;
+
+                    // retrieves a series of size and position information
+                    // in the select list element
+                    var selectListHeight = selectList.outerHeight();
+                    var selectListTop = selectList.offset().top;
+                    var selectListScrollTop = selectList.scrollTop();
+
+                    // retrieves the height of the cloned element
+                    var clonedHeight = cloned.outerHeight();
+
+                    // calculates the target y (vertical) position
+                    // for the currenly selected element
+                    var targetY = mouseY - (clonedHeight / 2);
+
+                    // checks if the target position is overflowing
+                    // the top position of the select list
+                    if (targetY < selectListTop) {
+                        targetY = selectListTop;
+                    }
+                    // checks if the target position is overflowing
+                    // the bottom position of the select list
+                    else if (targetY + clonedHeight > selectListTop
+                            + selectListHeight) {
+                        targetY = selectListTop + selectListHeight
+                                - clonedHeight;
+                    }
+
+                    // calculates the offset position vertically and uses
+                    // it to calculate the index position for the element
+                    var offsetY = targetY + selectListScrollTop - selectListTop;
+                    var _index = Math.floor(offsetY / clonedHeight);
+
+                    // retrieves the complete set of list items, excluding
+                    // the cloned element (not part of the set) and then
+                    // retrieves the length of that set
+                    var listItems = jQuery("li:not(.clone)", selectList);
+                    var numberItems = listItems.length;
+
+                    // normalizes the index value, limiting its range
+                    // to the current number of items in the set
+                    _index = _index < numberItems ? _index : numberItems - 1;
+
+                    // retrieves the currently targeted list element
+                    var listElement = jQuery("li:nth-child(" + (_index + 2)
+                                    + ")", selectList);
+
+                    // checks if the current index position is
+                    // valid (new position) taking into account
+                    // the direction of the movement then in case
+                    // it's valid executes the position change
+                    var isValid = offsetY > previousOffsetY
+                            ? _index + 1 != element.index()
+                            : _index + 2 != element.index();
+                    isValid && listElement[0] != element[0]
+                            && listElement.after(element)
+                            && selectList.trigger("order_changed");
+                    offsetY == 0 && listElement[0] != element[0]
+                            && cloned.after(element)
+                            && selectList.trigger("order_changed");
+
+                    // updates the top position of the cloned element
+                    // to position it
+                    cloned.css("top", targetY + "px");
+
+                    // updates the various data values of the select
+                    // list to be used in the next iteration
+                    selectList.data("offset_y", offsetY);
+                    selectList.data("mouse_y", mouseY);
+                    selectList.data("mouse_x", mouseX);
+                };
+
+                var remove = function() {
+                    // retrieves the items that are consideres to be
+                    // cloned elements and removes (no more usage)
+                    var cloned = jQuery("li.clone", selectList);
+                    cloned.remove();
+
+                    // removes the moving class from the element
+                    element.removeClass("moving");
+
+                    // removes the no select from the body element
+                    // allowing selection on the body
+                    _body.removeClass("no-select");
+                    _body.removeClass("do-moving");
+
+                    // unbinds the existing event handlers associated
+                    // with the current select list
+                    _body.unbind("mouseup", remove);
+                    _body.unbind("mousemove", move);
+                    selectList.unbind("scroll", move);
+                };
+
+                // registers both the remove and the move operation
+                // functions for the mouse up and the mouse move events
+                _body.mouseup(remove);
+                _body.mousemove(move);
+
+                // registers for the scroll event in the select list so
+                // that it's possible to handle the movement of the select
+                // list as the movement of the mouse dragging
+                selectList.scroll(move);
+
+                // adds the moving class to the element
+                element.addClass("moving");
+            });
+
             // registers for the click event on the list items
             // to change their selection states
             listItems.click(function(event) {
                 // retrieves the current element reference and uses
                 // it to retrive the current select list
                 var element = jQuery(this);
-                var selectList = element.parent();
+                var selectList = element.parent(".select-list");
+
+                // checks if the element is currently movinng in that
+                // case the click event must be ignored (no focus)
+                var isMoving = element.hasClass("moving");
+                if (isMoving) {
+                    return;
+                }
 
                 if (event.ctrlKey) {
                     var action = "change";
@@ -149,7 +316,7 @@
                         // retrieves the current element and then uses
                         // it to retrieve the select list
                         var element = jQuery(this);
-                        var selectList = element.parent();
+                        var selectList = element.parent(".select-list");
 
                         // triggers the select event in the element
                         element.trigger("selected", [element]);
