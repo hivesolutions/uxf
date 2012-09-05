@@ -37,3 +37,15 @@
     border-bottom: 1px solid #f0f0f0;
     border-top: 1px solid #f0f0f0;
 }
+
+.omni-style .select-list li .order-icon {
+    background: transparent url(../images/select-list-order.png) no-repeat;
+    float: right;
+    height: 16px;
+    margin-top: 2px;
+    width: 16px;
+}
+
+.omni-style .select-list li .order-icon:hover {
+    background-position: 0 -16px;
+}

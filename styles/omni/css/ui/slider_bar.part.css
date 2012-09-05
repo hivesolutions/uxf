@@ -1,0 +1,41 @@
+.omni-style .slider-bar {
+    background: #fdfdfd;
+    height: 200px;
+}
+
+.omni-style .slider-bar .slider-bar-ruler {
+    border: 1px solid #dddddd;
+    height: 6px;
+}
+
+.omni-style .slider-bar .slider-bar-cursor {
+    background: transparent url(../images/slider-bar-cursor.png) no-repeat 0px 0px;
+    cursor: pointer;
+    height: 13px;
+    margin-top: -9px;
+    position: absolute;
+    width: 12px;
+}
+
+.omni-style .slider-bar .slider-bar-cursor:hover {
+    background-position: 0px -13px;
+}
+
+.omni-style .slider-bar .slider-bar-cursor.click {
+    background-position: 0px -26px;
+}
+
+.omni-style .slider-bar .slider-bar-point {
+}
+
+.omni-style .slider-bar .slider-bar-marker {
+    background-color: #999999;
+    height: 7px;
+    margin: 8px 0px 0px 5px;
+    width: 1px;
+}
+
+.omni-style .slider-bar .slider-bar-label {
+    color: #999999;
+    font-size: 11px;
+}
