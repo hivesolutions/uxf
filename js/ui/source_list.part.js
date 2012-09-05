@@ -55,7 +55,7 @@
             // starts both the text field and the select list and then
             // adds them to the source list (matched object)
             textField.uxtextfield();
-            textField.uxselectlist();
+            selectList.uxselectlist();
             matchedObject.append(textField);
             matchedObject.append(selectList);
 
@@ -98,6 +98,21 @@
             // retrieves the source list elements
             var sourceList = matchedObject;
             var textField = jQuery(".text-field", sourceList);
+
+            // registers the source list to the items changed event
+            // to propagate it down to the assicated select list
+            sourceList.bind("items_changed", function() {
+                        // retrieves the current element (source list) and uses
+                        // it to retrieve the select list to propagate down the
+                        // event (lower propagation)
+                        var element = jQuery(this);
+                        var selectList = jQuery(".select-list", element);
+                        selectList.trigger("items_changed");
+
+                        // stops the event propagation to avoid
+                        // possible loops in the handling
+                        event.stopPropagation();
+                    });
 
             // registers for the key down event on the text field
             textField.keydown(function(event) {
@@ -338,6 +353,10 @@
                         // updates the source list value with the current
                         // text field value
                         sourceList.data("value", textFieldValue);
+
+                        // triggers the items changed event on the select list
+                        // to be used for the update of the layour
+                        selectList.trigger("items_changed");
                     });
         };
 

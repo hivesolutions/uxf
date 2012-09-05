@@ -147,6 +147,11 @@
                 _element.append(crossSection);
                 _element.append(targetSection);
                 _element.append(clear);
+
+                // triggers the items changed event both in the source list
+                // and in the target list
+                sourceList.trigger("items_changed");
+                targetList.trigger("items_changed");
             });
         };
 
@@ -265,6 +270,7 @@
                         // apends the element to the target list
                         targetItems.push(dataValue);
                         targetList.append(element);
+                        targetList.trigger("items_changed");
                     });
 
             // registers for the selected event on the source list to
@@ -307,7 +313,8 @@
                         element.removeClass("selected");
                         duplicates
                                 ? element.remove()
-                                : sourceList.append(element);
+                                : sourceList.append(element)
+                                        && sourceList.trigger("items_changed");
                     });
 
             // registers for the click event on the left arrow to be
@@ -364,7 +371,8 @@
                         selectedItems.removeClass("selected");
                         duplicates
                                 ? selectedItems.remove()
-                                : sourceList.append(selectedItems);
+                                : sourceList.append(selectedItems)
+                                        && sourceList.trigger("items_changed");
                     });
 
             // registers for the click event on the right arrow to be
@@ -438,6 +446,7 @@
                         // it to the target list (should display the items visually)
                         var _validItems = jQuery(validItems);
                         targetList.append(_validItems);
+                        targetList.trigger("items_changed");
                     });
         };
 
