@@ -49,3 +49,7 @@
 .omni-style .select-list li .order-icon:hover {
     background-position: 0 -16px;
 }
+
+.omni-style .select-list li.clone .order-icon {
+    background-position: 0 -16px;
+}
