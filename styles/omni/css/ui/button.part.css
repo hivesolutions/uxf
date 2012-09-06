@@ -95,7 +95,6 @@
     background-position: 0px 0px;
     background-repeat: repeat-x;
     border: 1px solid #bfbfbf;
-    color: #808080;
     color: #ffffff;
     display: block;
     font-size: 18px;
@@ -129,21 +128,18 @@
 .omni-style .button.large.button-red {
     background-image: url(../images/button-large-red.png);
     border-color: #be5463;
-    color: #ffffff;
     text-shadow: -1px -1px 0px #9e4651;
 }
 
 .omni-style .button.large.button-green {
     background-image: url(../images/button-large-green.png);
     border-color: #598543;
-    color: #ffffff;
     text-shadow: -1px -1px 0px #4a7b38;
 }
 
 .omni-style .button.large.button-grey {
     background-image: url(../images/button-large-grey.png);
     border-color: #999999;
-    color: #ffffff;
     text-shadow: -1px -1px 0px #999999;
 }
 
