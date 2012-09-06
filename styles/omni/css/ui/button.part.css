@@ -90,6 +90,76 @@
     opacity: 0.6;
 }
 
+.omni-style .button.large {
+    background-color: transparent;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    border: 1px solid #bfbfbf;
+    color: #808080;
+    color: #ffffff;
+    display: block;
+    font-size: 18px;
+    font-weight: normal;
+    height: 46px;
+    line-height: 46px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    text-shadow: -1px -1px 0px #999999;
+    width: 120px;
+}
+
+.omni-style .button.large:hover {
+    background-position: 0px -48px;
+}
+
+.omni-style .button.large:active {
+    background-position: 0px -96px;
+}
+
+.omni-style .button.large.disabled {
+    background-position: 0px -144px;
+    cursor: default;
+    opacity: 0.5;
+}
+
+.omni-style .button.large .button-icon {
+    margin-top: 8px;
+}
+
+.omni-style .button.large.button-red {
+    background-image: url(../images/button-large-red.png);
+    border-color: #be5463;
+    color: #ffffff;
+    text-shadow: -1px -1px 0px #9e4651;
+}
+
+.omni-style .button.large.button-green {
+    background-image: url(../images/button-large-green.png);
+    border-color: #598543;
+    color: #ffffff;
+    text-shadow: -1px -1px 0px #4a7b38;
+}
+
+.omni-style .button.large.button-grey {
+    background-image: url(../images/button-large-grey.png);
+    border-color: #999999;
+    color: #ffffff;
+    text-shadow: -1px -1px 0px #999999;
+}
+
+.omni-style .button.large.button-light-grey {
+    background-color: #f4f4f4;
+    border-color: #dddddd;
+}
+
+.omni-style .button.large.button-light-grey:hover {
+    background-color: #f0f0f0;
+}
+
+.omni-style .button.large.button-light-grey:active {
+    background-color: #e8e8e8;
+}
+
 .omni-style .button.button-more {
     background: transparent url(../images/button-more.png) repeat-x left top;
     border: 1px solid #bbbbbb;
