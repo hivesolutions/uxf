@@ -19,6 +19,156 @@
     margin: 0px 0px 0px 0px;
 }
 
+.omni-style .filter .filter-input-buttons {
+    margin-left: 461px;
+    margin-top: -35px;
+    position: absolute;
+}
+
+.omni-style .filter .filter-input-buttons.lower {
+    opacity: 0.7;
+}
+
+.omni-style .filter .filter-input-button {
+    background: transparent none no-repeat 0px 0px;
+    border-left: 1px solid #dddddd;
+    float: right;
+    height: 34px;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    width: 34px;
+}
+
+.omni-style .filter .filter-input-button:hover {
+    background-color: #f4f4f4;
+    background-position: 0px -34px;
+}
+
+.omni-style .filter .filter-input-list {
+    background-image: url(../images/filter-input-list.png);
+}
+
+.omni-style .filter .filter-input-table {
+    background-image: url(../images/filter-input-table.png);
+}
+
+.omni-style .filter .filter-input-gallery {
+    background-image: url(../images/filter-input-gallery.png);
+}
+
+.omni-style .filter .filter-input-more {
+    background-image: url(../images/filter-input-more.png);
+}
+
+.omni-style .filter .filter-input-less {
+    background-image: url(../images/filter-input-less.png);
+}
+
+.omni-style .filter .filter-advanced {
+    border-bottom: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+    border-right: 1px solid #dddddd;
+    display: none;
+}
+
+.omni-style .filter .filter-advanced .filter-sort {
+    list-style: none;
+    padding: 6px 26px 6px 6px;
+}
+
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options {
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    color: #777777;
+    cursor: pointer;
+    float: left;
+    font-size: 10px;
+    margin: 2px 6px 2px 0px;
+    padding: 4px 12px 4px 12px;
+    text-transform: uppercase;
+}
+
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options:hover {
+    background-color: #908e8f;
+    color: #ffffff;
+}
+
+
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.ascending,
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.descending {
+    background: #908e8f url(../images/filter-input-sorting.png) no-repeat; ;
+    color: #ffffff;
+    padding-right: 19px;
+}
+
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.ascending {
+    background-position: right 0px;
+}
+
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.descending {
+    background-position: right -20px;
+}
+
+.omni-style .filter .filter-advanced-filters {
+    margin: 0px 6px 0px 6px;
+    padding: 0px 0px 0px 0px;
+}
+
+.omni-style .filter .filter-advanced-filter > .text-field {
+    margin: 0px 0px 8px 0px; ;
+    width: 182px;
+}
+
+.omni-style .filter .filter-advanced-filter > .filter-input-add,
+.omni-style .filter .filter-advanced-filter > .filter-input-remove {
+    float: left;
+    margin-left: 4px;
+    margin-top: 6px;
+}
+
+.omni-style .filter .filter-advanced-buttons {
+    border-top: 1px solid #e0e0e0;
+    margin: 0px 6px 0px 6px;
+    padding: 8px 0px 8px 0px;
+}
+
+.omni-style .filter .filter-advanced-buttons .filter-advanced-select {
+    float: left;
+}
+
+.omni-style .filter .filter-advanced-buttons .filter-advanced-save {
+    float: right;
+}
+
+.omni-style .filter .filter-input-add,
+.omni-style .filter .filter-input-remove {
+    background: transparent none no-repeat 0px 0px;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+}
+
+.omni-style .filter .filter-input-add:hover,
+.omni-style .filter .filter-input-remove:hover {
+    background-position: 0px -15px;
+}
+
+.omni-style .filter .filter-input-add {
+    background-image: url(../images/filter-input-add.png);
+}
+
+.omni-style .filter .filter-input-remove {
+    background-image: url(../images/filter-input-remove.png);
+}
+
+.omni-style .filter .filter-input-first {
+    margin-left: 505px;
+    margin-top: 11px;
+    position: absolute;
+}
+
 .omni-style .filter.entities-list {
     list-style: none;
     margin: 0px 0px 0px 0px;
