@@ -136,4 +136,5 @@
 
 .omni-style .text-field-calendar {
     position: absolute;
+    z-index: 10;
 }
