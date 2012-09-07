@@ -49,7 +49,7 @@
         var _registerHandlers = function() {
             // retrieves the text field and the data source
             var textField = jQuery(".text-field", matchedObject);
-            var dataSource = jQuery(".data-source", matchedObject);
+            var dataSource = jQuery("> .data-source", matchedObject);
 
             // registers for the change in the text field
             // (select) this occurs when a new option is selected
@@ -66,7 +66,7 @@
                 // associated data source
                 var _element = jQuery(element);
                 var textField = jQuery(".text-field", element);
-                var dataSource = jQuery(".data-source", element);
+                var dataSource = jQuery("> .data-source", element);
 
                 // retrieves the name of the value to be used for
                 // the comparision and then retrieves the name of

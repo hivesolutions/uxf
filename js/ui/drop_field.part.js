@@ -76,6 +76,30 @@
                 // retrieves the text field (element)
                 var textField = jQuery(".text-field", _element);
 
+                // in case there is no text field defined for the
+                // current element one must be created
+                if (textField.length == 0) {
+                    // retrieves the various attributes from the element
+                    // to be propagated to the text field
+                    var name = _element.attr("name");
+                    var value = _element.attr("value");
+                    var originalValue = _element.attr("data-original_value");
+                    var error = _element.attr("data-error");
+
+                    // creates the text field element and sets the various
+                    // attributes in it
+                    var textField = jQuery("<input type=\"text\" class=\"text-field\" />");
+                    textField.attr("name", name);
+                    textField.attr("value", value);
+                    textField.attr("data-original_value", originalValue);
+                    textField.attr("data-error", error);
+
+                    // runs the text field initialized and then appends
+                    // the text field to the element
+                    textField.uxtextfield();
+                    _element.append(textField);
+                }
+
                 // retrieves the text field value and if it's currently
                 // in the "lowered" state
                 var textFieldValue = textField.attr("value");
@@ -89,6 +113,7 @@
                 // adds the "extra" html to the matched object,
                 // in case no drop field contents is found
                 dropFieldContents.length == 0
+                        && _element.append("<div class=\"drop-field-clear\"></div>")
                         && _element.append("<ul class=\"drop-field-contents\"></ul>");
 
                 // retrieves the hidden field and tries
@@ -645,7 +670,7 @@
         var _update = function(matchedObject, options) {
             // retrieves the drop field elements
             var dropField = matchedObject;
-            var dataSource = jQuery(".data-source", dropField);
+            var dataSource = jQuery("> .data-source", dropField);
             var hiddenField = jQuery(".hidden-field", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);

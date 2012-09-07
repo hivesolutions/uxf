@@ -39,7 +39,7 @@
                         // and then uses it to set the cursor position
                         // on the element (moves the cursor)
                         var dataValue = _element.attr("data-value");
-                        var dataValueLength = dataValue.length;
+                        var dataValueLength = dataValue ? dataValue.length : 0;
                         _element.uxcursor(dataValueLength);
                     });
         };

@@ -47,7 +47,7 @@
 
                 // retrieves the data source associated with the
                 // element, to "propagate" it to the source list
-                var dataSource = jQuery(".data-source", _element);
+                var dataSource = jQuery("> .data-source", _element);
 
                 // retrieves both the list that contains the various items
                 // to populate the target list and the items themselves

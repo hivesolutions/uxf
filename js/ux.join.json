@@ -44,10 +44,11 @@
                 "ui/select_list.part.js", "ui/slider_bar.part.js",
                 "ui/slider.part.js", "ui/source_list.part.js",
                 "ui/tab_panel.part.js", "ui/table.part.js",
-                "ui/uploader.part.js", "ui/text_field.part.js",
-                "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
-                "util/name_change.part.js", "footer.part.js",
-                "../util/date.js", "../util/select.js"]
+                "ui/uploader.part.js", "ui/tag_field.part.js",
+                "ui/text_field.part.js", "ui/window.part.js",
+                "ui/wizard.part.js", "util/eval.part.js",
+                "util/name_change.part.js", "util/width.part.js",
+                "footer.part.js", "../util/date.js", "../util/select.js"]
     },
     "ux-min.js" : {
         "files" : ["header.part.js", "apply.part.js",
@@ -93,10 +94,11 @@
                 "ui/select_list.part.js", "ui/slider_bar.part.js",
                 "ui/slider.part.js", "ui/source_list.part.js",
                 "ui/tab_panel.part.js", "ui/table.part.js",
-                "ui/uploader.part.js", "ui/text_field.part.js",
-                "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
-                "util/name_change.part.js", "footer.part.js",
-                "../util/date.js", "../util/select.js"],
+                "ui/uploader.part.js", "ui/tag_field.part.js",
+                "ui/text_field.part.js", "ui/window.part.js",
+                "ui/wizard.part.js", "util/eval.part.js",
+                "util/name_change.part.js", "util/width.part.js",
+                "footer.part.js", "../util/date.js", "../util/select.js"],
         "minify" : "javascript"
     },
     "ux-min.js.gz" : {
@@ -143,10 +145,11 @@
                 "ui/select_list.part.js", "ui/slider_bar.part.js",
                 "ui/slider.part.js", "ui/source_list.part.js",
                 "ui/tab_panel.part.js", "ui/table.part.js",
-                "ui/uploader.part.js", "ui/text_field.part.js",
-                "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
-                "util/name_change.part.js", "footer.part.js",
-                "../util/date.js", "../util/select.js"],
+                "ui/uploader.part.js", "ui/tag_field.part.js",
+                "ui/text_field.part.js", "ui/window.part.js",
+                "ui/wizard.part.js", "util/eval.part.js",
+                "util/name_change.part.js", "util/width.part.js",
+                "footer.part.js", "../util/date.js", "../util/select.js"],
         "minify" : "javascript",
         "compress" : "gzip"
     }

@@ -15,7 +15,7 @@
     jQuery.fn.uxfilter = function(options) {
         // the default values for the filter
         var defaults = {
-            numberRecords : 8
+            numberRecords : 9
         };
 
         // sets the default options value
@@ -85,8 +85,10 @@
                     // creates the filter contents element and adds it to the
                     // filter according to the filter more status
                     var filterContents = jQuery("<div class=\"filter-contents\"></div>");
+                    var filterClear = jQuery("<div class=\"filter-clear\"></div>");
                     filterMoreLength > 0
                             ? filterContents.insertBefore(filterMore)
+                                    && filterClear.insertBefore(filterMore)
                             : _element.append(filterContents);
                 }
 
@@ -435,7 +437,7 @@
             var filterContents = jQuery(".filter-contents", filter);
             var filterNoResults = jQuery(".filter-no-results", filter);
             var filterMore = jQuery(".filter-more", filter);
-            var dataSource = jQuery(".data-source", filter);
+            var dataSource = jQuery("> .data-source", filter);
             var template = jQuery(".template", filter);
 
             // retrieves the filter options

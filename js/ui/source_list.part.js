@@ -236,7 +236,7 @@
         var _update = function(matchedObject, options) {
             // retrieves the source list elements
             var sourceList = matchedObject;
-            var dataSource = jQuery(".data-source", sourceList);
+            var dataSource = jQuery("> .data-source", sourceList);
             var textField = jQuery(".text-field", sourceList);
             var selectList = jQuery(".select-list", sourceList);
 

@@ -121,7 +121,7 @@
             // retrieves the hovering box template and the data
             // source (elements)
             var hoveringBoxTemplate = jQuery("#" + hoveringBoxId);
-            var dataSource = jQuery(".data-source", hoveringBoxTemplate);
+            var dataSource = jQuery("> .data-source", hoveringBoxTemplate);
 
             // checks if the matched object contains the hovering
             // box right class (align the element to the right)
