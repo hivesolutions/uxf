@@ -21,8 +21,9 @@
                 "ui/slider.part.css", "ui/source_list.part.css",
                 "ui/stats_panel.part.css", "ui/tab_panel.part.css",
                 "ui/subscript.part.css", "ui/tags.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"]
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "error/content_error.part.css",
@@ -44,8 +45,9 @@
                 "ui/slider.part.css", "ui/source_list.part.css",
                 "ui/stats_panel.part.css", "ui/tab_panel.part.css",
                 "ui/subscript.part.css", "ui/tags.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"],
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -68,8 +70,9 @@
                 "ui/slider.part.css", "ui/source_list.part.css",
                 "ui/stats_panel.part.css", "ui/tab_panel.part.css",
                 "ui/subscript.part.css", "ui/tags.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"],
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }

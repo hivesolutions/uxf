@@ -13,6 +13,10 @@
     position: absolute;
 }
 
+.drop-field > .drop-field-clear {
+    clear: both;
+}
+
 .drop-field .hidden-field,
 .drop-field .hidden-template {
     display: none;

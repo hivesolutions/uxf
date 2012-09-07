@@ -31,6 +31,11 @@
     -webkit-text-fill-color: #888888;
 }
 
+.omni-style .text-field.small {
+    font-size: 11px;
+    height: 20px;
+}
+
 .omni-style .text-field.date {
     background-image: url(../images/text-field-date.png);
     background-position: right center;

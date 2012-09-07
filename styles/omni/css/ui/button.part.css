@@ -156,6 +156,43 @@
     background-color: #e8e8e8;
 }
 
+.omni-style .button.small {
+    background-color: transparent;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    border: 1px solid #bfbfbf;
+    color: #777777;
+    display: block;
+    font-size: 10px;
+    font-weight: normal;
+    height: 28px;
+    line-height: 28px;
+    padding: 0px 0px 0px 0px;
+    text-align: center;
+    text-shadow: none;
+    text-transform: uppercase;
+    width: 86px;
+}
+
+.omni-style .button.small:hover {
+    background-position: 0px -28px;
+}
+
+.omni-style .button.small:active {
+    background-position: 0px -56px;
+}
+
+.omni-style .button.small.disabled {
+    background-position: 0px 0px;
+    cursor: default;
+    opacity: 0.5;
+}
+
+.omni-style .button.small.button-grey {
+    background-image: url(../images/button-small-grey.png);
+    border-color: #dddddd;
+}
+
 .omni-style .button.button-more {
     background: transparent url(../images/button-more.png) repeat-x left top;
     border: 1px solid #bbbbbb;

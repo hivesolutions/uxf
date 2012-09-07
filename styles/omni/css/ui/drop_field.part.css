@@ -7,6 +7,7 @@
     background-image: url(../images/drop-field-dots.png);
     background-position: right center;
     background-repeat: no-repeat;
+    float: left;
     padding-right: 28px;
 }
 
@@ -37,7 +38,7 @@
     -moz-box-shadow: 0px 1px 4px #eeeeee;
     -webkit-box-shadow: 0px 1px 4px #eeeeee;
     list-style: none;
-    margin: 38px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
     z-index: 1;
 }
@@ -64,4 +65,27 @@
 
 .omni-style .drop-field .drop-field-contents li:last-child {
     border-bottom: 1px solid #dddddd;
+}
+
+.omni-style .drop-field.small {
+    font-size: 10px;
+    line-height: 24px;
+    text-transform: uppercase;
+    width: 140px;
+}
+
+.omni-style .drop-field.small .drop-field-contents {
+    margin-top: 26px;
+}
+
+.omni-style .drop-field.small .drop-field-contents li {
+    font-size: 10px;
+    padding: 2px 6px 2px 6px;
+}
+
+.omni-style .drop-field.drop-field-select > .text-field {
+    background-image: url(../images/drop-field-select-small.png);
+    font-size: 10px;
+    padding-top: 0px;
+    text-transform: uppercase;
 }

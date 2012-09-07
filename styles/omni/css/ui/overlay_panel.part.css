@@ -9,10 +9,6 @@
     z-index: 30;
 }
 
-.omni-style .overlay-panel.overlay-search .drop-field-contents {
-    margin-top: 44px;
-}
-
 .omni-style .overlay-panel.overlay-search .text-field {
     font-size: 24px;
     height: 38px;

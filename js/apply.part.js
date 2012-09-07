@@ -42,6 +42,7 @@
             var dropField = jQuery(".drop-field", matchedObject).not(".template .drop-field");
             var selectField = jQuery(".select-field", matchedObject).not(".template .select-field");
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
+            var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(".template .incremental-field");
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
@@ -121,6 +122,7 @@
             dropField.uxdropfield();
             selectField.uxselectfield();
             radioField.uxradiofield();
+            tagField.uxtagfield();
             incrementalField.uxincrementalfield();
             table.uxtable();
             image.uximage();

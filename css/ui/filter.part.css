@@ -6,6 +6,10 @@
     display: none;
 }
 
+.filter > .filter-clear {
+    clear: both;
+}
+
 .filter > .filter-more {
     display: none;
 }
