@@ -604,8 +604,9 @@
                         var filter = element.parents(".filter");
 
                         // adds a "new" filter line to the current filter
-                        // element (component)
+                        // element (component) and updates the filter
                         _addFilter(filter);
+                        _update(filter, options, true);
                     });
 
             // registers for the click event on the filter select
@@ -864,6 +865,61 @@
             var sortOrder = isAscending ? "ascending" : "descending";
             var sort = [sortValue, sortOrder];
 
+            // retrieves the complete set of (graphical) filter lines to be
+            // parser in search for the valid filters
+            var filters = jQuery(".filter-advanced-filter", filter);
+
+            // creates the list that will hold the various filter tuples
+            // resulting from the gathering of all the valid filters in
+            // the current filter
+            var _filters = [];
+
+            // iterates over all the filters (lines) in order to create the
+            // various filter tuples
+            filters.each(function() {
+                        // retrieves the current element in iteration
+                        var element = jQuery(this);
+
+                        // retrieves the various components of the filter line
+                        // (drop field, operation field and value field)
+                        var dropField = jQuery(
+                                "> .drop-field:not(.operation-field)", element);
+                        var operationField = jQuery("> .operation-field",
+                                element);
+                        var valueField = jQuery("> .value-field", element);
+
+                        // retrieves the data source of the operation field to be
+                        // used for the retrieval of the items and operations lists
+                        var operationSource = jQuery("> .data-source",
+                                operationField);
+
+                        // retrieves the value of the value field and in case
+                        // it's not set returns immediately (value is not valid)
+                        var value = valueField.val();
+                        if (!value) {
+                            return;
+                        }
+
+                        // retrieves the attribute for the filter line and the currently
+                        // selected operation value
+                        var attribute = dropField.uxdropfield("value");
+                        var operation = operationField.uxdropfield("value");
+
+                        // retrieves the lists for the items and for the operations
+                        var items = operationSource.data("items");
+                        var operations = operationSource.data("operations");
+
+                        // retrieves the operation (logical) associated with the current
+                        // (graphical) operation value
+                        var itemIndex = items.indexOf(operation);
+                        var _operation = operations[itemIndex];
+
+                        // creates the filter tuple containing the atrtibutem, the operation
+                        // and the value and then adds the filter tuple to the filters list
+                        var filter = [attribute, _operation, value];
+                        _filters.push(filter);
+                    });
+
             // sets the (query) pending flag in the filter
             filter.data("pending", true);
 
@@ -875,6 +931,7 @@
             dataSource.uxdataquery({
                         filterString : filterInputValue,
                         sort : sort,
+                        filters : _filters,
                         startRecord : startRecord,
                         numberRecords : numberRecords
                     }, function(validItems, moreItems) {
@@ -1959,6 +2016,9 @@
         };
 
         var _selectFilter = function(filter, value, select) {
+            // retrieves the parent filter object
+            var _filter = filter.parents(".filter");
+
             // retrieves the reference to the value field using
             // the filter to do so
             var valueField = jQuery(".value-field", filter);
@@ -1992,9 +2052,11 @@
             // value fields)
             switch (type) {
                 case "string" :
-                    // creates the list of items (operations)
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
                     var _items = ["matches", "contains", "begins with",
                             "ends with"];
+                    var _operations = ["equals", "like", "rlike", "llike"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
@@ -2006,8 +2068,10 @@
                     break;
 
                 case "number" :
-                    // creates the list of items (operations)
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
                     var _items = ["equals", "greater than", "less than"];
+                    var _operations = ["equals", "greater", "lesser"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
@@ -2019,8 +2083,10 @@
                     break;
 
                 case "date" :
-                    // creates the list of items (operations)
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
                     var _items = ["in", "after", "before"];
+                    var _operations = ["equals", "greater", "lesser"];
 
                     // creates the value field as a text field (calendar field),
                     // inserts it after the operation field and initializes it
@@ -2032,8 +2098,10 @@
                     break;
 
                 default :
-                    // creates the list of items (operations)
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
                     var _items = ["undefined"];
+                    var _operations = [""];
 
                     // breaks the switch
                     break;
@@ -2042,6 +2110,7 @@
             // updates the various items (operation values) in the
             // operation (data) source
             operationSource.data("items", _items);
+            operationSource.data("operations", _operations);
 
             // unsets the update flag from the operation field (to
             // force a reload of items in the operation field) and
@@ -2060,6 +2129,24 @@
             // first item in the items sequence
             operationField.uxdropfield("set", {
                         value : _items[0]
+                    });
+
+            // registers for the value select event in the
+            // operation field to update the filter results
+            operationField.bind("value_select",
+                    function(event, value, valueLogic, item) {
+                        // updates the current filter to reflect the
+                        // changes in the operation field
+                        _update(_filter, options, true);
+                    });
+
+            // registers for the value change event in the
+            // value field to update the filter results
+            valueField.bind("value_change",
+                    function(event, value, valueLogic, item) {
+                        // updates the current filter to reflect the
+                        // changes in the value field
+                        _update(_filter, options, true);
                     });
         };
 
@@ -2130,6 +2217,7 @@
             dropField.bind("value_select",
                     function(event, value, valueLogic, item) {
                         _selectFilter(filter, value);
+                        _update(matchedObject, options, true);
                     });
 
             // registers for the click event in the remove button to
@@ -2140,6 +2228,7 @@
                         var element = jQuery(this);
                         var _filter = element.parents(".filter-advanced-filter");
                         _filter.remove();
+                        _update(matchedObject, options, true);
                     });
 
             // regiters for the click event in the add button to
@@ -2151,6 +2240,7 @@
                         var element = jQuery(this);
                         var _filter = element.parents(".filter-advanced-filter");
                         _addFilter(matchedObject, _filter);
+                        _update(matchedObject, options, true);
                     });
 
             // initializes the drop field components both in the
@@ -2176,6 +2266,93 @@
             // selects the initial element of the "newly" created filter
             // this is the first value to be viewed by the end user
             _selectFilter(filter, items[0], true);
+        };
+
+        // initializes the plugin
+        initialize();
+
+        // returns the object
+        return this;
+    };
+})(jQuery);
+
+/**
+ * jQuery header notification plugin, this jQuery plugin provides the base
+ * infra-structure for the creation of an header notification component.
+ *
+ * @name jquery-header-notification.js
+ * @author João Magalhães <joamag@hive.pt>
+ * @version 1.0
+ * @date March 10, 2010
+ * @category jQuery plugin
+ * @copyright Copyright (c) 2010-2012 Hive Solutions Lda.
+ * @license Hive Solutions Confidential Usage License (HSCUL) -
+ *          http://www.hive.pt/licenses/
+ */
+(function($) {
+    jQuery.fn.uxheadernotification = function(options) {
+        // the default values for the plugin
+        var defaults = {};
+
+        // sets the default options value
+        var options = options ? options : {};
+
+        // constructs the options
+        var options = jQuery.extend(defaults, options);
+
+        // sets the jquery matched object
+        var matchedObject = this;
+
+        /**
+         * Initializer of the plugin, runs the necessary functions to initialize
+         * the structures.
+         */
+        var initialize = function() {
+            _appendHtml();
+            _registerHandlers();
+        };
+
+        /**
+         * Creates the necessary html for the component.
+         */
+        var _appendHtml = function() {
+            // iterates over all the header notification
+            // to check if they are empty (should be hidden)
+            matchedObject.each(function(index, element) {
+                        // retrieves the element reference
+                        var _element = jQuery(element);
+
+                        // retrieves the contents from the element
+                        // to check them for text
+                        var contents = _element.html();
+
+                        // in case no contents are available
+                        // hides the element
+                        !contents && _element.hide();
+                    });
+        };
+
+        /**
+         * Registers the event handlers for the created objects.
+         */
+        var _registerHandlers = function() {
+            // retrieves the window
+            var _window = jQuery(window);
+
+            // retrieves the close links for the notification
+            var linkClose = jQuery("> .link-close", matchedObject);
+
+            // register for the click event on the link close
+            linkClose.click(function() {
+                // retrieves the element
+                var element = jQuery(this);
+
+                // retrieves the (parent) header notification
+                var headerNotification = element.parent(".header-notification");
+
+                // hides the header notification
+                headerNotification.hide();
+            });
         };
 
         // initializes the plugin

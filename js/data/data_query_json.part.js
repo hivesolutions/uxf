@@ -57,6 +57,10 @@
             // the resulting set of elements
             var sort = query["sort"];
 
+            // retrieves the filter tuples to be used to filter
+            // the result set around certain rules
+            var filters = query["filters"];
+
             // retrieves the record count information
             var startRecord = query["startRecord"];
             var numberRecords = query["numberRecords"];
@@ -67,6 +71,26 @@
             var sortValue = sort[0];
             var sortOrder = sort[1];
             var sortString = sortValue + ":" + sortOrder;
+
+            // creates the list that will hold the various filter strings
+            // to be sent to the remote handler
+            var _filters = [];
+
+            // iterates over all the filters to "serialize" their data into
+            // a simple string to the remote handler
+            for (var index = 0; index < filters.length; index++) {
+                // retrieves the current filter in iteration and
+                // unpack it into the various components
+                var filter = filters[index];
+                var attribute = filter[0];
+                var operation = filter[1];
+                var value = filter[2];
+
+                // creates the serialized filter string and adds it
+                // to the list of filters to be sent to the handler
+                var _filter = attribute + ":" + operation + ":" + value;
+                _filters.push(_filter);
+            }
 
             // sets the initial filter flag value
             var filter = false;
@@ -137,6 +161,7 @@
                     data : {
                         filter_string : filterString,
                         sort : sortString,
+                        filters : _filters,
                         start_record : startRecord,
                         number_records : numberRecords
                     },
