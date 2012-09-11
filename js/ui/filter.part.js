@@ -612,29 +612,34 @@
             // registers for the click event on the filter select
             // to select all the filter element currently shown
             filterSelect.click(function() {
-                // retrieves the current element and the associated
-                // filter element
-                var element = jQuery(this);
-                var filter = element.parents(".filter");
+                        // retrieves the current element and the associated
+                        // filter element
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
 
-                // retrieves the complete set of filter elements, the
-                // first filter element and the last filter element
-                // to be selected (and decorated) accordingly
-                var filterElements = jQuery(".filter-element", filter);
-                var firstElement = jQuery(".filter-element:first-child", filter);
-                var lastElement = jQuery(".filter-element:last-child", filter);
+                        // retrieves the currently (visible) filer elements
+                        // to count them for the selection range
+                        var filterElements = jQuery(".filter-element", filter);
+                        var numberElements = filterElements.length;
 
-                // removes the first and last classes from all the elements
-                // avoids possible first or last duplications
-                filterElements.removeClass("first");
-                filterElements.removeClass("last");
+                        // creates the list for the elements to be selected
+                        // to be part of the selection
+                        var selection = []
 
-                // adds the selected class to all the filter elements and
-                // the first and last classes to the first and last elements
-                filterElements.addClass("selected");
-                firstElement.addClass("first");
-                lastElement.addClass("last");
-            });
+                        // iterates over the number of elements to insert the
+                        // index into the selection list
+                        for (var index = 1; index < numberElements + 1; index++) {
+                            selection.push(index);
+                        }
+
+                        // resets the current selection to be the
+                        // currently selected element
+                        filter.data("selection", selection);
+                        filter.data("pivot", 1);
+
+                        // updates the current selection
+                        _updateSelection(filter, options);
+                    });
 
             // registers for the key up in the filter input
             filterInput.keyup(function() {
@@ -2266,93 +2271,6 @@
             // selects the initial element of the "newly" created filter
             // this is the first value to be viewed by the end user
             _selectFilter(filter, items[0], true);
-        };
-
-        // initializes the plugin
-        initialize();
-
-        // returns the object
-        return this;
-    };
-})(jQuery);
-
-/**
- * jQuery header notification plugin, this jQuery plugin provides the base
- * infra-structure for the creation of an header notification component.
- *
- * @name jquery-header-notification.js
- * @author João Magalhães <joamag@hive.pt>
- * @version 1.0
- * @date March 10, 2010
- * @category jQuery plugin
- * @copyright Copyright (c) 2010-2012 Hive Solutions Lda.
- * @license Hive Solutions Confidential Usage License (HSCUL) -
- *          http://www.hive.pt/licenses/
- */
-(function($) {
-    jQuery.fn.uxheadernotification = function(options) {
-        // the default values for the plugin
-        var defaults = {};
-
-        // sets the default options value
-        var options = options ? options : {};
-
-        // constructs the options
-        var options = jQuery.extend(defaults, options);
-
-        // sets the jquery matched object
-        var matchedObject = this;
-
-        /**
-         * Initializer of the plugin, runs the necessary functions to initialize
-         * the structures.
-         */
-        var initialize = function() {
-            _appendHtml();
-            _registerHandlers();
-        };
-
-        /**
-         * Creates the necessary html for the component.
-         */
-        var _appendHtml = function() {
-            // iterates over all the header notification
-            // to check if they are empty (should be hidden)
-            matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
-
-                        // retrieves the contents from the element
-                        // to check them for text
-                        var contents = _element.html();
-
-                        // in case no contents are available
-                        // hides the element
-                        !contents && _element.hide();
-                    });
-        };
-
-        /**
-         * Registers the event handlers for the created objects.
-         */
-        var _registerHandlers = function() {
-            // retrieves the window
-            var _window = jQuery(window);
-
-            // retrieves the close links for the notification
-            var linkClose = jQuery("> .link-close", matchedObject);
-
-            // register for the click event on the link close
-            linkClose.click(function() {
-                // retrieves the element
-                var element = jQuery(this);
-
-                // retrieves the (parent) header notification
-                var headerNotification = element.parent(".header-notification");
-
-                // hides the header notification
-                headerNotification.hide();
-            });
         };
 
         // initializes the plugin
