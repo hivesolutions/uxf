@@ -63,10 +63,98 @@
                 // retrieves the element reference
                 var _element = jQuery(element);
 
+                // retrieves the value for the advanced attribute of the filter
+                // (in case it's set the advanced panel should be displayed)
+                var advanced = _element.attr("data-advanced");
+
                 // retrieves the filter contents and
                 // the filter more (if present)
                 var filterContents = jQuery(".filter-contents", _element);
                 var filterMore = jQuery(".filter-more", _element);
+
+                // retrieves the text field (element) assicated with the
+                // curernt filter for the main filtering
+                var textField = jQuery("> .text-field", _element);
+
+                // in case there is no text field defined for the
+                // current element one must be created
+                if (textField.length == 0) {
+                    // retrieves the various attributes from the element
+                    // to be propagated to the text field
+                    var name = _element.attr("name");
+                    var value = _element.attr("value");
+                    var originalValue = _element.attr("data-original_value");
+                    var error = _element.attr("data-error");
+
+                    // creates the text field element and sets the various
+                    // attributes in it
+                    var textField = jQuery("<input type=\"text\" class=\"text-field filter-input\" />");
+                    textField.attr("name", name);
+                    textField.attr("value", value);
+                    textField.attr("data-original_value", originalValue);
+                    textField.attr("data-error", error);
+
+                    // runs the text field initialized and then appends
+                    // the text field to the element
+                    textField.uxtextfield();
+                    _element.prepend(textField);
+                }
+
+                // creates the element representing the buttons for the filter
+                // fild (the more oprtions and the view changer) and adds it
+                // to the filter in case the advanced flag is set
+                var filterButtons = jQuery("<div class=\"filter-input-buttons\">"
+                        + "<div class=\"button filter-input-button filter-input-toggle-advanced filter-input-more\"></div>"
+                        + "<div class=\"button filter-input-button filter-input-toggle-views filter-input-list\"></div>"
+                        + "<div class=\"clear\"></div>" + "</div>");
+                advanced && filterButtons.insertAfter(textField);
+
+                // creates the advanced part of the filter (more options) and adds
+                // it to the filter in case the advanced flag is set
+                var filterAdvanced = jQuery("<div class=\"filter-advanced\">"
+                        + "<div class=\"filter-input-add filter-input-first\"></div>"
+                        + "<div class=\"filter-sort\">"
+                        + "<div class=\"filter-clear\"></div>"
+                        + "</div>"
+                        + "<div class=\"filter-advanced-filters\"></div>"
+                        + "<div class=\"filter-advanced-buttons\">"
+                        + "<div class=\"button small button-grey filter-advanced-select\">Select All</div>"
+                        + "<div class=\"button small button-grey disabled filter-advanced-save\">Save</div>"
+                        + "<div class=\"filter-clear\"></div>" + "</div>"
+                        + "</div>");
+                advanced && filterAdvanced.insertAfter(filterButtons);
+
+                // in case the advanced mode is active adds the initial filter
+                // line to the filters area
+                advanced && _addFilter(_element);
+
+                // retrieves the data source associated with the element
+                // and then uses it to retrieve the various order items
+                var dataSource = jQuery("> .data-source", _element);
+                var dataOrder = jQuery(".order > li", dataSource);
+
+                // retrieves the sort section of the filter to be used
+                // to add more filter sort options
+                var filterSort = jQuery(".filter-sort", _element);
+
+                // iterates over each of the data source order elements
+                // to create the associated (visual) sort options
+                dataOrder.each(function(index, element) {
+                            // retrieves the current element in
+                            // iteration to be added
+                            var _element = jQuery(this);
+
+                            // retrieves the html (text) value of the current element
+                            // in iteration and uses it to create the filter sort option
+                            // element and then adds it to the filter sort
+                            var valueHtml = _element.html();
+                            filterSort.prepend("<div class=\"filter-sort-option\">"
+                                    + valueHtml + "</div>");
+                        });
+
+                // adds the devault sort option to the filter, this value exists for
+                // every search and indicates that no sort will occur (default is used)
+                filterSort.prepend("<div class=\"filter-sort-option selected descending\">default</div>");
 
                 // retrieves the text value from the filter more
                 // and then encapsulates it arround the text divisor
@@ -120,6 +208,26 @@
             // retrieves the text field
             var textField = jQuery(".text-field", matchedObject);
 
+            // retrieves the references to the various sort
+            // buttons to be used in the advanced panel
+            var filterOptions = jQuery(".filter-sort-option", matchedObject);
+
+            // retrieves both the toggle advanced and the
+            // toggle views buttons
+            var toggleAdvanced = jQuery(".filter-input-toggle-advanced",
+                    matchedObject);
+            var toggleViews = jQuery(".filter-input-toggle-views",
+                    matchedObject);
+
+            // retrieves the filter add button to be used to add
+            // a new line of filtering to the filter advanced panel
+            var filterAdd = jQuery(".filter-advanced > .filter-input-add",
+                    matchedObject);
+
+            // retrieves the filter select (all) button used
+            // to select the complete set of items in the filter
+            var filterSelect = jQuery(".filter-advanced-select", matchedObject);
+
             // checks if the filter click event is already
             // registerd in the body and set the variable as
             // true to avoid further registrations
@@ -129,41 +237,6 @@
             // tries to retrieve the value for the infinite loading
             // support in the matched object (by default it's disabled)
             var infinite = matchedObject.attr("data-infinite") || false;
-
-            // registers for the key up in the filter input
-            filterInput.keyup(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
-
-                        // retrieves the (parent) filter
-                        var filter = element.parents(".filter");
-
-                        // retrieves the filter string and the filter
-                        // input value (to check for string value changes)
-                        var filterString = filter.data("filter_string");
-                        var filterInputValue = filterInput.attr("data-value");
-
-                        // in case no string value changes occured
-                        if (filterString == filterInputValue) {
-                            // returns immediately
-                            return;
-                        }
-
-                        // updates the filter state
-                        _update(filter, options);
-                    });
-
-            // registers for the click in the filter input
-            filterMore.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
-
-                        // retrieves the (parent) filter
-                        var filter = element.parents(".filter");
-
-                        // updates the filter state
-                        _update(filter, options);
-                    });
 
             // registers for the key down event in the text field
             textField.keydown(function(event) {
@@ -300,6 +373,246 @@
                                 // breaks the switch
                                 break;
                         }
+                    });
+
+            // registers for the click event on the filter option
+            // buttons to toggle their state
+            filterOptions.click(function() {
+                        // retrieves the current element and the associated
+                        // filter element
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
+
+                        // retrieves the currently selected sort option
+                        // to check if it's the sames as the one that
+                        // has just been clicked
+                        var selectedOption = jQuery(
+                                ".filter-sort-option.selected", filter);
+                        var isSame = element[0] == selectedOption[0];
+
+                        // in case the clicked option is the same the sorting
+                        // order must be changed
+                        if (isSame) {
+                            // checks if the current sort order is descending and
+                            // changes the sort order accordingly
+                            var isDescending = selectedOption.hasClass("descending");
+                            isDescending
+                                    ? selectedOption.removeClass("descending")
+                                    : selectedOption.addClass("ascending");
+                            isDescending
+                                    ? selectedOption.addClass("ascending")
+                                    : selectedOption.addClass("descending");
+                        }
+                        // otherwise the the element is not the same and the
+                        // previous element must be unselected and the new one
+                        // selected in descending order
+                        else {
+                            // removes the selected classes from the selected
+                            // option, to unselect the selected option
+                            selectedOption.removeClass("selected");
+                            selectedOption.removeClass("ascending");
+                            selectedOption.removeClass("descending");
+
+                            // selects the clicked element by adding the selected
+                            // class and the descending class (sort order)
+                            element.addClass("selected");
+                            element.addClass("descending");
+                        }
+                    });
+
+            // registers for the click event in the toggle advanced
+            // button to change the state of the advanced panel
+            toggleAdvanced.click(function() {
+                        // retrieves the current element and the associated
+                        // filter element
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
+
+                        // retrieves the advanced panel for the filter component
+                        // in order to toggle its visibility
+                        var filterAdvanced = jQuery(".filter-advanced", filter);
+
+                        // checks if the advanced button is currently in the
+                        // "more" state to toggle the visility of the advanced
+                        // panel according to the state
+                        var isMore = element.hasClass("filter-input-more");
+
+                        // in case the button is currently in the more state
+                        // the advanced panel must be shown
+                        if (isMore) {
+                            // changes the current filter input states
+                            // and shows the filter advanced panel
+                            element.removeClass("filter-input-more");
+                            element.addClass("filter-input-less");
+                            filterAdvanced.show();
+                        } else {
+                            // changes the current filter input states
+                            // and hides the filter advanced panel
+                            element.removeClass("filter-input-less");
+                            element.addClass("filter-input-more");
+                            filterAdvanced.hide();
+                        }
+                    });
+
+            // registers for the click event in the toggle views
+            // button to change the current view visibility
+            toggleViews.click(function() {
+                        // retrieves the current element and the associated
+                        // filter element
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
+
+                        // checks the type of filter currently displayed
+                        // in the target filter associated with the toggle button
+                        var isList = element.hasClass("filter-input-list");
+                        var isTable = element.hasClass("filter-input-table");
+
+                        // checks the type of views possible to be displayed
+                        // for the current filter component
+                        var hasListView = jQuery(".list-view", filter).length;
+                        var hasTableView = jQuery(".table-view", filter).length;
+                        var hasGalleryView = jQuery(".gallery-view", filter).length;
+
+                        // in case the current state is list
+                        if (isList) {
+                            // in case there is no table and gallery views
+                            // it's not possible to move "forward", returns
+                            // immediately from the function
+                            if (!hasTableView && !hasGalleryView) {
+                                return;
+                            }
+
+                            // removes the list associated classes from both
+                            // the element and filter
+                            element.removeClass("filter-input-list");
+                            filter.removeClass("list-list");
+
+                            // adds the appropriate classes based on the
+                            // existence of the table view
+                            hasTableView
+                                    ? element.addClass("filter-input-table")
+                                    : element.addClass("filter-input-gallery");
+                            hasTableView
+                                    ? filter.addClass("table-list")
+                                    : filter.addClass("gallery-list");
+                        } else if (isTable) {
+                            // in case there is no gallery and list views
+                            // it's not possible to move "forward", returns
+                            // immediately from the function
+                            if (!hasGalleryView && !hasListView) {
+                                return;
+                            }
+
+                            // removes the table associated classes from both
+                            // the element and filter
+                            element.removeClass("filter-input-table");
+                            filter.removeClass("table-list");
+
+                            // adds the appropriate classes based on the
+                            // existence of the gallery view
+                            hasGalleryView
+                                    ? element.addClass("filter-input-gallery")
+                                    : element.addClass("filter-input-list");
+                            hasGalleryView
+                                    ? filter.addClass("gallery-list")
+                                    : filter.addClass("list-list");
+                        } else {
+                            // in case there is no list and table views
+                            // it's not possible to move "forward", returns
+                            // immediately from the function
+                            if (!hasListView && !hasTableView) {
+                                return;
+                            }
+
+                            // removes the gallery associated classes from both
+                            // the element and filter
+                            element.removeClass("filter-input-gallery");
+                            filter.removeClass("gallery-list");
+
+                            // adds the appropriate classes based on the
+                            // existence of the list view
+                            hasListView
+                                    ? element.addClass("filter-input-list")
+                                    : element.addClass("filter-input-table");
+                            hasListView
+                                    ? filter.addClass("list-list")
+                                    : filter.addClass("table-list");
+                        }
+                    });
+
+            // registers for the click event on the filter add button
+            // to add a new filtering line to the filter
+            filterAdd.click(function() {
+                        // retrieves the current element and the associated
+                        // filter element
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
+
+                        // adds a "new" filter line to the current filter
+                        // element (component)
+                        _addFilter(filter);
+                    });
+
+            // registers for the click event on the filter select
+            // to select all the filter element currently shown
+            filterSelect.click(function() {
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
+
+                // retrieves the complete set of filter elements, the
+                // first filter element and the last filter element
+                // to be selected (and decorated) accordingly
+                var filterElements = jQuery(".filter-element", filter);
+                var firstElement = jQuery(".filter-element:first-child", filter);
+                var lastElement = jQuery(".filter-element:last-child", filter);
+
+                // removes the first and last classes from all the elements
+                // avoids possible first or last duplications
+                filterElements.removeClass("first");
+                filterElements.removeClass("last");
+
+                // adds the selected class to all the filter elements and
+                // the first and last classes to the first and last elements
+                filterElements.addClass("selected");
+                firstElement.addClass("first");
+                lastElement.addClass("last");
+            });
+
+            // registers for the key up in the filter input
+            filterInput.keyup(function() {
+                        // retrieves the element
+                        var element = jQuery(this);
+
+                        // retrieves the (parent) filter
+                        var filter = element.parents(".filter");
+
+                        // retrieves the filter string and the filter
+                        // input value (to check for string value changes)
+                        var filterString = filter.data("filter_string");
+                        var filterInputValue = filterInput.attr("data-value");
+
+                        // in case no string value changes occured
+                        if (filterString == filterInputValue) {
+                            // returns immediately
+                            return;
+                        }
+
+                        // updates the filter state
+                        _update(filter, options);
+                    });
+
+            // registers for the click in the filter input
+            filterMore.click(function() {
+                        // retrieves the element
+                        var element = jQuery(this);
+
+                        // retrieves the (parent) filter
+                        var filter = element.parents(".filter");
+
+                        // updates the filter state
+                        _update(filter, options);
                     });
 
             // registers for the key down in the document
@@ -1575,6 +1888,226 @@
 
             // shows the sub menu with a fade effect
             subMenu.fadeIn(150);
+        };
+
+        var _selectFilter = function(filter, value, select) {
+            // retrieves the reference to the value field using
+            // the filter to do so
+            var valueField = jQuery(".value-field", filter);
+
+            // retrieves both the drop field (value selection) and the
+            // operation field from the fielter
+            var dropField = jQuery(".drop-field:not(.operation-field)", filter);
+            var operationField = jQuery(".drop-field:.operation-field", filter);
+
+            // retrieves the data sources associated with the drop field
+            // and the operation field (to be manipulated)
+            var dropSource = jQuery("> .data-source", dropField);
+            var operationSource = jQuery("> .data-source", operationField);
+
+            // retrieves the items and the types sequences associated with
+            // the drop (field) data source
+            var items = dropSource.data("items");
+            var types = dropSource.data("types");
+
+            // retrieves the current index for the value in the items
+            // sequence then uses it to retrieve the associated type
+            var index = items.indexOf(value);
+            var type = types[index]
+
+            // removes the currently selected value field (a new one will
+            // be set in)
+            valueField.remove();
+
+            // switched over the type of the value that was selected
+            // (different type will have different operation and different
+            // value fields)
+            switch (type) {
+                case "string" :
+                    // creates the list of items (operations)
+                    var _items = ["matches", "contains", "begins with",
+                            "ends with"];
+
+                    // creates the value field as a text field, inserts it
+                    // after the operation field and initializes it
+                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" />");
+                    valueField.insertAfter(operationField);
+                    valueField.uxtextfield();
+
+                    // breaks the switch
+                    break;
+
+                case "number" :
+                    // creates the list of items (operations)
+                    var _items = ["equals", "greater than", "less than"];
+
+                    // creates the value field as a text field, inserts it
+                    // after the operation field and initializes it
+                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" />");
+                    valueField.insertAfter(operationField);
+                    valueField.uxtextfield();
+
+                    // breaks the switch
+                    break;
+
+                case "date" :
+                    // creates the list of items (operations)
+                    var _items = ["in", "after", "before"];
+
+                    // creates the value field as a text field (calendar field),
+                    // inserts it after the operation field and initializes it
+                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"date\" data-original_value=\"yyyy/mm/dd\" />");
+                    valueField.insertAfter(operationField);
+                    valueField.uxtextfield();
+
+                    // breaks the switch
+                    break;
+
+                default :
+                    // creates the list of items (operations)
+                    var _items = ["undefined"];
+
+                    // breaks the switch
+                    break;
+            }
+
+            // updates the various items (operation values) in the
+            // operation (data) source
+            operationSource.data("items", _items);
+
+            // unsets the update flag from the operation field (to
+            // force a reload of items in the operation field) and
+            // then "runs" a reset operation to cleanup the operation
+            // field (reset to original state)
+            operationField.data("updated", null);
+            operationField.uxdropfield("reset");
+
+            // in case the select flag is set a value must be set in
+            // the (field) drop field set the value as that field
+            select && dropField.uxdropfield("set", {
+                        value : value
+                    });
+
+            // updates the operation field to be set to the
+            // first item in the items sequence
+            operationField.uxdropfield("set", {
+                        value : _items[0]
+                    });
+        };
+
+        var _addFilter = function(matchedObject, target) {
+            // retrieves the data source for the current filter object
+            // and retrieves the associated filtering objects
+            var dataSource = jQuery("> .data-source", matchedObject);
+            var dataFiltering = jQuery(".filtering > li", dataSource);
+
+            // retrieves the advanced filters section of the filter, this
+            // area is going to be used to add the "new" filter
+            var advancedFilters = jQuery(".filter-advanced-filters",
+                    matchedObject);
+
+            // creates the new filter element and the associated drop field
+            // operation field (drop field) and the text field
+            var filter = jQuery("<div class=\"filter-advanced-filter\"></div>");
+            var dropField = jQuery("<div class=\"drop-field drop-field-select small\">"
+                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
+                    + "</div>");
+            var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\">"
+                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
+                    + "</div>");
+
+            // creates the remove and add buttons for the filter line
+            // and creates the clear element to clear eht float layout strucure
+            // (in case it's necessary)
+            var remove = jQuery("<div class=\"filter-input-remove\"></div>");
+            var add = jQuery("<div class=\"filter-input-add\"></div>");
+            var clear = jQuery("<div class=\"filter-clear\"></div>");
+
+            // retrieves the data source element associated with the drop field
+            // to be used to select that value of filtering
+            var dropSource = jQuery("> .data-source", dropField);
+
+            // creates the initial list to hold the items and the types associated
+            // with them, the index should be associative between them
+            var items = []
+            var types = []
+
+            // iterates over each of the data filtering elements to
+            // be able to "parse" the items and insert them into the
+            // the items and types lists
+            dataFiltering.each(function(index, element) {
+                        // retrives the current element in iteration
+                        var _element = jQuery(this);
+
+                        // retrieves the html value of the element and
+                        // retrieves the data type attribute of it to
+                        // be used both as the item and the type
+                        var dataHtml = _element.html();
+                        var dataType = _element.attr("data-type");
+
+                        // adds the data html (item) and the data type
+                        // to the corresponding lists
+                        items.push(dataHtml);
+                        types.push(dataType);
+                    });
+
+            // updates the items and the types lists in the drop
+            // field data source data references
+            dropSource.data("items", items);
+            dropSource.data("types", types);
+
+            // registers for the value selection event in the drop field
+            // so that the other components are changed according to the
+            // value to be used for filtering (data type change)
+            dropField.bind("value_select",
+                    function(event, value, valueLogic, item) {
+                        _selectFilter(filter, value);
+                    });
+
+            // registers for the click event in the remove button to
+            // remove the filter line from the list of filters
+            remove.click(function() {
+                        // retrieves the current button element and uses it
+                        // to retrieve the parent filter and remove it
+                        var element = jQuery(this);
+                        var _filter = element.parents(".filter-advanced-filter");
+                        _filter.remove();
+                    });
+
+            // regiters for the click event in the add button to
+            // add a new filter line next to the current filter
+            add.click(function() {
+                        // retrieves the current button element and uses it
+                        // to retrieve the parent filter and add a new filter
+                        // in the next position
+                        var element = jQuery(this);
+                        var _filter = element.parents(".filter-advanced-filter");
+                        _addFilter(matchedObject, _filter);
+                    });
+
+            // initializes the drop field components both in the
+            // drop field and n the operation field
+            dropField.uxdropfield();
+            operationField.uxdropfield();
+
+            // adds the various "partial" components to the filter
+            // (line) component, there should be a visual impact
+            filter.append(dropField);
+            filter.append(operationField);
+            filter.append(remove);
+            filter.append(add);
+            filter.append(clear);
+
+            // check if the target element is defined, in such case
+            // the filter is inserted after the target, otherwise the
+            // filter (line) is prepended to the advanced filters
+            target
+                    ? filter.insertAfter(target)
+                    : advancedFilters.prepend(filter);
+
+            // selects the initial element of the "newly" created filter
+            // this is the first value to be viewed by the end user
+            _selectFilter(filter, items[0], true);
         };
 
         // initializes the plugin
