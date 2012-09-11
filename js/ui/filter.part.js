@@ -238,6 +238,36 @@
             // support in the matched object (by default it's disabled)
             var infinite = matchedObject.attr("data-infinite") || false;
 
+            // registers for the focus event on the text field
+            // to change the visibility of the filter buttons
+            textField.focus(function() {
+                        // retrieves the current element and uses it to retrieve
+                        // the parent filter element
+                        var element = jQuery(this);
+                        var filter = element.parent(".filter");
+
+                        // retrieves the filter buttons part of the filter
+                        // and adds the lower class to them
+                        var filterButtons = jQuery(".filter-input-buttons",
+                                filter);
+                        filterButtons.addClass("lower");
+                    });
+
+            // registers for the blur event on the text field
+            // to change the visibility of the filter buttons
+            textField.blur(function() {
+                        // retrieves the current element and uses it to retrieve
+                        // the parent filter element
+                        var element = jQuery(this);
+                        var filter = element.parent(".filter");
+
+                        // retrieves the filter buttons part of the filter
+                        // and removes the lower class from them
+                        var filterButtons = jQuery(".filter-input-buttons",
+                                filter);
+                        filterButtons.removeClass("lower");
+                    });
+
             // registers for the key down event in the text field
             textField.keydown(function(event) {
                         // retrieves the element
