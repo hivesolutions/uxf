@@ -53,9 +53,20 @@
             // retrieves the "main" filter string
             var filterString = query["filterString"];
 
+            // retrieves the sort tuple to be used to sort
+            // the resulting set of elements
+            var sort = query["sort"];
+
             // retrieves the record count information
             var startRecord = query["startRecord"];
             var numberRecords = query["numberRecords"];
+
+            // unpacks the sort value and the sort oder from the
+            // sort tuple and uses them to create the "final" sort
+            // string to be used in the query string
+            var sortValue = sort[0];
+            var sortOrder = sort[1];
+            var sortString = sortValue + ":" + sortOrder;
 
             // sets the initial filter flag value
             var filter = false;
@@ -125,6 +136,7 @@
                     dataType : "text",
                     data : {
                         filter_string : filterString,
+                        sort : sortString,
                         start_record : startRecord,
                         number_records : numberRecords
                     },
