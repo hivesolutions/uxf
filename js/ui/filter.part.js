@@ -907,7 +907,8 @@
 
                         // retrieves the attribute for the filter line and the currently
                         // selected operation value
-                        var attribute = dropField.uxdropfield("value");
+                        var attribute = element.data("name")
+                                || dropField.uxdropfield("value");
                         var operation = operationField.uxdropfield("value");
 
                         // retrieves the lists for the items and for the operations
@@ -2038,15 +2039,22 @@
             var dropSource = jQuery("> .data-source", dropField);
             var operationSource = jQuery("> .data-source", operationField);
 
-            // retrieves the items and the types sequences associated with
+            // retrieves the items, types and names sequences associated with
             // the drop (field) data source
             var items = dropSource.data("items");
             var types = dropSource.data("types");
+            var names = dropSource.data("names");
 
             // retrieves the current index for the value in the items
             // sequence then uses it to retrieve the associated type
+            // and the associated indirect name
             var index = items.indexOf(value);
-            var type = types[index]
+            var type = types[index];
+            var name = names[index];
+
+            // sets the (data name) in the filter line to be latter used
+            // to perform the query
+            filter.data("name", name);
 
             // removes the currently selected value field (a new one will
             // be set in)
@@ -2187,10 +2195,11 @@
             // to be used to select that value of filtering
             var dropSource = jQuery("> .data-source", dropField);
 
-            // creates the initial list to hold the items and the types associated
+            // creates the initial list to hold the items, types and names associated
             // with them, the index should be associative between them
             var items = []
             var types = []
+            var names = []
 
             // iterates over each of the data filtering elements to
             // be able to "parse" the items and insert them into the
@@ -2204,17 +2213,20 @@
                         // be used both as the item and the type
                         var dataHtml = _element.html();
                         var dataType = _element.attr("data-type");
+                        var dataName = _element.attr("data-name");
 
                         // adds the data html (item) and the data type
                         // to the corresponding lists
                         items.push(dataHtml);
                         types.push(dataType);
+                        names.push(dataName);
                     });
 
-            // updates the items and the types lists in the drop
+            // updates the items, types and names lists in the drop
             // field data source data references
             dropSource.data("items", items);
             dropSource.data("types", types);
+            dropSource.data("names", names);
 
             // registers for the value selection event in the drop field
             // so that the other components are changed according to the
