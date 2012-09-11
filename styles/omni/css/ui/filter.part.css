@@ -77,7 +77,7 @@
     padding: 6px 26px 6px 6px;
 }
 
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options {
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option {
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
@@ -88,26 +88,31 @@
     margin: 2px 6px 2px 0px;
     padding: 4px 12px 4px 12px;
     text-transform: uppercase;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
 }
 
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options:hover {
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option:hover {
     background-color: #908e8f;
     color: #ffffff;
 }
 
 
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.ascending,
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.descending {
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option.ascending,
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option.descending {
     background: #908e8f url(../images/filter-input-sorting.png) no-repeat; ;
     color: #ffffff;
     padding-right: 19px;
 }
 
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.ascending {
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option.ascending {
     background-position: right 0px;
 }
 
-.omni-style .filter .filter-advanced .filter-sort .filter-sort-options.descending {
+.omni-style .filter .filter-advanced .filter-sort .filter-sort-option.descending {
     background-position: right -20px;
 }
 
@@ -116,9 +121,22 @@
     padding: 0px 0px 0px 0px;
 }
 
+.omni-style .filter .filter-advanced-filter {
+    margin: 0px 0px 8px 0px;
+}
+
+.omni-style .filter .filter-advanced-filter > .drop-field {
+    float: left;
+}
+
+.omni-style .filter .filter-advanced-filter > .drop-field > .text-field {
+    height: 22px;
+    width: 100px;
+}
+
 .omni-style .filter .filter-advanced-filter > .text-field {
-    margin: 0px 0px 8px 0px; ;
-    width: 182px;
+    float: left;
+    width: 186px;
 }
 
 .omni-style .filter .filter-advanced-filter > .filter-input-add,
@@ -164,7 +182,7 @@
 }
 
 .omni-style .filter .filter-input-first {
-    margin-left: 505px;
+    margin-left: 509px;
     margin-top: 11px;
     position: absolute;
 }
