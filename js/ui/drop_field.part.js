@@ -196,6 +196,14 @@
                         // registers for the click event in the text field
                         // (select click)
                         isSelect && textField.click(function(event) {
+                                    // checks if the drop field to verify that the
+                                    // drop field is not disabled, in case it is
+                                    // no action is done
+                                    var isDisabled = dropField.hasClass("disabled");
+                                    if (isDisabled) {
+                                        return;
+                                    }
+
                                     // in case the drop field contents is visible
                                     // (should move the cursor)
                                     if (dropFieldContents.is(":visible")) {
@@ -252,6 +260,14 @@
                         var dropField = element.parents(".drop-field");
                         var dropFieldContents = jQuery(".drop-field-contents",
                                 dropField);
+
+                        // checks if the drop field to verify that the
+                        // drop field is not disabled, in case it is
+                        // no action is done
+                        var isDisabled = dropField.hasClass("disabled");
+                        if (isDisabled) {
+                            return;
+                        }
 
                         // retrieves the event key code
                         var eventKeyCode = event.keyCode
@@ -338,6 +354,14 @@
                 var dropFieldContents = jQuery(".drop-field-contents",
                         dropField);
                 var template = jQuery(".template", dropField);
+
+                // checks if the drop field to verify that the
+                // drop field is not disabled, in case it is
+                // no action is done
+                var isDisabled = dropField.hasClass("disabled");
+                if (isDisabled) {
+                    return;
+                }
 
                 // retrieves the event key code
                 var eventKeyCode = event.keyCode ? event.keyCode : event.which;
@@ -449,6 +473,14 @@
                 // this value must represent if the drop field is
                 // currently locked or not
                 var hiddenFieldValue = hiddenField.attr("value");
+
+                // checks if the drop field to verify that the
+                // drop field is not disabled, in case it is
+                // no action is done
+                var isDisabled = dropField.hasClass("disabled");
+                if (isDisabled) {
+                    return;
+                }
 
                 // retrieves the event key code
                 var eventKeyCode = event.keyCode ? event.keyCode : event.which;

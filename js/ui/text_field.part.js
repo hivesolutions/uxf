@@ -345,6 +345,15 @@
                 // retrieves the element value
                 var elementValue = matchedObject.attr("data-value");
 
+                // retrieves the data type for the matached object
+                // and uses it to create the (possible) value type
+                // retrieval method then calls it in case it exists
+                // otherwise used the noemal element value
+                var type = matchedObject.attr("data-type");
+                var valueMethodName = "__value" + type;
+                var elementValue = type ? __callMethod(valueMethodName,
+                        matchedObject, options) : elementValue
+
                 // returns the retrieved value
                 return elementValue;
             }
@@ -556,9 +565,11 @@
 
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "if(typeof " + methodName + " != \"undefined\") {"
-                    + methodName + "(element, options)}";
+            var evalString = "if(typeof " + methodName
+                    + " != \"undefined\") { result = " + methodName
+                    + "(element, options)} else { result = null; }";
             eval(evalString);
+            return result;
         };
 
         var __startdatetime = function(element, options) {
@@ -735,6 +746,10 @@
                         // updates both the logical value and the real value
                         element.attr("data-value", dateString);
                         element.attr("value", dateString);
+
+                        // triggers the value change event for the element
+                        // to notify the event handlers
+                        element.triggerHandler("value_change", [dateString]);
                     });
 
             // registers for the mouse down event on the calendar
@@ -805,6 +820,14 @@
 
             // sets the calendar in the element
             element.data("calendar", calendar);
+        };
+
+        var __valuedate = function(element, options) {
+            // retrieves the current value and then uses it to parse
+            // it as current timestamp then returns it
+            var currentValue = element.attr("value");
+            var currentTimestamp = Date.parse(currentValue + " UTC") / 1000;
+            return currentTimestamp;
         };
 
         var __showdate = function(element, options) {

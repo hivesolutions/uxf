@@ -898,9 +898,23 @@
                         var operationSource = jQuery("> .data-source",
                                 operationField);
 
-                        // retrieves the value of the value field and in case
-                        // it's not set returns immediately (value is not valid)
-                        var value = valueField.val();
+                        // checks if the current value field is of type drop field
+                        // and retrieves the value accordingly
+                        var isDropField = valueField.hasClass("drop-field");
+                        if (isDropField) {
+                            // retrieves the hidden field associated with the value
+                            // field and uses its value as the value
+                            var hiddenField = jQuery(".hidden-field",
+                                    valueField);
+                            var value = hiddenField.val();
+                        } else {
+                            // retrieves the value of the value field using the text
+                            // field based approach
+                            var value = valueField.uxtextfield("value");
+                        }
+
+                        // in case no value is present this filter is ignored
+                        // not possible to filter value
                         if (!value) {
                             return;
                         }
@@ -2044,6 +2058,7 @@
             var items = dropSource.data("items");
             var types = dropSource.data("types");
             var names = dropSource.data("names");
+            var elements = dropSource.data("elements");
 
             // retrieves the current index for the value in the items
             // sequence then uses it to retrieve the associated type
@@ -2051,6 +2066,11 @@
             var index = items.indexOf(value);
             var type = types[index];
             var name = names[index];
+            var element = elements[index];
+
+            // sets the operation field disabled flag as unset by default
+            // (operations allowed by default)
+            var disabled = false;
 
             // sets the (data name) in the filter line to be latter used
             // to perform the query
@@ -2067,9 +2087,9 @@
                 case "string" :
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["matches", "contains", "begins with",
+                    var _items = ["contains", "matches", "begins with",
                             "ends with"];
-                    var _operations = ["equals", "like", "rlike", "llike"];
+                    var _operations = ["like", "equals", "rlike", "llike"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
@@ -2099,13 +2119,58 @@
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["in", "after", "before"];
-                    var _operations = ["equals", "greater", "lesser"];
+                    var _operations = ["in_day", "greater", "lesser"];
 
                     // creates the value field as a text field (calendar field),
                     // inserts it after the operation field and initializes it
                     var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"date\" data-original_value=\"yyyy/mm/dd\" />");
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
+
+                    // breaks the switch
+                    break;
+
+                case "reference" :
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
+                    var _items = ["search"];
+                    var _operations = ["equals"];
+
+                    // sets the disabled flag so that no operation changing
+                    // action is possible
+                    disabled = true
+
+                    // retrieves the url and the type (data source) from
+                    // the associated element
+                    var url = element.attr("data-surl");
+                    var _type = element.attr("data-stype");
+
+                    // retrieves the display and the value attributes from the
+                    // element to the propagated to the value field
+                    var displayAttribute = element.attr("data-sdisplay_attribute");
+                    var valueAttribute = element.attr("data-svalue_attribute");
+
+                    // creates the value field as a drop field (reference field),
+                    // inserts it after the operation field and initializes it
+                    var valueField = jQuery("<div class=\"drop-field small value-field\">"
+                            + "<input type=\"hidden\" class=\"hidden-field\" />"
+                            + "<ul class=\"data-source\"></ul>" + "</div>");
+
+                    // retrieves the data source associated with the value
+                    // field an then updates the url and the type of the
+                    // data source to point to the "reference" elements
+                    var valueSource = jQuery("> .data-source", valueField);
+                    valueSource.attr("data-url", url);
+                    valueSource.attr("data-type", _type);
+                    valueSource.uxdatasource();
+
+                    // updates the value field attributes in the value field and then
+                    // inserts it after the operation field and initializes it as a
+                    // drop field component
+                    valueField.attr("data-display_attribute", displayAttribute);
+                    valueField.attr("data-value_attribute", valueAttribute);
+                    valueField.insertAfter(operationField);
+                    valueField.uxdropfield();
 
                     // breaks the switch
                     break;
@@ -2144,6 +2209,10 @@
                         value : _items[0]
                     });
 
+            // in case the disabled flag is set disables the operation
+            // field otherwise enables it
+            disabled ? operationField.uxdisable() : operationField.uxenable();
+
             // registers for the value select event in the
             // operation field to update the filter results
             operationField.bind("value_select",
@@ -2157,6 +2226,23 @@
             // value field to update the filter results
             valueField.bind("value_change",
                     function(event, value, valueLogic, item) {
+                        // updates the current filter to reflect the
+                        // changes in the value field
+                        _update(_filter, options, true);
+                    });
+
+            // registers for the value select event in the
+            // value field to update the filter results
+            valueField.bind("value_select",
+                    function(event, value, valueLogic, item) {
+                        // updates the current filter to reflect the
+                        // changes in the value field
+                        _update(_filter, options, true);
+                    });
+
+            // registers for the value unselect event in the
+            // value field to update the filter results
+            valueField.bind("value_unselect", function(event) {
                         // updates the current filter to reflect the
                         // changes in the value field
                         _update(_filter, options, true);
@@ -2200,6 +2286,7 @@
             var items = []
             var types = []
             var names = []
+            var elements = []
 
             // iterates over each of the data filtering elements to
             // be able to "parse" the items and insert them into the
@@ -2220,6 +2307,7 @@
                         items.push(dataHtml);
                         types.push(dataType);
                         names.push(dataName);
+                        elements.push(_element);
                     });
 
             // updates the items, types and names lists in the drop
@@ -2227,6 +2315,7 @@
             dropSource.data("items", items);
             dropSource.data("types", types);
             dropSource.data("names", names);
+            dropSource.data("elements", elements);
 
             // registers for the value selection event in the drop field
             // so that the other components are changed according to the
@@ -2262,8 +2351,14 @@
 
             // initializes the drop field components both in the
             // drop field and n the operation field
-            dropField.uxdropfield();
-            operationField.uxdropfield();
+            dropField.uxdropfield("default", {
+                        numberOptions : 10,
+                        filterOptions : true
+                    });
+            operationField.uxdropfield("default", {
+                        numberOptions : 10,
+                        filterOptions : true
+                    });
 
             // adds the various "partial" components to the filter
             // (line) component, there should be a visual impact

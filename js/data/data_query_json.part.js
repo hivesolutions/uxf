@@ -55,11 +55,11 @@
 
             // retrieves the sort tuple to be used to sort
             // the resulting set of elements
-            var sort = query["sort"];
+            var sort = query["sort"] || ["default", "descending"];
 
             // retrieves the filter tuples to be used to filter
             // the result set around certain rules
-            var filters = query["filters"];
+            var filters = query["filters"] || [];
 
             // retrieves the record count information
             var startRecord = query["startRecord"];
@@ -68,9 +68,9 @@
             // unpacks the sort value and the sort oder from the
             // sort tuple and uses them to create the "final" sort
             // string to be used in the query string
-            var sortValue = sort[0];
-            var sortOrder = sort[1];
-            var sortString = sortValue + ":" + sortOrder;
+            var sortValue = sort ? sort[0] : null;
+            var sortOrder = sort ? sort[1] : null;
+            var sortString = sort ? sortValue + ":" + sortOrder : null;
 
             // creates the list that will hold the various filter strings
             // to be sent to the remote handler

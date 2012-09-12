@@ -3,6 +3,10 @@
     width: 406px;
 }
 
+.omni-style .drop-field.disabled {
+    opacity: 0.5;
+}
+
 .omni-style .drop-field > .text-field {
     background-image: url(../images/drop-field-dots.png);
     background-position: right center;
@@ -19,6 +23,10 @@
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
+}
+
+.omni-style .drop-field.drop-field-select.disabled > .text-field {
+    cursor: default;
 }
 
 .omni-style .drop-field.drop-field-lock > .text-field {
@@ -79,13 +87,19 @@
     padding: 2px 6px 2px 6px;
 }
 
+.omni-style .drop-field.small > .text-field {
+    font-size: 11px;
+    height: 20px;
+}
+
 .omni-style .drop-field.small.drop-field-select > .text-field {
     background-image: url(../images/drop-field-select-small.png);
     font-size: 10px;
+    height: 22px;
     padding-top: 0px;
     text-transform: uppercase;
 }
 
-.omni-style .drop-field.smalldrop-field-select.drop-field-lock > .text-field {
+.omni-style .drop-field.small.drop-field-select.drop-field-lock > .text-field {
     background-image: url(../images/drop-field-select-small.png);
 }

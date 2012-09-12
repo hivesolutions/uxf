@@ -133,14 +133,21 @@
     float: left;
 }
 
-.omni-style .filter .filter-advanced-filter > .drop-field > .text-field {
-    height: 22px;
+.omni-style .filter .filter-advanced-filter > .drop-field.drop-field-select > .text-field {
     width: 100px;
 }
 
-.omni-style .filter .filter-advanced-filter > .text-field {
+.omni-style .filter .filter-advanced-filter > .text-field.value-field {
     float: left;
     width: 186px;
+}
+
+.omni-style .filter .filter-advanced-filter > .drop-field.value-field {
+    width: 200px;
+}
+
+.omni-style .filter .filter-advanced-filter > .drop-field.value-field > .text-field {
+    width: 164px;
 }
 
 .omni-style .filter .filter-advanced-filter > .filter-input-add,
