@@ -69,8 +69,8 @@
 
                 // retrieves the filter contents and
                 // the filter more (if present)
-                var filterContents = jQuery(".filter-contents", _element);
-                var filterMore = jQuery(".filter-more", _element);
+                var filterContents = jQuery("> .filter-contents", _element);
+                var filterMore = jQuery("> .filter-more", _element);
 
                 // retrieves the text field (element) assicated with the
                 // curernt filter for the main filtering
@@ -208,13 +208,13 @@
             var _body = jQuery("body");
 
             // retrieves the filter input
-            var filterInput = jQuery(".filter-input", matchedObject);
+            var filterInput = jQuery("> .filter-input", matchedObject);
 
             // retrieves the filter more
-            var filterMore = jQuery(".filter-more", matchedObject);
+            var filterMore = jQuery("> .filter-more", matchedObject);
 
             // retrieves the text field
-            var textField = jQuery(".text-field", matchedObject);
+            var textField = jQuery("> .text-field", matchedObject);
 
             // retrieves the references to the various sort
             // buttons to be used in the advanced panel
