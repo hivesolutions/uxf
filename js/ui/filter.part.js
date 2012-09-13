@@ -868,7 +868,7 @@
             // the sorting list (tuple) to be used in the query
             var isAscending = sortSelected.hasClass("ascending");
             var sortOrder = isAscending ? "ascending" : "descending";
-            var sort = [sortValue, sortOrder];
+            var sort = sortValue ? [sortValue, sortOrder] : null;
 
             // retrieves the complete set of (graphical) filter lines to be
             // parser in search for the valid filters
