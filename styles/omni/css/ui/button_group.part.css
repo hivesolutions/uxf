@@ -2,7 +2,9 @@
     float: right;
 }
 
-.omni-style .button-group .button {
+.omni-style .button-group .button,
+.omni-style .button-group .button.small,
+.omni-style .button-group .button.large {
     border: 1px solid #bfbfbf;
     border-left: none;
     cursor: pointer;
