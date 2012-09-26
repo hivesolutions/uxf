@@ -162,6 +162,18 @@
                                 // breaks the switch
                                 break;
 
+                            // in case the type is float positive
+                            case "floatp" :
+                                // tests the input against the regular expression
+                                // and then in case the input is still valid runs the test
+                                // on the number of decimal places
+                                validInput = /^\d|\.$/.test(keyValueString);
+                                validInput = validInput ? __testplaces(value,
+                                        decimalPlaces, caret) : validInput;
+
+                                // breaks the switch
+                                break;
+
                             // in case the type is percent
                             case "percent" :
                                 // tests the input against the regular expression

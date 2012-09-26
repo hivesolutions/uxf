@@ -50,7 +50,8 @@
 
 .omni-style .text-field.natural,
 .omni-style .text-field.integer,
-.omni-style .text-field.float {
+.omni-style .text-field.float,
+.omni-style .text-field.floatp {
     background-image: url(../images/text-field-number.png);
     background-position: right center;
     background-repeat: no-repeat;
