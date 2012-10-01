@@ -139,6 +139,7 @@
 .omni-style .table .text-field.natural,
 .omni-style .table .text-field.integer,
 .omni-style .table .text-field.float,
+.omni-style .table .text-field.floatp,
 .omni-style .table .text-field.percent,
 .omni-style .table .text-field.email {
     background-image: none;
