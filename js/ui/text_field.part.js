@@ -363,7 +363,9 @@
                 // otherwise used the noemal element value
                 var type = matchedObject.attr("data-type");
                 var valueMethodName = "__value" + type;
-                var elementValue = type ? __callMethod(valueMethodName,
+                var hasMethod = __hasMethod(valueMethodName, matchedObject,
+                        options);
+                var elementValue = hasMethod ? __callMethod(valueMethodName,
                         matchedObject, options) : elementValue
 
                 // returns the retrieved value
@@ -578,8 +580,16 @@
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
             var evalString = "if(typeof " + methodName
-                    + " != \"undefined\") { result = " + methodName
-                    + "(element, options)} else { result = null; }";
+                    + " != \"undefined\") { var result = " + methodName
+                    + "(element, options)} else { var result = null; }";
+            eval(evalString);
+            return result;
+        };
+
+        var __hasMethod = function(methodName, element, options) {
+            // creates the string to be eavluated and then evaluates it
+            var evalString = "var result = typeof " + methodName
+                    + " != \"undefined\";";
             eval(evalString);
             return result;
         };
