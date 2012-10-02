@@ -264,7 +264,7 @@
                     + "<div class=\"tag-field-label\">" + value + "</div>"
                     + "<div class=\"tag-field-remove\"></div>"
                     + "<div class=\"tag-field-clear\"></div>" + "</div>");
-            value && tag.attr("data-display", valueLogic);
+            value && tag.attr("data-display", value);
             valueLogic && tag.attr("data-value", valueLogic);
 
             // retrieves the reference to the remove element of the tag
@@ -416,15 +416,23 @@
             // iterates over all the elements in the tags to
             // creates the sequence value
             for (var index = 0; index < tags.length; index++) {
+
                 // retrieves the current list items in iteration
                 // and retrieves the value to be used as data value
+                // defaulting to the html value in case none is provided
                 var tag = jQuery(tags[index]);
                 var dataValue = tag.attr("data-value");
+                var displayValue = tag.attr("data-display");
+                dataValue = dataValue ? dataValue : displayValue;
 
                 // adds the current data value to the value and then
                 // completes it with a comma
                 value += dataValue + ","
             }
+
+            // returns the "just" computed sequence value comprising
+            // the list of valus separated with comas
+            return value;
         };
 
         // switches over the method
