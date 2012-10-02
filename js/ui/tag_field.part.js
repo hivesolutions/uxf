@@ -41,6 +41,11 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // sets the ux global object representation as text
+            // field, this vlaue may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.attr("data-object", "tagfield");
+
             // adds the tag field tags to the matched object, this
             // is the container to the tag representations
             matchedObject.prepend("<div class=\"tag-field-tags\"></div>");

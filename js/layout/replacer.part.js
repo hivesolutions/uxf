@@ -50,7 +50,7 @@
                         var target = jQuery(targetSelector);
 
                         // retrieves the target element value
-                        var value = target.attr("data-value");
+                        var value = target.uxvalue();
 
                         // replaces the elements (not focusing in the
                         // target element)

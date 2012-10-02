@@ -41,6 +41,11 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // sets the ux global object representation as text
+            // field, this vlaue may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.attr("data-object", "textfield");
+
             // iterates over all the items in the matched object
             matchedObject.each(function(index, element) {
                         // retrieves the element reference
