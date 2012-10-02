@@ -158,7 +158,7 @@
                             // the series of form input elements
                             var tags = jQuery(".tag-field-tag", _element);
 
-                            // iterates over all the element in the tags to
+                            // iterates over all the elements in the tags to
                             // creates the associated input values
                             for (var index = 0; index < tags.length; index++) {
                                 // retrieves the current list items in iteration
@@ -403,8 +403,39 @@
             textField.css("padding-left", lineWidth + "px");
         };
 
+        var _value = function(matchedObject, options) {
+            // retrieves the complete set of tags in the current
+            // tag field this values are going to be used to create
+            // the complete "sequenced" value
+            var tags = jQuery(".tag-field-tag", matchedObject);
+
+            // starts the string that will hold the complete value
+            // to represent the tag field
+            var value = "";
+
+            // iterates over all the elements in the tags to
+            // creates the sequence value
+            for (var index = 0; index < tags.length; index++) {
+                // retrieves the current list items in iteration
+                // and retrieves the value to be used as data value
+                var tag = jQuery(tags[index]);
+                var dataValue = tag.attr("data-value");
+
+                // adds the current data value to the value and then
+                // completes it with a comma
+                value += dataValue + ","
+            }
+        };
+
         // switches over the method
         switch (method) {
+            case "value" :
+                // retrieves the value
+                var value = _value(matchedObject, options);
+
+                // returns the value
+                return value;
+
             case "default" :
                 // initializes the plugin
                 initialize();
