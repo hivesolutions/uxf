@@ -124,10 +124,6 @@
                         + "</div>");
                 advanced && filterAdvanced.insertAfter(filterButtons);
 
-                // in case the advanced mode is active adds the initial filter
-                // line to the filters area
-                advanced && _addFilter(_element);
-
                 // retrieves the data source associated with the element
                 // and then uses it to retrieve the various order items
                 var dataSource = jQuery("> .data-source", _element);
@@ -138,6 +134,10 @@
                 // associated clear element to be as anchor point
                 var filterSort = jQuery(".filter-sort", _element);
                 var filterClear = jQuery("> .filter-clear", filterSort);
+
+                // retrieves the filtering section of the filter and then
+                // retrieves its items to check for valid filtering
+                var filterFiltering = jQuery(".filtering > li", dataSource);
 
                 // iterates over each of the data source order elements
                 // to create the associated (visual) sort options
@@ -163,6 +163,19 @@
                 // adds the devault sort option to the filter, this value exists for
                 // every search and indicates that no sort will occur (default is used)
                 filterSort.prepend("<div class=\"filter-sort-option selected equals\" data-order=\"equals\">default</div>");
+
+                // checks if the filtering is enabled and valid for the
+                // current context of execution
+                var hasFiltering = filterFiltering.length > 0 ? true : false;
+
+                // in case the advanced mode is active adds the initial filter
+                // line to the filters area, but only in case there are valid
+                // filters and so the filtering is enabled
+                advanced && hasFiltering && _addFilter(_element);
+
+                // in case there is currenlty no valid filtering in the data
+                // source must disabled the filtering part in the advanced area
+                !hasFiltering && _disableFiltering();
 
                 // retrieves the text value from the filter more
                 // and then encapsulates it arround the text divisor
@@ -2378,6 +2391,14 @@
             // selects the initial element of the "newly" created filter
             // this is the first value to be viewed by the end user
             _selectFilter(filter, items[0], true);
+        };
+
+        var _disableFiltering = function(matchedObject, options) {
+            // retrieves the filter add element (in the advanced panel)
+            // and disables it to avoid insertion of filters
+            var filterAdd = jQuery(".filter-advanced > .filter-input-add",
+                    matchedObject);
+            filterAdd.hide();
         };
 
         // initializes the plugin
