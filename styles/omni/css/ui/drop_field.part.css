@@ -15,6 +15,20 @@
     padding-right: 28px;
 }
 
+.omni-style .drop-field.strong > .text-field {
+    color: #2d2d2d;
+}
+
+.omni-style .drop-field.strong > .text-field.lower {
+    color: #777777;
+}
+
+.omni-style .drop-field.strong.disabled > .text-field {
+    background-color: #f8f8f8;
+    color: #888888;
+    -webkit-text-fill-color: #888888;
+}
+
 .omni-style .drop-field.drop-field-select > .text-field {
     background: transparent url(../images/drop-field-select.png) repeat-x right center;
     cursor: pointer;
