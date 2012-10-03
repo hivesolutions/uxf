@@ -120,26 +120,23 @@
                         // no longer required
                         tagsList.remove();
 
-                        // hides the tags container visibility so that before
-                        // the last layout update is corrently executed not tag
-                        // is displayed (avoids visual glitches)
-                        tagsContainer.css("visibility", "hidden");
+                        // checks if the element is visible so that appropriate
+                        // visibility operation take place for carrect layout update
+                        var isVisible = _element.is(":visible")
+
+                        // shows the element momentanely so that appropriate width
+                        // height measurements may take place
+                        !isVisible && _element.show();
 
                         // updates (resizes) the tag field, then sets another
                         // update operation for the final part of the update
                         // lifecycle this way a new refresh happends after the
                         // complete layout is rendered
                         _update(_element, options);
-                        setTimeout(function() {
-                                    // check if the element is visible and in case it's
-                                    // runs a new update operation will fix the layout
-                                    var isVisible = _element.is(":visible")
-                                    isVisible && _update(_element, options);
 
-                                    // restores the tags container visibility the layout
-                                    // update is now complete
-                                    tagsContainer.css("visibility", "");
-                                });
+                        // in case the element was not visible at the beginning
+                        // of the measurement hides it agains (state restore)
+                        !isVisible && _element.hide();
                     });
         };
 
