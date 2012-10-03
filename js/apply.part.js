@@ -31,6 +31,7 @@
             // retrieves the various elements based on their attribute
             // values (attribute based selection)
             var dataWidth = jQuery("[data-width]", matchedObject).not(".template [data-width]");
+            var dataDisabled = jQuery("[data-disabled]", matchedObject).not(".template [data-disabled]");
 
             // retrieves the various elements
             var overlay = jQuery(".overlay", matchedObject).not(".template .overlay");
@@ -196,6 +197,10 @@
 
             // applies the gateway plugins
             gatewayPrint.uxgprint();
+
+            // applies the various attribute based plugins (post
+            // structure construction apply)
+            dataDisabled.uxdisable();
 
             // shows the body in case it's meant to be
             // shown only after the ux script execution
