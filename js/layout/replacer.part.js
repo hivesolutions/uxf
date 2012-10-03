@@ -80,11 +80,19 @@
             var targetSelector = matchedObject.attr("data-target");
             var target = jQuery(targetSelector);
 
+            // checks if the current target is a text field or a
+            // text area in case it's not the target for focus
+            // should be a sub element that is a text field (or area)
+            var isTextField = target.hasClass("text-field")
+                    || target.hasClass("text-area");
+            focusTarget = isTextField ? target : jQuery(
+                    ".text-field, .text-area", target);
+
             // hides the matched object and then shows (and focus)
             // the target (element)
             matchedObject.hide();
             target.show();
-            focus && target.focus();
+            focus && focusTarget.focus();
         };
 
         // initializes the plugin

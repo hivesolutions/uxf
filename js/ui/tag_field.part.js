@@ -120,8 +120,17 @@
                         // no longer required
                         tagsList.remove();
 
-                        // updates (resizes) the tag field
+                        // updates (resizes) the tag field, then sets another
+                        // update operation for the final part of the update
+                        // lifecycle this way a new refresh happends after the
+                        // complete layout is rendered
                         _update(_element, options);
+                        setTimeout(function() {
+                                    // check if the element is visible and in case it's
+                                    // runs a new update operation will fix the layout
+                                    var isVisible = _element.is(":visible")
+                                    isVisible && _update(_element, options);
+                                });
                     });
         };
 
@@ -133,6 +142,10 @@
             // registration its going to simulate the "normal"
             // text field events
             var tagsContainer = jQuery(".tag-field-tags", matchedObject);
+
+            // retrieves the text field associated with the current
+            // tag field to be handler registration
+            var textField = jQuery(".text-field", matchedObject);
 
             // iterates over each of the matched objects
             // to register them agains the submission of the form
@@ -264,6 +277,17 @@
                         event.stopPropagation();
                         event.stopImmediatePropagation();
                         event.preventDefault();
+                    });
+
+            textField.focus(function() {
+                        // retrieves the current element and the associated
+                        // parent tag field
+                        var element = jQuery(this);
+                        var tagField = element.parents(".tag-field");
+
+                        // updates the layout structure in the current
+                        // tag field (focus may change contents)
+                        _update(tagField, options);
                     });
         };
 
