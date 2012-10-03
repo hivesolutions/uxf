@@ -46,44 +46,48 @@
     background: transparent url(../images/button-group-button-medium.png) no-repeat left top;
 }
 
+.omni-style .button-group .button.medium:hover {
+    background-position: left 0px;
+}
+
 .omni-style .button-group .button.medium:active {
-    background-position: 0px -36px;
+    background-position: left -36px;
 }
 
 .omni-style .button-group .button.medium.selected {
-    background-position: 0px -36px;
+    background-position: left -36px;
 }
 
 .omni-style .button-group .button.medium.disabled {
-    background-position: 0px -72px;
+    background-position: left -72px;
 }
 
 .omni-style .button-group .button.medium.valid {
-    background-position: 0px -108px;
+    background-position: left -108px;
 }
 
 .omni-style .button-group .button.medium.valid:active {
-    background-position: 0px -144px;
+    background-position: left -144px;
 }
 
 .omni-style .button-group .button.medium.valid.selected {
-    background-position: 0px -144px;
+    background-position: left -144px;
 }
 
 .omni-style .button-group .button.medium.valid.disabled {
-    background-position: 0px -180px;
+    background-position: left -180px;
 }
 
 .omni-style .button-group .button.medium.invalid {
-    background-position: 0px -216px;
+    background-position: left -216px;
 }
 
 .omni-style .button-group .button.medium.invalid:active {
-    background-position: 0px -252px;
+    background-position: left -252px;
 }
 
 .omni-style .button-group .button.medium.invalid.selected {
-    background-position: 0px -252px;
+    background-position: left -252px;
 }
 
 .omni-style .button-group .button.medium > .button-icon {
@@ -98,6 +102,10 @@
     height: 30px;
     line-height: 30px;
     width: 30px;
+}
+
+.omni-style .button-group .button.small:hover {
+    background-position: left 0px;
 }
 
 .omni-style .button-group .button.small:active {
