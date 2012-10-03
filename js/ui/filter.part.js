@@ -94,10 +94,10 @@
                     textField.attr("data-original_value", originalValue);
                     textField.attr("data-error", error);
 
-                    // runs the text field initialized and then appends
-                    // the text field to the element
-                    textField.uxtextfield();
+                    // preppends the text field to the element and runs
+                    // the text field initializer
                     _element.prepend(textField);
+                    textField.uxtextfield();
                 }
 
                 // creates the element representing the buttons for the filter
