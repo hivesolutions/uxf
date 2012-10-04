@@ -258,8 +258,10 @@
 
 .ulite-style .list.search-results-list .search-results-item .image {
     float: left;
+    height: 32px;
     line-height: 0px;
     padding: 4px 4px 4px 4px;
+    width: 32px;
 }
 
 .ulite-style .list.search-results-list .search-results-item .details {
