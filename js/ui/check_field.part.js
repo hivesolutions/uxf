@@ -57,21 +57,26 @@
             // registers the check field label for the click
             // event to check the associated check field
             checkFieldLabel.click(function() {
-                // retrieves the current element and uses it to retrieve
-                // the previous check field
-                var element = jQuery(this);
-                 var checkField = element.prev(".check-field");
+                        // retrieves the current element and uses it to retrieve
+                        // the previous check field
+                        var element = jQuery(this);
+                        var checkField = element.prev(".check-field");
 
-                 // checks the "just" retrieved check field, this should
-                 // enable its boolean value
-                 _check(checkField, options);
-            });
+                        // toggles the "just" retrieved check field, this should
+                        // change its boolean value
+                        _toggle(checkField, options);
+                    });
         };
 
-        var _check = function(matchedObject, options) {
+        var _toggle = function(matchedObject, options) {
+            // retrieves the current checked state from the matched
+            // object and "invert" it to toggle the state
+            var checked = matchedObject.attr("checked");
+            var _checked = checked ? false : true;
+
             // checks the current matched object by setting
             // the its checked attribute
-            matchedObject.attr("checked", true);
+            matchedObject.attr("checked", _checked);
         };
 
         var _update = function(matchedObject, options) {
