@@ -1,0 +1,32 @@
+.ulite-style .content-error .error {
+    padding: 0px 48px 0px 48px;
+    text-align: center;
+}
+
+.ulite-style .content-error .error .title {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 8px 0px 12px 0px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.ulite-style .content-error .error .message {
+    color: #c31f30;
+    font-size: 13px;
+    margin: 4px 0px 24px 0px;
+}
+
+.ulite-style .content-error .error .traceback-contents {
+    color: #444444;
+    font-family: monospace;
+    font-size: 12px;
+    margin: 0px auto 26px auto;
+    width: 660px;
+}
+
+.ulite-style .content-error .error .description {
+    color: #555555;
+    line-height: 22px;
+    margin: 24px 0px 24px 0px;
+}
