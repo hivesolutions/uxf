@@ -56,6 +56,7 @@
             var wizard = jQuery(".wizard", matchedObject).not(".template .wizard");
             var panel = jQuery(".panel", matchedObject).not(".template .panel");
             var tabPanel = jQuery(".tab-panel", matchedObject).not(".template .tab-panel");
+            var panelMore = jQuery(".panel-more", matchedObject).not(".template .panel-more");
             var panelStack = jQuery(".panel-stack", matchedObject).not(".template .panel-stack");
             var breadcrumbs = jQuery(".breadcrumbs", matchedObject).not(".template .breadcrumbs");
             var hightlightBox = jQuery(".hightlight-box", matchedObject).not(".template .hightlight-box");
@@ -136,6 +137,7 @@
             wizard.uxwizard();
             panel.uxpanel();
             tabPanel.uxtabpanel();
+            panelMore.uxpanelmore();
             panelStack.uxpanelstack();
             breadcrumbs.uxbreadcrumbs();
             hightlightBox.uxhightlightbox();

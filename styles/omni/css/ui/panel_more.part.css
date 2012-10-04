@@ -1,0 +1,26 @@
+.omni-style .panel-more .panel-more-action {
+    clear: both;
+}
+
+.omni-style .panel-more li.list-more {
+    margin-top: 6px; ;
+    position: absolute;
+    text-align: center;
+    width: 532px;
+}
+
+.omni-style .panel-more li.list-more span {
+    background-color: #908e8f;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 1px;
+    padding: 2px 8px 2px 8px;
+    text-transform: uppercase;
+}
+
+.omni-style .panel-more li.list-more span:hover {
+    background-color: #71ae48;
+}
