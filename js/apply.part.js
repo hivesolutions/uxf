@@ -42,6 +42,7 @@
             var textArea = jQuery(".text-area", matchedObject).not(".template .text-area");
             var dropField = jQuery(".drop-field", matchedObject).not(".template .drop-field");
             var selectField = jQuery(".select-field", matchedObject).not(".template .select-field");
+            var checkField = jQuery(".check-field", matchedObject).not(".template .check-field");
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(".template .incremental-field");
@@ -123,6 +124,7 @@
             textArea.uxtextfield();
             dropField.uxdropfield();
             selectField.uxselectfield();
+            checkField.uxcheckfield();
             radioField.uxradiofield();
             tagField.uxtagfield();
             incrementalField.uxincrementalfield();

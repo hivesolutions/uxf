@@ -1,8 +1,8 @@
 /**
- * jQuery radio field plugin, this jQuery plugin provides the base
- * infra-structure for the creation of a radio field component.
+ * jQuery check field plugin, this jQuery plugin provides the base
+ * infra-structure for the creation of a check field component.
  *
- * @name jquery-radio-field.js
+ * @name jquery-check-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @date March 10, 2010
@@ -12,8 +12,8 @@
  *          http://www.hive.pt/licenses/
  */
 (function(jQuery) {
-    jQuery.fn.uxradiofield = function(options) {
-        // the default values for the radio field
+    jQuery.fn.uxcheckfield = function(options) {
+        // the default values for the check field
         var defaults = {};
 
         // sets the default options value
@@ -50,22 +50,22 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the (possible) next radio field label
+            // retrieves the (possible) next check field label
             // to register it for checking
-            var radioFieldLabel = matchedObject.next(".radio-field-label");
+            var checkFieldLabel = matchedObject.next(".check-field-label");
 
-            // registers the radio field label for the click
-            // event to check the associated radio field
-            radioFieldLabel.click(function() {
-                        // retrieves the current element and uses it to retrieve
-                        // the previous radio field
-                        var element = jQuery(this);
-                        var radioField = element.prev(".radio-field");
+            // registers the check field label for the click
+            // event to check the associated check field
+            checkFieldLabel.click(function() {
+                // retrieves the current element and uses it to retrieve
+                // the previous check field
+                var element = jQuery(this);
+                 var checkField = element.prev(".check-field");
 
-                        // checks the "just" retrieved radio field, this should
-                        // enable its boolean value
-                        _check(radioField, options);
-                    });
+                 // checks the "just" retrieved check field, this should
+                 // enable its boolean value
+                 _check(checkField, options);
+            });
         };
 
         var _check = function(matchedObject, options) {
