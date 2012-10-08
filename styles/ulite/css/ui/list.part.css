@@ -195,8 +195,10 @@
 }
 
 .ulite-style .list.product-description-list .product-description-item-details {
-    background-color: #f4f4f4;
-    border: 1px solid #e6e6e6;
+    background: transparent url(../images/product-description.png) no-repeat left top;
+    border-bottom: 1px solid #e6e6e6;
+    border-right: 1px solid #e6e6e6;
+    border-top: 1px solid #e6e6e6;
     display: none;
     height: 132px;
     margin-left: 140px;
@@ -207,7 +209,11 @@
 }
 
 .ulite-style .list.product-description-list .product-description-item-details.right {
-    margin-left: -149px;
+    background-image: url(../images/product-description-right.png);
+    background-position: right top;
+    border-left: 1px solid #e6e6e6;
+    border-right: none;
+    margin-left: -148px;
 }
 
 .ulite-style .list.product-description-list .product-description-item-details .title {
