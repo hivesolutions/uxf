@@ -25,17 +25,23 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // removes the disabled class from the matched object
-            matchedObject.removeClass("disabled");
+            // iterates over all the matched objects
+            matchedObject.each(function(index, element) {
+                        // retrieves the element reference
+                        var _element = jQuery(element);
 
-            // checks if the currently matche object is an input field
-            // in case it is removes the disabled attribute
-            var isInput = matchedObject.is("input");
-            isInput && matchedObject.removeAttr("disabled");
+                        // removes the disabled class from the element
+                        matchedObject.removeClass("disabled");
 
-            // triggers the enabled event on the matched object
-            // to indicate that it has been enabled
-            matchedObject.triggerHandler("enabled");
+                        // checks if the currently matche object is an input field
+                        // in case it is removes the disabled attribute
+                        var isInput = matchedObject.is("input");
+                        isInput && matchedObject.removeAttr("disabled");
+
+                        // triggers the enabled event on the element
+                        // to indicate that it has been enabled
+                        matchedObject.triggerHandler("enabled");
+                    });
         };
 
         /**

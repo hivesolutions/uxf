@@ -3,10 +3,6 @@
     width: 406px;
 }
 
-.omni-style .drop-field.disabled {
-    opacity: 0.5;
-}
-
 .omni-style .drop-field > .text-field {
     background-image: url(../images/drop-field-dots.png);
     background-position: right center;
