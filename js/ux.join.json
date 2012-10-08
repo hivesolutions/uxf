@@ -50,7 +50,7 @@
                 "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
-                "../util/general/date.js"]
+                "../util/general/date.js", "../util/string/template.js"]
     },
     "ux-min.js" : {
         "files" : ["header.part.js", "apply.part.js",
@@ -102,7 +102,7 @@
                 "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
-                "../util/general/date.js"],
+                "../util/general/date.js", "../util/string/template.js"],
         "minify" : "javascript"
     },
     "ux-min.js.gz" : {
@@ -155,7 +155,7 @@
                 "ui/window.part.js", "ui/wizard.part.js", "util/eval.part.js",
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
-                "../util/general/date.js"],
+                "../util/general/date.js", "../util/string/template.js"],
         "minify" : "javascript",
         "compress" : "gzip"
     }
