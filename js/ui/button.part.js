@@ -176,6 +176,13 @@
         };
 
         var __submit = function(matchedObject, options) {
+            // in case the window flag is set returns immediately
+            // no need to submit the form
+            var _window = matchedObject.data("window") || options["window"];
+            if (_window) {
+                return;
+            }
+
             // retrieves the parent form
             var parentForm = matchedObject.parents("form");
 
@@ -189,6 +196,13 @@
         };
 
         var __action = function(matchedObject, options) {
+            // in case the window flag is set returns immediately
+            // no need to take any action
+            var _window = matchedObject.data("window") || options["window"];
+            if (_window) {
+                return;
+            }
+
             // retrieves the parent form
             var parentForm = matchedObject.parents("form");
 
