@@ -62,6 +62,14 @@
     width: 100%;
 }
 
+.omni-style .table .drop-field .drop-field-contents {
+    margin-top: 1px;
+}
+
+.omni-style .table tr.last .drop-field .drop-field-contents {
+    margin-top: 0px;
+}
+
 .omni-style .table .table-add,
 .omni-style .table .table-remove {
     cursor: pointer;
