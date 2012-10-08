@@ -69,35 +69,24 @@
             var _body = jQuery("body");
 
             // registers for the click event
-            matchedObject.click(function() {
-                        // retrieves the element
+            matchedObject.click(function(event) {
+                        // retrieves the element in order trigger
+                        // the action operation
                         var element = jQuery(this);
 
-                        // checks if the button is disabled in case
-                        // it is, nothing should be done returns the
-                        // control to the caller function immediately
-                        var isDisabled = element.hasClass("disabled");
-                        if (isDisabled) {
-                            return;
-                        }
+                        // checks if the current click is from a middle
+                        // button and in such case sets the new window
+                        // option to open the link in a new window
+                        var window = event.which == 2
+                        options["window"] = window;
 
-                        // retrieves the action flags from the element
-                        var link = element.data("link");
-                        var action = element.data("action");
-                        var submit = element.data("submit");
-
-                        // links the element in case the link flag is set
-                        link && __link(element, options);
-
-                        // "actions" the element in case the action flag is set
-                        action && __action(element, options);
-
-                        // submits the element in case the submit flag is set
-                        submit && __submit(element, options);
+                        // triggers the handling of the click event to
+                        // the button sub system
+                        __trigger(element, options);
                     });
 
             // registers for focus event
-            matchedObject.mousedown(function() {
+            matchedObject.mousedown(function(event) {
                         // retrieves the element
                         var element = jQuery(this);
 
@@ -127,6 +116,15 @@
 
                         // register for the mouse up in the body
                         _body.mouseup(_mouseUpHandler);
+
+                        // checks if the current click is a middle click
+                        // and in such case stops the propagation of the
+                        // event avoid the default behavior
+                        var isMiddle = event.which == 2;
+                        if (isMiddle) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                        }
                     });
 
             // iterates over each of the buttons to
@@ -145,6 +143,36 @@
                                     _element.addClass("disabled");
                                 });
                     });
+        };
+
+        var __trigger = function(matchedObject, options) {
+            // retrieves the current matched object as the
+            // element
+            var element = matchedObject;
+
+            console.info(element);
+
+            // checks if the button is disabled in case
+            // it is, nothing should be done returns the
+            // control to the caller function immediately
+            var isDisabled = element.hasClass("disabled");
+            if (isDisabled) {
+                return;
+            }
+
+            // retrieves the action flags from the element
+            var link = element.data("link");
+            var action = element.data("action");
+            var submit = element.data("submit");
+
+            // links the element in case the link flag is set
+            link && __link(element, options);
+
+            // "actions" the element in case the action flag is set
+            action && __action(element, options);
+
+            // submits the element in case the submit flag is set
+            submit && __submit(element, options);
         };
 
         var __submit = function(matchedObject, options) {
@@ -175,7 +203,7 @@
             // retrieves the matched object link and the
             // (open in) window flag
             var link = matchedObject.data("link");
-            var _window = matchedObject.data("window");
+            var _window = matchedObject.data("window") || options["window"];
 
             // checks the window flag and in case it's set
             // opens a new window with the link otherwise
