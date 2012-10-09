@@ -46,6 +46,7 @@
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(".template .incremental-field");
+            var dropTag = jQuery(".drop-tag", matchedObject).not(".template .drop-tag");
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
             var calendar = jQuery(".calendar", matchedObject).not(".template .calendar");
@@ -128,6 +129,7 @@
             radioField.uxradiofield();
             tagField.uxtagfield();
             incrementalField.uxincrementalfield();
+            dropTag.uxdroptag();
             table.uxtable();
             image.uximage();
             calendar.uxcalendar();
