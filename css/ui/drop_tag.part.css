@@ -1,0 +1,15 @@
+.drop-tag .drop-tag-header {
+    cursor: pointer;
+}
+
+.drop-tag .drop-tag-tag .drop-tag-close {
+    cursor: pointer;
+}
+
+.drop-tag > ul.items {
+    display: none;
+}
+
+.drop-tag > ul.items > li {
+    cursor: pointer;
+}
