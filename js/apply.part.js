@@ -52,6 +52,7 @@
             var calendar = jQuery(".calendar", matchedObject).not(".template .calendar");
             var menulink = jQuery(".menu-link", matchedObject).not(".template .menu-link");
             var slider = jQuery(".slider", matchedObject).not(".template .slider");
+            var scrollList = jQuery(".scroll-list", matchedObject).not(".template .scroll-list");
             var overlayPanel = jQuery(".overlay-panel", matchedObject).not(".template .overaly-panel");
             var overlaySearch = jQuery(".overlay-search", matchedObject).not(".template .overaly-search");
             var window = jQuery(".window", matchedObject).not(".template .window");
@@ -135,6 +136,7 @@
             calendar.uxcalendar();
             menulink.uxmenulink();
             slider.uxslider();
+            scrollList.uxscrolllist();
             overlayPanel.uxoverlaypanel();
             overlaySearch.uxoverlaysearch();
             window.uxwindow();
