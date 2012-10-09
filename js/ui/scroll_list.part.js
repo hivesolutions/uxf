@@ -94,7 +94,6 @@
                 // elements (required width)
                 _element.width(width);
             });
-
         };
 
         /**
