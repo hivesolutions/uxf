@@ -1,0 +1,11 @@
+.slideshow  ul.slideshow-alternates li {
+    cursor: pointer;
+}
+
+.slideshow .slideshow-details {
+    cursor: pointer;
+}
+
+.slideshow > .items {
+    display: none;
+}

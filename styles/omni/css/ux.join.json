@@ -19,11 +19,12 @@
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
                 "ui/slider_bar.part.css", "ui/slider.part.css",
-                "ui/source_list.part.css", "ui/stats_panel.part.css",
-                "ui/tab_panel.part.css", "ui/subscript.part.css",
-                "ui/tags.part.css", "ui/table.part.css",
-                "ui/tag_field.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"]
+                "ui/slideshow.part.css", "ui/source_list.part.css",
+                "ui/stats_panel.part.css", "ui/tab_panel.part.css",
+                "ui/subscript.part.css", "ui/tags.part.css",
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "error/content_error.part.css",
@@ -43,11 +44,12 @@
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
                 "ui/slider_bar.part.css", "ui/slider.part.css",
-                "ui/source_list.part.css", "ui/stats_panel.part.css",
-                "ui/tab_panel.part.css", "ui/subscript.part.css",
-                "ui/tags.part.css", "ui/table.part.css",
-                "ui/tag_field.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"],
+                "ui/slideshow.part.css", "ui/source_list.part.css",
+                "ui/stats_panel.part.css", "ui/tab_panel.part.css",
+                "ui/subscript.part.css", "ui/tags.part.css",
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -68,11 +70,12 @@
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
                 "ui/slider_bar.part.css", "ui/slider.part.css",
-                "ui/source_list.part.css", "ui/stats_panel.part.css",
-                "ui/tab_panel.part.css", "ui/subscript.part.css",
-                "ui/tags.part.css", "ui/table.part.css",
-                "ui/tag_field.part.css", "ui/text_field.part.css",
-                "ui/window.part.css", "footer.part.css"],
+                "ui/slideshow.part.css", "ui/source_list.part.css",
+                "ui/stats_panel.part.css", "ui/tab_panel.part.css",
+                "ui/subscript.part.css", "ui/tags.part.css",
+                "ui/table.part.css", "ui/tag_field.part.css",
+                "ui/text_field.part.css", "ui/window.part.css",
+                "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }

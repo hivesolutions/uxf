@@ -15,9 +15,10 @@
                 "ui/overlay_panel.part.css", "ui/overlay.part.css",
                 "ui/panel_more.part.css", "ui/panel_stack.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
-                "ui/slider.part.css", "ui/tab_panel.part.css",
-                "ui/text_field.part.css", "ui/uploader.part.css",
-                "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css"]
+                "ui/slider.part.css", "ui/slideshow.part.css",
+                "ui/tab_panel.part.css", "ui/text_field.part.css",
+                "ui/uploader.part.css", "ui/top_bar.part.css",
+                "ui/window.part.css", "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "base/base.part.css",
@@ -34,9 +35,10 @@
                 "ui/overlay_panel.part.css", "ui/overlay.part.css",
                 "ui/panel_more.part.css", "ui/panel_stack.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
-                "ui/slider.part.css", "ui/tab_panel.part.css",
-                "ui/text_field.part.css", "ui/uploader.part.css",
-                "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css"],
+                "ui/slider.part.css", "ui/slideshow.part.css",
+                "ui/tab_panel.part.css", "ui/text_field.part.css",
+                "ui/uploader.part.css", "ui/top_bar.part.css",
+                "ui/window.part.css", "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -54,9 +56,10 @@
                 "ui/overlay_panel.part.css", "ui/overlay.part.css",
                 "ui/panel_more.part.css", "ui/panel_stack.part.css",
                 "ui/radio_field.part.css", "ui/select_list.part.css",
-                "ui/slider.part.css", "ui/tab_panel.part.css",
-                "ui/text_field.part.css", "ui/uploader.part.css",
-                "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css"],
+                "ui/slider.part.css", "ui/slideshow.part.css",
+                "ui/tab_panel.part.css", "ui/text_field.part.css",
+                "ui/uploader.part.css", "ui/top_bar.part.css",
+                "ui/window.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }

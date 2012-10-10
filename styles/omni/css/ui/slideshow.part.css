@@ -1,0 +1,54 @@
+.ulite-style .slideshow {
+    margin-left: 540px;
+    text-align: center;
+    width: 400px;
+}
+
+.ulite-style .slideshow .slideshow-image {
+    cursor: pointer;
+}
+
+.ulite-style .slideshow .slideshow-image img {
+    height: 400px;
+    width: 400px;
+}
+
+.ulite-style .slideshow  ul.slideshow-alternates {
+    display: inline-block;
+    margin: 4px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.ulite-style .slideshow  ul.slideshow-alternates li {
+    background: transparent url(../images/slideshow-bullets.png) no-repeat center 0px;
+    float: left;
+    height: 16px;
+    list-style: none;
+    width: 16px;
+}
+
+.ulite-style .slideshow  ul.slideshow-alternates li.active {
+    background-position: center -16px;
+}
+
+.ulite-style .slideshow  ul.slideshow-alternates li:hover {
+    background-position: center -16px;
+}
+
+.ulite-style .slideshow .slideshow-details {
+    font-size: 10px;
+    margin-top: -26px;
+    text-align: right;
+}
+
+.ulite-style .slideshow .slideshow-details .title {
+    color: #c7c7c7;
+    line-height: 14px;
+    margin: 0px 0px 0px 0px;
+}
+
+.ulite-style .slideshow .slideshow-details .price {
+    color: #777777;
+    line-height: 14px;
+    margin: 0px 0px 0px 0px;
+}
