@@ -83,6 +83,7 @@
             var enumeration = jQuery(".enumeration", matchedObject).not(".template .enumeration");
             var number = jQuery(".number", matchedObject).not(".template .number");
             var timestamp = jQuery(".timestamp", matchedObject).not(".template .timestamp");
+            var slideshow = jQuery(".slideshow", matchedObject).not(".template .slideshow");
             var chart = jQuery(".chart", matchedObject).not(".template .chart");
             var video = jQuery(".video", matchedObject).not(".template .video");
             var uploader = jQuery(".uploader", matchedObject).not(".template .uploader");
@@ -166,6 +167,7 @@
             enumeration.uxenumeration();
             number.uxnumber();
             timestamp.uxtimestamp();
+            slideshow.uxslideshow();
             chart.uxchart();
             video.uxvideo();
 
