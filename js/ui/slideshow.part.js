@@ -38,11 +38,8 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-
-            // tenho de de fazer parse dos varios items que vao
-            // compor o slidehsow, as imagems vao estar como o
-            // scroll de baixo com um container que faz overflow hidden
-
+            // iterates over all the slideshow elements to create their
+            // internal structure and to populate the initial values
             matchedObject.each(function(index, element) {
                 // retrieves the current element
                 var _element = jQuery(this);
