@@ -11,8 +11,8 @@
                 "ui/link.part.css", "ui/list.part.css",
                 "ui/scroll_list.part.css", "ui/select_field.part.css",
                 "ui/tags.part.css", "ui/separator.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"]
+                "ui/slideshow.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "error/content_error.part.css",
@@ -24,8 +24,8 @@
                 "ui/link.part.css", "ui/list.part.css",
                 "ui/scroll_list.part.css", "ui/select_field.part.css",
                 "ui/tags.part.css", "ui/separator.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"],
+                "ui/slideshow.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -38,8 +38,8 @@
                 "ui/link.part.css", "ui/list.part.css",
                 "ui/scroll_list.part.css", "ui/select_field.part.css",
                 "ui/tags.part.css", "ui/separator.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"],
+                "ui/slideshow.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }
