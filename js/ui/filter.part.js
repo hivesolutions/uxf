@@ -1393,7 +1393,7 @@
                                         // the link in it (external opening)
                                         isDocument && index == 0
                                                 ? document.location = link
-                                                : window.open(link);
+                                                : window.open(link, "_blank");
                                     });
 
                             // tries to retrieve the bulk (to many link)
