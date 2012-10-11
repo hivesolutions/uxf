@@ -122,7 +122,7 @@
 
                         // checks if the element is visible so that appropriate
                         // visibility operation take place for carrect layout update
-                        var isVisible = _element.is(":visible")
+                        var isVisible = _element.is(":visible");
 
                         // shows the element momentanely so that appropriate width
                         // height measurements may take place
