@@ -35,7 +35,7 @@
 
                         // checks if the currently element is an input field
                         // in case it is sets the disabled attribute
-                        var isInput = _element.is("input");
+                        var isInput = _element.is("input, textarea");
                         isInput && _element.attr("disabled", "1");
 
                         // triggers the disabled event on the element

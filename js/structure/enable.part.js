@@ -35,7 +35,7 @@
 
                         // checks if the currently matche object is an input field
                         // in case it is removes the disabled attribute
-                        var isInput = matchedObject.is("input");
+                        var isInput = matchedObject.is("input, textarea");
                         isInput && matchedObject.removeAttr("disabled");
 
                         // triggers the enabled event on the element
