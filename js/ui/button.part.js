@@ -150,8 +150,6 @@
             // element
             var element = matchedObject;
 
-            console.info(element);
-
             // checks if the button is disabled in case
             // it is, nothing should be done returns the
             // control to the caller function immediately
