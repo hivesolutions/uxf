@@ -883,6 +883,14 @@
                                 templateItem.data("item", currentItem);
                             }
 
+                            // retrieves the first link element available in the
+                            // template item, then uses it to retrieve
+                            // its hyperlink reference (in case it's necessary)
+                            var linkElement = jQuery("a", templateItem);
+                            currentLinkAttribute = linkElement.length
+                                    ? linkElement.attr("href")
+                                    : currentLinkAttribute;
+
                             // sets the data link attribute in the
                             // template item in case it's valid
                             currentLinkAttribute
