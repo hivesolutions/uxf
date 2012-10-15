@@ -36,10 +36,10 @@
                         var name = _element.attr("data-name");
 
                         // retrieves the various child list items to
-                        // be parsed and creates the map structure that
+                        // be parsed and creates the list structure that
                         // will hold them in such case
                         var items = jQuery("> li", _element);
-                        var _items = {};
+                        var _items = [];
 
                         // iterates over each of the items to construct
                         // the various structures
@@ -53,9 +53,16 @@
                                             || item.html();
                                     var value = item.html();
 
-                                    // sets the value in the "logical" map
+                                    // creates the item structure with the name
+                                    // and the value set
+                                    _item = {
+                                        "name" : name,
+                                        "value" : value
+                                    };
+
+                                    // adds the item to the "logical" list
                                     // containing the various items
-                                    _items[name] = value;
+                                    _items.push(_item);
                                 });
 
                         // creates the jquery function associated with the

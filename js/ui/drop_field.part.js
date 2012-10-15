@@ -850,6 +850,22 @@
                                     ? currentItem[linkAttribute]
                                     : null;
 
+                            // retrieves the default values for the display
+                            // and values taking into account the type of
+                            // the retrieved values (in case it's map resolves again)
+                            currentDisplayAttribute = currentDisplayAttribute
+                                    && typeof currentDisplayAttribute == "object"
+                                    ? currentDisplayAttribute["name"]
+                                    : currentDisplayAttribute;
+                            currentValueAttribute = currentValueAttribute
+                                    && typeof currentValueAttribute == "object"
+                                    ? currentValueAttribute["value"]
+                                    : currentValueAttribute;
+                            currentLinkAttribute = currentLinkAttribute
+                                    && typeof currentLinkAttribute == "object"
+                                    ? currentLinkAttribute["link"]
+                                    : currentLinkAttribute;
+
                             // in case the template is defined
                             if (template.length > 0) {
                                 // applies the template to the template (item)

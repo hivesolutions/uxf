@@ -127,7 +127,16 @@
                         compareStrings.push(compareString);
                     }
                 }
-                // otherwise the base item is used
+                // otherwise in case the current item is a map the
+                // default attribute must be used
+                else if (typeof currentItem == "string") {
+                    // retrieves the name attribute from the current
+                    // item and sets it in the list of compaare strings
+                    var name = currentItem["name"];
+                    var compareStrings = [name];
+                }
+                // otherwise the current item must be a string
+                // and so it's used directly as the compare strings
                 else {
                     // sets the current item as the only
                     // compare string

@@ -120,7 +120,7 @@
 
                 // retrieves the type of the attribute value
                 // for later checking
-                var attributeValueType = typeof(attributeValue);
+                var attributeValueType = typeof attributeValue;
 
                 // in case the attribute value is
                 // an object
