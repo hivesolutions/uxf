@@ -105,7 +105,7 @@
                 // to the filter in case the advanced flag is set
                 var filterButtons = jQuery("<div class=\"filter-input-buttons\">"
                         + "<div class=\"button filter-input-button filter-input-toggle-advanced filter-input-more\"></div>"
-                        + "<div class=\"button filter-input-button filter-input-toggle-views filter-input-list\"></div>"
+                        + "<div class=\"button filter-input-button filter-input-toggle-views\"></div>"
                         + "<div class=\"clear\"></div>" + "</div>");
                 advanced && filterButtons.insertAfter(textField);
 
@@ -123,6 +123,22 @@
                         + "<div class=\"filter-clear\"></div>" + "</div>"
                         + "</div>");
                 advanced && filterAdvanced.insertAfter(filterButtons);
+
+                // checks for the presence of the proper list class from
+                // the element
+                var isList = _element.hasClass("list-list");
+                var isTable = _element.hasClass("table-list");
+                var isGallery = _element.hasClass("gallery-list");
+
+                // retrieves the element button that was just created to
+                // add the apropriate class
+                var toggleViews = jQuery(".filter-input-toggle-views", _element);
+
+                // adds the appropriate filter input class to the toggle
+                // views button accorging to the current mode
+                isList && toggleViews.addClass("filter-input-list");
+                isTable && toggleViews.addClass("filter-input-table");
+                isGallery && toggleViews.addClass("filter-input-gallery");
 
                 // retrieves the data source associated with the element
                 // and then uses it to retrieve the various order items
