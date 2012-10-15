@@ -9,7 +9,8 @@
         // sets the default options value
         var options = options ? options : {
             apply : true,
-            nullify : true
+            nullify : true,
+            defaultValue : ""
         };
 
         // constructs the options
@@ -84,11 +85,17 @@
          *            nullify If the attribute should be nullified in case it's
          *            null.
          * @param {String}
-         *            baseKey The bae key value to be used in all of the keys.
+         *            defaultValue The default value to be used in case a null
+         *            or undefined value is resolved from the current map of
+         *            values in template rendering.
+         * @param {String}
+         *            baseKey The base key value to be used in all of the keys.
          * @return {String} The resulting template contents (after apply).
          */
-        var _applyAttributes = function(templateContents, attributes, nullify, baseKey) {
-            // retrieves the base key value
+        var _applyAttributes = function(templateContents, attributes, nullify, defaultValue, baseKey) {
+            // retrieves the various default value to be used
+            // in the template rendering
+            var defaultValue = defaultValue ? defaultValue : "";
             var baseKey = baseKey ? baseKey : "";
 
             // converts the attribute to (jquery) element
@@ -108,7 +115,7 @@
                 if (attributeValue == null) {
                     // sets the appropriate attribute value according
                     // to the nullify value
-                    attributeValue = nullify ? "" : "null";
+                    attributeValue = nullify ? defaultValue : "null";
                 }
 
                 // retrieves the type of the attribute value
@@ -126,7 +133,7 @@
                     // based in the current attribute value and with
                     // the new base key value
                     templateContents = _applyAttributes(templateContents,
-                            attributeValue, nullify, newBaseKey);
+                            attributeValue, nullify, defaultValue, newBaseKey);
                 }
                 // otherwise the attribute value must be
                 // a simple basic type
@@ -147,6 +154,7 @@
         var __applyTemplate = function(templateElement, attributes) {
             // retrieves the nullify option
             var nullify = options["nullify"];
+            var defaultValue = options["defaultValue"];
 
             // retrirves the for each elments for the current template element
             var foreachElements = jQuery(".template-foreach", templateElement).not(".template-foreach .template-foreach");
@@ -196,8 +204,10 @@
 
             // applies the attributes to the template contents
             // in case the template contents is correctly set
-            templateContents = templateContents ? _applyAttributes(
-                    templateContents, attributes, nullify) : templateContents;
+            templateContents = templateContents
+                    ? _applyAttributes(templateContents, attributes, nullify,
+                            defaultValue)
+                    : templateContents;
 
             // returns the template contents
             return templateContents;

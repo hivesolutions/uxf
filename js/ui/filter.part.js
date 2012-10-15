@@ -1016,9 +1016,19 @@
                         // iterates over all the valid items to create
                         // proper elements
                         _validItems.each(function(index, element) {
+                            // creates the map with the options for the
+                            // rendering of the template to changed the
+                            // default value to be used
+                            var options = {
+                                apply : true,
+                                nullify : true,
+                                defaultValue : "-"
+                            };
+
                             // applies the template to the template (item)
                             // retrieving the resulting template item
-                            var templateItem = template.uxtemplate(element);
+                            var templateItem = template.uxtemplate(element,
+                                    options);
 
                             // removes the filter element class from the template item,
                             // then adds it to the filter contents
