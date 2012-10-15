@@ -28,6 +28,10 @@
             // retrieves the body
             var _body = jQuery("body");
 
+            // retrieves the meta source element to be started in the
+            // first state of the apply (going to create functions)
+            var source = jQuery(".source", matchedObject).not(".template .source");
+
             // retrieves the various elements based on their attribute
             // values (attribute based selection)
             var dataWidth = jQuery("[data-width]", matchedObject).not(".template [data-width]");
@@ -111,6 +115,10 @@
             // in case the gateway flag is set adds the gateway
             // plugin reference to the current body
             gateway && _body.uxgateway();
+
+            // starts the various custom data source functions
+            // to be used
+            source.uxsource();
 
             // applies the various attribute base plugins
             dataWidth.uxdatawidth();
