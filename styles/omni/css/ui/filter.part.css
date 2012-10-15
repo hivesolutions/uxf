@@ -295,6 +295,10 @@
     display: none;
 }
 
+.omni-style .filter.entities-list.gallery-list .context-menu {
+    display: none;
+}
+
 .omni-style .filter.entities-list .entity-name {
     font-size: 14px;
     font-weight: bold;
