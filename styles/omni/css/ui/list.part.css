@@ -4,31 +4,52 @@
     padding: 0px 0px 0px 0px;
 }
 
-.omni-style .list.links-list li {
-    margin: 4px 0px 4px 0px;
-}
-
-.omni-style .list.links-list.links-text-list li {
-    margin: 6px 0px 6px 0px;
+.omni-style .list.side-entities-list {
+    margin: -4px -8px 0px -8px;
+    width: 190px;
 }
 
 .omni-style .list.side-entities-list li {
-    border-bottom: 1px solid #f9f9f9;
-    padding: 6px 0px 6px 0px;
+    border-bottom: 1px solid #f6f6f6;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+    margin: 0px 8px 0px 8px;
+    padding: 8px 0px 8px 0px;
 }
 
-.omni-style .list.side-entities-list li:first-child {
-    padding-top: 0px;
+.omni-style .list.side-entities-list li:hover {
+    background-color: #f4f4f4;
+    border: 1px solid #d8d8d8;
+    box-shadow: 0px 0px 6px #e8e8e8;
+    -moz-box-shadow: 0px 0px 6px #e8e8e8;
+    -webkit-box-shadow: 0px 0px 6px #e8e8e8;
+    margin: 0px 0px 0px 0px;
+    padding: 8px 8px 8px 8px;
 }
 
 .omni-style .list.side-entities-list li:last-child {
-    border-bottom: none;
-    padding-bottom: 0px;
+    border-bottom: 1px solid transparent;
+}
+
+.omni-style .list.side-entities-list li:last-child:hover {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+.omni-style .list.side-entities-list .entity-picture {
+    margin-right: 8px;
 }
 
 .omni-style .list.side-entities-list .entity-name {
     color: #4d4d4d;
     margin: 0px 0px 0px 0px;
+}
+
+.omni-style .list.side-entities-list .entity-contents {
+    height: 50px;
+    overflow: hidden;
+    width: 114px;
 }
 
 .omni-style .list.side-entities-list .entity-details {
