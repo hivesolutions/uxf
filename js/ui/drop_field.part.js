@@ -140,6 +140,7 @@
                 textField.data("avoid_escape", true);
 
                 // sets the initial element values
+                _element.data("cache", {});
                 _element.data("value", textFieldValue);
                 _element.data("selection", 0);
                 _element.data("mouse_control", false);
@@ -838,6 +839,23 @@
                             // retrieves the current item (from the valid items)
                             var currentItem = validItems[index];
 
+                            // tries to retrieve the unique identifier from the
+                            // current item to be used aas the cache key
+                            var uniqueId = currentItem["unique_id"];
+
+                            // retrieves the cache map from the drop field and
+                            // tries to find the cache item for the unique identifier
+                            // in case it's found adds the item to the drop field
+                            // contents and continues the loop immediately
+                            var cache = dropField.data("cache");
+                            var cacheItem = cache[uniqueId];
+                            if (cacheItem) {
+                                // adds the template item item to the
+                                // drop field contents
+                                dropFieldContents.append(cacheItem);
+                                continue;
+                            }
+
                             // retrieves both the display and the value
                             // attributes for the current item
                             var currentDisplayAttribute = displayAttribute
@@ -912,6 +930,10 @@
                             currentLinkAttribute
                                     && templateItem.attr("data-link",
                                             currentLinkAttribute);
+
+                            // sets the template item in the cache map
+                            // to provide cache for the visual element
+                            cache[uniqueId] = templateItem;
 
                             // adds the template item item to the
                             // drop field contents
