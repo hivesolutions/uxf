@@ -128,6 +128,19 @@
                     ? parseInt(timeout)
                     : DEFAULT_TIMEOUT;
 
+            // creates the map containing the definition of the
+            // query to be sent to the data source, then creates
+            // the corresponding hash value to be used as the
+            // (unique) identifier of the query
+            var query = {
+                filter_string : filterString,
+                sort : sortString,
+                filters : _filters,
+                start_record : startRecord,
+                number_records : numberRecords
+            }
+            var queryHash = _queryHash(query);
+
             // retrieves the current timestamp as the identifier
             // for the current request (assumes uniqueness)
             var identifier = new Date().getTime();
@@ -137,6 +150,16 @@
             // to identify if the request pending is the same
             // or if a new request has come in between
             matchedObject.data("current", identifier)
+
+            // retrieves the cache structure for the matched object
+            // and tries to find the result from the cache in case
+            // their found calls the callback immediately with them
+            var cache = matchedObject.data("cache");
+            var cacheItem = cache[queryHash];
+            if (cacheItem) {
+                callback(cacheItem.validItems, cacheItem.moreItems);
+                return;
+            }
 
             // sets a timeout for the request to be performed, this
             // timeout will allow the performing of a delayed request
@@ -158,13 +181,7 @@
                 jQuery.ajax({
                     url : url,
                     dataType : "text",
-                    data : {
-                        filter_string : filterString,
-                        sort : sortString,
-                        filters : _filters,
-                        start_record : startRecord,
-                        number_records : numberRecords
-                    },
+                    data : query,
                     error : function(request, status, error) {
                         // retrieves the current identifier from the
                         // matched object and checks it against the
@@ -188,18 +205,6 @@
                         callback(null, null);
                     },
                     success : function(data) {
-                        // retrieves the current identifier from the
-                        // matched object and checks it against the
-                        // clojure based identifier in case it's not
-                        // the same (the current response is not the
-                        // latest no need to parse it)
-                        var current = matchedObject.data("current");
-                        if (current != identifier) {
-                            // returns immediately not going to parse
-                            // the response (not required)
-                            return;
-                        }
-
                         // parses the data, retriebing the valid items
                         var validItems = jQuery.parseJSON(data);
 
@@ -221,11 +226,55 @@
                         var endSlice = numberRecords ? numberRecords - 1 : 1;
                         validItems = validItems.slice(0, endSlice);
 
+                        // retrieves the current cache structure and updates
+                        // it with the newly found item, indexing it by the
+                        // (representing) query hash value
+                        var cache = matchedObject.data("cache");
+                        cache[queryHash] = {
+                            validItems : validItems,
+                            moreItems : moreItems
+                        };
+
+                        // retrieves the current identifier from the
+                        // matched object and checks it against the
+                        // clojure based identifier in case it's not
+                        // the same (the current response is not the
+                        // latest no call the callback for it)
+                        var current = matchedObject.data("current");
+                        if (current != identifier) {
+                            // returns immediately not going to send
+                            // the response (not required)
+                            return;
+                        }
+
                         // calls the callback with the valid items
                         callback(validItems, moreItems);
                     }
                 });
             }, timeout);
+        };
+
+        var _queryHash = function(query) {
+            // retrieves the various components of the query to
+            // be used to construct the query string and run the
+            // hash function on it
+            var filterString = query.filter_string;
+            var sort = query.sort;
+            var filters = query.filters;
+            var startRecord = query.start_record;
+            var numberRecords = query.number_records;
+
+            // joins the various filter string to create a complete
+            // filter string
+            var _filters = filters.join();
+
+            // creates the final query string from the various components
+            // of the query and creates the digest for it returning it to
+            // the caller function
+            var queryString = filterString + sort + _filters
+                    + String(startRecord) + String(numberRecords);
+            var hash = Md5.digest(queryString);
+            return hash;
         };
 
         // initializes the plugin
