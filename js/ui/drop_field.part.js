@@ -850,6 +850,10 @@
                             var cache = dropField.data("cache");
                             var cacheItem = cache[uniqueId];
                             if (cacheItem) {
+                                // sets the current item in the cache item data
+                                // so that it can be used for latter template rendering
+                                cacheItem.data("item", currentItem);
+
                                 // adds the template item item to the
                                 // drop field contents
                                 dropFieldContents.append(cacheItem);
