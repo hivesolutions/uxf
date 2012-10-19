@@ -833,6 +833,11 @@
                             dropFieldContents.append(_dropFieldNoResults);
                         }
 
+                        // retrieves the cache map to be used to determine if the
+                        // various elements should be contructed from scratch or
+                        // if an already existing element should be used instead
+                        var cache = dropField.data("cache");
+
                         // iterates over all the valid and filtered items
                         // to adds them to the drop field contents
                         for (var index = 0; index < validItems.length; index++) {
@@ -840,14 +845,13 @@
                             var currentItem = validItems[index];
 
                             // tries to retrieve the unique identifier from the
-                            // current item to be used aas the cache key
+                            // current item to be used as the cache key
                             var uniqueId = currentItem["unique_id"];
 
                             // retrieves the cache map from the drop field and
                             // tries to find the cache item for the unique identifier
                             // in case it's found adds the item to the drop field
                             // contents and continues the loop immediately
-                            var cache = dropField.data("cache");
                             var cacheItem = cache[uniqueId];
                             if (cacheItem) {
                                 // sets the current item in the cache item data
