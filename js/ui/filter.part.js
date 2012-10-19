@@ -1036,7 +1036,8 @@
 
                             // tries to retrieve the unique identifier from the
                             // current item to be used as the cache key
-                            var uniqueId = element["unique_id"];
+                            var uniqueId = element["unique_id"]
+                                    || element["uid"];
 
                             // retrieves the cache map from the filter and
                             // tries to find the cache item for the unique identifier
@@ -1059,9 +1060,12 @@
                                 // applies the template to the template (item)
                                 // retrieving the resulting template item and
                                 // setting it the cache map for the unique id
+                                // only in case the unique id is valid (set)
                                 var templateItem = template.uxtemplate(element,
                                         options);
-                                cache[uniqueId] = templateItem;
+                                if (uniqueId) {
+                                    cache[uniqueId] = templateItem;
+                                }
                             }
 
                             // removes the filter element class from the template item,
