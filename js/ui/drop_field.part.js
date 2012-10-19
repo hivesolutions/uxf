@@ -844,6 +844,10 @@
                             // retrieves the current item (from the valid items)
                             var currentItem = validItems[index];
 
+                            // triggers the (new) item event so that the
+                            // current item may be (changed)
+                            dropField.triggerHandler("item", [currentItem]);
+
                             // tries to retrieve the unique identifier from the
                             // current item to be used as the cache key
                             var uniqueId = currentItem["unique_id"];
