@@ -46,7 +46,9 @@
 }
 
 .omni-style .list.side-entities-list .entity-picture {
+    height: 44px;
     margin-right: 8px;
+    width: 44px;
 }
 
 .omni-style .list.side-entities-list .entity-name {
@@ -55,7 +57,7 @@
 }
 
 .omni-style .list.side-entities-list .entity-contents {
-    height: 50px;
+    height: 44px;
     overflow: hidden;
     width: 114px;
 }
