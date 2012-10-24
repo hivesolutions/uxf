@@ -157,7 +157,8 @@
             var cache = matchedObject.data("cache");
             var cacheItem = cache[queryHash];
             if (cacheItem) {
-                callback(cacheItem.validItems, cacheItem.moreItems);
+                callback(cacheItem.validItems, cacheItem.moreItems,
+                        cacheItem.extraItems);
                 return;
             }
 
@@ -205,15 +206,23 @@
                         callback(null, null);
                     },
                     success : function(data) {
-                        // parses the data, retriebing the valid items
+                        // parses the data, retrieving the valid items
                         var validItems = jQuery.parseJSON(data);
+                        var extraItems = validItems;
 
                         // in case the received (items) is not a list
                         // (single retrieval)
                         if (!(validItems.constructor == Array)) {
+                            // tries to retrieve the (private) base
+                            // values that will serve as prototype for
+                            // the retrieval of the valid items
+                            var baseValue = validItems._base;
+
                             // constructs a list of valid items
                             // from the single valid item
-                            validItems = [validItems];
+                            validItems = baseValue
+                                    ? validItems[baseValue]
+                                    : [validItems];
                         }
 
                         // retrieves the valid items length to check if there
@@ -232,7 +241,8 @@
                         var cache = matchedObject.data("cache");
                         cache[queryHash] = {
                             validItems : validItems,
-                            moreItems : moreItems
+                            moreItems : moreItems,
+                            extraItems : extraItems
                         };
 
                         // retrieves the current identifier from the
@@ -248,7 +258,8 @@
                         }
 
                         // calls the callback with the valid items
-                        callback(validItems, moreItems);
+                        // note that extra items are applied
+                        callback(validItems, moreItems, extraItems);
                     }
                 });
             }, timeout);

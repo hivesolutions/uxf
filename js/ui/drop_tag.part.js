@@ -12,9 +12,12 @@
  *          http://www.hive.pt/licenses/
  */
 (function($) {
-    jQuery.fn.uxdroptag = function(options) {
+    jQuery.fn.uxdroptag = function(method, options) {
         // the default values for the data query json
         var defaults = {};
+
+        // sets the default method value
+        var method = method ? method : "default";
 
         // sets the default options value
         var options = options ? options : {};
@@ -45,6 +48,14 @@
                         // its title attribute to create the strcture
                         var _element = jQuery(this);
                         var title = _element.attr("data-title");
+
+                        // retrieves the items section from the current element
+                        // and in case it does not exists creates an empty version
+                        // of it (default behaviour)
+                        var items = jQuery("> .items", _element);
+                        if (items.length == 0) {
+                            _element.append("<ul class=\"items\"></ul>");
+                        }
 
                         // adds the drop tag header and tag element to the
                         // drop tag taking into account the title
@@ -90,6 +101,14 @@
                         // current drop tag
                         var items = jQuery("> .items", dropTag);
 
+                        // checks if the drop tag is curently in the disable
+                        // state in such case returns immediately nothing to
+                        // be done on a disabled drop tag
+                        var isDisabled = dropTag.hasClass("disabled");
+                        if (isDisabled) {
+                            return;
+                        }
+
                         // checks if the drop tag is curently in the open
                         // state in order to change it
                         var isOpen = dropTag.hasClass("open");
@@ -123,14 +142,23 @@
             // close element to revert the drop tag mode to
             // the normal drop mode
             dropTagClose.click(function() {
-                        // retrieves the current element and the associated
-                        // parent drop tag
+                        // retrieves the current element, the associated
+                        // parent drop tag and the list items
                         var element = jQuery(this);
                         var dropTag = element.parents(".drop-tag");
+                        var listItems = jQuery(".items > li.selected", dropTag);
+
+                        // removes the selected class from the "selected" list
+                        // item elements (unselects them)
+                        listItems.removeClass("selected");
 
                         // removes the tag mode class from the drop tag
                         // (reverts the state to drop mode)
                         dropTag.removeClass("tag-mode");
+
+                        // triggers the item unselected event the event is triggered without
+                        // any arguments
+                        dropTag.triggerHandler("item_unselected", [])
                     });
 
             // registers for the click event on the various list items
@@ -147,8 +175,16 @@
                         var name = element.html();
                         dropTagText.html(name);
 
+                        // adds the selected class to the element, to mark
+                        // it as the selected element (selects them)
+                        element.addClass("selected");
+
                         // changes the current drop tag mode to tag mode
                         dropTag.addClass("tag-mode");
+
+                        // triggers the item selected event using the element
+                        // as the argument for the event handler
+                        dropTag.triggerHandler("item_selected", [element])
                     });
 
             // registers for the click event on the body element
@@ -161,8 +197,71 @@
                     });
         };
 
-        // initializes the plugin
-        initialize();
+        var update = function() {
+            // retrieves the various list items for the currently
+            // selected object (matched object)
+            var listItems = jQuery(".items > li", matchedObject);
+
+            // registers for the click event on the various list items
+            // to select them (go into tag mode)
+            listItems.click(function() {
+                        // retieves the current element, the drop tag associated with
+                        // it and the drop tag text
+                        var element = jQuery(this);
+                        var dropTag = element.parents(".drop-tag");
+                        var dropTagText = jQuery(".drop-tag-text", dropTag);
+
+                        // retrieves the element value as the name and update
+                        // the drop tag text with that name
+                        var name = element.html();
+                        dropTagText.html(name);
+
+                        // adds the selected class to the element, to mark
+                        // it as the selected element (selects them)
+                        element.addClass("selected");
+
+                        // changes the current drop tag mode to tag mode
+                        dropTag.addClass("tag-mode");
+
+                        // triggers the item selected event using the element
+                        // as the argument for the event handler
+                        dropTag.triggerHandler("item_selected", [element])
+                    });
+        };
+
+        var release = function() {
+            var dropTag = matchedObject();
+
+            // removes the tag mode class from the drop tag
+            // (reverts the state to drop mode)
+            dropTag.removeClass("tag-mode");
+        };
+
+        // switches over the method
+        switch (method) {
+            case "update" :
+                // updates the component internal structures
+                // to reflect the layout changes
+                update();
+
+                // breaks the switch
+                break;
+
+            case "release" :
+                // updates the component internal structures
+                // to reflect the layout changes
+                release();
+
+                // breaks the switch
+                break;
+
+            case "default" :
+                // initializes the plugin
+                initialize();
+
+                // breaks the switch
+                break;
+        }
 
         // returns the object
         return this;
