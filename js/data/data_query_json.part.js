@@ -86,6 +86,13 @@
                 var operation = filter[1];
                 var value = filter[2];
 
+                // in case the current value is a sequence must join
+                // all of its values arround the separator token
+                var isSequence = typeof value == "object";
+                if (isSequence) {
+                    value = value.join(";")
+                }
+
                 // creates the serialized filter string and adds it
                 // to the list of filters to be sent to the handler
                 var _filter = attribute + ":" + operation + ":" + value;
