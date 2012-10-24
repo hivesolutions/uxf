@@ -13,7 +13,7 @@
 }
 
 .omni-style .list.side-entities-list {
-    margin: -4px -8px 0px -8px;
+    margin: -6px -9px 0px -9px;
     width: 190px;
 }
 
@@ -23,8 +23,8 @@
     border-right: 1px solid transparent;
     border-top: 1px solid transparent;
     cursor: pointer;
-    margin: 0px 8px 0px 8px;
-    padding: 8px 0px 8px 0px;
+    margin: 0px 9px 0px 9px;
+    padding: 9px 0px 9px 0px;
 }
 
 .omni-style .list.side-entities-list li:hover {
@@ -34,7 +34,7 @@
     -moz-box-shadow: 0px 0px 6px #e8e8e8;
     -webkit-box-shadow: 0px 0px 6px #e8e8e8;
     margin: 0px 0px 0px 0px;
-    padding: 8px 8px 8px 8px;
+    padding: 9px 9px 9px 9px;
 }
 
 .omni-style .list.side-entities-list li:last-child {
