@@ -1082,6 +1082,11 @@
                         // in case the auto resize options is set
                         // (must position the drop field contents)
                         if (autoResize != "false") {
+                            // checks if the current drop field contents component
+                            // is visible and in case it's not shows it
+                            var isVisible = dropFieldContents.is(":visible");
+                            !isVisible && dropFieldContents.show();
+
                             // retrieves the drop field items
                             var dropFieldContentsItems = dropFieldContents.children();
 
@@ -1093,6 +1098,10 @@
                                     - dropFieldContentsItems.width();
                             var dropFieldContentsWidth = textFieldWidth
                                     - dropFieldContentsItemsExtraWidth;
+
+                            // in case the current drop field contents is not visible
+                            // hides it back (original visibility)
+                            !isVisible && dropFieldContents.hide();
 
                             // sets the drop field contents width
                             dropFieldContents.width(dropFieldContentsWidth);
