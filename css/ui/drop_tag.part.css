@@ -2,6 +2,10 @@
     cursor: pointer;
 }
 
+.drop-tag.disabled .drop-tag-header {
+    cursor: default;
+}
+
 .drop-tag .drop-tag-tag .drop-tag-close {
     cursor: pointer;
 }
