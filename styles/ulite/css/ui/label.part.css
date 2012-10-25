@@ -32,7 +32,8 @@
 
 .ulite-style .form-label.form-label-left {
     float: left;
-    margin: 7px 0px 0px 0px;
+    margin: 7px 10px 0px 0px;
+    width: 74px;
 }
 
 .ulite-style .label.form-content-label {
