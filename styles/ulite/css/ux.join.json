@@ -9,11 +9,11 @@
                 "ui/button.part.css", "ui/calendar.part.css",
                 "ui/drop_tag.part.css", "ui/label.part.css",
                 "ui/link.part.css", "ui/list.part.css",
-                "ui/scroll_list.part.css", "ui/select_field.part.css",
-                "ui/tags.part.css", "ui/separator.part.css",
-                "ui/slideshow.part.css", "ui/subscript.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"]
+                "ui/radio_field.part.css", "ui/scroll_list.part.css",
+                "ui/select_field.part.css", "ui/tags.part.css",
+                "ui/separator.part.css", "ui/slideshow.part.css",
+                "ui/subscript.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "error/content_error.part.css",
@@ -23,11 +23,11 @@
                 "ui/button.part.css", "ui/calendar.part.css",
                 "ui/drop_tag.part.css", "ui/label.part.css",
                 "ui/link.part.css", "ui/list.part.css",
-                "ui/scroll_list.part.css", "ui/select_field.part.css",
-                "ui/tags.part.css", "ui/separator.part.css",
-                "ui/slideshow.part.css", "ui/subscript.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"],
+                "ui/radio_field.part.css", "ui/scroll_list.part.css",
+                "ui/select_field.part.css", "ui/tags.part.css",
+                "ui/separator.part.css", "ui/slideshow.part.css",
+                "ui/subscript.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -38,11 +38,11 @@
                 "ui/button.part.css", "ui/calendar.part.css",
                 "ui/drop_tag.part.css", "ui/label.part.css",
                 "ui/link.part.css", "ui/list.part.css",
-                "ui/scroll_list.part.css", "ui/select_field.part.css",
-                "ui/tags.part.css", "ui/separator.part.css",
-                "ui/slideshow.part.css", "ui/subscript.part.css",
-                "ui/table.part.css", "ui/text_field.part.css",
-                "footer.part.css"],
+                "ui/radio_field.part.css", "ui/scroll_list.part.css",
+                "ui/select_field.part.css", "ui/tags.part.css",
+                "ui/separator.part.css", "ui/slideshow.part.css",
+                "ui/subscript.part.css", "ui/table.part.css",
+                "ui/text_field.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }

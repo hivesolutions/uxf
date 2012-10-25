@@ -30,6 +30,11 @@
     margin-right: 6px;
 }
 
+.ulite-style .form-label.form-label-left {
+    float: left;
+    margin: 7px 0px 0px 0px;
+}
+
 .ulite-style .label.form-content-label {
     display: inline-block;
     line-height: 28px;

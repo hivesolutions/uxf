@@ -1,0 +1,32 @@
+.ulite-style .radio-field {
+    -webkit-appearance: none;
+    background: white url(../images/radio-field.png) no-repeat 0px 0px;
+    border: 1px solid #bbbbbb;
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    cursor: pointer;
+    float: left;
+    height: 28px;
+    height: 17px;
+    margin: 6px 0px 0px 4px;
+    vertical-align: middle;
+    width: 17px;
+}
+
+.ulite-style .radio-field:hover {
+    background-position: 0px -15px;
+}
+
+.ulite-style .radio-field:checked {
+    background-position: 0px -45px;
+}
+
+.ulite-style .radio-field:checked:hover {
+    background-position: 0px -60px;
+}
+
+.ulite-style .radio-field-label {
+    float: left;
+    margin: 0px 8px 0px 6px;
+}
