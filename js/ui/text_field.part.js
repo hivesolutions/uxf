@@ -600,6 +600,10 @@
         };
 
         var __startdatetime = function(element, options) {
+            // retrieves the reference to the top level
+            // window element
+            var _window = jQuery(window);
+
             // retrieves the value of the utc offset flag
             // (if the utc flag is set the date is set to work
             // in the utc zone)
@@ -821,6 +825,24 @@
                                         day : day
                                     }
                                 });
+                    });
+
+            // registers the resize in the window to reposition
+            // the calendar in the correct place
+            _window.resize(function(event) {
+                        // retrieves the offset and height values
+                        // from the element to calculate
+                        // the relative position for the calendar
+                        var offset = element.offset();
+                        var height = element.outerHeight();
+
+                        // calculates the calendar top and left
+                        // positions from the element offset and height
+                        // and then sets them in the calendar
+                        var calendarTop = offset["top"] + height;
+                        var calendarLeft = offset["left"];
+                        calendar.css("top", calendarTop + "px");
+                        calendar.css("left", calendarLeft + "px");
                     });
 
             // retrieves the containing form
