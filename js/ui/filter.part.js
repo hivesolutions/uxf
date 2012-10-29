@@ -1034,6 +1034,11 @@
                                 defaultValue : "-"
                             };
 
+                            // tries to retrieve the object identifier from the
+                            // current item to be used as identifier of the element
+                            var objectId = element["object_id"]
+                                    || element["oid"];
+
                             // tries to retrieve the unique identifier from the
                             // current item to be used as the cache key
                             var uniqueId = element["unique_id"]
@@ -1067,6 +1072,10 @@
                                     cache[uniqueId] = templateItem;
                                 }
                             }
+
+                            // sets the object identifier information in the template
+                            // item (considered the main identifier for it)
+                            templateItem.data("object_id", objectId);
 
                             // removes the filter element class from the template item,
                             // then adds it to the filter contents
@@ -1505,10 +1514,7 @@
 
                                             // retrieves the object id from the current
                                             // element (this is the element identifier)
-                                            // then retrieves it's text value
-                                            var objectId = jQuery(".object_id",
-                                                    __element);
-                                            var id = objectId.text();
+                                            var objectId = __element.data("object_id");
 
                                             // in case the index is greater than zero a comma
                                             // must be appended to the identifiers list
@@ -1518,7 +1524,7 @@
                                             }
 
                                             // adds the identifier to the identifiers list
-                                            identifiersList += id
+                                            identifiersList += objectId
                                         });
 
                                 // updates the current documents location to the bulk
