@@ -2156,6 +2156,10 @@
             // so that it's highlighted
             element.addClass("selected");
 
+            // sets the "locking" flag indicating that the sub menu
+            // is already being shown
+            subMenu.data("showing", true);
+
             // shows the sub menu with a fade effect
             subMenu.fadeIn(150, function() {
                         // unsets the flag that controlls the
