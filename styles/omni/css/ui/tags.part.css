@@ -31,6 +31,12 @@
     background-color: #62cffc;
 }
 
+.omni-style .tag.inset {
+    box-shadow: inset 0px 0px 3px #777777;
+    -moz-box-shadow: inset 0px 0px 3px #777777;
+    -webkit-box-shadow: inset 0px 0px 3px #777777;
+}
+
 .omni-style .tag.lower {
     opacity: 0.75;
 }
