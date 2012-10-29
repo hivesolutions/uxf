@@ -70,8 +70,9 @@
                         // retrieves the menu to retieve the
                         // menu contents
                         var menu = element.parents(".menu");
-                        var menuButton = jQuery(".menu-button", menu);
-                        var menuContents = jQuery(".menu-contents", menu);
+                        var menuButton = jQuery("> .menu-button", menu);
+                        var menuContents = jQuery(
+                                "> .menu-contents:not(.sub-menu)", menu);
 
                         // retrieves the current set of visible menus and menu
                         // contents to be able to control them
