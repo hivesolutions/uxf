@@ -1266,7 +1266,7 @@
             var _window = jQuery(window);
             var _document = jQuery(document);
             var _body = jQuery("body")
-            var contextMenus = jQuery(".context-menu", _body);
+            var contextMenus = jQuery("> .context-menu", _body);
             var menu = jQuery(".context-menu", element);
             var menuContents = jQuery(".context-menu .menu-contents", element);
 
