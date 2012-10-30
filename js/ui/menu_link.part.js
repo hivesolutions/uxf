@@ -154,6 +154,7 @@
                                 menu);
 
                         // checks if the current menu is of type drop
+                        // (it must be removed and not hidden)
                         var isDrop = menu.hasClass("drop-menu");
 
                         // in case the current menu is of type drop
@@ -164,10 +165,9 @@
                         }
                         // otherwise the normal behavior applies (hidding)
                         else {
-                            // removes the active class from the manu
+                            // removes the active class from the manu and
+                            // then hides the menu contents
                             menu.removeClass("active");
-
-                            // hides the menu contents
                             menuContents.hide();
                         }
                     });
