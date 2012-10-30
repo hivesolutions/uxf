@@ -1231,6 +1231,21 @@
                                     _initMenu(_element, filter, true);
                                 });
 
+                        // registers for the show event in the various menu
+                        // to update the visual in such case
+                        menus.bind("show", function() {
+                                    // retrieves the reference to the current element
+                                    // (menu) in iteration
+                                    var _element = jQuery(this);
+
+                                    // retrieves ther complete set of buttons currently present
+                                    // in the menu and removes the selected class from them
+                                    // (avoiding any possible visual problems)
+                                    var buttons = jQuery(
+                                            ".button:not(.menu-link)", _element);
+                                    buttons.removeClass("selected");
+                                });
+
                         // triggers the update complete event
                         filter.triggerHandler("update_complete");
 
@@ -1280,6 +1295,12 @@
             // adds the drop menu class to indicate that this is
             // a menu of type drop (provisory)
             menu.addClass("drop-menu");
+
+            // retrieves ther complete set of buttons currently present
+            // in the menu and removes the selected class from them
+            // (avoiding any possible visual problems)
+            var buttons = jQuery(".button:not(.menu-link)", menu);
+            buttons.removeClass("selected");
 
             // retrieves the menu contents reference for the menu
             var menuContents = jQuery(".menu-contents:not(.sub-menu)", menu);
@@ -1385,6 +1406,10 @@
             // registers for the mouse enter event in the
             // non target button to be able to hide the sub menus
             nonTargetButtons.mouseenter(function() {
+                        // retrieves the reference to the current element
+                        // (the hovered button)
+                        var element = jQuery(this);
+
                         // removes the selected class from the target buttons
                         // so that no target button remains selected
                         targetButtons.removeClass("selected");
@@ -1393,9 +1418,19 @@
                         // visible sub menus (selected non target elements)
                         setTimeout(function() {
                                     // retrieves the complete set of visible sub menus
-                                    // and then hides them
+                                    // to be hidden in case of validation passing
                                     var subMenu = jQuery(".sub-menu:visible",
                                             menu);
+
+                                    // checks if the current element (button)
+                                    // is still in the ohover state in case it's
+                                    // not returns immediately, not meat to hide
+                                    // the other sub menus, otherwise hides the complete
+                                    // set of sub menus
+                                    var isHovered = element.is(":hover");
+                                    if (!isHovered) {
+                                        return;
+                                    }
                                     subMenu.hide();
                                 }, 300);
                     });
@@ -2114,11 +2149,18 @@
             var target = element.attr("data-target");
             var subMenu = jQuery(target, menu);
 
+            // in case the submenu is currently visible
+            // must return immediately not going to show it
+            var isVisible = subMenu.is(":visible");
+            if (isVisible) {
+                return;
+            }
+
             // checks if the sub menu element is already being shown
             // in such case returns immediately to avoid problems
             var showing = subMenu.data("showing");
             if (showing) {
-                return false;
+                return;
             }
 
             // sets the "locking" flag indicating that the sub menu

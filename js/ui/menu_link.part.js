@@ -92,10 +92,9 @@
                         // (the menu is shown)
                         if (isActive) {
                             // triggers the hide event handler on the
-                            // on the menu
+                            // on the menu and removes the active class
+                            // from the same menu
                             menu.triggerHandler("hide");
-
-                            // removes the active class from the manu
                             menu.removeClass("active");
 
                             // hides the menu contents
@@ -108,16 +107,14 @@
                         // otherwise the menu contents are probably hidden
                         else {
                             // triggers the show event handler on the
-                            // on the menu
+                            // on the menu and adds the active class
+                            // into the same menu
                             menu.triggerHandler("show");
-
-                            // adds the active class to the menu
                             menu.addClass("active");
 
-                            // shows the menu contents
+                            // shows the menu contents an then
+                            // repositions them in the display
                             menuContents.show();
-
-                            // repositions the menu
                             _reposition(menu);
 
                             // triggers the shown event handler on the
