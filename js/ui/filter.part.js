@@ -1231,7 +1231,7 @@
                                     _initMenu(_element, filter, true);
                                 });
 
-                        // registers for the show event in the various menu
+                        // registers for the show event in the various menus
                         // to update the visual in such case
                         menus.bind("show", function() {
                                     // retrieves the reference to the current element
@@ -1266,6 +1266,7 @@
             var _window = jQuery(window);
             var _document = jQuery(document);
             var _body = jQuery("body")
+            var contextMenus = jQuery(".context-menu", _body);
             var menu = jQuery(".context-menu", element);
             var menuContents = jQuery(".context-menu .menu-contents", element);
 
@@ -1303,13 +1304,14 @@
             buttons.removeClass("selected");
 
             // retrieves the menu contents reference for the menu
+            // to be used for the positioning
             var menuContents = jQuery(".menu-contents:not(.sub-menu)", menu);
 
             // removes the currently create context menus
             // to avoid duplicates (garbage collection) then
-            // appends the new context menu to the bodu
-            jQuery("body > .context-menu").remove();
-            jQuery("body").append(menu);
+            // appends the new context menu to the body
+            contextMenus.remove();
+            _body.append(menu);
 
             // triggers the selected event on the current element
             // so that it changes the selected value
