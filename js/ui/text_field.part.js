@@ -365,13 +365,13 @@
                 // retrieves the data type for the matached object
                 // and uses it to create the (possible) value type
                 // retrieval method then calls it in case it exists
-                // otherwise used the noemal element value
+                // otherwise uses the normal element value
                 var type = matchedObject.attr("data-type");
                 var valueMethodName = "__value" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
                         options);
                 var elementValue = hasMethod ? __callMethod(valueMethodName,
-                        matchedObject, options) : elementValue
+                        matchedObject, options) : elementValue;
 
                 // returns the retrieved value
                 return elementValue;
@@ -379,6 +379,17 @@
             // otherwise the "target" value is valid
             // it's a set operation
             else {
+                // retrieves the data type for the matached object
+                // and uses it to create the (possible) format value
+                // retrieval method then calls it in case it exists
+                // otherwise uses the normal value
+                var type = matchedObject.attr("data-type");
+                var valueMethodName = "__fvalue" + type;
+                var hasMethod = __hasMethod(valueMethodName, matchedObject,
+                        options);
+                var value = hasMethod ? __callMethod(valueMethodName,
+                        matchedObject, value) : value;
+
                 // sets the value in the attributes
                 matchedObject.attr("value", value);
 
@@ -869,6 +880,42 @@
 
             // sets the calendar in the element
             element.data("calendar", calendar);
+        };
+
+        var __fvaluefloatp = function(element, value) {
+            // retrieves the decimal places number and tries to
+            // parse it as an integer, incase it fails returns
+            // immediately the number without processing
+            var decimalPlaces = element.attr("data-decimal_places");
+            decimalPlaces = parseInt(decimalPlaces);
+            if (isNaN(decimalPlaces)) {
+                return value;
+            }
+
+            // converts teh provided value into a float value and
+            // then usees this value to convert it into a fixed
+            // representation with the requested number of decimal
+            // places (correct specification)
+            var valueF = parseFloat(value);
+            return valueF.toFixed(decimalPlaces);
+        };
+
+        var __fvaluefloat = function(element, value) {
+            // retrieves the decimal places number and tries to
+            // parse it as an integer, incase it fails returns
+            // immediately the number without processing
+            var decimalPlaces = element.attr("data-decimal_places");
+            decimalPlaces = parseInt(decimalPlaces);
+            if (isNaN(decimalPlaces)) {
+                return value;
+            }
+
+            // converts teh provided value into a float value and
+            // then usees this value to convert it into a fixed
+            // representation with the requested number of decimal
+            // places (correct specification)
+            var valueF = parseFloat(value);
+            return valueF.toFixed(decimalPlaces);
         };
 
         var __valuedate = function(element, options) {
