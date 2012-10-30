@@ -998,7 +998,7 @@
                                 currentExtraAttribute
                                         && templateItem.append("<span class=\"subscript-extra\">"
                                                 + currentExtraAttribute
-                                                + "<span>");
+                                                + "</span>");
 
                                 // sets the current item in the template item data
                                 // so that it can be used for latter template rendering
