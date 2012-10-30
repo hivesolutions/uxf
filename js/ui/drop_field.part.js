@@ -49,13 +49,14 @@
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves the drop field contents
+                // retrieves the drop field contents and the value
+                // fields from the current element in iteration
                 var dropFieldContents = jQuery(".drop-field-contents", _element);
+                var valueFields = jQuery(".value-field", _element);
 
-                // retrieves the number of options
+                // retrieves the number of options and the filter
+                // options from the provided options map
                 var numberOptions = options["numberOptions"];
-
-                // retrieves the filter options
                 var filterOptions = options["filterOptions"];
 
                 // checks if the element (drop field) is of type select
@@ -121,6 +122,25 @@
                 var hiddenField = jQuery(".hidden-field", _element);
                 var hiddenFieldValue = hiddenField.attr("value");
 
+                // creates the map that will hold the complete set of
+                // value field associated with the attribute to be set
+                // no each of them
+                var _valueFields = {};
+
+                // iterates over all the value fields to process them
+                // and set them in the element associated with the
+                // attribute they "represent"
+                valueFields.each(function(element, index) {
+                            // retrieves the current element (value field) in
+                            // iteration and the attribute it represents
+                            var _element = jQuery(this);
+                            var attribute = _element.attr("data-attribute");
+
+                            // sets the current element (value field) in the
+                            // map associated with the attribute it represents
+                            _valueFields[attribute] = _element;
+                        });
+
                 // adds the lock class to the element
                 // in case the hidden field value is already set and valid
                 hiddenFieldValue && _element.addClass("drop-field-lock");
@@ -150,6 +170,7 @@
                 _element.data("filter_attributes", filterAttributesList);
                 _element.data("number_options", numberOptions);
                 _element.data("filter_options", filterOptions);
+                _element.data("value_fields", _valueFields);
             });
         };
 
@@ -409,6 +430,10 @@
                             var valueLogic = listItemSelected.attr("data-value");
                             var valueLink = listItemSelected.attr("data-link");
 
+                            // retrieves the complete set of value fields from the drop
+                            // field to apply the item values into them
+                            var valueFields = dropField.data("value_fields");
+
                             // retrieves the item associated with the selected list item
                             // so that it may be used for the template rendering
                             var item = listItemSelected.data("item");
@@ -428,6 +453,14 @@
                                         value : value
                                     });
                             dropField.data("value", value);
+
+                            // iterates over all the value field to apply the
+                            // correct item value to them
+                            for (var key in valueFields) {
+                                var field = valueFields[key];
+                                var _value = item[key];
+                                field.attr("value", _value);
+                            }
 
                             // adds the lock class to the drop field
                             // in case the hidden field is present
@@ -528,6 +561,10 @@
                             var valueLogic = listItemSelected.attr("data-value");
                             var valueLink = listItemSelected.attr("data-link");
 
+                            // retrieves the complete set of value fields from the drop
+                            // field to apply the item values into them
+                            var valueFields = dropField.data("value_fields");
+
                             // retrieves the item associated with the selected list item
                             // so that it may be used for the template rendering
                             var item = listItemSelected.data("item");
@@ -547,6 +584,14 @@
                                         value : value
                                     });
                             dropField.data("value", value);
+
+                            // iterates over all the value field to apply the
+                            // correct item value to them
+                            for (var key in valueFields) {
+                                var field = valueFields[key];
+                                var _value = item[key];
+                                field.attr("value", _value);
+                            }
 
                             // adds the lock class to the drop field
                             // in case the hidden field is present
@@ -730,6 +775,7 @@
             var dropField = matchedObject;
             var dataSource = jQuery("> .data-source", dropField);
             var hiddenField = jQuery(".hidden-field", dropField);
+            var valueFields = jQuery(".value-field", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
@@ -788,10 +834,11 @@
             // mode a value is always selected)
             if (!isSelect) {
                 // empties the hidden template and updates the hidden
-                // field value to empty and then removes the drop field
-                // lock class from the drop field
+                // field value (and value field) to empty and then
+                // removes the drop field lock class from the drop field
                 hiddenTemplate.empty();
                 hiddenField.attr("value", "");
+                valueFields.attr("value", "");
                 dropField.removeClass("drop-field-lock");
             }
 
@@ -986,6 +1033,10 @@
                                     var valueLogic = element.attr("data-value");
                                     var valueLink = element.attr("data-link");
 
+                                    // retrieves the complete set of value fields from the drop
+                                    // field to apply the item values into them
+                                    var valueFields = dropField.data("value_fields");
+
                                     // retrieves the item associated with the selected list item
                                     // so that it may be used for the template rendering
                                     var item = element.data("item");
@@ -1005,6 +1056,14 @@
                                                 value : value
                                             });
                                     dropField.data("value", value);
+
+                                    // iterates over all the value field to apply the
+                                    // correct item value to them
+                                    for (var key in valueFields) {
+                                        var field = valueFields[key];
+                                        var _value = item[key];
+                                        field.attr("value", _value);
+                                    }
 
                                     // adds the lock class to the drop field
                                     // in case the hidden field is present
@@ -1227,12 +1286,20 @@
             var value = options["value"];
             var valueLogic = options["valueLogic"];
 
+            // tries to retieve the item definition from the
+            // options in case it's defined
+            var item = options["item"] || {};
+
             // retrieves the drop field elements
             var dropField = matchedObject;
             var hiddenField = jQuery(".hidden-field", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
+
+            // retrieves the complete set of value fields from the drop
+            // field to apply the item values into them
+            var valueFields = dropField.data("value_fields");
 
             // empties the drop field contents, so that no items
             // are show in the drop field contents (invalidates data)
@@ -1251,6 +1318,14 @@
             dropField.data("value", value);
             dropField.data("selection", 1);
 
+            // iterates over all the value field to apply the
+            // correct item (from options) value to them
+            for (var key in valueFields) {
+                var field = valueFields[key];
+                var _value = item[key];
+                field.attr("value", _value);
+            }
+
             // adds the drop field lock class from the drop field
             // adds the lock symbol to the drop field
             dropField.addClass("drop-field-lock")
@@ -1260,6 +1335,7 @@
             // retrieves the drop field elements
             var dropField = matchedObject;
             var hiddenField = jQuery(".hidden-field", dropField);
+            var valueFields = jQuery(".value-field", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
@@ -1275,6 +1351,7 @@
             // updates the value fields, to the original
             // "empty" (unset) values
             hiddenField.attr("value", null);
+            valueFields.attr("value", null);
             textField.uxtextfield("value", {
                         value : ""
                     });
