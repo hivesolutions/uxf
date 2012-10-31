@@ -51,6 +51,15 @@
                 var valueFloat = parseFloat(value);
                 var valueString = valueFloat.toFixed(placesInteger);
 
+                // in case the "parsed" float value is not valid must
+                // set the element as processed to display it and return
+                // immediately (avoids dead lock in visual value)
+                var invalid = isNaN(valueFloat);
+                if (invalid) {
+                    _element.addClass("processed");
+                    return;
+                }
+
                 // retrieves the value string replacing the decimal
                 // separator in case one was defined
                 valueString = separator
