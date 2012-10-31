@@ -70,6 +70,10 @@
     margin-top: 0px;
 }
 
+.omni-style .table .drop-field .drop-field-contents li > .subscript-extra {
+    font-size: 70%;
+}
+
 .omni-style .table .table-add,
 .omni-style .table .table-remove {
     cursor: pointer;
@@ -162,8 +166,12 @@
     background-position: right bottom;
 }
 
-.omni-style .table .drop-field.drop-field-select.drop-field-lock > .text-field {
-    background-image: none;
+.omni-style .table .drop-field.drop-field-select > .text-field {
+    background-image: url(../images/drop-field-select-medium.png);
+}
+
+.omni-style .table .drop-field.drop-field-select > .text-field.active {
+    border-color: #3668c6;
 }
 
 .omni-style .table tr.last td .text-field {
