@@ -53,7 +53,8 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
-                "../util/string/template.js"]
+                "../util/string/template.js",
+                "../jutil/communication/js/communication.js"]
     },
     "ux-min.js" : {
         "files" : ["header.part.js", "apply.part.js",
@@ -108,7 +109,8 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
-                "../util/string/template.js"],
+                "../util/string/template.js",
+                "../jutil/communication/js/communication.js"],
         "minify" : "javascript"
     },
     "ux-min.js.gz" : {
@@ -164,7 +166,8 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
-                "../util/string/template.js"],
+                "../util/string/template.js",
+                "../jutil/communication/js/communication.js"],
         "minify" : "javascript",
         "compress" : "gzip"
     }
