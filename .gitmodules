@@ -1,9 +1,9 @@
 [submodule "util"]
 	path = util
 	url = git@github.com:hivesolutions/js_util.git
-[submodule "bin"]
-	path = bin
-	url = git@github.com:hivesolutions/uxf_bin.git
 [submodule "jutil"]
 	path = jutil
 	url = git@github.com:hivesolutions/jquery_util.git
+[submodule "bin"]
+	path = bin
+	url = git@github.com:hivesolutions/uxf_bin.git
