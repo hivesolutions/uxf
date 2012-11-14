@@ -327,3 +327,7 @@
     text-transform: uppercase;
     word-wrap: break-word;
 }
+
+.omni-style .filter.entities-list.list-list .entity-name {
+    margin: 4px 0px 0px 0px;
+}
