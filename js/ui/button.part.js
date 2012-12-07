@@ -135,12 +135,20 @@
 
                         // retrieves the parent form and then
                         // registers for the submit event on them
-                        // so that the button may be disabled
+                        // so that the button may be disabled registers
+                        // also for the unlock event so that the disabled
+                        // class is remove in such ocasions
                         var parentForm = _element.parents("form");
                         parentForm.submit(function() {
                                     // adds the disabled class to the button
                                     // to avoid further submits
                                     _element.addClass("disabled");
+                                });
+                        parentForm.bind("unlock", function() {
+                                    // removes the disabled class from the
+                                    // element (because the form is in the
+                                    // normal state again)
+                                    _element.removeClass("disabled");
                                 });
                     });
         };

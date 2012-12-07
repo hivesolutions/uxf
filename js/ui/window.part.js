@@ -104,6 +104,13 @@
                                     // positions the window in the screen
                                     _positionWindow(_element, options);
                                 });
+
+                        // registers the changing of contents in
+                        // the itnernal structure of the window
+                        _element.bind("layout", function() {
+                                    // positions the window in the screen
+                                    _positionWindow(_element, options);
+                                });
                     });
         };
 

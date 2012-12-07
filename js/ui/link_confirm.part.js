@@ -25,7 +25,6 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-
         };
 
         /**

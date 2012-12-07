@@ -6,3 +6,7 @@
     position: absolute;
     width: 0px;
 }
+
+.form > .form-success {
+    display: none;
+}
