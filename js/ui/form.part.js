@@ -173,6 +173,10 @@
                         field.addClass("invalid");
                     }
 
+                    // triggers the layout event in order to be able to update any
+                    // "upper" components associated with the form
+                    matchedObject.trigger("layout");
+
                     // triggerrs the error event on the matched object, this
                     // should indicate that there was a problem in the form submission
                     matchedObject.triggerHandler("error", [exception]);

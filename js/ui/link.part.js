@@ -34,48 +34,80 @@
             // iterates over each of the elements in
             // the matched object to register for the click event
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the offset and converts it
-                        // into an integer
-                        var duration = _element.attr("data-duration");
-                        var durationInteger = parseInt(duration);
+                // retrieves the value for the ajax "flag" attribute
+                // to be used to determine if an ajax call should be
+                // used instead of the "normal" link behaviour
+                var ajax = _element.attr("data-ajax");
 
-                        // checks if the duration integer value is valid
-                        // conversion successful
-                        var durationValid = !isNaN(durationInteger);
+                // retrieves the offset and converts it
+                // into an integer
+                var duration = _element.attr("data-duration");
+                var durationInteger = parseInt(duration);
 
-                        // registers for the click event in
-                        // the element only in case the dureation is valid
-                        durationValid && _element.click(function(event) {
-                                    // retrieves the element
-                                    var element = jQuery(this);
+                // checks if the duration integer value is valid
+                // conversion successful
+                var durationValid = !isNaN(durationInteger);
 
-                                    // retrieves the href (link) attribute
-                                    var href = _element.attr("href");
+                // in case the ajax flag set a "special" click handler
+                // must be registered to intercept the call and use
+                // ajax techniques to retrieve it
+                ajax && _element.click(function(event) {
+                    // retrieves the element and retrieves the hiperlink
+                    // reference value from it to be used as the url
+                    var element = jQuery(this);
+                    var href = element.attr("href");
 
-                                    // retrieves the offset and converts it
-                                    // into an integer
-                                    var offset = _element.attr("data-offset");
-                                    var offsetInteger = parseInt(offset);
+                    // prevents the default event (avoids the
+                    // effect of the link)
+                    event.preventDefault();
 
-                                    // creates the settings map based on the offset
-                                    var settings = {
-                                        offset : isNaN(offsetInteger)
-                                                ? 0
-                                                : offsetInteger
-                                    }
+                    // runs the remote call to retrieve the resource associated
+                    // with the link element, note that cross site reference
+                    // rules will applye to this request
+                    jQuery.ajax({
+                                type : "get",
+                                url : href,
+                                success : function(data) {
+                                    element.triggerHandler("success", [data]);
+                                },
+                                error : function(request, textStatus, errorThrown) {
+                                    element.triggerHandler("error", [request]);
+                                }
+                            });
+                });
 
-                                    // scrolls to the reference
-                                    jQuery.uxscrollto(href, durationInteger,
-                                            settings);
+                // registers for the click event in
+                // the element only in case the dureation is valid
+                durationValid && _element.click(function(event) {
+                            // retrieves the element
+                            var element = jQuery(this);
 
-                                    // prevents the default event (avoids the
-                                    // effect of the link)
-                                    event.preventDefault();
-                                });
-                    });
+                            // retrieves the href (link) attribute
+                            var href = element.attr("href");
+
+                            // retrieves the offset and converts it
+                            // into an integer
+                            var offset = element.attr("data-offset");
+                            var offsetInteger = parseInt(offset);
+
+                            // creates the settings map based on the offset
+                            var settings = {
+                                offset : isNaN(offsetInteger)
+                                        ? 0
+                                        : offsetInteger
+                            }
+
+                            // scrolls to the reference
+                            jQuery.uxscrollto(href, durationInteger, settings);
+
+                            // prevents the default event (avoids the
+                            // effect of the link)
+                            event.preventDefault();
+                        });
+            });
         };
 
         // initializes the plugin
