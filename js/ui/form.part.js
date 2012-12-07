@@ -132,10 +132,23 @@
                     var formSuccess = jQuery(".form-success", matchedObject);
                     var hasFormSuccess = formSuccess.length;
                     if (hasFormSuccess) {
+                        // retrieves the complate set of items in the form
+                        // that are not part of the form success panel
                         var otherItems = jQuery("> :not(.form-success)",
                                 matchedObject);
+
+                        // uses the form success panel to render it as a template
+                        // using as base the form success template provided then
+                        // adds the result to the matched object
+                        var formSuccessItem = formSuccess.uxtemplate(data);
+                        formSuccessItem.addClass("item")
+                        matchedObject.append(formSuccessItem);
+
+                        // hides the other items in the form as shows the just
+                        // rendered form success item, then triggers a layout event
+                        // to render any changes in the "upper" levels
                         otherItems.hide();
-                        formSuccess.show();
+                        formSuccessItem.show();
                         matchedObject.trigger("layout");
                     }
 
@@ -198,10 +211,10 @@
             errorDescription.remove();
 
             // retrieves both the form success panel and the other items and
-            // hides the form success panel and show the "original" items
-            var formSuccess = jQuery(".form-success", matchedObject);
+            // removes the form success (item) panel and show the "original" items
+            var formSuccessItem = jQuery(".form-success.item", matchedObject);
             var otherItems = jQuery("> :not(.form-success)", matchedObject);
-            formSuccess.hide();
+            formSuccessItem.remove();
             otherItems.show();
             matchedObject.trigger("layout");
         };
