@@ -95,23 +95,42 @@
         };
 
         var submitAjax = function(matchedObject, options) {
+            // retrieves the various attributes from the matched
+            // object that are going to be used to creates the
+            // "simulated" ajax request
             var method = matchedObject.attr("method");
             var action = matchedObject.attr("action");
             var data = matchedObject.serialize();
 
+            // creates the ajax request that is going to simulate
+            // a complete form request in the background
             jQuery.ajax({
                 type : method,
                 url : action,
                 data : data,
                 complete : function(request, textStatus) {
+                    // triggers the unlock event so that the various
+                    // items in the form may be re-used again
                     matchedObject.triggerHandler("unlock");
                 },
                 success : function(data) {
+                    // resets the form contents to the original values
+                    // this should remove all the values in it
                     resetForm(matchedObject, options);
 
+                    // in case no data was received the connection is
+                    // assumed to be down (no data receved) an error
+                    // is triggered and the control returned immediately
+                    if (!data) {
+                        matchedObject.triggerHandler("error");
+                        return;
+                    }
+
+                    // checks if the success for panel exists in the form
+                    // in case it exist it must be shown and the other contents
+                    // fo the form hidden
                     var formSuccess = jQuery(".form-success", matchedObject);
                     var hasFormSuccess = formSuccess.length;
-
                     if (hasFormSuccess) {
                         var otherItems = jQuery("> :not(.form-success)",
                                 matchedObject);
@@ -120,38 +139,62 @@
                         matchedObject.trigger("layout");
                     }
 
+                    // triggerrs the success event on the matched object, this
+                    // should indicate that the form was correctly submited
                     matchedObject.triggerHandler("success");
                 },
                 error : function(request, textStatus, errorThrown) {
+                    // resets the form contents to the original values
+                    // this should remove all the values in it
+                    resetForm(matchedObject, options);
+
+                    // parses the request response data as json (default layout for
+                    // the response value) and then uses the result to retrieve the
+                    // exception and then the errors list
                     var jsonData = jQuery.parseJSON(request.response);
                     var exception = jsonData["exception"] || {};
                     var errors = exception["errors"] || {};
 
-                    resetForm(matchedObject, options);
-
+                    // iterates over all the name in the errors map to sets the
+                    // errors value in the various items of the form (error indication)
                     for (var name in errors) {
+                        // retrieves the errors list for the current name in
+                        // iteration and then converts the list into an
+                        // equivalent json string
                         var _errors = errors[name];
                         var _errorsString = JSON.stringify(_errors);
+
+                        // retrieves the field from the form associated with the
+                        // provided value and updates it's error state adding the
+                        // invalid class to it also
                         var field = jQuery("[name=" + name + "]", matchedObject);
                         field.attr("data-error", _errorsString);
                         field.uxerror();
                         field.addClass("invalid");
                     }
 
+                    // triggerrs the error event on the matched object, this
+                    // should indicate that there was a problem in the form submission
                     matchedObject.triggerHandler("error", [exception]);
                 }
             });
         };
 
         var resetForm = function(matchedObject, options) {
+            // retrieves the various fields of the form that contain errors and
+            // removes the error state from it (error clear)
             var errorFields = jQuery("[data-error]", matchedObject);
             errorFields.removeAttr("data-error");
             errorFields.uxerror();
             errorFields.removeClass("invalid");
 
+            // retrieves the various error description elements and removes them
+            // from the form (error indication removal)
             var errorDescription = jQuery(".error-description", matchedObject);
             errorDescription.remove();
 
+            // retrieves both the form success panel and the other items and
+            // hides the form success panel and show the "original" items
             var formSuccess = jQuery(".form-success", matchedObject);
             var otherItems = jQuery("> :not(.form-success)", matchedObject);
             formSuccess.hide();
