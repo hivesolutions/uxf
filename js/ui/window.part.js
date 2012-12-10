@@ -126,6 +126,10 @@
             // shows the window
             matchedObject.fadeIn(250);
 
+            // registers for the key event for the dismissal
+            // of the window on the key press
+            __registerKey(matchedObject, options);
+
             // positions the window in the screen
             _positionWindow(matchedObject, options);
         };
@@ -133,6 +137,10 @@
         var _hide = function(matchedObject, options) {
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
+
+            // unregisters from the key event for the dismissal
+            // of the window on the key press
+            __unregisterKey(matchedObject, options);
 
             // hides the overlay
             overlay.fadeOut(250);
@@ -220,6 +228,37 @@
 
             // updates the window mask dots contents
             windowMaskDots.html(windowMaskDotsContents)
+        };
+
+        var __registerKey = function(matchedObject, options) {
+            // retrieves the reference to the document element
+            // and registers for the key press event on it and
+            // sets the key handler in handler key for the
+            // current matched object
+            var _document = jQuery(document);
+            var handler = _document.keydown(function(event) {
+                        // retrieves the key value
+                        var keyValue = event.keyCode
+                                ? event.keyCode
+                                : event.charCode ? event.charCode : event.which;
+
+                        // switches over the key value
+                        switch (keyValue) {
+                            case 27 :
+                                _hide(matchedObject, options);
+                                break;
+                        }
+                    });
+            matchedObject.data("key_handler", handler);
+        };
+
+        var __unregisterKey = function(matchedObject, options) {
+            // retrieves the reference to the global document
+            // element and then unregisters the key down event
+            // handler from it (avoid duplicated events)
+            var _document = jQuery(document);
+            var handle = matchedObject.data("key_handler");
+            _document.unbind("keydown", handle);
         };
 
         // switches over the method
