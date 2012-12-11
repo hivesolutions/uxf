@@ -52,12 +52,14 @@
                         var submit = _element.attr("data-submit");
                         var action = _element.attr("data-action");
                         var window = _element.attr("data-window");
+                        var windowOpen = _element.attr("data-window_open");
 
                         // sets the "new" element data
                         _element.data("link", link);
                         _element.data("submit", submit);
                         _element.data("action", action);
                         _element.data("window", window);
+                        _element.data("window_open", windowOpen);
                     });
         };
 
@@ -170,6 +172,7 @@
             var link = element.data("link");
             var action = element.data("action");
             var submit = element.data("submit");
+            var windowOpen = element.data("window_open");
 
             // links the element in case the link flag is set
             link && __link(element, options);
@@ -179,6 +182,10 @@
 
             // submits the element in case the submit flag is set
             submit && __submit(element, options);
+
+            // opens the window associated with the provided selector
+            // it should be displayed as modal in the current viewport
+            windowOpen && __windowOpen(element, options);
         };
 
         var __submit = function(matchedObject, options) {
@@ -229,6 +236,17 @@
             // opens a new window with the link otherwise
             // sets the "new" document location in
             _window ? window.open(link, "_blank") : document.location = link;
+        };
+
+        var __windowOpen = function(matchedObject, options) {
+            // retrieves the window open value from the matched object
+            // this valud should contain the window selector
+            var windowOpen = matchedObject.data("window_open");
+
+            // retrieves the window to be show and display it on
+            // the current viewport
+            var window = jQuery(windowOpen);
+            window.uxwindow("show");
         };
 
         // switches over the method
