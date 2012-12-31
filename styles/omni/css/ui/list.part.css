@@ -69,6 +69,22 @@
     margin: 2px 0px 0px 0px;
 }
 
+.omni-style .list.side-entities-list.simplified .entity-contents {
+    height: auto;
+    width: 168px;
+}
+
+.omni-style .list.side-entities-list.simplified .entity-name {
+    float: left;
+    margin: 0px 0px 0px 0px;
+}
+
+.omni-style .list.side-entities-list.simplified .entity-details {
+    color: #777777;
+    float: right;
+    font-size: 10px;
+}
+
 .omni-style .list.entity-options-list {
     list-style: none;
     margin: 0px 0px 0px 0px;
