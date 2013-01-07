@@ -148,7 +148,7 @@
     background-position: left -210px;
 }
 
-.omni-style .button-group .button.small.disabled{
+.omni-style .button-group .button.small.invalid.disabled {
     background-position: left -240px;
 }
 
