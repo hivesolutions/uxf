@@ -2248,7 +2248,7 @@
             // retrieves both the drop field (value selection) and the
             // operation field from the fielter
             var dropField = jQuery(".drop-field:not(.operation-field)", filter);
-            var operationField = jQuery(".drop-field:.operation-field", filter);
+            var operationField = jQuery(".drop-field.operation-field", filter);
 
             // retrieves the data sources associated with the drop field
             // and the operation field (to be manipulated)
