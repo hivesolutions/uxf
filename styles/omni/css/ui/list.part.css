@@ -118,6 +118,7 @@
 
 .omni-style .list.entity-options-list .entity-description {
     color: #777777;
+    line-height: 18px;
     margin-top: 6px;
     width: 420px;
 }
