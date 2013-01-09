@@ -300,6 +300,7 @@
 }
 
 .omni-style .filter.entities-list .entity-name {
+    color: #555555;
     font-size: 14px;
     font-weight: bold;
     line-height: 16px;
