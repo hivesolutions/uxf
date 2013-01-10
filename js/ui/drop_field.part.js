@@ -44,6 +44,11 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // sets the ux global object representation as drop
+            // field, this value may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.attr("data-object", "dropfield");
+
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
@@ -1045,7 +1050,7 @@
                                 });
 
                         // registers for the click event in the list items
-                        listItems.click(function() {
+                        listItems.click(function(event) {
                                     // retrieves the element
                                     var element = jQuery(this);
 
@@ -1194,14 +1199,12 @@
         };
 
         var _value = function(matchedObject, options) {
-            // retrieves the text field
+            // retrieves the text field associated with the
+            // current matched object and runs the value method
+            // in it retrieving and returning the value (pipeline)
             var textField = jQuery(".text-field", matchedObject);
-
-            // retrieves the text field value
-            var elementValue = textField.attr("data-value");
-
-            // returns the retrieved value
-            return elementValue;
+            var returnValue = textField.uxtextfield("value", options);
+            return returnValue;
         };
 
         var _incrementSelection = function(matchedObject, options) {

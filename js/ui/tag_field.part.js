@@ -42,7 +42,7 @@
          */
         var _appendHtml = function() {
             // sets the ux global object representation as text
-            // field, this vlaue may be used latter for fast ux
+            // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
             matchedObject.attr("data-object", "tagfield");
 
@@ -460,7 +460,6 @@
             // iterates over all the elements in the tags to
             // creates the sequence value
             for (var index = 0; index < tags.length; index++) {
-
                 // retrieves the current list items in iteration
                 // and retrieves the value to be used as data value
                 // defaulting to the html value in case none is provided

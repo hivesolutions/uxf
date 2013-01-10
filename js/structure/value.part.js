@@ -3,13 +3,21 @@
         // sets the jquery matched object
         var matchedObject = this;
 
+        // tries to retrieve the complete set of arguments
+        // for the value operation (in case an argument is
+        // provided this is a set operation)
+        var options = arguments.length > 0 ? {
+            value : arguments[0]
+        } : {};
+        var _arguments = ["value", options];
+
         // retrieves the object (type) for the currently
         // matched object then uses it to contruct the method
         // name to be used and uses it to retrieve the the
         // value for the component
         var object = matchedObject.attr("data-object");
         var method = matchedObject["ux" + object]
-        var value = method ? method.call(matchedObject, "value") : null;
+        var value = method ? method.apply(matchedObject, _arguments) : null;
 
         // returns the just retrived value from the component
         // to the caller method

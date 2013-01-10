@@ -42,7 +42,7 @@
          */
         var _appendHtml = function() {
             // sets the ux global object representation as text
-            // field, this vlaue may be used latter for fast ux
+            // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
             matchedObject.attr("data-object", "textfield");
 
@@ -402,6 +402,12 @@
                 // resets the element
                 __reset(matchedObject, options);
             }
+        };
+
+        var _reset = function(matchedObject, options) {
+            _value(matchedObject, {
+                        value : ""
+                    });
         };
 
         var _focus = function(matchedObject, options) {
@@ -1071,6 +1077,14 @@
 
                 // returns the value
                 return value;
+
+            case "reset" :
+                // resets the current text field value to
+                // its original value
+                _reset(matchedObject, options);
+
+                // breaks the switch
+                break;
 
             case "focus" :
                 // focus the matched object

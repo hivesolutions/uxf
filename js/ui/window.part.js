@@ -126,6 +126,10 @@
             // shows the window
             matchedObject.fadeIn(250);
 
+            // registers for the click event on the global overlay
+            // so that the window hides in such case
+            __registerClick(matchedObject, options);
+
             // registers for the key event for the dismissal
             // of the window on the key press
             __registerKey(matchedObject, options);
@@ -141,6 +145,10 @@
         var _hide = function(matchedObject, options) {
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
+
+            // unregisters from the click event on the global overlay
+            // so that the windows stop respoding from the event
+            __unregisterClick(matchedObject, options);
 
             // unregisters from the key event for the dismissal
             // of the window on the key press
@@ -236,6 +244,31 @@
 
             // updates the window mask dots contents
             windowMaskDots.html(windowMaskDotsContents)
+        };
+
+        var __registerClick = function(matchedObject, options) {
+            // retrieves the overlay element and registers for
+            // the click event on it in order to hide the current
+            // window then stores it in the data element
+            var overlay = jQuery(".overlay");
+            var handler = function() {
+                var isHiddable = matchedObject.hasClass("window-hide");
+                if (!isHiddable) {
+                    return;
+                }
+                matchedObject.uxwindow("hide");
+            };
+            overlay.click(handler);
+            matchedObject.data("click_handler", handler);
+        };
+
+        var __unregisterClick = function(matchedObject, options) {
+            // retrieves the global overlay and the handle to the
+            // callback function then unbinds it from the click
+            // even on the overlay
+            var overlay = jQuery(".overlay");
+            var handle = matchedObject.data("click_handler");
+            overlay.unbind("click", handle);
         };
 
         var __registerKey = function(matchedObject, options) {

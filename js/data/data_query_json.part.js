@@ -187,88 +187,92 @@
 
                 // executes the remote ajax call
                 jQuery.ajax({
-                    url : url,
-                    dataType : "text",
-                    data : query,
-                    error : function(request, status, error) {
-                        // retrieves the current identifier from the
-                        // matched object and checks it against the
-                        // clojure based identifier in case it's not
-                        // the same (the current response is not the
-                        // latest no need to parse it)
-                        var current = matchedObject.data("current");
-                        if (current != identifier) {
-                            // returns immediately not going to parse
-                            // the response (not required)
-                            return;
-                        }
+                            url : url,
+                            dataType : "text",
+                            data : query,
+                            error : function(request, status, error) {
+                                // retrieves the current identifier from the
+                                // matched object and checks it against the
+                                // clojure based identifier in case it's not
+                                // the same (the current response is not the
+                                // latest no need to parse it)
+                                var current = matchedObject.data("current");
+                                if (current != identifier) {
+                                    // returns immediately not going to parse
+                                    // the response (not required)
+                                    return;
+                                }
 
-                        // retrieves the body
-                        var _body = jQuery("body");
+                                // retrieves the body
+                                var _body = jQuery("body");
 
-                        // shows an alert window about the error
-                        _body.uxalert("There was an error retrieving json data");
+                                // shows an info window about the problem retrieving
+                                // the data from the remote data source
+                                _body.uxinfo(
+                                        "There was an error retrieving json data",
+                                        "Warning", "warning");
 
-                        // calls the callback with the failure values
-                        callback(null, null);
-                    },
-                    success : function(data) {
-                        // parses the data, retrieving the valid items
-                        var validItems = jQuery.parseJSON(data);
-                        var extraItems = validItems;
+                                // calls the callback with the failure values
+                                callback(null, null);
+                            },
+                            success : function(data) {
+                                // parses the data, retrieving the valid items
+                                var validItems = jQuery.parseJSON(data);
+                                var extraItems = validItems;
 
-                        // in case the received (items) is not a list
-                        // (single retrieval)
-                        if (!(validItems.constructor == Array)) {
-                            // tries to retrieve the (private) base
-                            // values that will serve as prototype for
-                            // the retrieval of the valid items
-                            var baseValue = validItems._base;
+                                // in case the received (items) is not a list
+                                // (single retrieval)
+                                if (!(validItems.constructor == Array)) {
+                                    // tries to retrieve the (private) base
+                                    // values that will serve as prototype for
+                                    // the retrieval of the valid items
+                                    var baseValue = validItems._base;
 
-                            // constructs a list of valid items
-                            // from the single valid item
-                            validItems = baseValue
-                                    ? validItems[baseValue]
-                                    : [validItems];
-                        }
+                                    // constructs a list of valid items
+                                    // from the single valid item
+                                    validItems = baseValue
+                                            ? validItems[baseValue]
+                                            : [validItems];
+                                }
 
-                        // retrieves the valid items length to check if there
-                        // is more items available
-                        var validItemsLength = validItems.length;
-                        var moreItems = validItemsLength == numberRecords;
+                                // retrieves the valid items length to check if there
+                                // is more items available
+                                var validItemsLength = validItems.length;
+                                var moreItems = validItemsLength == numberRecords;
 
-                        // filters the valid valid items using the calculated
-                        // end slice to filter the "extra" items
-                        var endSlice = numberRecords ? numberRecords - 1 : 1;
-                        validItems = validItems.slice(0, endSlice);
+                                // filters the valid valid items using the calculated
+                                // end slice to filter the "extra" items
+                                var endSlice = numberRecords ? numberRecords
+                                        - 1 : 1;
+                                validItems = validItems.slice(0, endSlice);
 
-                        // retrieves the current cache structure and updates
-                        // it with the newly found item, indexing it by the
-                        // (representing) query hash value
-                        var cache = matchedObject.data("cache");
-                        cache[queryHash] = {
-                            validItems : validItems,
-                            moreItems : moreItems,
-                            extraItems : extraItems
-                        };
+                                // retrieves the current cache structure and updates
+                                // it with the newly found item, indexing it by the
+                                // (representing) query hash value
+                                var cache = matchedObject.data("cache");
+                                cache[queryHash] = {
+                                    validItems : validItems,
+                                    moreItems : moreItems,
+                                    extraItems : extraItems
+                                };
 
-                        // retrieves the current identifier from the
-                        // matched object and checks it against the
-                        // clojure based identifier in case it's not
-                        // the same (the current response is not the
-                        // latest no call the callback for it)
-                        var current = matchedObject.data("current");
-                        if (current != identifier) {
-                            // returns immediately not going to send
-                            // the response (not required)
-                            return;
-                        }
+                                // retrieves the current identifier from the
+                                // matched object and checks it against the
+                                // clojure based identifier in case it's not
+                                // the same (the current response is not the
+                                // latest no call the callback for it)
+                                var current = matchedObject.data("current");
+                                if (current != identifier) {
+                                    // returns immediately not going to send
+                                    // the response (not required)
+                                    return;
+                                }
 
-                        // calls the callback with the valid items
-                        // note that extra items are applied
-                        callback(validItems, moreItems, extraItems);
-                    }
-                });
+                                // calls the callback with the valid items
+                                // note that extra items are applied
+                                callback(validItems, moreItems, extraItems);
+                            }
+                        });
             }, timeout);
         };
 

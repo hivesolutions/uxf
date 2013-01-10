@@ -98,9 +98,13 @@
             // retrieves the various attributes from the matched
             // object that are going to be used to creates the
             // "simulated" ajax request
-            var method = matchedObject.attr("method");
+            var method = matchedObject.attr("method") || "get";
             var action = matchedObject.attr("action");
             var data = matchedObject.serialize();
+
+            // triggers the submit data handler so that any listening
+            // handler may be able to handle the data
+            matchedObject.triggerHandler("submit_data");
 
             // creates the ajax request that is going to simulate
             // a complete form request in the background
@@ -218,6 +222,12 @@
             formSuccessItem.remove();
             otherItems.show();
             matchedObject.trigger("layout");
+
+            // retrieves the complete set of elements from the matched object
+            // and runs the reset operation on all of them, this should be able
+            // to restore them to their original values
+            var elements = matchedObject.uxfields();
+            elements.uxreset();
         };
 
         // initializes the plugin

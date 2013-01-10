@@ -27,10 +27,9 @@
         var _appendHtml = function() {
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
+                        // retrieves the element reference and
+                        // adds the disabled class from to it
                         var _element = jQuery(element);
-
-                        // adds the disabled class from the element
                         _element.addClass("disabled");
 
                         // checks if the currently element is an input field
