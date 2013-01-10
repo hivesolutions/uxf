@@ -67,9 +67,16 @@
                         // retrieves the element
                         var element = jQuery(this);
 
+                        // tries to retrieve the menu selector associated
+                        // with the current menu link (this is for custom)
+                        // menu references
+                        var menuSelector = element.attr("data-menu");
+
                         // retrieves the menu to retieve the
                         // menu contents
-                        var menu = element.parents(".menu");
+                        var menu = menuSelector
+                                ? jQuery(menuSelector)
+                                : element.parents(".menu");
                         var menuButton = jQuery("> .menu-button", menu);
                         var menuContents = jQuery(
                                 "> .menu-contents:not(.sub-menu)", menu);
@@ -87,6 +94,7 @@
                         // and hides the menu contents
                         _menu.removeClass("active");
                         _menuContents.hide();
+                        _menuContents.triggerHandler("hidden");
 
                         // in case the menu already has the active class
                         // (the menu is shown)
@@ -99,6 +107,7 @@
 
                             // hides the menu contents
                             menuContents.hide();
+                            menuContents.triggerHandler("hidden");
 
                             // triggers the hidden event handler on the
                             // on the menu
@@ -115,7 +124,8 @@
                             // shows the menu contents an then
                             // repositions them in the display
                             menuContents.show();
-                            _reposition(menu);
+                            menuContents.triggerHandler("shown");
+                            _reposition(menu, menuButton, element);
 
                             // triggers the shown event handler on the
                             // on the menu
@@ -169,6 +179,7 @@
                             // then hides the menu contents
                             menu.removeClass("active");
                             menuContents.hide();
+                            menuContents.triggerHandler("hidden");
                         }
                     });
 
@@ -199,21 +210,50 @@
          *
          * @param {Element}
          *            menu The menu to be repositioned.
+         * @param {Element}
+         *            menuButton The button used in the triggering of the menu,
+         *            if any.
+         * @parm {Element} menuLink The link element used in the triggering of
+         *       the menu, if any.
          */
-        var _reposition = function(menu) {
+        var _reposition = function(menu, menuButton, menuLink) {
             // retrieves the menu button and contents
             // for the matched object
-            var menuButton = jQuery(".menu-button", menu);
+            menuButton = menuButton || jQuery(".menu-button", menu);
+            menuLink = menuLink || jQuery(".menu-link", menu);
             var menuContents = jQuery(".menu-contents", menu);
 
-            // retrieves the elements widths
-            var menuButtonWidth = menuButton.outerWidth();
-            var menuContentsWidth = menuContents.outerWidth();
+            // in case no menu link is defined it's not possible
+            // to run the reposition operation, not enought information
+            // to archive the objective
+            if (menuLink.length == 0) {
+                return;
+            }
 
-            // calculates and sets the menu contents margin left
-            var menuContentsMarginLeft = ((menuContentsWidth - menuButtonWidth) - 2)
-                    * -1;
-            menuContents.css("margin-left", menuContentsMarginLeft + "px");
+            // retrieves the various dimensions from the various elements
+            // associated with the menu to be repositioned
+            var buttonWidth = menuButton.outerWidth();
+            var contentsWidth = menuContents.outerWidth();
+            var contentsHeight = menuContents.outerHeight(true);
+
+            // checks if the menu link is of type reference, for such cases
+            // the left position will not be used and checks if the menu is
+            // meant to be positioned above the menu link structure
+            var isReference = menuLink.attr("data-menu");
+            var isTop = menuLink.hasClass("menu-top");
+
+            // calculates the margin to the top so that the menu is positioned
+            // a bit above the top of the menu link that originated it and sets
+            // it the menu contents in case it's meant that way
+            var contentsMarginTop = (contentsHeight + 8) * -1;
+            isTop && menuContents.css("margin-top", contentsMarginTop + "px");
+
+            // calculates and sets the menu contents margin left, this should
+            // be able to position the menu to the left of the corresponding link
+            var contentsMarginLeft = ((contentsWidth - buttonWidth) - 2) * -1;
+            !isReference
+                    && menuContents.css("margin-left", contentsMarginLeft
+                                    + "px");
         };
 
         // switches over the method
