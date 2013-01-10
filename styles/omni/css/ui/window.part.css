@@ -16,9 +16,23 @@
     margin-top: 0px;
 }
 
+.omni-style .window h1.information {
+    color: #4d4d4d;
+}
+
+.omni-style .window h1.warning {
+    color: #d3503f;
+}
+
 .omni-style .window p {
     line-height: 26px;
     min-height: 40px;
+}
+
+.omni-style .window p.single {
+    line-height: 22px;
+    margin-bottom: 0px;
+    min-height: 0px;
 }
 
 .omni-style .window-buttons {
