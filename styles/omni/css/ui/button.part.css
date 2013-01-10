@@ -12,6 +12,7 @@
     background-position: left -36px;
 }
 
+.omni-style .button.button-green.active,
 .omni-style .button.button-green:active {
     background-position: left -72px;
 }
@@ -35,6 +36,7 @@
     background-position: left -36px;
 }
 
+.omni-style .button.button-blue.active,
 .omni-style .button.button-blue:active {
     background-position: left -72px;
 }
@@ -58,6 +60,7 @@
     background-position: left -36px;
 }
 
+.omni-style .button.button-red.active,
 .omni-style .button.button-red:active {
     background-position: left -72px;
 }
@@ -81,6 +84,7 @@
     background-position: left -36px;
 }
 
+.omni-style .button.button-grey.active,
 .omni-style .button.button-grey:active {
     background-position: left -72px;
 }
@@ -111,6 +115,7 @@
     background-position: 0px -48px;
 }
 
+.omni-style .button.large.active,
 .omni-style .button.large:active {
     background-position: 0px -96px;
 }
@@ -152,6 +157,7 @@
     background-color: #f0f0f0;
 }
 
+.omni-style .button.large.button-light-grey.active,
 .omni-style .button.large.button-light-grey:active {
     background-color: #e8e8e8;
 }
@@ -178,6 +184,7 @@
     background-position: 0px -28px;
 }
 
+.omni-style .button.small.active,
 .omni-style .button.small:active {
     background-position: 0px -56px;
 }
@@ -216,6 +223,7 @@
     color: #777777;
 }
 
+.omni-style .button.button-more.active,
 .omni-style .button.button-more:active {
     background-position: left -80px;
 }

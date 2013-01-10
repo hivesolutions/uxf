@@ -50,6 +50,7 @@
     background-position: left 0px;
 }
 
+.omni-style .button-group .button.medium.active,
 .omni-style .button-group .button.medium:active {
     background-position: left -36px;
 }
@@ -66,6 +67,7 @@
     background-position: left -108px;
 }
 
+.omni-style .button-group .button.medium.valid.active,
 .omni-style .button-group .button.medium.valid:active {
     background-position: left -144px;
 }
@@ -82,6 +84,7 @@
     background-position: left -216px;
 }
 
+.omni-style .button-group .button.medium.invalid.active,
 .omni-style .button-group .button.medium.invalid:active {
     background-position: left -252px;
 }
@@ -108,6 +111,7 @@
     background-position: left 0px;
 }
 
+.omni-style .button-group .button.small.active,
 .omni-style .button-group .button.small:active {
     background-position: left -30px;
 }
@@ -123,7 +127,7 @@
 .omni-style .button-group .button.small.valid {
     background-position: left -90px;
 }
-
+.omni-style .button-group .button.small.valid.active,
 .omni-style .button-group .button.small.valid:active {
     background-position: left -120px;
 }
@@ -140,6 +144,7 @@
     background-position: left -180px;
 }
 
+.omni-style .button-group .button.small.invalid.active,
 .omni-style .button-group .button.small.invalid:active {
     background-position: left -210px;
 }

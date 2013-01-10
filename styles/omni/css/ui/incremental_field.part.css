@@ -18,6 +18,7 @@
     background-color: #f0f0f0;
 }
 
+.incremental-field .button.active,
 .incremental-field .button:active {
     background-color: #e8e8e8;
 }
@@ -40,6 +41,7 @@
     background-color: #f4f4f4;
 }
 
+.incremental-field.disabled .button.active,
 .incremental-field.disabled .button:active {
     background-color: #f4f4f4;
 }
