@@ -76,6 +76,16 @@
                         // the action operation
                         var element = jQuery(this);
 
+                        // verifies if the button is currently disabled
+                        // and in such cases prevents the propagation and
+                        // returns control immediately to the caller method
+                        var isDisabled = element.hasClass("disabled");
+                        if (isDisabled) {
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                            return;
+                        }
+
                         // checks if the current click is from a middle
                         // button and in such case sets the new window
                         // option to open the link in a new window

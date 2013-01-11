@@ -46,6 +46,11 @@
                 // retrieves the element reference
                 var elementReference = jQuery(element);
 
+                // sets the ux global object representation as table
+                // this value may be used latter for fast ux
+                // object type access (hash based conditions)
+                elementReference.attr("data-object", "table");
+
                 // retrieves all the rows from the element reference
                 // and all the text fields associated with the element reference
                 var rows = jQuery("tbody > tr:not(.template)", elementReference);
@@ -339,6 +344,7 @@
                             // triggers the removed line event, sends the removed
                             // line as an event argument, then returns immediately
                             table.triggerHandler("removed_line", [elementRow]);
+                            table.triggerHandler("value_change", [elementRow]);
                             return;
                         }
 
@@ -349,8 +355,10 @@
                         lastRow.addClass("last");
 
                         // triggers the removed line event, sends the removed
-                        // line as an event argument
+                        // line as an event argument, then triggers the value change
+                        // event to indicate the changing in the "logical" value
                         table.triggerHandler("removed_line", [elementRow]);
+                        table.triggerHandler("value_change", [elementRow]);
                     });
 
             // registers for the click on the text field
@@ -589,8 +597,10 @@
             _registerLineHandlers(templateItem, options);
 
             // triggers the added line event, sends the created
-            // line as an event argument
+            // line as an event argument, the also triggers a value
+            // changed event to indicate the changing of the "logical value"
             matchedObject.triggerHandler("created_line", [templateItem]);
+            matchedObject.triggerHandler("value_change", [templateItem]);
 
             // returns the created line
             return templateItem;
@@ -714,6 +724,13 @@
         // switches over the method
         switch (method) {
             case "clear" :
+                // clears the table contents
+                _clear(matchedObject, options);
+
+                // breaks the switch
+                break;
+
+            case "reset" :
                 // clears the table contents
                 _clear(matchedObject, options);
 

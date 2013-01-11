@@ -382,13 +382,15 @@
                 // retrieves the data type for the matached object
                 // and uses it to create the (possible) format value
                 // retrieval method then calls it in case it exists
-                // otherwise uses the normal value
+                // otherwise uses the normal value, note that the method
+                // is not called in case the value is empty (nothing will
+                // be formatted for such case)
                 var type = matchedObject.attr("data-type");
                 var valueMethodName = "__fvalue" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
                         options);
-                var value = hasMethod ? __callMethod(valueMethodName,
-                        matchedObject, value) : value;
+                var value = hasMethod && value != "" ? __callMethod(
+                        valueMethodName, matchedObject, value) : value;
 
                 // sets the value in the attributes
                 matchedObject.attr("value", value);

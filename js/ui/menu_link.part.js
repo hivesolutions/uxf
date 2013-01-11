@@ -90,6 +90,14 @@
                         // visibility status is based on this flag
                         var isActive = menu.hasClass("active");
 
+                        // iterates over each of the other menu in order to be
+                        // able to inactivate their owners
+                        _menu.each(function(index, element) {
+                                    var _element = jQuery(this);
+                                    var owner = _element.data("owner");
+                                    owner && owner.removeClass("active");
+                                });
+
                         // removes the active class from the visible menus
                         // and hides the menu contents
                         _menu.removeClass("active");
@@ -99,6 +107,12 @@
                         // in case the menu already has the active class
                         // (the menu is shown)
                         if (isActive) {
+                            // tries to retrieve the current owner of the menu
+                            // contents and in case it exists removes the active
+                            // class from it
+                            var owner = menu.data("owner");
+                            owner && owner.removeClass("active");
+
                             // triggers the hide event handler on the
                             // on the menu and removes the active class
                             // from the same menu
@@ -115,6 +129,12 @@
                         }
                         // otherwise the menu contents are probably hidden
                         else {
+                            // sets the owner of the menu contents as the current
+                            // element as it was the responsible for the show of
+                            // the contents
+                            menu.data("owner", element);
+                            element.addClass("active");
+
                             // triggers the show event handler on the
                             // on the menu and adds the active class
                             // into the same menu
@@ -175,6 +195,12 @@
                         }
                         // otherwise the normal behavior applies (hidding)
                         else {
+                            // tries to retrieve the current owner of the menu
+                            // contents and in case it exists removes the active
+                            // class from it
+                            var owner = menu.data("owner");
+                            owner && owner.removeClass("active");
+
                             // removes the active class from the manu and
                             // then hides the menu contents
                             menu.removeClass("active");
