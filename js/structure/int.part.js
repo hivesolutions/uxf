@@ -1,5 +1,5 @@
 (function($) {
-    jQuery.fn.uxfint = function() {
+    jQuery.fn.uxint = function() {
         // sets the jquery matched object
         var matchedObject = this;
 
@@ -9,7 +9,7 @@
         // in case it failed default to a zero value
         var value = matchedObject.uxvalue();
         var valueI = parseInt(value);
-        valueI = isNaN(valueI) ? 0 : valueF;
+        valueI = isNaN(valueI) ? 0 : valueI;
 
         // returns the value that was retrieved and converted
         // into a integer value
