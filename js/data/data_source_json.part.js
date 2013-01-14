@@ -48,6 +48,7 @@
             // updates the element data
             element.data("type", "json");
             element.data("url", url);
+            element.data("data", {});
             element.data("cache", {});
         };
 

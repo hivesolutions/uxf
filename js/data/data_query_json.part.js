@@ -109,8 +109,10 @@
                 filter = true;
             }
 
-            // retrieves the element url
+            // retrieves the elements url and data values to be used
+            // for the processing of the "remote" query
             var url = element.data("url");
+            var data = element.data("data");
 
             // adds the id (part) to the url (in case
             // it's necessary)
@@ -183,6 +185,13 @@
                     // returns immediately not going to perform
                     // the request (not required)
                     return;
+                }
+
+                // iterates over all the data components to
+                // be added (custom query) and adds the items
+                // to the current query, this is a query extension
+                for (var key in data) {
+                    query[key] = data[key];
                 }
 
                 // executes the remote ajax call
