@@ -208,7 +208,7 @@
     padding: 6px 0px 4px 0px;
 }
 
-.omni-style .filter.entities-list .filter-contents li {
+.omni-style .filter.entities-list .filter-contents > li {
     border-bottom: 1px solid #f2f2f2;
     border-top: 1px solid transparent;
     cursor: default;
@@ -221,7 +221,7 @@
     -webkit-user-select: none;
 }
 
-.omni-style .filter.entities-list .filter-contents li.selected {
+.omni-style .filter.entities-list .filter-contents > li.selected {
     background-color: #f8f8f8;
     border-bottom: none;
     border-left: 1px solid #d8d8d8;
@@ -237,25 +237,25 @@
     width: 532px;
 }
 
-.omni-style .filter.entities-list .filter-contents li.selected.last {
+.omni-style .filter.entities-list .filter-contents > li.selected.last {
     border-bottom: 1px solid #d8d8d8;
     padding-bottom: 16px;
 }
 
-.omni-style .filter.entities-list.table-list .filter-contents li {
+.omni-style .filter.entities-list.table-list .filter-contents > li {
     padding-bottom: 10px;
     padding-top: 10px;
 }
 
-.omni-style .filter.entities-list.table-list .filter-contents li.selected {
+.omni-style .filter.entities-list.table-list .filter-contents > li.selected {
     padding-bottom: 11px;
 }
 
-.omni-style .filter.entities-list.table-list .filter-contents li.selected.last {
+.omni-style .filter.entities-list.table-list .filter-contents > li.selected.last {
     padding-bottom: 10px;
 }
 
-.omni-style .filter.entities-list.gallery-list .filter-contents li {
+.omni-style .filter.entities-list.gallery-list .filter-contents > li {
     border: 1px solid transparent;
     float: left;
     height: 120px;
@@ -265,7 +265,7 @@
     width: 155px;
 }
 
-.omni-style .filter.entities-list.gallery-list .filter-contents li.selected {
+.omni-style .filter.entities-list.gallery-list .filter-contents > li.selected {
     border-color: #d8d8d8;
     height: 120px;
     margin-left: 0px;
@@ -273,21 +273,21 @@
     width: 155px;
 }
 
-.omni-style .filter.entities-list .filter-contents li .list-view,
-.omni-style .filter.entities-list .filter-contents li .table-view,
-.omni-style .filter.entities-list .filter-contents li .gallery-view {
+.omni-style .filter.entities-list .filter-contents > li .list-view,
+.omni-style .filter.entities-list .filter-contents > li .table-view,
+.omni-style .filter.entities-list .filter-contents > li .gallery-view {
     display: none;
 }
 
-.omni-style .filter.entities-list.list-list .filter-contents li .list-view {
+.omni-style .filter.entities-list.list-list .filter-contents > li .list-view {
     display: block;
 }
 
-.omni-style .filter.entities-list.table-list .filter-contents li .table-view {
+.omni-style .filter.entities-list.table-list .filter-contents > li .table-view {
     display: block;
 }
 
-.omni-style .filter.entities-list.gallery-list .filter-contents li .gallery-view {
+.omni-style .filter.entities-list.gallery-list .filter-contents > li .gallery-view {
     display: block;
 }
 
