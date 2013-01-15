@@ -42,12 +42,15 @@
         };
 
         var _updateQueryElement = function(element, options) {
-            // retrieves the url for the element
+            // retrieves the various attributes that are
+            // going to be used for configuration
             var url = element.attr("data-url")
+            var cacheDisable = element.attr("data-cache_disable")
 
             // updates the element data
             element.data("type", "json");
             element.data("url", url);
+            element.data("cache_d", cacheDisable);
             element.data("data", {});
             element.data("cache", {});
         };

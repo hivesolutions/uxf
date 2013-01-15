@@ -113,6 +113,7 @@
             // for the processing of the "remote" query
             var url = element.data("url");
             var data = element.data("data");
+            var cacheD = element.data("cache_d");
 
             // adds the id (part) to the url (in case
             // it's necessary)
@@ -194,7 +195,8 @@
                     query[key] = data[key];
                 }
 
-                // executes the remote ajax call
+                // executes the remote ajax call, with the provided
+                // query and for the defined url
                 jQuery.ajax({
                             url : url,
                             dataType : "text",
@@ -257,9 +259,10 @@
 
                                 // retrieves the current cache structure and updates
                                 // it with the newly found item, indexing it by the
-                                // (representing) query hash value
+                                // (representing) query hash value, note that if the
+                                // cache disable flag is set no value is set in cache
                                 var cache = matchedObject.data("cache");
-                                cache[queryHash] = {
+                                cache[queryHash] = cacheD ? null : {
                                     validItems : validItems,
                                     moreItems : moreItems,
                                     extraItems : extraItems
