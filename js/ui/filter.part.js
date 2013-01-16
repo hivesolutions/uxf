@@ -1052,10 +1052,18 @@
 
                             // retrieves the cache map from the filter and
                             // tries to find the cache item for the unique identifier
-                            // in case it's found sets the template item as the cached
-                            // item (cache match usage)
+                            // validates it so that the data contained in it matches
+                            // the one cached in such case sets the template item as
+                            // the cached item (cache match usage)
                             var cacheItem = cache[uniqueId];
-                            if (cacheItem) {
+                            var cachedData = cacheItem ? cacheItem.data : null;
+                            var cacheValid = cachedData ? Object.equals(
+                                    cachedData, currentItem) : false;
+                            if (cacheItem && cacheValid) {
+                                // sets the item contained in the cache item as
+                                // the current cache item (layout item reference)
+                                cacheItem = cacheItem.item;
+
                                 // sets the template item as the curreently cached
                                 // item so that no construction occurs then removes
                                 // the selection classes from it (avoiding possible
@@ -1075,7 +1083,10 @@
                                 var templateItem = template.uxtemplate(element,
                                         options);
                                 if (uniqueId) {
-                                    cache[uniqueId] = templateItem;
+                                    cache[uniqueId] = {
+                                        item : templateItem,
+                                        data : element
+                                    }
                                 }
                             }
 
