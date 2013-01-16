@@ -7,6 +7,7 @@
         var valueF;
         var valueS;
         var type;
+        var valid;
 
         // iterates over all the elements (keys) in the
         // first element to verify the present of them
@@ -47,23 +48,32 @@
             valueS = second[element];
             type = typeof(valueF);
 
+            // by default the comparision of the elements is
+            // considered to be valid
+            valid = true;
+
             // switched over the type for the value and runs the
             // appropriate comparision operations
             switch (type) {
                 case "object" :
-                    if (!jQuery.uxequals(valueF, valueS)) {
-                        return false;
-                    }
-
+                    valid = jQuery.uxequals(valueF, valueS);
                     break;
 
                 default :
-                    if (valueF !== valueS) {
-                        return false;
-                    }
-
+                    valid = valueF === valueS;
                     break;
             }
+
+            // in case the result of the comparision was valid
+            // continues the loop to the other comparision operations
+            if (valid) {
+                continue;
+            }
+
+            // in case the the comparision operation has failed the
+            // control has reached this place and an invalid result
+            // must be returned to the caller function
+            return false;
         }
 
         // in case the control as reached this place all the
