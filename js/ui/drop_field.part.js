@@ -926,7 +926,7 @@
                             // the loop immediately (no layout rendering)
                             var cacheItem = cache[uniqueId];
                             var cachedData = cacheItem ? cacheItem.data : null;
-                            var cacheValid = cachedData ? Object.equals(
+                            var cacheValid = cachedData ? jQuery.uxequals(
                                     cachedData, currentItem) : false;
                             if (cacheItem && cacheValid) {
                                 // sets the cache item as the inner item contained

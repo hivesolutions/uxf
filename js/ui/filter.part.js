@@ -1057,8 +1057,8 @@
                             // the cached item (cache match usage)
                             var cacheItem = cache[uniqueId];
                             var cachedData = cacheItem ? cacheItem.data : null;
-                            var cacheValid = cachedData ? Object.equals(
-                                    cachedData, currentItem) : false;
+                            var cacheValid = cachedData ? jQuery.uxequals(
+                                    cachedData, element) : false;
                             if (cacheItem && cacheValid) {
                                 // sets the item contained in the cache item as
                                 // the current cache item (layout item reference)
