@@ -45,12 +45,12 @@
             // retrieves the various attributes that are
             // going to be used for configuration
             var url = element.attr("data-url")
-            var cacheDisable = element.attr("data-cache_disable")
+            var cacheDisabled = element.attr("data-cache_disabled")
 
             // updates the element data
             element.data("type", "json");
             element.data("url", url);
-            element.data("cache_d", cacheDisable);
+            element.data("cache_d", cacheDisabled);
             element.data("data", {});
             element.data("cache", {});
         };
