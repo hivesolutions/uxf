@@ -79,8 +79,13 @@
 
                         // retrieves the incremental field associated with
                         // the current element and uses it to decrement the field
+                        // note that the text field is focused while the operation
+                        // is done this ensures total text field "emulation"
                         var incrementalField = element.parents(".incremental-field");
+                        var textField = jQuery(".text-field", incrementalField);
+                        textField.focus();
                         __decrement(incrementalField, options);
+                        textField.blur();
                     });
 
             // registers for the click event on the plus button
@@ -90,8 +95,13 @@
 
                         // retrieves the incremental field associated with
                         // the current element and uses it to increment the field
+                        // note that the text field is focused while the operation
+                        // is done this ensures total text field "emulation"
                         var incrementalField = element.parents(".incremental-field");
+                        var textField = jQuery(".text-field", incrementalField);
+                        textField.focus();
                         __increment(incrementalField, options);
+                        textField.blur();
                     });
 
             // binds the incremental field do the enabled event

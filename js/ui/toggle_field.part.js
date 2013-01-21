@@ -117,9 +117,13 @@
                         var index = toggleField.data("index");
 
                         // calculates the new mode index value and sets it in
-                        // the (parent) toggle field
+                        // the (parent) toggle field, note that the text field
+                        // is focused while the operation is done this ensures
+                        // total text field "emulation"
                         var _index = index == modes.length - 1 ? 0 : index + 1;
+                        textField.focus();
                         _setMode(toggleField, options, _index);
+                        textField.blur();
                     });
 
             // binds the toggle field do the enabled event
