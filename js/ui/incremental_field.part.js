@@ -81,7 +81,6 @@
                         // the current element and uses it to decrement the field
                         var incrementalField = element.parents(".incremental-field");
                         __decrement(incrementalField, options);
-
                     });
 
             // registers for the click event on the plus button
