@@ -107,6 +107,7 @@
                         // and in case it's ignores the click event, returning
                         // immediately the control to the caller method
                         var isDisabled = textField.hasClass("disabled");
+                        isDisabled = isDisabled || element.hasClass("disabled");
                         if (isDisabled) {
                             return;
                         }
