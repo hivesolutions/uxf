@@ -353,6 +353,20 @@
                         }
                     });
 
+            // registers for the focus event in the text field
+            textField.focus(function() {
+                        // retrieves the element
+                        var element = jQuery(this);
+
+                        // retrieves the parent dopr field associated
+                        // with the current text field in event
+                        var dropField = element.parents(".drop-field");
+
+                        // adds the focus class to the drop field indicating
+                        // that the current drop field "contains" focus
+                        dropField.addClass("focus");
+                    });
+
             // registers for the blur event in the text field
             textField.blur(function() {
                         // retrieves the element
@@ -375,6 +389,10 @@
                         // updates the drop field data, only in case
                         // current drop field is not of type select
                         !isSelect && _update(dropField, options);
+
+                        // removes the focus class from the parent drop field
+                        // it's not focused anymore
+                        dropField.removeClass("focus");
                     });
 
             // registers for the mouse enter event in the drop field contents
