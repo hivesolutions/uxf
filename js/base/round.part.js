@@ -5,4 +5,4 @@
         var rounder = Math.pow(10, decimalPlaces);
         return Math.round(value * rounder) / rounder;
     };
-});
+})(jQuery);
