@@ -3,7 +3,8 @@
     "ux.js" : {
         "files" : ["header.part.js", "apply.part.js",
                 "attr/data_width.part.js", "base/equals.part.js",
-                "base/exception.part.js", "data/data_query_json.part.js",
+                "base/exception.part.js", "base/round.part.js",
+                "data/data_query_json.part.js",
                 "data/data_query_local.part.js", "data/data_query.part.js",
                 "data/data_source_countries.part.js",
                 "data/data_source_genders.part.js",
@@ -64,7 +65,8 @@
     "ux-min.js" : {
         "files" : ["header.part.js", "apply.part.js",
                 "attr/data_width.part.js", "base/equals.part.js",
-                "base/exception.part.js", "data/data_query_json.part.js",
+                "base/exception.part.js", "base/round.part.js",
+                "data/data_query_json.part.js",
                 "data/data_query_local.part.js", "data/data_query.part.js",
                 "data/data_source_countries.part.js",
                 "data/data_source_genders.part.js",
@@ -126,7 +128,8 @@
     "ux-min.js.gz" : {
         "files" : ["header.part.js", "apply.part.js",
                 "attr/data_width.part.js", "base/equals.part.js",
-                "base/exception.part.js", "data/data_query_json.part.js",
+                "base/exception.part.js", "base/round.part.js",
+                "data/data_query_json.part.js",
                 "data/data_query_local.part.js", "data/data_query.part.js",
                 "data/data_source_countries.part.js",
                 "data/data_source_genders.part.js",
