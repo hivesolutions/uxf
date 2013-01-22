@@ -1,10 +1,6 @@
-.omni-print-style .field-set {
-    margin-left: 32px;
-}
-
 .omni-print-style .field {
     margin-bottom: 22px;
-    width: 300px;
+    width: 340px;
 }
 
 .omni-print-style .field label {
@@ -16,10 +12,6 @@
 .omni-print-style .field div {
     font-size: 18px;
     margin-top: 4px;
-}
-
-.omni-print-style.small .field-set {
-    margin-left: 0px;
 }
 
 .omni-print-style.small .field {
