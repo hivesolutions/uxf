@@ -68,6 +68,12 @@
                         var _element = jQuery(this);
                         var toggleField = _element.parents(".toggle-field");
 
+                        // verifies if the current element is meant to be
+                        // positioned to the left and in case it's meant
+                        // adds the proper class to the toggle field
+                        var isLeft = _element.hasClass("toggle-left");
+                        isLeft && toggleField.addClass("toggle-left");
+
                         // retrieves the value of the attribute that defines
                         // the various modes in case the value is not defined
                         // returns immediately otherwise trims the value and

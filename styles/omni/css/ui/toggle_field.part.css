@@ -7,8 +7,8 @@
     background-position: center center;
     background-repeat: no-repeat;
     border: 1px solid #dddddd;
-    border-right: none;
-    float: left;
+    border-left: none;
+    float: right;
     font-size: 14px;
     height: 30px;
     line-height: 28px;
@@ -33,7 +33,7 @@
 }
 
 .toggle-field .textfield {
-    float: right;
+    float: left;
 }
 
 .toggle-field.disabled .button:hover {
@@ -43,4 +43,14 @@
 .toggle-field.disabled .button.active,
 .toggle-field.disabled .button:active {
     background-color: #f4f4f4;
+}
+
+.toggle-field.toggle-left .button {
+    border-left: 1px solid #dddddd;;
+    border-right: none;
+    float: left;
+}
+
+.toggle-field.toggle-left .textfield {
+    float: right;
 }
