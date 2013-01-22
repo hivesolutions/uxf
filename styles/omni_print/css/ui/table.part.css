@@ -32,6 +32,11 @@
     line-height: 24px;
 }
 
+.omni-print-style.small .table td,
+.omni-print-style.small .table th {
+    padding: 3px 0px 3px 0px;
+}
+
 .omni-print-style.small .table thead th {
     font-size: 10px;
     line-height: 20px;

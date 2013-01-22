@@ -19,12 +19,12 @@
 }
 
 .omni-print-style.small .field-set {
-    margin-left: 18px;
+    margin-left: 0px;
 }
 
 .omni-print-style.small .field {
     margin-bottom: 12px;
-    width: 310px;
+    width: 340px;
 }
 
 .omni-print-style.small .field label {
@@ -32,7 +32,7 @@
 }
 
 .omni-print-style.small .field div {
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 2px;
 }
 
