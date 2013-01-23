@@ -120,10 +120,16 @@
             var overlay = jQuery(".overlay");
             overlay.trigger("resize");
 
-            // shows the overlay
-            overlay.fadeIn(250);
+            // makes sure that the current object is the only visible
+            // window on the screen (ensures modal visibility)
+            var pending = __ensureModal(matchedObject, options);
+            if (pending) {
+                return;
+            }
 
-            // shows the window
+            // shows the overlay and shows at the same time the
+            // current object (window)
+            overlay.fadeIn(250);
             matchedObject.fadeIn(250);
 
             // registers for the click event on the global overlay
@@ -154,10 +160,9 @@
             // of the window on the key press
             __unregisterKey(matchedObject, options);
 
-            // hides the overlay
+            // hides the overlay and hides at the same time the
+            // current object (window)
             overlay.fadeOut(250);
-
-            // hides the window
             matchedObject.fadeOut(250);
 
             // triggers the hide handler so that any handler
@@ -300,6 +305,22 @@
             var _document = jQuery(document);
             var handle = matchedObject.data("key_handler");
             _document.unbind("keydown", handle);
+        };
+
+        var __ensureModal = function(matchedObject, options) {
+            // retrieves the current visible set of windows (only
+            // one should be visible at a certain time)
+            var visibleWindow = jQuery(".window:visible");
+            if (visibleWindow.length == 0) {
+                return false;
+            }
+
+            // hdies the current set of windows that are visible and
+            // at the end of the hide operation shows the window
+            visibleWindow.fadeOut(150, function() {
+                        matchedObject.uxwindow("show");
+                    });
+            return true;
         };
 
         // switches over the method
