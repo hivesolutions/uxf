@@ -353,8 +353,30 @@
                         }
                     });
 
+            // registers for the focus event in the matched object
+            // in order to propagate it to the underlying elements
+            // that are "focusable"
+            matchedObject.focus(function() {
+                        // retrieves the element and the associated text
+                        // field and propagates the focus event to it
+                        var element = jQuery(this);
+                        var textField = jQuery(".text-field", element);
+                        textField.focus();
+                    });
+
+            // registers for the blur event in the matched object
+            // in order to propagate it to the underlying elements
+            // that are "focusable"
+            matchedObject.blur(function() {
+                        // retrieves the element and the associated text
+                        // field and propagates the blur event to it
+                        var element = jQuery(this);
+                        var textField = jQuery(".text-field", element);
+                        textField.blur();
+                    });
+
             // registers for the focus event in the text field
-            textField.focus(function() {
+            textField.focus(function(event) {
                         // retrieves the element
                         var element = jQuery(this);
 
@@ -365,10 +387,14 @@
                         // adds the focus class to the drop field indicating
                         // that the current drop field "contains" focus
                         dropField.addClass("focus");
+
+                        // avoids the propagation of the event otherwise
+                        // a loop may be created
+                        event.stopPropagation();
                     });
 
             // registers for the blur event in the text field
-            textField.blur(function() {
+            textField.blur(function(event) {
                         // retrieves the element
                         var element = jQuery(this);
 
@@ -393,6 +419,10 @@
                         // removes the focus class from the parent drop field
                         // it's not focused anymore
                         dropField.removeClass("focus");
+
+                        // avoids the propagation of the event otherwise
+                        // a loop may be created
+                        event.stopPropagation();
                     });
 
             // registers for the mouse enter event in the drop field contents
@@ -1084,72 +1114,15 @@
                                     // retrieves the element
                                     var element = jQuery(this);
 
-                                    // retrieves the value, the logic value
-                                    // and the value link from the element
-                                    var value = element.attr("data-display");
-                                    var valueLogic = element.attr("data-value");
-                                    var valueLink = element.attr("data-link");
+                                    // retrieves the index associated with the current
+                                    // selected element and updates the options map with
+                                    // this value to condition the index change call
+                                    var index = element.index();
+                                    options["index"] = index;
 
-                                    // retrieves the complete set of value fields from the drop
-                                    // field to apply the item values into them
-                                    var valueFields = dropField.data("value_fields");
-
-                                    // retrieves the item associated with the selected list item
-                                    // so that it may be used for the template rendering
-                                    var item = element.data("item");
-
-                                    // applies the template to the template (item)
-                                    // retrieving the resulting template item
-                                    var templateItem = template.uxtemplate(item);
-
-                                    // clears the hidden template elements and then
-                                    // adds the template item to it
-                                    hiddenTemplate.empty();
-                                    hiddenTemplate.append(templateItem);
-
-                                    // updates the value fields
-                                    hiddenField.attr("value", valueLogic);
-                                    textField.uxtextfield("value", {
-                                                value : value
-                                            });
-                                    dropField.data("value", value);
-
-                                    // iterates over all the value field to apply the
-                                    // correct item value to them
-                                    for (var key in valueFields) {
-                                        var field = valueFields[key];
-                                        var _value = item[key];
-                                        field.attr("value", _value);
-                                    }
-
-                                    // adds the lock class to the drop field
-                                    // in case the hidden field is present
-                                    // and there is a logic field "selected"
-                                    hiddenField.length > 0
-                                            && valueLogic
-                                            && dropField.addClass("drop-field-lock");
-
-                                    // triggers the value select event
-                                    dropField.triggerHandler("value_select", [
-                                                    value, valueLogic, item]);
-
-                                    // in case the value link is set
-                                    if (valueLink) {
-                                        // changes the document location to
-                                        // the value link value
-                                        document.location = valueLink;
-                                    }
-
-                                    // calculates the new selection index from the element
-                                    // index and updates the data attribute of the drop
-                                    // field accordingly, then runs the update selection
-                                    // to update the graphics
-                                    var selectionIndex = element.index() + 1
-                                    dropField.data("selection", selectionIndex);
-                                    _updateSelection(dropField, options);
-
-                                    // hides the drop field contents
-                                    dropFieldContents.hide();
+                                    // changes the index of the current drop field to match
+                                    // the one "required" in the provided options map
+                                    _index(dropField, options);
 
                                     // avoids event propagation this way the focus
                                     // is not lost when clicking on a list item
@@ -1415,7 +1388,91 @@
 
             // removes the drop field lock class from the drop field
             // no need to retain the lock symbol in the drop field
-            dropField.removeClass("drop-field-lock")
+            dropField.removeClass("drop-field-lock");
+        };
+
+        var _index = function(matchedObject, options) {
+            // retrievs the target index from the provided options
+            // map, this value will be used to retrieved the correct
+            // child element for the change
+            var index = options["index"];
+
+            // retrieves the the various elements required for
+            // the changing of the index on the drop field, note
+            // that the drop field is set as the current object
+            var dropField = matchedObject;
+            var hiddenField = jQuery(".hidden-field", dropField);
+            var textField = jQuery(".text-field", dropField);
+            var template = jQuery(".template", dropField);
+            var hiddenTemplate = jQuery(".hidden-template", dropField);
+            var dropFieldContents = jQuery(".drop-field-contents", dropField);
+            var element = jQuery("> li:nth-child(" + (index + 1) + ")",
+                    dropFieldContents);
+
+            // retrieves the value, the logic value
+            // and the value link from the element
+            var value = element.attr("data-display");
+            var valueLogic = element.attr("data-value");
+            var valueLink = element.attr("data-link");
+
+            // retrieves the complete set of value fields from the drop
+            // field to apply the item values into them
+            var valueFields = dropField.data("value_fields");
+
+            // retrieves the item associated with the selected list item
+            // so that it may be used for the template rendering
+            var item = element.data("item");
+
+            // applies the template to the template (item)
+            // retrieving the resulting template item
+            var templateItem = template.uxtemplate(item);
+
+            // clears the hidden template elements and then
+            // adds the template item to it
+            hiddenTemplate.empty();
+            hiddenTemplate.append(templateItem);
+
+            // updates the value fields
+            hiddenField.attr("value", valueLogic);
+            textField.uxtextfield("value", {
+                        value : value
+                    });
+            dropField.data("value", value);
+
+            // iterates over all the value field to apply the
+            // correct item value to them
+            for (var key in valueFields) {
+                var field = valueFields[key];
+                var _value = item[key];
+                field.attr("value", _value);
+            }
+
+            // adds the lock class to the drop field
+            // in case the hidden field is present
+            // and there is a logic field "selected"
+            hiddenField.length > 0 && valueLogic
+                    && dropField.addClass("drop-field-lock");
+
+            // triggers the value select event
+            dropField.triggerHandler("value_select", [value, valueLogic, item]);
+
+            // in case the value link is set
+            if (valueLink) {
+                // changes the document location to
+                // the value link value
+                document.location = valueLink;
+            }
+
+            // calculates the new selection index from the element
+            // index and updates the data attribute of the drop
+            // field accordingly, then runs the update selection
+            // to update the graphics
+            var selectionIndex = element.index() + 1
+            dropField.data("selection", selectionIndex);
+            _updateSelection(dropField, options);
+
+            // hides the drop field contents
+            dropFieldContents.hide();
         };
 
         // switches over the method
@@ -1430,6 +1487,14 @@
             case "reset" :
                 // resets the drop field value
                 _reset(matchedObject, options);
+
+                // breaks the switch
+                break
+
+            case "index" :
+                // selects the proper index value in the drop
+                // field, usefull for drop field select elements
+                _index(matchedObject, options);
 
                 // breaks the switch
                 break

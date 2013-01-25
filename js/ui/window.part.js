@@ -63,19 +63,33 @@
             // retrieves the window
             var _window = jQuery(window);
 
-            // retrieves the close button
+            // retrieves the references to both the close and
+            // the accept buttons
             var closeButton = jQuery(".close-button", matchedObject);
+            var acceptButton = jQuery(".accept-button", matchedObject);
 
             // registers for the click in the close button
             closeButton.click(function(event) {
-                        // retrieves the element
+                        // retrieves the element and uses it
+                        // to retrieve the parent window
                         var element = jQuery(this);
-
-                        // retrieves the window
                         var window = element.parents(".window");
 
-                        // hides the window
-                        _hide(window, options);
+                        // hides the window with the success flag
+                        // set to invalid
+                        _hide(window, options, false);
+                    });
+
+            // registers for the click in the accept button
+            acceptButton.click(function(event) {
+                        // retrieves the element and uses it
+                        // to retrieve the parent window
+                        var element = jQuery(this);
+                        var window = element.parents(".window");
+
+                        // hides the window with the success flag
+                        // set to valid
+                        _hide(window, options, true);
                     });
 
             // registers for the click event in the matched
@@ -143,12 +157,17 @@
             // positions the window in the screen
             _positionWindow(matchedObject, options);
 
+            // starts the various forms components contained
+            // in the window should reset the form to its
+            // original values and layout
+            _startForm(matchedObject, options);
+
             // triggers the show handler so that any handler
             // may be notified about the visibility change
             matchedObject.triggerHandler("show");
         };
 
-        var _hide = function(matchedObject, options) {
+        var _hide = function(matchedObject, options, success) {
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
 
@@ -165,9 +184,14 @@
             overlay.fadeOut(250);
             matchedObject.fadeOut(250);
 
+            // retrieves the appropriate name for the event to be
+            // triggered indiccating the state the window has closed
+            var name = success ? "success" : "cancel";
+
             // triggers the hide handler so that any handler
             // may be notified about the visibility change
             matchedObject.triggerHandler("hide");
+            matchedObject.triggerHandler(name);
         };
 
         var _showMask = function(matchedObject, options) {
@@ -217,6 +241,20 @@
             // sets the mask dimensions
             mask.width(matchedObjectWidth);
             mask.height(matchedObjectHeight);
+        };
+
+        var _startForm = function(matchedObject, options) {
+            // retrieves the complete set of fields (form fields)
+            // for the current window and then retrieves the first
+            // of these elements (to be focused)
+            var fields = matchedObject.uxfields()
+            var first = jQuery(fields[0]);
+
+            // focus the first field in the form and then resets
+            // the complete set of fields in the form to their
+            // original values (form reset operation)
+            first.uxfocus();
+            fields.uxreset();
         };
 
         var __updateDots = function(matchedObject, options) {
