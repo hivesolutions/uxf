@@ -140,8 +140,7 @@
             // field then retrieves the current value of it and converts
             // it into a float representation
             var textField = jQuery(".text-field", incrementalField);
-            var textFieldValue = textField.attr("value");
-            var floatvalue = parseFloat(textFieldValue);
+            var floatvalue = textField.uxfloat()
 
             // checks if the incremental field to verify that the
             // incremental field is not disabled, in case it is
@@ -164,8 +163,7 @@
             // field then retrieves the current value of it and converts
             // it into a float representation
             var textField = jQuery(".text-field", incrementalField);
-            var textFieldValue = textField.attr("value");
-            var floatvalue = parseFloat(textFieldValue);
+            var floatvalue = textField.uxfloat();
 
             // retrieves the data type for associated with the text field
             // for the incremental field (non natural validation)
@@ -182,7 +180,7 @@
             // in case the current text field is of data type natural
             // (negative numbers not allowed) and the value is zero or
             // less no changes are done
-            if (type == "natural" && floatvalue <= 0) {
+            if ((type == "natural" || type == "floatp") && floatvalue <= 0) {
                 // returns immediately (avoids changing the value)
                 return;
             }
