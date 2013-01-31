@@ -61,10 +61,19 @@
             // in case the gateway was successfully retrieved
             // time to retrieve the binie data to be printed
             if (gateway) {
+                // retrieves the printing format associated
+                // with the printing infra-structure of the
+                // currently loaded gateway
+                var format = gateway.pformat();
+
                 // runs the remote call to retrieve the binie
                 // contents
                 jQuery.ajax({
-                            url : binieUrl + "?base_64=1",
+                            url : binieUrl,
+                            data : {
+                                base_64 : 1,
+                                format : format
+                            },
                             success : function(data, asdasd, aswefwegew) {
                                 // prints the "just" received data using the
                                 // gateway plugin (direct access to driver)
