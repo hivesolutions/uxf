@@ -66,14 +66,26 @@
                 // currently loaded gateway
                 var format = gateway.pformat();
 
+                // creates the initial data structure to be uses
+                // to instruct the data source on how to print
+                // the document and how the provided data is structured
+                var data = {
+                    base_64 : 1,
+                    format : format
+                };
+
+                // tries to retrive the data processing method for
+                // the currently defined format in case it exists
+                // calls it with the data structure so that it
+                // "completes" it with the "extra" data
+                var method = matchedObject["uxgprint" + format];
+                method && method(gateway, data);
+
                 // runs the remote call to retrieve the binie
                 // contents
                 jQuery.ajax({
                             url : binieUrl,
-                            data : {
-                                base_64 : 1,
-                                format : format
-                            },
+                            data : data,
                             success : function(data, asdasd, aswefwegew) {
                                 // prints the "just" received data using the
                                 // gateway plugin (direct access to driver)
@@ -133,5 +145,37 @@
 
         // returns the object
         return this;
+    };
+})(jQuery);
+
+(function($) {
+    jQuery.fn.uxgprintpdf = function(gateway, data) {
+        // retrieves the complete set of device specifications
+        // for the current system and sets the intial value of
+        // the default device variable as unset
+        var devices = gateway.pdevices();
+        var defaultDevice = null;
+
+        // iterates over all the (printing) devices in the system
+        // to try to "find" the one that's the default
+        for (var index = 0; index < devices.length; index++) {
+            var device = devices[index];
+            if (!device.isDefault) {
+                continue;
+            }
+            defaultDevice = device;
+            break;
+        }
+
+        // in case no default device is found must return immediately
+        // nothing to be set for the current situation
+        if (!defaultDevice) {
+            return;
+        }
+
+        // updates the data structure with the device with and length
+        // for the defined paper size
+        data["width"] = defaultDevice["width"];
+        data["height"] = defaultDevice["length"];
     };
 })(jQuery);
