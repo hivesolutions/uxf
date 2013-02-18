@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxcursor = function(position) {
         // the default values for the next
         var defaults = {};

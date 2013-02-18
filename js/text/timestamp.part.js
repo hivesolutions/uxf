@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxtimestamp = function(method, options) {
         // the various regex values for the time
         // date format part replacement

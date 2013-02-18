@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxkey = function(element, options) {
         // the default values for the key
         var defaults = {};

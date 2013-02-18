@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxwiki = function(message, options) {
         // the default values for the wiki
         var defaults = {};

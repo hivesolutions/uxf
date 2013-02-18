@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxerror = function(method, options) {
         // the regex for string character regex,
         // for string replacement

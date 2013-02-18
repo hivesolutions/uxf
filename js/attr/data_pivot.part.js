@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatapivot = function(query, callback, options) {
         // the value to be used as the maximum (overflow) value
         // for the width of the pivot column.

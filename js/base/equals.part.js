@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.uxequals = function(first, second) {
         // allocates space for the variables that will be
         // used to store the temporary values, no multiple

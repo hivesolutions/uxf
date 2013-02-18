@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.uxctrl = function(keycode, callback, arguments) {
         // retrieves the document element
         var _document = jQuery(document);

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxshortcuts = function(element, options) {
         // the default values for the shortcuts
         var defaults = {};

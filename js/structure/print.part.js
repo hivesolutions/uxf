@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxprint = function(method, options) {
         // the default values for the enable
         var defaults = {};

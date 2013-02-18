@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxprogressbar = function(method, options) {
         // the default values for the progress bar
         var defaults = {};

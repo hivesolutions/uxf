@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxscroll = function(options) {
         // the default values for the scrill
         var defaults = {

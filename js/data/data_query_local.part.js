@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdataquerylocal = function(query, callback, options) {
         // the default values for the data query local
         var defaults = {};

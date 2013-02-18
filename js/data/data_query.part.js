@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdataquery = function(query, callback, options) {
         // the default values for the data query
         var defaults = {};

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxhightlightbox = function(options) {
         // the default values for the data source
         var defaults = {};

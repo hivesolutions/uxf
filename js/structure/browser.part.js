@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxbrowser = function(options) {
         // the data browser values
         var DATA_BROWSER = [{

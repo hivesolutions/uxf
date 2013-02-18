@@ -11,7 +11,7 @@
  * @license Hive Solutions Confidential Usage License (HSCUL) -
  *          http://www.hive.pt/licenses/
  */
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxnotification = function(options) {
         // the default values for the notification
         var defaults = {

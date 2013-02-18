@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxgprint = function(method, options) {
         // the default values for the print
         var defaults = {};
@@ -148,7 +148,7 @@
     };
 })(jQuery);
 
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxgprintpdf = function(gateway, data) {
         // retrieves the complete set of device specifications
         // for the current system and sets the intial value of

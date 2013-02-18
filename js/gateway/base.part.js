@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxg = function(strict) {
         // the name of the gateway plugin, should not
         // change during the timeline

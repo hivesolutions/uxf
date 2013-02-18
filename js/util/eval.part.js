@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxeval = function(element, options) {
         // the defaut timeout for eval
         var DEFAULT_TIMEOUT = 1000;

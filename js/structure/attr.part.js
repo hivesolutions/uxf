@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxattr = function(attrName, attrNameTarget) {
         // sets the jquery matched object
         var matchedObject = this;

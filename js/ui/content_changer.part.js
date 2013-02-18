@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxcontentchanger = function(path, callback, options) {
         // the default timeout to be used in the changer
         var DEFAULT_TIMEOUT = 1000;

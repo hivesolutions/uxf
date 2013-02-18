@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.uxclone = function(value) {
         // in case the provided value is not valid or
         // in case it's not an object returns the same

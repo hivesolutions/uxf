@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxscan = function(element, options) {
         // the ammount of time to considered between letter sending any letter
         // sending in bettwen this value is discarded, This value should be

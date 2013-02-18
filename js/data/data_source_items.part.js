@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatasourceitems = function(options) {
         // the default values for the data source local
         var defaults = {};

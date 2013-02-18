@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdataqueryjson = function(query, callback, options) {
         // the default timeout to be used in the request
         // (this value is used to delay the request)

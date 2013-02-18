@@ -11,7 +11,7 @@
  * @license Hive Solutions Confidential Usage License (HSCUL) -
  *          http://www.hive.pt/licenses/
  */
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdroptag = function(method, options) {
         // the default values for the data query json
         var defaults = {};

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxform = function(options) {
         // the default values for the form
         var defaults = {};

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxfiledrop = function(options) {
         // the default values for the plugin
         var defaults = {};

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxpasswordmeter = function(options) {
         // the various regex values for password
         // strength validation

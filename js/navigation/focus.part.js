@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxfocus = function(options) {
         // the default values for the next
         var defaults = {};

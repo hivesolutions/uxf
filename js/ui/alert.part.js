@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxalert = function(message, callback, options) {
         // the default values for the alert
         var defaults = {};

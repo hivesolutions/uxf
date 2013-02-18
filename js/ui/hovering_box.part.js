@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxhoveringbox = function(options) {
         // the default values for the hovering box
         var defaults = {};

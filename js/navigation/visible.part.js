@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.uxvisible = function(element, offset, delta, parent) {
         // retreives the offset value, talking into
         // acccount the default value

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxapply = function(options) {
         // the default values for the apply
         var defaults = {};

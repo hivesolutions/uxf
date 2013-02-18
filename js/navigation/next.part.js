@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxnext = function(options) {
         // the default values for the next
         var defaults = {};

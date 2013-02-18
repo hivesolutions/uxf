@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatasourcejson = function(options) {
         // the default values for the data source json
         var defaults = {};

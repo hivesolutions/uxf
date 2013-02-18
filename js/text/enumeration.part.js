@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxenumeration = function(options) {
         // the regex for string character regex,
         // for string replacement

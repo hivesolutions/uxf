@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxenable = function(method, options) {
         // the default values for the enable
         var defaults = {};

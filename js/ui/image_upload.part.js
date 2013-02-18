@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uximageupload = function(element, options) {
         // the default values for the image upload
         var defaults = {};

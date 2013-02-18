@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatasourcegenders = function(options) {
         // the set of genders to be used
         var GENDERS = ["Male", "Female"];

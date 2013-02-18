@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdisable = function(options) {
         // the default values for the disable
         var defaults = {};

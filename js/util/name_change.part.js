@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxnamechange = function(options) {
         // the default values for the name change
         var defaults = {};

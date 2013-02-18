@@ -11,7 +11,7 @@
  * @license Hive Solutions Confidential Usage License (HSCUL) -
  *          http://www.hive.pt/licenses/
  */
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxfilter = function(options) {
         // the default values for the filter
         var defaults = {

@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxvideo = function(options) {
         // the map for the youtube
         // base addresses

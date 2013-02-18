@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxtemplate = function(attributes, options) {
         // the default values for the template
         var defaults = {};

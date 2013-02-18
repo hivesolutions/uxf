@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxreset = function() {
         // sets the jquery matched object
         var matchedObject = this;

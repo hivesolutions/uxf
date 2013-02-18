@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatasourcecountries = function(options) {
         // the set of countries to be used
         var COUNTRIES = ["Afghanistan", "Albania", "Algeria", "Andorra",

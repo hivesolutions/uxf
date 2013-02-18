@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxdatetime = function(options) {
         // the default values for the name change
         var defaults = {};

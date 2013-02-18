@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxconfirm = function(message, callback, options) {
         // the default values for the confirm
         var defaults = {};

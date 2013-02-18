@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxlist = function(options) {
         // the default values for the link confirm
         var defaults = {};

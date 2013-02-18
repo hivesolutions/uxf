@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxprevious = function(options) {
         // the default values for the previous
         var defaults = {};

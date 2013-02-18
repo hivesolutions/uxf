@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxtransformflip = function(element, options) {
         // the default values for the transform flip
         var defaults = {};

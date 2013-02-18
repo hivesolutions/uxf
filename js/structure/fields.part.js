@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxfields = function(nested) {
         // returns the complete set of fields (valid fields)
         // for the provided context, note that in case the

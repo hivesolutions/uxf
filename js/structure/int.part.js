@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.fn.uxint = function() {
         // sets the jquery matched object
         var matchedObject = this;

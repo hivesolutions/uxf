@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     jQuery.uxround = function(value, decimalPlaces) {
         // rounds the specified value to the
         // specified number of decimal places
