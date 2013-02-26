@@ -4,6 +4,11 @@
         // (this value is used to delay the request)
         var DEFAULT_TIMEOUT = 250;
 
+        // the default value to be used when no number of
+        // records field is defined (should be a very large
+        // value) so that all the records are retrieved
+        var MAX_RECORDS = 100000000;
+
         // the default values for the data query json
         var defaults = {};
 
@@ -62,8 +67,8 @@
             var filters = query["filters"] || [];
 
             // retrieves the record count information
-            var startRecord = query["startRecord"];
-            var numberRecords = query["numberRecords"];
+            var startRecord = query["startRecord"] || 0;
+            var numberRecords = query["numberRecords"] || MAX_RECORDS;
 
             // unpacks the sort value and the sort oder from the
             // sort tuple and uses them to create the "final" sort

@@ -905,7 +905,8 @@
             // nullifies the number of options in case it's necessary
             numberOptions = filterOptions ? numberOptions : null;
 
-            // runs the query in the data source
+            // runs the query in the data source, this should be
+            // redirected to the proper data source handler
             dataSource.uxdataquery({
                         filterString : filterString,
                         filterAttributes : filterAttributes,

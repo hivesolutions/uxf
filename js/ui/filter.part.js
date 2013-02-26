@@ -1027,6 +1027,10 @@
                         // retrieves the valid items length
                         var validItemsLength = validItems.length;
 
+                        // creates the list that will hold the complete set of elements
+                        // resulting from the apply of the template
+                        var templateItems = [];
+
                         // iterates over all the valid items to create
                         // proper elements
                         _validItems.each(function(index, element) {
@@ -1096,7 +1100,7 @@
                             // removes the filter element class from the template item,
                             // then adds it to the filter contents
                             templateItem.addClass("filter-element");
-                            filterContents.append(templateItem);
+                            templateItems.push(templateItem[0]);
 
                             // registers the template item for the click event
                             // to select the template item in case a click happens
@@ -1201,6 +1205,10 @@
                                         _select(templateItem, filter, options);
                                     });
                         });
+
+                        // adds the complete set of generated template items to the
+                        // contents of the current filter
+                        filterContents.append(templateItems);
 
                         // in case there are no items to be shown
                         if (validItemsLength > 0) {
