@@ -31,7 +31,7 @@
                 return;
             }
 
-            // pritns the current document
+            // prints the current document
             // to the printer
             window.print();
         };
