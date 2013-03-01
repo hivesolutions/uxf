@@ -28,6 +28,14 @@
             // retrieves the body
             var _body = jQuery("body");
 
+            // retrieves the complete set of template elements and applies
+            // the attribute name obfuscation in each of them so that the
+            // attributes do not "collide" creating unwanted behavior
+            var template = jQuery(".template", matchedObject);
+            template.uxattr("name", "data-name");
+            template.uxattr("class", "data-class");
+            template.uxattr("src", "data-src");
+
             // retrieves the meta source element to be started in the
             // first state of the apply (going to create functions)
             var source = jQuery(".source", matchedObject).not(".template .source");

@@ -64,6 +64,7 @@
             // re-sets the the "obfuscated" name and src
             // attributes to the original form
             templateElement.uxattr("data-name", "name");
+            templateElement.uxattr("data-class", "class");
             templateElement.uxattr("data-src", "src");
 
             // returns the template element (cloned element)
