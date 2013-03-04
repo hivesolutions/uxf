@@ -57,15 +57,15 @@
             templateElement.html(templateContents);
             templateElement.removeClass("template");
 
-            // applies the ux in the element, in case the
-            // apply flag is set
-            apply && templateElement.uxapply();
-
             // re-sets the the "obfuscated" name and src
             // attributes to the original form
             templateElement.uxattr("data-name", "name");
             templateElement.uxattr("data-class", "class");
             templateElement.uxattr("data-src", "src");
+
+            // applies the ux in the element, in case the
+            // apply flag is set
+            apply && templateElement.uxapply();
 
             // returns the template element (cloned element)
             return templateElement;
