@@ -1177,20 +1177,22 @@
                             var isVisible = dropFieldContents.is(":visible");
                             !isVisible && dropFieldContents.show();
 
-                            // retrieves the drop field items
+                            // retrieves the drop field items as the children
+                            // elements of the drop field contents (direct children)
                             var dropFieldContentsItems = dropFieldContents.children();
 
-                            // calculates the drop fields contents with
-                            //using the text field width and the drop field
-                            // contents items width
-                            var textFieldWidth = textField.outerWidth();
-                            var dropFieldContentsItemsExtraWidth = dropFieldContentsItems.outerWidth()
-                                    - dropFieldContentsItems.width();
+                            // calculates the drop fields contents width
+                            // using the text field width as reference and calculating
+                            // the extra width to be removed from the dropfield as the
+                            // extra margin (and border) values that it may contain
+                            var textFieldWidth = textField.outerWidth(true);
+                            var dropFieldContentsItemsExtraWidth = dropFieldContentsItems.outerWidth(true)
+                                    - dropFieldContentsItems.outerWidth();
                             var dropFieldContentsWidth = textFieldWidth
                                     - dropFieldContentsItemsExtraWidth;
 
-                            // in case the current drop field contents is not visible
-                            // hides it back (original visibility)
+                            // in case the current drop field contents are not visible
+                            // hides them back (original visibility)
                             !isVisible && dropFieldContents.hide();
 
                             // sets the drop field contents width
