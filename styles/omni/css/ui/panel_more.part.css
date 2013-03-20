@@ -1,15 +1,15 @@
-.omni-style .panel-more .panel-more-action {
+.omni-style .panel-more > .panel-more-action {
     clear: both;
 }
 
-.omni-style .panel-more li.list-more {
+.omni-style .panel-more > .panel-more-action > li.list-more {
     margin-top: 7px; ;
     position: absolute;
     text-align: center;
     width: 532px;
 }
 
-.omni-style .panel-more li.list-more span {
+.omni-style .panel-more > .panel-more-action > li.list-more span {
     background-color: #908e8f;
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
@@ -21,6 +21,6 @@
     text-transform: uppercase;
 }
 
-.omni-style .panel-more li.list-more span:hover {
+.omni-style .panel-more > .panel-more-action > li.list-more span:hover {
     background-color: #71ae48;
 }
