@@ -74,8 +74,19 @@
                         // so that trailing spaces are removed
                         var fields = jQuery(".text-field[data-object]", element);
                         !noTrim && fields.each(function(index, element) {
+                                    // retrieves the current element in iteration
+                                    // and the value associated, then verifies if
+                                    // the data type from it is string an in case it's not
+                                    // ignores the current value
                                     var _element = jQuery(this)
                                     var value = _element.uxvalue();
+                                    if (typeof value !== "string") {
+                                        return;
+                                    }
+
+                                    // trims the value removing any trailing
+                                    // and leading spaces and then re-sets the
+                                    // value in the element
                                     value = value.trim();
                                     _element.uxvalue(value);
                                 });
