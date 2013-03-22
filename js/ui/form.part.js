@@ -50,6 +50,10 @@
                         // retrieves the current element
                         var element = jQuery(this);
 
+                        // retrieves the currently set attribute value
+                        // for the trim operation on the form
+                        var noTrim = element.attr("data-no_trim") || false;
+
                         // retrieves the state of the submited flag
                         // and then updates it to the valid value
                         var submited = element.data("submited");
@@ -64,6 +68,17 @@
                             event.stopPropagation();
                             event.preventDefault();
                         }
+
+                        // retrieves the complete set of (input) fields
+                        // contained in the form  an itreates over them
+                        // so that trailing spaces are removed
+                        var fields = jQuery(".text-field", element);
+                        !noTrim && fields.each(function(index, element) {
+                                    var _element = jQuery(this)
+                                    var value = _element.uxvalue();
+                                    value = value.trim();
+                                    _element.uxvalue(value);
+                                });
 
                         // checks if the current element has the ajax form
                         // class, in such cases must avoid normal submission
