@@ -72,7 +72,7 @@
                         // retrieves the complete set of (input) fields
                         // contained in the form  an itreates over them
                         // so that trailing spaces are removed
-                        var fields = jQuery(".text-field", element);
+                        var fields = jQuery(".text-field[data-object]", element);
                         !noTrim && fields.each(function(index, element) {
                                     var _element = jQuery(this)
                                     var value = _element.uxvalue();
