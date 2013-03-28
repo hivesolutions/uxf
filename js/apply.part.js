@@ -201,9 +201,6 @@
             // applies the various shortcut plugins
             shortcuts.uxshortcuts();
 
-            // applies the focus plugins
-            focus.uxfocus();
-
             // applies the name change plugin
             nameChange.uxnamechange();
 
@@ -235,6 +232,11 @@
             // shows the body in case it's meant to be
             // shown only after the ux script execution
             waitLoad && _body.show();
+
+            // applies the focus plugins, this must be done
+            // after the visibility is set so that no problem
+            // with focus operations occurs (safe operation)
+            focus.uxfocus();
         };
 
         /**
