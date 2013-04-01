@@ -51,6 +51,12 @@
                 // object type access (hash based conditions)
                 elementReference.attr("data-object", "table");
 
+                // retrieves the reference to the new line row and updates
+                // its colspan so that it spans all the columns (very large
+                // value is set)
+                var newLineRow = jQuery(".table-new-line-row", elementReference);
+                newLineRow.attr("colspan", "99999");
+
                 // retrieves all the rows from the element reference
                 // and all the text fields associated with the element reference
                 var rows = jQuery("tbody > tr:not(.template)", elementReference);
