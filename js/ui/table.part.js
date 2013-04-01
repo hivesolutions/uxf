@@ -234,9 +234,9 @@
             var table = row.parents(".table");
             var isEdit = table.hasClass("table-edit");
 
-            // in case the table is not editable
+            // in case the table is not editable must return
+            // immediately no line handlers will be created
             if (!isEdit) {
-                // returns immediately
                 return;
             }
 
@@ -255,13 +255,14 @@
             var removeButton = jQuery(".table-remove", row);
             var textField = jQuery(".text-field", row);
 
-            // retrieves the table width, to calculate
-            // the add button left margin
-            var tableWidth = table.outerWidth();
-            var addButtonWidth = addButton.width();
-            var addButtonMarginLeft = tableWidth * -1;
+            // retrieves the table width and the "extra width",
+            // to calculate the add button left margin
+            var tableWidth = table.outerWidth(true);
+            var extraWidth = addButton.outerWidth(true);
+            var addButtonMarginLeft = (tableWidth + extraWidth) * -1;
 
-            // sets the add button left margin
+            // sets the add button left margin according to the
+            // value that was "just" calculated
             addButton.css("margin-left", addButtonMarginLeft + "px");
 
             // registers for the mouse over event in the row
@@ -277,9 +278,9 @@
 
                         // retrieves the table width, to calculate
                         // the add button left margin
-                        var tableWidth = table.outerWidth();
-                        var addButtonWidth = addButton.width();
-                        var addButtonMarginLeft = tableWidth * -1;
+                        var tableWidth = table.outerWidth(true);
+                        var addButtonMarginLeft = (tableWidth + extraWidth)
+                                * -1;
 
                         // sets the add button left margin, it's important
                         // to re-calculate this value because the table may
