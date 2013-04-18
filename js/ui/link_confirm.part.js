@@ -46,14 +46,15 @@
         };
 
         var _call = function(matchedObject, options) {
-            // retrieves the document
-            var _document = jQuery(document);
+            // retrieves the body element for the current
+            // structure model
+            var _body = jQuery("body");
 
             // retrieves the message from the matched object
             var message = matchedObject.attr("data-message");
 
             // calls the confirm window in the document
-            _document.uxconfirm(message, function(result) {
+            _body.uxconfirm(message, function(result) {
                         // in case the result is cancel,
                         // avoids execution
                         if (!result) {

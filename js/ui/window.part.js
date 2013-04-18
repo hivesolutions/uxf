@@ -129,9 +129,19 @@
         };
 
         var _show = function(matchedObject, options) {
-            // retrieves the overlay element and forces a resize
-            // on it to ensure dimensions (ensures proper size)
+            // retrieves the overlay element and in case it's not present
+            // creates a default element adding it to the start of the
+            // top level body element (default behaviour)
             var overlay = jQuery(".overlay");
+            if (overlay.length == 0) {
+                var _body = jQuery("body");
+                overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                _body.prepend(overlay);
+            }
+
+            // triggers the resize event on the overlay in order
+            // to force a resize on it to ensure dimensions
+            // (ensures proper "final" size)
             overlay.trigger("resize");
 
             // makes sure that the current object is the only visible

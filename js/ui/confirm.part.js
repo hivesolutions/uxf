@@ -27,6 +27,17 @@
         var _appendHtml = function() {
             // retrieves the window (alert window) elements
             var window = jQuery(".window.window-alert", matchedObject);
+            if (window.length == 0) {
+                window = jQuery("<div class=\"window window-alert window-hide\">"
+                        + "<h1></h1>"
+                        + "<p class=\"single\"></p>"
+                        + "<div class=\"window-buttons\">"
+                        + "<span class=\"button button-cancel\">Cancel</span>"
+                        + "<span class=\"button button-confirm\">Confirm</span>"
+                        + "</div>");
+                window.uxwindow();
+                matchedObject.append(window);
+            }
             var windowHeader = jQuery("h1", window);
             var windowContents = jQuery("p", window);
             var windowButtonConfirm = jQuery(".button-confirm", window);
@@ -51,6 +62,17 @@
         var _registerHandlers = function() {
             // retrieves the window (alert window) elements
             var window = jQuery(".window.window-alert", matchedObject);
+            if (window.length == 0) {
+                window = jQuery("<div class=\"window window-alert window-hide\">"
+                        + "<h1></h1>"
+                        + "<p class=\"single\"></p>"
+                        + "<div class=\"window-buttons\">"
+                        + "<span class=\"button button-cancel\">Cancel</span>"
+                        + "<span class=\"button button-confirm\">Confirm</span>"
+                        + "</div>");
+                window.uxwindow();
+                matchedObject.append(window);
+            }
             var windowButtonConfirm = jQuery(".button-confirm", window);
             var windowButtonCancel = jQuery(".button-cancel", window);
 
