@@ -103,7 +103,7 @@
 .omni-style .filter .filter-advanced .filter-sort .filter-sort-option.ascending,
 .omni-style .filter .filter-advanced .filter-sort .filter-sort-option.descending,
 .omni-style .filter .filter-advanced .filter-sort .filter-sort-option.equals {
-    background: #908e8f url(../images/filter-input-sorting.png) no-repeat; ;
+    background: #908e8f url(../images/filter-input-sorting.png) no-repeat;
     color: #ffffff;
     padding-right: 19px;
 }
