@@ -136,6 +136,7 @@
             if (overlay.length == 0) {
                 var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                overlay.uxoverlay();
                 _body.prepend(overlay);
             }
 
