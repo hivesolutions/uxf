@@ -47,14 +47,19 @@
                         // retrieves the selector value for the target
                         // and then uses it to retrieve the target
                         var targetSelector = replacer.attr("data-target");
+                        var noAuto = replacer.attr("data-no_auto");
                         var target = jQuery(targetSelector);
 
-                        // retrieves the target element value
+                        // retrieves the target element value so that it's
+                        // possible to check if the target should be automaitcally
+                        // shown (replaced)
                         var value = target.uxvalue();
 
                         // replaces the elements (not focusing in the
-                        // target element)
-                        value && _replace(replacer, options, false);
+                        // target element) because the target element
+                        // already contains a value, this is only done
+                        // when the not auto attribute is not set
+                        !noAuto && value && _replace(replacer, options, false);
                     });
         };
 

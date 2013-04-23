@@ -20,5 +20,5 @@
 
         // returns the calculated width
         return width;
-    }
+    };
 })(jQuery);

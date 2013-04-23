@@ -30,5 +30,5 @@
         // returns the just retrived value from the component
         // to the caller method
         return value;
-    }
+    };
 })(jQuery);

@@ -60,5 +60,5 @@
 
         // returns the object
         return this;
-    }
+    };
 })(jQuery);

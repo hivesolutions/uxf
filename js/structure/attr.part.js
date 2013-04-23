@@ -21,5 +21,5 @@
                     _element.attr(attrNameTarget, attribute);
                     _element.removeAttr(attrName);
                 });
-    }
+    };
 })(jQuery);

@@ -14,5 +14,5 @@
         // returns the value that was retrieved and converted
         // into a float value
         return valueF;
-    }
+    };
 })(jQuery);

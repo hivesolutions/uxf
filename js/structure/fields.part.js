@@ -7,5 +7,5 @@
         var fields = jQuery("[data-object]", this);
         fields = nested ? fields : fields.not(":parents([data-object])");
         return fields;
-    }
+    };
 })(jQuery);

@@ -19,5 +19,5 @@
                     var method = _element["ux" + object]
                     method && method.call(_element, "reset");
                 });
-    }
+    };
 })(jQuery);
