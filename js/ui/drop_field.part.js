@@ -68,6 +68,9 @@
                 var isSelect = _element.hasClass("drop-field-select");
 
                 // retrieves both the display, extra, value and link attributes
+                // additionally retrieves also the placeholder so that it may
+                // propagated to the lower layers
+                var placeholder = _element.attr("placeholder");
                 var displayAttribute = _element.attr("data-display_attribute");
                 var extraAttribute = _element.attr("data-extra_attribute");
                 var valueAttribute = _element.attr("data-value_attribute");
@@ -96,10 +99,11 @@
                     var decimalPlaces = _element.attr("data-decimal_places");
 
                     // creates the text field element and sets the various
-                    // attributes in it
+                    // attributes in it (attribute propagation)
                     var textField = jQuery("<input type=\"text\" class=\"text-field\" />");
                     textField.attr("name", name);
                     textField.attr("value", value);
+                    textField.attr("placeholder", placeholder);
                     textField.attr("data-original_value", originalValue);
                     textField.attr("data-error", error);
                     textField.attr("data-type", type);
