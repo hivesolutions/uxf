@@ -61,20 +61,30 @@
             // retrieves the window
             var _window = jQuery(window);
 
-            // retrieves the close links for the notification
+            // retrieves the close links for the notification and the
+            // set of header notitications that are meant to be closable
             var linkClose = jQuery("> .link-close", matchedObject);
+            var closables = matchedObject.filter(".link-close");
 
             // register for the click event on the link close
             linkClose.click(function() {
                 // retrieves the element
                 var element = jQuery(this);
 
-                // retrieves the (parent) header notification
+                // retrieves the (parent) header notification and then
+                // hides it according to the defined specification
                 var headerNotification = element.parent(".header-notification");
-
-                // hides the header notification
                 headerNotification.hide();
             });
+
+            // registers for the click event on the set of closable
+            // notifications (registers for such)
+            closables.click(function() {
+                        // retrieves the element and then hides it in accordance
+                        // with the current specification
+                        var element = jQuery(this);
+                        element.hide();
+                    });
         };
 
         // initializes the plugin
