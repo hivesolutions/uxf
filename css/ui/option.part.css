@@ -1,0 +1,11 @@
+.option-key {
+    float: left;
+}
+
+.option-value {
+    float: right;
+}
+
+.option-clear {
+    clear: both;
+}

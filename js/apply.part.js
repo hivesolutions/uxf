@@ -89,6 +89,7 @@
             var selectList = jQuery(".select-list", matchedObject).not(".template .select-list");
             var sourceList = jQuery(".source-list", matchedObject).not(".template .source-list");
             var crossList = jQuery(".cross-list", matchedObject).not(".template .cross-list");
+            var option = jQuery(".option", matchedObject).not(".template .option");
             var progressBar = jQuery(".progress-bar", matchedObject).not(".template .progress-bar");
             var passwordMeter = jQuery(".password-meter", matchedObject).not(".template .password-meter");
             var changer = jQuery(".changer", matchedObject).not(".template .changer");
@@ -179,6 +180,7 @@
             selectList.uxselectlist();
             sourceList.uxsourcelist();
             crossList.uxcrosslist();
+            option.uxoption();
             progressBar.uxprogressbar();
             passwordMeter.uxpasswordmeter();
             changer.uxchanger();
