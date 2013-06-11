@@ -57,6 +57,13 @@
                         var url = _element.html();
                         url = url.trim();
 
+                        // in case the current url value is not valid
+                        // must return immediately because it's not possible
+                        // to go any furhter with the current processing
+                        if (!url) {
+                            return;
+                        }
+
                         // parses the url retrieving the
                         // url information
                         var urlInformation = parseUrl(url);
@@ -117,22 +124,17 @@
             // calculates the auto play value
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
-            // updates the matched object html with the video iframe
-            matchedObject.html("<iframe width=\""
-                    + width
-                    + "\" height=\""
-                    + height
-                    + "\" src=\"http://www.youtube.com/embed/"
-                    + videoId
-                    + "?"
-                    + hdValue
-                    + "&"
-                    + infoValue
-                    + "&"
-                    + controlsValue
-                    + "&"
-                    + autoPlayValue
-                    + "\" frameborder=\"0\" webkitAllowFullScreen allowfullscreen></iframe>");
+            // updates the matched object html with the video embed object
+            // that will include a flash object into the code
+            matchedObject.html("<embed id=\"youtube-player\" width=\"" + width
+                    + "\" height=\"" + height
+                    + "\" src=\"http://www.youtube.com/v/" + videoId + "?"
+                    + hdValue + "&" + infoValue + "&" + controlsValue + "&"
+                    + autoPlayValue + "&playerapiid=youtube-player"
+                    + "&version=3" + "&enablejsapi=1" + "\" frameborder=\"0\""
+                    + " allowfullscreen=\"true\""
+                    + " allowscriptaccess=\"always\""
+                    + " type=\"application/x-shockwave-flash\"></embed>");
         };
 
         var updateVimeo = function(matchedObject, options, urlInformation) {
@@ -292,3 +294,17 @@
         return this;
     };
 })(jQuery);
+
+function onYoutubeStateChange(state) {
+    if (state == 0) {
+        var video = jQuery("#youtube-player");
+        var parent = video.parents(".video");
+        parent.trigger("ended");
+    }
+}
+
+function onYouTubePlayerReady(id) {
+    var video = jQuery("#youtube-player");
+    var videoElement = video[0];
+    videoElement.addEventListener("onStateChange", "onYoutubeStateChange");
+}
