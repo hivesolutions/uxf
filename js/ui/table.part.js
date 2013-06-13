@@ -282,6 +282,14 @@
                         var addButton = jQuery(".table-add", element);
                         var removeButton = jQuery(".table-remove", element);
 
+                        // tries to retrieve the proper add button width,
+                        // this operation is not predictable and incorrect
+                        // results may arise, so the valid results are stored
+                        // in the internal width variable and re-used latter
+                        var extraWidth = addButton.outerWidth(true)
+                                || addButton.data("width");
+                        addButton.data("width", extraWidth);
+
                         // retrieves the table width, to calculate
                         // the add button left margin
                         var tableWidth = table.outerWidth(true);
