@@ -284,6 +284,59 @@
             // support in the matched object (by default it's disabled)
             var infinite = matchedObject.attr("data-infinite") || false;
 
+            // registers for the new element event that triggers the
+            // request for the insertion of a new element of data to
+            // the top of the filter contents
+            matchedObject.bind("new_element", function(event, element) {
+                        // retrieves the current element as the filter and then retrievs
+                        // the internal reference to the contents and the template
+                        var filter = jQuery(this);
+                        var filterContents = jQuery(".filter-contents", filter);
+                        var template = jQuery(".template", filter);
+
+                        // creates the map with the options for the
+                        // rendering of the template to changed the
+                        // default value to be used
+                        var options = {
+                            apply : true,
+                            nullify : true,
+                            defaultValue : "-"
+                        };
+
+                        // tries to retrieve the object identifier from the
+                        // current item to be used as identifier of the element
+                        var objectId = element["object_id"] || element["oid"];
+
+                        // tries to retrieve the unique identifier from the
+                        // current item to be used as the cache key
+                        var uniqueId = element["unique_id"] || element["uid"];
+
+                        // applies the template to the template (item)
+                        // retrieving the resulting template item and
+                        // setting it the cache map for the unique id
+                        // only in case the unique id is valid (set)
+                        var templateItem = template.uxtemplate(element, options);
+                        if (uniqueId) {
+                            cache[uniqueId] = {
+                                item : templateItem,
+                                data : element
+                            }
+                        }
+
+                        // sets the object identifier information in the template
+                        // item (considered the main identifier for it)
+                        templateItem.data("object_id", objectId);
+
+                        // removes the filter element class from the template item,
+                        // then initializes its structures (event handling registration)
+                        templateItem.addClass("filter-element");
+                        _initTemplateItem(filter, templateItem);
+
+                        // adds the new template item to the initial part
+                        // of the filter contents section
+                        filterContents.prepend(templateItem);
+                    });
+
             // registers for the focus event on the text field
             // to change the visibility of the filter buttons
             textField.focus(function() {
@@ -1034,177 +1087,80 @@
                         // iterates over all the valid items to create
                         // proper elements
                         _validItems.each(function(index, element) {
-                            // creates the map with the options for the
-                            // rendering of the template to changed the
-                            // default value to be used
-                            var options = {
-                                apply : true,
-                                nullify : true,
-                                defaultValue : "-"
-                            };
+                                    // creates the map with the options for the
+                                    // rendering of the template to changed the
+                                    // default value to be used
+                                    var options = {
+                                        apply : true,
+                                        nullify : true,
+                                        defaultValue : "-"
+                                    };
 
-                            // tries to retrieve the object identifier from the
-                            // current item to be used as identifier of the element
-                            var objectId = element["object_id"]
-                                    || element["oid"];
+                                    // tries to retrieve the object identifier from the
+                                    // current item to be used as identifier of the element
+                                    var objectId = element["object_id"]
+                                            || element["oid"];
 
-                            // tries to retrieve the unique identifier from the
-                            // current item to be used as the cache key
-                            var uniqueId = element["unique_id"]
-                                    || element["uid"];
+                                    // tries to retrieve the unique identifier from the
+                                    // current item to be used as the cache key
+                                    var uniqueId = element["unique_id"]
+                                            || element["uid"];
 
-                            // retrieves the cache map from the filter and
-                            // tries to find the cache item for the unique identifier
-                            // validates it so that the data contained in it matches
-                            // the one cached in such case sets the template item as
-                            // the cached item (cache match usage)
-                            var cacheItem = cache[uniqueId];
-                            var cachedData = cacheItem ? cacheItem.data : null;
-                            var cacheValid = cachedData ? jQuery.uxequals(
-                                    cachedData, element) : false;
-                            if (cacheItem && cacheValid) {
-                                // sets the item contained in the cache item as
-                                // the current cache item (layout item reference)
-                                cacheItem = cacheItem.item;
+                                    // retrieves the cache map from the filter and
+                                    // tries to find the cache item for the unique identifier
+                                    // validates it so that the data contained in it matches
+                                    // the one cached in such case sets the template item as
+                                    // the cached item (cache match usage)
+                                    var cacheItem = cache[uniqueId];
+                                    var cachedData = cacheItem
+                                            ? cacheItem.data
+                                            : null;
+                                    var cacheValid = cachedData
+                                            ? jQuery.uxequals(cachedData,
+                                                    element)
+                                            : false;
+                                    if (cacheItem && cacheValid) {
+                                        // sets the item contained in the cache item as
+                                        // the current cache item (layout item reference)
+                                        cacheItem = cacheItem.item;
 
-                                // sets the template item as the curreently cached
-                                // item so that no construction occurs then removes
-                                // the selection classes from it (avoiding possible
-                                // layout problems)
-                                var templateItem = cacheItem;
-                                templateItem.removeClass("selected");
-                                templateItem.removeClass("first");
-                                templateItem.removeClass("last");
-                            }
-                            // otherwise must re-create the template item by runing
-                            // the template engine again
-                            else {
-                                // applies the template to the template (item)
-                                // retrieving the resulting template item and
-                                // setting it the cache map for the unique id
-                                // only in case the unique id is valid (set)
-                                var templateItem = template.uxtemplate(element,
-                                        options);
-                                if (uniqueId) {
-                                    cache[uniqueId] = {
-                                        item : templateItem,
-                                        data : element
+                                        // sets the template item as the curreently cached
+                                        // item so that no construction occurs then removes
+                                        // the selection classes from it (avoiding possible
+                                        // layout problems)
+                                        var templateItem = cacheItem;
+                                        templateItem.removeClass("selected");
+                                        templateItem.removeClass("first");
+                                        templateItem.removeClass("last");
                                     }
-                                }
-                            }
-
-                            // sets the object identifier information in the template
-                            // item (considered the main identifier for it)
-                            templateItem.data("object_id", objectId);
-
-                            // removes the filter element class from the template item,
-                            // then adds it to the filter contents
-                            templateItem.addClass("filter-element");
-                            templateItems.push(templateItem[0]);
-
-                            // registers the template item for the click event
-                            // to select the template item in case a click happens
-                            templateItem.click(function(event) {
-                                // retrieves the template item index
-                                var templateItemIndex = templateItem.index();
-
-                                // in case the control key is set must add new
-                                // selection to the selection set
-                                if (event.ctrlKey) {
-                                    // retrieves the current selection for reference
-                                    var selection = filter.data("selection");
-
-                                    // checks if the current selection is the initial
-                                    // empty selection, in case it's "pops" it from the
-                                    // current selection set (avoids problems in selection)
-                                    var isInitial = selection.length == 1
-                                            && selection[0] == 0;
-                                    isInitial && selection.pop();
-
-                                    // in case the current selection is empty it's time to update
-                                    // the pivot value (it's the first element of the selection)
-                                    selection.length == 0
-                                            && filter.data("pivot",
-                                                    templateItemIndex + 1);
-
-                                    // retrieves the index of the element in the selection
-                                    // index, this is going to be used to check if the element
-                                    // is present in the selection set
-                                    var elementIndex = selection.indexOf(templateItemIndex
-                                            + 1);
-
-                                    // in case the element index is invalid (it's not present
-                                    // in the selection set) must be added to set (selection)
-                                    if (elementIndex == -1) {
-                                        // adds the index to the selection set (selection)
-                                        selection.push(templateItemIndex + 1);
-                                    }
-                                    // otherwise the element is already present in the set
-                                    // and must be removed from it (de-selection)
+                                    // otherwise must re-create the template item by runing
+                                    // the template engine again
                                     else {
-                                        // removes the index from the selection set (selection)
-                                        selection.splice(elementIndex, 1);
+                                        // applies the template to the template (item)
+                                        // retrieving the resulting template item and
+                                        // setting it the cache map for the unique id
+                                        // only in case the unique id is valid (set)
+                                        var templateItem = template.uxtemplate(
+                                                element, options);
+                                        if (uniqueId) {
+                                            cache[uniqueId] = {
+                                                item : templateItem,
+                                                data : element
+                                            }
+                                        }
                                     }
-                                }
-                                // otherwise in case the shift key is pressed a range selection
-                                // must be processed
-                                else if (event.shiftKey) {
-                                    // retrieves the current index for the selection to check
-                                    // it agains the pivot index value
-                                    var index = templateItemIndex + 1;
 
-                                    // actions a range selection over the current pivot
-                                    // value and the currently defined index
-                                    _rangeSelection(index, filter, options);
-                                } else {
-                                    // sets the current selection to the current
-                                    // template item index and updates the pivot
-                                    // value accordingly
-                                    filter.data("selection", [templateItemIndex
-                                                    + 1]);
-                                    filter.data("pivot", templateItemIndex + 1);
-                                }
+                                    // sets the object identifier information in the template
+                                    // item (considered the main identifier for it)
+                                    templateItem.data("object_id", objectId);
 
-                                // updates the current selection
-                                _updateSelection(filter, options);
-                            });
-
-                            // binds the template item to the selected event
-                            templateItem.bind("selected", function() {
-                                // retrieves the template item index
-                                var templateItemIndex = templateItem.index();
-
-                                // retrieves the current selection and the index of
-                                // the selected template index from the filter
-                                // to be able check if the element is currently selected
-                                var selection = filter.data("selection");
-                                var elementIndex = selection.indexOf(templateItemIndex
-                                        + 1);
-
-                                // in case the element is currently selected
-                                // nothing is to be done
-                                if (elementIndex != -1) {
-                                    // returns immediately, avoids selection
-                                    return;
-                                }
-
-                                // resets the current selection to be the
-                                // currently selected element
-                                filter.data("selection",
-                                        [templateItemIndex + 1]);
-                                filter.data("pivot", templateItemIndex + 1);
-
-                                // updates the current selection
-                                _updateSelection(filter, options);
-                            });
-
-                            // binds the template item to the double click event
-                            templateItem.dblclick(function() {
-                                        // updates the current selection, runs the
-                                        // appropriate (default) actions
-                                        _select(templateItem, filter, options);
-                                    });
-                        });
+                                    // removes the filter element class from the template item,
+                                    // then adds it to the filter contents, then initializes its
+                                    // structures (event handling registration)
+                                    templateItem.addClass("filter-element");
+                                    templateItems.push(templateItem[0]);
+                                    _initTemplateItem(filter, templateItem);
+                                });
 
                         // adds the complete set of generated template items to the
                         // contents of the current filter
@@ -2601,6 +2557,106 @@
             var filterAdd = jQuery(".filter-advanced > .filter-input-add",
                     matchedObject);
             filterAdd.hide();
+        };
+
+        var _initTemplateItem = function(filter, templateItem) {
+            // registers the template item for the click event
+            // to select the template item in case a click happens
+            templateItem.click(function(event) {
+                // retrieves the template item index
+                var templateItemIndex = templateItem.index();
+
+                // in case the control key is set must add new
+                // selection to the selection set
+                if (event.ctrlKey) {
+                    // retrieves the current selection for reference
+                    var selection = filter.data("selection");
+
+                    // checks if the current selection is the initial
+                    // empty selection, in case it's "pops" it from the
+                    // current selection set (avoids problems in selection)
+                    var isInitial = selection.length == 1 && selection[0] == 0;
+                    isInitial && selection.pop();
+
+                    // in case the current selection is empty it's time to update
+                    // the pivot value (it's the first element of the selection)
+                    selection.length == 0
+                            && filter.data("pivot", templateItemIndex + 1);
+
+                    // retrieves the index of the element in the selection
+                    // index, this is going to be used to check if the element
+                    // is present in the selection set
+                    var elementIndex = selection.indexOf(templateItemIndex + 1);
+
+                    // in case the element index is invalid (it's not present
+                    // in the selection set) must be added to set (selection)
+                    if (elementIndex == -1) {
+                        // adds the index to the selection set (selection)
+                        selection.push(templateItemIndex + 1);
+                    }
+                    // otherwise the element is already present in the set
+                    // and must be removed from it (de-selection)
+                    else {
+                        // removes the index from the selection set (selection)
+                        selection.splice(elementIndex, 1);
+                    }
+                }
+                // otherwise in case the shift key is pressed a range selection
+                // must be processed
+                else if (event.shiftKey) {
+                    // retrieves the current index for the selection to check
+                    // it agains the pivot index value
+                    var index = templateItemIndex + 1;
+
+                    // actions a range selection over the current pivot
+                    // value and the currently defined index
+                    _rangeSelection(index, filter, options);
+                } else {
+                    // sets the current selection to the current
+                    // template item index and updates the pivot
+                    // value accordingly
+                    filter.data("selection", [templateItemIndex + 1]);
+                    filter.data("pivot", templateItemIndex + 1);
+                }
+
+                // updates the current selection
+                _updateSelection(filter, options);
+            });
+
+            // binds the template item to the selected event
+            templateItem.bind("selected", function() {
+                        // retrieves the template item index
+                        var templateItemIndex = templateItem.index();
+
+                        // retrieves the current selection and the index of
+                        // the selected template index from the filter
+                        // to be able check if the element is currently selected
+                        var selection = filter.data("selection");
+                        var elementIndex = selection.indexOf(templateItemIndex
+                                + 1);
+
+                        // in case the element is currently selected
+                        // nothing is to be done
+                        if (elementIndex != -1) {
+                            // returns immediately, avoids selection
+                            return;
+                        }
+
+                        // resets the current selection to be the
+                        // currently selected element
+                        filter.data("selection", [templateItemIndex + 1]);
+                        filter.data("pivot", templateItemIndex + 1);
+
+                        // updates the current selection
+                        _updateSelection(filter, options);
+                    });
+
+            // binds the template item to the double click event
+            templateItem.dblclick(function() {
+                        // updates the current selection, runs the
+                        // appropriate (default) actions
+                        _select(templateItem, filter, options);
+                    });
         };
 
         // initializes the plugin
