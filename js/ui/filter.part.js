@@ -15,7 +15,7 @@
     jQuery.fn.uxfilter = function(options) {
         // the default values for the filter
         var defaults = {
-            numberRecords : 9
+            numberRecords : 10
         };
 
         // sets the default options value
