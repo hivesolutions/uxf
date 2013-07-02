@@ -84,14 +84,23 @@
                 // runs the remote call to retrieve the binie
                 // contents
                 jQuery.ajax({
-                            url : binieUrl,
-                            data : data,
-                            success : function(data, asdasd, aswefwegew) {
-                                // prints the "just" received data using the
-                                // gateway plugin (direct access to driver)
-                                gateway.print(false, data);
-                            }
-                        });
+                    url : binieUrl,
+                    data : data,
+                    success : function(data) {
+                        // prints the "just" received data using the
+                        // gateway plugin (direct access to driver)
+                        gateway.print(false, data);
+                    },
+                    error : function() {
+                        // retrieves the body and uses it to raise an info message
+                        // about the error in the retrieval of the data
+                        var _body = jQuery("body");
+                        _body.uxinfo(
+                                "There was an error retrieving remote print data.<br />"
+                                        + "Please try again latter or contact the support team.",
+                                "Error", "warning");
+                    }
+                });
             }
             // otherwise the normal printing process must be used
             // in case a fallback url exists
@@ -145,37 +154,5 @@
 
         // returns the object
         return this;
-    };
-})(jQuery);
-
-(function(jQuery) {
-    jQuery.fn.uxgprintpdf = function(gateway, data) {
-        // retrieves the complete set of device specifications
-        // for the current system and sets the intial value of
-        // the default device variable as unset
-        var devices = gateway.pdevices();
-        var defaultDevice = null;
-
-        // iterates over all the (printing) devices in the system
-        // to try to "find" the one that's the default
-        for (var index = 0; index < devices.length; index++) {
-            var device = devices[index];
-            if (!device.isDefault) {
-                continue;
-            }
-            defaultDevice = device;
-            break;
-        }
-
-        // in case no default device is found must return immediately
-        // nothing to be set for the current situation
-        if (!defaultDevice) {
-            return;
-        }
-
-        // updates the data structure with the device with and length
-        // for the defined paper size
-        data["width"] = defaultDevice["width"];
-        data["height"] = defaultDevice["length"];
     };
 })(jQuery);
