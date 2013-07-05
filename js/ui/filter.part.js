@@ -768,8 +768,11 @@
                     });
 
             // registers for the key down in the document
-            // element in case the matched object is valid
-            matchedObject.length > 0 && _document.keydown(function(event) {
+            // element in case the matched object is valid and then
+            // sets the on destroy handler to avoid duplicated
+            // handlers in a multiple filter environment
+            matchedObject.length > 0
+                    && _document.keydown(onKeyDown = function(event) {
                         // sets the filter as the matched object
                         var filter = matchedObject;
 
@@ -834,6 +837,9 @@
                                 // breaks the switch
                                 break;
                         }
+                    });
+            matchedObject.bind("destroyed", function() {
+                        _document.unbind("keydown", onKeyDown);
                     });
 
             // registers for the click event in order
@@ -1509,7 +1515,7 @@
                                         // document otherwise creates a new window and opend
                                         // the link in it (external opening)
                                         isDocument && index == 0
-                                                ? document.location = link
+                                                ? jQuery.uxlocation(link)
                                                 : window.open(link, "_blank");
                                     });
 
@@ -1547,8 +1553,8 @@
 
                                 // updates the current documents location to the bulk
                                 // link, so that the bulk operation takes place
-                                document.location = linkBulk + "?object_id="
-                                        + identifiersList;
+                                jQuery.uxlocation(linkBulk + "?object_id="
+                                        + identifiersList);
                             }
 
                             // stops the event propagation and prevents
@@ -2114,7 +2120,7 @@
                         // document location, otherwise opens a new window
                         // with the value link location (popup)
                         listItem.length <= 1
-                                ? document.location = valueLink
+                                ? jQuery.uxlocation(valueLink)
                                 : window.open(valueLink, "_blank");
                     }
                 }

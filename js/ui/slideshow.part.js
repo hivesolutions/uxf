@@ -132,9 +132,7 @@
                         var url = slideshow.data("url");
                         if (url) {
                             var _window = event.which == 2
-                            _window
-                                    ? window.open(url)
-                                    : document.location = url;
+                            _window ? window.open(url) : jQuery.uxlocation(url);
                         }
                     });
 
@@ -151,9 +149,7 @@
                         var url = slideshow.data("url");
                         if (url) {
                             var _window = event.which == 2
-                            _window
-                                    ? window.open(url)
-                                    : document.location = url;
+                            _window ? window.open(url) : jQuery.uxlocation(url);
                         }
                     });
 

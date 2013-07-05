@@ -41,7 +41,7 @@
             }
 
             // sets the new location in the document (redirect)
-            document.location = nextUrlValue;
+            jQuery.uxlocation(nextUrlValue);
         };
 
         /**

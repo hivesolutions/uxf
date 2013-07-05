@@ -245,7 +245,7 @@
             // checks the window flag and in case it's set
             // opens a new window with the link otherwise
             // sets the "new" document location in
-            _window ? window.open(link, "_blank") : document.location = link;
+            _window ? window.open(link, "_blank") : jQuery.uxlocation(link);
         };
 
         var __windowOpen = function(matchedObject, options) {

@@ -40,7 +40,11 @@
                         // calls the confirm part
                         _call(element, options);
 
-                        // prevents the default event
+                        // stops the propagation of the event both
+                        // ot the next handlers and to the immediate
+                        //one and then prevent the default behaviour
+                        event.stopPropagation();
+                        event.stopImmediatePropagation();
                         event.preventDefault();
                     });
         };
@@ -64,7 +68,7 @@
                         // retrieves the matched object location and
                         // sets it in the document
                         var location = matchedObject.attr("href");
-                        document.location = location;
+                        jQuery.uxlocation(location);
                     });
         };
 

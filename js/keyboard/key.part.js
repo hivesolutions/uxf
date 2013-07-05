@@ -78,7 +78,7 @@
                                         // in case it's the target key
                                         case keyInteger :
                                             // sets the "new" document location
-                                            document.location = url;
+                                            jQuery.uxlocation(url);
 
                                             // breaks the switch
                                             break;

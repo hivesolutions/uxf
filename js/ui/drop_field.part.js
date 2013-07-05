@@ -701,7 +701,7 @@
                                 else {
                                     // changes the document location to
                                     // the value link value
-                                    document.location = valueLink;
+                                    jQuery.uxlocation(valueLink);
                                 }
                             }
 
@@ -1463,7 +1463,7 @@
             if (valueLink) {
                 // changes the document location to
                 // the value link value
-                document.location = valueLink;
+                jQuery.uxlocation(valueLink);
             }
 
             // calculates the new selection index from the element

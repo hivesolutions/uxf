@@ -72,6 +72,16 @@
                         event.stopPropagation();
                     });
 
+            // registers for the hide event and if it's
+            // triggered the hide function is called for the
+            // associated element (indirect hide)
+            matchedObject.bind("hide", function() {
+                        // retrieves the current elemenet and runs the hide
+                        // operation in it (to hide it)
+                        var element = jQuery(this);
+                        _hide(element, options);
+                    });
+
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
                         // retrieves the element reference
