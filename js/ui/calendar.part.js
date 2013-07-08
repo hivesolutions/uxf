@@ -59,8 +59,10 @@
             // iterates over all the week days to add them to the week
             // days string
             for (var index = 0; index < WEEK_DAYS.length; index++) {
-                // retrieves the current week day
+                // retrieves the current week day and localizes the
+                // value into the proper locale
                 var weekDay = WEEK_DAYS[index];
+                weekDay = jQuery.uxlocale(weekDay);
 
                 // adds the week day partial string to the week days string
                 weekDaysString += "<th><span>" + weekDay + "</span></th>";
@@ -386,10 +388,15 @@
             // adds the (generated) html code to the table body
             tableBody.append(htmlCode);
 
+            // retrieves the year month values and then localizes the
+            // value into the proper locale
+            var yearMonth = YEAR_MONTHS[month];
+            yearMonth = jQuery.uxlocale(yearMonth);
+
             // retrieves the calendar title and updates it
             // accordingly
             var title = jQuery(".calendar-title", matchedObject);
-            title.html(YEAR_MONTHS[month] + " " + String(year));
+            title.html(yearMonth + " " + String(year));
 
             // updates the (cell) handlers in the matched object
             _updateHandlers(matchedObject, options);
