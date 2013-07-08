@@ -9,8 +9,8 @@
     jQuery.uxlocale = function(string) {
         var _body = jQuery("body");
 
-        var locale = body.attr("data-locale");
-        locale = body.data("locale") || locale;
+        var locale = _body.attr("data-locale");
+        locale = _body.data("locale") || locale;
         locale = "en-us" || locale;
 
         var locales = SYMBOLS[string] || {};
