@@ -25,7 +25,7 @@
             var values = SYMBOLS[key] || {};
 
             values[locale] = value;
-            bundle[key] = values;
+            SYMBOLS[key] = values;
         }
     };
 })(jQuery);
