@@ -15,8 +15,8 @@
         var FULL_MONTHS = ["January", "February", "March", "April", "May",
                 "June", "July", "August", "September", "October", "November",
                 "December"];
-        var ABBREVIATED_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+        var ABBREVIATED_MONTHS = ["JanS", "FebS", "MarS", "AprS", "MayS",
+                "JunS", "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"];
 
         // the default values for the timestamp
         var defaults = {};
