@@ -104,9 +104,12 @@
             var minutes = utc ? date.getUTCMinutes() : date.getMinutes();
             var seconds = utc ? date.getUTCSeconds() : date.getSeconds();
 
-            // retrieves the full and abbreviated month values
+            // retrieves the full and abbreviated month values and then
+            // localizes them into the proper locale representation
             var fullMonth = FULL_MONTHS[month - 1];
             var abbreviatedMonth = ABBREVIATED_MONTHS[month - 1];
+            fullMonth = jQuery.uxlocale(fullMonth);
+            abbreviatedMonth = jQuery.uxlocale(abbreviatedMonth);
 
             // in case the format is defined, the date is
             // meant to be formatted
