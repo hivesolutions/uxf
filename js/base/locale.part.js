@@ -6,12 +6,12 @@
      */
     var SYMBOLS = {};
 
-    jQuery.uxlocale = function(string) {
+    jQuery.uxlocale = function(string, locale) {
         var _body = jQuery("body");
 
-        var locale = _body.attr("data-locale");
-        locale = _body.data("locale") || locale;
-        locale = "en-us" || locale;
+        locale = locale || _body.attr("data-locale");
+        locale = locale || _body.data("locale");
+        locale = locale || "en-us";
 
         var locales = SYMBOLS[string] || {};
         var stringLocale = locales[locale] || string;
