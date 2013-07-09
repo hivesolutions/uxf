@@ -25,10 +25,9 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves all the elements to apply key
+            // retrieves all the elements to apply key and applies
+            // the key plugin to each of them
             var key = jQuery(".key", matchedObject).not(".template .key");
-
-            // applies the key
             key.uxkey();
         };
 
@@ -46,6 +45,15 @@
 
                         // retrieves the target object base on the global option
                         var targetObject = global ? jQuery(document) : _element;
+
+                        // tries to retrieve a possible previous handler already
+                        // registered for the current element in case it exists
+                        // unbinds it from the key up event in order to avoid any
+                        // duplicated behaviour
+                        var previousHandler = targetObject.data("shortcuts_handler");
+                        if (previousHandler) {
+                            targetObject.unbind("keyup", previousHandler);
+                        }
 
                         // creates the handler function with a clojure in the current
                         // enviroment that will increment and decrement the current page
@@ -90,6 +98,7 @@
                         // is removed from the structures, avoiding extra
                         // handling of events
                         targetObject.keyup(handler);
+                        targetObject.data("shortcuts_handler", handler);
                         _element.bind("destroyed", function() {
                                     targetObject.unbind("keyup", handler);
                                 });
