@@ -40,7 +40,7 @@
                 var form = _element.parents("form");
 
                 // registers for the form submit
-                form.submit(function() {
+                form.bind("pre_submit", function() {
                             // retrieves the element value
                             var value = _element.attr("value");
 

@@ -193,7 +193,7 @@
                 var parentForm = _element.parents("form");
 
                 // registers for the submit event
-                parentForm.submit(function() {
+                parentForm.bind("pre_submit", function() {
                             // retrieves the name of the element, this value is
                             // going to be used in the input element to be create
                             // in case the name does not exists no submission of

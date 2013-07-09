@@ -165,7 +165,7 @@
                 var parentForm = elementReference.parents("form");
 
                 // registers for the submit event
-                parentForm.submit(function() {
+                parentForm.bind("pre_submit", function() {
                     // checks if the flag that disables the auto removal
                     // of the empty field (line) is set
                     var noAutoRemove = elementReference.hasClass("no-auto-remove");

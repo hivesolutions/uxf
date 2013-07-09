@@ -41,7 +41,7 @@
 
                         // registers for the form submit event so that the
                         // complete data may be created and set correctly
-                        form.submit(function() {
+                        form.bind("pre_submit", function() {
                                     // retrieves the data and time components of
                                     // the date and time component
                                     var date = jQuery(".date", _element);

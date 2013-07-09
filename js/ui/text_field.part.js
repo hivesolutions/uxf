@@ -285,7 +285,7 @@
                 var parentForm = elementReference.parents("form");
 
                 // registers for the submit event
-                parentForm.submit(function() {
+                parentForm.bind("pre_submit", function() {
                     // checks if the text field is "lower", to be able
                     // to chose between send a hidden field or a normal field
                     var isLower = elementReference.hasClass("lower");
@@ -669,7 +669,7 @@
 
             // registers for the submit event in the parent form
             // to create an hidden field that "sends" the converted timestamp
-            parentForm.submit(function() {
+            parentForm.bind("pre_submit", function() {
                         // retrieves the current value and then uses it to parse
                         // it as current timestamp
                         var currentValue = element.attr("value");
@@ -869,7 +869,7 @@
 
             // registers for the submit event in the parent form
             // to create an hidden field that "sends" the converted utc timestamp
-            parentForm.submit(function() {
+            parentForm.bind("pre_submit", function() {
                 // retrieves the current value and then uses it to parse
                 // it as current timestamp
                 var currentValue = element.attr("value");

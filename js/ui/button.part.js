@@ -151,7 +151,7 @@
                         // also for the unlock event so that the disabled
                         // class is remove in such ocasions
                         var parentForm = _element.parents("form");
-                        parentForm.submit(function() {
+                        parentForm.bind("pre_submit", function() {
                                     // adds the disabled class to the button
                                     // to avoid further submits
                                     _element.addClass("disabled");

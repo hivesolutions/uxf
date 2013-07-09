@@ -44,6 +44,12 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // retrieves the current body element and uses it to retrieve
+            // the async flag state, that indicates if the interactions with
+            // the server side should be performed using an async strategy
+            var _body = jQuery("body");
+            var async = _body.data("async");
+
             // registers for the submit event so that
             // duplicate submits may be avoided
             matchedObject.submit(function(event) {
@@ -68,6 +74,11 @@
                             event.stopPropagation();
                             event.preventDefault();
                         }
+
+                        // triggers the pre submit event so that the typical pre
+                        // validation process is set and raised, this is required
+                        // otherwise invalid data can be set
+                        element.triggerHandler("pre_submit");
 
                         // retrieves the complete set of (input) fields
                         // contained in the form  an itreates over them
@@ -106,6 +117,9 @@
                             // prevents the default behavior (avoids
                             // the normal submit)
                             event.preventDefault();
+                        } else if (async && window.FormData) {
+                            submit(element, options);
+                            event.preventDefault();
                         }
                     });
 
@@ -118,6 +132,80 @@
                         var element = jQuery(this);
                         resetForm(element, options);
                     });
+        };
+
+        var submit = function(matchedObject, options) {
+            // adds an extra hidden input value to the form indicating that the
+            // submission is meant to be handled as async, this should provide
+            // additional processing for redirection
+            matchedObject.append("<input type=\"hidden\" name=\"async\" value=\"1\" />")
+
+            // retrieves the proper values from the matched object (form)
+            // so that the correct strategy is going to be used while submiting
+            // the data to the server side
+            var method = matchedObject.attr("method") || "get";
+            var action = matchedObject.attr("action");
+            var data = matchedObject.serialize();
+
+            // resolves the provided link so that were able to find out the
+            // absolute url out of it and set it as the location to be retrieved
+            // using an asynchronous approach (ajax)
+            var href = jQuery.uxresolve(action);
+
+            // retrieves the localized version of the loading message so that it
+            // may be used in the notification to be shown
+            var loading = jQuery.uxlocale("Loading");
+
+            // retrieves the reference to the notifications container element
+            // and removes any message that is contained in it, avoiding any
+            // duplicatd message display
+            var container = jQuery(".header-notifications-container");
+            container.empty();
+
+            // creates the notification message that will indicate the loading
+            // of the new panel and adds it to the notifications container
+            var notification = jQuery("<div class=\"header-notification warning\"><strong>"
+                    + loading + "</strong></div>");
+            container.append(notification);
+
+            // creates the form data object from the form element, this is the
+            // object that is going to be used for the asyncronous request
+            var form = matchedObject[0];
+            var data = new FormData(form);
+
+            // creates the asyncronous object rerence and opens it to the link
+            // reference defined in the form than triggers its load
+            var request = new XMLHttpRequest();
+            request.open(method, href);
+            request.onload = function() {
+                // in case the current state of the request is not final ignores
+                // the update status change (not relevant)
+                if (request.readyState != 4) {
+                    return;
+                }
+                // verifies if the current result if of type (async) redirect, this
+                // is a special case and the redirection must be performed using a
+                // special strateg by retrieving the new location and setting it as
+                // new async contents to be loaded
+                var isRedirect = request.status == 280;
+                if (isRedirect) {
+                    var hrefR = request.getResponseHeader("Location");
+                    hrefR = jQuery.uxresolve(hrefR, href);
+                    jQuery.ulinkasync(hrefR, false);
+                    return;
+                }
+
+                // removes the loading notification, as the request has been
+                // completed with success (no need to display it anymore)
+                notification.remove();
+
+                // retrieves the body element and uses it to trigger the data
+                // event indicating that new panel data is available and that
+                // the current layout must be updated (async fashion)
+                var _body = jQuery("body");
+                _body.triggerHandler("data", [data, href, true]);
+            };
+            request.send(data);
         };
 
         var submitAjax = function(matchedObject, options) {
