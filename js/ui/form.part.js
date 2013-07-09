@@ -191,13 +191,17 @@
                 if (isRedirect) {
                     var hrefR = request.getResponseHeader("Location");
                     hrefR = jQuery.uxresolve(hrefR, href);
-                    jQuery.ulinkasync(hrefR, false);
+                    jQuery.uxlocation(hrefR);
                     return;
                 }
 
                 // removes the loading notification, as the request has been
                 // completed with success (no need to display it anymore)
                 notification.remove();
+
+                // sets the current data as the response text value retrieved
+                // from the currently set request object
+                var data = request.responseText;
 
                 // retrieves the body element and uses it to trigger the data
                 // event indicating that new panel data is available and that
