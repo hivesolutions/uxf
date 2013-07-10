@@ -98,9 +98,12 @@
 
                         // retrieves the current body element and uses it to retrieve
                         // the async flag state, that indicates if the interactions with
-                        // the server side should be performed using an async strategy
+                        // the server side should be performed using an async strategy then
+                        // runs an extra validation to check if the current layout
+                        // is ready to be changed using an async approach
                         var _body = jQuery("body");
                         var async = _body.data("async");
+                        async &= _body.triggerHandler("async") != false;
 
                         // checks if the current element has the ajax form
                         // class, in such cases must avoid normal submission
