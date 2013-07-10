@@ -26,7 +26,8 @@
 
     jQuery.uxlocalemany = function(list, locale) {
         var result = [];
-        for (var string in list) {
+        for (var index = 0; index < list.length; index++) {
+            var string = list[index];
             var stringLocale = jQuery.uxlocale(string, locale);
             result.push(stringLocale);
         }
