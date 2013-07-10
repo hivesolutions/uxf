@@ -9,6 +9,11 @@
     jQuery.uxlocale = function(string, locale) {
         var _body = jQuery("body");
 
+        var isObject = typeof string === "object";
+        if (isObject) {
+            return jQuery.uxlocalemany(string);
+        }
+
         locale = locale || _body.attr("data-locale");
         locale = locale || _body.data("locale");
         locale = locale || "en-us";
@@ -17,6 +22,15 @@
         var stringLocale = locales[locale] || string;
 
         return stringLocale;
+    };
+
+    jQuery.uxlocalemany = function(list, locale) {
+        var result = [];
+        for (var string in list) {
+            var stringLocale = jQuery.uxlocale(string, locale);
+            result.push(stringLocale);
+        }
+        return result;
     };
 
     jQuery.uxloadbundle = function(bundle, locale) {
