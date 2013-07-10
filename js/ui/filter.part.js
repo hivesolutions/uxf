@@ -2362,6 +2362,10 @@
                     break;
             }
 
+            // localizes the various items to the currently defined
+            // locale to adapt the experience to the user
+            _items = jQuery.uxlocale(_items);
+
             // updates the various items (operation values) in the
             // operation (data) source
             operationSource.data("items", _items);
