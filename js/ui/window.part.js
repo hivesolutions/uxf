@@ -64,9 +64,13 @@
             var _window = jQuery(window);
 
             // retrieves the references to both the close and
-            // the accept buttons
+            // the accept buttons to be used in the registration
             var closeButton = jQuery(".close-button", matchedObject);
             var acceptButton = jQuery(".accept-button", matchedObject);
+
+            // gathers references to any underlying form element in the
+            // current window to handle it's events
+            var form = jQuery("form", matchedObject);
 
             // registers for the click in the close button
             closeButton.click(function(event) {
@@ -90,6 +94,16 @@
                         // hides the window with the success flag
                         // set to valid
                         _hide(window, options, true);
+                    });
+
+            // registers for the post submit event triggered when
+            // an async based form has completed the submission
+            form.bind("post_submit", function() {
+                        // retrieves the reference to the current form element
+                        // and uses it to gather the parent window and hide it
+                        var element = jQuery(this);
+                        var window = element.parents(".window");
+                        window.uxwindow("hide");
                     });
 
             // registers for the click event in the matched

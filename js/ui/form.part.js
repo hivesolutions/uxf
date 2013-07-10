@@ -44,12 +44,6 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the current body element and uses it to retrieve
-            // the async flag state, that indicates if the interactions with
-            // the server side should be performed using an async strategy
-            var _body = jQuery("body");
-            var async = _body.data("async");
-
             // registers for the submit event so that
             // duplicate submits may be avoided
             matchedObject.submit(function(event) {
@@ -101,6 +95,12 @@
                                     value = value.trim();
                                     _element.uxvalue(value);
                                 });
+
+                        // retrieves the current body element and uses it to retrieve
+                        // the async flag state, that indicates if the interactions with
+                        // the server side should be performed using an async strategy
+                        var _body = jQuery("body");
+                        var async = _body.data("async");
 
                         // checks if the current element has the ajax form
                         // class, in such cases must avoid normal submission
@@ -183,6 +183,11 @@
                 if (request.readyState != 4) {
                     return;
                 }
+
+                // triggers the post submit event in the current matched object
+                // (form) indicating that the form has been submitted
+                matchedObject.triggerHandler("post_submit");
+
                 // verifies if the current result if of type (async) redirect, this
                 // is a special case and the redirection must be performed using a
                 // special strateg by retrieving the new location and setting it as
