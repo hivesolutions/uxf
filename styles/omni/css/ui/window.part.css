@@ -35,6 +35,10 @@
     min-height: 0px;
 }
 
+.omni-style .window form p {
+    min-height: 0px;
+}
+
 .omni-style .window-buttons {
     border-top: 1px solid #efefef;
     padding-top: 20px;
