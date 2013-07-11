@@ -213,9 +213,13 @@
 
                 // retrieves the body element and uses it to trigger the data
                 // event indicating that new panel data is available and that
-                // the current layout must be updated (async fashion)
+                // the current layout must be updated (async fashion) note
+                // that the target link is set as the current document's url
+                // so that it does not change, this allows correct reload
+                // handling of the page (improved user experience)
                 var _body = jQuery("body");
-                _body.triggerHandler("data", [data, href, "post", true]);
+                _body.triggerHandler("data", [data, document.URL, "post", true,
+                                href]);
             };
             request.send(data);
         };
