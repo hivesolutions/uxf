@@ -138,6 +138,10 @@
         };
 
         var submit = function(matchedObject, options) {
+            // retrieves the reference to the body element that is
+            // going to be used in the trigger of events
+            var _body = jQuery("body");
+
             // adds an extra hidden input value to the form indicating that the
             // submission is meant to be handled as async, this should provide
             // additional processing for redirection
@@ -155,21 +159,11 @@
             // using an asynchronous approach (ajax)
             var href = jQuery.uxresolve(action);
 
-            // retrieves the localized version of the loading message so that it
-            // may be used in the notification to be shown
-            var loading = jQuery.uxlocale("Loading");
-
-            // retrieves the reference to the notifications container element
-            // and removes any message that is contained in it, avoiding any
-            // duplicatd message display
-            var container = jQuery(".header-notifications-container");
-            container.empty();
-
-            // creates the notification message that will indicate the loading
-            // of the new panel and adds it to the notifications container
-            var notification = jQuery("<div class=\"header-notification warning\"><strong>"
-                    + loading + "</strong></div>");
-            container.append(notification);
+            // trigers the async operation start handler indicating that an
+            // asyncronous request is going to start, this trigger should
+            // enable all the visuals so that the user is notified about the
+            // remote communication that is going to occur
+            _body.triggerHandler("async_start");
 
             // creates the form data object from the form element, this is the
             // object that is going to be used for the asyncronous request
@@ -203,9 +197,13 @@
                     return;
                 }
 
-                // removes the loading notification, as the request has been
-                // completed with success (no need to display it anymore)
-                notification.remove();
+                // retrieves the reference to the body element to be used in the
+                // current reponse handler for a series of operations
+                var _body = jQuery("body");
+
+                // trigger the async end(ed) event that notifies the current
+                // structures that no more remote communication is taking place
+                _body.triggerHandler("async_end");
 
                 // sets the current data as the response text value retrieved
                 // from the currently set request object

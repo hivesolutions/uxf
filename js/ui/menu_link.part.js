@@ -262,6 +262,11 @@
             var contentsWidth = menuContents.outerWidth();
             var contentsHeight = menuContents.outerHeight(true);
 
+            // retrieves the size of the border at the left of the menu
+            // contents to be used in the calculus
+            var borderWidth = menuContents.css("border-left-width");
+            borderWidth = parseInt(borderWidth);
+
             // checks if the menu link is of type reference, for such cases
             // the left position will not be used and checks if the menu is
             // meant to be positioned above the menu link structure
@@ -276,7 +281,8 @@
 
             // calculates and sets the menu contents margin left, this should
             // be able to position the menu to the left of the corresponding link
-            var contentsMarginLeft = ((contentsWidth - buttonWidth) - 2) * -1;
+            var contentsMarginLeft = ((contentsWidth - buttonWidth) - borderWidth)
+                    * -1;
             !isReference
                     && menuContents.css("margin-left", contentsMarginLeft
                                     + "px");
