@@ -215,7 +215,7 @@
                 // event indicating that new panel data is available and that
                 // the current layout must be updated (async fashion)
                 var _body = jQuery("body");
-                _body.triggerHandler("data", [data, href, true]);
+                _body.triggerHandler("data", [data, href, "post", true]);
             };
             request.send(data);
         };
