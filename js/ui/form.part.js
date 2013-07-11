@@ -218,7 +218,7 @@
                 // so that it does not change, this allows correct reload
                 // handling of the page (improved user experience)
                 var _body = jQuery("body");
-                _body.triggerHandler("data", [data, document.URL, "post", true,
+                _body.triggerHandler("data", [data, document.URL, null, true,
                                 href]);
             };
             request.send(data);
