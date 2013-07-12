@@ -113,6 +113,12 @@
     width: 96px;
 }
 
+.omni-style.round .list.entity-options-list .entity-picture {
+    border-radius: 0px 32px 0px 32px;
+    -moz-border-radius: 0px 32px 0px 32px;
+    -webkit-border-radius: 0px 32px 0px 32px;
+}
+
 .omni-style .list.entity-options-list .entity-name {
     color: #4d4d4d;
     font-size: 16px;
@@ -123,12 +129,14 @@
 .omni-style .list.entity-options-list .entity-description {
     color: #777777;
     line-height: 20px;
+    margin-bottom: 12px;
     margin-top: 6px;
     width: 420px;
 }
 
 .omni-style.opensans .list.entity-options-list .entity-description {
     line-height: 22px;
+    margin-bottom: 8px;
 }
 
 .omni-style .list.entity-options-list .entity-operation {
