@@ -126,3 +126,7 @@
 .omni-style .list.entity-options-list .entity-operation {
     margin: 0px 0px 0px;
 }
+
+.omni-style .list.entity-options-list.full .entity-description {
+    width: 100%;
+}
