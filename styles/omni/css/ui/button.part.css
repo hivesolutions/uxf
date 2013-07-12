@@ -111,6 +111,10 @@
     width: 120px;
 }
 
+.omni-style.opensans .button.large {
+    font-weight: bold;
+}
+
 .omni-style .button.large:hover {
     background-position: 0px -48px;
 }
