@@ -139,3 +139,8 @@
     position: absolute;
     z-index: 10;
 }
+
+.omni-style.opensans .text-field,
+.omni-style.opensans .text-area {
+    font-family: "Open Sans", Arial, sans-serif;
+}
