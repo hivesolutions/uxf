@@ -69,6 +69,10 @@
     margin: 2px 0px 0px 0px;
 }
 
+.omni-style.opensans .list.side-entities-list .entity-details {
+    line-height: 22px;
+}
+
 .omni-style .list.side-entities-list.simplified .entity-contents {
     height: auto;
     width: 168px;
@@ -118,9 +122,13 @@
 
 .omni-style .list.entity-options-list .entity-description {
     color: #777777;
-    line-height: 18px;
+    line-height: 20px;
     margin-top: 6px;
     width: 420px;
+}
+
+.omni-style.opensans .list.entity-options-list .entity-description {
+    line-height: 22px;
 }
 
 .omni-style .list.entity-options-list .entity-operation {
