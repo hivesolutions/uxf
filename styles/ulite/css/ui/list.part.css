@@ -53,8 +53,10 @@
 
 .ulite-style .list.featured-list li .title {
     color: #999999;
+    height: 14px;
     line-height: 14px;
     margin: 0px 0px 3px 0px;
+    overflow: hidden;
 }
 
 .ulite-style .list.featured-list li .price {
@@ -285,13 +287,16 @@
 
 .ulite-style .list.search-results-list .search-results-item .details {
     float: left;
+    max-width: 152px;
     padding: 4px 4px 4px 4px;
 }
 
 .ulite-style .list.search-results-list .search-results-item .title {
     color: #4d4d4d;
     font-size: 11px;
+    height: 16px;
     line-height: 16px;
+    overflow: hidden;
 }
 
 .ulite-style .list.search-results-list .search-results-item .price {
