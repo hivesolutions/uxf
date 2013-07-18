@@ -179,6 +179,12 @@
             var items = matchedObject.data("items");
             var current = matchedObject.data("index");
 
+            // in case there are no valid items for the current
+            // element returns immediately (nothing to be done)
+            if (!items) {
+                return;
+            }
+
             // in case the index value is not set selects the next
             // value (takes care of overflow) otherwise defaults to
             // the request index (from parameter)
