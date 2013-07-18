@@ -328,7 +328,7 @@
 .ulite-style .list.basket-list li .product-description {
     float: left;
     margin: 0px 12px 0px 0px;
-    width: 584px;
+    width: 564px;
 }
 
 .ulite-style .list.basket-list li .product-description h2 {
@@ -348,7 +348,7 @@
     float: left;
     margin: 0px 12px 0px 0px;
     text-align: right;
-    width: 140px;
+    width: 160px;
 }
 
 .ulite-style .list.basket-list li .product-options .product-remove {
