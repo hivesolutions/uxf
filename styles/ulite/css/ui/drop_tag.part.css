@@ -39,6 +39,13 @@
     padding: 2px 0px 2px 4px;
 }
 
+.ulite-style .drop-tag .drop-tag-tag .drop-tag-text {
+    display: inline-block;
+    height: 14px;
+    overflow: hidden;
+    width: 72px;
+}
+
 .ulite-style .drop-tag .drop-tag-tag .drop-tag-close {
     background: transparent url(../images/drop-tag-close.png) no-repeat left 0px;
     display: block;
