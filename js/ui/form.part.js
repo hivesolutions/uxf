@@ -165,15 +165,29 @@
             // remote communication that is going to occur
             _body.triggerHandler("async_start");
 
+            // retrieves the encoding type that is going to be used to encode
+            // the current form to be submited, this will change the way the
+            // submission will be done
+            var enctype = matchedObject.attr("enctype")
+                    || "application/x-www-form-urlencoded";
+
             // creates the form data object from the form element, this is the
-            // object that is going to be used for the asyncronous request
+            // object that is going to be used for the asyncronous request in
+            // the form is not of type multipart the default serialization
+            // process is used instead to create a "query string"
             var form = matchedObject[0];
-            var data = new FormData(form);
+            var data = enctype == "multipart/form-data"
+                    ? new FormData(form)
+                    : matchedObject.serialize();
 
             // creates the asyncronous object rerence and opens it to the link
-            // reference defined in the form than triggers its load
+            // reference defined in the form than triggers its load and then
+            // forces the content type header for the requested encoding
+            // type in case the form is not of type multipart
             var request = new XMLHttpRequest();
             request.open(method, href);
+            enctype != "multipart/form-data"
+                    && request.setRequestHeader("Content-Type", enctype);
             request.onload = function() {
                 // in case the current state of the request is not final ignores
                 // the update status change (not relevant)
