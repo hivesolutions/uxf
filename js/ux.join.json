@@ -65,6 +65,7 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
+                "../util/string/string_buffer.js", "../util/string/string.js",
                 "../util/string/template.js", "../util/ui/canvas.js",
                 "../jutil/communication/js/communication.js"]
     },
@@ -133,6 +134,7 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
+                "../util/string/string_buffer.js", "../util/string/string.js",
                 "../util/string/template.js", "../util/ui/canvas.js",
                 "../jutil/communication/js/communication.js"],
         "minify" : "javascript"
@@ -202,6 +204,7 @@
                 "util/name_change.part.js", "util/width.part.js",
                 "footer.part.js", "../util/functional/select.js",
                 "../util/general/date.js", "../util/hash/md5.js",
+                "../util/string/string_buffer.js", "../util/string/string.js",
                 "../util/string/template.js", "../util/ui/canvas.js",
                 "../jutil/communication/js/communication.js"],
         "minify" : "javascript",
