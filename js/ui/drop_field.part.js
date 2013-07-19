@@ -1409,7 +1409,7 @@
             var template = jQuery(".template", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
-            var element = jQuery("> li:nth-child(" + (index + 1) + ")",
+            var element = jQuery("> :nth-child(" + (index + 1) + ")",
                     dropFieldContents);
 
             // retrieves the value, the logic value
