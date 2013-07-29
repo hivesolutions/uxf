@@ -256,26 +256,39 @@
                 return;
             }
 
-            // retrieves the value for the border left with ignore value
-            // defaulting to innvalid in case no value is retrieved
-            var ignoreLeft = menuLink.attr("data-no_left") || false;
-
             // retrieves the various dimensions from the various elements
             // associated with the menu to be repositioned
             var buttonWidth = menuButton.outerWidth();
             var contentsWidth = menuContents.outerWidth();
             var contentsHeight = menuContents.outerHeight(true);
 
+            // retrieves the value for the border left with ignore value
+            // defaulting to innvalid in case no value is retrieved then
+            // gathers the value of the auto width flag
+            var ignoreLeft = menuLink.attr("data-no_left") || false;
+            var autoWidth = menuLink.attr("data-auto_width") || false;
+
             // retrieves the size of the border at the left of the menu
             // contents to be used in the calculus
-            var borderWidth = menuContents.css("border-left-width");
-            borderWidth = ignoreLeft ? 0 : parseInt(borderWidth);
+            var borderLeftWidth = parseInt(menuContents.css("border-left-width"));
+            var borderRightWidth = parseInt(menuContents.css("border-right-width"));
+            var _borderWidth = borderLeftWidth + borderRightWidth;
+            var borderWidth = ignoreLeft ? 0 : parseInt(borderLeftWidth);
 
             // checks if the menu link is of type reference, for such cases
             // the left position will not be used and checks if the menu is
             // meant to be positioned above the menu link structure
             var isReference = menuLink.attr("data-menu");
             var isTop = menuLink.hasClass("menu-top");
+
+            // in case the auto width flag is set the size of the menu contents
+            // must be re-calculated according to the current size of the menu
+            // button/link so that it's at least the same value
+            if (autoWidth) {
+                var _buttonWidth = buttonWidth - _borderWidth;
+                menuContents.css("min-width", _buttonWidth + "px");
+                contentsWidth = menuContents.outerWidth();
+            }
 
             // calculates the margin to the top so that the menu is positioned
             // a bit above the top of the menu link that originated it and sets
