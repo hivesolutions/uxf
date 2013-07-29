@@ -256,6 +256,10 @@
                 return;
             }
 
+            // retrieves the value for the border left with ignore value
+            // defaulting to innvalid in case no value is retrieved
+            var ignoreLeft = menuLink.attr("data-no_left") || false;
+
             // retrieves the various dimensions from the various elements
             // associated with the menu to be repositioned
             var buttonWidth = menuButton.outerWidth();
@@ -265,7 +269,7 @@
             // retrieves the size of the border at the left of the menu
             // contents to be used in the calculus
             var borderWidth = menuContents.css("border-left-width");
-            borderWidth = parseInt(borderWidth);
+            borderWidth = ignoreLeft ? 0 : parseInt(borderWidth);
 
             // checks if the menu link is of type reference, for such cases
             // the left position will not be used and checks if the menu is
