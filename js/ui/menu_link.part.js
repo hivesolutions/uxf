@@ -265,6 +265,7 @@
             // retrieves the value for the border left with ignore value
             // defaulting to innvalid in case no value is retrieved then
             // gathers the value of the auto width flag
+            var right = menuLink.attr("data-right") || false;
             var ignoreLeft = menuLink.attr("data-no_left") || false;
             var autoWidth = menuLink.attr("data-auto_width") || false;
 
@@ -298,8 +299,11 @@
 
             // calculates and sets the menu contents margin left, this should
             // be able to position the menu to the left of the corresponding link
+            // in case the menu is meant bo displayed to the right no margin is
+            // applies as the menu contents should be displayed to the right already
             var contentsMarginLeft = ((contentsWidth - buttonWidth) - borderWidth)
                     * -1;
+            contentsMarginLeft = right ? 0 : contentsMarginLeft;
             !isReference
                     && menuContents.css("margin-left", contentsMarginLeft
                                     + "px");
