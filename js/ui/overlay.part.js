@@ -38,8 +38,13 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // resizes the overlay in the screen
+            // resizes the overlay in the screen, this is the initial
+            // operation so that it becomes of the correct size, then
+            // adds the resizable class to the current element to identify
+            // the element as an element that is meant to be resizes, this
+            // is imporant to avoid error in the resize operations
             _resizeOverlay(matchedObject, options);
+            matchedObject.addClass("resizable");
         };
 
         /**
@@ -64,7 +69,7 @@
                     });
 
             // registers the resize in the window
-            _window.resize(function(event) {
+            _window.bind("size", function(event) {
                         // resizes the overlay in the screen
                         _resizeOverlay(matchedObject, options);
                     });
