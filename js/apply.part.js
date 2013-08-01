@@ -25,14 +25,14 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the global window and body elements to be
-            // able to apply their styles
-            var _window = jQuery(window);
+            // retrieves the elements to be able to apply their styles
+            // and use them as the base reference for the rest of the
+            // apply operations
             var _body = jQuery("body");
 
             // applies the global document plugin so that the base behaviour
             // of the window is changed accordingly
-            _window.uxdocument();
+            _body.uxdocument();
 
             // retrieves the complete set of template elements and applies
             // the attribute name obfuscation in each of them so that the
