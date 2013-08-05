@@ -16,6 +16,10 @@
     border-color: #de6c6c;
 }
 
+.ulite-style .text-field:disabled {
+    background-color: #f6f6f6;
+}
+
 .ulite-style .text-field.lower {
     color: #c0c0c0;
     text-transform: uppercase;
