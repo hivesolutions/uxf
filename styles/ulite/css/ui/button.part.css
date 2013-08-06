@@ -133,7 +133,7 @@
 
 .ulite-style .button.form-small-button {
     background: transparent url(../images/form-small-button.png) repeat-x center 0px;
-    border: 1px solid #e9e9e9;
+    border: 1px solid #e0e0e0;
     color: #6d6d6d;
     font-size: 11px;
     height: 28px;
@@ -165,7 +165,7 @@
 .ulite-style .button.shipping-method:hover,
 .ulite-style .button.payment-method:hover {
     background-color: #f2f2f2;
-    border-color: #e9e9e9;
+    border-color: #e0e0e0;
 }
 
 .ulite-style .button.shipping-method img,
