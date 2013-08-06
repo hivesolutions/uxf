@@ -1,5 +1,5 @@
 .ulite-style .link {
-    color: #777777;
+    color: #6d6d6d;
     outline: none;
     text-decoration: none;
     text-transform: uppercase;
@@ -18,7 +18,7 @@
 }
 
 .ulite-style .link.link-light {
-    color: #777777;
+    color: #6d6d6d;
 }
 
 .ulite-style .link.link-dark {
@@ -42,11 +42,11 @@
 }
 
 .ulite-style .link.small:hover {
-    color: #4d4d4d;
+    color: #2d2d2d;
 }
 
 .ulite-style .link.link-light:hover {
-    color: #4d4d4d;
+    color: #2d2d2d;
 }
 
 .ulite-style .link-dark:hover {

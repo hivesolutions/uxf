@@ -18,7 +18,7 @@
 
 .ulite-style .button.button-top.no-hover:hover {
     background-color: transparent;
-    color: #777777;
+    color: #6d6d6d;
 }
 
 .ulite-style .button.user-button {
@@ -134,7 +134,7 @@
 .ulite-style .button.form-small-button {
     background: transparent url(../images/form-small-button.png) repeat-x center 0px;
     border: 1px solid #e9e9e9;
-    color: #777777;
+    color: #6d6d6d;
     font-size: 11px;
     height: 28px;
     line-height: 28px;
@@ -145,12 +145,12 @@
 
 .ulite-style .button.form-small-button:hover {
     background-position: center -28px;
-    color: #777777;
+    color: #6d6d6d;
 }
 
 .ulite-style .button.form-small-button.click {
     background-position: center -56px;
-    color: #777777;
+    color: #6d6d6d;
 }
 
 .ulite-style .button.shipping-method,
