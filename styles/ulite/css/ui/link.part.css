@@ -45,6 +45,10 @@
     color: #2d2d2d;
 }
 
+.ulite-style .link.link-orange:hover {
+    color: #b36628;
+}
+
 .ulite-style .link.link-light:hover {
     color: #2d2d2d;
 }
