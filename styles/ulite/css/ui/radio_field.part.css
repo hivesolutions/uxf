@@ -2,9 +2,9 @@
     -webkit-appearance: none;
     background: white url(../images/radio-field.png) no-repeat 0px 0px;
     border: 1px solid #bbbbbb;
-    border-radius: 4px 4px 4px 4px;
-    -moz-border-radius: 4px 4px 4px 4px;
-    -webkit-border-radius: 4px 4px 4px 4px;
+    border-radius: 16px 16px 16px 16px;
+    -moz-border-radius: 16px 16px 16px 16px;
+    -webkit-border-radius: 16px 16px 16px 16px;
     cursor: pointer;
     float: left;
     height: 28px;
