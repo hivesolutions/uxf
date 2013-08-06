@@ -36,19 +36,23 @@
 }
 
 .ulite-style .slideshow .slideshow-details {
+    float: right;
     font-size: 10px;
     margin-top: -26px;
     text-align: right;
+    width: 120px;
 }
 
 .ulite-style .slideshow .slideshow-details .title {
-    color: #c7c7c7;
+    color: #6d6d6d;
+    height: 14px;
     line-height: 14px;
     margin: 0px 0px 0px 0px;
+    overflow: hidden;
 }
 
 .ulite-style .slideshow .slideshow-details .price {
-    color: #777777;
+    color: #999999;
     line-height: 14px;
     margin: 0px 0px 0px 0px;
 }
