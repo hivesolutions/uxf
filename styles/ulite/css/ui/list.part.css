@@ -339,7 +339,14 @@
     color: #4d4d4d;
     font-size: 16px;
     font-weight: normal;
-    margin: 26px 0px 6px 0px;
+    margin: 0px 0px 6px 0px;
+}
+
+.ulite-style .list.basket-list li .product-description h3 {
+    color: #8d8d8d;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 26px 0px 0px 0px;
 }
 
 .ulite-style .list.basket-list li .product-description p {
