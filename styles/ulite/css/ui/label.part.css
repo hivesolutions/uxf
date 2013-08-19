@@ -34,6 +34,14 @@
     margin-right: 6px;
 }
 
+.ulite-style .label.form-label.green {
+    color: #619160;
+}
+
+.ulite-style .label.form-label.orange {
+    color: #e0933a;
+}
+
 .ulite-style .form-label.form-label-left {
     float: left;
     margin: 7px 10px 0px 0px;
