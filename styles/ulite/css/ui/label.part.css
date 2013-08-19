@@ -7,6 +7,10 @@
     color: #619160;
 }
 
+.ulite-style .label.orange {
+    color: #e0933a;
+}
+
 .ulite-style .label.small {
     font-size: 10px;
     line-height: 16px;

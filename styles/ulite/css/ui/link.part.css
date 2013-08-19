@@ -37,6 +37,10 @@
     color: #e0933a;
 }
 
+.ulite-style .link.medium {
+    font-size: 11px;
+}
+
 .ulite-style .link.small {
     font-size: 10px;
 }
