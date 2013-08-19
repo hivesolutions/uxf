@@ -277,6 +277,10 @@
     background-color: #f6f6f6;
 }
 
+.ulite-style .list.search-results-list .search-results-item .link {
+    text-transform: none;
+}
+
 .ulite-style .list.search-results-list .search-results-item .image {
     float: left;
     height: 32px;
