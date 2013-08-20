@@ -12,6 +12,11 @@
     background-color: #ce000c;
 }
 
+.ulite-style .tag.success,
+.ulite-style .tag.green {
+    background-color: #619160;
+}
+
 .ulite-style .tag.lower {
     opacity: 0.75;
 }
