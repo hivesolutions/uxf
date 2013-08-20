@@ -1,9 +1,9 @@
 .ulite-style .tag,
 .ulite-style .tag.grey {
-    background-color: #8d8d8d;
+    background-color: #6d6d6d;
     color: white;
     font-size: 10px;
-    padding: 2px 4px 2px 4px;
+    padding: 2px 6px 2px 6px;
     text-transform: uppercase;
 }
 
