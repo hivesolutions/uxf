@@ -385,9 +385,10 @@
 }
 
 .ulite-style .list.review-list li {
+    border-top: 1px dashed #e2e2e2;
     list-style: none;
-    margin-bottom: 12px;
-    padding: 4px 0px 4px 0px;
+    margin: 0px 0px 0px 0px;
+    padding: 10px 0px 10px 0px;
 }
 
 .ulite-style .list.review-list li .product-image {

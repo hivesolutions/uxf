@@ -9,6 +9,10 @@
     background-color: #f2f2f2;
 }
 
+.ulite-style .table.table-orders tbody tr:hover .link.link-dark-orange {
+    color: #c87719;
+}
+
 .ulite-style .table.table-orders thead tr th {
     color: #8d8d8d;
     font-size: 10px;
