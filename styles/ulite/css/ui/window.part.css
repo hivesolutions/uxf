@@ -1,0 +1,32 @@
+.ulite-style .window {
+    background-color: #ffffff;
+    border: 1px solid #bbbbbb;
+    box-shadow: 0px 1px 4px #dddddd;
+    -moz-box-shadow: 0px 1px 4px #dddddd;
+    -webkit-box-shadow: 0px 1px 4px #dddddd;
+    min-width: 280px;
+    padding: 20px 12px 20px 12px;
+    text-align: center;
+    z-index: 20;
+}
+
+.ulite-style .window h1 {
+    font-size: 16px;
+    font-weight: normal;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+    text-transform: uppercase;
+}
+
+.ulite-style .window p {
+    line-height: 22px;
+    margin: 14px 0px 14px 0px;
+}
+
+.ulite-style .window .window-buttons .button {
+    color: #e0933a;
+}
+
+.ulite-style .window .window-buttons .button:hover {
+    color: #c87719;
+}
