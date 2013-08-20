@@ -62,18 +62,19 @@
 .ulite-style .calendar-content thead tr th {
     color: #6d6d6d;
     font-weight: normal;
+    text-align: center;
 }
 
 .ulite-style .calendar-content tbody tr td {
     border: 1px solid #f6f6f6;
     color: #666666;
     cursor: pointer;
-    height: 26px;
     line-height: 26px;
     margin: 0px 0px 0px 0px;
+    min-height: 26px;
+    min-width: 26px;
     padding: 0px 0px 0px 0px;
     text-align: center;
-    width: 26px;
 }
 
 .ulite-style .calendar-content tbody tr td:hover {
