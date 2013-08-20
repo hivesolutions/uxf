@@ -1,5 +1,8 @@
 (function(jQuery) {
     var BUNDLE_EN_US = {
+        "Confirm" : "Confirm",
+        "Cancel" : "Cancel",
+        "Information" : "Information",
         "Loading" : "Loading",
         "January" : "January",
         "February" : "February",

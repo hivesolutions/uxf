@@ -1,5 +1,8 @@
 (function(jQuery) {
     var BUNDLE_PT_PT = {
+        "Confirm" : "Confirmar",
+        "Cancel" : "Cancelar",
+        "Information" : "Informação",
         "Loading" : "Carregando",
         "January" : "Janeiro",
         "February" : "Fevereiro",
