@@ -1,9 +1,6 @@
 .ulite-style .tag,
 .ulite-style .tag.grey {
     background-color: #8d8d8d;
-    border-radius: 3px 3px 3px 3px;
-    -moz-border-radius: 3px 3px 3px 3px;
-    -webkit-border-radius: 3px 3px 3px 3px;
     color: white;
     font-size: 10px;
     padding: 2px 4px 2px 4px;
@@ -12,7 +9,7 @@
 
 .ulite-style .tag.important,
 .ulite-style .tag.red {
-    background-color: #ff9999;
+    background-color: #ce000c;
 }
 
 .ulite-style .tag.lower {
