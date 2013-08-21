@@ -142,27 +142,34 @@
             // iterates over each of the buttons to
             // register for their specific handlers
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the parent form and then
-                        // registers for the submit event on them
-                        // so that the button may be disabled registers
-                        // also for the unlock event so that the disabled
-                        // class is remove in such ocasions
-                        var parentForm = _element.parents("form");
-                        parentForm.bind("pre_submit", function() {
-                                    // adds the disabled class to the button
-                                    // to avoid further submits
-                                    _element.addClass("disabled");
-                                });
-                        parentForm.bind("unlock", function() {
-                                    // removes the disabled class from the
-                                    // element (because the form is in the
-                                    // normal state again)
-                                    _element.removeClass("disabled");
-                                });
-                    });
+                // retrieves the parent form and then
+                // registers for the submit event on them
+                // so that the button may be disabled registers
+                // also for the unlock event so that the disabled
+                // class is remove in such ocasions
+                var parentForm = _element.parents("form");
+                parentForm.bind("pre_submit", function() {
+                            // verifies if the button is a child of a form
+                            // success element for such cases the disable is
+                            // prevented as disabling it would create problems
+                            var formSuccess = _element.parents(".form-success");
+                            if (formSuccess.length > 0) {
+                                return;
+                            }
+
+                            // disables the button element in order
+                            // to avoid further submits
+                            _element.uxdisable();
+                        });
+                parentForm.bind("unlock", function() {
+                            // re-enables the button to the normal state
+                            // (because the form is in the normal state again)
+                            _element.uxenable();
+                        });
+            });
         };
 
         var __trigger = function(matchedObject, options) {
