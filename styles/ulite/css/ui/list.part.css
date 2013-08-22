@@ -142,7 +142,7 @@
 }
 
 .ulite-style .list.product-list .product-list-item .image {
-    border-right: 1px solid transparent;
+    border-right: 1px dashed #f6f6f6;
     float: left;
     height: 140px;
     width: 140px;
@@ -154,8 +154,8 @@
 
 .ulite-style .list.product-list .product-list-item .contents {
     float: left;
-    padding: 0px 10px 0px 10px;
-    width: 283px;
+    padding: 6px 16px 6px 16px;
+    width: 271px;
 }
 
 .ulite-style .list.product-list .product-list-item .title {
@@ -168,9 +168,10 @@
 
 .ulite-style .list.product-list .product-list-item .description {
     font-size: 11px;
-    height: 72px;
+    height: 58px;
     line-height: 18px;
     margin: 6px 0px 6px 0px;
+    overflow: hidden;
 }
 
 .ulite-style .list.product-list .product-list-item .operations {
@@ -181,6 +182,10 @@
     color: #4d4d4d;
     font-size: 10px;
     margin: 0px 0px 0px 0px;
+}
+
+.ulite-style .list.product-list.store-list .product-list-item .title {
+    font-size: 16px;
 }
 
 .ulite-style .list.product-description-list {
