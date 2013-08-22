@@ -51,6 +51,10 @@
             // group so that the click may be handled correctly
             var buttons = jQuery(".button", matchedObject);
 
+            // retrieves the complete set of forms associated (that contain)
+            // the selected button groups
+            var parentForm = matchedObject.parents("form");
+
             // registers for the click event on the button contained
             // in the button group
             buttons.click(function() {
@@ -80,6 +84,39 @@
                         // adds the selected class to the current element (selects it)
                         element.addClass("selected");
                     });
+
+            // registers for the pre submit event on the associated parent
+            // form so that an element representing the selected button may
+            // be created in case that's required
+            parentForm.bind("pre_submit", function() {
+                // retrieves the current element (form) and the associated underlying
+                // button groups for the opearation
+                var element = jQuery(this);
+                var buttonGroups = jQuery(".button-group", element);
+
+                // iterates over each of the button groups in order to create
+                // the hidden element with the form value
+                buttonGroups.each(function(index, element) {
+                            // retrieves the current element and the associated
+                            // selected button
+                            var _element = jQuery(this);
+                            var selected = jQuery(".button.selected", _element);
+
+                            // tries to retrieve the anme attribute out of the element
+                            // in case it's not defined returns immediately
+                            var name = _element.attr("name");
+                            if (!name) {
+                                return;
+                            }
+
+                            // retrieves the value from the selected itm and then
+                            // creates the hidden input value and prepend it to the
+                            // button group element
+                            var value = selected.attr("value");
+                            _element.prepend("<input type=\"hidden\" name=\""
+                                    + name + "\" value=\"" + value + "\" />");
+                        });
+            });
         };
 
         // switches over the method

@@ -32,7 +32,7 @@
 
                         // retrieves the form associated with the current
                         // element so that it can be registered for the submit event
-                        var form = _element.parents(".form");
+                        var form = _element.parents("form");
 
                         // retrieves the value of the utc offset flag
                         // (if the utc flag is set the date is set to work
