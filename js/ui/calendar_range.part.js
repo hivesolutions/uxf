@@ -205,20 +205,10 @@
                         var range = element.parents(".calendar-range");
                         var focused = jQuery(".focus", range);
 
-                        // unpacks the current structure into year, month and day
-                        var year = current["year"];
-                        var month = current["month"];
-                        var day = current["day"];
-
-                        // creates the date string from the various
-                        // date components
-                        var yearString = String(year);
-                        var monthString = month > 9 ? String(month) : "0"
-                                + String(month);
-                        var dayString = day > 9 ? String(day) : "0"
-                                + String(day);
-                        var dateString = yearString + "/" + monthString + "/"
-                                + dayString;
+                        // retrieves the date format defined in the calendar range
+                        // and uses it with the current map to retrieve the date string
+                        var format = range.attr("data-format");
+                        var dateString = jQuery.uxformat(current, format);
 
                         // updates both the logical value and the real value
                         focused.attr("data-value", dateString);

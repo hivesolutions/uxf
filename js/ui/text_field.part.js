@@ -802,20 +802,10 @@
             // registers for the current change event in the calendar
             // to update the text field accordingly
             calendar.bind("current_change", function(event, current) {
-                        // unpacks the current structure into year, month and day
-                        var year = current["year"];
-                        var month = current["month"];
-                        var day = current["day"];
-
-                        // creates the date string from the various
-                        // date components
-                        var yearString = String(year);
-                        var monthString = month > 9 ? String(month) : "0"
-                                + String(month);
-                        var dayString = day > 9 ? String(day) : "0"
-                                + String(day);
-                        var dateString = yearString + "/" + monthString + "/"
-                                + dayString;
+                        // retrieves the date format defined in the current element
+                        // and uses it with the current map to retrieve the date string
+                        var format = element.attr("data-format");
+                        var dateString = jQuery.uxformat(current, format);
 
                         // updates both the logical value and the real value
                         element.attr("data-value", dateString);
