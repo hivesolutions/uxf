@@ -18,6 +18,55 @@
             "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"];
 
     jQuery.uxformat = function(date, format, utc) {
+        /**
+         * Converts the given value to a string and appends the padding
+         * character for the length remaining according to the "target" value
+         * length.
+         *
+         * @param {String}
+         *            value The value to be converted to string and appended
+         *            with the padding characters.
+         * @param {Integer}
+         *            valueLength The "target" value length to be set in the
+         *            retrieved string.
+         * @param {String}
+         *            padding The padding character to be used when setting the
+         *            target size in the string.
+         * @return {String} The string resulting from the conversion of the
+         *         given value.
+         */
+        var _getStringValue = function(value, valueLength, padding) {
+            // retrieves the padding value
+            var padding = padding ? padding : "0";
+
+            // converts the value to a string and retrives
+            // the length of it
+            var stringValue = String(value);
+            var stringValueLength = stringValue.length;
+
+            // iterates over the range of the remaining string value
+            for (var index = stringValueLength; index < valueLength; index++) {
+                // adds the padding (character) to the string value
+                stringValue = padding + stringValue;
+            }
+
+            // returns the string value
+            return stringValue;
+        };
+
+        // verifies if the provided object is of type date in case
+        // it's not must create a date object that represent it
+        var isDate = date.getDate !== undefined;
+        if (!isDate) {
+            var year = date["year"];
+            var month = date["month"] || 1;
+            var day = date["day"] || 1;
+            var hours = date["hours"] || 0;
+            var minutes = date["minutes"] || 0;
+            var seconds = date["seconds"] || 0;
+            date = new Date(year, month - 1, day, hours, minutes, seconds);
+        }
+
         // retrieves the various components of the date
         var year = utc ? date.getUTCFullYear() : date.getFullYear();
         var month = utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;
