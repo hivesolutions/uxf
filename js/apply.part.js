@@ -66,6 +66,7 @@
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(".template .incremental-field");
             var toggleField = jQuery(".toggle-field", matchedObject).not(".template .toggle-field");
+            var dropList = jQuery(".drop-list", matchedObject).not(".template .drop-list");
             var dropTag = jQuery(".drop-tag", matchedObject).not(".template .drop-tag");
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
@@ -159,6 +160,7 @@
             tagField.uxtagfield();
             incrementalField.uxincrementalfield();
             toggleField.uxtogglefield();
+            dropList.uxdroplist();
             dropTag.uxdroptag();
             table.uxtable();
             image.uximage();
