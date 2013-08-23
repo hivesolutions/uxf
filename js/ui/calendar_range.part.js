@@ -239,7 +239,7 @@
                         var range = element.parents(".calendar-range");
                         var focused = jQuery(".focus", range);
 
-                        //element to avoid the next (blur)
+                        // set the element to avoid the next (blur)
                         focused.data("avoid_next", true);
                     });
         };
