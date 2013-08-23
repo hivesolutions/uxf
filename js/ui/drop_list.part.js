@@ -109,7 +109,7 @@
                         // retrieves the html based contents and the "logical" value for the
                         // currently selected element, to be used in the update
                         var contents = element.html();
-                        var value = element.attr("data-value");
+                        var value = element.attr("data-value") || "";;
 
                         // updates both the drop item hrml contents with the value of the selected
                         // element and also the drop list "logical" value
