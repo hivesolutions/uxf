@@ -804,7 +804,7 @@
             calendar.bind("current_change", function(event, current) {
                         // retrieves the date format defined in the current element
                         // and uses it with the current map to retrieve the date string
-                        var format = element.attr("data-format");
+                        var format = element.attr("data-format") || "%Y/%m/%d";
                         var dateString = jQuery.uxformat(current, format);
 
                         // updates both the logical value and the real value
