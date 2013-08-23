@@ -125,6 +125,44 @@
                         // element and value as arguments
                         dropList.trigger("selected", [element, value])
                     });
+
+            // iterates over each of the drop list elements that were
+            // selected to be able to register them for form submission
+            matchedObject.each(function(index, element) {
+                        // retrieves the current element in iteration and the
+                        // associated form as the parent form
+                        var _element = jQuery(this);
+                        var parentForm = _element.parents("form");
+
+                        // registers for the pre submit event, so that it's possible
+                        // to create an hidden input representing the value that
+                        // will be submited accordint to the drop list
+                        parentForm.bind("pre_submit", function() {
+                                    // retrieves the name of the element, this value is
+                                    // going to be used in the input element to be create
+                                    // in case the name does not exists no submission of
+                                    // values is created (returns immediately)
+                                    var name = _element.attr("name");
+                                    if (!name) {
+                                        return;
+                                    }
+
+                                    // tries to retrieve the value from the currently selected
+                                    // element and in case the value is not valid returns
+                                    var value = _element.attr("data-value");
+                                    if (!value) {
+                                        return;
+                                    }
+
+                                    // creates the hidden input field representing the selected item
+                                    // and prepends it to the current drop list element
+                                    _element.prepend("<input type=\"hidden\" name=\""
+                                            + name
+                                            + "\" value=\""
+                                            + value
+                                            + "\" />");
+                                });
+                    });
         };
 
         // initializes the plugin
