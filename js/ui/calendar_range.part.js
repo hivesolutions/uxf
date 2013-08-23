@@ -34,13 +34,13 @@
             // creates both the range and the calendar elements that
             // will be added to the currently matched object latter
             var range = "<div class=\"range\">"
-                    + "<input type=\"text\" class=\"text-field start-date\" placeholder=\""
+                    + "<input type=\"text\" class=\"text-field start-date\" data-original_value=\""
                     + startDate
                     + "\" />"
                     + "<span>"
                     + to
                     + "</span>"
-                    + "<input type=\"text\" class=\"text-field end-date\" placeholder=\""
+                    + "<input type=\"text\" class=\"text-field end-date\" data-original_value=\""
                     + endDate + "\" />" + "</div>";
             var calendar = "<div class=\"calendar no-layout\"></div>";
 
@@ -59,6 +59,34 @@
             // part of the calendar range
             textFields.uxtextfield();
             calendar.uxcalendar();
+
+            // iterates over each of the elements to change their
+            // internal values
+            matchedObject.each(function(index, element) {
+                        // retrieves the current element and uses then
+                        // to retrieve the currently selected date range
+                        // values and names
+                        var _element = jQuery(this);
+                        var start = _element.attr("data-start");
+                        var end = _element.attr("data-end");
+                        var startName = _element.attr("data-start_name");
+                        var endName = _element.attr("data-end_name");
+
+                        // retrieves the reference to the start date and
+                        // end date text fields
+                        var startDate = jQuery(".start-date", _element);
+                        var endDate = jQuery(".end-date", _element);
+
+                        // updates the text fields with the proper start
+                        // and en data string values
+                        start && startDate.uxvalue(start);
+                        end && endDate.uxvalue(end);
+
+                        // changes the name attribute in both the start
+                        // and end date text fields to the defined ones
+                        startName && startDate.attr("name", startName);
+                        endName && endDate.attr("name", endName);
+                    });
         };
 
         /**
