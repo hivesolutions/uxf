@@ -464,7 +464,7 @@
 
         var _updateHandlers = function(matchedObject, options) {
             // retrieves all the (valid) cells from the matched object
-            var cells = jQuery("tbody td", matchedObject)
+            var cells = jQuery("tbody td", matchedObject);
 
             // registrs for the click event in the cells
             cells.click(function() {

@@ -1,0 +1,7 @@
+.calendar-range > .calendar {
+    display: none;
+}
+
+.calendar-range.calendar-visible > .calendar {
+    display: block;
+}

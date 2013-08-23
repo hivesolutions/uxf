@@ -416,6 +416,14 @@
             // retrieves the element as the matched object
             var element = matchedObject;
 
+            // verifies if the element is already focused and in
+            // case it's returns immediately avoiding the new
+            // redundant focus event that would do anything
+            var isFocus = element.hasClass("focus");
+            if (isFocus) {
+                return;
+            }
+
             // blurs all the active text fields (avoids bluring
             // the current text field)
             __bluractive(element, options);
@@ -442,11 +450,23 @@
 
             // sets the element value in the text field
             element.attr("value", elementValue);
+
+            // triggers the composite focus event so that the
+            // listeners "know" about the "real" focus action
+            element.triggerHandler("_focus");
         };
 
         var _blur = function(matchedObject, options) {
             // retrieves the element as the matched object
             var element = matchedObject;
+
+            // verifies if the current element is focused and
+            // in case it's not avoids the blur action as the element
+            // is already considered to be in a blur state
+            var isFocus = element.hasClass("focus");
+            if (!isFocus) {
+                return;
+            }
 
             // retrieves the value of the avoid next flag
             // and updates the state of it to false
@@ -482,6 +502,10 @@
             // removes the focus class to the text field, signals
             // the blur from it
             element.removeClass("focus");
+
+            // triggers the composite blur event so that the
+            // listeners "know" about the "real" blur action
+            element.triggerHandler("_blur");
         };
 
         var __start = function(matchedObject, options) {
@@ -829,8 +853,9 @@
                         }
 
                         // creates the date object from the timestamp
+                        // and then uses it to unpack the various date
+                        // values fro it (value decomposition)
                         var date = new Date(timestamp);
-
                         var year = date.getFullYear();
                         var month = date.getMonth() + 1;
                         var day = date.getDate();

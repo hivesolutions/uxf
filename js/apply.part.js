@@ -70,6 +70,7 @@
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
             var calendar = jQuery(".calendar", matchedObject).not(".template .calendar");
+            var calendarRange = jQuery(".calendar-range", matchedObject).not(".template .calendar-range");
             var menulink = jQuery(".menu-link", matchedObject).not(".template .menu-link");
             var slider = jQuery(".slider", matchedObject).not(".template .slider");
             var scrollList = jQuery(".scroll-list", matchedObject).not(".template .scroll-list");
@@ -162,6 +163,7 @@
             table.uxtable();
             image.uximage();
             calendar.uxcalendar();
+            calendar.uxcalendarrange();
             menulink.uxmenulink();
             slider.uxslider();
             scrollList.uxscrolllist();
