@@ -12,9 +12,12 @@
  *          http://www.hive.pt/licenses/
  */
 (function(jQuery) {
-    jQuery.fn.uxradiofield = function(options) {
+    jQuery.fn.uxradiofield = function(method, options) {
         // the default values for the radio field
         var defaults = {};
+
+        // sets the default method value
+        var method = method ? method : "default";
 
         // sets the default options value
         var options = options ? options : {};
@@ -38,7 +41,12 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // iterates over all the matched object
+            // sets the data object reference in the selected objects
+            // so that they may be used latter
+            matchedObject.attr("data-object", "radiofield");
+
+            // iterates over all the matched objects to update their
+            // current internal state values
             matchedObject.each(function(index, element) {
                         // retrieves the element refence
                         var _element = jQuery(element);
@@ -92,8 +100,28 @@
             }
         };
 
-        // initializes the plugin
-        initialize();
+        var _reset = function(matchedObject, options) {
+            // removes the checked attribute from the matched
+            // object so that the element becomes unselected
+            matchedObject.removeAttr("checked");
+        };
+
+        // switches over the method
+        switch (method) {
+            case "reset" :
+                // runs the reset method in the current element
+                _reset(matchedObject, options);
+
+                // breaks the switch
+                break;
+
+            case "default" :
+                // initializes the plugin
+                initialize();
+
+                // breaks the switch
+                break;
+        }
 
         // returns the object
         return this;
