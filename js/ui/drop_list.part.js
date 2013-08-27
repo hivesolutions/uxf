@@ -1,7 +1,10 @@
 (function(jQuery) {
-    jQuery.fn.uxdroplist = function(options) {
+    jQuery.fn.uxdroplist = function(method, options) {
         // the default values for the data source
         var defaults = {};
+
+        // sets the default method value
+        var method = method ? method : "default";
 
         // sets the default options value
         var options = options ? options : {};
@@ -25,6 +28,11 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // sets the ux global object representation as drop
+            // list, this value may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.attr("data-object", "droplist");
+
             // retrieves the reference to the options part of the
             // drop list to be able to change properly
             var dropOptions = jQuery(".drop-options", matchedObject);
@@ -109,7 +117,7 @@
                         // retrieves the html based contents and the "logical" value for the
                         // currently selected element, to be used in the update
                         var contents = element.html();
-                        var value = element.attr("data-value") || "";;
+                        var value = element.attr("data-value") || "";
 
                         // updates both the drop item hrml contents with the value of the selected
                         // element and also the drop list "logical" value
@@ -165,8 +173,30 @@
                     });
         };
 
-        // initializes the plugin
-        initialize();
+        var _value = function(matchedObject, options) {
+            // retrieves the current value of the object as the value
+            // of the value data attribute in the element and returns
+            // it to the caller method (value returning)
+            var value = matchedObject.attr("data-value");
+            return value;
+        };
+
+        // switches over the method
+        switch (method) {
+            case "value" :
+                // retrieves the value
+                var value = _value(matchedObject, options);
+
+                // returns the value
+                return value;
+
+            case "default" :
+                // initializes the plugin
+                initialize();
+
+                // breaks the switch
+                break;
+        }
 
         // returns the object
         return this;

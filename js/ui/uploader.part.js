@@ -35,6 +35,7 @@
                 // from the element
                 var name = _element.attr("data-name");
                 var action = _element.attr("data-action");
+                var noText = _element.attr("data-no_text");
 
                 // incase the action value is set the action form
                 // must be create enclosing the element, after
@@ -87,10 +88,20 @@
                                 // retrieves the input value and sets it as the
                                 // new "label" in the element
                                 var inputValue = uploaderInput.attr("value");
-                                _element.html(inputValue);
+                                !noText && _element.html(inputValue);
 
-                                // updates the input position for the element
+                                // updates the input position for the element, because
+                                // the change in the contents size requires so
                                 _updateInputPosition(_element, options);
+
+                                // retrieves the reference to the upload object and uses
+                                // it to retrieve the files reference and uses it in the
+                                // triggering of the file change event on the element
+                                var uploader = uploaderInput[0];
+                                var files = uploader.files
+                                        ? uploader.files
+                                        : [];
+                                _element.triggerHandler("files_change", [files]);
                             }
                         });
 
