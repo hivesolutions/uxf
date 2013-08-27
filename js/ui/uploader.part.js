@@ -108,9 +108,29 @@
                 // registers for the click event in the
                 // element (for event propagation)
                 _element.click(function() {
+                            // verifies if the element is disabled, for such case the
+                            // click event should be ignored and so the control flow
+                            // returns immediately to avoid any other behavior
+                            var isDisabled = _element.hasClass("disabled");
+                            if (isDisabled) {
+                                return;
+                            }
+
                             // triggers the click event in
                             // the uploader input (propagation)
                             uploaderInput.trigger("click");
+                        });
+
+                // registers for the disavled event in the element
+                // to hide the uploader input from the layout
+                _element.bind("disabled", function() {
+                            uploaderInput.hide();
+                        });
+
+                // registers for the enabled event in the element
+                // to (re)-show the upload input again the layout
+                _element.bind("enabled", function() {
+                            uploaderInput.show();
                         });
             });
         };
