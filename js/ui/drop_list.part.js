@@ -31,7 +31,7 @@
             // sets the ux global object representation as drop
             // list, this value may be used latter for fast ux
             // object type access (hash based conditions)
-            matchedObject.attr("data-object", "droplist");
+            matchedObject.uxobject("droplist");
 
             // retrieves the reference to the options part of the
             // drop list to be able to change properly

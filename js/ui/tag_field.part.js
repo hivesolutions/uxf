@@ -44,7 +44,7 @@
             // sets the ux global object representation as text
             // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
-            matchedObject.attr("data-object", "tagfield");
+            matchedObject.uxobject("tagfield");
 
             // adds the tag field tags to the matched object, this
             // is the container to the tag representations

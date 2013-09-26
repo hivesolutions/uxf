@@ -43,7 +43,7 @@
         var _appendHtml = function() {
             // sets the data object reference in the selected objects
             // so that they may be used latter
-            matchedObject.attr("data-object", "radiofield");
+            matchedObject.uxobject("radiofield");
 
             // iterates over all the matched objects to update their
             // current internal state values

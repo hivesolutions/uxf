@@ -44,7 +44,7 @@
             // sets the ux global object representation as text
             // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
-            matchedObject.attr("data-object", "textfield");
+            matchedObject.uxobject("textfield");
 
             // iterates over all the items in the matched object
             matchedObject.each(function(index, element) {

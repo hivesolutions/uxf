@@ -47,7 +47,7 @@
             // sets the ux global object representation as drop
             // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
-            matchedObject.attr("data-object", "dropfield");
+            matchedObject.uxobject("dropfield");
 
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
