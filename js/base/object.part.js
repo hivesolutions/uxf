@@ -15,6 +15,6 @@
 
         // sets the object type in the data object attribute
         // for the currently matched object
-        matchedObject.uxobject(type);
+        matchedObject.attr("data-object", type);
     };
 })(jQuery);
