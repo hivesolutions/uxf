@@ -224,6 +224,12 @@
             // applies the uploader plugin
             uploader.uxuploader();
 
+            // applies the first focus operation in the focus
+            // enabled elements, this is going to be overriden
+            // by the second focus operation after the body is
+            // correctly and finally shown
+            focus.uxfocus();
+
             // applies the print plugin
             _print.uxprint();
 
