@@ -30,6 +30,10 @@
     margin: 0px 14px 0px 14px;
 }
 
+.ulite-style .list.menu-list li.small {
+    margin: 0px 6px 0px 6px;
+}
+
 .ulite-style .list.featured-list {
     font-size: 10px;
     height: 180px;
