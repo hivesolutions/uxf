@@ -60,13 +60,15 @@
                         element.data("submited", true);
 
                         // in case the form was not already submited
-                        // need to prevent the event
+                        // need to prevent the event from bubling and
+                        // then the function must return immediately
                         if (submited) {
-                            // stops the event propagation and
-                            // prevents the default behavior (avoids
-                            // duplicate submits)
+                            // stops the event propagation and prevents
+                            // the default behavior (avoids duplicate
+                            // submission) then returns the function
                             event.stopPropagation();
                             event.preventDefault();
+                            return;
                         }
 
                         // triggers the pre submit event so that the typical pre
