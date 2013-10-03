@@ -109,6 +109,7 @@
             var slideshow = jQuery(".slideshow", matchedObject).not(".template .slideshow");
             var chart = jQuery(".chart", matchedObject).not(".template .chart");
             var video = jQuery(".video", matchedObject).not(".template .video");
+            var code = jQuery(".code", matchedObject).not(".template .code");
             var uploader = jQuery(".uploader", matchedObject).not(".template .uploader");
             var transformFlip = jQuery(".transform-flip", matchedObject).not(".template .transform-flip");
             var fileDrop = jQuery(".file-drop", matchedObject).not(".template .file-drop");
@@ -202,6 +203,7 @@
             slideshow.uxslideshow();
             chart.uxchart();
             video.uxvideo();
+            code.uxcode();
 
             // applies the various transform plugins
             transformFlip.uxtransformflip();
