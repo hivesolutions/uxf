@@ -24,6 +24,10 @@
     background-position: 0px -60px;
 }
 
+.ulite-style .radio-field:focus {
+    outline: none;
+}
+
 .ulite-style .radio-field-label {
     margin: 0px 12px 0px 3px;
 }

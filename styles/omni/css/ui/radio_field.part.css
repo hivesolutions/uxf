@@ -25,6 +25,10 @@
     background-position: 0px -60px;
 }
 
+.omni-style .radio-field:focus {
+    outline: none;
+}
+
 .omni-style.explorer .radio-field {
     background: transparent none no-repeat 0px 0px;
     border: none;
