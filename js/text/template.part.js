@@ -85,6 +85,9 @@
          * @param {Boolean}
          *            nullify If the attribute should be nullified in case it's
          *            null.
+         * @param {Boolean}
+         *            localize If the localization infra-structure should be
+         *            applied to the attribute value before it's rendered.
          * @param {String}
          *            defaultValue The default value to be used in case a null
          *            or undefined value is resolved from the current map of
@@ -93,7 +96,7 @@
          *            baseKey The base key value to be used in all of the keys.
          * @return {String} The resulting template contents (after apply).
          */
-        var _applyAttributes = function(templateContents, attributes, nullify, defaultValue, baseKey) {
+        var _applyAttributes = function(templateContents, attributes, nullify, localize, defaultValue, baseKey) {
             // retrieves the various default value to be used
             // in the template rendering
             var defaultValue = defaultValue ? defaultValue : "";
@@ -104,8 +107,13 @@
 
             // iterates over all the attributes
             for (var key in attributes) {
-                // retrieves the value of the attribute to be set
+                // retrieves the value of the attribute to be set,
+                // localizing in case the localize flag has been set
+                // this should provide a good localization value
                 var attributeValue = attributes[key];
+                attributeValue = localize
+                        ? jQuery.uxlocale(attributeValue)
+                        : attributeValue;
 
                 // creates the "final" key value from the
                 // base key value
@@ -134,7 +142,8 @@
                     // based in the current attribute value and with
                     // the new base key value
                     templateContents = _applyAttributes(templateContents,
-                            attributeValue, nullify, defaultValue, newBaseKey);
+                            attributeValue, nullify, localize, defaultValue,
+                            newBaseKey);
                 }
                 // otherwise the attribute value must be
                 // a simple basic type
@@ -153,8 +162,11 @@
         };
 
         var __applyTemplate = function(templateElement, attributes) {
-            // retrieves the nullify option
+            // retrieves the various options for the template
+            // rendering operation that will condition the
+            // execution of the rendering
             var nullify = options["nullify"];
+            var localize = options["localize"];
             var defaultValue = options["defaultValue"];
 
             // retrirves the for each elments for the current template element
@@ -205,10 +217,9 @@
 
             // applies the attributes to the template contents
             // in case the template contents is correctly set
-            templateContents = templateContents
-                    ? _applyAttributes(templateContents, attributes, nullify,
-                            defaultValue)
-                    : templateContents;
+            templateContents = templateContents ? _applyAttributes(
+                    templateContents, attributes, nullify, localize,
+                    defaultValue) : templateContents;
 
             // returns the template contents
             return templateContents;
