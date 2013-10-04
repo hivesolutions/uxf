@@ -1087,6 +1087,7 @@
                                     var options = {
                                         apply : true,
                                         nullify : true,
+                                        localize : true,
                                         defaultValue : "-"
                                     };
 
