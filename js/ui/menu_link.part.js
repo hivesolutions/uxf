@@ -67,6 +67,14 @@
                         // retrieves the element
                         var element = jQuery(this);
 
+                        // in case the menu link is currently disable must
+                        // return immediately to avoid the typical work
+                        // to be done (not required)
+                        var isDisabled = element.hasClass("disabled");
+                        if (isDisabled) {
+                            return;
+                        }
+
                         // tries to retrieve the menu selector associated
                         // with the current menu link (this is for custom)
                         // menu references
