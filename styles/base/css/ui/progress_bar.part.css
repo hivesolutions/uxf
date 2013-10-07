@@ -23,7 +23,6 @@
     background-image: -webkit-linear-gradient(top, #5bc0de, #339bb9);
     background-image: -o-linear-gradient(top, #5bc0de, #339bb9);
     background-image: linear-gradient(top, #5bc0de, #339bb9);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#339bb9', GradientType=0);
     background-color: #339bb9;
     color: #ffffff;
     float: left;
@@ -38,7 +37,6 @@
     background-image: -ms-linear-gradient(#ffffff, #ffffff 25%, #eeeeee);
     background-image: -o-linear-gradient(#ffffff, #ffffff 25%, #eeeeee);
     background-image: linear-gradient(#ffffff, #ffffff 25%, #eeeeee);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#eeeeee', GradientType=0);
     background-color: #eeeeee;
     color: #444444;
     float: right;
