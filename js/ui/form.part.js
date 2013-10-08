@@ -258,6 +258,10 @@
                 url : action,
                 data : data,
                 complete : function(request, textStatus) {
+                    // removes the submited flag from the form so that
+                    // it's possible to re-submit it
+                    matchedObject.data("submited", false)
+
                     // triggers the unlock event so that the various
                     // items in the form may be re-used again
                     matchedObject.triggerHandler("unlock");
