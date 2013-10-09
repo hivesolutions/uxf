@@ -267,8 +267,15 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the body
+            // retrieves the body and verifies if it has
+            // already been registered in case it was sets
+            // the value and returns immediately
             var _body = jQuery("body");
+            var registered = _body.data("registered");
+            _body.data("registered", true);
+            if (registered) {
+                return;
+            }
 
             try {
                 // overrides the current alert function
