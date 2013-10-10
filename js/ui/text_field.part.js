@@ -372,7 +372,10 @@
             // in case it's a "normal" get operation
             // (no value defined)
             if (value === undefined) {
-                // retrieves the element value
+                // updates the current value base on the current status
+                // and then retrieves the data based value (logical value)
+                // that it's going to be used in transforming the value
+                __updateValue(matchedObject, options);
                 var elementValue = matchedObject.attr("data-value");
 
                 // retrieves the data type for the matached object
