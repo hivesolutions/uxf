@@ -25,6 +25,12 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // validates that there's a valid matched object,
+            // otherwise returns immediately
+            if (matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the elements to be able to apply their styles
             // and use them as the base reference for the rest of the
             // apply operation, note that the started flag is used to
@@ -230,12 +236,6 @@
             // applies the uploader plugin
             uploader.uxuploader();
 
-            // applies the first focus operation in the focus
-            // enabled elements, this is going to be overriden
-            // by the second focus operation after the body is
-            // correctly and finally shown
-            focus.uxfocus();
-
             // applies the print plugin
             _print.uxprint();
 
@@ -260,13 +260,21 @@
             // applies the focus plugins, this must be done
             // after the visibility is set so that no problem
             // with focus operations occurs (safe operation)
-            focus.uxfocus();
+            setTimeout(function() {
+                        focus.uxfocus();
+                    });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // validates that there's a valid matched object,
+            // otherwise returns immediately
+            if (matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the body and verifies if it has
             // already been registered in case it was sets
             // the value and returns immediately

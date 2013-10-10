@@ -46,7 +46,13 @@
                         // retrieves the element reference
                         var _element = jQuery(element);
 
-                        // focus on the element
+                        // removes the trigger focus class from the element
+                        // in case this is required it will be processed latter
+                        // as part of the normal focus processing
+                        _element.removeClass("focus");
+
+                        // focus on the element, this should trigger
+                        // the proper action in the underlying element
                         _element.focus();
 
                         // retrieves the (data) value from the element (from

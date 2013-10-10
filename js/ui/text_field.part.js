@@ -429,16 +429,18 @@
             __bluractive(element, options);
 
             // adds the focus class to the text field, signals
-            // the focus on it
+            // the focus on it and then adds the active class
+            // also indicating the general active behavior
             element.addClass("focus");
-
-            // adds the active class
             element.addClass("active");
 
-            // removes the lower (background) mode class
+            // removes the lower (background) mode class so
+            // that the placeholder value is removed
             element.removeClass("lower");
 
-            // retrieves the (data) type of the element
+            // retrieves the (data) type of the element to be
+            // able to call the proper show method for the type
+            // in case it exists
             var type = element.attr("data-type");
 
             // shows the type specific structures
