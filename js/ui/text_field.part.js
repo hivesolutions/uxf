@@ -269,12 +269,21 @@
                         event.stopPropagation();
                     });
 
+            // registers for the change event so that it's possible
+            // to update the error state of the current field
             matchedObject.change(function() {
                         // retrieves the element
                         var element = jQuery(this);
 
                         // resets the error state
                         __resetError(element, options);
+                    });
+
+            // registers for the flush event to update the current
+            // internal state variables to the latest version
+            matchedObject.bind("flush", function() {
+                        var element = jQuery(this);
+                        __updateValue(element, options);
                     });
 
             matchedObject.each(function(index, element) {
@@ -546,10 +555,10 @@
             forceComplete && inputFieldValue == originalValue
                     && matchedObject.attr("value", "");
 
-            // updates the error
+            // runs the initial update operations for both the error
+            // and the value, the updating of the value is
+            // important to avoid sync errors
             __updateError(matchedObject, options);
-
-            // updates the value
             __updateValue(matchedObject, options);
         };
 

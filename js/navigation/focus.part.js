@@ -55,6 +55,11 @@
                         // the proper action in the underlying element
                         _element.focus();
 
+                        // triges the flush operation in the current element
+                        // so that all of its internal structures are updated
+                        // to avoid any sync problem in the cursor
+                        _element.triggerHandler("flush");
+
                         // retrieves the (data) value from the element (from
                         // data value) and then retrieves the length from it
                         // and then uses it to set the cursor position
