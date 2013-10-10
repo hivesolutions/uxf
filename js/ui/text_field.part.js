@@ -325,7 +325,11 @@
                     // otherwise it's a normal processing the data value must
                     // be set as the current value
                     else {
-                        // retrieves the element value
+                        // updates the current value with the most updated version
+                        // based on the dom value and then retrieves its value to
+                        // be used in the proper value to be set, this trick avoids
+                        // problems leading with "lowered" values
+                        __updateValue(elementReference, options);
                         var elementValue = elementReference.attr("data-value");
 
                         // sets the element value in the input field
@@ -603,7 +607,8 @@
             // from the data value attribute
             var previousInputFieldValue = matchedObject.attr("data-value");
 
-            // retrieves the input value
+            // retrieves the input value (real value) that
+            // its going to be set in the data attribute
             var inputFieldValue = matchedObject.attr("value");
 
             // sets the data value
