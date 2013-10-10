@@ -120,23 +120,20 @@
                         // no longer required
                         tagsList.remove();
 
-                        // checks if the element is visible so that appropriate
-                        // visibility operation take place for carrect layout update
-                        var isVisible = _element.is(":visible");
+                        // schedules a timeout for the end of this execution loop
+                        // to update the current layout for the tag field this should
+                        // avoid problems with no visibility in the tag field
+                        setTimeout(function() {
+                                    // checks if the element is visible so that appropriate
+                                    // visibility operation take place for carrect layout update
+                                    var isVisible = _element.is(":visible");
 
-                        // shows the element momentanely so that appropriate width
-                        // height measurements may take place
-                        !isVisible && _element.show();
-
-                        // updates (resizes) the tag field, then sets another
-                        // update operation for the final part of the update
-                        // lifecycle this way a new refresh happends after the
-                        // complete layout is rendered
-                        _update(_element, options);
-
-                        // in case the element was not visible at the beginning
-                        // of the measurement hides it agains (state restore)
-                        !isVisible && _element.hide();
+                                    // updates (resizes) the tag field, then sets another
+                                    // update operation for the final part of the update
+                                    // lifecycle this way a new refresh happends after the
+                                    // complete layout is rendered
+                                    isVisible && _update(_element, options);
+                                });
                     });
         };
 
