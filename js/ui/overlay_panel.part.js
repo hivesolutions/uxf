@@ -111,14 +111,14 @@
                                     // checks if the element is visible
                                     var elementVisible = _element.is(":visible");
 
-                                    // in case the element is visible
+                                    // in case the element is visible, must hide hide
+                                    // in order to toggel visibility
                                     if (elementVisible) {
-                                        // hides the current element
                                         _hide(_element, options);
                                     }
-                                    // otherwise the element must be invisible
+                                    // otherwise the element must be invisible and then
+                                    // it must be shown in the screen
                                     else {
-                                        // shows the current element
                                         _show(_element, options);
                                     }
                                 });
@@ -155,14 +155,24 @@
         };
 
         var _show = function(matchedObject, options) {
-            // retrieve eventual items of the
-            // overlay panel
+            // retrieves the vertical offset and parses it
+            // as a float to be used in the center operation
+            var offset = matchedObject.attr("data-offset");
+            var offsetFloat = parseFloat(offset);
+
+            // retrieves eventual items of the overlay panel,
+            // including a text field value
             var textField = jQuery(".text-field", matchedObject);
 
             // retrieves the overlay element and forces a resize
             // on it to ensure dimensions (ensures proper size)
             var overlay = jQuery(".overlay");
             overlay.trigger("resize");
+
+            // centers the object in the screen, this is required
+            // in order to avoid init glitches that would be created
+            // for situations where theres an offscreen resize
+            matchedObject.uxcenter(offsetFloat);
 
             // shows the overlay
             overlay.fadeIn(100);
