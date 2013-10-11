@@ -50,7 +50,7 @@
 
                         // centers the matched object with the
                         // current vertical offset in percentage
-                        matchedObject.uxcenter(offsetFloat);
+                        _element.uxcenter(offsetFloat);
                     });
         };
 
