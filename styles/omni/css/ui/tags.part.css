@@ -1,13 +1,10 @@
 .omni-style .tag,
 .omni-style .tag.grey {
     background-color: #999999;
-    border-radius: 18px 18px 18px 18px;
-    -moz-border-radius: 18px 18px 18px 18px;
-    -webkit-border-radius: 18px 18px 18px 18px;
     color: white;
     font-size: 10px;
     font-weight: bold;
-    padding: 3px 8px 3px 8px;
+    padding: 3px 6px 3px 6px;
     text-transform: uppercase;
 }
 
@@ -45,4 +42,10 @@
 
 .omni-style .tag.lower {
     opacity: 0.75;
+}
+
+.omni-style.round .tag {
+    border-radius: 12px 12px 12px 12px;
+    -moz-border-radius: 12px 12px 12px 12px;
+    -webkit-border-radius: 12px 12px 12px 12px;
 }
