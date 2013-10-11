@@ -38,9 +38,9 @@
 }
 
 .omni-style .tag.inset {
-    box-shadow: inset 0px 0px 3px #777777;
-    -moz-box-shadow: inset 0px 0px 3px #777777;
-    -webkit-box-shadow: inset 0px 0px 3px #777777;
+    box-shadow: inset 0px 0px 3px #666666;
+    -moz-box-shadow: inset 0px 0px 3px #666666;
+    -webkit-box-shadow: inset 0px 0px 3px #666666;
 }
 
 .omni-style .tag.lower {

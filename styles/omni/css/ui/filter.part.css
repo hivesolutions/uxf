@@ -81,7 +81,7 @@
     border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
-    color: #777777;
+    color: #666666;
     cursor: pointer;
     float: left;
     font-size: 10px;
@@ -318,13 +318,13 @@
 }
 
 .omni-style .filter.entities-list .entity-details {
-    color: #777777;
+    color: #666666;
     line-height: 16px;
     margin: 10px 0px 0px 0px;
 }
 
 .omni-style .filter.entities-list .entity-information {
-    color: #777777;
+    color: #666666;
     font-size: 11px;
     line-height: 16px;
     margin: 0px 6px 0px 6px;

@@ -42,12 +42,12 @@
 }
 
 .omni-style .link.link-grey-light {
-    color: #777777;
+    color: #666666;
 }
 
 .omni-style .link.link-grey-light:hover,
 .omni-style .link.link-grey-light.selected {
-    border-bottom: 1px solid #777777;
+    border-bottom: 1px solid #666666;
 }
 
 .omni-style .link.link-grey-dark {
