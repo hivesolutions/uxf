@@ -216,8 +216,12 @@
             var source = image.attr("src");
 
             // retrieves the target item structure to be used to populate
-            // the various components for the target state
+            // the various components for the target state in case the
+            // value is not valid return immediately (nothing to be done)
             var item = items[index];
+            if (!item) {
+                return;
+            }
 
             // in case the source value is set, there is a previous image
             // must fade it out and only then show the new one
