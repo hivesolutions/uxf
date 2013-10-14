@@ -11,9 +11,6 @@
 
 .omni-style .tag-field .tag-field-tag {
     background-color: #888888;
-    border-radius: 4px 4px 4px 4px;
-    -moz-border-radius: 4px 4px 4px 4px;
-    -webkit-border-radius: 4px 4px 4px 4px;
     cursor: default;
     float: left;
     height: 17px;
@@ -41,4 +38,10 @@
 
 .omni-style .tag-field .tag-field-remove:hover {
     background-position: 0px -11px;
+}
+
+.omni-style.round .tag-field .tag-field-tag {
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
 }
