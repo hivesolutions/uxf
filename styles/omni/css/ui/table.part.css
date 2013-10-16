@@ -118,11 +118,8 @@
     width: 532px;
 }
 
-.omni-style .table .table-new-line-row  > .table-new-line {
+.omni-style .table .table-new-line-row > .table-new-line {
     background-color: #908e8f;
-    border-radius: 6px 6px 6px 6px;
-    -moz-border-radius: 6px 6px 6px 6px;
-    -webkit-border-radius: 6px 6px 6px 6px;
     color: #ffffff;
     font-size: 10px;
     letter-spacing: 1px;
@@ -130,8 +127,14 @@
     text-transform: uppercase;
 }
 
-.omni-style .table .table-new-line-row  > .table-new-line:hover {
+.omni-style .table .table-new-line-row > .table-new-line:hover {
     background-color: #71ae48;
+}
+
+.omni-style.round .table .table-new-line-row > .table-new-line {
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
 }
 
 .omni-style .table.table-documentation {
