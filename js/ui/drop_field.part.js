@@ -71,10 +71,14 @@
                 // additionally retrieves also the placeholder so that it may
                 // propagated to the lower layers
                 var placeholder = _element.attr("placeholder");
-                var displayAttribute = _element.attr("data-display_attribute");
-                var extraAttribute = _element.attr("data-extra_attribute");
-                var valueAttribute = _element.attr("data-value_attribute");
-                var linkAttribute = _element.attr("data-link_attribute");
+                var displayAttribute = _element.attr("data-display_attribute")
+                        || "name";
+                var extraAttribute = _element.attr("data-extra_attribute")
+                        || "extra";
+                var valueAttribute = _element.attr("data-value_attribute")
+                        || "value";
+                var linkAttribute = _element.attr("data-link_attribute")
+                        || "link";
 
                 // retrieves the filter attributes and converts it
                 // to a list of string from the token separator

@@ -244,9 +244,12 @@
             var value = sourceList.data("value");
 
             // retrieves both the display, value and link attributes
-            var displayAttribute = matchedObject.attr("data-display_attribute");
-            var valueAttribute = matchedObject.attr("data-value_attribute");
-            var linkAttribute = matchedObject.attr("data-link_attribute");
+            var displayAttribute = matchedObject.attr("data-display_attribute")
+                    || "name";
+            var valueAttribute = matchedObject.attr("data-value_attribute")
+                    || "value";
+            var linkAttribute = matchedObject.attr("data-link_attribute")
+                    || "link";
 
             // retrieves the filter attributes
             var filterAttributes = matchedObject.data("filter_attributes");

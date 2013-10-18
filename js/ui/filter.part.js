@@ -2320,8 +2320,10 @@
 
                     // retrieves the display and the value attributes from the
                     // element to the propagated to the value field
-                    var displayAttribute = element.attr("data-sdisplay_attribute");
-                    var valueAttribute = element.attr("data-svalue_attribute");
+                    var displayAttribute = element.attr("data-sdisplay_attribute")
+                            || "name";
+                    var valueAttribute = element.attr("data-svalue_attribute")
+                            || "value";
 
                     // creates the value field as a drop field (reference field),
                     // inserts it after the operation field and initializes it

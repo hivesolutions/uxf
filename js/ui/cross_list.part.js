@@ -59,9 +59,16 @@
                 var elementName = _element.attr("name");
                 var elementOrder = _element.attr("data-order");
                 var sourceName = _element.attr("data-source");
+                var sourceName = _element.attr("data-source");
                 var targetName = _element.attr("data-target");
                 var numberOptions = _element.attr("data-number_options");
                 var duplicates = _element.attr("data-duplicates") || false;
+                var displayAttribute = matchedObject.attr("data-display_attribute")
+                        || "name";
+                var valueAttribute = matchedObject.attr("data-value_attribute")
+                        || "value";
+                var linkAttribute = matchedObject.attr("data-link_attribute")
+                        || "link";
 
                 // creates the various section elements
                 var sourceSection = jQuery("<div class=\"section source-section\"></div>");
@@ -103,6 +110,15 @@
                 // list then in case the element name is defined sets it in the target
                 // list to provide correct form submission
                 dataSource.length && sourceList.append(dataSource);
+                displayAttribute
+                        && sourceList.attr("data-display_attribute",
+                                displayAttribute);
+                valueAttribute
+                        && sourceList.attr("data-value_attribute",
+                                valueAttribute);
+                link_attribute
+                        && sourceList.attr("data-link_attribute",
+                                link_attribute);
                 elementName && targetList.attr("name", elementName);
                 elementOrder && targetList.attr("data-order", elementOrder);
 
