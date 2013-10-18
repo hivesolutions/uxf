@@ -448,6 +448,61 @@
                         targetList.append(_validItems);
                         targetList.trigger("items_changed");
                     });
+
+            // iterates over all the selected values to register for the
+            // specifics of each element (required for clojure)
+            matchedObject.each(function(index, element) {
+                // retrieves the current element in iteration and then uses it
+                // to retrieve the parent form for pre submit event interception
+                var _element = jQuery(this);
+                var parentForm = _element.parents("form");
+
+                // registers for the submit event in the parent form so that it's
+                // possible to create the hidden input values for the form
+                parentForm.bind("pre_submit", function() {
+                            // retrieves the name of the element, this value is
+                            // going to be used in the input element to be create
+                            // in case the name does not exists no submission of
+                            // values is created (returns immediately)
+                            var elementName = _element.attr("name");
+                            if (!elementName) {
+                                return;
+                            }
+
+                            // retrieves the reference to the target select list that
+                            // is going to be used in the retrieval of the list item
+                            var targetList = jQuery(
+                                    ".target-section .select-list", _element);
+
+                            // removes all the input elements contained inside the
+                            // current select list (avoid duplicated submission)
+                            targetList.remove("input");
+
+                            // retrieves the complete set of elements in the current
+                            // target list, this values are going to be used to create
+                            // the series of form input elements
+                            var listItems = jQuery("li", targetList);
+
+                            // iterates over all the elements in the list items to
+                            // creates the associated input values
+                            for (var index = 0; index < listItems.length; index++) {
+                                // retrieves the current list items in iteration
+                                // and retrieves the value to be used as data value
+                                // defaulting to the html value in case none is provided
+                                var listItem = jQuery(listItems[index]);
+                                var dataValue = listItem.attr("data-value");
+                                var htmlValue = listItem.html();
+                                dataValue = dataValue ? dataValue : htmlValue;
+
+                                // adds the input element representing the list item
+                                // to the target list itself
+                                targetList.append("<input type=\"hidden\" name=\""
+                                        + elementName
+                                        + "\" value=\""
+                                        + dataValue + "\" />");
+                            }
+                        });
+            });
         };
 
         // switches over the method
