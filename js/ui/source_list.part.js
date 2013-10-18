@@ -308,12 +308,15 @@
                             // retrieves both the display and the value
                             // attributes for the current item
                             var currentDisplayAttribute = displayAttribute
+                                    && currentItem[displayAttribute]
                                     ? currentItem[displayAttribute]
                                     : currentItem;
                             var currentValueAttribute = valueAttribute
+                                    && currentItem[valueAttribute]
                                     ? currentItem[valueAttribute]
                                     : currentItem;
-                            var currentLinkAttribute = valueAttribute
+                            var currentLinkAttribute = linkAttribute
+                                    && currentItem[linkAttribute]
                                     ? currentItem[linkAttribute]
                                     : null;
 

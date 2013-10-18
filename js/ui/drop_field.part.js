@@ -74,7 +74,7 @@
                 var displayAttribute = _element.attr("data-display_attribute")
                         || "name";
                 var extraAttribute = _element.attr("data-extra_attribute")
-                        || "extra";
+                        || "value";
                 var valueAttribute = _element.attr("data-value_attribute")
                         || "value";
                 var linkAttribute = _element.attr("data-link_attribute")
@@ -1003,15 +1003,19 @@
                             // retrieves both the display and the value
                             // attributes for the current item
                             var currentDisplayAttribute = displayAttribute
+                                    && currentItem[displayAttribute]
                                     ? currentItem[displayAttribute]
                                     : currentItem;
                             var currentExtraAttribute = extraAttribute
+                                    && currentItem[extraAttribute]
                                     ? currentItem[extraAttribute]
                                     : null;
                             var currentValueAttribute = valueAttribute
+                                    && currentItem[valueAttribute]
                                     ? currentItem[valueAttribute]
                                     : currentItem;
                             var currentLinkAttribute = linkAttribute
+                                    && currentItem[linkAttribute]
                                     ? currentItem[linkAttribute]
                                     : null;
 
