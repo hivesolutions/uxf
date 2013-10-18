@@ -308,15 +308,15 @@
                             // retrieves both the display and the value
                             // attributes for the current item
                             var currentDisplayAttribute = displayAttribute
-                                    && currentItem[displayAttribute]
+                                    && (typeof currentItem[displayAttribute] == "string" || typeof currentItem[displayAttribute] == "object")
                                     ? currentItem[displayAttribute]
                                     : currentItem;
                             var currentValueAttribute = valueAttribute
-                                    && currentItem[valueAttribute]
+                                    && (typeof currentItem[valueAttribute] == "string" || typeof currentItem[valueAttribute] == "object")
                                     ? currentItem[valueAttribute]
                                     : currentItem;
                             var currentLinkAttribute = linkAttribute
-                                    && currentItem[linkAttribute]
+                                    && (typeof currentItem[linkAttribute] == "string" || typeof currentItem[linkAttribute] == "object")
                                     ? currentItem[linkAttribute]
                                     : null;
 
