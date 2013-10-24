@@ -219,9 +219,6 @@
 .omni-style .button.button-more {
     background: transparent url(../images/button-more.png) repeat-x left top;
     border: 1px solid #bbbbbb;
-    border-radius: 6px 6px 6px 6px;
-    -moz-border-radius: 6px 6px 6px 6px;
-    -webkit-border-radius: 6px 6px 6px 6px;
     color: #666666;
     font-size: 13px;
     font-weight: bold;
@@ -262,4 +259,10 @@
 
 .omni-style .button.button-more.loading .spinner {
     display: block;
+}
+
+.omni-style.round .button.button-more {
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
 }
