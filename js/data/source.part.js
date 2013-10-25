@@ -50,8 +50,8 @@
                                     // retrieves both the name and the value
                                     // of the current item in iteration
                                     var name = item.attr("data-name")
-                                            || item.html();
-                                    var value = item.html();
+                                            || item.text();
+                                    var value = item.text();
 
                                     // creates the item structure with the name
                                     // and the value set

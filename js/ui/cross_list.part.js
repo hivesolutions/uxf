@@ -261,9 +261,9 @@
                     var item = jQuery(items[index]);
 
                     // retrieves the data value from the selected item defaulting
-                    // to the html represention in case none is provided
+                    // to the text represention in case none is provided
                     var dataValue = item.attr("data-value");
-                    var htmlValue = item.html();
+                    var htmlValue = item.text();
                     dataValue = dataValue ? dataValue : htmlValue;
 
                     // adds the data value to the target items list
@@ -301,9 +301,9 @@
                         element.removeClass("selected");
 
                         // retrieves the data value from the element defaulting
-                        // to the html represention in case none is provided
+                        // to the text represention in case none is provided
                         var dataValue = element.attr("data-value");
-                        var htmlValue = element.html();
+                        var htmlValue = element.text();
                         dataValue = dataValue ? dataValue : htmlValue;
 
                         // in case the data value exists in the target items
@@ -348,9 +348,9 @@
                         element.removeClass("selected");
 
                         // retrieves the data value from the element defaulting
-                        // to the html represention in case none is provided
+                        // to the text represention in case none is provided
                         var dataValue = element.attr("data-value");
-                        var htmlValue = element.html();
+                        var htmlValue = element.text();
                         dataValue = dataValue ? dataValue : htmlValue;
 
                         // retrieves the index of the data value in the
@@ -398,9 +398,9 @@
                             var _selectedItem = jQuery(selectedItem);
 
                             // retrieves the data value from the selected item defaulting
-                            // to the html represention in case none is provided
+                            // to the text represention in case none is provided
                             var dataValue = _selectedItem.attr("data-value");
-                            var htmlValue = _selectedItem.html();
+                            var htmlValue = _selectedItem.text();
                             dataValue = dataValue ? dataValue : htmlValue;
 
                             // retrieves the index of the data value in the target

@@ -54,7 +54,7 @@
 
                         // retrieves the url (html) from the element
                         // and then trims it
-                        var url = _element.html();
+                        var url = _element.text();
                         url = url.trim();
 
                         // in case the current url value is not valid

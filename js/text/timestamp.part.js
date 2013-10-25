@@ -55,7 +55,7 @@
                         // retrieves the current timestamp string
                         // value from the element and converts
                         // it into an integer
-                        var timestampString = _element.html();
+                        var timestampString = _element.text();
                         var timestamp = parseInt(timestampString);
 
                         // in case the timestamp could not be parsed

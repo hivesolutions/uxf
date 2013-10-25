@@ -87,7 +87,7 @@
                         else {
                             // retrieves the element value directly
                             // from the element contents
-                            var elementValue = _element.html();
+                            var elementValue = _element.text();
                         }
 
                         // in case the data structure is a list

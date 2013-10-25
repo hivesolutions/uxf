@@ -37,7 +37,7 @@
                 var magnitudeSeparator = _element.attr("data-magnitude_separator");
 
                 // retrieves the (element) value
-                var value = _element.html();
+                var value = _element.text();
 
                 // "calculates" the number of (decimal) places
                 // in case none is provided zero decimal places
