@@ -312,15 +312,15 @@
                             // retrieves both the display and the value
                             // attributes for the current item
                             var currentDisplayAttribute = displayAttribute
-                                    && ["object", "string", "number"].isIn(typeof currentItem[displayAttribute])
+                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[displayAttribute])
                                     ? currentItem[displayAttribute]
                                     : currentItem;
                             var currentValueAttribute = valueAttribute
-                                    && ["object", "string", "number"].isIn(typeof currentItem[valueAttribute])
+                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[valueAttribute])
                                     ? currentItem[valueAttribute]
                                     : currentItem;
                             var currentLinkAttribute = linkAttribute
-                                    && ["object", "string", "number"].isIn(typeof currentItem[linkAttribute])
+                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[linkAttribute])
                                     ? currentItem[linkAttribute]
                                     : null;
 
