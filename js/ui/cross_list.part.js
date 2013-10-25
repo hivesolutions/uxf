@@ -214,7 +214,7 @@
                         // verifies if the current item in validation exists in
                         // the target data source and in case it does returns
                         // false so that it gets invalidated
-                        var exists = targetItems.indexOf(value) != -1;
+                        var exists = targetItems.indexOfObject(item) != -1;
                         return exists ? false : true;
                     });
 
@@ -300,24 +300,22 @@
                         // no longer meant to be selected
                         element.removeClass("selected");
 
-                        // retrieves the data value from the element defaulting
-                        // to the text represention in case none is provided
-                        var dataValue = element.attr("data-value");
-                        var htmlValue = element.text();
-                        dataValue = dataValue ? dataValue : htmlValue;
+                        // retrieves the item that is currently associated with
+                        // selected element (it contains the data of it)
+                        var item = element.data("item");
 
-                        // in case the data value exists in the target items
+                        // in case the item value exists in the target items
                         // must return immediately cannot add duplicates to
                         // the target list
-                        var exists = targetItems.indexOf(dataValue) != -1;
+                        var exists = targetItems.indexOfObject(item) != -1;
                         if (!duplicates && exists) {
                             return;
                         }
 
-                        // adds the data value to the target items and then
+                        // adds the item value to the target items and then
                         // triggers the items changed event so that the target
                         // list is correctly updated in visual terms
-                        targetItems.push(dataValue);
+                        targetItems.push(item);
                         sourceList.triggerHandler("items_changed");
                         targetList.triggerHandler("items_changed");
                     });
@@ -347,16 +345,14 @@
                         // no longer meant to be selected
                         element.removeClass("selected");
 
-                        // retrieves the data value from the element defaulting
-                        // to the text represention in case none is provided
-                        var dataValue = element.attr("data-value");
-                        var htmlValue = element.text();
-                        dataValue = dataValue ? dataValue : htmlValue;
+                        // retrieves the item that is currently associated with
+                        // selected element (it contains the data of it)
+                        var item = element.data("item");
 
-                        // retrieves the index of the data value in the
+                        // retrieves the index of the item value in the
                         // target items and then uses it to remove the item
                         // from the list of target items
-                        var index = targetItems.indexOf(dataValue);
+                        var index = targetItems.indexOfObject(item);
                         targetItems.splice(index, 1);
 
                         // triggers the items changed event so that the target
@@ -397,16 +393,15 @@
                             var selectedItem = selectedItems[index];
                             var _selectedItem = jQuery(selectedItem);
 
-                            // retrieves the data value from the selected item defaulting
-                            // to the text represention in case none is provided
-                            var dataValue = _selectedItem.attr("data-value");
-                            var htmlValue = _selectedItem.text();
-                            dataValue = dataValue ? dataValue : htmlValue;
+                            // retrieves the associated item value from the selected
+                            // item as this is going to be the item to be added to
+                            // the list representing the target items in the data source
+                            var item = _selectedItem.data("item");
 
-                            // retrieves the index of the data value in the target
+                            // retrieves the index of the item (valye) in the target
                             // items list and then uses it to remove the item from
                             // the list of target items
-                            var _index = targetItems.indexOf(dataValue);
+                            var _index = targetItems.indexOfObject(item);
                             targetItems.splice(_index, 1);
                         }
 
@@ -455,22 +450,20 @@
                             var selectedItem = selectedItems[index];
                             var _selectedItem = jQuery(selectedItem);
 
-                            // retrieves the data value from the selected item defaulting
-                            // to the html represention in case none is provided
-                            var dataValue = _selectedItem.attr("data-value");
-                            var htmlValue = _selectedItem.html();
-                            dataValue = dataValue ? dataValue : htmlValue;
+                            // retrieves the item that is currently associated with
+                            // selected element (it contains the data of it)
+                            var item = _selectedItem.data("item");
 
                             // checks if the data value already exists in the list of target
                             // items in case it does continues the loop (duplicated value)
-                            var exists = targetItems.indexOf(dataValue) != -1;
+                            var exists = targetItems.indexOfObject(item) != -1;
                             if (!duplicates && exists) {
                                 continue;
                             }
 
                             // adds the data value of the item to the list of target items
                             // so that it's going to be used when adding the values
-                            targetItems.push(dataValue);
+                            targetItems.push(item);
                         }
 
                         // triggers the items changed event so that the target
