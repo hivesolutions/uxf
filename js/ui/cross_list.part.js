@@ -131,13 +131,6 @@
                 targetSource.uxdatasource();
                 targetList.append(targetSource);
 
-                // retrieves the target set of items in the data
-                // source (local) and sets them as the exclusion
-                // list of items in the source list (avoids duplicated)
-                // exposure of items
-                var targetItems = targetSource.data("items");
-                !duplicates && sourceList.data("exclusion", targetItems);
-
                 // starts the various source list elements
                 sourceList.uxsourcelist();
                 targetList.uxsourcelist();
@@ -164,9 +157,12 @@
                 _element.append(clear);
 
                 // triggers the items changed event both in the source list
-                // and in the target list
-                sourceList.trigger("items_changed");
-                targetList.trigger("items_changed");
+                // and in the target list, this is set as a delayed operation
+                // so that the proper handlers are triggered
+                setTimeout(function() {
+                            sourceList.triggerHandler("items_changed");
+                            targetList.triggerHandler("items_changed");
+                        });
             });
         };
 
@@ -181,14 +177,52 @@
             var targetList = jQuery(".target-section .select-list",
                     matchedObject);
 
+            // retrieves the source list value as the source
+            // element to be able to register it for the valide
+            // item event (and filter the ones in the target)
+            var sourceElement = jQuery(".source-section .source-list",
+                    matchedObject);
+
             // retrieves the arrows for the currently matched object
             // these "buttons" control the flow between sections
             var arrowLeft = jQuery(".arrow-left", matchedObject);
             var arrowRight = jQuery(".arrow-right", matchedObject);
 
+            // registers for the item validation event so that the items
+            // that are already included in the target list do not appear
+            // in the source list (in no duplicate situations only)
+            sourceElement.bind("validate_item", function(event, item, value) {
+                        // retrieves the current element (source list) and then uses
+                        // it to retrieve the parent cross list
+                        var _element = jQuery(this);
+                        var crossList = _element.parents(".cross-list");
+
+                        // verifies if the current cross list is registered
+                        // for duplicates if that's the case returns immediately
+                        // with a valid value (no filtering required)
+                        var duplicates = crossList.attr("data-duplicates");
+                        if (duplicates) {
+                            return true;
+                        }
+
+                        // retrieves the target data source and uses it to
+                        // retrieve the associated items for filtering
+                        var targetSource = jQuery(
+                                ".target-section .data-source", crossList);
+                        var targetItems = targetSource.data("items");
+
+                        // verifies if the current item in validation exists in
+                        // the target data source and in case it does returns
+                        // false so that it gets invalidated
+                        var exists = targetItems.indexOf(value) != -1;
+                        return exists ? false : true;
+                    });
+
             // registers for the order changed event in the target
             // list so that the local data source associated is changed
-            // to reflect the new order in the elements
+            // to reflect the new order in the elements, this operation
+            // is only possible assuming that the target data source is
+            // local (store in javascript memory)
             targetList.bind("order_changed", function(event, element) {
                 // retrieves the current element and uses it to retrieve
                 // the associate top cross list element
@@ -249,9 +283,11 @@
                         // should be avoided (default to false)
                         var duplicates = crossList.attr("data-duplicates") || false;
 
-                        // retrieves the target list associated with the
-                        // cross list (current context)
-                        var targetList = jQuery(".target-section .select-list",
+                        // retrieves the source and target lists associated with the
+                        // current cross list (current context) for usage
+                        var sourceList = jQuery(".source-section .source-list",
+                                crossList);
+                        var targetList = jQuery(".target-section .source-list",
                                 crossList);
 
                         // retrieves the target data source and then
@@ -260,7 +296,8 @@
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
 
-                        // removes the selected class from the element
+                        // removes the selected class from the element, it's
+                        // no longer meant to be selected
                         element.removeClass("selected");
 
                         // retrieves the data value from the element defaulting
@@ -277,15 +314,12 @@
                             return;
                         }
 
-                        // clones the element in case duplicated elements are
-                        // allowed in the current source list
-                        element = duplicates ? element.clone(true) : element;
-
                         // adds the data value to the target items and then
-                        // apends the element to the target list
+                        // triggers the items changed event so that the target
+                        // list is correctly updated in visual terms
                         targetItems.push(dataValue);
-                        targetList.append(element);
-                        targetList.trigger("items_changed");
+                        sourceList.triggerHandler("items_changed");
+                        targetList.triggerHandler("items_changed");
                     });
 
             // registers for the selected event on the source list to
@@ -296,13 +330,11 @@
                         var _element = jQuery(this);
                         var crossList = _element.parents(".cross-list");
 
-                        // retrieves the flag that controls if duplicates
-                        // should be avoided (default to false)
-                        var duplicates = crossList.attr("data-duplicates") || false;
-
-                        // retrieves the source list associated with the
-                        // cross list (current context)
-                        var sourceList = jQuery(".source-section .select-list",
+                        // retrieves the source and target lists associated with the
+                        // current cross list (current context) for usage
+                        var sourceList = jQuery(".source-section .source-list",
+                                crossList);
+                        var targetList = jQuery(".target-section .source-list",
                                 crossList);
 
                         // retrieves the target data source and then
@@ -310,6 +342,10 @@
                         var targetSource = jQuery(
                                 ".target-section .data-source", crossList);
                         var targetItems = targetSource.data("items");
+
+                        // removes the selected class from the element, it's
+                        // no longer meant to be selected
+                        element.removeClass("selected");
 
                         // retrieves the data value from the element defaulting
                         // to the html represention in case none is provided
@@ -323,13 +359,10 @@
                         var index = targetItems.indexOf(dataValue);
                         targetItems.splice(index, 1);
 
-                        // removes the selected class from the element and
-                        // adds it to the source list
-                        element.removeClass("selected");
-                        duplicates
-                                ? element.remove()
-                                : sourceList.append(element)
-                                        && sourceList.trigger("items_changed");
+                        // triggers the items changed event so that the target
+                        // list is correctly updated with the new items
+                        sourceList.triggerHandler("items_changed");
+                        targetList.triggerHandler("items_changed");
                     });
 
             // registers for the click event on the left arrow to be
@@ -341,15 +374,11 @@
                         var element = jQuery(this);
                         var crossList = element.parents(".cross-list");
 
-                        // retrieves the flag that controls if duplicates
-                        // should be avoided (default to false)
-                        var duplicates = crossList.attr("data-duplicates") || false;
-
-                        // retrieves both the source list and the target list
-                        // to be able to "transfer" the selected items
-                        var sourceList = jQuery(".source-section .select-list",
+                        // retrieves the source and target lists associated with the
+                        // current cross list (current context) for usage
+                        var sourceList = jQuery(".source-section .source-list",
                                 crossList);
-                        var targetList = jQuery(".target-section .select-list",
+                        var targetList = jQuery(".target-section .source-list",
                                 crossList);
 
                         // retrieves the target data source and then
@@ -381,13 +410,10 @@
                             targetItems.splice(_index, 1);
                         }
 
-                        // removes the selected class from the selected items and then
-                        // appends the various selected items to the source list
-                        selectedItems.removeClass("selected");
-                        duplicates
-                                ? selectedItems.remove()
-                                : sourceList.append(selectedItems)
-                                        && sourceList.trigger("items_changed");
+                        // triggers the items changed event so that the target
+                        // list is correctly updated with the removed items
+                        sourceList.triggerHandler("items_changed");
+                        targetList.triggerHandler("items_changed");
                     });
 
             // registers for the click event on the right arrow to be
@@ -403,11 +429,11 @@
                         // should be avoided (default to false)
                         var duplicates = crossList.attr("data-duplicates") || false;
 
-                        // retrieves both the source list and the target list
-                        // to be able to "transfer" the selected items
-                        var sourceList = jQuery(".source-section .select-list",
+                        // retrieves the source and target lists associated with the
+                        // current cross list (current context) for usage
+                        var sourceList = jQuery(".source-section .source-list",
                                 crossList);
-                        var targetList = jQuery(".target-section .select-list",
+                        var targetList = jQuery(".target-section .source-list",
                                 crossList);
 
                         // retrieves the target data source and then
@@ -421,12 +447,9 @@
                         var selectedItems = jQuery("li.selected", sourceList);
                         selectedItems.removeClass("selected");
 
-                        // creates the list that will hold the various items
-                        // considered to be valid (no duplicates)
-                        var validItems = [];
-
                         // iterates over the list of selected items to filter the ones
-                        // that are duplicated values
+                        // that are duplicated values and add the others to the target
+                        // items list so that they get update in the next ui update
                         for (var index = 0; index < selectedItems.length; index++) {
                             // retrieves the current selected item in iteration
                             var selectedItem = selectedItems[index];
@@ -445,23 +468,15 @@
                                 continue;
                             }
 
-                            // clones the selected item in case duplicated elements are
-                            // allowed in the current source list
-                            selectedItem = duplicates
-                                    ? _selectedItem.clone(true)[0]
-                                    : selectedItem;
-
-                            // adds the selected items to the valid items and adds the data
-                            // value to the list of target items (data source)
-                            validItems.push(selectedItem);
+                            // adds the data value of the item to the list of target items
+                            // so that it's going to be used when adding the values
                             targetItems.push(dataValue);
                         }
 
-                        // convers the list of valid items into an element and adds
-                        // it to the target list (should display the items visually)
-                        var _validItems = jQuery(validItems);
-                        targetList.append(_validItems);
-                        targetList.trigger("items_changed");
+                        // triggers the items changed event so that the target
+                        // list is correctly updated with the new items
+                        sourceList.triggerHandler("items_changed");
+                        targetList.triggerHandler("items_changed");
                     });
 
             // iterates over all the selected values to register for the

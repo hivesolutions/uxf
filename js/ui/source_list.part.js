@@ -107,7 +107,13 @@
                         // event (lower propagation)
                         var element = jQuery(this);
                         var selectList = jQuery(".select-list", element);
-                        selectList.trigger("items_changed");
+
+                        // runs the update operation on the current element so
+                        // that the new items are rendered for the data source
+                        // and then triggers the items changed event in the lower
+                        // select list to have them properly handled
+                        _update(element, options, true);
+                        selectList.triggerHandler("items_changed");
 
                         // stops the event propagation to avoid
                         // possible loops in the handling
@@ -233,7 +239,7 @@
                     });
         };
 
-        var _update = function(matchedObject, options) {
+        var _update = function(matchedObject, options, force) {
             // retrieves the source list elements
             var sourceList = matchedObject;
             var dataSource = jQuery("> .data-source", sourceList);
@@ -267,7 +273,7 @@
 
             // in case the value did not change (no need to
             // show the contents)
-            if (textFieldValue == value) {
+            if (textFieldValue == value && !force) {
                 // returns immediately
                 return;
             }
@@ -278,7 +284,9 @@
                     ? parseInt(_numberOptions)
                     : numberOptions;
 
-            // runs the query in the data source
+            // runs the query in the data source to retrieve the new
+            // items and then contruct the list item from the
+            // result provided by the data source
             dataSource.uxdataquery({
                         filterString : textFieldValue,
                         filterAttributes : filterAttributes,
@@ -291,10 +299,6 @@
                             // returns immediately
                             return;
                         }
-
-                        // retrieves the list of item values to be excluded
-                        // fro the resulting list
-                        var exclusion = sourceList.data("exclusion");
 
                         // empties (clears) the select list
                         selectList.empty()
@@ -320,6 +324,16 @@
                                     ? currentItem[linkAttribute]
                                     : null;
 
+                            // triggers the event that will handle the validation of
+                            // the item creation and in case the return value of it
+                            // is invalid the current item is not created
+                            var result = sourceList.triggerHandler(
+                                    "validate_item", [currentItem,
+                                            currentValueAttribute]);
+                            if (result == false) {
+                                continue;
+                            }
+
                             // creates the base template item from
                             // the current item
                             var templateItem = jQuery("<li data-display=\""
@@ -327,15 +341,6 @@
                                     + "\" data-value=\""
                                     + currentValueAttribute + "\">"
                                     + currentDisplayAttribute + "</li>");
-
-                            // checks if the current value is invalid (exists
-                            // in the item exclusion list) in case it does exist
-                            // must continue the loop (ignores element)
-                            var invalid = exclusion
-                                    && exclusion.indexOf(currentValueAttribute) != -1;
-                            if (invalid) {
-                                continue;
-                            }
 
                             // sets the current item in the template item data
                             // so that it can be used for latter template rendering
@@ -362,7 +367,7 @@
 
                         // triggers the items changed event on the select list
                         // to be used for the update of the layour
-                        selectList.trigger("items_changed");
+                        selectList.triggerHandler("items_changed");
                     });
         };
 
