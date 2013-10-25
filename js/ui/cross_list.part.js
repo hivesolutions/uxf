@@ -506,6 +506,14 @@
                             // the series of form input elements
                             var listItems = jQuery("li", targetList);
 
+                            // in case the're no valid list items to be sent an empty
+                            // value with the same name is posted (so that an empty value
+                            // is submitted), required for compliance
+                            if (listItems.length == 0) {
+                                targetList.append("<input type=\"hidden\" name=\""
+                                        + elementName + "\" />");
+                            }
+
                             // iterates over all the elements in the list items to
                             // creates the associated input values
                             for (var index = 0; index < listItems.length; index++) {
