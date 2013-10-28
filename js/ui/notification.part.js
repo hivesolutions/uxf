@@ -17,7 +17,7 @@
         var defaults = {
             title : "Title",
             message : "Message",
-            timeout : 5000,
+            timeout : 7500,
             fadeTimeout : 500
         };
 
