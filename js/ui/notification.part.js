@@ -53,20 +53,44 @@
             var timeout = options["timeout"];
             var fadeTimeout = options["fadeTimeout"];
 
+            // retrieves the optional link element that
+            // defines the target for a click in the notification
+            var link = options["link"];
+
             // creates the message element from the html code
+            // that is going to be used as the base for display
             var messageElement = jQuery("<div class=\"notification\">"
                     + "<p class=\"notification-title\">" + title + "</p>"
                     + "<p class=\"notification-text\">" + message + "</p>"
                     + "</div>");
 
-            // adds message element to the matched object
+            // adds message element to the matched object making
+            // it ready in ters of visual display (ui display)
             matchedObject.append(messageElement);
 
-            // sets the timeout for hiding the notification
+            // starts the notification element as button so
+            // that any link in it is defined as target
+            link && messageElement.addClass("button");
+            link && messageElement.attr("data-link", link);
+            link && messageElement.uxbutton();
+
+            // sets the timeout for hiding the notification, once
+            // the final timeout of the message has been reached
             setTimeout(function() {
-                        // hides the message element
-                        messageElement.fadeOut(fadeTimeout);
+                        messageElement.fadeOut(fadeTimeout, function() {
+                                    messageElement.remove();
+                                });
                     }, timeout);
+
+            // registers for the click event on the created
+            // message element so that it fades out when a
+            // click occurs in it (as expected)
+            link && messageElement.click(function() {
+                        var element = jQuery(this);
+                        element.fadeOut(fadeTimeout, function() {
+                                    element.remove();
+                                });
+                    })
         };
 
         /**
