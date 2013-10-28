@@ -9,6 +9,7 @@
     right: 16px;
     top: 16px;
     width: 340px;
+    z-index: 12;
 }
 
 .omni-style .notification .notification-close {
