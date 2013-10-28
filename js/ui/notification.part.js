@@ -90,7 +90,7 @@
                         element.fadeOut(fadeTimeout, function() {
                                     element.remove();
                                 });
-                    })
+                    });
         };
 
         /**
