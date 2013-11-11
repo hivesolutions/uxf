@@ -118,6 +118,7 @@
             var timestamp = jQuery(".timestamp", matchedObject).not(".template .timestamp");
             var slideshow = jQuery(".slideshow", matchedObject).not(".template .slideshow");
             var chart = jQuery(".chart", matchedObject).not(".template .chart");
+            var lchart = jQuery(".lchart", matchedObject).not(".template .lchart");
             var video = jQuery(".video", matchedObject).not(".template .video");
             var code = jQuery(".code", matchedObject).not(".template .code");
             var uploader = jQuery(".uploader", matchedObject).not(".template .uploader");
@@ -212,6 +213,7 @@
             timestamp.uxtimestamp();
             slideshow.uxslideshow();
             chart.uxchart();
+            lchart.uxlchart();
             video.uxvideo();
             code.uxcode();
 
