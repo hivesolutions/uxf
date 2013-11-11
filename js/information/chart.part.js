@@ -45,7 +45,7 @@
                         percentage = parseFloat(percentage);
 
                         // checks if the chart is meant to be represented
-                        // in a linear manner
+                        // in a linear manner (linear scale)
                         var linear = _element.attr("data-linear");
 
                         // in case the linear flag is set the ratio is
