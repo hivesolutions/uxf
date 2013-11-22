@@ -726,8 +726,14 @@
 
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
-                var name = element.attr("name");
+                var name = element.attr("name") || element.attr("data-name");
+                element.attr("data-name", name)
                 element.removeAttr("name");
+
+                // tries to retrieve and remove any previously existing
+                // hidden element representing the current value
+                var previous = jQuery("input[type=hidden][name=" + name + "]");
+                previous.remove();
 
                 // calculates the apropriate value taking into account
                 // if the no process flag is currently set
@@ -922,8 +928,14 @@
 
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
-                var name = element.attr("name");
+                var name = element.attr("name") || element.attr("data-name");
+                element.attr("data-name", name)
                 element.removeAttr("name");
+
+                // tries to retrieve and remove any previously existing
+                // hidden element representing the current value
+                var previous = jQuery("input[type=hidden][name=" + name + "]");
+                previous.remove();
 
                 // calculates the apropriate value taking into account
                 // if the no process flag is currently set
