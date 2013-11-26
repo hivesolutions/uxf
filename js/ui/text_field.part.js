@@ -780,7 +780,7 @@
             // retrieves the offset and height values
             // from the element to calculate
             // the relative position for the calendar
-            var offset = element.offset();
+            var offset = element.position();
             var height = element.outerHeight();
 
             // calculates the calendar top and left
@@ -899,7 +899,7 @@
                         // retrieves the offset and height values
                         // from the element to calculate
                         // the relative position for the calendar
-                        var offset = element.offset();
+                        var offset = element.position();
                         var height = element.outerHeight();
 
                         // calculates the calendar top and left
@@ -1017,7 +1017,7 @@
             // retrieves the offset and height values
             // from the element to calculate
             // the relative position for the calendar
-            var offset = element.offset();
+            var offset = element.position();
             var height = element.outerHeight();
 
             // calculates the calendar top and left
