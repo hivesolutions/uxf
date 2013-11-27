@@ -44,6 +44,10 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // retrieves the reference to the top level body element
+            // to be used in the enabling of the lightbox
+            var _body = jQuery("body");
+
             // registers for the click event on the image to try to show
             // the associated lightbox
             matchedObject.click(function() {
@@ -61,7 +65,7 @@
 
                         // shows the lightbox on the body element using the
                         // lightbox path retrieved from the image
-                        jQuery("body").uxlightbox(lightboxPath);
+                        _body.uxlightbox(lightboxPath);
                     });
         };
 

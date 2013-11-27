@@ -26,9 +26,9 @@
          */
         var _appendHtml = function() {
             matchedObject.each(function(index, element) {
-                var _element = jQuery(this);
-                _initialize(_element, options);
-            });
+                        var _element = jQuery(this);
+                        _initialize(_element, options);
+                    });
         };
 
         /**
