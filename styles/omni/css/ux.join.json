@@ -13,7 +13,7 @@
                 "ui/header_notification.part.css", "ui/highlight_box.part.css",
                 "ui/image_upload.part.css", "ui/incremental_field.part.css",
                 "ui/hovering_box.part.css", "ui/label.part.css",
-                "ui/link.part.css", "ui/list.part.css",
+                "ui/lightbox.part.css", "ui/link.part.css", "ui/list.part.css",
                 "ui/notification.part.css", "ui/overlay_panel.part.css",
                 "ui/overlay.part.css", "ui/panel_more.part.css",
                 "ui/password_meter.part.css", "ui/progress_bar.part.css",
