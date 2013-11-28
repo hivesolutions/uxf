@@ -1,0 +1,19 @@
+.omni-style .window.window-lightbox {
+    cursor: pointer;
+    line-height: 0px;
+    padding: 0px 0px 0px 0px;
+    width: inherit;
+}
+
+.omni-style .window.window-lightbox .button-confirm {
+    background: transparent url(../images/lightbox-close.png) no-repeat center center;
+    cursor: pointer;
+    height: 30px;
+    margin: -14px 0px 0px -14px;
+    position: absolute;
+    width: 30px;
+}
+
+.omni-style .window.window-lightbox.loading .button-confirm {
+    background-image: url(../images/lightbox-loading.png);
+}
