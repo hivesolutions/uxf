@@ -25,10 +25,6 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the top level body element that may be used to
-            // add the lightbox window to it
-            var _body = jQuery("body");
-
             // tries retrieves the window (lightbox window) elements
             // in case the elements do not exists creates a new element
             var window = jQuery(".window.window-lightbox", matchedObject);
@@ -36,8 +32,8 @@
                 window = jQuery("<div class=\"window window-lightbox\">"
                         + "<div class=\"button-confirm\"></div>"
                         + "<img alt=\"\" />" + "</div>");
-                _body.append(window);
                 window.uxwindow();
+                matchedObject.append(window);
             }
 
             // retrieves the reference to the image element associated with
