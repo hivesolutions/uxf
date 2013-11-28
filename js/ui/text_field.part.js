@@ -732,7 +732,7 @@
 
                 // tries to retrieve and remove any previously existing
                 // hidden element representing the current value
-                var previous = jQuery("input[type=hidden][name=" + name + "]");
+                var previous = jQuery("input[type=hidden][name=\"" + name + "\"]");
                 previous.remove();
 
                 // calculates the apropriate value taking into account
@@ -934,7 +934,7 @@
 
                 // tries to retrieve and remove any previously existing
                 // hidden element representing the current value
-                var previous = jQuery("input[type=hidden][name=" + name + "]");
+                var previous = jQuery("input[type=hidden][name=\"" + name + "\"]");
                 previous.remove();
 
                 // calculates the apropriate value taking into account
