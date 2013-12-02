@@ -9,19 +9,19 @@
     text-shadow: 0px -1px 0px #4a7b38;
 }
 
-.omni-style .button:hover
+.omni-style .button:hover,
 .omni-style .button.button-green:hover {
     background-position: left -36px;
 }
 
 .omni-style .button.active,
-.omni-style .button:active
+.omni-style .button:active,
 .omni-style .button.button-green.active,
 .omni-style .button.button-green:active {
     background-position: left -72px;
 }
 
-.omni-style .button.disabled
+.omni-style .button.disabled,
 .omni-style .button.button-green.disabled {
     background-position: left top;
     opacity: 0.6;
