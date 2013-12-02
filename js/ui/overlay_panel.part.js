@@ -61,8 +61,16 @@
             // retrieves the window
             var _window = jQuery(window);
 
-            // retrieves the current "global" overlay
+            // tries to retrieve the global overlay element in case it
+            // does not exists creates a new element and then appends it
+            // to the current body element (default action)
             var overlay = jQuery(".overlay");
+            if (overlay.length == 0) {
+                var _body = jQuery("body");
+                overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                overlay.uxoverlay();
+                _body.prepend(overlay);
+            }
 
             // registers for the click event on the element
             // to aovid propagation
