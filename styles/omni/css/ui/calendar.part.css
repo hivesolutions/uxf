@@ -17,8 +17,8 @@
     background-color: #f8f8f8;
     border-bottom: 1px solid #dddddd;
     color: #666666;
-    height: 34px;
-    line-height: 36px;
+    height: 40px;
+    line-height: 40px;
     text-align: center;
     text-transform: uppercase;
 }
@@ -32,7 +32,7 @@
     cursor: pointer;
     height: 8px;
     opacity: 0.6;
-    padding: 14px 14px 14px 14px;
+    padding: 16px 16px 16px 16px;
     width: 6px;
 }
 
@@ -69,10 +69,10 @@
     border: 1px solid #f6f6f6;
     color: #666666;
     cursor: pointer;
-    line-height: 26px;
+    line-height: 30px;
     margin: 0px 0px 0px 0px;
-    min-height: 26px;
-    min-width: 26px;
+    min-height: 30px;
+    min-width: 30px;
     padding: 0px 0px 0px 0px;
     text-align: center;
 }
