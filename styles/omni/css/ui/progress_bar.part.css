@@ -1,7 +1,10 @@
 .omni-style .progress-bar {
     border: 1px solid #dddddd;
-    height: 36px;
-    padding: 1px 1px 1px 1px;
+    border-radius: 6px 6px 6px 6px;
+    -moz-border-radius: 6px 6px 6px 6px;
+    -webkit-border-radius: 6px 6px 6px 6px;
+    height: 24px;
+    overflow: hidden;
     width: 526px;
 }
 
@@ -9,8 +12,8 @@
     background-color: #5368c6;
     color: #ffffff;
     float: left;
-    height: 36px;
-    line-height: 36px;
+    height: 24px;
+    line-height: 24px;
     text-align: right;
 }
 
