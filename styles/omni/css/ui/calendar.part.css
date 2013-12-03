@@ -25,6 +25,7 @@
 
 .omni-style .calendar-header .calendar-title {
     display: inline-block;
+    font-weight: bold;
     margin: 0px 0px 0px 0px;
 }
 
@@ -63,6 +64,7 @@
 .omni-style .calendar-content thead tr th {
     color: #666666;
     font-weight: normal;
+    font-weight: bold;
     text-align: center;
 }
 
