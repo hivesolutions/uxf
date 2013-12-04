@@ -298,10 +298,13 @@
                         matchedObject.append(formSuccessItem);
 
                         // hides the other items in the form as shows the just
-                        // rendered form success item, then triggers a layout event
-                        // to render any changes in the "upper" levels
+                        // rendered form success item, tries to refresh contents
+                        // of the upper levels by raisinn and event indicating
+                        // the intent to refresh contents, and then triggers a
+                        // layout event to render any changes in the "upper" levels
                         otherItems.hide();
                         formSuccessItem.show();
+                        matchedObject.trigger("refresh");
                         matchedObject.trigger("layout");
                     }
 
