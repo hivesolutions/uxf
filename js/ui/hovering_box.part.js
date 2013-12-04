@@ -53,7 +53,7 @@
         var _scheduleTemplate = function(matchedObject, options) {
             // retrieves the timeout handler for
             // the matched object
-            var timeoutHandler = matchedObject.data("timeoutHandler");
+            var timeoutHandler = matchedObject.data("timeout_handler");
 
             // in case there is already a
             // timeout handler (schedule pending)
@@ -69,17 +69,17 @@
                         _showTemplate(matchedObject, options);
 
                         // unsets the timeout handler in the matched object
-                        matchedObject.data("timeoutHandler", null);
+                        matchedObject.data("timeout_handler", null);
                     }, 500);
 
             // sets the timeout handler in the matched object
-            matchedObject.data("timeoutHandler", timeoutHandler);
+            matchedObject.data("timeout_handler", timeoutHandler);
         };
 
         var _cancelTemplate = function(matchedObject, options) {
             // retrieves the timeout handler for
             // the matched object
-            var timeoutHandler = matchedObject.data("timeoutHandler");
+            var timeoutHandler = matchedObject.data("timeout_handler");
 
             // in case there is already a
             // timeout handler (schedule pending)
@@ -88,7 +88,7 @@
                 clearTimeout(timeoutHandler);
 
                 // unsets the timeout handler in the matched object
-                matchedObject.data("timeoutHandler", null);
+                matchedObject.data("timeout_handler", null);
             }
 
             // hides the template
