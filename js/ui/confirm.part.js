@@ -62,7 +62,7 @@
             windowButtonCancel.show();
 
             // removes all the current event handlers from both the
-            // confirm and the cance buttons, this avoid possible errors
+            // confirm and the cancel buttons, this avoid possible errors
             // with multiple click event handlers
             windowButtonConfirm.unbind("click");
             windowButtonCancel.unbind("click");
