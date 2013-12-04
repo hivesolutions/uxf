@@ -45,6 +45,14 @@
             var windowMask = jQuery(".window-mask", matchedObject);
             var windowMaskExists = windowMask.length > 0;
 
+            // retrieves the reference for both the close and the accept
+            // button for the window as they are going to be marked as
+            // window buttons for future reference
+            var closeButton = jQuery(".close-button", matchedObject);
+            var acceptButton = jQuery(".accept-button", matchedObject);
+            closeButton.data("window_button", true);
+            acceptButton.data("window_button", true);
+
             // adds the window mask to the window in case it does not exist
             !windowMaskExists
                     && matchedObject.append("<div class=\"window-mask\">"
@@ -138,6 +146,16 @@
                         _element.bind("layout", function() {
                                     // positions the window in the screen
                                     _positionWindow(_element, options);
+                                });
+
+                        // registers for the refresh event in the current
+                        // element so that the internal structures are updated
+                        // with the new elements added, for instance event
+                        // handling registration is performed
+                        _element.bind("refresh", function() {
+                                    // registers the new element for the window buttons only
+                                    // for the new added elements
+                                    _registerButtons(_element, options);
                                 });
                     });
         };
@@ -369,6 +387,74 @@
             var _document = jQuery(document);
             var handle = matchedObject.data("key_handler");
             _document.unbind("keydown", handle);
+        };
+
+        var _registerButtons = function(matchedObject, options) {
+            // retrieves the references to both the close and
+            // the accept buttons to be used in the registration
+            var closeButton = jQuery(".close-button", matchedObject);
+            var acceptButton = jQuery(".accept-button", matchedObject);
+
+            // iterates over each of the close button to verify if
+            // they've already been registered and if they've not
+            // registers them for the first time
+            closeButton.each(function(index, element) {
+                        // retrieves the current element in iteration and verifies
+                        // if it has already been registered as a window button,
+                        // returning immediately if it has been
+                        var _element = jQuery(this);
+                        var registered = _element.data("window_button");
+                        if (registered) {
+                            return;
+                        }
+
+                        // registers for the click even in the element
+                        // so that the window is closed on click returning
+                        // false (no success in form submission)
+                        _element.click(function(event) {
+                                    // retrieves the element and uses it
+                                    // to retrieve the parent window
+                                    var element = jQuery(this);
+                                    var window = element.parents(".window");
+
+                                    // hides the window with the success flag
+                                    // set to invalid
+                                    _hide(window, options, false);
+                                });
+                    });
+
+            // iterates over all the accept buttons to try to find out the
+            // ones that have not been registered as window buttons and for
+            // those register the proper click event handler
+            acceptButton.each(function(index, element) {
+                        // retrieves the current element in iteration and verifies
+                        // if it has already been registered as a window button,
+                        // returning immediately if it has been
+                        var _element = jQuery(this);
+                        var registered = _element.data("window_button");
+                        if (registered) {
+                            return;
+                        }
+
+                        // registers for the click even in the element
+                        // so that the window is closed on click returning
+                        // true (correct form submission)
+                        _element.click(function(event) {
+                                    // retrieves the element and uses it
+                                    // to retrieve the parent window
+                                    var element = jQuery(this);
+                                    var window = element.parents(".window");
+
+                                    // hides the window with the success flag
+                                    // set to valid
+                                    _hide(window, options, true);
+                                });
+                    });
+
+            // sets the window button submission flag in the complete set
+            // of window buttons as they all have been registered
+            closeButton.data("window_button", true);
+            acceptButton.data("window_button", true);
         };
 
         var __ensureModal = function(matchedObject, options) {
