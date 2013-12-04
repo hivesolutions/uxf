@@ -316,9 +316,11 @@
 
                     // parses the request response data as json (default layout for
                     // the response value) and then uses the result to retrieve the
-                    // exception and then the errors list
+                    // exception and then the errors list, note that in case there's
+                    // no exception key value the proper json structure is going to
+                    // be used as the root of the exception object
                     var jsonData = jQuery.parseJSON(request.response);
-                    var exception = jsonData["exception"] || {};
+                    var exception = jsonData["exception"] || jsonData;
                     var errors = exception["errors"] || {};
 
                     // iterates over all the name in the errors map to sets the
