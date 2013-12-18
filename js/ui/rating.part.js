@@ -83,8 +83,7 @@
             // that the default value is set instead of the current one
             matchedObject.bind("_reset", function() {
                         var element = jQuery(this);
-                        var _default = element.data("default");
-                        _value(element, _default);
+                        _value(element, "");
                     });
 
             // register for the mouse over event in the rating elements
