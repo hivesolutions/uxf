@@ -1,7 +1,10 @@
 (function(jQuery) {
-    jQuery.fn.uxrating = function(options) {
+    jQuery.fn.uxrating = function(method, options) {
         // the default values for the text field
         var defaults = {};
+
+        // sets the default method value
+        var method = method ? method : "default";
 
         // sets the default options value
         var options = options ? options : {};
@@ -42,6 +45,8 @@
                         // the current value to the zero value
                         var count = _element.attr("data-count");
                         count = count ? parseInt(count) : 0;
+
+                        console.info(count);
 
                         // retrieves the currently set value (default one) and tries
                         // to parse it as an integer value defaulting to zero in case
@@ -221,8 +226,15 @@
             items.removeClass("inactive");
         }
 
-        // initializes the plugin
-        initialize();
+        // switches over the method
+        switch (method) {
+            case "default" :
+                // initializes the plugin
+                initialize();
+
+                // breaks the switch
+                break;
+        }
 
         // returns the object
         return this;
