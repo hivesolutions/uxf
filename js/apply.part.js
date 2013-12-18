@@ -110,6 +110,7 @@
             var option = jQuery(".option", matchedObject).not(".template .option");
             var progressBar = jQuery(".progress-bar", matchedObject).not(".template .progress-bar");
             var passwordMeter = jQuery(".password-meter", matchedObject).not(".template .password-meter");
+            var rating = jQuery(".rating", matchedObject).not(".template .rating");
             var changer = jQuery(".changer", matchedObject).not(".template .changer");
             var contentChanger = jQuery(".content-changer", matchedObject).not(".template .content-changer");
             var dateTime = jQuery(".date-time", matchedObject).not(".template .date-time");
@@ -205,6 +206,7 @@
             option.uxoption();
             progressBar.uxprogressbar();
             passwordMeter.uxpasswordmeter();
+            rating.uxrating();
             changer.uxchanger();
             contentChanger.uxcontentchanger();
             dateTime.uxdatetime();
