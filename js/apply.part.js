@@ -235,7 +235,9 @@
             // applies the error plugin
             textField.uxerror();
             textArea.uxerror();
+            dropField.uxerror();
             table.uxerror();
+            rating.uxerror();
 
             // applies the uploader plugin
             uploader.uxuploader();
