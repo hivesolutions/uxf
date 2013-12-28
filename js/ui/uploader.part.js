@@ -37,6 +37,13 @@
                 var action = _element.attr("data-action");
                 var noText = _element.attr("data-no_text");
 
+                // retrieves the original value of the element
+                // and stores it under the original data value
+                // so that it may be used latter when no value
+                // is selected for the file value
+                var original = _element.text();
+                _element.data("original", original);
+
                 // incase the action value is set the action form
                 // must be create enclosing the element, after
                 // the wrapping retrieves it for latter usage
@@ -93,7 +100,8 @@
                             else {
                                 // retrieves the input value and sets it as the
                                 // new "label" in the element
-                                var inputValue = uploaderInput.attr("value");
+                                var inputValue = uploaderInput.attr("value")
+                                        || original;
                                 !noText && _element.html(inputValue);
 
                                 // updates the input position for the element, because
