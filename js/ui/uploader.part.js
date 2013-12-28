@@ -173,14 +173,16 @@
             // retrievves the uploader input
             var uploaderInput = jQuery("+ .uploader-input", marchedObject);
 
-            // retrieves the matched (outer) width, to be used
+            // retrieves the matched (outer) dimentsion, to be used
             // for the positioning of the input element
             var isVisible = marchedObject.is(":visible");
             var width = isVisible ? marchedObject.outerWidth() : 0;
+            var height = isVisible ? marchedObject.outerHeight() : 0;
 
             // sets the uploader input css attributes according
             // to the matched object attributes
             uploaderInput.css("width", width + "px");
+            uploaderInput.css("height", height + "px");
             uploaderInput.css("margin-left", (width * -1) + "px");
         };
 
