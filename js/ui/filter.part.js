@@ -1119,7 +1119,7 @@
                                         // the current cache item (layout item reference)
                                         cacheItem = cacheItem.item;
 
-                                        // sets the template item as the cureently cached
+                                        // sets the template item as the currently cached
                                         // item so that no construction occurs then removes
                                         // the selection classes from it (avoiding possible
                                         // layout problems)
