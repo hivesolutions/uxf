@@ -1127,6 +1127,11 @@
                                         templateItem.removeClass("selected");
                                         templateItem.removeClass("first");
                                         templateItem.removeClass("last");
+
+                                        // re-runs the apply operation on the cached item so
+                                        // that its configuration is re-loaded as defined in
+                                        // the specification (correct behaviour)
+                                        templateItem.uxapply();
                                     }
                                     // otherwise must re-create the template item by runing
                                     // the template engine again
