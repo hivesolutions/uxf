@@ -71,6 +71,15 @@
                 // an input should be created if none is found
                 var noInput = _element.attr("data-no_input");
 
+                // retrieves the number of records attribute and then tries to
+                // parse it as an integer value in case it fails falls back to
+                // the original value otherwise used the newly processed one
+                var numberRecordsS = _element.attr("data-number_records");
+                var numberRecordsI = parseInt(numberRecordsS);
+                numberRecordsI = isNaN(numberRecordsI)
+                        ? numberRecords
+                        : numberRecordsI;
+
                 // retrieves the filter contents and
                 // the filter more (if present)
                 var filterContents = jQuery("> .filter-contents", _element);
@@ -221,6 +230,10 @@
                                     && filterClear.insertBefore(filterMore)
                             : _element.append(filterContents);
                 }
+
+                // updates the element's number of records with
+                // the newly updated value for it (as processed)
+                _element.data("number_records", numberRecordsI);
 
                 // sets the various initial data objects in the
                 // currently selected filter element
