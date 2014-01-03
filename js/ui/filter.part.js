@@ -2586,6 +2586,12 @@
         };
 
         var _initTemplateItem = function(filter, templateItem) {
+            // retrieves the complete set of links from the
+            // the current item in order to avoid the click
+            // event propagation on each of them, as it would
+            // cause duplicated behaviour
+            var links = jQuery(".link", templateItem);
+
             // registers the template item for the click event
             // to select the template item in case a click happens
             templateItem.click(function(event) {
@@ -2678,10 +2684,18 @@
                     });
 
             // binds the template item to the double click event
+            // so that the item becomes select on such operation
             templateItem.dblclick(function() {
                         // updates the current selection, runs the
                         // appropriate (default) actions
                         _select(templateItem, filter, options);
+                    });
+
+            // registers for the click event on the links in order
+            // to avoid the propagation of the event to the
+            // upper layers (would trigger focus on item)
+            links.click(function(event) {
+                        event.stopPropagation();
                     });
         };
 
