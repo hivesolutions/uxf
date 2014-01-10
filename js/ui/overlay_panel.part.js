@@ -80,6 +80,16 @@
                         event.stopPropagation();
                     });
 
+            // registers for the show event and if it's
+            // triggered the show function is called for the
+            // associated element (indirect show)
+            matchedObject.bind("show", function() {
+                        // retrieves the current elemenet and runs the hide
+                        // operation in it (to hide it)
+                        var element = jQuery(this);
+                        _show(element, options);
+                    });
+
             // registers for the hide event and if it's
             // triggered the hide function is called for the
             // associated element (indirect hide)
@@ -182,25 +192,35 @@
             // for situations where theres an offscreen resize
             matchedObject.uxcenter(offsetFloat);
 
-            // shows the overlay
+            // shows the overlay using a fade in approach so that the
+            // effect is as smoth as possible and then applies the same
+            // fadding effect to the overlay panel, as both the panel
+            // and the overlay are going to be shown at the same time
             overlay.fadeIn(100);
-
-            // shows the matched object
             matchedObject.fadeIn(100);
 
-            // focus in the text field
+            // focus in the text field as this is the default behaviour
+            // to be executed uppon showing the overlay panel, note that
+            // if no text field exists nothing happens
             textField.focus();
+
+            // thiggers the shown event indicating that the overlay panel
+            // has just finished beeing shown
+            matchedObject.triggerHandler("shown");
         };
 
         var _hide = function(matchedObject, options) {
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
 
-            // shows the overlay
+            // hides both the global overlay and the current overlay panel
+            // at the same time and using a smoth based effect
             overlay.fadeOut(200);
-
-            // hidrs the matched object
             matchedObject.fadeOut(200);
+
+            // triggers the hidden event indicating that the overlay panel
+            // has just finished being hidden as expected by the specification
+            matchedObject.triggerHandler("hidden");
         };
 
         // initializes the plugin
