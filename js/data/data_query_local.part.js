@@ -63,14 +63,31 @@
             var filter = false;
 
             // in case the start record and the number
-            // of records is set
+            // of records is set the filtering mosde should
+            // be enabled so that only a slice of the results
+            // is returned at the end of the query process
             if (startRecord != null && numberRecords != null) {
-                // sets the filter flag
                 filter = true;
             }
 
-            // retrieves the element items
+            // retrieves the element items, these should contain the
+            // list of items currently registered in the data souce
             var items = element.data("items");
+
+            // retrieves the value of the insensitive flag in in the
+            // data source in case the data source is configured as
+            // insensitive the casing of the letters to be searched
+            // must not matter and capital and lower letters should
+            // be treated the same way
+            var insensitive = element.attr("data-insensitive")
+
+            // converts the provided filter string into a lowercase
+            // representation in case the insensitive mode has been
+            // set for the current context, this is required in order
+            // for the search process to be executed correctly
+            filterString = insensitive
+                    ? filterString.toLowerCase()
+                    : filterString;
 
             // creates a list to hold (the valid) items
             var validItems = [];
@@ -151,8 +168,12 @@
                 // iterates over all the compare string for the filter
                 // string comparison
                 for (var _index = 0; _index < compareStrings.length; _index++) {
-                    // retrieves the current compare string
+                    // retrieves the current compare string and converts it into
+                    // a lowercased string in case the insensitive flag is set
                     var compareString = compareStrings[_index];
+                    compareString = insensitive
+                            ? compareString.toLowerCase()
+                            : compareString;
 
                     // checks if the compare string (current item) starts with the
                     // current filter string
