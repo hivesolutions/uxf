@@ -670,43 +670,12 @@
                             dropField.triggerHandler("value_select", [value,
                                             valueLogic, item]);
 
-                            // in case the value link is set
+                            // in case the value link is set it must be used
+                            // so that the current context gets switched
                             if (valueLink) {
-                                // retrieves the offset and converts it
-                                // into an integer
-                                var duration = dropField.attr("data-duration");
-                                var durationInteger = parseInt(duration);
-
-                                // checks if the duration integer value is valid
-                                // conversion successful
-                                var durationValid = !isNaN(durationInteger);
-
-                                // in case the duration is valid (the link is
-                                // internal and a scroll to shall be used)
-                                if (durationValid) {
-                                    // retrieves the offset and converts it
-                                    // into an integer
-                                    var offset = dropField.attr("data-offset");
-                                    var offsetInteger = parseInt(offset);
-
-                                    // creates the settings map based on the offset
-                                    var settings = {
-                                        offset : isNaN(offsetInteger)
-                                                ? 0
-                                                : offsetInteger
-                                    }
-
-                                    // scrolls to the reference
-                                    jQuery.uxscrollto(valueLink,
-                                            durationInteger, settings);
-                                }
-                                // otherwise the link is external and
-                                // no scroll to shall be used
-                                else {
-                                    // changes the document location to
-                                    // the value link value
-                                    jQuery.uxlocation(valueLink);
-                                }
+                                // changes the document location to
+                                // the value link value (as expected)
+                                _location(dropField, valueLink);
                             }
 
                             // hides the drop field contents
@@ -1467,11 +1436,11 @@
             // triggers the value select event
             dropField.triggerHandler("value_select", [value, valueLogic, item]);
 
-            // in case the value link is set
+            // in case the value link is set and it's valid
+            // it must be processed so that the link gets
+            // interpreted and ran (switching to new page)
             if (valueLink) {
-                // changes the document location to
-                // the value link value
-                jQuery.uxlocation(valueLink);
+                _location(dropField, valueLink);
             }
 
             // calculates the new selection index from the element
@@ -1484,6 +1453,45 @@
 
             // hides the drop field contents
             dropFieldContents.hide();
+        };
+
+        var _location = function(matchedObject, valueLink) {
+            // sets the provided matched object as the drop field
+            // this is used for better alias based operation
+            var dropField = matchedObject;
+
+            // retrieves the duration and converts it
+            // into an integer to be used in the scroll
+            // operation at the end of the function
+            var duration = dropField.attr("data-duration");
+            var durationInteger = parseInt(duration);
+
+            // checks if the duration integer value is valid
+            // (meaning conversion successful)
+            var durationValid = !isNaN(durationInteger);
+
+            // in case the duration is valid (the link is
+            // internal and a scroll to shall be used)
+            if (durationValid) {
+                // retrieves the offset and converts it
+                // into an integer to be used in the
+                var offset = dropField.attr("data-offset");
+                var offsetInteger = parseInt(offset);
+
+                // creates the settings map based on the offset
+                // note that the value gets defaulted to zero
+                var settings = {
+                    offset : isNaN(offsetInteger) ? 0 : offsetInteger
+                }
+
+                // scrolls to the reference using the proper
+                // plugin operation (performing smooth effect)
+                jQuery.uxscrollto(valueLink, durationInteger, settings);
+            } else {
+                // changes the document location to/ the value
+                // link value, using the proper plugin
+                jQuery.uxlocation(valueLink);
+            }
         };
 
         // switches over the method
