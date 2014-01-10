@@ -49,8 +49,14 @@
             // iterates over all the matched object
             // elements to update the timestamp value
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
+                        // retrieves the element reference and verifies
+                        // if it has already been processed if that's the case
+                        // returns immediately as there's nothing to be done
                         var _element = jQuery(element);
+                        var isProcessed = _element.hasClass("processed");
+                        if (isProcessed) {
+                            return;
+                        }
 
                         // retrieves the current timestamp string
                         // value from the element and converts
@@ -62,24 +68,22 @@
                         // (the timestamp is not a number)
                         if (isNaN(timestamp)) {
                             // adds the processed class to show the value
-                            // even for the default value (fallback)
+                            // even for the default value (fallback) and
+                            // returns the control flow to the caller function
                             _element.addClass("processed");
-
-                            // returns immediately (no change)
                             return;
                         }
 
-                        // retrieves the format from the element
+                        // retrieves the format from the element and if the
+                        // the provided timestamp value is defined in utc
                         var format = _element.attr("data-format");
-
-                        // retrieves the utc (value) from the element
                         var utc = _element.attr("data-utc");
 
                         // converts the timestamp into a date object
                         var date = new Date(timestamp * 1000);
 
-                        // processes the provided datae string according
-                        // to the given format string
+                        // processes the provided date string according
+                        // to the given format string as requested by user
                         var dateString = _processDate(date, format, utc);
 
                         // sets the "new" formated date value in the element and
