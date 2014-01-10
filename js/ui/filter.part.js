@@ -1307,8 +1307,8 @@
             _body.append(menu);
 
             // triggers the selected event on the current element
-            // so that it changes the selected value
-            element.trigger("selected");
+            // so that it changes the selected value (action event)
+            element.triggerHandler("selected");
 
             // retrieves the correct scroll position coordinates
             // according to the current browser implementation
