@@ -52,9 +52,10 @@
                         // retrieves the element reference and verifies
                         // if it has already been processed if that's the case
                         // returns immediately as there's nothing to be done
+                        // but only in case the force flag is not set in options
                         var _element = jQuery(element);
                         var isProcessed = _element.hasClass("processed");
-                        if (isProcessed) {
+                        if (isProcessed && !options.force) {
                             return;
                         }
 
