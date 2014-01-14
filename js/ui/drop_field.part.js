@@ -64,6 +64,15 @@
                 var numberOptions = options["numberOptions"];
                 var filterOptions = options["filterOptions"];
 
+                // retrieves the number of options attribute and then tries to
+                // parse it as an integer value in case it fails falls back to
+                // the original value otherwise used the newly processed one
+                var numberOptionsS = _element.attr("data-number_options");
+                var numberOptionsI = parseInt(numberOptionsS);
+                numberOptions = isNaN(numberOptionsI)
+                        ? numberOptions
+                        : numberOptionsI;
+
                 // checks if the element (drop field) is of type select
                 var isSelect = _element.hasClass("drop-field-select");
 
