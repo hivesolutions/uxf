@@ -40,7 +40,7 @@
         };
 
         var _isMobile = function(data) {
-            var prefix = a.substr(0, 4);
+            var prefix = data.substr(0, 4);
             var mobile = MOBILE_REGEX.test(data);
             var mobilePrefix = MOBILE_PREFIX_REGEX.test(prefix);
             var isMobile = mobile || mobilePrefix ? true : false;
