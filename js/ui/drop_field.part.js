@@ -83,7 +83,7 @@
                 var displayAttribute = _element.attr("data-display_attribute")
                         || "name";
                 var extraAttribute = _element.attr("data-extra_attribute")
-                        || "value";
+                        || "extra";
                 var valueAttribute = _element.attr("data-value_attribute")
                         || "value";
                 var linkAttribute = _element.attr("data-link_attribute")
@@ -1006,7 +1006,7 @@
                                     : currentDisplayAttribute;
                             currentExtraAttribute = currentExtraAttribute
                                     && typeof currentExtraAttribute == "object"
-                                    ? currentExtraAttribute["value"]
+                                    ? currentExtraAttribute["extra"]
                                     : currentExtraAttribute;
                             currentValueAttribute = currentValueAttribute
                                     && typeof currentValueAttribute == "object"
