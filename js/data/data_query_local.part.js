@@ -55,9 +55,11 @@
             var filterString = query["filterString"];
             var filterAttributes = query["filterAttributes"];
 
-            // retrieves the record count information
+            // retrieves the record count information and validates that
+            // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
+            numberRecords = numberRecords == -1 ? MAX_RECORDS : numberRecords
 
             // sets the initial filter flag value
             var filter = false;

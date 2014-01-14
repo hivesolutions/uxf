@@ -66,9 +66,11 @@
             // the result set around certain rules
             var filters = query["filters"] || [];
 
-            // retrieves the record count information
+            // retrieves the record count information and validates that
+            // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
+            numberRecords = numberRecords == -1 ? MAX_RECORDS : numberRecords
 
             // unpacks the sort value and the sort oder from the
             // sort tuple and uses them to create the "final" sort
