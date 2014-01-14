@@ -245,8 +245,16 @@
             // applies the print plugin
             _print.uxprint();
 
-            // applies the browser plugin
+            // applies the browser plugin, this should change
+            // the body classes reflecting the current environemnt
+            // in which the system is currently running
             _body.uxbrowser();
+
+            // applies the mobile plugin, this extension is going
+            // to change the classes of the body for a mobile browser
+            // situation, that way the code may be used conditionaly
+            // taking into account if this is a desktop or mobile browser
+            _body.uxmobile();
 
             // applies the eval (javascript evalutation)
             // this is a dangerous operation
