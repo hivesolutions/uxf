@@ -713,38 +713,48 @@
             // registers for the submit event in the parent form
             // to create an hidden field that "sends" the converted timestamp
             parentForm.bind("pre_submit", function() {
-                // in case the no process flag is set the processing
-                // will be avoided and the value set is the one shown
-                var noProcess = element.attr("data-no_process");
+                        // in case the no process flag is set the processing
+                        // will be avoided and the value set is the one shown
+                        var noProcess = element.attr("data-no_process");
 
-                // retrieves the current value and then uses it to parse
-                // it as current timestamp
-                var currentValue = element.attr("value");
-                var currentTimestamp = utc
-                        ? (Date.parse(currentValue + " UTC") / 1000)
-                        : (Date.parseUtc(currentValue) / 1000);
+                        // retrieves the current value and then uses it to parse
+                        // it as current timestamp
+                        var currentValue = element.attr("value");
+                        var currentTimestamp = utc
+                                ? (Date.parse(currentValue + " UTC") / 1000)
+                                : (Date.parseUtc(currentValue) / 1000);
 
-                // retrieves the name attribute from the element
-                // and then removes it to avoid sending the literal date value
-                var name = element.attr("name") || element.attr("data-name");
-                element.attr("data-name", name)
-                element.removeAttr("name");
+                        // retrieves the proper string representation of the current
+                        // timestamp value taking into account if the current value
+                        // rerpresents a number or not (invalid valude validation)
+                        var currentTimestampS = isNaN(currentTimestamp)
+                                ? ""
+                                : String(currentTimestamp);
 
-                // tries to retrieve and remove any previously existing
-                // hidden element representing the current value
-                var previous = jQuery("input[type=hidden][name=\"" + name
-                        + "\"]");
-                previous.remove();
+                        // retrieves the name attribute from the element
+                        // and then removes it to avoid sending the literal date value
+                        var name = element.attr("name")
+                                || element.attr("data-name");
+                        element.attr("data-name", name)
+                        element.removeAttr("name");
 
-                // calculates the apropriate value taking into account
-                // if the no process flag is currently set
-                var value = noProcess ? currentValue : String(currentTimestamp);
+                        // tries to retrieve and remove any previously existing
+                        // hidden element representing the current value
+                        var previous = jQuery("input[type=hidden][name=\""
+                                + name + "\"]");
+                        previous.remove();
 
-                // creates the hidden field to submit the timestamp value
-                // described in the text field
-                element.after("<input type=\"hidden\" name=\"" + name
-                        + "\" value=\"" + value + "\" />");
-            });
+                        // calculates the apropriate value taking into account
+                        // if the no process flag is currently set
+                        var value = noProcess
+                                ? currentValue
+                                : currentTimestampS;
+
+                        // creates the hidden field to submit the timestamp value
+                        // described in the text field
+                        element.after("<input type=\"hidden\" name=\"" + name
+                                + "\" value=\"" + value + "\" />");
+                    });
         };
 
         var __startdate = function(element, options) {
