@@ -113,42 +113,39 @@
             // iterates over the complete set of elements to be able
             // to register for the specific elements of each component
             matchedObject.each(function(index, element) {
-                        // retrieves the current element in iteration that is
-                        // goint to be used as the context
-                        var _element = jQuery(this);
+                // retrieves the current element in iteration that is
+                // goint to be used as the context
+                var _element = jQuery(this);
 
-                        // retrieves the parent form to the current rating
-                        // element, this form must be registered so that it's
-                        // possible to create a hiden value element that represents
-                        // the rating component in terms of form submission
-                        var parentForm = _element.parents("form");
+                // retrieves the parent form to the current rating
+                // element, this form must be registered so that it's
+                // possible to create a hiden value element that represents
+                // the rating component in terms of form submission
+                var parentForm = _element.parents("form");
 
-                        // registers for the pre submit operation of the parent form
-                        // of the current element so that the "virtual" hidden input
-                        // field may be created before the form submission
-                        parentForm.bind("pre_submit", function() {
-                                    // retrieves both the name and the vale of the current rating
-                                    // element to be used in the creation of the new virtual element
-                                    // that is going to represent the rating element
-                                    var name = _element.attr("data-name");
-                                    var value = _element.attr("data-value");
+                // registers for the pre submit operation of the parent form
+                // of the current element so that the "virtual" hidden input
+                // field may be created before the form submission
+                parentForm.bind("pre_submit", function() {
+                            // retrieves both the name and the vale of the current rating
+                            // element to be used in the creation of the new virtual element
+                            // that is going to represent the rating element
+                            var name = _element.attr("data-name");
+                            var value = _element.attr("data-value");
 
-                                    // tries to retrieve and remove any previously existing
-                                    // hidden element representing the current value, this
-                                    // avoids problems whild using ajax based form submit
-                                    var previous = jQuery("input[type=hidden][name=\""
-                                            + name + "\"]");
-                                    previous.remove();
+                            // tries to retrieve and remove any previously existing
+                            // hidden element representing the current value, this
+                            // avoids problems whild using ajax based form submit
+                            var previous = _element.next("input[type=hidden][name=\""
+                                    + name + "\"]");
+                            previous.remove();
 
-                                    // creates the hidden input field that is going to represent the
-                                    // rating element with the proper name and value set
-                                    _element.after("<input type=\"hidden\" name=\""
-                                            + name
-                                            + "\" value=\""
-                                            + value
-                                            + "\" />");
-                                });
-                    });
+                            // creates the hidden input field that is going to represent the
+                            // rating element with the proper name and value set
+                            _element.after("<input type=\"hidden\" name=\""
+                                    + name + "\" value=\"" + value + "\" />");
+                        });
+            });
         };
 
         var _value = function(matchedObject, value) {
