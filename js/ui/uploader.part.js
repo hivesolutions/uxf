@@ -182,6 +182,7 @@
             // to the matched object attributes
             uploaderInput.css("width", width + "px");
             uploaderInput.css("margin-left", (width * -1) + "px");
+            uploaderInput.css("padding", "0px 0px 0px 0px");
         };
 
         // initializes the plugin
