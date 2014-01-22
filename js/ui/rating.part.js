@@ -133,6 +133,12 @@
                             var name = _element.attr("data-name");
                             var value = _element.attr("data-value");
 
+                            // in case the name is not defined or the value is unset must
+                            // return immediately in order to avoid any more problems
+                            if (!name) {
+                                return;
+                            }
+
                             // tries to retrieve and remove any previously existing
                             // hidden element representing the current value, this
                             // avoids problems whild using ajax based form submit
