@@ -55,7 +55,7 @@
                 // its colspan so that it spans all the columns (very large
                 // value is set)
                 var newLineRow = jQuery(".table-new-line-row", elementReference);
-                newLineRow.attr("colspan", "99999");
+                newLineRow.attr("colspan", "99");
 
                 // retrieves all the rows from the element reference
                 // and all the text fields associated with the element reference
@@ -291,15 +291,21 @@
                         addButton.data("width", extraWidth);
 
                         // retrieves the table width, to calculate
-                        // the add button left margin
+                        // the add button left margin and then verifies if
+                        // the left margin of the button is a valid value
                         var tableWidth = table.outerWidth(true);
                         var addButtonMarginLeft = (tableWidth + extraWidth)
                                 * -1;
+                        var isValid = !isNaN(addButtonMarginLeft);
 
                         // sets the add button left margin, it's important
                         // to re-calculate this value because the table may
-                        // be invisible during the first calculus
-                        addButton.css("margin-left", addButtonMarginLeft + "px");
+                        // be invisible during the first calculus, note that
+                        // this valud is only set in case the value is valid
+                        // (not defined as not a number)
+                        isValid
+                                && addButton.css("margin-left",
+                                        addButtonMarginLeft + "px");
 
                         // updates the buttons visibility
                         addButton.addClass("visible");
