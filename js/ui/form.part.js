@@ -138,6 +138,23 @@
                         var element = jQuery(this);
                         resetForm(element, options);
                     });
+
+            // registers for the pre submit event that is going
+            // to be triggered whenever the form is going to start
+            // submitting new data to the server side, so that the
+            // proper pre commit operations are performed
+            matchedObject.bind("pre_submit", function(event) {
+                        var element = jQuery(this);
+                        element.addClass("submitting")
+                    });
+
+            // registers for the post submit operations in the form
+            // so that the form is restores to the original state
+            // (before the start of the form submission)
+            matchedObject.bind("post_submit", function(event) {
+                        var element = jQuery(this);
+                        element.removeClass("submitting")
+                    });
         };
 
         var submit = function(matchedObject, options) {
