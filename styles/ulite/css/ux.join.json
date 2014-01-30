@@ -13,9 +13,9 @@
                 "ui/radio_field.part.css", "ui/scroll_list.part.css",
                 "ui/select_field.part.css", "ui/tags.part.css",
                 "ui/separator.part.css", "ui/slideshow.part.css",
-                "ui/subscript.part.css", "ui/table.part.css",
-                "ui/text_field.part.css", "ui/window.part.css",
-                "footer.part.css"]
+                "ui/subscript.part.css", "ui/tab_panel.part.css",
+                "ui/table.part.css", "ui/text_field.part.css",
+                "ui/window.part.css", "footer.part.css"]
     },
     "ux-min.css" : {
         "files" : ["header.part.css", "error/content_error.part.css",
@@ -29,9 +29,9 @@
                 "ui/radio_field.part.css", "ui/scroll_list.part.css",
                 "ui/select_field.part.css", "ui/tags.part.css",
                 "ui/separator.part.css", "ui/slideshow.part.css",
-                "ui/subscript.part.css", "ui/table.part.css",
-                "ui/text_field.part.css", "ui/window.part.css",
-                "footer.part.css"],
+                "ui/subscript.part.css", "ui/tab_panel.part.css",
+                "ui/table.part.css", "ui/text_field.part.css",
+                "ui/window.part.css", "footer.part.css"],
         "minify" : "css"
     },
     "ux-min.css.gz" : {
@@ -46,9 +46,9 @@
                 "ui/radio_field.part.css", "ui/scroll_list.part.css",
                 "ui/select_field.part.css", "ui/tags.part.css",
                 "ui/separator.part.css", "ui/slideshow.part.css",
-                "ui/subscript.part.css", "ui/table.part.css",
-                "ui/text_field.part.css", "ui/window.part.css",
-                "footer.part.css"],
+                "ui/subscript.part.css", "ui/tab_panel.part.css",
+                "ui/table.part.css", "ui/text_field.part.css",
+                "ui/window.part.css", "footer.part.css"],
         "minify" : "css",
         "compress" : "gzip"
     }

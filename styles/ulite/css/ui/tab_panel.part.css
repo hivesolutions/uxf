@@ -1,0 +1,37 @@
+.ulite-style .tab-panel .block-tabs {
+    border-bottom: 1px solid #dddddd;
+    margin: 0px 0px 20px 0px;
+}
+
+
+.ulite-style .tab-panel .tab-selectors {
+    list-style: none;
+    padding: 0px 0px 0px 0px;
+    position: relative;
+    top: 1px;
+}
+
+.ulite-style .tab-panel .tab-selectors li {
+    display: inline-block;
+}
+
+.ulite-style .tab-panel .tab-selector {
+    border: 1px solid transparent;
+    color: #666666;
+    display: inline-block;
+    font-size: 10px;
+    line-height: 28px;
+    margin-right: 2px;
+    padding: 0px 15px 0px 15px;
+    text-decoration: none;
+}
+
+.ulite-style .tab-panel .tab-selector:hover,
+.ulite-style .tab-panel .tab-selector.active {
+    background-color: #ffffff;
+    border-color: #dddddd #dddddd transparent #dddddd;
+    border-style: solid;
+    border-width: 1px;
+    color: #3668c6;
+    text-decoration: none;
+}
