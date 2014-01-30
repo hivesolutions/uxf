@@ -309,10 +309,8 @@
 
 .omni-style .filter.entities-list .entity-small-name {
     font-size: 12px;
-    height: 18px;
     line-height: 16px;
     margin: 8px 0px 0px 0px;
-    overflow: hidden;
 }
 
 .omni-style .filter.entities-list .entity-code {
@@ -336,4 +334,20 @@
 
 .omni-style .filter.entities-list.list-list .entity-name {
     margin: 4px 0px 0px 0px;
+    width: 468px;
+}
+
+.omni-style .filter.entities-list.list-list .entity-details {
+    width: 468px;
+}
+
+.omni-style .filter.entities-list .entity-small-name {
+    font-size: 12px;
+    line-height: 16px;
+    margin: 8px 0px 0px 0px;
+}
+
+.omni-style .filter.gallery-list .entity-small-name {
+    height: 18px;
+    overflow: hidden;
 }
