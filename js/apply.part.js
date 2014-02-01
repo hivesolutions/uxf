@@ -300,6 +300,13 @@
             }
 
             try {
+                // saves the original alert and confirm
+                // functions under some more obscure global
+                // variables so that they may be used latter
+                // if that's required by the developer
+                _alert = alert;
+                _confirm = confirm;
+
                 // overrides the current alert function
                 // with the ux alert method
                 alert = function(message, callback) {
