@@ -36,6 +36,7 @@
                 var name = _element.attr("data-name");
                 var action = _element.attr("data-action");
                 var noText = _element.attr("data-no_text");
+                var multiple = _element.attr("data-multiple");
 
                 // retrieves the original value of the element
                 // and stores it under the original data value
@@ -88,6 +89,22 @@
                 // registers for the change event in the uploader
                 // event (detects file changes)
                 uploaderInput.change(function() {
+                            // retrieves the current element that has changed and the
+                            // parent that is going to be used as replacer target
+                            var element = jQuery(this);
+                            var parent = element.parent();
+
+                            // in case the multiple uploads flag is set for the
+                            // current uploader element the parent element must
+                            // be cloned and added after the previous element
+                            if (multiple) {
+                                var _parent = parent.clone();
+                                var input = jQuery(".uploader-input", _parent);
+                                input.remove();
+                                parent.after(_parent);
+                                _parent.uxapply();
+                            }
+
                             // in case there is an action value set (needs
                             // to submit the upper form)
                             if (action) {
