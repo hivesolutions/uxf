@@ -51,6 +51,7 @@
                         var link = _element.attr("data-link");
                         var submit = _element.attr("data-submit");
                         var action = _element.attr("data-action");
+                        var message = _element.attr("data-message");
                         var window = _element.attr("data-window");
                         var windowOpen = _element.attr("data-window_open");
 
@@ -58,6 +59,7 @@
                         _element.data("link", link);
                         _element.data("submit", submit);
                         _element.data("action", action);
+                        _element.data("message", message);
                         _element.data("window", window);
                         _element.data("window_open", windowOpen);
                     });
@@ -173,8 +175,49 @@
         };
 
         var __trigger = function(matchedObject, options) {
+            // retrieves the reference to the global body
+            // object that is going to be used to trigger
+            // some of the behavior
+            var _body = jQuery("body");
+
+            // verifies if the current button is of type confirm
+            // if that's the case a confirmation must be first processed
+            // and only then the peopr rediction is done
+            var isConfirm = matchedObject.hasClass("button-confirm");
+
+            // tries to retrieve the message that is going to be used in
+            // case the confirm option is enabled for the button
+            var message = matchedObject.data("message");
+
+            // calls the confirm window in the document, because the action
+            // must be first validated before any redirection occurs
+            isConfirm && _body.uxconfirm(message, function(result) {
+                        // in case the result is cancel,
+                        // avoids execution and returns immediately
+                        if (!result) {
+                            return;
+                        }
+
+                        // executes the "punching" of the button this should trigger
+                        // the proper behavior to be executed
+                        __punch(matchedObject, options);
+                    });
+
+            // in case the is confirm flag is set the control flow must
+            // returns immediately to the caller function to avoid any
+            // extra behavior from being executed (must be validated)
+            if (isConfirm) {
+                return;
+            }
+
+            // executes the "punching" of the button this should trigger
+            // the proper behavior to be executed
+            __punch(matchedObject, options);
+        };
+
+        var __punch = function(matchedObject, options) {
             // retrieves the current matched object as the
-            // element
+            // element, this is going to be used in the function
             var element = matchedObject;
 
             // checks if the button is disabled in case
