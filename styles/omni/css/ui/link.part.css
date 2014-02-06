@@ -58,3 +58,12 @@
 .omni-style .link.link-grey-dark.selected {
     border-bottom: 1px solid #4d4d4d;
 }
+
+.omni-style .link.link-grey-darker {
+    color: #2d2d2d;
+}
+
+.omni-style .link.link-grey-darker:hover,
+.omni-style .link.link-grey-darker.selected {
+    border-bottom: 1px solid #2d2d2d;
+}
