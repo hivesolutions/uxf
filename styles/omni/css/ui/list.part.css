@@ -86,12 +86,13 @@
 }
 
 .omni-style .list.side-entities-list.simplified .entity-details {
-    color: #666666;
+    color: #4d4d4d;
     float: right;
     font-size: 10px;
     height: 20px;
     line-height: 20px;
     margin: 0px 0px 0px 0px;
+    text-transform: uppercase;
 }
 
 .omni-style .list.entity-options-list {
@@ -132,7 +133,7 @@
 }
 
 .omni-style .list.entity-options-list .entity-description {
-    color: #666666;
+    color: #4d4d4d;
     line-height: 20px;
     margin-bottom: 12px;
     margin-top: 6px;
