@@ -12,17 +12,17 @@
 }
 
 .omni-style .drop-field.strong > .text-field {
-    color: #2d2d2d;
+    color: #000000;
 }
 
 .omni-style .drop-field.strong > .text-field.lower {
-    color: #666666;
+    color: #777777;
 }
 
 .omni-style .drop-field.strong.disabled > .text-field {
     background-color: #f8f8f8;
-    color: #888888;
-    -webkit-text-fill-color: #888888;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
 }
 
 .omni-style .drop-field.drop-field-select > .text-field {

@@ -4,7 +4,7 @@
     box-shadow: 0px 1px 0px #ffffff;
     -moz-box-shadow: 0px 1px 0px #ffffff;
     -webkit-box-shadow: 0px 1px 0px #ffffff;
-    color: #4d4d4d;
+    color: #2d2d2d;
     font-family: Arial, sans-serif;
     font-size: 13px;
     height: 32px;
@@ -13,7 +13,7 @@
 }
 
 .omni-style .text-field.lower {
-    color: #999999;
+    color: #888888;
 }
 
 .omni-style .text-field.active {
@@ -28,8 +28,8 @@
 
 .omni-style .text-field:disabled {
     background-color: #f8f8f8;
-    color: #888888;
-    -webkit-text-fill-color: #888888;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
 }
 
 .omni-style .text-field.small {
@@ -80,7 +80,7 @@
     box-shadow: 0px 1px 0px #ffffff;
     -moz-box-shadow: 0px 1px 0px #ffffff;
     -webkit-box-shadow: 0px 1px 0px #ffffff;
-    color: #4d4d4d;
+    color: #2d2d2d;
     font-family: Arial, sans-serif;
     font-size: 13px;
     height: 32px;
@@ -91,7 +91,7 @@
 }
 
 .omni-style .text-area.lower {
-    color: #aaaaaa;
+    color: #888888;
 }
 
 .omni-style .text-area.active {
@@ -106,36 +106,36 @@
 
 .omni-style .text-area:disabled {
     background-color: #f8f8f8;
-    color: #888888;
-    -webkit-text-fill-color: #888888;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
 }
 
 .omni-style .text-field.strong {
-    color: #2d2d2d;
+    color: #000000;
 }
 
 .omni-style .text-field.strong.lower {
-    color: #666666;
+    color: #777777;
 }
 
 .omni-style .text-field.strong:disabled {
     background-color: #f8f8f8;
-    color: #888888;
-    -webkit-text-fill-color: #888888;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
 }
 
 .omni-style .text-area.strong {
-    color: #2d2d2d;
+    color: #000000;
 }
 
 .omni-style .text-area.strong.lower {
-    color: #666666;
+    color: #777777;
 }
 
 .omni-style .text-area.strong:disabled {
     background-color: #f8f8f8;
-    color: #888888;
-    -webkit-text-fill-color: #888888;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
 }
 
 .omni-style .text-field-calendar {
