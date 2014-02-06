@@ -139,6 +139,15 @@
 
                         // switches over the event key code
                         switch (eventKeyCode) {
+                            // in case it's the enter key
+                            case 13 :
+                                // stops the event propagation
+                                // (avoids extra problems in form)
+                                event.stopPropagation();
+                                event.preventDefault();
+
+                                // breaks the switch
+                                break;
 
                             // in case it's the page up key
                             case 33 :
