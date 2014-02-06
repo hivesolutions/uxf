@@ -189,6 +189,11 @@
             // case the confirm option is enabled for the button
             var message = matchedObject.data("message");
 
+            // makes sure that a confirmation message is defined and only
+            // for such situations the confirmation mode is set otherwise
+            // the "normal" action mode is used (uses flag validation)
+            isConfirm = isConfirm && message;
+
             // calls the confirm window in the document, because the action
             // must be first validated before any redirection occurs
             isConfirm && _body.uxconfirm(message, function(result) {
