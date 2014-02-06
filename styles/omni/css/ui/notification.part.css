@@ -51,5 +51,6 @@
 }
 
 .omni-style .notification.button:hover {
-    background-color: #fafafa;
+    background-color: #f8f8f8;
+    border-color: #d0d0d0;
 }
