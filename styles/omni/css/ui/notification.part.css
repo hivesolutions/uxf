@@ -56,12 +56,12 @@
 }
 
 .omni-style.dark .notification {
-    border-color: #666666;
+    border-color: #4d4d4d;
     box-shadow: 0px 0px 6px #2d2d2d;
     -moz-box-shadow: 0px 0px 6px #2d2d2d;
     -webkit-box-shadow: 0px 0px 6px #2d2d2d;
 }
 
 .omni-style.dark  .notification.button:hover {
-    border-color: #2d2d2d;
+    border-color: #000000;
 }
