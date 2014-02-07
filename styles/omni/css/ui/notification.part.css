@@ -51,6 +51,17 @@
 }
 
 .omni-style .notification.button:hover {
-    background-color: #f8f8f8;
-    border-color: #d0d0d0;
+    background-color: #f4f4f4;
+    border-color: #cccccc;
+}
+
+.omni-style.dark .notification {
+    border-color: #666666;
+    box-shadow: 0px 0px 6px #2d2d2d;
+    -moz-box-shadow: 0px 0px 6px #2d2d2d;
+    -webkit-box-shadow: 0px 0px 6px #2d2d2d;
+}
+
+.omni-style.dark  .notification.button:hover {
+    border-color: #2d2d2d;
 }
