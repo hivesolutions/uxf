@@ -918,7 +918,14 @@
             var complete = filter.data("complete");
             var pending = filter.data("pending");
 
-            // "forces" the number of records to the table list
+            // retrieves the current list of defined filters, this value
+            // will be used as the starting point for the gathering of
+            // the various filters from the main filter element
+            var _filters = filter.data("filters");
+            _filters = _filters ? _filters.slice(0) : [];
+
+            // "forces" the number of records to the table list this is
+            // done so that the proper value is defined
             numberRecords = filter.hasClass("table-list") ? 14 : numberRecords;
 
             // retrieves the filter input value, defaulting to empty
@@ -972,13 +979,9 @@
             // parser in search for the valid filters
             var filters = jQuery(".filter-advanced-filter", filter);
 
-            // creates the list that will hold the various filter tuples
-            // resulting from the gathering of all the valid filters in
-            // the current filter
-            var _filters = [];
-
             // iterates over all the filters (lines) in order to create the
-            // various filter tuples
+            // various filter tuples and then add them to the base filters
+            // list that will be used for the query in the data source
             filters.each(function() {
                         // retrieves the current element in iteration
                         var element = jQuery(this);
@@ -1045,7 +1048,9 @@
             // is presented to the user
             filterMore.addClass("loading");
 
-            // runs the query in the data source
+            // runs the query in the data source, this is a non blocking
+            // operation that may take some time to be executed the proper
+            // callback will be called at the end of the execution
             dataSource.uxdataquery({
                         filterString : filterInputValue,
                         sort : sort,
