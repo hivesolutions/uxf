@@ -297,6 +297,16 @@
             // support in the matched object (by default it's disabled)
             var infinite = matchedObject.attr("data-infinite") || false;
 
+            // registers for the update event so that the data is reloaded
+            // once this event is raises, this is expected to be done using
+            // the trigger handler method so that no buble occurs
+            matchedObject.bind("update", function() {
+                        // retrieves the current element (filter) and triggers an
+                        // update operation that is considered to be forced
+                        var element = jQuery(this);
+                        _update(element, options, true);
+                    });
+
             // registers for the new element event that triggers the
             // request for the insertion of a new element of data to
             // the top of the filter contents
@@ -924,6 +934,11 @@
             var _filters = filter.data("filters");
             _filters = _filters ? _filters.slice(0) : [];
 
+            // retrieves the proper (default) sorting information for the
+            // filters this is only going to be used in case no sorting
+            // information is retrieved from the filter elements
+            var _sort = filter.data("sort") || null;
+
             // "forces" the number of records to the table list this is
             // done so that the proper value is defined
             numberRecords = filter.hasClass("table-list") ? 14 : numberRecords;
@@ -973,7 +988,7 @@
             // the sorting list (tuple) to be used in the query
             var isAscending = sortSelected.hasClass("ascending");
             var sortOrder = isAscending ? "ascending" : "descending";
-            var sort = sortValue ? [sortValue, sortOrder] : null;
+            var sort = sortValue ? [sortValue, sortOrder] : _sort;
 
             // retrieves the complete set of (graphical) filter lines to be
             // parser in search for the valid filters
