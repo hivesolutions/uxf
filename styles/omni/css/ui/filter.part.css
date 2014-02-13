@@ -222,14 +222,14 @@
 }
 
 .omni-style .filter.entities-list .filter-contents > li.selected {
-    background-color: #f4f4f4;
+    background-color: #f0f0f0;
     border-bottom: none;
-    border-left: 1px solid #d8d8d8;
-    border-right: 1px solid #d8d8d8;
-    border-top: 1px solid #d8d8d8;
-    box-shadow: 0px 0px 6px #e8e8e8;
-    -moz-box-shadow: 0px 0px 6px #e8e8e8;
-    -webkit-box-shadow: 0px 0px 6px #e8e8e8;
+    border-left: 1px solid #d0d0d0;
+    border-right: 1px solid #d0d0d0;
+    border-top: 1px solid #d0d0d0;
+    box-shadow: 0px 0px 6px #e4e4e4;
+    -moz-box-shadow: 0px 0px 6px #e4e4e4;
+    -webkit-box-shadow: 0px 0px 6px #e4e4e4;
     margin-left: -11px;
     padding-bottom: 17px;
     padding-left: 10px;
@@ -238,7 +238,7 @@
 }
 
 .omni-style .filter.entities-list .filter-contents > li.selected.last {
-    border-bottom: 1px solid #d8d8d8;
+    border-bottom: 1px solid #d0d0d0;
     padding-bottom: 16px;
 }
 
@@ -266,7 +266,7 @@
 }
 
 .omni-style .filter.entities-list.gallery-list .filter-contents > li.selected {
-    border-color: #d8d8d8;
+    border-color: #d0d0d0;
     height: 120px;
     margin-left: 0px;
     padding-bottom: 16px;
