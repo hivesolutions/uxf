@@ -51,7 +51,7 @@
             matchedObject.prepend("<div class=\"tag-field-tags\"></div>");
 
             // iterates over each of the matched object to load
-            // its contents
+            // its contents, as an individual operation
             matchedObject.each(function(index, element) {
                         // retrieves the current element
                         var _element = jQuery(this);
@@ -132,7 +132,9 @@
                                     // update operation for the final part of the update
                                     // lifecycle this way a new refresh happends after the
                                     // complete layout is rendered
-                                    isVisible && _update(_element, options);
+                                    isVisible
+                                            ? _update(_element, options)
+                                            : _update(_element, options, true);
                                 });
                     });
         };
@@ -332,7 +334,7 @@
             tagsContainer.append(tag);
         };
 
-        var _update = function(matchedObject, options) {
+        var _update = function(matchedObject, options, noWidth) {
             // retrieves the container of the tags, the text field and
             // the complete set of tags
             var tagsContainer = jQuery(".tag-field-tags", matchedObject);
@@ -395,9 +397,15 @@
             // height with the line height to calculate the number of
             // lines in the tags container, using it to calculate the
             // "new" padding to the top
-            var lineHeight = lastTag ? lastTag.outerHeight(true) : 0;
-            var numberLines = tagsContainerHeight / lineHeight;
-            var paddingTop = (numberLines - 1) * lineHeight;
+            var lineHeight = lastTag ? lastTag.height() : 0;
+            var marginBottom = lastTag ? lastTag.css("margin-bottom") : 0;
+            marginBottom = parseInt(marginBottom);
+            var marginTop = lastTag ? lastTag.css("margin-top") : 0;
+            marginTop = parseInt(marginTop);
+            var lineMargin = marginBottom + marginTop;
+            var lineOuterHeight = lineHeight + lineMargin;
+            var numberLines = tagsContainerHeight / lineOuterHeight;
+            var paddingTop = (numberLines - 1) * lineOuterHeight;
 
             // retrieves the original padding top value to be used to
             // increment the new padding top
@@ -414,7 +422,12 @@
             // retrieves the text field height to be used in the calculus
             // of the delta value to the margin top
             var textFieldHeight = textField.height();
-            var deltaMarginTop = (textFieldHeight - (lineHeight + 2)) / 2;
+            var borderTopWidth = textField.css("border-top-width");
+            borderTopWidth = parseInt(borderTopWidth);
+            var borderBottomWidth = textField.css("border-bottom-width");
+            borderBottomWidth = parseInt(borderBottomWidth);
+            var borderWidth = borderTopWidth + borderBottomWidth;
+            var deltaMarginTop = ((textFieldHeight + borderWidth - lineHeight) / 2);
 
             // retrieves the various extra components of the text field
             // and adds them together to calculate the extra pixel values
@@ -441,9 +454,11 @@
             textField.css("padding-top", paddingTop + "px");
 
             // sets the new width and padding left in the text
-            // field associated with the tag field
-            textField.css("width", width + "px");
-            textField.css("padding-left", lineWidth + "px");
+            // field associated with the tag field, note that this
+            // operation is only performed in case the no width flag
+            // is not set (conditional execution)
+            !noWidth && textField.css("width", width + "px");
+            !noWidth && textField.css("padding-left", lineWidth + "px");
         };
 
         var _value = function(matchedObject, options) {
