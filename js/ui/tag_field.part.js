@@ -65,28 +65,15 @@
                         // tag element for the current element (tag field)
                         var tagsContainer = jQuery(".tag-field-tags", _element);
 
-                        // retrieves the text field element and calculates its
-                        // width and padding to the right to be used to set the
-                        // limits on the tags container
+                        // retrieves the text field element, that is going to
+                        // be used for some of the "simple" updates
                         var textField = jQuery(".text-field", _element);
-                        var textFieldWidth = textField.outerWidth();
-                        var textFieldPaddingRight = textField.css("padding-right");
-                        textFieldPaddingRight = parseInt(textFieldPaddingRight);
-                        var textFieldPaddingLeft = textField.css("padding-left");
-                        textFieldPaddingLeft = parseInt(textFieldPaddingLeft);
 
                         // retrieves the original padding top of the text field
                         // and "saves" it under the data structure
                         var textFieldPaddingTop = textField.css("padding-top");
                         textFieldPaddingTop = parseInt(textFieldPaddingTop);
                         textField.data("padding_top", textFieldPaddingTop);
-
-                        // updates the maximum width value for the tag container
-                        // according to the size values of the text field
-                        tagsContainer.css(
-                                "max-width",
-                                (textFieldWidth - textFieldPaddingRight - textFieldPaddingLeft)
-                                        + "px");
 
                         // removes the name attribute from the text field to avoid
                         // duplicate submission of values
@@ -97,8 +84,8 @@
                         var tagsList = jQuery(".tags", _element);
                         var tags = jQuery("li", tagsList);
 
-                        // iterates over each of the tags to create their
-                        // internal representation
+                        // iterates over each of the (existing) tags to create their
+                        // internal representation (tries to extract data value)
                         tags.each(function(index, element) {
                                     // retrieves the current element (tag) in
                                     // iteration for interpretation
@@ -135,6 +122,11 @@
                                     isVisible
                                             ? _update(_element, options)
                                             : _update(_element, options, true);
+
+                                    // updates the tag container width with the proper
+                                    // value, this may be required to avoid some of the
+                                    // problems with measures while display is hidden
+                                    _updateContainer(_element, options);
                                 });
                     });
         };
@@ -405,6 +397,7 @@
             var lineMargin = marginBottom + marginTop;
             var lineOuterHeight = lineHeight + lineMargin;
             var numberLines = tagsContainerHeight / lineOuterHeight;
+            numberLines = isNaN(numberLines) ? 1 : numberLines;
             var paddingTop = (numberLines - 1) * lineOuterHeight;
 
             // retrieves the original padding top value to be used to
@@ -459,6 +452,28 @@
             // is not set (conditional execution)
             !noWidth && textField.css("width", width + "px");
             !noWidth && textField.css("padding-left", lineWidth + "px");
+        };
+
+        var _updateContainer = function(matchedObject, options) {
+            // retrieves the various elements that are going to be
+            // used for the measure of the text field width
+            var tagsContainer = jQuery(".tag-field-tags", matchedObject);
+            var textField = jQuery(".text-field", matchedObject);
+
+            // retrieves the text field element and calculates its
+            // width and padding to the right to be used to set the
+            // limits on the tags container
+            var textFieldWidth = textField.outerWidth();
+            var textFieldPaddingRight = textField.css("padding-right");
+            textFieldPaddingRight = parseInt(textFieldPaddingRight);
+            var textFieldPaddingLeft = textField.css("padding-left");
+            textFieldPaddingLeft = parseInt(textFieldPaddingLeft);
+
+            // updates the maximum width value for the tag container
+            // according to the size values of the text field
+            tagsContainer.css("max-width", (textFieldWidth
+                            - textFieldPaddingRight - textFieldPaddingLeft)
+                            + "px");
         };
 
         var _value = function(matchedObject, options) {
