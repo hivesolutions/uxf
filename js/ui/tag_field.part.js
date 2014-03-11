@@ -112,8 +112,13 @@
                         // avoid problems with no visibility in the tag field
                         setTimeout(function() {
                                     // checks if the element is visible so that appropriate
-                                    // visibility operation take place for carrect layout update
+                                    // visibility operation take place for correct layout update
                                     var isVisible = _element.is(":visible");
+
+                                    // updates the tag container width with the proper
+                                    // value, this may be required to avoid some of the
+                                    // problems with measures while display is hidden
+                                    _updateContainer(_element, options);
 
                                     // updates (resizes) the tag field, then sets another
                                     // update operation for the final part of the update
@@ -122,11 +127,6 @@
                                     isVisible
                                             ? _update(_element, options)
                                             : _update(_element, options, true);
-
-                                    // updates the tag container width with the proper
-                                    // value, this may be required to avoid some of the
-                                    // problems with measures while display is hidden
-                                    _updateContainer(_element, options);
                                 });
                     });
         };
