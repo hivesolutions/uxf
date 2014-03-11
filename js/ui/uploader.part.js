@@ -49,10 +49,10 @@
                 // must be create enclosing the element, after
                 // the wrapping retrieves it for latter usage
                 if (action) {
-                    var form = jQuery("<form action=\""
+                    _element.wrap("<form action=\""
                             + action
                             + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"form\"></form>");
-                    _element.wrap(form);
+                    var form = _element.parent(".form");
                     form.uxform();
                 } else {
                     var form = _element.parent(".form");
