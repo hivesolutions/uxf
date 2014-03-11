@@ -45,14 +45,18 @@
                 var original = _element.text();
                 _element.data("original", original);
 
-                // incase the action value is set the action form
+                // in case the action value is set the action form
                 // must be create enclosing the element, after
                 // the wrapping retrieves it for latter usage
-                action
-                        && _element.wrap("<form action=\""
-                                + action
-                                + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"form\"></form>");
-                var form = _element.parent(".form");
+                if (action) {
+                    var form = jQuery("<form action=\""
+                            + action
+                            + "\" method=\"post\" enctype=\"multipart/form-data\" class=\"form\"></form>");
+                    _element.wrap(form);
+                    form.uxform();
+                } else {
+                    var form = _element.parent(".form");
+                }
 
                 // inserts the uploader input afeter the element
                 // and then retrieves it from the element
