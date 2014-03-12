@@ -77,7 +77,7 @@
                         _window.resize(function(event) {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            keep);
+                                            false);
                                 });
 
                         // registers the scroll in the window
@@ -85,7 +85,7 @@
                         _window.scroll(function() {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            keep);
+                                            false);
                                 });
 
                         // registers the changing of contents in
@@ -93,7 +93,7 @@
                         _element.bind("layout", function() {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            keep);
+                                            false);
                                 });
                     });
         }
