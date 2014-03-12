@@ -75,19 +75,25 @@
                         // registers the resize in the window
                         // should keep the window centered
                         _window.resize(function(event) {
-                                    _element.uxcenter();
+                                    _element.uxcenter(topOffset, leftOffset,
+                                            useMargin, avoidTop, avoidLeft,
+                                            keep);
                                 });
 
                         // registers the scroll in the window
                         // should keep the window centered
                         _window.scroll(function() {
-                                    _element.uxcenter();
+                                    _element.uxcenter(topOffset, leftOffset,
+                                            useMargin, avoidTop, avoidLeft,
+                                            keep);
                                 });
 
                         // registers the changing of contents in
                         // the itnernal structure of the window
                         _element.bind("layout", function() {
-                                    _element.uxcenter();
+                                    _element.uxcenter(topOffset, leftOffset,
+                                            useMargin, avoidTop, avoidLeft,
+                                            keep);
                                 });
                     });
         }
