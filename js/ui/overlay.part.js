@@ -68,10 +68,13 @@
                         _resizeOverlay(matchedObject, options);
                     });
 
-            // registers the resize in the window
+            // registers the resize in the window, this is a custom
+            // event triggered at the correct timing of the window
+            // sizing workflow, this will trigger a delayed based
+            // resizing opertion on the oeverlay element
             _window.bind("size", function(event) {
                         // resizes the overlay in the screen
-                        _resizeOverlay(matchedObject, options);
+                        resizeDelayed(matchedObject, options);
                     });
 
             // registers for the click event so that
@@ -85,10 +88,9 @@
             // registers for the resize event on the overlayy
             // so that the overlay may be resized in for such events
             matchedObject.bind("resize", function() {
-                        // retrieves teh current element
+                        // retrieves teh current element and uses it
+                        // resize the overlay in the screen
                         var element = jQuery(this);
-
-                        // resizes the overlay in the screen
                         _resizeOverlay(element, options);
                     });
         };
@@ -117,6 +119,12 @@
             // using the document as reference
             matchedObject.width(documentWidth);
             matchedObject.height(documentHeight);
+        };
+
+        var resizeDelayed = function(matchedObject, options) {
+            setTimeout(function() {
+                        _resizeOverlay(matchedObject, options);
+                    });
         };
 
         // initializes the plugin
