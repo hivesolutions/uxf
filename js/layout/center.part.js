@@ -3,6 +3,10 @@
         // sets the jquery matched object
         var matchedObject = this;
 
+        // triggers the centering event meaning that the object that has
+        // been selected is going to start the centering process
+        matchedObject.triggerHandler("centering")
+
         // retrieves the top and left offsets
         var topOffset = topOffset ? topOffset : 0;
         var leftOffset = leftOffset ? leftOffset : 0;
@@ -97,6 +101,10 @@
                                 });
                     });
         }
+
+        // triggers the centered event meaning that the window has just
+        // finished the centering operation and the layout has been updated
+        matchedObject.triggerHandler("centered")
 
         // returns the object
         return this;

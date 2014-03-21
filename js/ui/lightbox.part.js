@@ -60,14 +60,18 @@
             // registers for the end of the image loading, because
             // after that the window must be repositioned in the center
             windowImage.load(function() {
-                        // removes the loading class from the window
+                        // retrieves the current element it should reflect the
+                        // selcted image (the one that has finished the loading)
+                        var element = jQuery(this);
+
+                        // removes the loading class from the window, the
+                        // windows is no longer considered to be loading
                         window.removeClass("loading");
 
                         // shows the window image (back to original state)
+                        // and then repositions the window in the center
+                        // of the screen (the width and height may have changed)
                         windowImage.show();
-
-                        // repositions the window in the center of the screen
-                        // (the width and height may have changed)
                         window.uxcenter();
                     });
         };
@@ -77,15 +81,15 @@
          */
         var _registerHandlers = function() {
             // retrieves the window (alert window) elements
-            var window = jQuery(".window.window-lightbox", matchedObject);
-            var windowButtonConfirm = jQuery(".button-confirm", window);
+            var lightbox = jQuery(".window.window-lightbox", matchedObject);
+            var buttonConfirm = jQuery(".button-confirm", lightbox);
 
-            // registers for the click event on the window
-            window.click(function() {
-                        // retrieves the element
+            // registers for the click event on the (lightbox) window
+            // so that the window is properly hidden from the current view
+            lightbox.click(function() {
+                        // retrieves the element and sets it as the
+                        // current window to be changed
                         var element = jQuery(this);
-
-                        // retrieves the associated window
                         var window = element;
 
                         // hides the window and calls the
@@ -94,12 +98,38 @@
                         callback && callback(true);
                     });
 
-            // registers for the click event on the button confirm
-            windowButtonConfirm.click(function() {
-                        // retrieves the element
+            // registers for the centering event so that before the centering
+            // process begins the maximum dimensions of the image are
+            // going to be update (and correct centering measures are used)
+            lightbox.bind("centering", function() {
+                        // retrieves the reference to the window element that is
+                        // going to be centered in the viewport
                         var element = jQuery(this);
 
-                        // retrieves the associated window
+                        // retrieves the global window element refernece and
+                        // the image associated with the lightbox window
+                        var _window = jQuery(window);
+                        var windowImage = jQuery("img", element);
+
+                        // retrieves the global window sizes and re-calculcates
+                        // the maximum size for the image using these values as
+                        // reference, note that a margin is given to avoid overlap
+                        var height = _window.height();
+                        var width = _window.width();
+                        var maxHeight = height - 32;
+                        var maxWidth = width - 32;
+
+                        // updates the maximum dimenstions for the image of the
+                        // lightbox so that no overlap exists in the window viewport
+                        windowImage.css("max-height", maxHeight + "px");
+                        windowImage.css("max-width", maxWidth + "px");
+                    });
+
+            // registers for the click event on the button confirm
+            buttonConfirm.click(function() {
+                        // retrieves the element and retrieves the
+                        // parent window element from it (to be hidden)
+                        var element = jQuery(this);
                         var window = element.parents(".window");
 
                         // hides the window and calls the
