@@ -1,6 +1,7 @@
 (function(jQuery) {
     jQuery.fn.uxcenter = function(topOffset, leftOffset, useMargin, avoidTop, avoidLeft, keep) {
-        // sets the jquery matched object
+        // sets the jquery matched object that is going to be centered
+        // on the currently defined viewport window
         var matchedObject = this;
 
         // triggers the centering event meaning that the object that has

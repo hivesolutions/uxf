@@ -98,10 +98,10 @@
                         callback && callback(true);
                     });
 
-            // registers for the centering event so that before the centering
-            // process begins the maximum dimensions of the image are
-            // going to be update (and correct centering measures are used)
-            lightbox.bind("centering", function() {
+            // registers for the centered event so that after the centering
+            // process ends the maximum dimensions of the image are going to
+            // be updated (if required) and correct centering measures are used
+            lightbox.bind("centered", function() {
                         // retrieves the reference to the window element that is
                         // going to be centered in the viewport
                         var element = jQuery(this);
@@ -119,10 +119,32 @@
                         var maxHeight = height - 32;
                         var maxWidth = width - 32;
 
+                        // retrieves the currently defined maximum dimenstion for the
+                        // image and parses these values as integers, these values are
+                        // going to be used to decide if the image maximum dimenstions
+                        // have changed or not (for recentering position)
+                        var _maxHeight = windowImage.css("max-height");
+                        var _maxWidth = windowImage.css("max-width");
+                        _maxHeight = parseInt(_maxHeight);
+                        _maxWidth = parseInt(_maxWidth);
+
+                        // verifies if the maximum dimensions for the image have changed
+                        // and if that's not the case returns immediately, this return
+                        // avoids a loop in the centering process (required)
+                        var hasChanged = maxHeight != _maxHeight
+                                || maxWidth != _maxWidth;
+                        if (!hasChanged) {
+                            return;
+                        }
+
                         // updates the maximum dimenstions for the image of the
                         // lightbox so that no overlap exists in the window viewport
                         windowImage.css("max-height", maxHeight + "px");
                         windowImage.css("max-width", maxWidth + "px");
+
+                        // re-centers the lightbox window as it's dimension should have
+                        // changed and the center must be re-computed
+                        element.uxcenter();
                     });
 
             // registers for the click event on the button confirm

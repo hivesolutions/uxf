@@ -175,7 +175,7 @@
             // triggers the resize event on the overlay in order
             // to force a resize on it to ensure dimensions
             // (ensures proper "final" size)
-            overlay.trigger("resize");
+            overlay.triggerHandler("resize");
 
             // makes sure that the current object is the only visible
             // window on the screen (ensures modal visibility)
