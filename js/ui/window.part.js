@@ -131,7 +131,8 @@
                         // should keep the window centered
                         _window.resize(function(event) {
                                     // positions the window in the screen
-                                    _positionWindow(_element, options);
+                                    // runs it using a delayed approach
+                                    _positionDelay(_element, options);
                                 });
 
                         // registers the scroll in the window
@@ -271,6 +272,12 @@
         var _positionWindow = function(matchedObject, options) {
             // centers the matched object (window)
             matchedObject.uxcenter();
+        };
+
+        var _positionDelay = function(matchedObject, options) {
+            setTimeout(function() {
+                        _positionWindow(matchedObject, options);
+                    });
         };
 
         var _resizeMask = function(matchedObject, options) {

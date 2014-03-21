@@ -74,7 +74,7 @@
             // resizing opertion on the oeverlay element
             _window.bind("size", function(event) {
                         // resizes the overlay in the screen
-                        resizeDelayed(matchedObject, options);
+                        resizeDelay(matchedObject, options);
                     });
 
             // registers for the click event so that
@@ -121,7 +121,7 @@
             matchedObject.height(documentHeight);
         };
 
-        var resizeDelayed = function(matchedObject, options) {
+        var resizeDelay = function(matchedObject, options) {
             setTimeout(function() {
                         _resizeOverlay(matchedObject, options);
                     });
