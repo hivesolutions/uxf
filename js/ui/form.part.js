@@ -31,11 +31,14 @@
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // adds the submit button to the matched
-                // object (form), only in case the no keyboard
-                // flag is not set
+                // adds the submit button to the matched object (form),
+                // only in case the no keyboard flag is not set and the
+                // current form contains no associated submit button
                 var noKeyboard = _element.hasClass("no-keyboard");
-                !noKeyboard
+                var submitButton = jQuery("input[type=submit]", _element);
+                var hasSubmit = submitButton.length > 1;
+                var requiresSubmit = !noKeyboard && !hasSubmit;
+                requiresSubmit
                         && _element.append("<input type=\"submit\" class=\"submit-button\" />");
             });
         };
