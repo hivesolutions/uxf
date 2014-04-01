@@ -79,6 +79,10 @@
                         // continue or if the form submission should be canceled
                         var result = element.triggerHandler("pre_submit");
                         if (result == false) {
+                            // triggers the post submit event to emualte the
+                            // end of the submission of the form (compatability)
+                            element.triggerHandler("post_submit");
+
                             // stops the event propagation and prevents
                             // the default behavior (avoids duplicate
                             // submission) then returns the function
