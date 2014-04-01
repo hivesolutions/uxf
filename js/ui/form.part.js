@@ -74,8 +74,13 @@
 
                         // triggers the pre submit event so that the typical pre
                         // validation process is set and raised, this is required
-                        // otherwise invalid data can be set
-                        element.triggerHandler("pre_submit");
+                        // otherwise invalid data can be set, the returned value
+                        // is used to determine if the submission of the form should
+                        // continue or if the form submission should be canceled
+                        var result = element.triggerHandler("pre_submit");
+                        if (result == false) {
+                            return;
+                        }
 
                         // retrieves the complete set of (input) fields
                         // contained in the form  an itreates over them
