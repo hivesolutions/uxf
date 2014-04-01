@@ -117,6 +117,16 @@
                                     + name + "\" value=\"" + value + "\" />");
                         });
             });
+
+            // registers for the post submit event so that the generated hidden
+            // fields are properly removed from the current context as they are
+            // no longer going to be used and may be invalid
+            parentForm.bind("post_submit", function() {
+                        var element = jQuery(this);
+                        var buttonGroups = jQuery(".button-group", element);
+                        var inputs = jQuery("input[type=hidden]", buttonGroups);
+                        inputs.remove();
+                    });
         };
 
         // switches over the method
