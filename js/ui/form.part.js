@@ -89,6 +89,10 @@
                             element.triggerHandler("unlock");
                             element.triggerHandler("post_submit");
 
+                            // updates the submited flag to the original invalid value
+                            // so that the form may be re-submited latter on
+                            element.data("submited", false)
+
                             // stops the event propagation and prevents
                             // the default behavior (avoids duplicate
                             // submission) then returns the function
