@@ -79,9 +79,10 @@
                         // continue or if the form submission should be canceled
                         var result = element.triggerHandler("pre_submit");
                         if (result == false) {
-                            // triggers the post submit event to emualte the
+                            // triggers the unlock (elements) event to emulate the
                             // end of the submission of the form (compatability)
-                            element.triggerHandler("post_submit");
+                            // this should release the elements state
+                            element.triggerHandler("unlock");
 
                             // stops the event propagation and prevents
                             // the default behavior (avoids duplicate
