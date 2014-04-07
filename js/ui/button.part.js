@@ -52,6 +52,7 @@
                         var submit = _element.attr("data-submit");
                         var action = _element.attr("data-action");
                         var message = _element.attr("data-message");
+                        var show = _element.attr("data-show");
                         var window = _element.attr("data-window");
                         var windowOpen = _element.attr("data-window_open");
 
@@ -60,6 +61,7 @@
                         _element.data("submit", submit);
                         _element.data("action", action);
                         _element.data("message", message);
+                        _element.data("show", show);
                         _element.data("window", window);
                         _element.data("window_open", windowOpen);
                     });
@@ -237,6 +239,7 @@
             var link = element.data("link");
             var action = element.data("action");
             var submit = element.data("submit");
+            var show = element.data("show");
             var windowOpen = element.data("window_open");
 
             // links the element in case the link flag is set
@@ -247,6 +250,10 @@
 
             // submits the element in case the submit flag is set
             submit && __submit(element, options);
+
+            // in case the show value exists triggers the show operation
+            // for the defined selector in the button
+            show && __show(element, options);
 
             // opens the window associated with the provided selector
             // it should be displayed as modal in the current viewport
@@ -301,6 +308,17 @@
             // opens a new window with the link otherwise
             // sets the "new" document location in
             _window ? window.open(link, "_blank") : jQuery.uxlocation(link);
+        };
+
+        var __show = function(matchedObject, options) {
+            // retrieves the show value from the matched object
+            // this valud should contain the target selector
+            var show = matchedObject.data("show");
+
+            // retrieves the target to be show and display it on
+            // the current viewport using the event as trigger
+            var target = jQuery(show);
+            target.triggerHandler("show");
         };
 
         var __windowOpen = function(matchedObject, options) {
