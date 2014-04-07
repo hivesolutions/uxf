@@ -121,7 +121,7 @@
                             else {
                                 // retrieves the input value and sets it as the
                                 // new "label" in the element
-                                var inputValue = uploaderInput.attr("value")
+                                var inputValue = uploaderInput.val()
                                         || original;
                                 !noText && _element.html(inputValue);
 
