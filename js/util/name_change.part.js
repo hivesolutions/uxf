@@ -42,7 +42,7 @@
                 // registers for the form submit
                 form.bind("pre_submit", function() {
                             // retrieves the element value
-                            var value = _element.attr("value");
+                            var value = _element.val();
 
                             // in case the value is not (need
                             // to change the name attribute)
