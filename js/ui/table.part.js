@@ -286,7 +286,7 @@
                         // this operation is not predictable and incorrect
                         // results may arise, so the valid results are stored
                         // in the internal width variable and re-used latter
-                        var extraWidth = addButton.outerWidth(true)
+                        var extraWidth = addButton.outerWidth(false)
                                 || addButton.data("width");
                         addButton.data("width", extraWidth);
 
