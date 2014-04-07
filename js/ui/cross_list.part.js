@@ -232,7 +232,7 @@
                 // section and in case it contains a value the ordering
                 // of the elements is ignored
                 var textField = jQuery(".target-section .text-field", crossList);
-                var textFieldValue = textField.attr("value");
+                var textFieldValue = textField.val();
                 if (textFieldValue) {
                     return;
                 }
