@@ -114,6 +114,10 @@
             matchedObject.addClass(browserName);
             matchedObject.addClass(browserName + "-" + browserVersion);
             matchedObject.addClass(browserOs);
+
+            // applies the patch to the kquery infra-structure so that
+            // the old mode of broewser detection is still possible
+            _applyPatch(browserName, browserOs);
         };
 
         /**
@@ -150,6 +154,19 @@
 
             return parseFloat(dataString.substring(index
                     + jQuery.fn.uxbrowser.versionSearchString.length + 1));
+        };
+
+        var _applyPatch = function(browserName, browserOs) {
+            // in case the browser structure is defined under the jquery
+            // dictionary there's no need to continue
+            if (jQuery.browser) {
+                return;
+            }
+
+            // creates the browser bject structure and populates
+            // it with the proper browser name index set to valid
+            jQuery.browser = {}
+            jQuery.browser[browserName] = true;
         };
 
         // initializes the plugin
