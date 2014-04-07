@@ -202,7 +202,7 @@
             else if (isInput) {
                 // changes the value attribute of the target component
                 // according to the result of the eval
-                matchedObject.attr("value", evalResult);
+                matchedObject.val(evalResult);
             }
             // otherwise it's a general component and the html
             // code must be changed

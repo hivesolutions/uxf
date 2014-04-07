@@ -210,9 +210,10 @@
                         var format = range.attr("data-format") || "%Y/%m/%d";
                         var dateString = jQuery.uxformat(current, format);
 
-                        // updates both the logical value and the real value
+                        // updates both the logical value and the real value, so that
+                        // the proper value is changed for the calendar
                         focused.attr("data-value", dateString);
-                        focused.attr("value", dateString);
+                        focused.val(dateString);
 
                         // triggers the value change event for the element
                         // to notify the event handlers

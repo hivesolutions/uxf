@@ -95,16 +95,16 @@
                 if (textField.length == 0 && !noInput) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
-                    var value = _element.val();
                     var name = _element.attr("name");
+                    var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
 
                     // creates the text field element and sets the various
                     // attributes in it
                     var textField = jQuery("<input type=\"text\" class=\"text-field filter-input\" />");
+                    textField.val(value);
                     textField.attr("name", name);
-                    textField.attr("value", value);
                     textField.attr("data-original_value", originalValue);
                     textField.attr("data-error", error);
 

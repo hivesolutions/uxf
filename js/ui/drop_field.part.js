@@ -104,8 +104,8 @@
                 if (textField.length == 0) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
-                    var value = _element.val();
                     var name = _element.attr("name");
+                    var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
                     var type = _element.attr("data-type");
@@ -114,8 +114,8 @@
                     // creates the text field element and sets the various
                     // attributes in it (attribute propagation)
                     var textField = jQuery("<input type=\"text\" class=\"text-field\" />");
+                    textField.val(value);
                     textField.attr("name", name);
-                    textField.attr("value", value);
                     textField.attr("placeholder", placeholder);
                     textField.attr("data-original_value", originalValue);
                     textField.attr("data-error", error);
@@ -524,18 +524,18 @@
                             hiddenTemplate.append(templateItem);
 
                             // updates the value fields
-                            hiddenField.attr("value", valueLogic);
+                            hiddenField.val(valueLogic);
                             textField.uxtextfield("value", {
                                         value : value
                                     });
                             dropField.data("value", value);
 
-                            // iterates over all the value field to apply the
+                            // iterates over all the value fields to apply the
                             // correct item value to them
                             for (var key in valueFields) {
                                 var field = valueFields[key];
                                 var _value = item[key];
-                                field.attr("value", _value);
+                                field.val(_value);
                             }
 
                             // adds the lock class to the drop field
@@ -655,7 +655,7 @@
                             hiddenTemplate.append(templateItem);
 
                             // updates the value fields
-                            hiddenField.attr("value", valueLogic);
+                            hiddenField.val(valueLogic);
                             textField.uxtextfield("value", {
                                         value : value
                                     });
@@ -666,7 +666,7 @@
                             for (var key in valueFields) {
                                 var field = valueFields[key];
                                 var _value = item[key];
-                                field.attr("value", _value);
+                                field.val(_value);
                             }
 
                             // adds the lock class to the drop field
@@ -884,8 +884,8 @@
                 // been a new value selected and so these values must be
                 // invalidated and set back to the original values
                 hiddenTemplate.empty();
-                hiddenField.attr("value", "");
-                valueFields.attr("value", "");
+                hiddenField.val("");
+                valueFields.val("");
 
                 // verifies if the current drop field is lockes and in case
                 // it's removes the lock class and triggers the value unselected
@@ -1331,7 +1331,7 @@
 
             // updates the value fields, to the values provided
             // in the options map
-            hiddenField.attr("value", valueLogic);
+            hiddenField.val(valueLogic);
             textField.uxtextfield("value", {
                         value : value
                     });
@@ -1343,7 +1343,7 @@
             for (var key in valueFields) {
                 var field = valueFields[key];
                 var _value = item[key];
-                field.attr("value", _value);
+                field.val(_value);
             }
 
             // adds the drop field lock class from the drop field
@@ -1370,8 +1370,8 @@
 
             // updates the value fields, to the original
             // "empty" (unset) values
-            hiddenField.attr("value", null);
-            valueFields.attr("value", null);
+            hiddenField.val(null);
+            valueFields.val(null);
             textField.uxtextfield("value", {
                         value : ""
                     });
@@ -1425,7 +1425,7 @@
             hiddenTemplate.append(templateItem);
 
             // updates the value fields
-            hiddenField.attr("value", valueLogic);
+            hiddenField.val(valueLogic);
             textField.uxtextfield("value", {
                         value : value
                     });
@@ -1436,7 +1436,7 @@
             for (var key in valueFields) {
                 var field = valueFields[key];
                 var _value = item[key];
-                field.attr("value", _value);
+                field.val(_value);
             }
 
             // adds the lock class to the drop field

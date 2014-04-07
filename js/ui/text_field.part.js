@@ -319,7 +319,7 @@
 
                         // sets the element value in the cloned element and then
                         // adds the cloned element after the text field
-                        elementClone.attr("value", elementValue);
+                        elementClone.val(elementValue);
                         elementReference.after(elementClone);
                     }
                     // otherwise it's a normal processing the data value must
@@ -333,7 +333,7 @@
                         var elementValue = elementReference.attr("data-value");
 
                         // sets the element value in the input field
-                        elementReference.attr("value", elementValue);
+                        elementReference.val(elementValue);
                     }
                 });
 
@@ -409,7 +409,7 @@
                         valueMethodName, matchedObject, value) : value;
 
                 // sets the value in the attributes
-                matchedObject.attr("value", value);
+                matchedObject.val(value);
 
                 // removes the lower (background) mode class
                 matchedObject.removeClass("lower");
@@ -467,7 +467,7 @@
             var elementValue = element.attr("data-value");
 
             // sets the element value in the text field
-            element.attr("value", elementValue);
+            element.val(elementValue);
 
             // triggers the composite focus event so that the
             // listeners "know" about the "real" focus action
@@ -560,7 +560,7 @@
             // there is no need to do this because the problem
             // is not observed
             forceComplete && inputFieldValue == originalValue
-                    && matchedObject.attr("value", "");
+                    && matchedObject.val("");
 
             // runs the initial update operations for both the error
             // and the value, the updating of the value is
@@ -589,7 +589,7 @@
             }
 
             // sets the value attribute to the original value
-            matchedObject.attr("value", originalValue);
+            matchedObject.val(originalValue);
 
             // adds the lower class
             matchedObject.addClass("lower");
@@ -704,7 +704,7 @@
 
                 // updates both the logical value and the real value
                 element.attr("data-value", dateString);
-                element.attr("value", dateString);
+                element.val(dateString);
             }
 
             // retrieves the containing form
@@ -845,7 +845,7 @@
 
                 // updates both the logical value and the real value
                 element.attr("data-value", dateString);
-                element.attr("value", dateString);
+                element.val(dateString);
             }
 
             // registers for the current change event in the calendar
@@ -858,7 +858,7 @@
 
                         // updates both the logical value and the real value
                         element.attr("data-value", dateString);
-                        element.attr("value", dateString);
+                        element.val(dateString);
 
                         // triggers the value change event for the element
                         // to notify the event handlers
