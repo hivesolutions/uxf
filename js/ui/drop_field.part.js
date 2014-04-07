@@ -104,8 +104,8 @@
                 if (textField.length == 0) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
+                    var value = _element.val();
                     var name = _element.attr("name");
-                    var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
                     var type = _element.attr("data-type");
@@ -130,7 +130,7 @@
 
                 // retrieves the text field value and if it's currently
                 // in the "lowered" state
-                var textFieldValue = textField.attr("value");
+                var textFieldValue = textField.val();
                 var textFieldIsLower = textField.hasClass("lower");
 
                 // sets the appropriate text field value taking into account
@@ -144,10 +144,10 @@
                         && _element.append("<div class=\"drop-field-clear\"></div>")
                         && _element.append("<ul class=\"drop-field-contents\"></ul>");
 
-                // retrieves the hidden field and tries
-                // to retrieve its value
+                // retrieves the hidden field and tries to retrieve its value
+                // using the proper operator for that
                 var hiddenField = jQuery(".hidden-field", _element);
-                var hiddenFieldValue = hiddenField.attr("value");
+                var hiddenFieldValue = hiddenField.val();
 
                 // creates the map that will hold the complete set of
                 // value field associated with the attribute to be set
@@ -607,7 +607,7 @@
                 // retrieves the current value for the hidden field
                 // this value must represent if the drop field is
                 // currently locked or not
-                var hiddenFieldValue = hiddenField.attr("value");
+                var hiddenFieldValue = hiddenField.val();
 
                 // checks if the drop field to verify that the
                 // drop field is not disabled, in case it is
@@ -849,7 +849,7 @@
             var autoResize = dropField.attr("data-auto_size");
 
             // retrieves the text field value
-            var textFieldValue = textField.attr("value");
+            var textFieldValue = textField.val();
 
             // checks if the drop field is of type select
             var isSelect = dropField.hasClass("drop-field-select");

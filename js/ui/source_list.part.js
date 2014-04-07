@@ -278,7 +278,7 @@
             var filterOptions = matchedObject.data("filter_options");
 
             // retrieves the text field value
-            var textFieldValue = textField.attr("value");
+            var textFieldValue = textField.val();
 
             // in case the value did not change (no need to
             // show the contents)

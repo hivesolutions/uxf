@@ -84,7 +84,7 @@
 
         var _update = function(matchedObject, options) {
             // retrives the value and the checked value
-            var value = matchedObject.attr("value");
+            var value = matchedObject.val();
             var checked = matchedObject.attr("data-checked");
 
             // in case the checked value is the same

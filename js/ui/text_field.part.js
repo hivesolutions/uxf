@@ -96,7 +96,7 @@
                         var element = jQuery(this);
 
                         // retrieves the attributes
-                        var value = element.attr("value");
+                        var value = element.val();
                         var type = element.attr("data-type");
                         var regexString = element.attr("data-regex");
                         var maximumLength = element.attr("data-maximum_length");
@@ -528,7 +528,7 @@
 
         var __start = function(matchedObject, options) {
             // retrieves the input value
-            var inputFieldValue = matchedObject.attr("value");
+            var inputFieldValue = matchedObject.val();
 
             // retrieves the element value
             var elementValue = matchedObject.attr("data-value");
@@ -612,7 +612,7 @@
 
             // retrieves the input value (real value) that
             // its going to be set in the data attribute
-            var inputFieldValue = matchedObject.attr("value");
+            var inputFieldValue = matchedObject.val();
 
             // sets the data value
             matchedObject.attr("data-value", inputFieldValue);
@@ -669,7 +669,7 @@
 
             // retrieves the current (initial) value from the
             // element (text field)
-            var currentValue = element.attr("value");
+            var currentValue = element.val();
             var currentTimestamp = parseInt(currentValue);
 
             // in case the parse of the timestamp was not successful
@@ -719,7 +719,7 @@
 
                         // retrieves the current value and then uses it to parse
                         // it as current timestamp
-                        var currentValue = element.attr("value");
+                        var currentValue = element.val();
                         var currentTimestamp = utc
                                 ? (Date.parse(currentValue + " UTC") / 1000)
                                 : (Date.parseUtc(currentValue) / 1000);
@@ -810,7 +810,7 @@
 
             // retrieves the current (initial) value from the
             // element (text field)
-            var currentValue = element.attr("value");
+            var currentValue = element.val();
             var currentTimestamp = parseInt(currentValue);
 
             // in case the parse of the timestamp was not successful
@@ -940,7 +940,7 @@
 
                 // retrieves the current value and then uses it to parse
                 // it as current timestamp
-                var currentValue = element.attr("value");
+                var currentValue = element.val();
                 var currentTimestamp = Date.parse(currentValue + " UTC") / 1000;
 
                 // retrieves the name attribute from the element
@@ -1014,7 +1014,7 @@
         var __valuedate = function(element, options) {
             // retrieves the current value and then uses it to parse
             // it as current timestamp then returns it
-            var currentValue = element.attr("value");
+            var currentValue = element.val();
             var currentTimestamp = Date.parse(currentValue + " UTC") / 1000;
             return currentTimestamp;
         };

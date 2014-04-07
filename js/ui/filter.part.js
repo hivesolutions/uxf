@@ -95,8 +95,8 @@
                 if (textField.length == 0 && !noInput) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
+                    var value = _element.val();
                     var name = _element.attr("name");
-                    var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
 
