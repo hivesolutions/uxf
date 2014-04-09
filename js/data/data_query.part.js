@@ -48,6 +48,13 @@
             var elementType = element.data("type");
             var dataQueryMethodName = "uxdataquery" + elementType;
 
+            // in case the element type is not valid calls the callback
+            // immediately with no results because it was not possible
+            // to retrieve any kind of data from an invalid data source
+            if (elementType == null || elementType == undefined) {
+                callback([], false);
+            }
+
             // runs the data query method for the specific
             // data source type
             element[dataQueryMethodName](query, callback);
