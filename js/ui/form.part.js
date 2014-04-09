@@ -279,6 +279,28 @@
                 _body.triggerHandler("data", [data, document.URL, null, true,
                                 href]);
             };
+            request.readystatechange = function() {
+                // in case the current request state is not headers ready there's
+                // no need to continue as we're going to verify the content type
+                if (request.readyState != 2) {
+                    return;
+                }
+
+                // retrieves the content type for the current request and then
+                // processes the value retrieving only the basic value for it,
+                // then verifies that the mime type of it is html and in case
+                // it's not redirect the user agent to the target location as
+                // the data type is not compatbile with ajax processing
+                var contentType = request.getResponseHeader("Content-Type");
+                contentType = contentType.split(";")[0];
+                contentType = contentType.strip();
+                console.info(contentType);
+                if (contentType == "text/html") {
+                    return;
+                }
+                document.location = href;
+                request.abort();
+            };
             request.send(data);
         };
 

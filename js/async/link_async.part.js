@@ -59,7 +59,7 @@
         // that will be used to change and re-populate the current dom, note
         // the extra async data parameter sent indicating that this is meant
         // to be handled differently (notably the redirection process)
-        jQuery.ajax({
+        var request = jQuery.ajax({
                     url : href,
                     dataType : "html",
                     data : {
@@ -112,6 +112,38 @@
                     error : function() {
                         document.location = href;
                     }
+                });
+
+        // encapsulates the request object around an acessor and then registers
+        // for the ready state change event so that the conten type may be validated
+        // as soon as possible (headers received stage) and the request canceled in
+        // case it does not correspond to an html message
+        var reference = jQuery(request);
+        reference.bind("readystatechange", function() {
+                    // retrieves the current context as the request that is going to
+                    // beverified for the headers ready state change
+                    var request = this;
+
+                    // in case the current request state is not headers ready there's
+                    // no need to continue as we're going to verify the content type
+                    if (request.readyState != 2) {
+                        return;
+                    }
+
+                    // retrieves the content type for the current request and then
+                    // processes the value retrieving only the basic value for it,
+                    // then verifies that the mime type of it is html and in case
+                    // it's not redirect the user agent to the target location as
+                    // the data type is not compatbile with ajax processing
+                    var contentType = request.getResponseHeader("Content-Type");
+                    contentType = contentType.split(";")[0];
+                    contentType = contentType.strip();
+                    console.info(contentType);
+                    if (contentType == "text/html") {
+                        return;
+                    }
+                    document.location = href;
+                    request.abort();
                 });
 
         // returns valid as the link execution has been started
