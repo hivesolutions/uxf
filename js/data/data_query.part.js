@@ -53,6 +53,7 @@
             // to retrieve any kind of data from an invalid data source
             if (elementType == null || elementType == undefined) {
                 callback([], false);
+                return;
             }
 
             // runs the data query method for the specific
