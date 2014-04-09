@@ -5,6 +5,10 @@ jQuery(document).ready(function() {
             // the apply (contain ux class)
             var elements = jQuery(".ux");
 
-            // applies the ux to the elements
-            elements.uxapply();
+            // applies the ux to the elements delaying it's
+            // execution until the next tick, offering
+            // a way of handling body registration before
+            setTimeout(function() {
+                        elements.uxapply();
+                    });
         });
