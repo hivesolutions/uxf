@@ -225,6 +225,13 @@
                     ? new FormData(form)
                     : matchedObject.serialize();
 
+            // verifies if the current form processing is a get based one and in
+            // case it's encapsulates the parameters in the current request
+            // url and removes the data payload from the request
+            var isGet = method.toLowerCase() == "get"
+            href = isGet ? href + "?" + data : href;
+            data = isGet ? "" : data;
+
             // creates the asyncronous object rerence and opens it to the link
             // reference defined in the form than triggers its load and then
             // forces the content type header for the requested encoding
@@ -294,7 +301,6 @@
                 var contentType = request.getResponseHeader("Content-Type");
                 contentType = contentType.split(";")[0];
                 contentType = contentType.strip();
-                console.info(contentType);
                 if (contentType == "text/html") {
                     return;
                 }

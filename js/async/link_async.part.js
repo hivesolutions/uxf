@@ -138,7 +138,6 @@
                     var contentType = request.getResponseHeader("Content-Type");
                     contentType = contentType.split(";")[0];
                     contentType = contentType.strip();
-                    console.info(contentType);
                     if (contentType == "text/html") {
                         return;
                     }
