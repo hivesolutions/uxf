@@ -69,10 +69,11 @@
                         // verifies if the current result if of type (async) redirect, this
                         // is a special case and the redirection must be performed using a
                         // special strateg by retrieving the new location and setting it as
-                        // new async contents to be loaded
+                        // new async contents to be loaded, note that only requests that
+                        // contain a valid location header will be used for redirection
                         var isRedirect = request.status == 280;
-                        if (isRedirect) {
-                            var hrefR = request.getResponseHeader("Location");
+                        var hrefR = request.getResponseHeader("Location");
+                        if (isRedirect && hrefR) {
                             hrefR = jQuery.uxresolve(hrefR, href);
                             jQuery.uxlocation(hrefR);
                             return;
