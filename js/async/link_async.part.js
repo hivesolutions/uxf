@@ -36,7 +36,7 @@
         // sequential async loading procedures may also be created
         var hasHash = href.indexOf("#") != -1;
         var isInternal = hasHash && href.split("#")[0] == document.location;
-        isInternal = isInternal || href == "#";
+        isInternal = isInternal || href[0] == "#";
         if (isInternal) {
             return false;
         }
