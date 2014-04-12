@@ -10,6 +10,11 @@
         // for async verification
         var _body = jQuery("body");
 
+        // normnalizes the current async reference so the href value
+        // is allways a valid string value that may be used with no
+        // dependency on its current data type
+        href = href.href || href;
+
         // retrieves the value of the async flag for the current body
         // element in case the value is not set returns immediately
         // with a not processed value (not meant to be handled async)
@@ -27,7 +32,12 @@
 
         // in case this is an internal link the panel change must be
         // avoided and the top handler should take this into account
-        if (href[0] == "#") {
+        // otherwise potential loops may be created and some unrequired
+        // sequential async loading procedures may also be created
+        var hasHash = href.indexOf("#") != -1;
+        var isInternal = hasHash && href.split("#")[0] == document.location;
+        isInternal = isInternal || href == "#";
+        if (isInternal) {
             return false;
         }
 
