@@ -33,11 +33,14 @@
         // in case this is an internal link the panel change must be
         // avoided and the top handler should take this into account
         // otherwise potential loops may be created and some unrequired
-        // sequential async loading procedures may also be created
+        // sequential async loading procedures may also be created,
+        // note that in case the verify flag is set this is ignore as
+        // the loading is considered to be forced
         var hasHash = href.indexOf("#") != -1;
-        var isInternal = hasHash && href.split("#") == document.location;
+        var isInternal = hasHash
+                && href.split("#")[0] == document.location.href.split("#")[0];
         isInternal = isInternal || href[0] == "#";
-        if (isInternal) {
+        if (isInternal && !verify) {
             return false;
         }
 
