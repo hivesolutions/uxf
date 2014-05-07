@@ -8,7 +8,7 @@
         var resolver = doc.createElement("a")
         var resolvedUrl;
 
-        baseUrl = baseUrl || (oldBase && oldBase.href);
+        baseUrl = baseUrl || (oldBase && oldBase.href) || "";
 
         ourBase.href = baseUrl;
         resolver.href = url;
