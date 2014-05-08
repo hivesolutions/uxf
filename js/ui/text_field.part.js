@@ -127,8 +127,10 @@
                         // in case it's not returns in error (avoids writing)
                         var lengthValid = __testlength(value, maximumLength);
                         if (!lengthValid) {
-                            // returns in error (avoids writing)
-                            return false;
+                            // prevents the current default event and the
+                            // returns immediately, no more logic executed
+                            event.preventDefault();
+                            return;
                         }
 
                         // converts the key value to a string

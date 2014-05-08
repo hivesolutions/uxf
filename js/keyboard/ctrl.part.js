@@ -19,8 +19,10 @@
                         // and the arguments
                         callback.apply(this, arguments);
 
-                        // returns false (avoids event propagation)
-                        return false;
+                        // prevents the current default event and the
+                        // returns immediately, no more logic executed
+                        event.preventDefault();
+                        return;
                     }
                 });
     };
