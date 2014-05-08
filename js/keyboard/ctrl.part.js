@@ -24,6 +24,7 @@
                         // prevents the current default event and the
                         // returns immediately, no more logic executed
                         event.preventDefault();
+                        event.stopPropagation();
                         return;
                     }
                 });
