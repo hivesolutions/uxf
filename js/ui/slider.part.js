@@ -80,7 +80,7 @@
                     ".slider-panel-arrow-previous", matchedObject);
 
             // registers for the click event in the slide panel
-            // arrow next
+            // arrow next so that the next element is displayed
             sliderPanelArrowNext.click(function() {
                         // retrieves the element
                         var element = jQuery(this);
@@ -105,7 +105,7 @@
                     });
 
             // registers for the click event in the slider panel
-            // arrow previous
+            // arrow previous so that the previous element is displayed
             sliderPanelArrowPrevious.click(function() {
                         // retrieves the element
                         var element = jQuery(this);
