@@ -1,6 +1,8 @@
 /**
  * jQuery slider plugin, this jQuery plugin provides the base infra-structure
- * for the creation of a slider component.
+ * for the creation of a slider component. A slider component should be considered
+ * to be a top level modal "window like" components that "moves" through panels
+ * using either a manual (arrow based) or automated approach.
  *
  * @name jquery-slider.js
  * @author João Magalhães <joamag@hive.pt>
@@ -165,10 +167,9 @@
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
 
-            // shows the overlay
-            overlay.fadeIn(250);
-
-            // shows the matched object
+            // shows the global overlay and the matched
+            // object, this should provide a modal view
+            overlay.fadeIn(250)
             matchedObject.fadeIn(250);
         };
 
@@ -176,10 +177,9 @@
             // retrieves the overlay element
             var overlay = jQuery(".overlay");
 
-            // hides the overlay
+            // hides the both the overlay and the matched
+            // object (moving out from modal)
             overlay.fadeOut(250);
-
-            // hides the matched object
             matchedObject.fadeOut(250);
         };
 
@@ -191,20 +191,21 @@
             // checks if the slider is visible
             var sliderVisible = slider.is(":visible");
 
-            // in case the slider is not visible
+            // checks if the slider is visible and in case it's
+            // not returns immediately as there's nothing to be done
+            var sliderVisible = slider.is(":visible");
             if (!sliderVisible) {
-                // returns immediately
                 return;
             }
 
-            // retrieves the slider attributes
+            // retrieves the slider attributes, that are going to be
+            // used through this function
             var lock = slider.data("lock");
             var offsetLeft = slider.data("offsetLeft");
 
-            // in case the lock attribute is set
-            // (animation still pending)
+            // in case the lock attribute is set (animation still
+            // pending) must return immediately
             if (lock) {
-                // returns immediately
                 return;
             }
 
@@ -254,23 +255,21 @@
             var slider = matchedObject;
             var sliderContents = jQuery(".slider-contents", matchedObject);
 
-            // checks if the slider is visible
+            // checks if the slider is visible and in case it's
+            // not returns immediately as there's nothing to be done
             var sliderVisible = slider.is(":visible");
-
-            // in case the slider is not visible
             if (!sliderVisible) {
-                // returns immediately
                 return;
             }
 
-            // retrieves the slider attributes
+            // retrieves the slider attributes, that are going to be
+            // used through this function
             var lock = slider.data("lock");
             var offsetLeft = slider.data("offsetLeft");
 
-            // in case the lock attribute is set
-            // (animation still pending)
+            // in case the lock attribute is set (animation still
+            // pending) must return immediately
             if (lock) {
-                // returns immediately
                 return;
             }
 
