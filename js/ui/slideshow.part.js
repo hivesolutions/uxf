@@ -1,6 +1,9 @@
 /**
  * jQuery slideshow plugin, this jQuery plugin provides the base infra-structure
- * for the creation of a slideshow component.
+ * for the creation of a slideshow component. The slideshow component provides a
+ * structure for the display of multiple items (may include images) as a
+ * sequence that is changed using a set of animations. Total control of the
+ * component is provided through event triggering.
  *
  * @name jquery-slideshow.js
  * @author João Magalhães <joamag@hive.pt>
@@ -43,6 +46,10 @@
             matchedObject.each(function(index, element) {
                 // retrieves the current element
                 var _element = jQuery(this);
+
+                // retrieves the various attributes that control the way the
+                // slideshow is going to be initialized
+                var paused = _element.attr("data-paused");
 
                 // adds the image and the controls section to the current element
                 // so that the normal placeholders are available
@@ -106,6 +113,11 @@
                             __select(_element, options, null);
                         }, 5000);
                 _element.data("interval", interval);
+
+                // in case the paused flag is set the currently created
+                // interval is immediately cleared so that no image changing
+                // is triggered from time to time (slideshow paused)
+                paused && clearInterval(interval);
             });
         };
 
@@ -163,7 +175,7 @@
 
                         // retrieves the current interval and clears it (cancelation)
                         // so that no more automated changing takes place
-                        var interval = slideshow.data("interval", interval);
+                        var interval = slideshow.data("interval");
                         clearInterval(interval);
 
                         // retrieves the index of the curret element index
@@ -171,10 +183,72 @@
                         var index = element.index();
                         __select(slideshow, options, index);
                     });
+
+            // registers for the pause event on the matched object, that
+            // should pause the current seqeunce of images
+            matchedObject.bind("pause", function() {
+                        // retrives the current element (slideshow) and uses it to
+                        // gather the registered interval to cancel it (no more iterations)
+                        var element = jQuery(this);
+                        var interval = slideshow.data("interval");
+                        clearInterval(interval);
+                    });
+
+            // registers for the next (item) event that changes the currently
+            // displayed item to the next one (using the animation)
+            matchedObject.bind("next", function() {
+                        // retrieves the reference to the current element an then
+                        // triggers the operations for the next item to be displayed
+                        var element = jQuery(this);
+                        __next(element, options);
+                    });
+
+            // registers for the event that takes the one item back
+            // so that the slideshow is changed to the previous element
+            matchedObject.bind("previous", function() {
+                        // gathers the reference to the top level element (slideshow)
+                        // and then runs the previous operation in it to go back one item
+                        var element = jQuery(this);
+                        __previous(element, options);
+                    });
+        };
+
+        var __next = function(matchedObject, options) {
+            // retrieves the currently set items from the matched
+            // object and then the currently selected index
+            var items = matchedObject.data("items");
+            var current = matchedObject.data("index");
+
+            // sets the default value for the items value, so that
+            // a valid sequence allways exists
+            var items = items || []
+
+            // calculates the proper next index value, taking into account
+            // the current state and then runs the selection on the
+            // current matched object
+            var index = current + 1 < items.length ? current + 1 : 0;
+            __select(matchedObject, options, index);
+        };
+
+        var __previous = function(matchedObject, options) {
+            // retrieves the currently set items from the matched
+            // object and then the currently selected index
+            var items = matchedObject.data("items");
+            var current = matchedObject.data("index");
+
+            // sets the default value for the items value, so that
+            // a valid sequence allways exists
+            var items = items || []
+
+            // calculates the proper previous index value, taking into account
+            // the current state and then runs the selection on the
+            // current matched object
+            var index = current - 1 > -1 ? current - 1 : items.length - 1;
+            __select(matchedObject, options, index);
         };
 
         var __select = function(matchedObject, options, index) {
-            // retrives the currently set items from the matched
+            // retrieves the currently set items from the matched
             // object and then the currently selected index
             var items = matchedObject.data("items");
             var current = matchedObject.data("index");
