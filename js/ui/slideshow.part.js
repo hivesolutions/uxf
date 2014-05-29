@@ -4,7 +4,7 @@
  * structure for the display of multiple items (may include images) as a
  * sequence that is changed using a set of animations. Total control of the
  * component is provided through event triggering.
- *
+ * 
  * @name jquery-slideshow.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
@@ -272,6 +272,11 @@
                 return;
             }
 
+            // retrieves the name of the animation that is going to be used
+            // to animation the transition between both elements, this is
+            // latter going to be used in the alternationn between panels
+            var animation = matchedObject.attr("data-animation") || "fade";
+
             // retrieves the list of (selected) alternates and disables
             // the value (going to change the item)
             var alternates = jQuery(".slideshow-alternates > li.active",
@@ -300,12 +305,9 @@
             // in case the source value is set, there is a previous image
             // must fade it out and only then show the new one
             if (source) {
-                // hides the previous image and then shows the new one
-                // at the end if the hide operation
-                image.fadeOut(300, function() {
-                            image.attr("src", item.image);
-                            image.fadeIn(750);
-                        });
+                // runs the proper animation to change the current image
+                // element into the target item image value
+                __animate(animation, image, item);
             } else {
                 // changes the source field of the image directly to
                 // take effect immediately
@@ -331,6 +333,35 @@
             // index value with the target index
             matchedObject.data("url", item.url);
             matchedObject.data("index", index);
+        };
+
+        var __animate = function(animation, image, item) {
+            // switched between the proper animation to perform
+            // the transition of the provided image according to
+            // the data defined in the item
+            switch (animation) {
+                case "static" :
+                    __static(image, item);
+                    break;
+                case "fade" :
+                    __fade(image, item);
+                    break
+            }
+        };
+
+        var __static = function(image, item) {
+            // changes the source of the image directly to the target image
+            // value withou any kind of animation taking part
+            image.attr("src", item.image);
+        };
+
+        var __fade = function(image, item) {
+            // runs the fading of the image element and then changed the
+            // source of the image and fades the image back in
+            image.fadeOut(300, function() {
+                        image.attr("src", item.image);
+                        image.fadeIn(750);
+                    });
         };
 
         // initializes the plugin
