@@ -4,7 +4,7 @@
  * structure for the display of multiple items (may include images) as a
  * sequence that is changed using a set of animations. Total control of the
  * component is provided through event triggering.
- * 
+ *
  * @name jquery-slideshow.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
