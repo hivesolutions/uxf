@@ -148,7 +148,7 @@
                 // data and opens the respective url, note that if
                 // the window flag is set a new window is always open
                 var url = slideshow.data("url");
-                var open = slideshow.data("data-window");
+                var open = slideshow.attr("data-window");
                 if (url) {
                     var _window = event.which == 2
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
@@ -167,7 +167,7 @@
                 // data and opens the respective url, note that if
                 // the window flag is set a new window is always open
                 var url = slideshow.data("url");
-                var open = slideshow.data("data-window");
+                var open = slideshow.attr("data-window");
                 if (url) {
                     var _window = event.which == 2
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
