@@ -139,36 +139,40 @@
             // registers for the click event on the image to trigger
             // the url resolution and document change
             image.click(function(event) {
-                        // retrieves the current element and the parent
-                        // slideshow
-                        var element = jQuery(this);
-                        var slideshow = element.parents(".slideshow");
+                // retrieves the current element and the parent
+                // slideshow
+                var element = jQuery(this);
+                var slideshow = element.parents(".slideshow");
 
-                        // retrieves the url information from the slideshow
-                        // data and opens the respective url
-                        var url = slideshow.data("url");
-                        if (url) {
-                            var _window = event.which == 2
-                            _window ? window.open(url) : jQuery.uxlocation(url);
-                        }
-                    });
+                // retrieves the url information from the slideshow
+                // data and opens the respective url, note that if
+                // the window flag is set a new window is always open
+                var url = slideshow.data("url");
+                var open = slideshow.data("data-window");
+                if (url) {
+                    var _window = event.which == 2
+                    _window || open ? window.open(url) : jQuery.uxlocation(url);
+                }
+            });
 
             // registers for the click event on the details to trigger
             // the url resolution and document change
             details.click(function() {
-                        // retrieves the current element and the parent
-                        // slideshow
-                        var element = jQuery(this);
-                        var slideshow = element.parents(".slideshow");
+                // retrieves the current element and the parent
+                // slideshow
+                var element = jQuery(this);
+                var slideshow = element.parents(".slideshow");
 
-                        // retrieves the url information from the slideshow
-                        // data and opens the respective url
-                        var url = slideshow.data("url");
-                        if (url) {
-                            var _window = event.which == 2
-                            _window ? window.open(url) : jQuery.uxlocation(url);
-                        }
-                    });
+                // retrieves the url information from the slideshow
+                // data and opens the respective url, note that if
+                // the window flag is set a new window is always open
+                var url = slideshow.data("url");
+                var open = slideshow.data("data-window");
+                if (url) {
+                    var _window = event.which == 2
+                    _window || open ? window.open(url) : jQuery.uxlocation(url);
+                }
+            });
 
             // registers for the click event on the alternates list
             // items to change the current element
