@@ -305,15 +305,19 @@
                     return;
                 }
 
-                // retrieves the content type for the current request and then
-                // processes the value retrieving only the basic value for it,
-                // then verifies that the mime type of it is html and in case
-                // it's not redirect the user agent to the target location as
-                // the data type is not compatbile with ajax processing
-                var contentType = request.getResponseHeader("Content-Type");
+                // gathers the target location (redirection) in case it exists, then
+                // retrieves the content type for the current request and processes
+                // the value retrieving only the basic value for it, then verifies
+                // that the mime type of it is html and in case it's not and there's
+                // no valid user agent redirect defined redirects the user agent to
+                // the target location as the data type is not compatbile with ajax
+                // processing (fallback procedure for binary values, downloading)
+                var location = request.getResponseHeader("Location");
+                var contentType = request.getResponseHeader("Content-Type")
+                        || "";
                 contentType = contentType.split(";")[0];
                 contentType = contentType.strip();
-                if (contentType == "text/html") {
+                if (location || contentType == "text/html") {
                     return;
                 }
                 document.location = href;
