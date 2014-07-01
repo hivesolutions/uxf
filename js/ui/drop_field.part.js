@@ -848,16 +848,19 @@
             // (in case active the drop field is positioned)
             var autoResize = dropField.attr("data-auto_size");
 
-            // retrieves the text field value
+            // verifies if the text field is under the lower mode and
+            // then retrieves the current text field value
+            var isLower = textField.hasClass("lower");
             var textFieldValue = textField.val();
 
             // checks if the drop field is of type select
             var isSelect = dropField.hasClass("drop-field-select");
 
-            // in case the value did not change and the drop field
-            // is not of type select (no need to show the contents)
-            if (textFieldValue == value && !isSelect) {
-                // returns immediately
+            // in case the value did not change or the selected mode
+            // is lower and the drop field is not of type select
+            // (no need to show the contents) returns immediately
+            // the control flow to the caller function/method
+            if ((textFieldValue == value || isLower) && !isSelect) {
                 return;
             }
 
