@@ -159,6 +159,7 @@
     display: inline-block;
     height: 140px;
     text-align: center;
+    vertical-align: top;
     width: 140px;
 }
 
