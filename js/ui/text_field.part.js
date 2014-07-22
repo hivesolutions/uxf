@@ -973,7 +973,7 @@
 
                 // calculates the apropriate value taking into account
                 // if the no process flag is currently set
-                var value = noProcess ? currentValue : String(currentTimestamp);
+                var value = noProcess ? currentValue : currentTimestampS;
 
                 // creates the hidden field to submit the timestamp value
                 // described in the text field
