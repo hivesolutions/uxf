@@ -729,7 +729,7 @@
 
                         // retrieves the proper string representation of the current
                         // timestamp value taking into account if the current value
-                        // rerpresents a number or not (invalid valude validation)
+                        // rerpresents a number or not (invalid value validation)
                         var currentTimestampS = isNaN(currentTimestamp)
                                 ? ""
                                 : String(currentTimestamp);
@@ -945,6 +945,13 @@
                 // it as current timestamp
                 var currentValue = element.val();
                 var currentTimestamp = Date.parse(currentValue + " UTC") / 1000;
+
+                // retrieves the proper string representation of the current
+                // timestamp value taking into account if the current value
+                // rerpresents a number or not (invalid value validation)
+                var currentTimestampS = isNaN(currentTimestamp)
+                        ? ""
+                        : String(currentTimestamp);
 
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
