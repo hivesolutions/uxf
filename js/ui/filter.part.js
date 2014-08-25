@@ -1099,7 +1099,7 @@
                         // retrieves the cache map to be used to determine if the
                         // various elements should be contructed from scratch or
                         // if an already existing element should be used instead
-                        var cache = filter.data("cache");
+                        var cache = filter.data("cache") || {};
 
                         // retrieves the valid items reference
                         var _validItems = jQuery(validItems);

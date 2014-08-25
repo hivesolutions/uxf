@@ -959,7 +959,7 @@
                         // retrieves the cache map to be used to determine if the
                         // various elements should be contructed from scratch or
                         // if an already existing element should be used instead
-                        var cache = dropField.data("cache");
+                        var cache = dropField.data("cache") || {};
 
                         // iterates over all the valid and filtered items
                         // to adds them to the drop field contents
