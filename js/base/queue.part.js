@@ -9,18 +9,18 @@
         matchedObject.data("queue-" + qname, queue);
 
         var callback = function() {
-            // removes the last item from the queue, as it
-            // has been processes and then verifies if the
+            // removes the first item from the queue, as it
+            // has been processed and then verifies if the
             // queue is now empty, if that the case the control
             // flow is returned immediately to the caller
-            queue.pop(queue.length - 1);
+            queue.shift();
             if (queue.length == 0) {
                 return;
             }
 
             // retrieves the next element (callable) to be called
             // and calls it providing the reference to the callback
-            var next = queue[queue.length - 1];
+            var next = queue[0];
             next(callback);
         };
 
