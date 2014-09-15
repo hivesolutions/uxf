@@ -40,11 +40,14 @@
                         // retrieves the element reference and runs the print
                         // process on it
                         var element = jQuery(this);
-                        _print(element, options);
+                        var callable = function(callback) {
+                            _print(element, options, callback);
+                        };
+                        matchedObject.uxqueue(callable, "print");
                     });
         };
 
-        var _print = function(matchedObject, options) {
+        var _print = function(matchedObject, options, callback) {
             // retrieves the element reference and then
             // uses it to retrieve the url to the binie
             // resource containing the document description
@@ -86,6 +89,11 @@
                 jQuery.ajax({
                     url : binieUrl,
                     data : data,
+                    complete : function() {
+                        // calls the callback function, marking the end of
+                        // the printing execution (maintains order)
+                        callback();
+                    },
                     success : function(data) {
                         // prints the "just" received data using the
                         // gateway plugin (direct access to driver)
@@ -105,6 +113,10 @@
             // otherwise the normal printing process must be used
             // in case a fallback url exists
             else {
+                // calls the callback function, marking the end of
+                // the printing execution (maintains order)
+                callback();
+
                 // tries to retrieve the fallback url and the
                 // target for the link
                 var fallbackUrl = element.attr("data-fallback")

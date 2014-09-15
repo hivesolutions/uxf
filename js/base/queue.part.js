@@ -1,10 +1,12 @@
 (function(jQuery) {
-    jQuery.fn.uxqueue = function(callable) {
+    jQuery.fn.uxqueue = function(callable, qname) {
         // retrieves the reference to the current object for
-        // context and tries to extract the queue from it
+        // context and tries to extract the queue from it using
+        // the provided queue name (qname) or the global one
         var matchedObject = this;
-        var queue = matchedObject.data("queue") || [];
-        matchedObject.data("queue", queue);
+        var qname = qname || "global";
+        var queue = matchedObject.data("queue-" + qname) || [];
+        matchedObject.data("queue-" + qname, queue);
 
         var callback = function() {
             // removes the last item from the queue, as it
