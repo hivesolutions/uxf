@@ -48,7 +48,7 @@
             // creates the callable clojure for the printing operation
             // and then queues the callable for latter execution
             var callable = function(callback) {
-                _print(element, options, callback);
+                _print(matchedObject, options, callback);
             };
             matchedObject.uxqueue(callable, "print");
         };
