@@ -87,7 +87,7 @@
                     return;
                 }
 
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     var action = "change";
                 } else if (event.shiftKey) {
                     var action = "contiguous";

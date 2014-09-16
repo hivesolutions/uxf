@@ -69,7 +69,7 @@
                             // in case the ctrl or the alt keys
                             // are pressed no need to handle the event
                             // (default behavior is not desired)
-                            if (event.ctrlKey || event.altKey) {
+                            if (event.ctrlKey || event.metaKey || event.altKey) {
                                 // returns immediately
                                 return;
                             }

@@ -2620,7 +2620,7 @@
 
                 // in case the control key is set must add new
                 // selection to the selection set
-                if (event.ctrlKey) {
+                if (event.ctrlKey || event.metaKey) {
                     // retrieves the current selection for reference
                     var selection = filter.data("selection");
 
