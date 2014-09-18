@@ -766,6 +766,25 @@
                         _update(filter, options);
                     });
 
+            // registers for the paste event on the filter input
+            // so that if there's a "pasted" value the
+            filterInput.bind("paste", function() {
+                        // retrieves the reference to the target element
+                        // of the paster operation and uses it to retrieve
+                        // the "parent" filter element to be updated
+                        var element = jQuery(this);
+                        var filter = element.parents(".filter");
+
+                        // creates a timeout so that the update operation
+                        // only occurs in the next execution cycle after
+                        // the text field value has been proper updated
+                        setTimeout(function() {
+                                    // runs the update operation in the filter so that
+                                    // new values are retrieved if required
+                                    _update(filter, options);
+                                });
+                    });
+
             // registers for the click in the filter input
             filterMore.click(function() {
                         // retrieves the element

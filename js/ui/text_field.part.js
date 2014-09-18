@@ -282,6 +282,19 @@
                         __resetError(element, options);
                     });
 
+            // registers for the paste operation so that the
+            // new text field contents are properly updated
+            matchedObject.bind("paste", function() {
+                        // retrieves the reference to the current text element
+                        // and uses it to trigger the update value and the rese
+                        // error operation for the current element
+                        var element = jQuery(this);
+                        setTimeout(function() {
+                                    __updateValue(element, options);
+                                    __resetError(element, options);
+                                });
+                    });
+
             // registers for the flush event to update the current
             // internal state variables to the latest version
             matchedObject.bind("flush", function() {

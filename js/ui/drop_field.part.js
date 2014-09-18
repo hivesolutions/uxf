@@ -824,6 +824,26 @@
                         break;
                 }
             });
+
+            // registers for the paste event on the text field so that
+            // any new text "transfered" to the text field is used to
+            // update the current drop field status
+            textField.bind("paste", function() {
+                // retrieves the reference to the current element and
+                // uses it to retrieve the parent dropfield
+                var element = jQuery(this);
+                var dropField = element.parents(".drop-field");
+
+                // schedules a new timeout operation for the next execution
+                // cycle so that the text is properly updated
+                setTimeout(function() {
+                            // checks if the drop field is of type select
+                            // updates the drop field data, only in case
+                            // current drop field is not of type select
+                            var isSelect = dropField.hasClass("drop-field-select");
+                            !isSelect && _update(dropField, options);
+                        });
+            });
         };
 
         var _update = function(matchedObject, options) {
