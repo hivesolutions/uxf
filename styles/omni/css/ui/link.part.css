@@ -33,37 +33,37 @@
 }
 
 .omni-style .link.link-grey {
-    color: #aaaaaa;
+    color: #888888;
 }
 
 .omni-style .link.link-grey:hover,
 .omni-style .link.link-grey.selected {
-    border-bottom: 1px solid #aaaaaa;
+    border-bottom: 1px solid #888888;
 }
 
 .omni-style .link.link-grey-light {
-    color: #666666;
+    color: #4d4d4d;
 }
 
 .omni-style .link.link-grey-light:hover,
 .omni-style .link.link-grey-light.selected {
-    border-bottom: 1px solid #666666;
+    border-bottom: 1px solid #4d4d4d;
 }
 
 .omni-style .link.link-grey-dark {
-    color: #4d4d4d;
+    color: #2d2d2d;
 }
 
 .omni-style .link.link-grey-dark:hover,
 .omni-style .link.link-grey-dark.selected {
-    border-bottom: 1px solid #4d4d4d;
+    border-bottom: 1px solid #2d2d2d;
 }
 
 .omni-style .link.link-grey-darker {
-    color: #2d2d2d;
+    color: #000000;
 }
 
 .omni-style .link.link-grey-darker:hover,
 .omni-style .link.link-grey-darker.selected {
-    border-bottom: 1px solid #2d2d2d;
+    border-bottom: 1px solid #000000;
 }
