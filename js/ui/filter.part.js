@@ -1224,13 +1224,19 @@
 
                         // in case there are no items to be shown
                         if (validItemsLength > 0) {
-                            // hides the filter no results panel
+                            // hides the filter no results panel and
+                            // removes the no results class from tghe
+                            // currently defined filter element
                             filterNoResults.hide();
+                            filter.removeClass("no-results");
                         }
                         // otherwise there are no item to be shown
                         else {
                             // shows the filter no results panel
+                            // and adds the no results class to
+                            // the main filter element (as expected)
                             filterNoResults.show();
+                            filter.addClass("no-results");
                         }
 
                         // in case there are more items available
