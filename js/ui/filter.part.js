@@ -114,6 +114,10 @@
                     textField.uxtextfield();
                 }
 
+                // in case the text field is still not found the extra no input
+                // class is aded to the currently selected filter element
+                textField.length == 0 && _element.addClass("no-input")
+
                 // creates the element representing the buttons for the filter
                 // fild (the more oprtions and the view changer) and adds it
                 // to the filter in case the advanced flag is set
