@@ -2515,7 +2515,7 @@
                     + "</div>");
             var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\""
                     + " data-number_options=\"-1\">"
-                    + +"<ul class=\"data-source\" data-type=\"local\"></ul>"
+                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
                     + "</div>");
 
             // creates the remove and add buttons for the filter line
