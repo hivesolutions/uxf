@@ -2509,11 +2509,13 @@
             // creates the new filter element and the associated drop field
             // operation field (drop field) and the text field
             var filter = jQuery("<div class=\"filter-advanced-filter\"></div>");
-            var dropField = jQuery("<div class=\"drop-field drop-field-select small\">"
+            var dropField = jQuery("<div class=\"drop-field drop-field-select small\""
+                    + " data-number_options=\"-1\">"
                     + "<ul class=\"data-source\" data-type=\"local\"></ul>"
                     + "</div>");
-            var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\">"
-                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
+            var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\""
+                    + " data-number_options=\"-1\">"
+                    + +"<ul class=\"data-source\" data-type=\"local\"></ul>"
                     + "</div>");
 
             // creates the remove and add buttons for the filter line
