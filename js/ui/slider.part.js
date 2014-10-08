@@ -1,8 +1,8 @@
 /**
  * jQuery slider plugin, this jQuery plugin provides the base infra-structure
- * for the creation of a slider component. A slider component should be considered
- * to be a top level modal "window like" components that "moves" through panels
- * using either a manual (arrow based) or automated approach.
+ * for the creation of a slider component. A slider component should be
+ * considered to be a top level modal "window like" components that "moves"
+ * through panels using either a manual (arrow based) or automated approach.
  *
  * @name jquery-slider.js
  * @author João Magalhães <joamag@hive.pt>
