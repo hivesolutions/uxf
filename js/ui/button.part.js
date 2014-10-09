@@ -211,7 +211,7 @@
                     });
 
             // in case the is confirm flag is set the control flow must
-            // returns immediately to the caller function to avoid any
+            // return immediately to the caller function to avoid any
             // extra behavior from being executed (must be validated)
             if (isConfirm) {
                 return;
