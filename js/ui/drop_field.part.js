@@ -1241,11 +1241,15 @@
                             dropFieldContents.width(dropFieldContentsWidth);
                         }
 
+                        // updates the current selection, this operation should change
+                        // the "focus" to the currently selected liste item
+                        _updateSelection(dropField, options);
+
                         // verifies if the current loading of values should be considered
-                        // a bootstrap one, if that's the case an extra iteration should
+                        // bootstrap ones, if that's the case an extra iteration should
                         // be performed on the complete set of list items trying to find
-                        // the one that matched the current logic value and then use it to
-                        // update the "visual" drop field value
+                        // the one that matched the current logic value and then uses it
+                        // to update the "visual" drop field value
                         var bootstrap = !value && valueLogic;
                         bootstrap && listItems.each(function(index, element) {
                             // retrieves the current list item (element) in iteration and
@@ -1263,10 +1267,6 @@
                             options["index"] = index;
                             _index(dropField, options);
                         });
-
-                        // updates the current selection, this operation should change
-                        // the "focus" to the currently selected liste item
-                        _updateSelection(dropField, options);
                     });
         };
 
