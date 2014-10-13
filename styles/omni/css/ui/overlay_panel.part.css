@@ -15,6 +15,10 @@
     width: 370px;
 }
 
+.omni-style .overlay-panel.overlay-search .drop-field {
+    width: 406px;
+}
+
 .omni-style.dark .overlay-panel.overlay-search {
     border-color: #999999;
     box-shadow: 0px 0px 6px #888888;
