@@ -1184,29 +1184,6 @@
                                     event.preventDefault();
                                 });
 
-                        // verifies if the current loading of values should be considered
-                        // a bootstrap one, if that's the case an extra iteration should
-                        // be performed on the complete set of list items trying to find
-                        // the one that matched the current logic value and then use it to
-                        // update the "visual" drop field value
-                        var bootstrap = !value && valueLogic;
-                        bootstrap && listItems.each(function(index, element) {
-                            // retrieves the current list item (element) in iteration and
-                            // unpacks its data value, checking it agains the currently
-                            // set logic value (for proper match value)
-                            var _element = jQuery(this);
-                            var isValid = valueLogic == _element.attr("data-value");
-                            if (!isValid) {
-                                return;
-                            }
-
-                            // if this logic is reached there was a match with the list
-                            // item value and the proper index change should be triggered
-                            index = _element.index();
-                            options["index"] = index;
-                            _index(dropField, options);
-                        });
-
                         // retrieves the previous selection (original selection)
                         // using the value from the text field, then tries to guess
                         // the index by comparing the string value agains the
@@ -1264,7 +1241,31 @@
                             dropFieldContents.width(dropFieldContentsWidth);
                         }
 
-                        // updates the current selection
+                        // verifies if the current loading of values should be considered
+                        // a bootstrap one, if that's the case an extra iteration should
+                        // be performed on the complete set of list items trying to find
+                        // the one that matched the current logic value and then use it to
+                        // update the "visual" drop field value
+                        var bootstrap = !value && valueLogic;
+                        bootstrap && listItems.each(function(index, element) {
+                            // retrieves the current list item (element) in iteration and
+                            // unpacks its data value, checking it agains the currently
+                            // set logic value (for proper match value)
+                            var _element = jQuery(this);
+                            var isValid = valueLogic == _element.attr("data-value");
+                            if (!isValid) {
+                                return;
+                            }
+
+                            // if this logic is reached there was a match with the list
+                            // item value and the proper index change should be triggered
+                            index = _element.index();
+                            options["index"] = index;
+                            _index(dropField, options);
+                        });
+
+                        // updates the current selection, this operation should change
+                        // the "focus" to the currently selected liste item
                         _updateSelection(dropField, options);
                     });
         };
