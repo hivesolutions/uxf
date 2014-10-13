@@ -1,6 +1,6 @@
 .omni-style .drop-field {
     line-height: 26px;
-    width: 306px;
+    width: 284px;
 }
 
 .omni-style .drop-field > .text-field {
@@ -9,6 +9,7 @@
     background-repeat: no-repeat;
     float: left;
     padding-right: 28px;
+    width: 248px;
 }
 
 .omni-style .drop-field.strong > .text-field {

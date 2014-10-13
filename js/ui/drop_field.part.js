@@ -208,7 +208,8 @@
                 // carrefully in order to avoid extra server side calls
                 var bootstrap = !textFieldValue && hiddenFieldValue;
                 bootstrap && setTimeout(function() {
-                            _update(_element, options, true);
+                            _update(_element, options, true, [[valueAttribute,
+                                            "equals", hiddenFieldValue]]);
                         });
             });
         };
@@ -857,7 +858,7 @@
             });
         };
 
-        var _update = function(matchedObject, options, force) {
+        var _update = function(matchedObject, options, force, filters) {
             // retrieves the drop field elements
             var dropField = matchedObject;
             var dataSource = jQuery("> .data-source", dropField);
@@ -903,8 +904,9 @@
             // in case the value did not change or the selected mode
             // is lower and the drop field is not of type select
             // (no need to show the contents) returns immediately
-            // the control flow to the caller function/method
-            if ((textFieldValue == value || isLower) && !isSelect) {
+            // the control flow to the caller function/method, note
+            // that the force flag will override this behavior
+            if ((textFieldValue == value || isLower) && !isSelect && !force) {
                 return;
             }
 
@@ -917,7 +919,7 @@
 
             // creates the filter string from the text
             // field value in case the select mode is not
-            // enabled
+            // enabled, otherwise an empty value is used
             var filterString = isSelect ? "" : textFieldValue;
 
             // invalidates the "logical" hidden field, may
@@ -952,6 +954,7 @@
             dataSource.uxdataquery({
                         filterString : filterString,
                         filterAttributes : filterAttributes,
+                        filters : filters,
                         startRecord : 0,
                         numberRecords : numberOptions
                     }, function(validItems, moreItems) {
