@@ -1103,14 +1103,14 @@
                         // in case the valid items value
                         // is not valid (error occurred)
                         if (!validItems) {
-                            // unsets the (query) pending flag in the filter
+                            // unsets the (query) pending flag in the filter, and then
+                            // returns immediately, nothing more to be done
                             filter.data("pending", false);
-
-                            // returns immediately
                             return;
                         }
 
-                        // in case the reset flag is set
+                        // in case the reset flag is set, all of the currently defined
+                        // filter element should be removed from structure
                         if (reset) {
                             // retrieves the current filter elements to remove
                             // them (refresh of the list)
