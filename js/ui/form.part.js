@@ -242,7 +242,7 @@
             var isGet = method.toLowerCase() == "get";
             href = isGet ? href + "?" + data : href;
             data = isGet ? "" : data;
-            var url = isGet ? href.slice(0, href.length - 8) : href
+            var url = isGet ? href.slice(0, href.length - 8) : href;
 
             // creates the asyncronous object rerence and opens it to the link
             // reference defined in the form than triggers its load and then
@@ -296,7 +296,7 @@
                 // handling of the page (improved user experience)
                 var _body = jQuery("body");
                 _body.triggerHandler("data", [data, url || document.URL, null,
-                                false, href]);
+                                isGet, href]);
             };
             request.readystatechange = function() {
                 // in case the current request state is not headers ready there's
@@ -483,6 +483,51 @@
             // to restore them to their original values
             var elements = matchedObject.uxfields();
             elements.uxreset();
+        };
+
+        // initializes the plugin
+        initialize();
+
+        // returns the object
+        return this;
+    };
+})(jQuery);
+
+(function(jQuery) {
+    jQuery.fn.uxhightlightbox = function(options) {
+        // the default values for the data source
+        var defaults = {};
+
+        // sets the default options value
+        var options = options ? options : {};
+
+        // constructs the options
+        var options = jQuery.extend(defaults, options);
+
+        // sets the jquery matched object
+        var matchedObject = this;
+
+        /**
+         * Initializer of the plugin, runs the necessary functions to initialize
+         * the structures.
+         */
+        var initialize = function() {
+            _appendHtml();
+            _registerHandlers();
+        };
+
+        /**
+         * Creates the necessary html for the component.
+         */
+        var _appendHtml = function() {
+            // wraps the matched objec in an highlight box container
+            matchedObject.wrap("<div class=\"highlight-box-container\"></div>");
+        };
+
+        /**
+         * Registers the event handlers for the created objects.
+         */
+        var _registerHandlers = function() {
         };
 
         // initializes the plugin
