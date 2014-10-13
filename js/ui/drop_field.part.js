@@ -199,6 +199,17 @@
                 _element.data("number_options", numberOptions);
                 _element.data("filter_options", filterOptions);
                 _element.data("value_fields", _valueFields);
+
+                // schedules an update operation for the next tick cycle
+                // (ensures data source loading) for the various drop fields
+                // that have an hidden (logical) value defined but that don't
+                // have a valid value defined in the drop field, this is
+                // considered a "self bootstrap" operation  and should be used
+                // carrefully in order to avoid extra server side calls
+                var bootstrap = !textFieldValue && hiddenFieldValue;
+                bootstrap && setTimeout(function() {
+                            _update(_element, options, true);
+                        });
             });
         };
 
@@ -846,7 +857,7 @@
             });
         };
 
-        var _update = function(matchedObject, options) {
+        var _update = function(matchedObject, options, force) {
             // retrieves the drop field elements
             var dropField = matchedObject;
             var dataSource = jQuery("> .data-source", dropField);
@@ -858,8 +869,10 @@
             var dropFieldNoResults = jQuery(".drop-field-no-results", dropField);
             var template = jQuery(".template", dropField);
 
-            // retrieves the current drop field value
+            // retrieves the current drop field value and the current
+            // (logic) value for the drop field (from the hidden value)
             var value = dropField.data("value");
+            var valueLogic = hiddenField.val();
 
             // retrieves the display, value and the link attributes
             var displayAttribute = matchedObject.data("display_attribute");
@@ -952,10 +965,12 @@
                         // in case the drop field is locked or the containing
                         // text field does not contains focus there is no need
                         // to process the results (something occured in betweed
-                        // the request and the response)
-                        if ((!isSelect && dropField.hasClass("drop-field-lock"))
-                                || !textField.hasClass("focus")) {
-                            // returns immediately
+                        // the request and the response) must return immediately,
+                        // note that this immediate return operation may be skipped
+                        // in case the force flag is set (avoids skipping)
+                        var isInvalid = (!isSelect && dropField.hasClass("drop-field-lock"))
+                                || !textField.hasClass("focus");
+                        if (isInvalid && !force) {
                             return;
                         }
 
@@ -1147,6 +1162,7 @@
                         // that have just been constructed
                         listItems.click(function(event) {
                                     // retrieves the element to be used in click handling
+                                    // this should be the list item (element) reference
                                     var element = jQuery(this);
 
                                     // retrieves the index associated with the current
@@ -1165,6 +1181,29 @@
                                     event.stopPropagation();
                                     event.preventDefault();
                                 });
+
+                        // verifies if the current loading of values should be considered
+                        // a bootstrap one, if that's the case an extra iteration should
+                        // be performed on the complete set of list items trying to find
+                        // the one that matched the current logic value and then use it to
+                        // update the "visual" drop field value
+                        var bootstrap = !value && valueLogic;
+                        bootstrap && listItems.each(function(index, element) {
+                            // retrieves the current list item (element) in iteration and
+                            // unpacks its data value, checking it agains the currently
+                            // set logic value (for proper match value)
+                            var _element = jQuery(this);
+                            var isValid = valueLogic == _element.attr("data-value");
+                            if (!isValid) {
+                                return;
+                            }
+
+                            // if this logic is reached there was a match with the list
+                            // item value and the proper index change should be triggered
+                            index = _element.index();
+                            options["index"] = index;
+                            _index(dropField, options);
+                        });
 
                         // retrieves the previous selection (original selection)
                         // using the value from the text field, then tries to guess
