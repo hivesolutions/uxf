@@ -18,6 +18,8 @@
         locale = locale || _body.data("locale");
         locale = locale || "en-us";
 
+        locale = locale.replace("_", "-");
+
         var locales = SYMBOLS[string] || {};
         var stringLocale = locales[locale] || string;
 
