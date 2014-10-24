@@ -1,5 +1,5 @@
 (function(jQuery) {
-    jQuery.fn.uxcenter = function(topOffset, leftOffset, useMargin, avoidTop, avoidLeft, keep) {
+    jQuery.fn.uxcenter = function(topOffset, leftOffset, useMargin, avoidTop, avoidLeft, keep, reference) {
         // sets the jquery matched object that is going to be centered
         // on the currently defined viewport window
         var matchedObject = this;
@@ -25,24 +25,29 @@
         // a new center operation)
         var keep = keep ? keep : false;
 
-        // retrieves the window
+        // retrieves the window, taking into account if other
+        // reference exists, if that's the case the reference
+        // element is used instead of the base (global window)
         var _window = jQuery(window);
+        var reference = reference ? reference : _window;
 
-        // retrieves the window dimensions
-        var windowHeight = _window.height();
-        var windowWidth = _window.width();
+        // retrieves the reference element dimensions, that are
+        // going to be used in the re-position of the element
+        var referenceHeight = reference.height();
+        var referenceWidth = reference.width();
 
-        // retrieves the window scroll values
-        var windowSrollTop = _window.scrollTop();
-        var windowSrollLeft = _window.scrollLeft();
+        // retrieves the window scroll values to be used also as
+        // references for the top and left positions
+        var referenceSrollTop = reference.scrollTop();
+        var referenceSrollLeft = reference.scrollLeft();
 
         // retrieves the matched object dimensions
         var matchedObjectHeight = matchedObject.outerHeight();
         var matchedObjectWidth = matchedObject.outerWidth();
 
         // calculates the element positions
-        var topPosition = ((windowHeight - matchedObjectHeight) / 2);
-        var leftPosition = ((windowWidth - matchedObjectWidth) / 2);
+        var topPosition = ((referenceHeight - matchedObjectHeight) / 2);
+        var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
 
         // recalculates the element positions according to the
         // top and left offsets in percentage
@@ -51,8 +56,8 @@
 
         // adds the extra scroll position to the top position of
         // the element so that the element is "scroll centered"
-        topPosition += windowSrollTop;
-        leftPosition += windowSrollLeft;
+        topPosition += referenceSrollTop;
+        leftPosition += referenceSrollLeft;
 
         // in case the reference attribute to be used for centering
         // the element is the margin
@@ -82,7 +87,7 @@
                         _window.resize(function(event) {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            false);
+                                            false, reference);
                                 });
 
                         // registers the scroll in the window
@@ -90,7 +95,7 @@
                         _window.scroll(function() {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            false);
+                                            false, reference);
                                 });
 
                         // registers the changing of contents in
@@ -98,7 +103,7 @@
                         _element.bind("layout", function() {
                                     _element.uxcenter(topOffset, leftOffset,
                                             useMargin, avoidTop, avoidLeft,
-                                            false);
+                                            false, reference);
                                 });
                     });
         }
