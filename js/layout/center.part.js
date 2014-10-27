@@ -42,8 +42,8 @@
         var referenceSrollLeft = reference.scrollLeft();
 
         // retrieves the matched object dimensions
-        var matchedObjectHeight = matchedObject.outerHeight();
-        var matchedObjectWidth = matchedObject.outerWidth();
+        var matchedObjectHeight = matchedObject.outerHeight(true);
+        var matchedObjectWidth = matchedObject.outerWidth(true);
 
         // calculates the element positions
         var topPosition = ((referenceHeight - matchedObjectHeight) / 2);
