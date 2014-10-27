@@ -1,3 +1,3 @@
-# [UX Framework](http://uxf.hive.pt)
+# [![UX Framworkd](res/logo.png)](http://uxf.hive.pt)
 
 Simple client side framework for people who want fast results.
