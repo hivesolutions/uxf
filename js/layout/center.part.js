@@ -31,6 +31,9 @@
         var _window = jQuery(window);
         var reference = reference ? reference : _window;
 
+        // retrieves the proper reference position to be used in
+        // the centering of the element, not that in case no
+        // options is provided the default center value is used
         var position = position ? position : "center";
 
         // retrieves the reference element dimensions, that are
