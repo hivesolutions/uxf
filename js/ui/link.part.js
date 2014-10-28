@@ -89,17 +89,29 @@
                             // contains the target location of the link,
                             // this should be an internal identifier
                             var href = element.attr("href");
+                            var hrefValid = jQuery(href).length > 0;
 
                             // retrieves the value of the data hash value
                             // that if existent enables hash changing
                             var hash = element.attr("data-hash");
 
                             // retrieves the offset and converts it
-                            // into an integer
+                            // into an integer to be used in the animation
+                            // that is going to be performed in the element
                             var offset = element.attr("data-offset");
                             var offsetInteger = parseInt(offset);
 
+                            // verifies if the target element for ther link
+                            // value is valid, and in case it's not returns
+                            // the control flow immediately (as it's not possible
+                            // to perform smooth scrolling)
+                            if (!hrefValid) {
+                                return;
+                            }
+
                             // creates the settings map based on the offset
+                            // value that has just been calculated, this map
+                            // is going to be passed to the scroll extension
                             var settings = {
                                 offset : isNaN(offsetInteger)
                                         ? 0
