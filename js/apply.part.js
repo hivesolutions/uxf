@@ -82,7 +82,7 @@
             var image = jQuery(".image", matchedObject).not(".template .image");
             var calendar = jQuery(".calendar", matchedObject).not(".template .calendar");
             var calendarRange = jQuery(".calendar-range", matchedObject).not(".template .calendar-range");
-            var menulink = jQuery(".menu-link", matchedObject).not(".template .menu-link");
+            var menuLink = jQuery(".menu-link", matchedObject).not(".template .menu-link");
             var slider = jQuery(".slider", matchedObject).not(".template .slider");
             var scrollList = jQuery(".scroll-list", matchedObject).not(".template .scroll-list");
             var overlayPanel = jQuery(".overlay-panel", matchedObject).not(".template .overaly-panel");
@@ -188,7 +188,7 @@
             image.uximage();
             calendar.uxcalendar();
             calendarRange.uxcalendarrange();
-            menulink.uxmenulink();
+            menuLink.uxmenulink();
             slider.uxslider();
             scrollList.uxscrolllist();
             overlayPanel.uxoverlaypanel();
