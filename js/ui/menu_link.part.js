@@ -59,8 +59,8 @@
             var _window = jQuery(window);
             var _body = jQuery("body");
 
-            // retrieves the menu to retieve the
-            // menu contents
+            // retrieves the menu to be able to retrieve the
+            // reference to the menu contents element
             var menu = matchedObject.parents(".menu");
             var menuContents = jQuery(".menu-contents", menu);
 
