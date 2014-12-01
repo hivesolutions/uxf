@@ -19,7 +19,7 @@
 }
 
 .omni-style .window.window-lightbox .button-expand {
-    background: transparent url(../images/lightbox-loading.png) no-repeat center center;
+    background: transparent url(../images/lightbox-expand.png) no-repeat center center;
     cursor: pointer;
     height: 30px;
     margin: -14px 0px 0px 10px;
