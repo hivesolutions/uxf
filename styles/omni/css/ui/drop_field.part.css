@@ -119,3 +119,8 @@
 .omni-style .drop-field.small.drop-field-select.drop-field-lock > .text-field {
     background-image: url(../images/drop-field-select-small.png);
 }
+
+.omni-style .drop-field .entity-name,
+.omni-style .drop-field .entity-details {
+    max-width: 210px;
+}
