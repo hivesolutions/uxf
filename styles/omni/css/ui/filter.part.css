@@ -334,6 +334,11 @@
 
 .omni-style .filter.entities-list.list-list .entity-name {
     margin: 4px 0px 0px 0px;
+    max-width: 468px;
+}
+
+.omni-style .filter.entities-list.list-list .entity-description {
+    max-width: 468px;
 }
 
 .omni-style .filter.entities-list .entity-small-name {
