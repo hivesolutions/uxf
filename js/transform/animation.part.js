@@ -92,8 +92,6 @@
                 return;
             }
 
-            console.info(imageUrl);
-
             // creates a new image element and creates the structure based
             // reference (element reference) for it
             var image = new Image();
