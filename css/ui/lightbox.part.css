@@ -1,3 +1,7 @@
 .window.window-lightbox.loading .button-expand {
     display: none;
 }
+
+.window.window-lightbox.loaded.loading .button-expand {
+    display: block;
+}

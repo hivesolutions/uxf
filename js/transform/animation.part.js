@@ -35,21 +35,64 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // registers for the change event on the current object
+            // so that the animation gets updated/re-registered
+            matchedObject.change(function() {
+                        var element = jQuery(this);
+                        _register(element, options);
+                    });
+
+            // registers for the refresh event on the current object
+            // so that the animation gets updated/re-registered
+            matchedObject.bind("refresh", function() {
+                        var element = jQuery(this);
+                        _register(element, options);
+                    });
+        };
+
+        var _duration = function(element, options) {
+            // tries to retrieve the duration value for the animation from
+            // the css values associated with the element, these values are
+            // assumed to be integer defined as seconds of animation
+            var cssDuration = element.css("animation-duration");
+            cssDuration = cssDuration
+                    || element.css("-webkit-animation-duration");
+            cssDuration = cssDuration || element.css("-moz-animation-duration");
+            cssDuration = cssDuration || element.css("-o-animation-duration");
+            cssDuration = cssDuration || element.css("-ms-animation-duration");
+            cssDuration = cssDuration
+                    || element.css("-khtml-animation-duration");
+            if (cssDuration) {
+                return parseFloat(cssDuration) * 1000;
+            }
+
+            // uses the data duration attribute as the fallback process for
+            // the animation and in case it does not exist uses the hardcoded
+            // value as the final value to be used
+            var duration = element.attr("data-duration") || "1000";
+            return parseInt(duration);
         };
 
         var _register = function(element, options) {
             // retrieves the element values that are going to be used for
             // some of the initial calculus for the animation
             var height = element.height();
-            var duration = element.attr("data-duration") || "500";
-            duration = parseInt(duration);
+            var duration = _duration(element, options);
 
             // retrieves the background image reference and removes the
             // proper url prefix from it, so that only the correct url
             // is used for the processing of the image value
             var imageUrl = element.css("background-image");
             imageUrl = imageUrl.match(/^url\("?(.+?)"?\)$/);
-            imageUrl = imageUrl[1];
+            imageUrl = imageUrl ? imageUrl[1] : imageUrl;
+
+            // verifies if the image url that was retrieved is valid and
+            // if that's no the case returns immediately
+            if (!imageUrl) {
+                return;
+            }
+
+            console.info(imageUrl);
 
             // creates a new image element and creates the structure based
             // reference (element reference) for it
@@ -78,6 +121,18 @@
             // the "original" gathered values from the element
             var frameCount = spriteHeight / height;
             var frameTimeout = duration / frameCount;
+
+            // in case the number of frames is one there's no need to continue
+            // with the animation process, as this is considered to be a "normal"
+            // static image, not requiring any kind of animation process
+            if (frameCount == 1) {
+                element.css("background-position-y", "");
+                return;
+            }
+
+            // sets the initial position of the background positio as the top
+            // element of the sprite (default behavior)
+            element.css("background-position-y", "0px");
 
             // resets the various values of the element so that the
             // animation is set to start from the beginning (orginal values)

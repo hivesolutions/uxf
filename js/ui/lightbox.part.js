@@ -51,6 +51,7 @@
             // in the window)
             hasChanged && windowImage.hide();
             hasChanged && window.addClass("loading");
+            hasChanged && window.triggerHandler("loading");
             hasChanged && windowImage.attr("src", path);
             hasChanged && windowImage.hide();
 
@@ -70,9 +71,18 @@
                         // selcted image (the one that has finished the loading)
                         var element = jQuery(this);
 
+                        // adds the loaded class meaning that at least the first
+                        // image has already been loaded, more images of larger
+                        // size may be loaded latter
+                        window.addClass("loaded");
+
                         // removes the loading class from the window, the
                         // windows is no longer considered to be loading
                         window.removeClass("loading");
+
+                        // triggers the laaded event so that any listener is
+                        // notified abou the end of the image loading
+                        window.triggerHandler("loaded");
 
                         // shows the window image (back to original state)
                         // and then repositions the window in the center
@@ -194,6 +204,8 @@
                         // (target) path for iamge source updating
                         var currentPath = windowImage.attr("src");
                         var targetPath = currentPath == path ? largePath : path;
+                        window.addClass("loading");
+                        window.triggerHandler("loading");
                         windowImage.attr("src", targetPath);
 
                         // prevents the click event from propagation up in
