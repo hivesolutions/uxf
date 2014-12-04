@@ -333,11 +333,13 @@
 }
 
 .omni-style .filter.entities-list.list-list .entity-name {
+    line-height: 20px;
     margin: 4px 0px 0px 0px;
     max-width: 468px;
 }
 
-.omni-style .filter.entities-list.list-list .entity-description {
+.omni-style .filter.entities-list.list-list .entity-details {
+    margin: 6px 0px 0px 0px;
     max-width: 468px;
 }
 
