@@ -13,7 +13,7 @@
  */
 (function(jQuery) {
     jQuery.fn.uxpanelmore = function(options) {
-        // the default values for the panel
+        // the default values for the plugin
         var defaults = {};
 
         // sets the default options value

@@ -13,7 +13,7 @@
  */
 (function(jQuery) {
     jQuery.fn.uxcrosslist = function(method, options) {
-        // the default values for the panel
+        // the default values for the plugin
         var defaults = {};
 
         // sets the default method value
