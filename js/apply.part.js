@@ -124,6 +124,7 @@
             var video = jQuery(".video", matchedObject).not(".template .video");
             var code = jQuery(".code", matchedObject).not(".template .code");
             var uploader = jQuery(".uploader", matchedObject).not(".template .uploader");
+            var animation = jQuery(".animation", matchedObject).not(".template .animation");
             var transformFlip = jQuery(".transform-flip", matchedObject).not(".template .transform-flip");
             var fileDrop = jQuery(".file-drop", matchedObject).not(".template .file-drop");
             var imageUpload = jQuery(".image-upload", matchedObject).not(".template .image-upload");
@@ -230,6 +231,7 @@
             code.uxcode();
 
             // applies the various transform plugins
+            animation.uxanimation();
             transformFlip.uxtransformflip();
 
             // applies the various file plugins
