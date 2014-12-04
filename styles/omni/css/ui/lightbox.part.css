@@ -7,7 +7,7 @@
 }
 
 .omni-style .window.window-lightbox .button-confirm,
-.omni-style .window.window-lightbox .button-loading {
+.omni-style .window.window-lightbox .button-expand {
     -webkit-animation-duration: 0.5s;
     animation-duration: 0.5s;
     -moz-animation-duration: 0.5s;
