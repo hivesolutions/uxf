@@ -50,6 +50,7 @@
             // path in the window image (changes the current image
             // in the window)
             hasChanged && windowImage.hide();
+            hasChanged && window.removeClass("loaded");
             hasChanged && window.addClass("loading");
             hasChanged && window.triggerHandler("loading");
             hasChanged && windowImage.attr("src", path);
