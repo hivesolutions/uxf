@@ -39,11 +39,18 @@
     min-height: 0px;
 }
 
-.omni-style .window-description {
+.omni-style .window-header {
     border-bottom: 1px solid #efefef;
     line-height: 22px;
     margin-bottom: 16px;
     padding-bottom: 16px;
+}
+
+.omni-style .window-footer {
+    border-top: 1px solid #efefef;
+    line-height: 22px;
+    margin-bottom: 16px;
+    padding-top: 16px;
 }
 
 .omni-style .window-buttons {
