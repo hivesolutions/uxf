@@ -21,7 +21,7 @@
 
 .omni-style .overlay-panel.overlay-search .drop-field .entity-name,
 .omni-style .overlay-panel.overlay-search .drop-field .entity-name {
-    max-width: 332px;
+    width: 332px;
 }
 
 .omni-style.dark .overlay-panel.overlay-search {
