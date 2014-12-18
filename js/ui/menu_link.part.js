@@ -337,18 +337,29 @@
             menuLink = menuLink || jQuery(".menu-link", menu);
             var menuContents = jQuery(".menu-contents", menu);
 
-            // in case no menu link is defined it's not possible
+            // in case no menu button/link is defined it's not possible
             // to run the reposition operation, not enought information
             // to archive the objective
-            if (menuLink.length == 0) {
+            if (menuButton.length == 0 || menuLink.length == 0) {
                 return;
             }
+
+            // retrieves the first element from the menu button as the
+            // element that referes it, this is going to be used for
+            // internal and more accurate computation
+            var menuButtonElement = menuButton[0];
 
             // retrieves the various dimensions from the various elements
             // associated with the menu to be repositioned
             var buttonWidth = menuButton.outerWidth();
             var contentsWidth = menuContents.outerWidth();
             var contentsHeight = menuContents.outerHeight(true);
+
+            // tries to retrive the button bounding (box) and then uses
+            // it as the button with value in case it exists
+            var buttonBounding = menuButtonElement.getBoundingClientRect();
+            var buttonWidthF = buttonBounding.width;
+            buttonWidth = buttonWidthF ? buttonWidthF : buttonWidth;
 
             // retrieves the value for the border left with ignore value
             // defaulting to innvalid in case no value is retrieved then
