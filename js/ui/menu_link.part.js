@@ -356,7 +356,9 @@
             var contentsHeight = menuContents.outerHeight(true);
 
             // tries to retrive the button bounding (box) and then uses
-            // it as the button with value in case it exists
+            // it as the button with value in case it exists, this is
+            // required so that it's possible to use decimal pixel values
+            // for the calculus of the required offset margins
             var buttonBounding = menuButtonElement.getBoundingClientRect();
             var buttonWidthF = buttonBounding.width;
             buttonWidth = buttonWidthF ? buttonWidthF : buttonWidth;
