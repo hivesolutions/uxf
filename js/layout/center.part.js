@@ -36,6 +36,13 @@
         // options is provided the default center value is used
         var position = position ? position : "center";
 
+        // re-sets the initial position of the matched object to
+        // the upper left corner of screen so that no measures are
+        // affected by the current position of the element, this
+        // would/may cause problems with scroll bars height/width
+        matchedObject.css("top", "0px");
+        matchedObject.css("left", "0px");
+
         // retrieves the reference element dimensions, that are
         // going to be used in the re-position of the element
         var referenceHeight = reference.height();
