@@ -917,10 +917,10 @@
                 dropFieldContents.hide();
             }
 
-            // creates the filter string from the text
-            // field value in case the select mode is not
-            // enabled, otherwise an empty value is used
-            var filterString = isSelect ? "" : textFieldValue;
+            // creates the filter string from the text field value in
+            // case the select mode is not enabled and the mode is not
+            // the lower one, otherwise an empty value is used
+            var filterString = isSelect || isLower ? "" : textFieldValue;
 
             // invalidates the "logical" hidden field, may
             // assume the value is in an invalid (transient state)

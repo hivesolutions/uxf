@@ -55,7 +55,8 @@
             // retrieves the id part of the url
             var id = query["id"];
 
-            // retrieves the "main" filter string
+            // retrieves the "main" filter string, this is going to be
+            // used for plain text free search with non exact matching
             var filterString = query["filterString"];
 
             // retrieves the sort tuple to be used to sort
