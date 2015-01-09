@@ -41,7 +41,7 @@
 
                         // retrieves the iso standard version of the countries
                         // that is going to be used as the logical version
-                        var COUNTRIES = jQuery.uxlocale("COUNTRIES", "en-us");
+                        var COUNTRIES = jQuery.uxlocale("COUNTRIES", "en-iso");
                         COUNTRIES = COUNTRIES.slice();
 
                         // retrieves the list of countries to be used according
