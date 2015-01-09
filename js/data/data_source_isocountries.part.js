@@ -35,25 +35,43 @@
                         // is going to be populated with maps of name and value
                         var items = [];
 
+                        // creates the dictionary that will associate/map the localized
+                        // version of the country with the more general iso version
+                        var mapper = {};
+
                         // retrieves the iso standard version of the countries
                         // that is going to be used as the logical version
                         var COUNTRIES = jQuery.uxlocale("COUNTRIES", "en-us");
                         COUNTRIES = COUNTRIES.slice();
-                        COUNTRIES.sort();
 
                         // retrieves the list of countries to be used according
                         // to the currently defined locale, this localized version
                         // is going to be used for display
                         var COUNTRIES_L = jQuery.uxlocale("COUNTRIES");
                         COUNTRIES_L = COUNTRIES_L.slice();
-                        COUNTRIES_L.sort();
+
+                        // creates the final locale sorted version that is going to
+                        // be used as the main driver in items creation
+                        COUNTRIES_LS = COUNTRIES_L.slice();
+                        COUNTRIES_LS.sort();
+
+                        // iterates over the ordered countries to create the proper
+                        // mapper dictionary that will map the localized version of
+                        // the country with the "more" locale one for usage
+                        for (var index = 0; index < COUNTRIES.length; index++) {
+                            var country = COUNTRIES[index];
+                            var countryL = COUNTRIES_L[index];
+                            mapper[countryL] = country;
+                        }
 
                         // iterates over the range of the countries list to create
                         // the various items that are part of the data source
                         for (var index = 0; index < COUNTRIES.length; index++) {
+                            var countryL = COUNTRIES_LS[index];
+                            var country = mapper[countryL];
                             var item = {
-                                name : COUNTRIES_L[index],
-                                value : COUNTRIES[index]
+                                name : countryL,
+                                value : country
                             }
                             items.push(item);
                         }
