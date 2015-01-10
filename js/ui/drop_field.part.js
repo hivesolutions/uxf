@@ -936,7 +936,7 @@
                 hiddenField.val("");
                 valueFields.val("");
 
-                // verifies if the current drop field is lockes and in case
+                // verifies if the current drop field is locked and in case
                 // it's removes the lock class and triggers the value unselected
                 // event indicating that the value is no longer selected
                 var isLocked = dropField.hasClass("drop-field-lock");
@@ -1387,12 +1387,20 @@
             // options in case it's defined
             var item = options["item"] || {};
 
-            // retrieves the drop field elements
+            // retrieves the drop field elements and the final
+            // value for the value attribute name of the drop field
             var dropField = matchedObject;
             var hiddenField = jQuery(".hidden-field", dropField);
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
+            var valueAttribute = dropField.attr("data-value_attribute")
+                    || "value";
+
+            // verifies if the bootstrap mode is set meaning that the
+            // logic value has been set but the visual one not, this
+            // should trigger an extra query to the data source
+            var bootstrap = !value && valueLogic;
 
             // retrieves the complete set of value fields from the drop
             // field to apply the item values into them
@@ -1425,7 +1433,14 @@
 
             // adds the drop field lock class from the drop field
             // adds the lock symbol to the drop field
-            dropField.addClass("drop-field-lock")
+            dropField.addClass("drop-field-lock");
+
+            // in case the bootstrap mode is enabled and extra update
+            // operation is scheduled to updata the values of the drop
+            // field according to the logic attribute that has been set
+            bootstrap
+                    && _update(_element, options, true, [[valueAttribute,
+                                    "equals", valueLogic]]);
         };
 
         var _reset = function(matchedObject, options) {
