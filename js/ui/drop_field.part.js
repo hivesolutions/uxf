@@ -1439,7 +1439,7 @@
             // operation is scheduled to updata the values of the drop
             // field according to the logic attribute that has been set
             bootstrap
-                    && _update(_element, options, true, [[valueAttribute,
+                    && _update(dropField, options, true, [[valueAttribute,
                                     "equals", valueLogic]]);
         };
 
