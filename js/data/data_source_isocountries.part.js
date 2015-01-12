@@ -76,6 +76,10 @@
                             items.push(item);
                         }
 
+                        // sets the current element as case insensitive so that
+                        // the country search is more permissive an intuitive
+                        _element.attr("data-insensitive", "true");
+
                         // updates the items data in the current element
                         // ands runs the initializer of the items data
                         // source extension
