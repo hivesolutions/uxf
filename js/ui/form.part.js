@@ -117,11 +117,17 @@
                                         return;
                                     }
 
+                                    // "gathers" the original value so that it's able
+                                    // to detect if there was a change in the value
+                                    // (resulting from the trim operation) that should
+                                    // trigger the changing of the element's value
+                                    var _value = value;
+
                                     // trims the value removing any trailing
                                     // and leading spaces and then re-sets the
                                     // value in the element
                                     value = value.trim();
-                                    _element.uxvalue(value);
+                                    _value != value && _element.val(value);
                                 });
 
                         // retrieves the current body element and uses it to retrieve
