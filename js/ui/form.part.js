@@ -117,17 +117,34 @@
                                         return;
                                     }
 
+                                    // verifies if the current element is "lowered" and if
+                                    // that's the case skips the trim operation as it's
+                                    // considered to be and invalid element to be operated
+                                    var isLower = _element.hasClass("lower");
+                                    if (isLower) {
+                                        return;
+                                    }
+
                                     // "gathers" the original value so that it's able
                                     // to detect if there was a change in the value
                                     // (resulting from the trim operation) that should
                                     // trigger the changing of the element's value
                                     var _value = value;
 
-                                    // trims the value removing any trailing
-                                    // and leading spaces and then re-sets the
-                                    // value in the element
+                                    // trims the value removing any trailing and leading
+                                    // spaces and then verifies if the value is different
+                                    // from the original value if that's not the case skips
+                                    // the current iteration as there's nothing to be done
                                     value = value.trim();
-                                    _value != value && _element.val(value);
+                                    if (_value == value) {
+                                        return;
+                                    }
+
+                                    // updates both the "physical" and the logical value
+                                    // representation of the value in the element, so that
+                                    // its value becomes trimmed as expected
+                                    _element.val(value);
+                                    _element.attr("data-value", value);
                                 });
 
                         // retrieves the current body element and uses it to retrieve
