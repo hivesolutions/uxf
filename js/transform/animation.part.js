@@ -3,6 +3,9 @@
         // the default values for the animation
         var defaults = {};
 
+        // sets the default method value
+        var method = method ? method : "default";
+
         // sets the default options value
         var options = options ? options : {};
 
@@ -175,8 +178,57 @@
             element.data("frame", next);
         };
 
-        // initializes the plugin
-        initialize();
+        var _enable = function(element, options) {
+            element.css("transition", "");
+            element.css("-webkit-transition", "");
+            element.css("-moz-transition", "");
+            element.css("-o-transition", "");
+            element.css("-ms-transition", "");
+        };
+
+        var _disable = function(element, options) {
+            element.css("transition", "none");
+            element.css("-webkit-transition", "none");
+            element.css("-moz-transition", "none");
+            element.css("-o-transition", "none");
+            element.css("-ms-transition", "none");
+        };
+
+        // switches over the method so that the proper execution is going
+        // to be perfoemed for the selected element
+        switch (method) {
+            case "init" :
+                // starts the sprite based animation for the current object
+                // creating a proper interval object for it
+                _init(matchedObject, options);
+                break;
+
+            case "finalize" :
+                // stops the current sprite base animation from running this
+                // should clear the associated interval object
+                _finalize(matchedObject, options);
+                break;
+
+            case "enable" :
+                // enables the css animations for the current element (resume)
+                // taking into account that proper css is required, then
+                // breaks the current switch opertation
+                _enable(matchedObject, options);
+                break;
+
+            case "disable" :
+                // enables the css animations for the current element (pause)
+                // taking into account that proper css is required, then
+                // breaks the current switch opertation
+                _disable(matchedObject, options);
+                break;
+
+            case "default" :
+                // initializes the plugin with the normal options
+                // and then breaks the current switch
+                initialize();
+                break;
+        }
 
         // returns the object
         return this;

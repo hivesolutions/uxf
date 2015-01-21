@@ -230,7 +230,8 @@
             video.uxvideo();
             code.uxcode();
 
-            // applies the various transform plugins
+            // applies the various transform plugins, including the ones
+            // related with sprite based animation (using single image)
             animation.uxanimation();
             transformFlip.uxtransformflip();
 
