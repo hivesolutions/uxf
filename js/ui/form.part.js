@@ -154,6 +154,7 @@
                         // is ready to be changed using an async approach
                         var _body = jQuery("body");
                         var async = _body.data("async");
+                        async &= element.hasClass("no-async") == false;
                         async &= _body.triggerHandler("async") != false;
 
                         // checks if the current element has the ajax form
