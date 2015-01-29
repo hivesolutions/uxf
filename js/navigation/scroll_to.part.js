@@ -19,10 +19,12 @@
         jQuery(window).uxscrollto(target, duration, settings);
     };
 
-    // creates the map of scroll default values
+    // creates the map of scroll default values, note that the
+    // creation takes into account the current jquery version
+    // to define the proper default duration of the animation
     uxscrollto.defaults = {
         axis : "xy",
-        duration : parseFloat($.fn.jquery) >= 1.3 ? 0 : 1
+        duration : parseFloat(jQuery.fn.jquery) >= 1.3 ? 0 : 1
     };
 
     /**
@@ -88,18 +90,21 @@
             duration = 0;
         }
 
-        // in case the setting is a function
-        // (on after function)
+        // in case the settings is a function, sets it as the
+        // callback (on after) function to be called at the
+        // the end of the animation
         if (typeof settings == "function") {
             settings = {
                 onAfter : settings
             };
         }
 
-        // incase the target is the maximum
+        // in case the target is the maximum, the target is
+        // set as a really large number (bottom of screen)
         if (target == "max") {
-            // set the target to a really big
-            // value
+            // set the target to a really big value,
+            // so that the scroll target is ensured
+            // to be as bottom as possible
             target = 9e9;
         }
 
@@ -131,7 +136,8 @@
             var attributes = {}
             var win = _element.is("html, body");
 
-            // switches over the target
+            // switches over the target data type, so that the proper
+            // target manipulation is performed (target normalized)
             switch (typeof _target) {
                 // in case it's a number or string
                 // will pass the regex
