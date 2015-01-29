@@ -48,29 +48,34 @@
      */
     jQuery.fn._scrollable = function() {
         return this.map(function() {
-            // retrieves the element
+            // retrieves the reference to the current element/context
+            // that is going to be tested for scrollability
             var element = this
 
             // checks if the current element is in fact
-            // a window
+            // a window, by checking it's value against a
+            // series of pre-defined values
             var isWindow = !element.nodeName
                     || jQuery.inArray(element.nodeName.toLowerCase(), [
                                     "iframe", "#document", "html", "body"]) != -1;
 
-            // in case the element is not a window
-            // it's scrollable
+            // in case the element is not a window it's immediately
+            // considered scrollable and so it's returned to the
+            // caller function as the scrollable target
             if (!isWindow) {
-                // returns immediately the element
                 return element;
             }
 
-            // retrieves the document from the window
+            // retrieves the document from the window taking into account
+            // the element's possible owner value (for legacy support)
             var _document = (element.contentWindow || element).document
                     || element.ownerDocument || element;
 
-            // returns the scrollable element from the document
-            // based on the current browser
-            return jQuery.browser.safari
+            // runs the fallback process of returning the body element
+            // of the current document as the scrolling element/target
+            // note that the proper element to be returned is defined
+            // using browser detection (webkit is considered special)
+            return jQuery.browser.webkit
                     || _document.compatMode == "BackCompat"
                     ? _document.body
                     : _document.documentElement;
