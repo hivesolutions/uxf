@@ -67,42 +67,14 @@
                         var message = matchedObject.attr("data-message");
                         isConfirm = isConfirm && message;
 
-                        // tries to detect if the current form is already confirmed
-                        // and in case the it's not confirmed and should presents
-                        // the associated confirm dialog for confirmation, this operation
-                        // should delay the submit operation until acceptance
-                        var confirmed = element.data("confirmed");
-                        if (isConfirm && !confirmed) {
-                            // presents the confirm window to the end user so that it's
-                            // possible to cancel/confirm it
-                            _body.uxconfirm(message, function(result) {
-                                        // in case the result is cancel,
-                                        // avoids execution and returns immediately
-                                        if (!result) {
-                                            return;
-                                        }
-
-                                        // sets the current form element as confirmed and
-                                        // the re-submits the form (should proceed now)
-                                        element.data("confirmed", true);
-                                        element.submit();
-                                    });
-
-                            // removes the focus from any input "like" element that
-                            // are contained in the current form (avoids glitches)
-                            inputs.blur();
-
-                            // stops the event propagation so that the current submit
-                            // operation is delayed by one tick (until confirmation)
-                            event.stopPropagation();
-                            event.stopImmediatePropagation();
-                            event.preventDefault();
-                            return;
-                        }
-
                         // retrieves the currently set attribute value
                         // for the trim operation on the form
                         var noTrim = element.attr("data-no_trim") || false;
+
+                        // tries to detect if the current form is already confirmed
+                        // if it's confirmed this is a second (special) submission,
+                        // round-trip that should be handled carefully
+                        var confirmed = element.data("confirmed");
 
                         // retrieves the state of the submited flag
                         // and then updates it to the valid value
@@ -126,8 +98,11 @@
                         // validation process is set and raised, this is required
                         // otherwise invalid data can be set, the returned value
                         // is used to determine if the submission of the form should
-                        // continue or if the form submission should be canceled
-                        var result = element.triggerHandler("pre_submit");
+                        // continue or if the form submission should be canceled, note
+                        // that if the form is already confirmed there's no need to
+                        // run the pre-validation process one more time
+                        var result = confirmed
+                                || element.triggerHandler("pre_submit");
                         if (result == false) {
                             // triggers the unlock (elements) events to emulate the
                             // end of the submission of the form (compatability)
@@ -143,6 +118,41 @@
                             // stops the event propagation and prevents
                             // the default behavior (avoids duplicate
                             // submission) then returns the function
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                            event.preventDefault();
+                            return;
+                        }
+
+                        // verifies if the current form should be confirmed and if that's
+                        // the case and the form is not yet confirmed the proper confirmation
+                        // (modal) window should be presented to confirm/cancel the submission
+                        if (isConfirm && !confirmed) {
+                            // presents the confirm window to the end user so that it's
+                            // possible to cancel/confirm it
+                            _body.uxconfirm(message, function(result) {
+                                        // in case the result is cancel,
+                                        // avoids execution and returns immediately
+                                        if (!result) {
+                                            return;
+                                        }
+
+                                        // sets the current form element as confirmed and
+                                        // the re-submits the form (should proceed now)
+                                        element.data("confirmed", true);
+                                        element.submit();
+                                    });
+
+                            // removes the focus from any input "like" element that
+                            // are contained in the current form (avoids glitches)
+                            inputs.blur();
+
+                            // unsets the submited flag for the current form as
+                            // so that the form may be submited on confirm (latter)
+                            element.data("submited", false);
+
+                            // stops the event propagation so that the current submit
+                            // operation is delayed by one tick (until confirmation)
                             event.stopPropagation();
                             event.stopImmediatePropagation();
                             event.preventDefault();
