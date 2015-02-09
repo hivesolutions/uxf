@@ -50,8 +50,47 @@
             // registers for the submit event so that
             // duplicate submits may be avoided
             matchedObject.submit(function(event) {
-                        // retrieves the current element
+                        // retrieves the current element, so that access to
+                        // the current form is possible, and then retrieves
+                        // the reference to the body element that may be used for some
+                        // of the possible global operations
                         var element = jQuery(this);
+                        var _body = jQuery("body");
+
+                        // verifies if the current form is of type (message) confirm
+                        // and if that's the case retrieves the associated message
+                        var isConfirm = matchedObject.hasClass("form-confirm");
+                        var message = matchedObject.attr("data-message");
+                        isConfirm = isConfirm && message;
+
+                        // tries to detect if the current form is already confirmed
+                        // and in case the it's not confirmed and should presents
+                        // the associated confirm dialog for confirmation, this operation
+                        // should delay the submit operation until acceptance
+                        var confirmed = element.data("confirmed");
+                        if (isConfirm && !confirmed) {
+                            // presents the confirm window to the end user so that it's
+                            // possible to cancel/confirm it
+                            _body.uxconfirm(message, function(result) {
+                                        // in case the result is cancel,
+                                        // avoids execution and returns immediately
+                                        if (!result) {
+                                            return;
+                                        }
+
+                                        // sets the current form element as confirmed and
+                                        // the re-submits the form (should proceed now)
+                                        element.data("confirmed", true);
+                                        element.submit();
+                                    });
+
+                            // stops the event propagation so that the current submit
+                            // operation is delayed by one tick (until confirmation)
+                            event.stopPropagation();
+                            event.stopImmediatePropagation();
+                            event.preventDefault();
+                            return;
+                        }
 
                         // retrieves the currently set attribute value
                         // for the trim operation on the form

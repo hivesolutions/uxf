@@ -268,12 +268,9 @@
                 return;
             }
 
-            // retrieves the parent form
+            // retrieves the parent form reference so that
+            // the proper submit action may be performed
             var parentForm = matchedObject.parents("form");
-
-            // adds the disabled class to the matched
-            // object (avoids duplicate submit)
-            matchedObject.addClass("disabled");
 
             // submits the parent form, triggering
             // the change in the current document
