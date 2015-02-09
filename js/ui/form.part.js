@@ -133,7 +133,7 @@
                             _body.uxconfirm(message, function(result) {
                                         // in case the result is cancel, must revert the current
                                         // partial state and then return the control flow
-                                        if (!result) {
+                                        if (result == false) {
                                             // triggers the unlock (elements) events to emulate the
                                             // end of the submission of the form (compatability)
                                             // this should release the elements state to the normal

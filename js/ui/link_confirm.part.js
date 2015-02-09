@@ -59,9 +59,9 @@
 
             // calls the confirm window in the document
             _body.uxconfirm(message, function(result) {
-                        // in case the result is cancel,
-                        // avoids execution and returns immediately
-                        if (!result) {
+                        // in case the result is cancel avoids the current
+                        // execution and returns immediately
+                        if (result == false) {
                             return;
                         }
 

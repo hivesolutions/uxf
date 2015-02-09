@@ -199,9 +199,9 @@
             // calls the confirm window in the document, because the action
             // must be first validated before any redirection occurs
             isConfirm && _body.uxconfirm(message, function(result) {
-                        // in case the result is cancel,
+                        // in case the result is cancel (false),
                         // avoids execution and returns immediately
-                        if (!result) {
+                        if (result == false) {
                             return;
                         }
 
