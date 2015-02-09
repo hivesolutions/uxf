@@ -131,9 +131,18 @@
                             // presents the confirm window to the end user so that it's
                             // possible to cancel/confirm it
                             _body.uxconfirm(message, function(result) {
-                                        // in case the result is cancel,
-                                        // avoids execution and returns immediately
+                                        // in case the result is cancel, must revert the current
+                                        // partial state and then return the control flow
                                         if (!result) {
+                                            // triggers the unlock (elements) events to emulate the
+                                            // end of the submission of the form (compatability)
+                                            // this should release the elements state to the normal
+                                            // state so that they may be re-used again
+                                            element.triggerHandler("unlock");
+                                            element.triggerHandler("post_submit");
+
+                                            // returns the control from to the caller method, there's
+                                            // nothing remaining to be done (submission interception)
                                             return;
                                         }
 
