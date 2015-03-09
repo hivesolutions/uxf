@@ -1,5 +1,5 @@
 .ulite-style .link {
-    color: #6d6d6d;
+    color: #4d4d4d;
     outline: none;
     text-decoration: none;
     text-transform: uppercase;
@@ -18,7 +18,7 @@
 }
 
 .ulite-style .link.link-light {
-    color: #6d6d6d;
+    color: #4d4d4d;
 }
 
 .ulite-style .link.link-dark {
@@ -30,7 +30,7 @@
 }
 
 .ulite-style .link:hover {
-    color: #2d2d2d;
+    color: #1d1d1d;
 }
 
 .ulite-style .link.selected {
@@ -46,7 +46,7 @@
 }
 
 .ulite-style .link.small:hover {
-    color: #2d2d2d;
+    color: #1d1d1d;
 }
 
 .ulite-style .link.link-orange:hover {
@@ -54,11 +54,11 @@
 }
 
 .ulite-style .link.link-light:hover {
-    color: #2d2d2d;
+    color: #1d1d1d;
 }
 
 .ulite-style .link-dark:hover {
-    color: #2d2d2d;
+    color: #1d1d1d;
 }
 
 .ulite-style .link-dark-orange:hover {
