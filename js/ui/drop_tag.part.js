@@ -231,9 +231,19 @@
 
         var release = function() {
             // retrieves the currently matched object as the drop
-            // tag element to ve used in the tag mode removal and
-            // then uses it to retrieve the selected list items
+            // tag element to be used in the tag mode removal
             var dropTag = matchedObject;
+
+            // verifies if the current drop tag is "under" the tag
+            // mode and if that's not the case returns immediately as
+            // there's nothing pending to be done in the release operation
+            var isSelected = dropTag.hasClass("tag-mode");
+            if (!isSelected) {
+                return;
+            }
+
+            // retrieves the complete set  of selected list items from the
+            // drop tag so that they are properly "released"
             var listItems = jQuery(".items > li.selected", dropTag);
 
             // removes the selected class from the "selected" list
