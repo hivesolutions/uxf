@@ -156,8 +156,8 @@
                         // (reverts the state to drop mode)
                         dropTag.removeClass("tag-mode");
 
-                        // triggers the item unselected event the event is triggered without
-                        // any arguments
+                        // triggers the item unselected event the event is
+                        // triggered without any arguments
                         dropTag.triggerHandler("item_unselected", [])
                     });
 
@@ -230,11 +230,23 @@
         };
 
         var release = function() {
-            var dropTag = matchedObject();
+            // retrieves the currently matched object as the drop
+            // tag element to ve used in the tag mode removal and
+            // then uses it to retrieve the selected list items
+            var dropTag = matchedObject;
+            var listItems = jQuery(".items > li.selected", dropTag);
+
+            // removes the selected class from the "selected" list
+            // item elements (unselects them)
+            listItems.removeClass("selected");
 
             // removes the tag mode class from the drop tag
             // (reverts the state to drop mode)
             dropTag.removeClass("tag-mode");
+
+            // triggers the item unselected event the event is
+            // triggered without any arguments
+            dropTag.triggerHandler("item_unselected", [])
         };
 
         // switches over the method
