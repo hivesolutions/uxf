@@ -76,9 +76,14 @@
                 var count = children.length;
 
                 // retrieves the first child and uses it to calculate
-                // the complete width for the children
+                // the complete width for the children, note that the
+                // width is retrieved taking into accoun that a proper
+                // outer width retrieval may fail under certain conditions
                 var first = jQuery(children[0]);
-                var width = first.outerWidth(true) * count;
+                var firstWidth = first.outerWidth(true) > first.outerWidth(false)
+                        ? first.outerWidth(true)
+                        : first.outerWidth(false);
+                var width = firstWidth * count;
 
                 // calculates the complete scroll witdth to check if the
                 // scroll is required in case it's not hides the previous
