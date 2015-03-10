@@ -198,6 +198,14 @@
     padding: 0px 0px 0px 0px;
 }
 
+.ulite-style .list.product-description-list > .list-area  > .item {
+    opacity: 0.0;
+    transition: opacity 0.50s linear;
+    -o-transition: opacity 0.50s linear;
+    -moz-transition: opacity 0.50s linear;
+    -webkit-transition: opacity 0.50s linear;
+}
+
 .ulite-style .list.product-description-list .product-description-item {
     border: 1px solid #f6f6f6;
     float: left;
