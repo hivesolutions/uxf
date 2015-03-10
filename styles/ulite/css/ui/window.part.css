@@ -12,7 +12,7 @@
 
 .ulite-style .window h1 {
     color: #4d4d4d;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     margin: 0px 0px 0px 0px;
     text-transform: uppercase;
@@ -25,8 +25,18 @@
 
 .ulite-style .window .window-buttons .button {
     color: #e0933a;
+    font-size: 11px;
+    font-weight: 600;
 }
 
 .ulite-style .window .window-buttons .button:hover {
     color: #c87719;
+}
+
+.ulite-style.violet .window .window-buttons .button {
+    color: #9678d2;
+}
+
+.ulite-style.violet .window .window-buttons .button:hover {
+    color: #6f599c;
 }
