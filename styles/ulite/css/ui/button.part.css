@@ -204,3 +204,7 @@
 .ulite-style.violet .button.color-button {
     color: #9678d2;
 }
+
+.ulite-style.violet .button.form-button.action-button:hover {
+    color: #9678d2;
+}
