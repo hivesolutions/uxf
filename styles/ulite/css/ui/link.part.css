@@ -30,7 +30,7 @@
 }
 
 .ulite-style .link:hover {
-    color: #1d1d1d;
+    color: #000000;
 }
 
 .ulite-style .link.selected {
@@ -46,7 +46,7 @@
 }
 
 .ulite-style .link.small:hover {
-    color: #1d1d1d;
+    color: #000000;
 }
 
 .ulite-style .link.link-orange:hover {
@@ -54,11 +54,11 @@
 }
 
 .ulite-style .link.link-light:hover {
-    color: #1d1d1d;
+    color: #000000;
 }
 
 .ulite-style .link-dark:hover {
-    color: #1d1d1d;
+    color: #000000;
 }
 
 .ulite-style .link-dark-orange:hover {
