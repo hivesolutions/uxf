@@ -76,3 +76,7 @@
 .ulite-style .link.login-link {
     padding-right: 8px;
 }
+
+.ulite-style.violet .link.selected {
+    color: #9678d2;
+}
