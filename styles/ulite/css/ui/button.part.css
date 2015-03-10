@@ -57,12 +57,14 @@
     background-position: left -1px;
 }
 
+.ulite-style .button.color-button,
 .ulite-style .button.orange-button {
     color: #e0933a;
     font-size: 10px;
     margin-bottom: 8px;
 }
 
+.ulite-style .button.color-button:hover,
 .ulite-style .button.orange-button:hover {
     background-color: transparent;
 }
@@ -197,4 +199,8 @@
     line-height: 16px;
     margin: 3px 0px 0px 0px;
     text-transform: none;
+}
+
+.ulite-style.violet .button.color-button {
+    color: #9678d2;
 }
