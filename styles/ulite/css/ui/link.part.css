@@ -9,6 +9,10 @@
     text-transform: none;
 }
 
+.ulite-style .link.link-color {
+    color: #e0933a;
+}
+
 .ulite-style .link.link-orange {
     color: #e0933a;
 }
@@ -75,6 +79,14 @@
 
 .ulite-style .link.login-link {
     padding-right: 8px;
+}
+
+.ulite-style.violet .link.link-color {
+    color: #9678d2;
+}
+
+.ulite-style.violet .link.link-color:hover {
+    color: #6f599c;
 }
 
 .ulite-style.violet .link.selected {
