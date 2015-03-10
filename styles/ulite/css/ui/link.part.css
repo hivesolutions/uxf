@@ -13,6 +13,10 @@
     color: #e0933a;
 }
 
+.ulite-style .link.link-dark-color {
+    color: #4d4d4d;
+}
+
 .ulite-style .link.link-orange {
     color: #e0933a;
 }
@@ -53,6 +57,14 @@
     color: #000000;
 }
 
+.ulite-style .link.link-color:hover {
+    color: #c87719;
+}
+
+.ulite-style .link.link-dark-color:hover {
+    color: #e0933a;
+}
+
 .ulite-style .link.link-orange:hover {
     color: #c87719;
 }
@@ -87,6 +99,10 @@
 
 .ulite-style.violet .link.link-color:hover {
     color: #6f599c;
+}
+
+.ulite-style.violet .link.link-dark-color:hover {
+    color: #9678d2;
 }
 
 .ulite-style.violet .link.selected {
