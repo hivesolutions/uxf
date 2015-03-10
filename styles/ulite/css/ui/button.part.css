@@ -9,10 +9,10 @@
 .ulite-style .button.button-top {
     line-height: 20px;
     text-transform: uppercase;
-    transition: background-color 0.15s ease-out;
-    -o-transition: background-color 0.15s ease-out;
-    -moz-transition: background-color 0.15s ease-out;
-    -webkit-transition: background-color 0.15s ease-out;
+    transition: background-color 0.15s linear;
+    -o-transition: background-color 0.15s linear;
+    -moz-transition: background-color 0.15s linear;
+    -webkit-transition: background-color 0.15s linear;
 }
 
 .ulite-style .button.button-top:hover {
