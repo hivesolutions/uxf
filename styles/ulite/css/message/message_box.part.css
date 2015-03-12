@@ -1,5 +1,11 @@
 .ulite-style .message-box {
+    color: #efc698;
     font-size: 13px;
+    font-weight: 600;
     margin: -4px 0px 14px 0px;
     text-align: center;
+}
+
+.ulite-style.violet .message-box {
+    color: #9678d2;
 }
