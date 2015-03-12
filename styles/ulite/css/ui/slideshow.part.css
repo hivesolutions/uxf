@@ -4,6 +4,11 @@
     width: 400px;
 }
 
+.ulite-style .slideshow.small {
+    margin-left: 600px;
+    width: 340px;
+}
+
 .ulite-style .slideshow .slideshow-image {
     cursor: pointer;
 }
@@ -11,6 +16,11 @@
 .ulite-style .slideshow .slideshow-image img {
     height: 400px;
     width: 400px;
+}
+
+.ulite-style .slideshow.small .slideshow-image img {
+    height: 340px;
+    width: 340px;
 }
 
 .ulite-style .slideshow  ul.slideshow-alternates {
