@@ -35,8 +35,17 @@
 
 .ulite-style.violet .window .window-buttons .button {
     color: #9678d2;
+    margin: 0px 6px 0px 6px;
 }
 
 .ulite-style.violet .window .window-buttons .button:hover {
     color: #6f599c;
+}
+
+.ulite-style.violet .window .window-buttons .button.button-cancel {
+    color: #4d4d4d;
+}
+
+.ulite-style.violet .window .window-buttons .button.button-cancel:hover {
+    color: #000000;
 }
