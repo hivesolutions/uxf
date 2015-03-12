@@ -367,6 +367,8 @@
     color: #6d6d6d;
     line-height: 20px;
     margin: 4px 0px 4px 0px;
+    max-height: 62px;
+    overflow: hidden;
 }
 
 .ulite-style .list.basket-list li .product-description .product-characteristic {
