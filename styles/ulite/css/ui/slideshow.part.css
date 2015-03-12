@@ -6,12 +6,16 @@
 
 .ulite-style .slideshow.small {
     margin-left: 600px;
-    padding-top: 60px;
+    padding-top: 48px;
     width: 340px;
 }
 
 .ulite-style .slideshow .slideshow-image {
     cursor: pointer;
+}
+
+.ulite-style .slideshow.small .slideshow-image {
+    margin-bottom: 12px;
 }
 
 .ulite-style .slideshow .slideshow-image img {
