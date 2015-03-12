@@ -232,6 +232,7 @@
     padding: 4px 8px 4px 8px;
     position: absolute;
     width: 131px;
+    z-index: 10;
 }
 
 .ulite-style .list.product-description-list .product-description-item-details.right {
