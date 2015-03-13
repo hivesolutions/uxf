@@ -346,7 +346,7 @@
             // in case there's no height defined for the tags container,
             // happens when the current tag container is not visible, must
             // delay the update operation until the next tick, note that
-            // this is only possible when the element is contained
+            // this is only possible when the element is contained (in dom)
             if (tagsContainerHeight == 0) {
                 isContained && setTimeout(function() {
                             _update(matchedObject, options, noWidth);
