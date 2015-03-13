@@ -2348,7 +2348,22 @@
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" />");
+                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"integer\" />");
+                    valueField.insertAfter(operationField);
+                    valueField.uxtextfield();
+
+                    // breaks the switch
+                    break;
+
+                case "float" :
+                    // creates the list of items and then creates the list
+                    // of equivalent operations (index based association)
+                    var _items = ["equals", "greater than", "less than"];
+                    var _operations = ["equals", "greater", "lesser"];
+
+                    // creates the value field as a text field, inserts it
+                    // after the operation field and initializes it
+                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"float\" />");
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
 
