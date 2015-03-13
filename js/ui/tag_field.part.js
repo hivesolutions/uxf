@@ -338,6 +338,22 @@
             var tagsContainerHeight = tagsContainer.outerHeight();
             var textFieldWidth = textField.outerWidth();
 
+            // verifies if the tags contained is currently part of the
+            // current document's tree (dom), this will be used to determine
+            // if a timeout should be created in case of invalid height
+            var isContained = jQuery.contains(document, tagsContainer[0]);
+
+            // in case there's no height defined for the tags container,
+            // happens when the current tag container is not visible, must
+            // delay the update operation until the next tick, note that
+            // this is only possible when the element is contained
+            if (tagsContainerHeight == 0) {
+                isContained && setTimeout(function() {
+                            _update(matchedObject, options, noWidth);
+                        }, 100);
+                return;
+            }
+
             // retrieves the last tag in the tag sequence then uses
             // it to retrieve the reference value to the top (offset y)
             var lastTag = tags.length ? jQuery(tags[tags.length - 1]) : null;
