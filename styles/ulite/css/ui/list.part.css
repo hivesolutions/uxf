@@ -57,7 +57,7 @@
 }
 
 .ulite-style .list.featured-list li .title {
-    color: #6d6d6d;
+    color: #4d4d4d;
     height: 14px;
     line-height: 14px;
     margin: 0px 0px 3px 0px;
@@ -65,7 +65,7 @@
 }
 
 .ulite-style .list.featured-list li .price {
-    color: #999999;
+    color: #6d6d6d;
     line-height: 14px;
     margin: 0px 0px 0px 0px;
 }
@@ -91,13 +91,13 @@
 }
 
 .ulite-style .list.related-list li .title {
-    color: #6d6d6d;
+    color: #4d4d4d;
     line-height: 14px;
     margin: 0px 0px 3px 0px;
 }
 
 .ulite-style .list.related-list li .price {
-    color: #999999;
+    color: #6d6d6d;
     line-height: 14px;
     margin: 0px 0px 0px 0px;
 }
