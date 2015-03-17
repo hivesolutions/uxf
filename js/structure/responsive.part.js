@@ -11,6 +11,18 @@
             return this;
         }
 
+        // tries to retrieve the complete set of pixel based values for
+        // border width and height values, these values are going to be
+        // used by the watch function to determine the correct classes
+        var slimWidth = matchedObject.attr("data-slim") || "960";
+        var tabletWidth = matchedObject.attr("data-tablet") || "768";
+        var mobileWidth = matchedObject.attr("data-mobile") || "420";
+        var shortHeight = matchedObject.attr("data-short") || "800";
+        slimWidth = parseInt(slimWidth);
+        tabletWidth = parseInt(tabletWidth);
+        mobileWidth = parseInt(mobileWidth);
+        shortHeight = parseInt(shortHeight);
+
         var watch = function() {
             // retrieves the current values for both the width and
             // the height of the current window, these values are
@@ -29,9 +41,9 @@
 
             // verifies the current window width value and according to
             // that selects the proper class to be applied to the object
-            if (windowWidth > 768) {
+            if (windowWidth > tabletWidth) {
                 matchedObject.addClass("desktop-s");
-            } else if (windowWidth > 420) {
+            } else if (windowWidth > mobileWidth) {
                 matchedObject.addClass("tablet-s");
             } else {
                 matchedObject.addClass("mobile-s");
@@ -39,13 +51,13 @@
 
             // verifies the current window width value and according to
             // that selects the proper class to be applied to the object
-            if (windowWidth > 960) {
+            if (windowWidth > slimWidth) {
                 matchedObject.addClass("fat-s");
             }
 
             // verifies the current window height value and according to
             // that selects the proper class to be applied to the object
-            if (windowHeight > 800) {
+            if (windowHeight > shortHeight) {
                 matchedObject.addClass("tall-s");
             }
         };
