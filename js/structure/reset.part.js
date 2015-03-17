@@ -23,5 +23,9 @@
                     // that a reset operation has been performed in it
                     _element.triggerHandler("_reset");
                 });
+
+                // returns the reference to the current context to
+                // the caller object so that it may be "re-used"
+                return this;
     };
 })(jQuery);

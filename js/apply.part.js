@@ -264,6 +264,12 @@
             // taking into account if this is a desktop or mobile browser
             _body.uxmobile();
 
+            // applies the responsive plugin, responsible for the registration
+            // of the handler that changes the top level classes of the body
+            // according to the current dimensions/size of the viewport so that
+            // the layout may adjust to the current dimensions (responsive design)
+            _body.uxresponsive();
+
             // applies the eval (javascript evalutation)
             // this is a dangerous operation
             _eval.uxeval();

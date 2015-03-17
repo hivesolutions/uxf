@@ -21,5 +21,9 @@
                     _element.attr(attrNameTarget, attribute);
                     _element.removeAttr(attrName);
                 });
+
+        // returns the reference to the current context to
+        // the caller object so that it may be "re-used"
+        return this;
     };
 })(jQuery);
