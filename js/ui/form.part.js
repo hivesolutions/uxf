@@ -349,15 +349,20 @@
                     return;
                 }
 
+                // gathers the target location (redirection) in case it exists, then
+                // retrieves the content type for the current request and processes
+                // the value retrieving only the basic value for it, then verifies
+                // that the mime type of it is html and in case it's not and there's
+                // no valid user agent redirect defined redirects the user agent to
+                // the target location as the data type is not compatbile with ajax
+                // processing (fallback procedure for binary values, downloading)
                 var location = request.getResponseHeader("Location");
                 var contentType = request.getResponseHeader("Content-Type")
                         || "";
                 contentType = contentType.split(";")[0];
                 contentType = contentType.strip();
                 if (!location && contentType != "text/html") {
-                    matchedObject.data("submited", false);
-                    matchedObject.addClass("no-async");
-                    matchedObject.submit();
+                    fallback(matchedObject, options);
                     request.abort();
                     return;
                 }
@@ -423,9 +428,7 @@
                 if (location || contentType == "text/html") {
                     return;
                 }
-                matchedObject.data("submited", false);
-                matchedObject.addClass("no-async");
-                matchedObject.submit();
+                fallback(matchedObject, options);
                 request.abort();
             };
             request.send(data);
@@ -554,6 +557,20 @@
                     matchedObject.triggerHandler("error", [exception]);
                 }
             });
+        };
+
+        var fallback = function(matchedObject, options) {
+            // triggers the post submit event in the current matched object
+            // (form) indicating that the form has been submitted (canceled)
+            matchedObject.triggerHandler("post_submit");
+
+            // removes the submited flag from the form (allows re-submit)
+            // then set the form as non asyncronous and submits it, removing
+            // the same flag after the submit operation is completed
+            matchedObject.data("submited", false);
+            matchedObject.addClass("no-async");
+            matchedObject.submit();
+            matchedObject.removeClass("no-async");
         };
 
         var resetErrors = function(matchedObject, options) {
