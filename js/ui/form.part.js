@@ -560,8 +560,10 @@
         };
 
         var fallback = function(matchedObject, options) {
-            // triggers the async end event in the current matched object
-            // indicating no async operation will take place (aborted)
+            // triggers the post submit and async end events in the currently
+            // matched object indicating that the current operation has been
+            // aborted and that reversing operations should take place
+            matchedObject.triggerHandler("post_submit");
             matchedObject.triggerHandler("async_end");
 
             // removes the submited flag from the form (allows re-submit)
