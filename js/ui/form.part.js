@@ -349,6 +349,16 @@
                     return;
                 }
 
+                var location = request.getResponseHeader("Location");
+                var contentType = request.getResponseHeader("Content-Type")
+                        || "";
+                contentType = contentType.split(";")[0];
+                contentType = contentType.strip();
+                if (!location && contentType != "text/html") {
+                    document.location = href;
+                    request.abort();
+                }
+
                 // triggers the post submit event in the current matched object
                 // (form) indicating that the form has been submitted
                 matchedObject.triggerHandler("post_submit");
