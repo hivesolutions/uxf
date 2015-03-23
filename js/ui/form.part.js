@@ -560,11 +560,15 @@
         };
 
         var fallback = function(matchedObject, options) {
+            // retrieves the reference to the top level body element reference
+            // that is going to be used to trigger high level events
+            var _body = jQuery("body");
+
             // triggers the post submit and async end events in the currently
             // matched object indicating that the current operation has been
             // aborted and that reversing operations should take place
             matchedObject.triggerHandler("post_submit");
-            matchedObject.triggerHandler("async_end");
+            _body.triggerHandler("async_end");
 
             // removes the submited flag from the form (allows re-submit)
             // then set the form as non asyncronous and submits it, removing
