@@ -355,6 +355,7 @@
                 contentType = contentType.split(";")[0];
                 contentType = contentType.strip();
                 if (!location && contentType != "text/html") {
+                    matchedObject.data("submited", false);
                     matchedObject.addClass("no-async");
                     matchedObject.submit();
                     request.abort();
@@ -422,6 +423,7 @@
                 if (location || contentType == "text/html") {
                     return;
                 }
+                matchedObject.data("submited", false);
                 matchedObject.addClass("no-async");
                 matchedObject.submit();
                 request.abort();
