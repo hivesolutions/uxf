@@ -355,7 +355,8 @@
                 contentType = contentType.split(";")[0];
                 contentType = contentType.strip();
                 if (!location && contentType != "text/html") {
-                    document.location = href;
+                    element.addClass("no-async");
+                    element.submit();
                     request.abort();
                     return;
                 }
@@ -421,7 +422,8 @@
                 if (location || contentType == "text/html") {
                     return;
                 }
-                document.location = href;
+                element.addClass("no-async");
+                element.submit();
                 request.abort();
             };
             request.send(data);
