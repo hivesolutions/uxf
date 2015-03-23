@@ -357,6 +357,7 @@
                 if (!location && contentType != "text/html") {
                     document.location = href;
                     request.abort();
+                    return;
                 }
 
                 // triggers the post submit event in the current matched object
