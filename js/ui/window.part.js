@@ -382,7 +382,7 @@
                         // switches over the key value
                         switch (keyValue) {
                             case 27 :
-                                _hide(matchedObject, options);
+                                _hide(matchedObject, options, false);
                                 break;
                         }
                     });

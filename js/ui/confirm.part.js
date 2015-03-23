@@ -82,10 +82,9 @@
 
             // registers for the click event on the button confirm
             windowButtonConfirm.click(function() {
-                        // retrieves the element
+                        // retrieves the element and uses it to gather
+                        // the reference to the associated window
                         var element = jQuery(this);
-
-                        // retrieves the associated window
                         var window = element.parents(".window");
 
                         // hides the window and calls the
@@ -96,15 +95,21 @@
 
             // registers for the click event on the button cancel
             windowButtonCancel.click(function() {
-                        // retrieves the element
+                        // retrieves the element and uses it to gather
+                        // the reference to the associated window
                         var element = jQuery(this);
-
-                        // retrieves the associated window
                         var window = element.parents(".window");
 
                         // hides the window and calls the
                         // callback if defined
                         window.uxwindow("hide");
+                        callback && callback(false);
+                    });
+
+            // registers for the cancel event in the associated
+            // window so that the proper callback is called with
+            // the error flag if it's defined
+            window.bind("cancel", function() {
                         callback && callback(false);
                     });
         };
