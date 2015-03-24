@@ -143,24 +143,29 @@
                         return;
                     }
 
-                    // gathers the target location (redirection) in case it exists, then
-                    // retrieves the content type for the current request and processes
-                    // the value retrieving only the basic value for it, then verifies
-                    // that the mime type of it is html and in case it's not and there's
-                    // no valid user agent redirect defined redirects the user agent to
-                    // the target location as the data type is not compatbile with ajax
-                    // processing (fallback procedure for binary values, downloading)
-                    var location = request.getResponseHeader("Location");
-                    var contentType = request.getResponseHeader("Content-Type")
-                            || "";
-                    contentType = contentType.split(";")[0];
-                    contentType = contentType.strip();
-                    if (location || contentType == "text/html") {
+                    // verifies if the current request represents and async request
+                    // and if that's not the case runs the fallback process (user agent
+                    // document redirection) and aborts the current request
+                    var requestAsync = isAsync(request);
+                    if (requestAsync == true) {
                         return;
                     }
                     document.location = href;
                     request.abort();
                 });
+
+        var isAsync = function(request) {
+            // gathers the target location (redirection) in case it exists, then
+            // retrieves the content type for the current request and processes
+            // the value retrieving only the basic value for it, then verifies
+            // that the mime type of it is html and in case it's returns valid as
+            // the provided request is considered to be an async request
+            var location = request.getResponseHeader("Location");
+            var contentType = request.getResponseHeader("Content-Type") || "";
+            contentType = contentType.split(";")[0];
+            contentType = contentType.strip();
+            return location || contentType == "text/html";
+        };
 
         // returns valid as the link execution has been started
         // with success (async request sent)
