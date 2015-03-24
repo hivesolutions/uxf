@@ -552,6 +552,7 @@
             // matched object (and body) indicating that the current operation
             // has been aborted and that reversing operations should take place
             matchedObject.triggerHandler("post_submit");
+            matchedObject.triggerHandler("unlock");
             _body.triggerHandler("async_end");
 
             // removes the submited flag from the form (allows re-submit)
@@ -560,6 +561,8 @@
             matchedObject.data("submited", false);
             matchedObject.addClass("no-async");
             matchedObject.submit();
+            matchedObject.triggerHandler("post_submit");
+            matchedObject.triggerHandler("unlock");
             matchedObject.data("submited", false);
             matchedObject.removeClass("no-async");
         };
