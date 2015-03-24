@@ -557,7 +557,8 @@
 
             // removes the submited flag from the form (allows re-submit)
             // then set the form as non asyncronous and submits it, removing
-            // the same flag after the submit operation is completed
+            // the same flag after the submit operation is completed, so that's
+            // possible to re-use the form after the initial submission
             matchedObject.data("submited", false);
             matchedObject.addClass("no-async");
             matchedObject.submit();
