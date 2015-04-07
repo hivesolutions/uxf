@@ -1611,7 +1611,7 @@
             // is visible and in case it's not shows it, as this is
             // required in order to retrieve the proper measures
             var isVisible = dropFieldContents.is(":visible");
-            !isVisible && _show(dropField);
+            !isVisible && dropFieldContents.show();
 
             // calculates the drop field contents width using the text
             // field width as reference and calculating the extra width
