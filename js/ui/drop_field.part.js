@@ -1219,14 +1219,15 @@
                         // (must position the drop field contents)
                         if (autoResize != "false") {
                             // checks if the current drop field contents component
-                            // is visible and in case it's not shows it
+                            // is visible and in case it's not shows it, as this is
+                            // required in order to retrieve the proper measures
                             var isVisible = dropFieldContents.is(":visible");
                             !isVisible && dropFieldContents.show();
 
-                            // calculates the drop field contents width
-                            // using the text field width as reference and calculating
-                            // the extra width to be removed from the dropfield as the
-                            // extra margin (and border) values that it may contain
+                            // calculates the drop field contents width using the text
+                            // field width as reference and calculating the extra width
+                            // to be removed from the dropfield as the extra margin
+                            // (and border) values that it may contain
                             var textFieldWidth = textField.outerWidth(true);
                             var dropFieldContentsExtraWidth = dropFieldContents.outerWidth()
                                     - dropFieldContents.width();
@@ -1237,7 +1238,8 @@
                             // hides them back (original visibility)
                             !isVisible && dropFieldContents.hide();
 
-                            // sets the drop field contents width
+                            // sets the drop field contents width with the resulting value
+                            // so that the contents placeholder is properly updated
                             dropFieldContents.width(dropFieldContentsWidth);
                         }
 
