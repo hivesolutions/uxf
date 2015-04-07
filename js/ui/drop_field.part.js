@@ -562,7 +562,8 @@
                             dropField.triggerHandler("value_select", [value,
                                             valueLogic, item]);
 
-                            // hides the drop field contents
+                            // hides the drop field contents, so that they
+                            // are no longer visible to the end-user
                             dropFieldContents.hide();
 
                             // stops the event propagation
@@ -1655,7 +1656,7 @@
             var dropField = matchedObject;
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
 
-            // hides/removess the current drop field contents so that the
+            // hides/removes the current drop field contents so that the
             // proper layout is removed from the screen
             dropFieldContents.hide();
         };
