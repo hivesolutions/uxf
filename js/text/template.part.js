@@ -49,7 +49,8 @@
             var templateElement = element.clone();
 
             // applies the template to the template element, retrieving
-            // the template contents
+            // the template contents, this operation should replace all
+            // the variable references in the template
             var templateContents = __applyTemplate(templateElement, attributes);
 
             // set the template contents in the template element
@@ -145,7 +146,7 @@
                 // otherwise the attribute value must be
                 // a simple basic type
                 else {
-                    // creates the regular expression for globar search on the key
+                    // creates the regular expression for global search on the key
                     var keyRegex = new RegExp("%\\[" + key + "\\]", "g");
 
                     // in case the localize flag is set, tries to localize the
