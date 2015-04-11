@@ -45,10 +45,14 @@
             var isTablet = _isTablet(navigator.userAgent);
             var isDevice = isMobile || isTablet;
             var isDesktop = !isDevice;
+            var isTouch = isDevice;
+            var isMouse = isDesktop;
             isMobile && matchedObject.addClass("mobile");
             isTablet && matchedObject.addClass("tablet");
             isDevice && matchedObject.addClass("device");
             isDesktop && matchedObject.addClass("desktop");
+            isTouch && matchedObject.addClass("touch");
+            isMouse && matchedObject.addClass("mouse");
         };
 
         var _isMobile = function(data) {
