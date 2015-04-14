@@ -71,6 +71,11 @@
                 // an input should be created if none is found
                 var noInput = _element.attr("data-no_input");
 
+                // tries to retrieve the (default and inital) sort attribute for
+                // the filter and in case it exits sets it inthe filter sate
+                var sort = _element.attr("data-sort");
+                sort && _element.data("sort", sort.split(":"));
+
                 // retrieves the number of records attribute and then tries to
                 // parse it as an integer value in case it fails falls back to
                 // the original value otherwise used the newly processed one
