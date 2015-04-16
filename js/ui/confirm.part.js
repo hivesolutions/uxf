@@ -91,7 +91,7 @@
                         // defined, note that the result of the hide
                         // operation is considered to be success
                         window.uxwindow("hide", {
-                                    "result" : "success"
+                                    "reason" : "success"
                                 });
                         callback && callback(true);
                     });
@@ -107,7 +107,7 @@
                         // if defined, note that the result of the
                         // hide operation is considered to be cancel
                         window.uxwindow("hide", {
-                                    "result" : "cancel"
+                                    "reason" : "cancel"
                                 });
                         callback && callback(false);
                     });
