@@ -232,7 +232,8 @@
 
             // retrieves the appropriate name for the event to be
             // triggered indiccating the state the window has closed
-            var name = success ? "success" : "cancel";
+            var name = options["result"] || "cancel";
+            name = success ? "success" : name;
 
             // triggers the hide handler so that any handler
             // may be notified about the visibility change
