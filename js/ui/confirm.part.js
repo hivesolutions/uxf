@@ -87,9 +87,12 @@
                         var element = jQuery(this);
                         var window = element.parents(".window");
 
-                        // hides the window and calls the
-                        // callback if defined
-                        window.uxwindow("hide");
+                        // hides the window and calls the callback if
+                        // defined, note that the result of the hide
+                        // operation is considered to be success
+                        window.uxwindow("hide", {
+                                    "reason" : "success"
+                                });
                         callback && callback(true);
                     });
 
@@ -100,9 +103,12 @@
                         var element = jQuery(this);
                         var window = element.parents(".window");
 
-                        // hides the window and calls the
-                        // callback if defined
-                        window.uxwindow("hide");
+                        // hides the window and calls the callback
+                        // if defined, note that the result of the
+                        // hide operation is considered to be cancel
+                        window.uxwindow("hide", {
+                                    "reason" : "cancel"
+                                });
                         callback && callback(false);
                     });
 

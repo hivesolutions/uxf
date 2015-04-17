@@ -231,8 +231,10 @@
             matchedObject.fadeOut(250);
 
             // retrieves the appropriate name for the event to be
-            // triggered indiccating the state the window has closed
-            var name = success ? "success" : "cancel";
+            // triggered indicating the state the window has closed,
+            // note that the options map is used for the fallback
+            var name = options["reason"] || "cancel";
+            name = success ? "success" : name;
 
             // triggers the hide handler so that any handler
             // may be notified about the visibility change
