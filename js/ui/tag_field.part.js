@@ -354,6 +354,11 @@
                 return;
             }
 
+            // verifies if the auto width mode is enabled for the tag field
+            // this is usefull for situations where the width should not
+            // be computed automatically (eg: percent based width)
+            var autoWidth = matchedObject.attr("data-auto_width");
+
             // retrieves the last tag in the tag sequence then uses
             // it to retrieve the reference value to the top (offset y)
             var lastTag = tags.length ? jQuery(tags[tags.length - 1]) : null;
@@ -465,7 +470,7 @@
             // field associated with the tag field, note that this
             // operation is only performed in case the no width flag
             // is not set (conditional execution)
-            !noWidth && textField.css("width", width + "px");
+            !noWidth && !autoWidth && textField.css("width", width + "px");
             !noWidth && textField.css("padding-left", lineWidth + "px");
         };
 
