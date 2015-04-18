@@ -347,7 +347,7 @@
             // happens when the current tag container is not visible, must
             // delay the update operation until the next tick, note that
             // this is only possible when the element is contained (in dom)
-            if (tagsContainerHeight == 0) {
+            if (tagsContainerHeight == 0 && tags.length > 0) {
                 isContained && setTimeout(function() {
                             _update(matchedObject, options, noWidth);
                         }, 100);
@@ -358,6 +358,16 @@
             // this is usefull for situations where the width should not
             // be computed automatically (eg: percent based width)
             var autoWidth = matchedObject.attr("data-auto_width");
+
+            // verifies if the text field is currently handled using a border
+            // box based strategy as this will employ different calculus
+            var isBorderBox = textField.css("box-sizing") == "border-box";
+
+            // tries to retrieve the "original" height value for the text field
+            // and updates the register to this same value (only one retrieval)
+            var textFieldHeight = textField.data("height")
+                    || textField.height();
+            textField.data("height", textFieldHeight);
 
             // retrieves the last tag in the tag sequence then uses
             // it to retrieve the reference value to the top (offset y)
@@ -421,6 +431,10 @@
             numberLines = isNaN(numberLines) ? 1 : numberLines;
             var paddingTop = (numberLines - 1) * lineOuterHeight;
 
+            // in case border box is enabled for the field the height
+            // value must be update with to handle the new padding
+            isBorderBox && textField.height(paddingTop + textFieldHeight);
+
             // retrieves the original padding top value to be used to
             // increment the new padding top
             var textFieldPaddingTop = textField.data("padding_top");
@@ -432,15 +446,15 @@
             var textFieldMarginTop = textField.css("margin-top");
             textFieldMarginTop = parseInt(textFieldMarginTop);
 
-            // retrieves the text field height to be used in the calculus
-            // of the delta value to the margin top
-            var textFieldHeight = textField.height();
+            // uses the text field height in the calculus of the delta
+            // value to the margin top (to be able to update it)
             var borderTopWidth = textField.css("border-top-width");
             borderTopWidth = parseInt(borderTopWidth);
             var borderBottomWidth = textField.css("border-bottom-width");
             borderBottomWidth = parseInt(borderBottomWidth);
             var borderWidth = borderTopWidth + borderBottomWidth;
-            var deltaMarginTop = ((textFieldHeight + borderWidth - lineHeight) / 2);
+            var deltaMarginTop = ((textFieldHeight
+                    + (isBorderBox ? 0 : borderWidth) - lineHeight) / 2);
 
             // retrieves the various extra components of the text field
             // and adds them together to calculate the extra pixel values
@@ -519,7 +533,7 @@
 
                 // adds the current data value to the value and then
                 // completes it with a comma
-                value += dataValue + ","
+                value += dataValue + ",";
             }
 
             // returns the "just" computed sequence value comprising
