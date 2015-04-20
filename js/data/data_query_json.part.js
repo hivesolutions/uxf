@@ -128,9 +128,8 @@
             var data = element.data("data");
             var cacheD = element.data("cache_d");
 
-            // adds the id (part) to the url (in case
-            // it's necessary)
-            url += id ? "/" + id + ".json" : ""
+            // adds the id (part) to the url (in case it's necessary)
+            url += id ? "/" + id + ".json" : "";
 
             // increments the value of the number of records (to provide
             // an extra value for more items verification)
@@ -173,7 +172,7 @@
             // matched object this is going to be used later
             // to identify if the request pending is the same
             // or if a new request has come in between
-            matchedObject.data("current", identifier)
+            matchedObject.data("current", identifier);
 
             // retrieves the cache structure for the matched object
             // and tries to find the result from the cache in case
