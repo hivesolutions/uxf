@@ -59,6 +59,11 @@
             // used for plain text free search with non exact matching
             var filterString = query["filterString"];
 
+            // determines if the "main" filter string value should be
+            // used in an insnsitive way, meaning that the uppercase
+            // or lowercase structure should be ignored
+            var insensitive = query["insensitive"];
+
             // retrieves the sort tuple to be used to sort
             // the resulting set of elements
             var sort = query["sort"] || ["default", "descending"];
@@ -152,6 +157,7 @@
             // (unique) identifier of the query
             var query = {
                 filter_string : filterString,
+                insensitive : insensitive,
                 sort : sortString,
                 filters : _filters,
                 start_record : startRecord,
