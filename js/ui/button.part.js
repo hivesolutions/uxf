@@ -93,7 +93,7 @@
                         // checks if the current click is from a middle
                         // button and in such case sets the new window
                         // option to open the link in a new window
-                        var window = event.which == 2
+                        var window = event.which == 2;
                         options["window"] = window;
 
                         // triggers the handling of the click event to
@@ -120,13 +120,11 @@
                         // creates the mouse up handler function so that
                         // there is a clojure in the element
                         var _mouseUpHandler = function(event) {
-                            // retrieves the body
+                            // retrieves the reference to the body element
+                            // then removes the click class from the element
+                            // and unbinds the element from the mouse up event
                             var _body = jQuery("body");
-
-                            // removes the click class from the element
                             element.removeClass("click");
-
-                            // unbinds the mouse up event from the body
                             _body.unbind("mouseup", _mouseUpHandler);
                         };
 
