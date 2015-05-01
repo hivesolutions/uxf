@@ -3,11 +3,10 @@
  * for the creation of a drop tag component. This component should be used for
  * situations where a drop list is selected from a list of tag values and then
  * it may be disabled using the removal icon.
- * 
+ *
  * @name jquery-drop-tag.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
- * @date March 10, 2010
  * @category jQuery plugin
  * @copyright Copyright (c) 2008-2015 Hive Solutions Lda.
  * @license Hive Solutions Confidential Usage License (HSCUL) -

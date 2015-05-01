@@ -4,11 +4,10 @@
  * "powerfull" drop based component to be used together with a data source and
  * provides both the select and the "find" modes of working for active (mouse
  * only) or passive (kwyboard based) models of interaction.
- * 
+ *
  * @name jquery-drop-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
- * @date March 10, 2010
  * @category jQuery plugin
  * @copyright Copyright (c) 2008-2015 Hive Solutions Lda.
  * @license Hive Solutions Confidential Usage License (HSCUL) -
