@@ -1,6 +1,21 @@
+/**
+ * jQuery drop list plugin, this jQuery plugin provides the base infra-structure
+ * for the creation of a drop list component. To be used in graphical operations
+ * where the list of elements to be selected (both text or graphical) should not
+ * allways be viewable and its visibility should be "togglable".
+ * 
+ * @name jquery-drop-tag.js
+ * @author João Magalhães <joamag@hive.pt>
+ * @version 1.0
+ * @date March 10, 2010
+ * @category jQuery plugin
+ * @copyright Copyright (c) 2008-2015 Hive Solutions Lda.
+ * @license Hive Solutions Confidential Usage License (HSCUL) -
+ *          http://www.hive.pt/licenses/
+ */
 (function(jQuery) {
     jQuery.fn.uxdroplist = function(method, options) {
-        // the default values for the data source
+        // the default values for the drop list
         var defaults = {};
 
         // sets the default method value

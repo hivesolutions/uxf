@@ -1,7 +1,9 @@
 /**
  * jQuery drop tag plugin, this jQuery plugin provides the base infra-structure
- * for the creation of a drop tag component.
- *
+ * for the creation of a drop tag component. This component should be used for
+ * situations where a drop list is selected from a list of tag values and then
+ * it may be disabled using the removal icon.
+ * 
  * @name jquery-drop-tag.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
@@ -13,7 +15,7 @@
  */
 (function(jQuery) {
     jQuery.fn.uxdroptag = function(method, options) {
-        // the default values for the data query json
+        // the default values for the drop tag
         var defaults = {};
 
         // sets the default method value
