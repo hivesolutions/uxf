@@ -54,6 +54,7 @@
                         // the associated lightbox path
                         var element = jQuery(this);
                         var lightboxPath = element.attr("data-lightbox_path");
+                        var animated = element.hasClass("lightbox-animated");
 
                         // in case the lightbox path is not defined
                         // no need to show the lightbox
@@ -63,8 +64,11 @@
                         }
 
                         // shows the lightbox on the body element using the
-                        // lightbox path retrieved from the image
-                        _body.uxlightbox(lightboxPath);
+                        // lightbox path retrieved from the image, note that
+                        // the animation flag is controlled by class presence
+                        _body.uxlightbox(lightboxPath, {
+                                    animated : animated
+                                });
                     });
         };
 

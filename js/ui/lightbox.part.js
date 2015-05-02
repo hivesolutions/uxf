@@ -72,7 +72,7 @@
             // runs the initial animation operation for the buttons, this
             // should enable the starting of the loading animation, if
             // that's the required behaviour for the current operation
-            buttons.uxanimation();
+            options.animated && buttons.uxanimation();
 
             // registers for the end of the image loading, because
             // after that the window must be repositioned in the center
@@ -96,7 +96,7 @@
 
                         // runs the (final) animation operation for the buttons, this
                         // should enable the new values of the loading animation
-                        buttons.uxanimation();
+                        options.animated && buttons.uxanimation();
 
                         // shows the window image (back to original state)
                         // and then repositions the window in the center
