@@ -94,6 +94,10 @@
                         // notified abou the end of the image loading
                         window.triggerHandler("loaded");
 
+                        // runs the (final) animation operation for the buttons this,
+                        // should enable the new values of the loading animation
+                        buttons.uxanimation();
+
                         // shows the window image (back to original state)
                         // and then repositions the window in the center
                         // of the screen (the width and height may have changed)
