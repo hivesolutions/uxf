@@ -39,7 +39,7 @@
 
             // retrieves the references to both buttons of the lightbox
             // (window) and runs the initial animation registraion for them
-            var buttons = jQuery(".button-confirm, .button-expand", lightbox);
+            var buttons = jQuery(".button-confirm, .button-expand", window);
             buttons.uxanimation();
 
             // retrieves the reference to the image element associated with
