@@ -65,14 +65,14 @@
             hasChanged && window.data("path", path);
             hasChanged && window.data("large_path", largePath);
 
+            // shows the window (should not show the image immediately,
+            // but must trigger the loading of it)
+            window.uxwindow("show");
+
             // runs the initial animation operation for the buttons this,
             // should enable the starting of the loading animation, if
             // that's the required behaviour for the current operation
             buttons.uxanimation();
-
-            // shows the window (should not show the image immediately,
-            // but must trigger the loading of it)
-            window.uxwindow("show");
 
             // registers for the end of the image loading, because
             // after that the window must be repositioned in the center
