@@ -50,26 +50,27 @@
             // registers for the click event on the image to try to show
             // the associated lightbox
             matchedObject.click(function() {
-                        // retrieves the element and then uses it to retrieve
-                        // the associated lightbox path
-                        var element = jQuery(this);
-                        var lightboxPath = element.attr("data-lightbox_path");
-                        var animated = element.hasClass("lightbox-animated");
+                // retrieves the element and then uses it to retrieve
+                // the associated lightbox path
+                var element = jQuery(this);
+                var lightboxPath = element.attr("data-lightbox_path");
+                var lightboxLargePath = element.attr("data-lightbox_large_path");
+                var animated = element.hasClass("lightbox-animated");
 
-                        // in case the lightbox path is not defined
-                        // no need to show the lightbox
-                        if (!lightboxPath) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the lightbox path is not defined
+                // no need to show the lightbox
+                if (!lightboxPath) {
+                    // returns immediately
+                    return;
+                }
 
-                        // shows the lightbox on the body element using the
-                        // lightbox path retrieved from the image, note that
-                        // the animation flag is controlled by class presence
-                        _body.uxlightbox(lightboxPath, {
-                                    animated : animated
-                                });
-                    });
+                // shows the lightbox on the body element using the
+                // lightbox path retrieved from the image, note that
+                // the animation flag is controlled by class presence
+                _body.uxlightbox(lightboxPath, null, lightboxLargePath, {
+                            animated : animated
+                        });
+            });
         };
 
         // initializes the plugin
