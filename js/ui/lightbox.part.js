@@ -38,9 +38,8 @@
             }
 
             // retrieves the references to both buttons of the lightbox
-            // (window) and runs the initial animation registraion for them
+            // (window) to be used for layout operations
             var buttons = jQuery(".button-confirm, .button-expand", window);
-            buttons.uxanimation();
 
             // retrieves the reference to the image element associated with
             // the window element to be used for the image change
@@ -65,6 +64,11 @@
             // and large path value may be updated accordingly
             hasChanged && window.data("path", path);
             hasChanged && window.data("large_path", largePath);
+
+            // runs the initial animation operation for the buttons this,
+            // should enable the starting of the loading animation, if
+            // that's the required behaviour for the current operation
+            buttons.uxanimation();
 
             // shows the window (should not show the image immediately,
             // but must trigger the loading of it)
