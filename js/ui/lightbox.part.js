@@ -37,6 +37,11 @@
                 matchedObject.append(window);
             }
 
+            // retrieves the references to both buttons of the lightbox
+            // (window) and runs the initial animation registraion for them
+            var buttons = jQuery(".button-confirm, .button-expand", lightbox);
+            buttons.uxanimation();
+
             // retrieves the reference to the image element associated with
             // the window element to be used for the image change
             var windowImage = jQuery("img", window);
