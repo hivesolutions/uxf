@@ -78,6 +78,7 @@
             var toggleField = jQuery(".toggle-field", matchedObject).not(".template .toggle-field");
             var fileField = jQuery(".file-field", matchedObject).not(".template .file-field");
             var dropList = jQuery(".drop-list", matchedObject).not(".template .drop-list");
+            var dropDown = jQuery(".drop-down", matchedObject).not(".template .drop-down");
             var dropTag = jQuery(".drop-tag", matchedObject).not(".template .drop-tag");
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
@@ -186,6 +187,7 @@
             toggleField.uxtogglefield();
             fileField.uxfilefield();
             dropList.uxdroplist();
+            dropDown.uxdropdown();
             dropTag.uxdroptag();
             table.uxtable();
             image.uximage();
