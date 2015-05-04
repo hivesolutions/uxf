@@ -41,7 +41,8 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            var container = matchedObject.wrap("<div class=\"drop-down-container\"></div>");
+            matchedObject.wrap("<div class=\"drop-down-container\"></div>");
+            var container = matchedObject.parents(".drop-down-container");
             container.prepend("<div class=\"button button-drop-down\"></div>");
         };
 
