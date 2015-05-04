@@ -1,3 +1,7 @@
 .drop-down-container > ul.drop-down {
     display: none;
 }
+
+.drop-down-container.visible > ul.drop-down {
+    display: block;
+}
