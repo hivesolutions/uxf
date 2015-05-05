@@ -116,8 +116,15 @@
                         event.stopPropagation();
                     });
 
-            // registers for the "basic" hide operation of the current
+            // registers for the "basic" show operation of the current
             // drop down so that the element is shown
+            matchedObject.bind("show", function() {
+                        var element = jQuery(this);
+                        _show(element, options);
+                    });
+
+            // registers for the "basic" hide operation of the current
+            // drop down so that the element is hidden
             matchedObject.bind("hide", function() {
                         var element = jQuery(this);
                         _hide(element, options);
