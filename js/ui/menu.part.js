@@ -90,6 +90,20 @@
                     });
         };
 
+        var _show = function(matchedObject, options) {
+            var menuContents = jQuery(".menu-contents", matchedObject);
+            matchedObject.addClass("active");
+            menuContents.show();
+            menuContents.triggerHandler("shown");
+        };
+
+        var _show = function(matchedObject, options) {
+            var menuContents = jQuery(".menu-contents", matchedObject);
+            matchedObject.removeClass("active");
+            menuContents.hide();
+            menuContents.triggerHandler("hidden");
+        };
+
         // switches over the method, so that the proper execution
         // logic is going to be performed
         switch (method) {

@@ -113,11 +113,10 @@
                                     owner && owner.removeClass("active");
                                 });
 
-                        // removes the active class from the visible menus
-                        // and hides the menu contents
-                        _menu.removeClass("active");
-                        _menuContents.hide();
-                        _menuContents.triggerHandler("hidden");
+                        // triggers the hide event for all the menu and menu contents
+                        // so that their contents are properly disabled/hidden
+                        _menu.triggerHandler("hide");
+                        _menuContents.triggerHandler("hide");
 
                         // in case the menu already has the active class
                         // (the menu is shown)
