@@ -97,7 +97,7 @@
             menuContents.triggerHandler("shown");
         };
 
-        var _show = function(matchedObject, options) {
+        var _hide = function(matchedObject, options) {
             var menuContents = jQuery(".menu-contents", matchedObject);
             matchedObject.removeClass("active");
             menuContents.hide();
