@@ -115,8 +115,8 @@
 
                         // triggers the hide event for all the menu and menu contents
                         // so that their contents are properly disabled/hidden
-                        _menu.triggerHandler("hide");
-                        _menuContents.triggerHandler("hide");
+                        _menu.trigger("hide");
+                        _menuContents.trigger("hide");
 
                         // in case the menu already has the active class
                         // (the menu is shown)

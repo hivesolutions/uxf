@@ -55,6 +55,7 @@
             matchedObject.wrap("<div class=\"drop-down-container\"></div>");
             var container = matchedObject.parents(".drop-down-container");
             container.prepend("<div class=\"button button-drop-down\"></div>");
+            matchedObject.addClass("menu");
 
             // iterates over the complete set of drop down elements so that
             // it's possible to properly set each button's name
@@ -174,12 +175,18 @@
         };
 
         var _show = function(matchedObject, options) {
+            var _menu = jQuery(".menu.active");
+            var _menuContents = jQuery(".menu-contents:visible");
             var container = matchedObject.parents(".drop-down-container");
+            _menu.trigger("hide");
+            _menuContents.trigger("hide");
+            matchedObject.addClass("active");
             container.addClass("visible");
         };
 
         var _hide = function(matchedObject, options) {
             var container = matchedObject.parents(".drop-down-container");
+            matchedObject.removeClass("active");
             container.removeClass("visible");
         };
 
