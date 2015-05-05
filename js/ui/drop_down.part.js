@@ -175,16 +175,27 @@
         };
 
         var _show = function(matchedObject, options) {
+            // retrieves the reference for both the global menu contents and
+            // basic menu values and to the drop down container, these are
+            // going to be the elements to be updated by the show operation
             var _menu = jQuery(".menu.active");
             var _menuContents = jQuery(".menu-contents:visible");
             var container = matchedObject.parents(".drop-down-container");
+
+            // triggers the proper hide events for the menu and the menu
+            // contents elements (note that this is global event trigger)
             _menu.trigger("hide");
             _menuContents.trigger("hide");
+
+            // updates both the active and the visible status/classes in the
+            // various components of the drop down
             matchedObject.addClass("active");
             container.addClass("visible");
         };
 
         var _hide = function(matchedObject, options) {
+            // retrieves the reference to the drop down container and updates
+            // both the active and visible status of the container
             var container = matchedObject.parents(".drop-down-container");
             matchedObject.removeClass("active");
             container.removeClass("visible");
