@@ -111,7 +111,8 @@
                             // retrieves the value from the selected item and then
                             // creates the hidden input value and prepend it to the
                             // button group element
-                            var value = selected.attr("value");
+                            var value = selected.attr("value")
+                                    || selected.attr("data-value");
                             _element.prepend("<input type=\"hidden\" name=\""
                                     + name + "\" value=\"" + value + "\" />");
                         });
