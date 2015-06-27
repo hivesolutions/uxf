@@ -19,10 +19,35 @@
         var mobileWidth = matchedObject.attr("data-mobile") || "420";
         var averageHeight = matchedObject.attr("data-average") || "800";
         var shortHeight = matchedObject.attr("data-short") || "500";
+        var smallHeight = matchedObject.attr("data-small") || "320";
+        var minimalHeight = matchedObject.attr("data-minimal") || "200";
         slimWidth = parseInt(slimWidth);
         tabletWidth = parseInt(tabletWidth);
         mobileWidth = parseInt(mobileWidth);
         shortHeight = parseInt(shortHeight);
+        smallHeight = parseInt(smallHeight);
+        minimalHeight = parseInt(minimalHeight);
+
+        var measure = function() {
+            // tries to retrive the pixel ratio of the current device
+            // so that it may be used to populate global class values
+            var ratio = window.devicePixelRatio;
+            if (!ratio) {
+                return;
+            }
+
+            // verifies if the ratio is greater that one and if that's
+            // the case adds the retina class indicating that a greater
+            // than normal ratio is present for the device
+            if (ratio > 1) {
+                matchedObject.addClass("retina-s");
+            }
+
+            // constructs the pixel class string value and adds the class
+            // to the currently matched object (as expected)
+            var pixelClass = "pixel-" + String(ratio) + "s";
+            matchedObject.addClass(pixelClass);
+        };
 
         var watch = function() {
             // retrieves the current values for both the width and
@@ -41,6 +66,8 @@
             matchedObject.removeClass("tall-s");
             matchedObject.removeClass("average-s");
             matchedObject.removeClass("short-s");
+            matchedObject.removeClass("small-s");
+            matchedObject.removeClass("minimal-s");
 
             // verifies the current window width value and according to
             // that selects the proper class to be applied to the object
@@ -64,9 +91,18 @@
                 matchedObject.addClass("tall-s");
             } else if (windowHeight > shortHeight) {
                 matchedObject.addClass("average-s");
-            } else {
+            } else if (windowHeight > smallHeight) {
                 matchedObject.addClass("short-s");
+            } else if (windowHeight > minimalHeight) {
+                matchedObject.addClass("small-s");
+            } else {
+                matchedObject.addClass("minimal-s");
             }
+
+            // updates both the width and the height values of the matched
+            // object so that easy reference is possible from scripts
+            matchecObject.attr("data-width", String(windowWidth));
+            matchecObject.attr("data-height", String(windowHeight));
         };
 
         // registers for the resize event on the current window so
@@ -74,6 +110,10 @@
         _window.resize(function(event) {
                     watch();
                 });
+
+        // measures the curren pixel properties of the screen
+        // and populates the proper structures
+        measure();
 
         // starts the watching process for the currently matched
         // object so that the proper (initial) classes are set
