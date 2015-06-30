@@ -68,6 +68,8 @@
             matchedObject.removeClass("short-s");
             matchedObject.removeClass("small-s");
             matchedObject.removeClass("minimal-s");
+            matchedObject.removeClass("portrait-s");
+            matchedObject.removeClass("landscape-s");
 
             // verifies the current window width value and according to
             // that selects the proper class to be applied to the object
@@ -97,6 +99,15 @@
                 matchedObject.addClass("small-s");
             } else {
                 matchedObject.addClass("minimal-s");
+            }
+
+            // verifies if the current viewport is portairt of landscape
+            // based and then adds the proper class to the base element
+            var isPortrait = windowHeight > windowWidth;
+            if (isPortrait) {
+                matchedObject.addClass("portrait-s");
+            } else {
+                matchedObject.addClass("landscape-s");
             }
 
             // updates both the width and the height values of the matched
