@@ -40,6 +40,7 @@
             // retrieves the references to both buttons of the lightbox
             // (window) to be used for layout operations
             var buttons = jQuery(".button-confirm, .button-expand", window);
+            var buttonExpand = buttons.filter(".button-expand");
 
             // retrieves the reference to the image element associated with
             // the window element to be used for the image change
@@ -64,6 +65,10 @@
             // and large path value may be updated accordingly
             hasChanged && window.data("path", path);
             hasChanged && window.data("large_path", largePath);
+
+            // in case the value has changed and there's no large
+            // path defined for the lightbox the expand button is hidden
+            hasChanged && !largePath && buttonExpand.hide();
 
             // shows the window (should not show the image immediately,
             // but must trigger the loading of it)
