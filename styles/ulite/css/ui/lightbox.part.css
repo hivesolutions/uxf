@@ -1,6 +1,7 @@
 .ulite-style .window.window-lightbox {
     cursor: pointer;
     line-height: 0px;
+    min-width: inherit;
     padding: 0px 0px 0px 0px;
     width: inherit;
 }
@@ -21,6 +22,10 @@
     margin: -14px 0px 0px -14px;
     position: absolute;
     width: 30px;
+}
+
+.ulite-style .window.window-lightbox.loading {
+    border: none;
 }
 
 .ulite-style .window.window-lightbox.loading .button-confirm {
