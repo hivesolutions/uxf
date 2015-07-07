@@ -1,0 +1,45 @@
+.ulite-style .window.window-lightbox {
+    cursor: pointer;
+    line-height: 0px;
+    padding: 0px 0px 0px 0px;
+    width: inherit;
+}
+
+.ulite-style .window.window-lightbox .button-confirm,
+.ulite-style .window.window-lightbox .button-expand {
+    animation-duration: 0.5s;
+    -o-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+    -khtml-animation-duration: 0.5s;
+    -webkit-animation-duration: 0.5s;
+}
+
+.ulite-style .window.window-lightbox .button-confirm {
+    background: transparent url(../images/lightbox-close.png) no-repeat left 0px;
+    cursor: pointer;
+    height: 30px;
+    margin: -14px 0px 0px -14px;
+    position: absolute;
+    width: 30px;
+}
+
+.ulite-style .window.window-lightbox.loading .button-confirm {
+    background-image: url(../images/lightbox-loading.png);
+}
+
+.ulite-style .window.window-lightbox.loaded .button-confirm {
+    background-image: url(../images/lightbox-close.png);
+}
+
+.ulite-style .window.window-lightbox .button-expand {
+    background: transparent url(../images/lightbox-expand.png) no-repeat left 0px;
+    cursor: pointer;
+    height: 30px;
+    margin: -14px 0px 0px 10px;
+    position: absolute;
+    width: 30px;
+}
+
+.ulite-style .window.window-lightbox.loading .button-expand {
+    background-image: url(../images/lightbox-loading.png);
+}
