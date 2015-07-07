@@ -1,9 +1,9 @@
 .ulite-style .window {
     background-color: #ffffff;
-    border: 1px solid #5d5d5d;
-    box-shadow: 0px 1px 4px #6d6d6d;
-    -moz-box-shadow: 0px 1px 4px #6d6d6d;
-    -webkit-box-shadow: 0px 1px 4px #6d6d6d;
+    border: 1px solid #4d4d4d;
+    box-shadow: 0px 1px 4px #5d5d5d;
+    -moz-box-shadow: 0px 1px 4px #5d5d5d;
+    -webkit-box-shadow: 0px 1px 4px #5d5d5d;
     min-width: 280px;
     padding: 20px 12px 20px 12px;
     text-align: center;
