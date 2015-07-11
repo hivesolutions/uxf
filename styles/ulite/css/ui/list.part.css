@@ -207,7 +207,8 @@
 }
 
 .ulite-style .list.product-description-list .product-description-item {
-    border: 1px solid #f6f6f6;
+    background-color: #fafafa;
+    border: 1px solid #f0f0f0;
     float: left;
     height: 140px;
     line-height: 0px;
@@ -216,7 +217,7 @@
 }
 
 .ulite-style .list.product-description-list .product-description-item:hover {
-    border-color: #e6e6e6;
+    border-color: #e0e0e0;
     cursor: pointer;
 }
 
