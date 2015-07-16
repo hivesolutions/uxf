@@ -208,7 +208,7 @@
 
 .ulite-style .list.product-description-list .product-description-item {
     background-color: #fafafa;
-    border: 1px solid #f0f0f0;
+    border: 1px solid transparent;
     float: left;
     height: 140px;
     line-height: 0px;
