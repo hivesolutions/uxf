@@ -31,5 +31,9 @@
         if (queue.length == 1) {
             callable(callback);
         }
+
+        // returns the current context so that it may be used in
+        // a chain based processing operation (as expected)
+        return this;
     };
 })(jQuery);

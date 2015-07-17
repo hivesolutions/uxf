@@ -24,5 +24,9 @@
                     element.triggerHandler("size");
                     resizables.show();
                 });
+
+        // returns the current context so that it may be used in
+        // a chain based processing operation (as expected)
+        return this;
     };
 })(jQuery);
