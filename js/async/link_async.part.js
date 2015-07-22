@@ -78,9 +78,6 @@
                     data : {
                         async : 1
                     },
-                    beforeSend : function(xhr) {
-                        xhr.setRequestHeader("X-Async", "all");
-                    },
                     success : function(data, status, request) {
                         // verifies if the current result if of type (async) redirect, this
                         // is a special case and the redirection must be performed using a
