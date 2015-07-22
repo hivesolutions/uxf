@@ -75,6 +75,9 @@
         var request = jQuery.ajax({
                     url : href,
                     dataType : "html",
+                    data : {
+                        async : 1
+                    },
                     beforeSend : function(xhr) {
                         xhr.setRequestHeader("X-Async", "all");
                     },
