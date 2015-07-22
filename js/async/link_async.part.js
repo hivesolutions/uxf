@@ -75,8 +75,8 @@
         var request = jQuery.ajax({
                     url : href,
                     dataType : "html",
-                    data : {
-                        async : 1
+                    beforeSend : function(xhr) {
+                        xhr.setRequestHeader("X-Async", "all");
                     },
                     success : function(data, status, request) {
                         // verifies if the current result if of type (async) redirect, this
