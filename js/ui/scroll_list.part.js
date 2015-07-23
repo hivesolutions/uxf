@@ -46,12 +46,9 @@
 
             matchedObject.each(function(index, element) {
                 // retrieves the current element and uses it to retrieve the
-                // parent scroll list container and the previous and next buttons
+                // parent scroll list container, to be used in operations
                 var _element = jQuery(this);
                 var scrollListContainer = _element.parents(".scroll-list-container");
-                var scrollPrevious = jQuery(".scroll-previous",
-                        scrollListContainer);
-                var scrollNext = jQuery(".scroll-next", scrollListContainer);
 
                 // retrieves the various margin value from the element
                 // to update the scoll list container with these elements
@@ -69,34 +66,11 @@
                 scrollListContainer.css("margin-bottom", marginBottom);
                 _element.css("margin", "0px 0px 0px 0px");
 
-                // retrieves the complete set of children of the
-                // element that are not clear elements, then counts them
-                var children = jQuery("> *:not(.clear)", _element);
-                var count = children.length;
-
-                // retrieves the first child and uses it to calculate
-                // the complete width for the children, note that the
-                // width is retrieved taking into accoun that a proper
-                // outer width retrieval may fail under certain conditions
-                var first = jQuery(children[0]);
-                var firstWidth = first.outerWidth(true) > first.outerWidth(false)
-                        ? first.outerWidth(true)
-                        : first.outerWidth(false);
-                var width = firstWidth * count;
-
-                // calculates the complete scroll witdth to check if the
-                // scroll is required in case it's not hides the previous
-                // and next operator buttons
-                var scrollWidth = scrollListContainer.width();
-                var isScrolled = scrollWidth < width;
-                if (!isScrolled) {
-                    scrollPrevious.hide();
-                    scrollNext.hide();
-                }
-
-                // updates the element with with the complete width for its
-                // elements (required width)
-                _element.width(width);
+                // runs the "initial" refresh width operation that is going
+                // to "populate" the width of the container, note that this
+                // may not be final and further refresh width operations may
+                // be required in order to obtain proper width on container
+                _refreshWidth(_element, options);
             });
         };
 
@@ -111,11 +85,15 @@
             var scrollNext = jQuery(".scroll-next", scrollListContainer);
 
             scrollPrevious.click(function() {
-                // retrieves the current element and the parent
-                // scroll list container to be used in the scroll
-                // to the right operation
+                // retrieves the current element and the parent scroll list
+                // container to be used in the scroll to the right operation
                 var element = jQuery(this);
                 var scrollListContainer = element.parents(".scroll-list-container");
+                var scrollList = jQuery(".scroll-list", scrollListContainer);
+
+                // runs the refresh scroll list width operation so that the
+                // width of the scroll list is properly represented/updated
+                _refreshWidth(scrollList, options);
 
                 // retrieves the with of the scroll list container to
                 // be used in the scroll operation
@@ -129,11 +107,15 @@
             });
 
             scrollNext.click(function() {
-                // retrieves the current element and the parent
-                // scroll list container to be used in the scroll
-                // to the left operation
+                // retrieves the current element and the parent scroll list
+                // container to be used in the scroll to the left operation
                 var element = jQuery(this);
                 var scrollListContainer = element.parents(".scroll-list-container");
+                var scrollList = jQuery(".scroll-list", scrollListContainer);
+
+                // runs the refresh scroll list width operation so that the
+                // width of the scroll list is properly represented/updated
+                _refreshWidth(scrollList, options);
 
                 // retrieves the with of the scroll list container to
                 // be used in the scroll operation
@@ -145,6 +127,43 @@
                             scrollLeft : "+=" + scrollWidth
                         }, 400);
             });
+        };
+
+        var _refreshWidth = function(matchedObject, options) {
+            // retrieves the reference to the various elements that are required
+            // for the complete width refresh operation
+            var scrollListContainer = matchedObject.parents(".scroll-list-container");
+            var scrollPrevious = jQuery(".scroll-previous", scrollListContainer);
+            var scrollNext = jQuery(".scroll-next", scrollListContainer);
+
+            // retrieves the complete set of children of the
+            // element that are not clear elements, then counts them
+            var children = jQuery("> *:not(.clear)", matchedObject);
+            var count = children.length;
+
+            // retrieves the first child and uses it to calculate
+            // the complete width for the children, note that the
+            // width is retrieved taking into accoun that a proper
+            // outer width retrieval may fail under certain conditions
+            var first = jQuery(children[0]);
+            var firstWidth = first.outerWidth(true) > first.outerWidth(false)
+                    ? first.outerWidth(true)
+                    : first.outerWidth(false);
+            var width = firstWidth * count;
+
+            // calculates the complete scroll width to check if the
+            // scroll is required in case it's not hides the previous
+            // and next operator buttons
+            var scrollWidth = scrollListContainer.width();
+            var isScrolled = scrollWidth < width;
+            if (!isScrolled) {
+                scrollPrevious.hide();
+                scrollNext.hide();
+            }
+
+            // updates the element width with the complete width for its
+            // elements (required width)
+            matchedObject.width(width);
         };
 
         // initializes the plugin
