@@ -62,12 +62,15 @@
                         var _element = jQuery(this);
                         var container = _element.parents(".drop-down-container");
                         var button = jQuery(".button-drop-down", container);
+                        var elements = jQuery("> li", container);
                         var name = _element.attr("data-name");
                         var classes = _element.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
+                        var isEmpty = elements.length == 0;
                         button.text(name);
                         button.attr("class", buttonClasses + " " + classes);
                         button.removeClass("drop-down");
+                        isEmpty && container.hide();
                     });
 
             // adds the menu class to the matched object so that it's
