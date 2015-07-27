@@ -62,7 +62,7 @@
                         var _element = jQuery(this);
                         var container = _element.parents(".drop-down-container");
                         var button = jQuery(".button-drop-down", container);
-                        var elements = jQuery("> li", container);
+                        var elements = jQuery("> li", _element);
                         var name = _element.attr("data-name");
                         var classes = _element.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
