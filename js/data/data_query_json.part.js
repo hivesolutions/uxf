@@ -260,9 +260,10 @@
                                 }
 
                                 // retrieves the valid items length to check if there
-                                // is more items available
+                                // are more items available, this is performed by checking
+                                // the number of items retrieved against the requested
                                 var validItemsLength = validItems.length;
-                                var moreItems = validItemsLength == numberRecords;
+                                var moreItems = validItemsLength >= numberRecords;
 
                                 // filters the valid valid items using the calculated
                                 // end slice to filter the "extra" items
