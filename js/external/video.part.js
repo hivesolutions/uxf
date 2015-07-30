@@ -100,16 +100,11 @@
             // control the usage or not of the as3 vs html5 players
             var as = matchedObject.attr("data-as");
 
-            // retrieves the hd (high definition) value
+            // retrieves the reference to the various attributes that will
+            // change the way the video is going to be embedded
             var hd = matchedObject.attr("data-hd");
-
-            // retrieves the info
             var info = matchedObject.attr("data-info");
-
-            // retrieves the chromeless value
             var chromeless = matchedObject.attr("data-chromeless");
-
-            // retrieves the auto play value
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
@@ -123,16 +118,11 @@
             var prefixUrl = as ? "v" : "embed";
             var type = as ? "application/x-shockwave-flash" : "text/html";
 
-            // calculates the hd value
+            // calculates the the various parameters that are going to be
+            // set for the inclusion of the video player
             var hdValue = hd ? "hd=1" : "hd=0";
-
-            // calculates the info value
             var infoValue = info ? "showinfo=1" : "showinfo=0";
-
-            // calculates the controls value
             var controlsValue = chromeless ? "controls=0" : "controls=1";
-
-            // calculates the auto play value
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
             // updates the matched object html with the video embed object
@@ -153,14 +143,11 @@
             // retrieves the resource reference
             var resourceReference = urlInformation["resourceReference"];
 
-            // retrieves the width and the height
+            // retrieves the reference to the various attributes that will
+            // change the way the video is going to be embedded
             var width = matchedObject.attr("data-width");
             var height = matchedObject.attr("data-height");
-
-            // retrieves the info
             var info = matchedObject.attr("data-info");
-
-            // retrieves the auto play value
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
@@ -193,24 +180,20 @@
             // retrieves the resource reference
             var resourceReference = urlInformation["resourceReference"];
 
-            // retrieves the width and the height
+            // retrieves the reference to the various attributes that will
+            // change the way the video is going to be embedded
             var width = matchedObject.attr("data-width");
             var height = matchedObject.attr("data-height");
-
-            // retrieves the chromeless value
             var chromeless = matchedObject.attr("data-chromeless");
-
-            // retrieves the auto play value
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
             width = width ? width : 560;
             height = height ? height : 315;
 
-            // calculates the chromeless value
+            // calculates the the various parameters that are going to be
+            // set for the inclusion of the video player
             var chromelessValue = chromeless ? "chromeless=1" : "chromeless=0";
-
-            // calculates the auto play value
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
             // updates the matched object html with the video iframe
