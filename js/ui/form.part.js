@@ -325,6 +325,10 @@
             href = isGet ? href + "?" + data : href;
             data = isGet ? "" : data;
 
+            // defines the url of the operation (final redirection) as the current
+            // href value, resolved from the process action and get parameters
+            var url = href;
+
             // creates the asyncronous object rerence and opens it to the link
             // reference defined in the form than triggers its load and then
             // forces the content type header for the requested encoding
