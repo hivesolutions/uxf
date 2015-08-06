@@ -891,29 +891,34 @@
             // to deselect the element only in case no previous
             // registration was made (avoids duplicates)
             matchedObject.length > 0 && !isRegistered
-                    && _body.click(function(event) {
-                                // retrieves the value of the avoid next flag and
-                                // then unsets the avoid next flag
-                                var avoidNext = matchedObject.data("avoid_next");
-                                matchedObject.data("avoid_next", false);
+                    && _body.click(onClick = function(event) {
+                        // retrieves the value of the avoid next flag and
+                        // then unsets the avoid next flag
+                        var avoidNext = matchedObject.data("avoid_next");
+                        matchedObject.data("avoid_next", false);
 
-                                // in case the avoid next flag is set
-                                if (avoidNext) {
-                                    // returns immediately
-                                    return;
-                                }
+                        // in case the avoid next flag is set
+                        if (avoidNext) {
+                            // returns immediately
+                            return;
+                        }
 
-                                // resets both the selection and the pivot values
-                                matchedObject.data("selection", [0]);
-                                matchedObject.data("pivot", 0);
+                        // resets both the selection and the pivot values
+                        matchedObject.data("selection", [0]);
+                        matchedObject.data("pivot", 0);
 
-                                // updates the current selection
-                                _updateSelection(matchedObject, options);
+                        // updates the current selection
+                        _updateSelection(matchedObject, options);
+                    });
+            matchedObject.length > 0 && !isRegistered
+                    && matchedObject.bind("destroyed", function() {
+                                _body.unbind("click", onClick);
                             });
 
             // registers for the scroll event in the window in case
             // the infinite scroll support is enabled
-            matchedObject.length > 0 && infinite && _window.scroll(function() {
+            matchedObject.length > 0 && infinite
+                    && _window.scroll(onScroll = function() {
                         // sets the filter as the matched object, this
                         // considered to be a global singleton handler
                         var filter = matchedObject;
@@ -935,6 +940,10 @@
                         // updates the filter state
                         isVisible && _update(filter, options);
                     });
+            matchedObject.length > 0 && infinite
+                    && matchedObject.bind("destroyed", function() {
+                                _window.unbind("scroll", onScroll);
+                            });
         };
 
         var _update = function(matchedObject, options, force) {
