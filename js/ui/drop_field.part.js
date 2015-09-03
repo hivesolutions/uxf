@@ -1165,6 +1165,15 @@
                                     event.preventDefault();
                                 });
 
+                        // registers for the mouse over event in the list items
+                        // on order to prevent propagation of such events
+                        listItems.mouseover(function() {
+                                    // removes the propagation and prevents the default operations
+                                    // to be performed for the current event
+                                    event.stopPropagation();
+                                    event.preventDefault();
+                                });
+
                         // registers for the click event in each of the list items
                         // that have just been constructed
                         listItems.click(function(event) {
