@@ -349,6 +349,13 @@
                     // of the requirement for a callback
                     return null;
                 };
+
+                // registers the proper ajax pre-filter
+                // so that all the xml http requests are
+                // considered asynchronous
+                jQuery.ajaxPrefilter(function(options) {
+                            options.async = true;
+                        });
             } catch (exception) {
             }
         };
