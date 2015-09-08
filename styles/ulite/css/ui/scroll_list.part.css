@@ -1,6 +1,11 @@
 .ulite-style .scroll-list-container {
     height: 180px;
     overflow: hidden;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
     width: 900px;
 }
 
