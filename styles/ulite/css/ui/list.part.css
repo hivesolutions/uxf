@@ -356,6 +356,7 @@
 
 .ulite-style .list.basket-list li .product-image {
     float: left;
+    font-size: 0px;
     height: 128px;
     line-height: 0px;
     margin: 0px 24px 0px 12px;
