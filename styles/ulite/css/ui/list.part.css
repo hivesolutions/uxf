@@ -92,8 +92,10 @@
 
 .ulite-style .list.related-list li .title {
     color: #4d4d4d;
+    height: 14px;
     line-height: 14px;
     margin: 0px 0px 3px 0px;
+    overflow: hidden;
 }
 
 .ulite-style .list.related-list li .price {
