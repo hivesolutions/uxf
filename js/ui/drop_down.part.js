@@ -64,9 +64,13 @@
                         var button = jQuery(".button-drop-down", container);
                         var elements = jQuery("> li", _element);
                         var name = _element.attr("data-name");
+                        var input = _element.attr("data-input");
                         var classes = _element.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
                         var isEmpty = elements.length == 0;
+                        input
+                                && container.prepend("<input type=\"hidden\" name=\""
+                                        + input + "\"/>");
                         button.text(name);
                         button.attr("class", buttonClasses + " " + classes);
                         button.removeClass("drop-down");
@@ -117,7 +121,14 @@
             // visibility of the curren drop down is hidden
             elements.click(function(event) {
                         var element = jQuery(this);
-                        var dropDown = element.parents(".drop-down");
+                        var container = element.parents(".drop-down-container");
+                        var dropDown = jQuery(".drop-down", container);
+                        var button = jQuery(".button-drop-down", container);
+                        var input = jQuery("input", container);
+                        var text = element.text();
+                        var value = element.attr("data-value");
+                        value && input.val(value);
+                        value && button.text(text);
                         _hide(dropDown, options);
                         event.stopPropagation();
                     });
