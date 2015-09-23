@@ -59,22 +59,55 @@
             // iterates over the complete set of drop down elements so that
             // it's possible to properly set each button's name
             matchedObject.each(function(index, element) {
+                        // retrieves the various elements, including the current element
+                        // so that the proper initializing operation may be performed
                         var _element = jQuery(this);
                         var container = _element.parents(".drop-down-container");
                         var button = jQuery(".button-drop-down", container);
+                        var inputElement = jQuery("input", container);
                         var elements = jQuery("> li", _element);
+
+                        // retrieves the various attributes that are going to
+                        // be applied also to the parent drop down element
                         var name = _element.attr("data-name");
                         var input = _element.attr("data-input");
                         var classes = _element.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
+
+                        // verifies if the current drop down is considered to
+                        // be an empty one (no elements contained in it)
                         var isEmpty = elements.length == 0;
-                        input
-                                && container.prepend("<input type=\"hidden\" name=\""
-                                        + input + "\"/>");
+
+                        // verifies if the request for an input like drop
+                        // down exists and if that the case created or re-uses
+                        // the input associated with the drop down container
+                        if (input && inputElement.length == 0) {
+                            container.prepend("<input type=\"hidden\" name=\""
+                                    + input + "\"/>");
+                        } else if (input) {
+                            container.prepend(inputElement);
+                        }
+
+                        // retrieves the "original" (logical) value as the
+                        // value of the input element (in case it exists)
+                        // or an empty value otherwise
+                        var original = inputElement.val() || "";
+
+                        // updates the button text value witht he original
+                        // name value and the classes for it (avoiding drop down)
                         button.text(name);
                         button.attr("class", buttonClasses + " " + classes);
                         button.removeClass("drop-down");
+
+                        // verifies if the drop down is empty and for that case
+                        // the container is hidden (not going to be displayed)
                         isEmpty && container.hide();
+
+                        // updates the original (logical) value of the drop down
+                        // and then runs the original operation to restore it to the
+                        // initial valid state (include logical value initialization)
+                        _element.data("original", original);
+                        _original(_element, options);
                     });
 
             // adds the menu class to the matched object so that it's
@@ -147,6 +180,34 @@
                         _hide(element, options);
                     });
 
+            // registers for the enable operation of the current
+            // drop down so that the interaction is enabled
+            matchedObject.bind("enable", function() {
+                        var element = jQuery(this);
+                        _enable(element, options);
+                    });
+
+            // registers for the disable operation of the current
+            // drop down so that the interaction is disabled
+            matchedObject.bind("disable", function() {
+                        var element = jQuery(this);
+                        _disable(element, options);
+                    });
+
+            // registers for the "basic" original operation of the current
+            // drop down so that the element is restored to original state
+            matchedObject.bind("original", function() {
+                        var element = jQuery(this);
+                        _original(element, options);
+                    });
+
+            // registers for the reset (values) operation of the current
+            // drop down so that the element is restored to empty state
+            matchedObject.bind("reset", function() {
+                        var element = jQuery(this);
+                        _reset(element, options)
+                    });
+
             // register for the key down event in the body,
             // only in case the registration was not already made
             !isRegistered && _body.keydown(function(event) {
@@ -199,6 +260,13 @@
         };
 
         var _show = function(matchedObject, options) {
+            // verifies if the current object is disabled and if
+            // that's the case returns immediately (no show)
+            var isDisabled = matchedObject.hasClass("disabled");
+            if (isDisabled) {
+                return;
+            }
+
             // retrieves the reference for both the global menu contents and
             // basic menu values and to the drop down container, these are
             // going to be the elements to be updated by the show operation
@@ -225,6 +293,36 @@
             container.removeClass("visible");
         };
 
+        var _enable = function(matchedObject, options) {
+            matchedObject.removeClass("disabled");
+        };
+
+        var _disable = function(matchedObject, options) {
+            _hide(matchedObject, options);
+            matchedObject.addClass("disabled");
+        };
+
+        var _original = function(matchedObject, options) {
+            // retrieves the reference to the drop down elements and uses
+            // these elements to restore the values to the original values
+            var container = matchedObject.parents(".drop-down-container");
+            var button = jQuery(".button-drop-down", container);
+            var input = jQuery("input", container);
+            var name = matchedObject.attr("data-name");
+            var original = matchedObject.data("original");
+            var originalElement = jQuery("> li[data-value=" + original + "]",
+                    matchedObject);
+            var originalText = originalElement.text() || name;
+            _hide(matchedObject, options);
+            input.val(original);
+            button.text(originalText);
+        };
+
+        var _reset = function(matchedObject, options) {
+            matchedObject.data("original", "");
+            _original(matchedObject, options);
+        };
+
         // switches over the method that is going to be performed
         // for the current operation (as requested)
         switch (method) {
@@ -238,6 +336,30 @@
                 // runs the hide operation on the currently matched
                 // object so that the proper contents are hidden
                 _hide(matchedObject, options);
+                break;
+
+            case "enable" :
+                // runs the enable operation on the currently matched
+                // object so that interaction is enabled
+                _enable(matchedObject, options);
+                break;
+
+            case "disable" :
+                // runs the disable operation on the currently matched
+                // object so that interaction is disabled
+                _disable(matchedObject, options);
+                break;
+
+            case "original" :
+                // runs the original operation on the currently matched
+                // object so that the element is restored to original
+                _original(matchedObject, options);
+                break;
+
+            case "reset" :
+                // runs the reset operation on the currently matched
+                // object so that the element is restored to empty
+                _reset(matchedObject, options);
                 break;
 
             case "default" :
