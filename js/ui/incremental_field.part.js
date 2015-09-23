@@ -52,7 +52,7 @@
             // sets the ux global object representation as incremental
             // field, this value may be used latter for fast ux
             // object type access (hash based conditions)
-            incrementalField.attr("data-object", "incrementalfield");
+            incrementalField.uxobject("incrementalfield");
 
             // removes the incremental field from the text field base element
             // and then add the text field class and registers it as a text field

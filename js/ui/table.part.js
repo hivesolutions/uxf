@@ -48,7 +48,7 @@
                 // sets the ux global object representation as table
                 // this value may be used latter for fast ux
                 // object type access (hash based conditions)
-                elementReference.attr("data-object", "table");
+                elementReference.uxobject("table");
 
                 // retrieves the reference to the new line row and updates
                 // its colspan so that it spans all the columns (very large

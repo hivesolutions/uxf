@@ -49,6 +49,11 @@
                 return;
             }
 
+            // sets the ux global object representation as drop
+            // down, this value may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.uxobject("dropdown");
+
             // creates the upper structure for the drop down, this should
             // include the button part so that it's possible to active the
             // drop down contents using the "usual" manner
