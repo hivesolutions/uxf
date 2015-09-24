@@ -158,16 +158,36 @@
             // registers for the click operation in the element so that the
             // visibility of the curren drop down is hidden
             elements.click(function(event) {
+                        // retrieves the reference to the "clicked" element and
+                        // the associated parent and child elements that are
+                        // going to be used in the selection change operation
                         var element = jQuery(this);
                         var container = element.parents(".drop-down-container");
                         var dropDown = jQuery(".drop-down", container);
                         var button = jQuery(".button-drop-down", container);
                         var input = jQuery("input", container);
+
+                        // retrieves both the textual/visual value of the selected
+                        // element and the logical/data value for it
                         var text = element.text();
                         var value = element.attr("data-value");
+
+                        // changes both the input value and the button textual value
+                        // but only in case a logical value is defined (input mode)
                         value && input.val(value);
                         value && button.text(text);
+
+                        // hides the drop down as it's no longer required to be open
+                        // (the value has been selected)
                         _hide(dropDown, options);
+
+                        // triggers the value changed operation with the text/visual
+                        // value and the logical value, so that listeners may be
+                        // properly notified about the changing value
+                        element.triggerHandler("value_change", [text, value]);
+
+                        // stops the event propagation, avoiding possible issues with
+                        // the propagation of the click event on the element
                         event.stopPropagation();
                     });
 
@@ -299,11 +319,15 @@
         };
 
         var _enable = function(matchedObject, options) {
+            var container = matchedObject.parents(".drop-down-container");
+            container.removeClass("disabled");
             matchedObject.removeClass("disabled");
         };
 
         var _disable = function(matchedObject, options) {
+            var container = matchedObject.parents(".drop-down-container");
             _hide(matchedObject, options);
+            container.addClass("disabled");
             matchedObject.addClass("disabled");
         };
 
