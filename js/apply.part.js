@@ -368,7 +368,9 @@
         // that the base of the apply is sent as an argument, this
         // is not a jquery standard and is used as an exception
         var _body = jQuery("body");
+        _body.triggerHandler("pre_applied", [matchedObject]);
         _body.triggerHandler("applied", [matchedObject]);
+        _body.triggerHandler("post_applied", [matchedObject]);
 
         // returns the object
         return this;
