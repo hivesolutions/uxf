@@ -56,6 +56,11 @@
             var windowWidth = _window.width();
             var windowHeight = _window.height();
 
+            // determines the current device selected by the matched
+            // object in case a change exists an event is raised
+            var device = matchedObject.attr("data-device");
+            var nextDevice = device;
+
             // removes the complete set of class associated with both
             // width and height values so that the new classes may be
             // added according to the newly "generated" size
@@ -74,10 +79,13 @@
             // verifies the current window width value and according to
             // that selects the proper class to be applied to the object
             if (windowWidth > tabletWidth) {
+                nextDevice = "desktop";
                 matchedObject.addClass("desktop-s");
             } else if (windowWidth > mobileWidth) {
+                nextDevice = "tablet";
                 matchedObject.addClass("tablet-s");
             } else {
+                nextDevice = "mobile";
                 matchedObject.addClass("mobile-s");
             }
 
@@ -110,10 +118,21 @@
                 matchedObject.addClass("landscape-s");
             }
 
-            // updates both the width and the height values of the matched
+            // determines if the device has changed from the previous step
+            // if that's the case a new event should be raised
+            var deviceChanged = device != nextDevice;
+
+            // updates both the width, height and device values of the matched
             // object so that easy reference is possible from scripts
             matchedObject.attr("data-width", String(windowWidth));
             matchedObject.attr("data-height", String(windowHeight));
+            matchedObject.attr("data-device", nextDevice);
+
+            // in case the device has changed a device change event is raised
+            // so thtat any listner is notified about such changed
+            deviceChanged
+                    && matchedObject.triggerHandler("device_change",
+                            [nextDevice]);
         };
 
         // registers for the resize event on the current window so
