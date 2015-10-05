@@ -71,35 +71,83 @@
             // button to toggle the contents state
             moreButton.click(function() {
                         // retrieves the current element and uses it to retrieve the
-                        // associated panel more and panel more contents
+                        // associated panel more element to be changed
                         var element = jQuery(this);
                         var panelMore = element.parents(".panel-more");
-                        var panelMoreContents = jQuery(".panel-more-contents",
-                                panelMore);
 
-                        // retrieves the string attributes from the panel
-                        // more element
-                        var moreString = panelMore.attr("data-more");
-                        var lessString = panelMore.attr("data-less");
-
-                        // checks if the the panel more contents is currently
-                        // visible, to toggle the visibility
-                        var isVisible = panelMoreContents.is(":visible");
-
-                        // checks if the panel more contents is currently visible
-                        // in such case must hide it
-                        if (isVisible) {
-                            // hides the panel more contents and updates
-                            // the text value of the more button
-                            panelMoreContents.hide();
-                            element.html(moreString);
-                        } else {
-                            // shows the panel more contents and updates
-                            // the text value of the more button
-                            panelMoreContents.show();
-                            element.html(lessString);
-                        }
+                        // triggers the toggle visibility operation that will
+                        // start the process of "toggling"
+                        _toggle(panelMore, options);
                     });
+
+            // registers the various elements to the show operation
+            // so that it's possible to force the show of the panel
+            matchedObject.bind("show", function() {
+                        var element = jQuery(this);
+                        _show(element, options);
+                    });
+
+            // registers the various elements to the hide operation
+            // so that it's possible to force the hide of the panel
+            matchedObject.bind("hide", function() {
+                        var element = jQuery(this);
+                        _hide(element, options);
+                    });
+
+            // registers the various elements to the toggle operation
+            // so that it's possible to force the toggle of the panel
+            matchedObject.bind("toggle", function() {
+                        var element = jQuery(this);
+                        _toggle(element, options);
+                    });
+        };
+
+        var _show = function(matchedObject, options) {
+            // retrieves the various (sub)-element that are going
+            // to be used for the processing of the show operation
+            var panelMoreContents = jQuery(".panel-more-contents", panelMore);
+
+            // retrieves the string that is going to be used to
+            // display the less operation
+            var lessString = matchedObject.attr("data-less");
+
+            // shows the panel more contents and updates
+            // the text value of the more button
+            panelMoreContents.show();
+            element.html(lessString);
+        };
+
+        var _hide = function(matchedObject, options) {
+            // retrieves the various (sub)-element that are going
+            // to be used for the processing of the hide operation
+            var panelMoreContents = jQuery(".panel-more-contents", panelMore);
+
+            // retrieves the string that is going to be used to
+            // display the more operation
+            var moreString = matchedObject.attr("data-more");
+
+            // hides the panel more contents and updates
+            // the text value of the more button
+            panelMoreContents.hide();
+            element.html(moreString);
+        };
+
+        var _toggle = function(matchedObject, options) {
+            // retrieves the various (sub)-element that are going
+            // to be used for the processing of the toggle operation
+            var panelMoreContents = jQuery(".panel-more-contents", panelMore);
+
+            // checks if the the panel more contents is currently
+            // visible, to toggle the visibility
+            var isVisible = panelMoreContents.is(":visible");
+
+            // checks if the panel more contents is currently visible
+            // in such case must hide it, otherwise must show it
+            if (isVisible) {
+                _hide(matchedObject, options);
+            } else {
+                _show(matchedObject, options);
+            }
         };
 
         // initializes the plugin
