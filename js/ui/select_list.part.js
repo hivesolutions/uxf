@@ -204,7 +204,8 @@
 
                             // removes all the input elements contained inside the
                             // current select list (avoid duplicated submission)
-                            _element.remove("input");
+                            var inputs = jQuery("input", _element)
+                            inputs.remove("input");
 
                             // retrieves the complete set of elements in the current
                             // select list, this values are going to be used to create

@@ -91,7 +91,8 @@
 
                                     // removes all the input elements contained inside the
                                     // current tag field (avoid duplicated submission)
-                                    _element.remove("input");
+                                    var inputs = jQuery("input", _element)
+                                    inputs.remove("input");
 
                                     // in case the current element is checked no need to
                                     // continue as the
