@@ -70,7 +70,7 @@
             // register for their parent form submission
             matchedObject.each(function(index, element) {
                         // retrieves the current element in iteration
-                        var _element = jQuery(this);
+                        var _element = jQuery(element);
 
                         // retrieves the containing form so that it's
                         // possible to register for its actions
