@@ -166,11 +166,18 @@
                         var dropDown = jQuery(".drop-down", container);
                         var button = jQuery(".button-drop-down", container);
                         var input = jQuery("input", container);
+                        var elements = jQuery("> li", dropDown);
 
                         // retrieves both the textual/visual value of the selected
                         // element and the logical/data value for it
                         var text = element.text();
                         var value = element.attr("data-value");
+
+                        // removes the selected class from the complete set of list
+                        // elements and then adds the selected class to the selected
+                        // item so that it's properly marked as selected
+                        elements.removeClass("selected");
+                        value && element.addClass("selected");
 
                         // changes both the input value and the button textual value
                         // but only in case a logical value is defined (input mode)
@@ -349,10 +356,13 @@
             var input = jQuery("input", container);
             var name = matchedObject.attr("data-name");
             var original = matchedObject.data("original");
-            var originalElement = jQuery("> li[data-value=" + original + "]",
-                    matchedObject);
+            var elements = jQuery("> li", matchedObject);
+            var originalElement = elements.filter("[data-value=" + original
+                    + "]");
             var originalText = originalElement.text() || name;
             _hide(matchedObject, options);
+            elements.removeClass("selected");
+            originalElement.addClass("selected");
             input.val(original);
             button.text(originalText);
         };
