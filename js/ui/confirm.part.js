@@ -79,8 +79,12 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // tries to retrieve the window selector from the options
+            // and in case it does not exists uses the default one
+            var windowSelector = options["window"] || ".window.window-alert";
+
             // retrieves the window (alert window) elements
-            var window = jQuery(".window.window-alert", matchedObject);
+            var window = jQuery(windowSelector, matchedObject);
             var windowButtonConfirm = jQuery(".button-confirm", window);
             var windowButtonCancel = jQuery(".button-cancel", window);
 
