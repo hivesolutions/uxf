@@ -25,13 +25,17 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // tries to retrieve the window selector from the options
+            // and in case it does not exists uses the default one
+            var windowSelector = options["window"] || ".window.window-alert";
+
             // localizes the various values that are going to be used in the
             // contruction of the alert window
             var confirm = jQuery.uxlocale("Confirm");
             var cancel = jQuery.uxlocale("Cancel");
 
             // retrieves the window (alert window) elements
-            var window = jQuery(".window.window-alert", matchedObject);
+            var window = jQuery(windowSelector, matchedObject);
             if (window.length == 0) {
                 window = jQuery("<div class=\"window window-alert window-hide\">"
                         + "<h1></h1>"

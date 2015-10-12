@@ -54,10 +54,14 @@
             // structure model
             var _body = jQuery("body");
 
-            // retrieves the message from the matched object
+            // retrieves the message and the (target) window from
+            // the matched object to be used in the loading
             var message = matchedObject.attr("data-message");
+            var window = matchedObject.attr("data-window") || null;
 
-            // calls the confirm window in the document
+            // calls the confirm window in the document, note that
+            // in case the window value is set the proper window is
+            // going to be used for the confirmation display
             _body.uxconfirm(message, function(result) {
                         // in case the result is cancel avoids the current
                         // execution and returns immediately
@@ -69,6 +73,8 @@
                         // sets it in the document
                         var location = matchedObject.attr("href");
                         jQuery.uxlocation(location);
+                    }, {
+                        window : window
                     });
         };
 
