@@ -77,6 +77,7 @@
                         var name = _element.attr("data-name");
                         var input = _element.attr("data-input");
                         var classes = _element.attr("class") || "";
+                        var containerClasses = container.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
 
                         // verifies if the current drop down is considered to
@@ -98,11 +99,17 @@
                         // or an empty value otherwise
                         var original = inputElement.val() || "";
 
-                        // updates the button text value witht he original
+                        // updates the button text value with the original
                         // name value and the classes for it (avoiding drop down)
                         button.text(name);
                         button.attr("class", buttonClasses + " " + classes);
                         button.removeClass("drop-down");
+
+                        // updates the drop down classes with the parent values
+                        // of classes according to the specification
+                        container.attr("class", containerClasses + " "
+                                        + classes);
+                        container.removeClass("drop-down");
 
                         // verifies if the drop down is empty and for that case
                         // the container is hidden (not going to be displayed)
