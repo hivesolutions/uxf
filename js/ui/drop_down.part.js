@@ -76,6 +76,7 @@
                         // be applied also to the parent drop down element
                         var name = _element.attr("data-name");
                         var input = _element.attr("data-input");
+                        var extra = _element.attr("data-extra") || "";
                         var classes = _element.attr("class") || "";
                         var containerClasses = container.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
@@ -104,6 +105,12 @@
                         button.text(name);
                         button.attr("class", buttonClasses + " " + classes);
                         button.removeClass("drop-down");
+
+                        // in case there's a valid extra (note) name to be added to
+                        // the drop down button it's added at the end of the button
+                        extra
+                                && button.append("<span class=\"extra\">"
+                                        + extra + "</span>");
 
                         // updates the drop down classes with the parent values
                         // of classes according to the specification
@@ -363,6 +370,7 @@
             var button = jQuery(".button-drop-down", container);
             var input = jQuery("input", container);
             var name = matchedObject.attr("data-name");
+            var extra = matchedObject.attr("data-extra") || "";
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
             var originalElement = elements.filter("[data-value=" + original
@@ -374,11 +382,13 @@
             if (originalElement.length > 0) {
                 var originalText = originalElement.uxcontent().trim()
                         || originalElement.text();
+                var originalExtra = null;
             }
             // otherwise sets the original text as the name of the drop field
             // as no original value has been selected
             else {
                 var originalText = name;
+                var originalExtra = extra;
             }
 
             // hides the current drop down as it's no longer going to be
@@ -392,6 +402,12 @@
             // the text of the button with the "new" original text
             input.val(original);
             button.text(originalText);
+
+            // in case there's a valid extra (note) name to be added to
+            // the drop down button it's added at the end of the button
+            originalExtra
+                    && button.append("<span class=\"extra\">" + originalExtra
+                            + "</span>");
         };
 
         var _reset = function(matchedObject, options) {
