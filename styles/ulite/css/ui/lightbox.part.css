@@ -2,6 +2,7 @@
     cursor: pointer;
     line-height: 0px;
     min-width: inherit;
+    overflow: visible;
     padding: 0px 0px 0px 0px;
     width: inherit;
 }
