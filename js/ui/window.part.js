@@ -273,11 +273,11 @@
         };
 
         var _positionWindow = function(matchedObject, options, noLimit) {
-            // centers the matched object (window) and then in
-            // case the no limit flag is unset limits the size
+            // in case the no limit flag is unset limits the size
             // of the current window according to the global window
-            matchedObject.uxcenter();
+            // and then runs the centering operation in the window
             !noLimit && _limitWindow(matchedObject, options);
+            matchedObject.uxcenter();
         };
 
         var _positionDelay = function(matchedObject, options) {
