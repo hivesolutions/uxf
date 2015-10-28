@@ -12,6 +12,10 @@
  */
 (function(jQuery) {
     jQuery.fn.uxwindow = function(method, options) {
+        // the default timeout to be applied while limiting
+        // the dimensions of the window
+        var DEFAULT_PADDING = 4;
+
         // the default values for the window
         var defaults = {};
 
@@ -291,6 +295,15 @@
             // is going to be used in the measures
             var _window = jQuery(window);
 
+            // retrieves the padding value that is going to be used
+            // in the limits of the window, then it tries to parse
+            // the string value and in case it fails fallsback to the
+            // default value (as expected by behaviour)
+            var padding = matchedObject.attr("data-padding")
+                    || String(DEFAULT_PADDING);
+            padding = parseInt(padding);
+            padding = isNaN(padding) ? DEFAULT_PADDING : padding;
+
             // retrieves the dimensions of the global window and then
             // calculates the delta values for margins in the element
             var windowWidth = _window.width();
@@ -311,6 +324,11 @@
             var maxHeight = isContentBox
                     ? windowHeight - extraHeight
                     : windowHeight;
+
+            // decrements both the dimensions by twice the value of
+            // the paddin for both sides of the dimension
+            maxWidth -= padding * 2;
+            maxHeight -= padding * 2;
 
             // updates the maximum dimensioons of the window according to the
             // available space from the containing window
