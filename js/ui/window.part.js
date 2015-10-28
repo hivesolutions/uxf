@@ -305,8 +305,12 @@
             // the available dimensions with the extra (margin) value
             var boxSizing = matchedObject.css("box-sizing");
             var isContentBox = boxSizing == "content-box";
-            var maxWidth = isContentBox ? windowWidth - extra : windowWidth;
-            var maxHeight = isContentBox ? windowHeight - extra : windowHeight;
+            var maxWidth = isContentBox
+                    ? windowWidth - extraWidth
+                    : windowWidth;
+            var maxHeight = isContentBox
+                    ? windowHeight - extraHeight
+                    : windowHeight;
 
             // updates the maximum dimensioons of the window according to the
             // available space from the containing window
