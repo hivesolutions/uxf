@@ -291,21 +291,26 @@
             // is going to be used in the measures
             var _window = jQuery(window);
 
-            // retrives the height of the global window and then
-            // calculates the delta value for margins in the element
+            // retrieves the dimensions of the global window and then
+            // calculates the delta values for margins in the element
+            var windowWidth = _window.width();
             var windowHeight = _window.height();
-            var extra = matchedObject.outerHeight(false)
+            var extraWidth = matchedObject.outerWidth(false)
+                    - matchedObject.width();
+            var extraHeight = matchedObject.outerHeight(false)
                     - matchedObject.height();
 
             // determines if the current element/object is currently
             // sized using content box and if that's the case reduces
-            // the available height with the extra (margin) value
+            // the available dimensions with the extra (margin) value
             var boxSizing = matchedObject.css("box-sizing");
             var isContentBox = boxSizing == "content-box";
+            var maxWidth = isContentBox ? windowWidth - extra : windowWidth;
             var maxHeight = isContentBox ? windowHeight - extra : windowHeight;
 
-            // updates the maximum height of the window according to the
+            // updates the maximum dimensioons of the window according to the
             // available space from the containing window
+            matchedObject.css("max-width", maxWidth + "px");
             matchedObject.css("max-height", maxHeight + "px");
         };
 
