@@ -14,7 +14,7 @@
     jQuery.fn.uxwindow = function(method, options) {
         // the default timeout to be applied while limiting
         // the dimensions of the window
-        var DEFAULT_PADDING = 4;
+        var DEFAULT_PADDING = 8;
 
         // the default values for the window
         var defaults = {};
