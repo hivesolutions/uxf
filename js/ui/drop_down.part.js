@@ -176,8 +176,9 @@
                         var elements = jQuery("> li", dropDown);
 
                         // retrieves both the textual/visual value of the selected
-                        // element and the logical/data value for it
-                        var text = element.text();
+                        // element and the logical/data value for it, note that the
+                        // content of the elememt has priority over the complete text
+                        var text = element.uxcontent().trim() || element.text();
                         var value = element.attr("data-value");
 
                         // removes the selected class from the complete set of list
@@ -366,10 +367,29 @@
             var elements = jQuery("> li", matchedObject);
             var originalElement = elements.filter("[data-value=" + original
                     + "]");
-            var originalText = originalElement.text() || name;
+
+            // verifies if an element was selected (original element) and if
+            // that's the case retrieves the proper original text either from
+            // it's content of from it's complete text
+            if (originalElement.length > 0) {
+                var originalText = originalElement.uxcontent().trim()
+                        || originalElement.text();
+            }
+            // otherwise sets the original text as the name of the drop field
+            // as no original value has been selected
+            else {
+                var originalText = name;
+            }
+
+            // hides the current drop down as it's no longer going to be
+            // display (selected value) and then updates the proper selected
+            // class to the target original element (if it exists)
             _hide(matchedObject, options);
             elements.removeClass("selected");
             originalElement.addClass("selected");
+
+            // changes the value of the "logical" input value and updates
+            // the text of the button with the "new" original text
             input.val(original);
             button.text(originalText);
         };
