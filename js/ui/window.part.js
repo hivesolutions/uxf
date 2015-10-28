@@ -272,15 +272,41 @@
             mask.fadeOut(250);
         };
 
-        var _positionWindow = function(matchedObject, options) {
-            // centers the matched object (window)
+        var _positionWindow = function(matchedObject, options, noLimit) {
+            // centers the matched object (window) and then in
+            // case the no limit flag is unset limits the size
+            // of the current window according to the global window
             matchedObject.uxcenter();
+            !noLimit && _limitWindow(matchedObject, options);
         };
 
         var _positionDelay = function(matchedObject, options) {
             setTimeout(function() {
                         _positionWindow(matchedObject, options);
                     });
+        };
+
+        var _limitWindow = function(matchedObject, options) {
+            // retrieves the reference to the global window that
+            // is going to be used in the measures
+            var _window = jQuery(window);
+
+            // retrives the height of the global window and then
+            // calculates the delta value for margins in the element
+            var windowHeight = _window.height();
+            var extra = matchedObject.outerHeight(false)
+                    - matchedObject.height();
+
+            // determines if the current element/object is currently
+            // sized using content box and if that's the case reduces
+            // the available height with the extra (margin) value
+            var boxSizing = matchedObject.css("box-sizing");
+            var isContentBox = boxSizing == "content-box";
+            var maxHeight = isContentBox ? windowHeight - extra : windowHeight;
+
+            // updates the maximum height of the window according to the
+            // available space from the containing window
+            matchedObject.css("max-height", maxHeight + "px");
         };
 
         var _resizeMask = function(matchedObject, options) {
