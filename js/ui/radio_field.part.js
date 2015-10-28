@@ -75,7 +75,15 @@
                     });
         };
 
-        var _check = function(matchedObject, options) {
+        var _check = function(matchedObject, options, force) {
+            // verifies if the current object is disabled (has the
+            // disabled class) and if that's the case and the force
+            // flag is not set returns the control flow immediately
+            var isDisabled = matchedObject.hasClass("disabled");
+            if (isDisabled && !force) {
+                return;
+            }
+
             // checks the current matched object by setting
             // the its checked attribute
             matchedObject.attr("checked", true);
