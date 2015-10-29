@@ -394,7 +394,8 @@
                         // field and propagates the focus event to it
                         var element = jQuery(this);
                         var textField = jQuery(".text-field", element);
-                        textField.focus();
+                        var isFocus = textField.is(":focus");
+                        !isFocus && textField.focus();
                     });
 
             // registers for the blur event in the matched object
@@ -405,7 +406,8 @@
                         // field and propagates the blur event to it
                         var element = jQuery(this);
                         var textField = jQuery(".text-field", element);
-                        textField.blur();
+                        var isFocus = textField.is(":focus");
+                        isFocus && textField.blur();
                     });
 
             // registers for the focus event in the text field
