@@ -87,6 +87,10 @@
             // checks the current matched object by setting
             // the its checked attribute
             matchedObject.attr("checked", true);
+
+            // triggers the (value) change event meaning that the value
+            // for the check field has changed (as expected by developer)
+            matchedObject.triggerHandler("change");
         };
 
         var _update = function(matchedObject, options) {
