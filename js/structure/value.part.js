@@ -22,7 +22,7 @@
         // name to be used and uses it to retrieve the the
         // value for the component
         var object = matchedObject.attr("data-object");
-        var method = matchedObject["ux" + object]
+        var method = matchedObject["ux" + object];
         var value = method
                 ? method.apply(matchedObject, _arguments)
                 : valueF.apply(matchedObject, arguments);

@@ -16,7 +16,7 @@
                     // name to be used and uses it to retrieve the the
                     // value for the component
                     var object = _element.attr("data-object");
-                    var method = _element["ux" + object]
+                    var method = _element["ux" + object];
                     method && method.call(_element, "reset");
 
                     // triggers the reset event on the current element indicating
