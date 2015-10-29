@@ -1,5 +1,5 @@
 (function(jQuery) {
-    jQuery.fn.uxobject = function(type) {
+    jQuery.fn.uxobject = function(type, force) {
         // retrieves the reference to the object in context
         // the one that is going to be set with the proper
         // object type for future reference
@@ -14,9 +14,10 @@
 
                     // verifies if a previous type has already been set
                     // in the object, for such cases the function must
-                    // return immediately to avoid duplicated type
+                    // return immediately to avoid duplicated type, note
+                    // that if used the force flag avoids such behaviour
                     var _type = _element.attr("data-object");
-                    if (_type) {
+                    if (_type && !force) {
                         return;
                     }
 
