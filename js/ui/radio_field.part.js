@@ -89,7 +89,7 @@
             matchedObject.attr("checked", true);
 
             // triggers the (value) change event meaning that the value
-            // for the check field has changed (as expected by developer)
+            // for the radio field has changed (as expected by developer)
             matchedObject.triggerHandler("change");
         };
 
