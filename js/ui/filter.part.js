@@ -957,7 +957,8 @@
             var dataSource = jQuery("> .data-source", filter);
             var template = jQuery(".template", filter);
 
-            // retrieves the filter options
+            // retrieves the filter options, to be used to evaluate
+            // the current state of the filter element
             var filterString = filter.data("filter_string");
             var startRecord = filter.data("start_record");
             var numberRecords = filter.data("number_records");
@@ -985,6 +986,14 @@
 
             // sets the initial vaalue for the reset flag
             var reset = false;
+
+            // verifies if at least one data source is available for the
+            // update operation and if that's not the case returns immediately
+            // as it's not possible to run the update operation without
+            // any valid/enabled data source element
+            if (dataSource.length == 0) {
+                return
+            }
 
             // in case the value in the filter input
             // has changed (reset required)
