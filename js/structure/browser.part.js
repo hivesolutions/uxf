@@ -110,10 +110,18 @@
             browserName = browserName.toLowerCase();
             browserOs = browserOs.toLowerCase();
 
-            // adds the browser classes to the body item
+            // adds the browser classes to the body item, so that
+            // they may be used for declarative conditionals
             matchedObject.addClass(browserName);
             matchedObject.addClass(browserName + "-" + browserVersion);
             matchedObject.addClass(browserOs);
+
+            // updates a series of attributes in the body so that
+            // it's possibel to access browser and operative system
+            // information from the matched object
+            matchedObject.attr("data-browser", browserName)
+            matchedObject.attr("data-browser_version", browserVersion)
+            matchedObject.attr("data-os", browserOs)
 
             // applies the patch to the kquery infra-structure so that
             // the old mode of broewser detection is still possible
