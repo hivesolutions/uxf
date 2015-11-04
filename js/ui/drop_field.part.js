@@ -395,6 +395,7 @@
                         var element = jQuery(this);
                         var textField = jQuery(".text-field", element);
                         var isFocus = textField.is(":focus");
+                        isFocus = isFocus || textField.hasClass("focus");
                         !isFocus && textField.focus();
                     });
 
@@ -407,6 +408,7 @@
                         var element = jQuery(this);
                         var textField = jQuery(".text-field", element);
                         var isFocus = textField.is(":focus");
+                        isFocus = isFocus || textField.hasClass("focus");
                         isFocus && textField.blur();
                     });
 
