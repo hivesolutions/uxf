@@ -3,6 +3,11 @@
         // the data browser values
         var DATA_BROWSER = [{
                     string : navigator.userAgent,
+                    subString : "Edge",
+                    identity : "Edge",
+                    versionSearch : "Edge"
+                }, {
+                    string : navigator.userAgent,
                     subString : "Chrome",
                     identity : "Chrome"
                 }, {
@@ -38,11 +43,6 @@
                     string : navigator.userAgent,
                     subString : "Netscape",
                     identity : "Netscape"
-                }, {
-                    string : navigator.userAgent,
-                    subString : "Edge",
-                    identity : "Edge",
-                    versionSearch : "Edge"
                 }, {
                     string : navigator.userAgent,
                     subString : "MSIE",
