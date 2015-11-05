@@ -509,7 +509,17 @@
                     var data = request.response || request.responseText;
                     var jsonData = jQuery.parseJSON(data) || {};
                     var exception = jsonData["exception"] || jsonData;
+                    var message = jsonData["message"] || "There was an error";
                     var errors = exception["errors"] || {};
+
+                    // runs the localization operation in the message so that the proper
+                    // locale version is going to be displayed
+                    message = jQuery.uxlocale(message);
+
+                    // retrieves the element that is going to display the error message
+                    // for the current form and updates it with the message
+                    var messageElement = jQuery(".error-message", matchedObject);
+                    messageElement.text(message);
 
                     // iterates over all the name in the errors map to sets the
                     // errors value in the various items of the form (error indication)
