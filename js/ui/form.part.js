@@ -382,7 +382,7 @@
 
                 // sets the current data as the response text value retrieved
                 // from the currently set request object
-                var data = request.responseText;
+                var data = request.response || request.responseText;
 
                 // retrieves the body element and uses it to trigger the data
                 // event indicating that new panel data is available and that
@@ -506,7 +506,8 @@
                     // exception and then the errors list, note that in case there's
                     // no exception key value the proper json structure is going to
                     // be used as the root of the exception object
-                    var jsonData = jQuery.parseJSON(request.response) || {};
+                    var data = request.response || request.responseText;
+                    var jsonData = jQuery.parseJSON(responseText) || {};
                     var exception = jsonData["exception"] || jsonData;
                     var errors = exception["errors"] || {};
 
