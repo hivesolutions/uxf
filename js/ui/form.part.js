@@ -463,6 +463,14 @@
                         return;
                     }
 
+                    // in case the refresh flag is set on the current form
+                    // the current browser stat is refreshed
+                    var isRefresh = matchedObject.hasClass("form-refresh");
+                    if (isRefresh) {
+                        jQuery.uxlocation("");
+                        return;
+                    }
+
                     // checks if the success for panel exists in the form
                     // in case it exist it must be shown and the other contents
                     // fo the form hidden
@@ -545,7 +553,7 @@
 
                     // triggerrs the error event on the matched object, this
                     // should indicate that there was a problem in the form submission
-                    matchedObject.triggerHandler("error", [exception]);
+                    matchedObject.triggerHandler("error", [exception, message]);
                 }
             });
         };
