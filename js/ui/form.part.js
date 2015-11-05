@@ -457,10 +457,6 @@
                     matchedObject.triggerHandler("post_submit");
                 },
                 success : function(data) {
-                    // resets the form contents to the original values
-                    // this should remove all the values in it
-                    resetForm(matchedObject, options);
-
                     // in case no data was received the connection is
                     // assumed to be down (no data receved) an error
                     // is triggered and the control returned immediately
@@ -476,6 +472,10 @@
                         jQuery.uxlocation("");
                         return;
                     }
+
+                    // resets the form contents to the original values
+                    // this should remove all the values in it
+                    resetForm(matchedObject, options);
 
                     // checks if the success for panel exists in the form
                     // in case it exist it must be shown and the other contents
