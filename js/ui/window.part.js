@@ -107,14 +107,17 @@
                         _hide(window, options, true);
                     });
 
-            // registers for the post submit event triggered when
+            // registers for the success event triggered when
             // an async based form has completed the submission
-            form.bind("post_submit", function() {
+            form.bind("success", function() {
                         // retrieves the reference to the current form element
-                        // and uses it to gather the parent window and hide it
+                        // and uses it to gather the parent window and hides it
+                        // but just in case there's no form success
                         var element = jQuery(this);
+                        var formSuccess = jQuery(".form-success", element);
+                        var shouldHide = formSuccess.length == 0;
                         var window = element.parents(".window");
-                        window.uxwindow("hide");
+                        shouldHide && window.uxwindow("hide");
                     });
 
             // registers for the click event in the matched

@@ -356,8 +356,10 @@
                 }
 
                 // triggers the post submit event in the current matched object
-                // (form) indicating that the form has been submitted
+                // (form) indicating that the form has been submitted a the
+                // success event meaning that there was success in that submit
                 matchedObject.triggerHandler("post_submit");
+                matchedObject.triggerHandler("success");
 
                 // verifies if the current result if of type (async) redirect, this
                 // is a special case and the redirection must be performed using a
