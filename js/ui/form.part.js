@@ -449,6 +449,10 @@
                     // triggers the unlock event so that the various
                     // items in the form may be re-used again
                     matchedObject.triggerHandler("unlock");
+
+                    // triggers the post submit event in the current matched object
+                    // (form) indicating that the form has been submitted
+                    matchedObject.triggerHandler("post_submit");
                 },
                 success : function(data) {
                     // resets the form contents to the original values
