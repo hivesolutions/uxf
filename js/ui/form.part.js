@@ -507,7 +507,7 @@
                     // no exception key value the proper json structure is going to
                     // be used as the root of the exception object
                     var data = request.response || request.responseText;
-                    var jsonData = jQuery.parseJSON(responseText) || {};
+                    var jsonData = jQuery.parseJSON(data) || {};
                     var exception = jsonData["exception"] || jsonData;
                     var errors = exception["errors"] || {};
 
