@@ -167,7 +167,8 @@
 
                             // removes all the input elements contained inside the
                             // current tag field (avoid duplicated submission)
-                            var inputs = jQuery("input", _element)
+                            var inputs = jQuery("input:not(.text-field)",
+                                    _element)
                             inputs.remove("input");
 
                             // retrieves the complete set of tags in the current
