@@ -446,6 +446,13 @@
         };
 
         var _select = function(matchedObject, options, element) {
+            // in case no element is selected nothing is meant to
+            // be performed under the current function, and the
+            // control flow must be returned immediately
+            if (element.length == 0) {
+                return;
+            }
+
             // retrieves the reference to the various elements
             // tha are going to be used in the element selection
             var container = matchedObject.parents(".drop-down-container");
