@@ -178,35 +178,10 @@
                         var element = jQuery(this);
                         var container = element.parents(".drop-down-container");
                         var dropDown = jQuery(".drop-down", container);
-                        var button = jQuery(".button-drop-down", container);
-                        var input = jQuery("input", container);
-                        var elements = jQuery("> li", dropDown);
 
-                        // retrieves both the textual/visual value of the selected
-                        // element and the logical/data value for it, note that the
-                        // content of the elememt has priority over the complete text
-                        var text = element.uxcontent().trim() || element.text();
-                        var value = element.attr("data-value");
-
-                        // removes the selected class from the complete set of list
-                        // elements and then adds the selected class to the selected
-                        // item so that it's properly marked as selected
-                        elements.removeClass("selected");
-                        value && element.addClass("selected");
-
-                        // changes both the input value and the button textual value
-                        // but only in case a logical value is defined (input mode)
-                        value && input.val(value);
-                        value && button.text(text);
-
-                        // hides the drop down as it's no longer required to be open
-                        // (the value has been selected)
-                        _hide(dropDown, options);
-
-                        // triggers the value changed operation with the text/visual
-                        // value and the logical value, so that listeners may be
-                        // properly notified about the changing value
-                        dropDown.triggerHandler("value_change", [text, value]);
+                        // runs the select operation on the target element as
+                        // "requested" by the click operation in it
+                        _select(dropDown, options, element);
 
                         // stops the event propagation, avoiding possible issues with
                         // the propagation of the click event on the element
@@ -295,7 +270,38 @@
             });
         };
 
+        var _set = function(matchedObject, options) {
+            // tries to retrieve the (new) value to be set either from
+            // the value of the value logic fields
+            var value = options["value"];
+            var valueLogic = options["valueLogic"];
+            value = value || valueLogic;
+
+            // retrieves the complete set of element present in the
+            // provided drop down (matched object) and then filters
+            // the one that contains the target value
+            var elements = jQuery("> li", matchedObject);
+            var element = elements.filter("[data-value=" + value + "]");
+
+            // runs the select operation on the target element as
+            // "requested" by the click operation in it
+            _select(dropDown, options, element);
+        };
+
         var _value = function(matchedObject, options) {
+            // tries to retrieve a possible value from the set of
+            // provided options, this value is going to be used to
+            // set a new value in case that's required
+            var value = options["value"];
+
+            // determines if the current opetation is a set one and
+            // if that's the case redirect the control flow to the
+            // set operation so that it may be correctly used
+            var isSet = value !== undefined;
+            if (isSet) {
+                return _set(matchedObject, options);
+            }
+
             // retrieves the parent container of the matched object and
             // then uses it to retrieve the underlying input and the
             // logical value from it (as it's expected)
@@ -415,9 +421,50 @@
             _original(matchedObject, options);
         };
 
+        var _select = function(matchedObject, options, element) {
+            // retrieves the reference to the various elements
+            // tha are going to be used in the element selection
+            var container = matchedObject.parents(".drop-down-container");
+            var button = jQuery(".button-drop-down", container);
+            var input = jQuery("input", container);
+            var elements = jQuery("> li", matchedObject);
+
+            // retrieves both the textual/visual value of the selected
+            // element and the logical/data value for it, note that the
+            // content of the elememt has priority over the complete text
+            var text = element.uxcontent().trim() || element.text();
+            var value = element.attr("data-value");
+
+            // removes the selected class from the complete set of list
+            // elements and then adds the selected class to the selected
+            // item so that it's properly marked as selected
+            elements.removeClass("selected");
+            value && element.addClass("selected");
+
+            // changes both the input value and the button textual value
+            // but only in case a logical value is defined (input mode)
+            value && input.val(value);
+            value && button.text(text);
+
+            // hides the drop down as it's no longer required to be open
+            // (the value has been selected)
+            _hide(matchedObject, options);
+
+            // triggers the value changed operation with the text/visual
+            // value and the logical value, so that listeners may be
+            // properly notified about the changing value
+            matchedObject.triggerHandler("value_change", [text, value]);
+        };
+
         // switches over the method that is going to be performed
         // for the current operation (as requested)
         switch (method) {
+            case "set" :
+                // sets the value in the drop down according to
+                // the requested value (provided by options)
+                _set(matchedObject, options);
+                break
+
             case "value" :
                 // retrieves the value from the matched object and
                 // then returns the same value to the caller method
