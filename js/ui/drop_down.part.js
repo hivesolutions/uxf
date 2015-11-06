@@ -95,6 +95,30 @@
                             container.prepend(inputElement);
                         }
 
+                        // retreives the compete set of elements that are meant
+                        // to be defaulted in case no logical value is defined
+                        // allowing proper value interface for them
+                        var defaults = input ? elements : jQuery([]);
+                        defaults.each(function() {
+                                    // retrieves the current element in iteration and
+                                    // verifies that a proper logical value is defined
+                                    // for it and if that's the case skips iteration
+                                    var __element = jQuery(this);
+                                    var value = __element.attr("data-value");
+                                    var hasValue = typeof value !== typeof undefined
+                                            && value !== false;
+                                    if (hasValue) {
+                                        return;
+                                    }
+
+                                    // no value is defined for the element and
+                                    // so the text representation of the element
+                                    // is used instead for its logical representation
+                                    var text = __element.uxcontent().trim()
+                                            || __element.text().trim();
+                                    __element.attr("data-value", text);
+                                });
+
                         // retrieves the "original" (logical) value as the
                         // value of the input element (in case it exists)
                         // or an empty value otherwise
@@ -281,11 +305,11 @@
             // provided drop down (matched object) and then filters
             // the one that contains the target value
             var elements = jQuery("> li", matchedObject);
-            var element = elements.filter("[data-value=" + value + "]");
+            var element = elements.filter("[data-value=\"" + value + "\"]");
 
             // runs the select operation on the target element as
             // "requested" by the click operation in it
-            _select(dropDown, options, element);
+            _select(matchedObject, options, element);
         };
 
         var _value = function(matchedObject, options) {
@@ -379,15 +403,15 @@
             var extra = matchedObject.attr("data-extra") || "";
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
-            var originalElement = elements.filter("[data-value=" + original
-                    + "]");
+            var originalElement = elements.filter("[data-value=\"" + original
+                    + "\"]");
 
             // verifies if an element was selected (original element) and if
             // that's the case retrieves the proper original text either from
             // it's content of from it's complete text
             if (originalElement.length > 0) {
                 var originalText = originalElement.uxcontent().trim()
-                        || originalElement.text();
+                        || originalElement.text().trim();
                 var originalExtra = null;
             }
             // otherwise sets the original text as the name of the drop field
@@ -432,7 +456,7 @@
             // retrieves both the textual/visual value of the selected
             // element and the logical/data value for it, note that the
             // content of the elememt has priority over the complete text
-            var text = element.uxcontent().trim() || element.text();
+            var text = element.uxcontent().trim() || element.text().trim();
             var value = element.attr("data-value");
 
             // removes the selected class from the complete set of list
