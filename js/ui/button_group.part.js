@@ -101,6 +101,13 @@
                             var _element = jQuery(this);
                             var selected = jQuery(".button.selected", _element);
 
+                            // verifies if there's a selected element and if that's
+                            // not the case returns immediately, no value is going
+                            // to be submitted (according to specification)
+                            if (selected.length == 0) {
+                                return;
+                            }
+
                             // tries to retrieve the anme attribute out of the element
                             // in case it's not defined returns immediately
                             var name = _element.attr("name");
