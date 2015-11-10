@@ -39,9 +39,15 @@
                         // version of the country with the more general iso version
                         var mapper = {};
 
+                        // retrieve the iso value as a string that is going to be used
+                        // for the locagical version of the countries, the default value
+                        // is the plain english version of the iso country names
+                        var iso = _element.attr("data-iso") || "iso";
+                        var locale = "en-" + iso;
+
                         // retrieves the iso standard version of the countries
                         // that is going to be used as the logical version
-                        var COUNTRIES = jQuery.uxlocale("COUNTRIES", "en-iso");
+                        var COUNTRIES = jQuery.uxlocale("COUNTRIES", locale);
                         COUNTRIES = COUNTRIES.slice();
 
                         // retrieves the list of countries to be used according
