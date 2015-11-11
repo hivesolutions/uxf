@@ -199,13 +199,20 @@
                             }
 
                             // retrieves the empty field used to submit a default
-                            // value in case no tags are selected
+                            // value in case no tags are selected and then tries
+                            // to retrieve the name associated with it so that it
+                            // may be used in the submission manipulation
                             var tagEmptyField = jQuery(".tag-empty-field",
                                     _element);
+                            var name = tagEmptyField.attr("name")
+                                    || tagEmptyField.attr("data-name");
+                            tagEmptyField.attr("name", name);
+                            tagEmptyField.attr("data-name", name);
 
-                            // in case there are currently tags the empty field must
-                            // be removed to avoid unwanted behaviour
-                            tags.length && tagEmptyField.remove();
+                            // in case there there tags (considered to be valid)
+                            // the empty field must be removed to avoid unwanted
+                            // behaviour, this is done by removing the name attribute
+                            tags.length && tagEmptyField.removeAttr("name");
                         });
             });
 

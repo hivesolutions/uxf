@@ -201,11 +201,19 @@
                     var defaultInput = jQuery("input", tableDefaultField);
                     defaultInput.removeAttr("name");
 
+                    // retries the name attribute from the table empty field
+                    // from each of the name fields and then (re)-sets it in
+                    // each of the name fields (so that it may be restored)
+                    var name = tableEmptyField.attr("name")
+                            || tableEmptyField.attr("data-name");
+                    tableEmptyField.attr("name", name);
+                    tableEmptyField.attr("data-name", name);
+
                     // in case there is only one table field element
-                    // the table empty filed is removed to avoid it from
+                    // the table empty field is removed to avoid it from
                     // being submited (this should only be submited in empty table)
                     (rows.length - tableDefaultField.length > 0)
-                            && tableEmptyField.remove();
+                            && tableEmptyField.removeAttr("name");
                 });
 
                 // in case the table is of type edit and the table is emtpy
