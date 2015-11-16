@@ -41,11 +41,13 @@
         };
 
         var _applyTemplate = function(element) {
-            // retrieves the ux apply option
+            // retrieves the ux apply option, taking into account
+            // if the element contains any reference to the no apply
+            // attribute that would disable the apply operation
             var apply = options["apply"];
+            apply = element.attr("data-no_apply") ? false : apply;
 
-            // clones the element creating the template
-            // element value
+            // clones the element creating the template element value
             var templateElement = element.clone();
 
             // applies the template to the template element, retrieving
@@ -53,19 +55,21 @@
             // the variable references in the template
             var templateContents = __applyTemplate(templateElement, attributes);
 
-            // set the template contents in the template element
-            // and then removes the template class from it
+            // set the template contents in the template element and
+            // then removes the template class and the no apply attribute
             templateElement.html(templateContents);
             templateElement.removeClass("template");
+            templateElement.removeAttr("data-no_apply");
 
-            // re-sets the the "obfuscated" name and src
-            // attributes to the original form
+            // re-sets the the "obfuscated" name and src aattributes to
+            // the original form, to be properly used
             templateElement.uxattr("data-name", "name");
             templateElement.uxattr("data-class", "class");
             templateElement.uxattr("data-src", "src");
 
-            // applies the ux in the element, in case the
-            // apply flag is set
+            // applies the ux in the element, in case the/ apply flag is set,
+            // note that it might be/ disabled using either the options of the
+            // special attribute in template
             apply && templateElement.uxapply();
 
             // returns the template element (cloned element)
