@@ -119,8 +119,14 @@
             matchedObject.bind("transitionend", function(event) {
                         var element = jQuery(this);
                         var opacity = element.css("opacity");
+                        var original = element.data("original");
                         opacity = parseInt(opacity);
-                        opacity == 0 && element.hide();
+                        if (opacity != 0) {
+                            return;
+                        }
+                        element.hide();
+                        element.css("opacity", original);
+                        element.removeAttr("original");
                     });
         };
 
@@ -181,11 +187,14 @@
 
         var __fadeIn = function(matchedObject, options, timeout, useHardware) {
             if (useHardware) {
+                var target = matchedObject.css("opacity") || "1";
+                var targetF = parseFloat(target);
+                matchedObject.data("original", target);
                 matchedObject.css("opacity", "0");
                 matchedObject.css("transition", "opacity " + String(timeout)
                                 + "ms ease-in-out");
                 matchedObject.show();
-                matchedObject.css("opacity", "1");
+                matchedObject.css("opacity", String(targetF));
             } else {
                 matchedObject.fadeIn(timeout);
             }
