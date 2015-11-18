@@ -73,7 +73,7 @@
             // resizing operation on the oeverlay element
             _window.bind("size", function(event) {
                         // resizes the overlay in the screen
-                        resizeDelay(matchedObject, options);
+                        _resizeDelay(matchedObject, options);
                     });
 
             // registers for the click event so that
@@ -113,6 +113,15 @@
                         var element = jQuery(this);
                         _resize(element, options);
                     });
+
+            // registers for the transition end envet so that the
+            // visual state of the element is properly updated
+            matchedObject.bind("transitionend", function(event) {
+                        var element = jQuery(this);
+                        var opacity = element.css("opacity");
+                        opacity = parseInt(opacity);
+                        opacity == 0 && element.hide();
+                    });
         };
 
         var _toggle = function(matchedObject, options, timeout) {
@@ -129,13 +138,13 @@
             // shows the matched object and then runs
             // the show operation for the overlay element
             _resize(matchedObject, options);
-            matchedObject.fadeIn(timeout || 250);
+            __fadeIn(matchedObject, options, timeout || 250, true);
         };
 
         var _hide = function(matchedObject, options, timeout) {
             // hides the matched object, using the default
             // strategy for such operation (as expected)
-            matchedObject.fadeOut(timeout || 100);
+            __fadeOut(matchedObject, options, timeout || 100, true);
         };
 
         var _resize = function(matchedObject, options) {
@@ -164,10 +173,32 @@
             matchedObject.height(documentHeight);
         };
 
-        var resizeDelay = function(matchedObject, options) {
+        var _resizeDelay = function(matchedObject, options) {
             setTimeout(function() {
                         _resize(matchedObject, options);
                     });
+        };
+
+        var __fadeIn = function(matchedObject, options, timeout, useHardware) {
+            if (useHardware) {
+                matchedObject.css("opacity", "0");
+                matchedObject.css("transition", "opacity " + String(timeout)
+                                + "ms ease-in-out");
+                matchedObject.show();
+                matchedObject.css("opacity", "1");
+            } else {
+                matchedObject.fadeIn(timeout);
+            }
+        };
+
+        var __fadeOut = function(matchedObject, options, timeout, useHardware) {
+            if (useHardware) {
+                matchedObject.css("transition", "opacity " + String(timeout)
+                                + "ms ease-in-out");
+                matchedObject.css("opacity", "0");
+            } else {
+                matchedObject.fadeIn(timeout);
+            }
         };
 
         // initializes the plugin
