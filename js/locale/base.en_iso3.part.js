@@ -21,7 +21,7 @@
                 "ZAF", "ESP", "LKA", "SDN", "SUR", "SWZ", "SWE", "CHE", "SYR",
                 "TWN", "TJK", "TZA", "THA", "TGO", "TON", "TTO", "TUN", "TUR",
                 "TKM", "TUV", "UGA", "UKR", "ARE", "GBR", "USA", "URY", "UZB",
-                "VUT", "VAT", "VEN", "VNM", "YEM", "ZMB", "ZWE",]
+                "VUT", "VAT", "VEN", "VNM", "YEM", "ZMB", "ZWE"]
     }
 
     jQuery.uxloadbundle(BUNDLE_EN_ISO3, "en-iso3")

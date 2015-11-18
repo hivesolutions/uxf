@@ -43,7 +43,19 @@
             // the element as an element that is meant to be resizes, this
             // is imporant to avoid error in the resize operations
             _resize(matchedObject, options);
+            __transition(matchedObject, options, 0);
             matchedObject.addClass("resizable");
+
+            // iterates over the complete set of overlay elements to be
+            // able to populate the original opacity value for each of
+            // them and then sets the zero based opacity value (initial value)
+            matchedObject.each(function(index, element) {
+                        var _element = jQuery(this);
+                        var target = _element.css("opacity") || "1";
+                        var targetF = parseFloat(target);
+                        _element.data("original", targetF);
+                        _element.css("opacity", "0");
+                    });
         };
 
         /**
@@ -118,15 +130,12 @@
             // visual state of the element is properly updated
             matchedObject.bind("transitionend", function(event) {
                         var element = jQuery(this);
-                        var opacity = element.css("opacity");
-                        var original = element.data("original");
-                        opacity = parseInt(opacity);
-                        if (opacity != 0) {
+                        var transition = element.data("transition");
+                        if (transition != "fadeout") {
                             return;
                         }
                         element.hide();
-                        element.css("opacity", original);
-                        element.removeAttr("original");
+                        element.removeData("transition");
                     });
         };
 
@@ -186,28 +195,47 @@
         };
 
         var __fadeIn = function(matchedObject, options, timeout, useHardware) {
+            matchedObject.data("transition", "fadein");
             if (useHardware) {
-                var target = matchedObject.css("opacity") || "1";
-                var targetF = parseFloat(target);
-                matchedObject.data("original", target);
-                matchedObject.css("opacity", "0");
-                matchedObject.css("transition", "opacity " + String(timeout)
-                                + "ms ease-in-out");
-                matchedObject.css("display", "block");
-                matchedObject.css("opacity", String(targetF));
+                var original = matchedObject.data("original");
+                __transitionDuration(matchedObject, options, timeout);
+                matchedObject.show();
+                matchedObject.css("opacity", String(original));
             } else {
-                matchedObject.fadeIn(timeout);
+                matchedObject.fadeIn(timeout, function() {
+                            matchedObject.removeData("transition");
+                        });
             }
         };
 
         var __fadeOut = function(matchedObject, options, timeout, useHardware) {
+            matchedObject.data("transition", "fadeout");
             if (useHardware) {
-                matchedObject.css("transition", "opacity " + String(timeout)
-                                + "ms ease-in-out");
+                __transitionDuration(matchedObject, options, timeout);
                 matchedObject.css("opacity", "0");
             } else {
-                matchedObject.fadeIn(timeout);
+                matchedObject.fadeIn(timeout, function() {
+                            matchedObject.removeData("transition");
+                        });
             }
+        };
+
+        var __transition = function(matchedObject, options, timeout) {
+            var value = "opacity " + String(timeout) + "ms ease-in-out";
+            matchedObject.css("transition", value);
+            matchedObject.css("-webkit-transition", value);
+            matchedObject.css("-moz-transition", value);
+            matchedObject.css("-o-transition", value);
+            matchedObject.css("-ms-transition", value);
+        };
+
+        var __transitionDuration = function(matchedObject, options, timeout) {
+            var value = String(timeout) + "ms";
+            matchedObject.css("transition-duration", value);
+            matchedObject.css("-webkit-transition-duration", value);
+            matchedObject.css("-moz-transition-duration", value);
+            matchedObject.css("-o-transition-duration", value);
+            matchedObject.css("-ms-transition-duration", value);
         };
 
         // initializes the plugin
