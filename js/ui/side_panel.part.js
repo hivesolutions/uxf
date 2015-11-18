@@ -81,7 +81,7 @@
             // retrieves the overlay element and in case it's not present
             // creates a default element adding it to the start of the
             // top level body element (default behaviour)
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             if (overlay.length > 0) {
                 return overlay;
             }
@@ -101,7 +101,7 @@
             var overlay = _ensureOverlay();
             var width = matchedObject.outerWidth(true);
             overlay.triggerHandler("resize");
-            overlay.fadeIn(350);
+            overlay.triggerHandler("show", [350]);
             matchedObject.css("right", (width * -1) + "px");
             matchedObject.show();
             matchedObject.animate({
@@ -126,7 +126,7 @@
             var width = matchedObject.outerWidth(true);
             __unregisterClick(matchedObject, options);
             __unregisterKey(matchedObject, options);
-            overlay.fadeOut(350);
+            overlay.triggerHandler("hide", [350]);
             matchedObject.css("right", 0 + "px");
             matchedObject.animate({
                         right : width * -1
@@ -143,7 +143,7 @@
             // retrieves the overlay element and registers for
             // the click event on it in order to hide the current
             // window then stores it in the data element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             var handler = function() {
                 matchedObject.triggerHandler("hide");
             };
@@ -155,7 +155,7 @@
             // retrieves the global overlay and the handle to the
             // callback function then unbinds it from the click
             // even on the overlay
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             var handle = matchedObject.data("click_handler");
             overlay.unbind("click", handle);
         };

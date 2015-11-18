@@ -164,21 +164,21 @@
 
         var _show = function(matchedObject, options) {
             // retrieves the overlay element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
 
             // shows the global overlay and the matched
             // object, this should provide a modal view
-            overlay.fadeIn(250)
+            overlay.triggerHandler("show", [250]);
             matchedObject.fadeIn(250);
         };
 
         var _hide = function(matchedObject, options) {
             // retrieves the overlay element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
 
             // hides the both the overlay and the matched
             // object (moving out from modal)
-            overlay.fadeOut(250);
+            overlay.triggerHandler("hide", [250]);
             matchedObject.fadeOut(250);
         };
 

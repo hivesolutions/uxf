@@ -173,7 +173,7 @@
             // retrieves the overlay element and in case it's not present
             // creates a default element adding it to the start of the
             // top level body element (default behaviour)
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             if (overlay.length == 0) {
                 var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
@@ -195,7 +195,7 @@
 
             // shows the overlay and shows at the same time the
             // current object (window)
-            overlay.fadeIn(250);
+            overlay.triggerHandler("show", [250]);
             matchedObject.fadeIn(250);
 
             // registers for the click event on the global overlay
@@ -221,7 +221,7 @@
 
         var _hide = function(matchedObject, options, success) {
             // retrieves the overlay element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
 
             // unregisters from the click event on the global overlay
             // so that the windows stop respoding from the event
@@ -233,7 +233,7 @@
 
             // hides the overlay and hides at the same time the
             // current object (window)
-            overlay.fadeOut(250);
+            overlay.triggerHandler("hide", [250]);
             matchedObject.fadeOut(250);
 
             // retrieves the appropriate name for the event to be
@@ -403,7 +403,7 @@
             // retrieves the overlay element and registers for
             // the click event on it in order to hide the current
             // window then stores it in the data element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             var handler = function() {
                 var isHiddable = matchedObject.hasClass("window-hide");
                 if (!isHiddable) {
@@ -419,7 +419,7 @@
             // retrieves the global overlay and the handle to the
             // callback function then unbinds it from the click
             // even on the overlay
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             var handle = matchedObject.data("click_handler");
             overlay.unbind("click", handle);
         };

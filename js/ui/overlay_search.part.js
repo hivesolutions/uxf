@@ -70,13 +70,13 @@
         };
 
         var _hide = function(matchedObject, options) {
-            // retrieves the overlay element
-            var overlay = jQuery(".overlay");
+            // retrieves the overlay element, notice that
+            // only the first (and major one is selected)
+            var overlay = jQuery(".overlay:first");
 
-            // shows the overlay
-            overlay.fadeOut(200);
-
-            // hidrs the matched object
+            // hides both the overlay and the current
+            // object (as expected by the search overlay)
+            overlay.triggerHandler("hide", [200]);
             matchedObject.fadeOut(200);
         };
 

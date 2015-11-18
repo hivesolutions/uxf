@@ -63,7 +63,7 @@
             // tries to retrieve the global overlay element in case it
             // does not exists creates a new element and then appends it
             // to the current body element (default action)
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             if (overlay.length == 0) {
                 var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
@@ -183,7 +183,7 @@
 
             // retrieves the overlay element and forces a resize
             // on it to ensure dimensions (ensures proper size)
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
             overlay.trigger("resize");
 
             // centers the object in the screen, this is required
@@ -195,7 +195,7 @@
             // effect is as smoth as possible and then applies the same
             // fadding effect to the overlay panel, as both the panel
             // and the overlay are going to be shown at the same time
-            overlay.fadeIn(100);
+            overlay.triggerHandler("show", [100]);
             matchedObject.fadeIn(100);
 
             // focus in the text field as this is the default behaviour
@@ -210,11 +210,11 @@
 
         var _hide = function(matchedObject, options) {
             // retrieves the overlay element
-            var overlay = jQuery(".overlay");
+            var overlay = jQuery(".overlay:first");
 
             // hides both the global overlay and the current overlay panel
             // at the same time and using a smoth based effect
-            overlay.fadeOut(200);
+            overlay.triggerHandler("hide", [200]);
             matchedObject.fadeOut(200);
 
             // triggers the hidden event indicating that the overlay panel
