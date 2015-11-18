@@ -199,8 +199,10 @@
             if (useHardware) {
                 var original = matchedObject.data("original");
                 __transitionDuration(matchedObject, options, timeout);
-                matchedObject.css("display", "block");
-                matchedObject.css("opacity", String(original));
+                matchedObject.show();
+                setTimeout(function() {
+                            matchedObject.css("opacity", String(original));
+                        });
             } else {
                 matchedObject.fadeIn(timeout, function() {
                             matchedObject.removeData("transition");
