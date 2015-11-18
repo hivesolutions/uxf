@@ -193,7 +193,7 @@
                 matchedObject.css("opacity", "0");
                 matchedObject.css("transition", "opacity " + String(timeout)
                                 + "ms ease-in-out");
-                matchedObject.show();
+                matchedObject.css("display", "block");
                 matchedObject.css("opacity", String(targetF));
             } else {
                 matchedObject.fadeIn(timeout);
