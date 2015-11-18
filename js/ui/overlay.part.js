@@ -47,16 +47,13 @@
             matchedObject.addClass("resizable");
 
             // iterates over the complete set of overlay elements to be
-            // able to populate the original opacity value for each of
-            // them and then sets the zero based opacity value (initial value)
-            // note that an aditional "display" verification is performed
+            // able to resets each of the elements to the original/expected
+            // values so that a proper rendering is possible
             matchedObject.each(function(index, element) {
                         var _element = jQuery(this);
-                        var isVisible = _element.css("display") == "block";
-                        var target = _element.css("opacity") || "1";
-                        var targetF = parseFloat(target);
-                        _element.data("original", targetF);
-                        !isInvisible && _element.css("opacity", "0");
+                        setTimeout(function() {
+                                    _reset(_element, options);
+                                });
                     });
         };
 
@@ -162,6 +159,19 @@
             // hides the matched object, using the default
             // strategy for such operation (as expected)
             __fadeOut(matchedObject, options, timeout || 100, true);
+        };
+
+        var _reset = function(matchedObject, options) {
+            // verifies if the current element is visible (block),
+            // retrieving then the opcity value of it so that's it's
+            // considered the original value (to be restored latter)
+            // then and in case the element is invisible sets the
+            // opacity to the default zero value (for animation)
+            var isVisible = matchedObject.css("display") == "block";
+            var target = matchedObject.css("opacity") || "1";
+            var targetF = parseFloat(target);
+            matchedObject.data("original", targetF);
+            !isVisible && matchedObject.css("opacity", "0");
         };
 
         var _resize = function(matchedObject, options) {
