@@ -84,6 +84,27 @@
                         event.stopPropagation();
                     });
 
+            // registers for the toggle (visibility) event so that the proper
+            // hide operation is performed in the associated overlay
+            matchedObject.bind("toggle", function(event, timeout) {
+                        var element = jQuery(this);
+                        _toggle(element, options, timeout);
+                    });
+
+            // registers for the show event so that the proper
+            // hide operation is performed in the associated overlay
+            matchedObject.bind("show", function(event, timeout) {
+                        var element = jQuery(this);
+                        _show(element, options, timeout);
+                    });
+
+            // registers for the hide event so that the proper
+            // hide operation is performed in the associated overlay
+            matchedObject.bind("hide", function(event, timeout) {
+                        var element = jQuery(this);
+                        _hide(element, options, timeout);
+                    });
+
             // registers for the resize event on the overlayy
             // so that the overlay may be resized in for such events
             matchedObject.bind("resize", function() {
@@ -92,6 +113,29 @@
                         var element = jQuery(this);
                         _resizeOverlay(element, options);
                     });
+        };
+
+        var _toggle = function(matchedObject, options, timeout) {
+            // in case the matched object is visible hides the
+            // overlay otherwise shows it (opposite operation)
+            if (matchedObject.is(":visible")) {
+                _hide(matchedObject, options, timeout);
+            } else {
+                _show(matchedObject, options, timeout);
+            }
+        };
+
+        var _show = function(matchedObject, options, timeout) {
+            // shows the matched object and then runs
+            // the show operation for the overlay element
+            _resize(matchedObject, options);
+            matchedObject.fadeIn(timeout || 250);
+        };
+
+        var _hide = function(matchedObject, options, timeout) {
+            // hides the matched object, using the default
+            // strategy for such operation (as expected)
+            matchedObject.fadeOut(timeout || 100);
         };
 
         var _resizeOverlay = function(matchedObject, options) {
