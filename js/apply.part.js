@@ -172,7 +172,8 @@
             // jquery environment so that it contains the browser object
             _body.uxbrowser();
 
-            // applies the various component plugins
+            // applies the various component plugins, these should start
+            // the specific plugin behavior for each case
             overlay.uxoverlay();
             form.uxform();
             button.uxbutton();
