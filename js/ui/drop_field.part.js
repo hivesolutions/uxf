@@ -91,6 +91,14 @@
                 var linkAttribute = _element.attr("data-link_attribute")
                         || "link";
 
+                // retrieves any possible filter information, both the name
+                //and the operation, these values may be used to change the
+                // default behavior of the query so that a "composite" filter
+                // is used instead giveing more flexibility to the query
+                var filterName = _element.attr("data-filter_name") || null;
+                var filterOperation = _element.attr("data-filter_operation")
+                        || "like";
+
                 // retrieves the filter attributes and converts it
                 // to a list of string from the token separator
                 var filterAttributes = _element.attr("data-filter_attributes");
@@ -197,6 +205,8 @@
                 _element.data("extra_attribute", extraAttribute);
                 _element.data("value_attribute", valueAttribute);
                 _element.data("link_attribute", linkAttribute);
+                _element.data("filter_name", filterName);
+                _element.data("filter_operation", filterOperation);
                 _element.data("filter_attributes", filterAttributesList);
                 _element.data("number_options", numberOptions);
                 _element.data("filter_options", filterOptions);
@@ -897,6 +907,8 @@
             var linkAttribute = matchedObject.data("link_attribute");
 
             // retrieves the filter attributes
+            var filterName = matchedObject.data("filter_name");
+            var filterOperation = matchedObject.data("filter_operation");
             var filterAttributes = matchedObject.data("filter_attributes");
 
             // retrieves the number of options to display
@@ -936,6 +948,19 @@
             // case the select mode is not enabled and the mode is not
             // the lower one, otherwise an empty value is used
             var filterString = isSelect || isLower ? "" : textFieldValue;
+
+            // in case the filter name value is defined, this is a "composite"
+            // filter operation and the (global) filter string should be avoided
+            // and replaced by a single filter tuple value
+            if (filterName) {
+                // runs the defaulting operation in the filters value so that
+                // the provided set of filters is allways an emptty list, then
+                // adds the new filter tuple to the sequence and invalidates
+                // the filter string so that no base filtering is used
+                filters = filters || [];
+                filters.append([filterName, filterOperation, filterString]);
+                filterString = "";
+            }
 
             // invalidates the "logical" hidden field, may
             // assume the value is in an invalid (transient state)
