@@ -179,6 +179,7 @@
 
             // retrieves the reference to the various elements that are
             // to be used in the event handling registration
+            var _window = jQuery(window);
             var _body = jQuery("body");
             var container = matchedObject.parents(".drop-down-container");
             var button = jQuery(".button-drop-down", container);
@@ -288,6 +289,19 @@
             });
 
             !isRegistered && _body.click(function(event) {
+                // retrieves the reference to the current element, this should
+                // be a top level body element (from dom structure)
+                var element = jQuery(this);
+
+                // retrieves the reference to the complete set of drop down
+                // conatainers that are visible for the current body and then
+                // runs the hide operation for the associated drop down
+                var container = jQuery(".drop-down-container.visible", element);
+                var dropDown = jQuery(".drop-down", container);
+                _hide(dropDown, options);
+            });
+
+            !isRegistered && _window.click(function(event) {
                 // retrieves the reference to the current element, this should
                 // be a top level body element (from dom structure)
                 var element = jQuery(this);
