@@ -58,11 +58,11 @@
             // the css values associated with the element, these values are
             // assumed to be integer defined as seconds of animation
             var cssDuration = element.css("animation-duration");
-            cssDuration = cssDuration
-                    || element.css("-webkit-animation-duration");
-            cssDuration = cssDuration || element.css("-moz-animation-duration");
             cssDuration = cssDuration || element.css("-o-animation-duration");
             cssDuration = cssDuration || element.css("-ms-animation-duration");
+            cssDuration = cssDuration || element.css("-moz-animation-duration");
+            cssDuration = cssDuration
+                    || element.css("-webkit-animation-duration");
             cssDuration = cssDuration
                     || element.css("-khtml-animation-duration");
             if (cssDuration) {
