@@ -109,6 +109,14 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // in case the matched object is not defined
+            // or in case it's an empty list must return
+            // immediatly initialization is not meant to
+            // be run (performance issues may be created)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the browser information
             var browserName = _searchString(DATA_BROWSER) || "Unknown browser";
             var browserVersion = _searchVersion(navigator.userAgent)

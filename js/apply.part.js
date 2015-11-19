@@ -172,6 +172,11 @@
             // jquery environment so that it contains the browser object
             _body.uxbrowser();
 
+            // applies the feature plugin that should validate a set
+            // of features for the browser and change/populate the body
+            // element according to the available features
+            _body.uxfeature();
+
             // applies the various component plugins, these should start
             // the specific plugin behavior for each case
             overlay.uxoverlay();
