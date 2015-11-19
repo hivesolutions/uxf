@@ -302,9 +302,9 @@
             });
 
             !isRegistered && _window.click(function(event) {
-                // retrieves the reference to the current element, this should
+                // retrieves the reference to the body element, this should
                 // be a top level body element (from dom structure)
-                var element = jQuery(this);
+                var element = jQuery("body");
 
                 // retrieves the reference to the complete set of drop down
                 // conatainers that are visible for the current body and then
