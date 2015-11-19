@@ -251,10 +251,13 @@
             // applies the name change plugin
             nameChange.uxnamechange();
 
-            // applies the error plugin
+            // applies the error plugin, to the various elements that are
+            // eligible for the automatic error processing operation
             textField.uxerror();
             textArea.uxerror();
             dropField.uxerror();
+            tagField.uxerror();
+            dropDown.uxerror();
             table.uxerror();
             rating.uxerror();
 
