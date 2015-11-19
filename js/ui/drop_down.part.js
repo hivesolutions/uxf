@@ -77,6 +77,7 @@
                         var name = _element.attr("data-name") || "";
                         var input = _element.attr("data-input") || "";
                         var extra = _element.attr("data-extra") || "";
+                        var error = _element.attr("data-error") || "";
                         var classes = _element.attr("class") || "";
                         var containerClasses = container.attr("class") || "";
                         var buttonClasses = button.attr("class") || "";
@@ -141,6 +142,11 @@
                         container.attr("class", containerClasses + " "
                                         + classes);
                         container.removeClass("drop-down");
+
+                        // in case there's an error defined for the drop down the
+                        // invalid class is added to both the container and the element
+                        error && container.addClass("invalid");
+                        error && _element.addClass("invalid");
 
                         // verifies if the drop down is empty and for that case
                         // the container is hidden (not going to be displayed)
@@ -465,6 +471,12 @@
             // content of the elememt has priority over the complete text
             var text = element.uxcontent().trim() || element.text().trim();
             var value = element.attr("data-value");
+
+            // removes the invalid class from both the container and the
+            // drop down (matched object) element, as at leat one selection
+            // has been performed (invalidation has been removed)
+            container.removeClass("invalid");
+            matchedObject.removeClass("invalid");
 
             // removes the selected class from the complete set of list
             // elements and then adds the selected class to the selected
