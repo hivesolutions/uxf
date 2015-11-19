@@ -643,13 +643,16 @@
             // retrieves the element error
             var elementError = matchedObject.attr("data-error");
 
-            // in case there is an error
-            if (elementError) {
-                // adds the invalid mode class and triggers the invalid
-                // set event
-                matchedObject.addClass("invalid");
-                matchedObject.triggerHandler("invalid_set");
+            // in case there's no error in the element, returns
+            // immediately as there's nothing to be done
+            if (!elementError) {
+                return;
             }
+
+            // adds the invalid mode class and triggers the invalid
+            // set event (to notify any listener)
+            matchedObject.addClass("invalid");
+            matchedObject.triggerHandler("invalid_set");
         };
 
         var __resetError = function(matchedObject, options) {
