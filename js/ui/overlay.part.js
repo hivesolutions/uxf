@@ -249,7 +249,7 @@
             // required to avoid situations where the overlay would stay
             // displayed in the dom as a "invisible" overlay
             setTimeout(function() {
-                        var transiction = matchedObject.data("transition");
+                        var transition = matchedObject.data("transition");
                         if (transition != "fadeout") {
                             return;
                         }
