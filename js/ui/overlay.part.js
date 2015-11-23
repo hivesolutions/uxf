@@ -12,6 +12,10 @@
  */
 (function(jQuery) {
     jQuery.fn.uxoverlay = function(options) {
+        // the extra value (defined in milliseconds) that is going to be
+        // added to the base transition time for the garbage collector
+        var EXTRA_GC = 50;
+
         // the default values for the overlay
         var defaults = {};
 
@@ -239,6 +243,9 @@
                             matchedObject.removeData("transition");
                         });
             }
+            setTimeout(function() {
+                        matchedObject.hide();
+                    }, timeout + EXTRA_GC)
         };
 
         var __transition = function(matchedObject, options, timeout) {
