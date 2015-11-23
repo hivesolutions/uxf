@@ -243,8 +243,14 @@
                             matchedObject.removeData("transition");
                         });
             }
+
+            // creates the timeout for the operation that will run the
+            // "garbage collection" for the transition values, this is
+            // required to avoid situations where the overlay would stay
+            // displayed in the dom as a "invisible" overlay
             setTimeout(function() {
                         matchedObject.hide();
+                        matchedObject.removeData("transition");
                     }, timeout + EXTRA_GC)
         };
 
