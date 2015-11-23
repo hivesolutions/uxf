@@ -244,18 +244,15 @@
                         });
             }
 
-            // verifies if the timeout for the fade out operation exists
-            // and if that's not the case returns immediately, as the gc
-            // operation is not meant to be run for such situations
-            if (timeout <= 0) {
-                return;
-            }
-
             // creates the timeout for the operation that will run the
             // "garbage collection" for the transition values, this is
             // required to avoid situations where the overlay would stay
             // displayed in the dom as a "invisible" overlay
             setTimeout(function() {
+                        var transiction = matchedObject.data("transition");
+                        if (transition != "fadeout") {
+                            return;
+                        }
                         matchedObject.hide();
                         matchedObject.removeData("transition");
                     }, timeout + EXTRA_GC)
