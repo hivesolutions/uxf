@@ -15,7 +15,8 @@
     // sets the scroll to to be the global function
     // scrolling the window
     var uxscrollto = jQuery.uxscrollto = function(target, duration, settings) {
-        jQuery(window).uxscrollto(target, duration, settings);
+        var _window = jQuery(window);
+        _window.uxscrollto(target, duration, settings);
     };
 
     // creates the map of scroll default values, note that the
