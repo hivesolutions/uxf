@@ -250,14 +250,6 @@
                         // retrieves the element reference
                         var _element = jQuery(element);
 
-                        // in case the current element is not of type
-                        // drop field select
-                        if (!_element.hasClass("drop-field-select")) {
-                            // returns immediately
-                            // (continues the loop)
-                            return;
-                        }
-
                         // retrieves the drop field and the drop field elements
                         var dropField = _element;
                         var textField = jQuery(".text-field", dropField);
