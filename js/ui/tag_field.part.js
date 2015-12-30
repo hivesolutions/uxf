@@ -299,17 +299,17 @@
                     });
         };
 
-        var _addTag = function(matcheObject, options, value, valueLogic) {
+        var _addTag = function(matchedObject, options, value, valueLogic) {
             // retrieves the reference to the container of
             // the tags (the place to insert the tags)
-            var tagsContainer = jQuery(".tag-field-tags", matcheObject);
+            var tagsContainer = jQuery(".tag-field-tags", matchedObject);
 
             // verifies if duplicate values are not allowed for the current
             // tag field and if that's the case and the current value is a
             // duplicated value (both visual and logical) returns the control
             // flow immediately, no changes are applied to the tag field
-            var noDuplicates = matcheObject.attr("data-no_duplicates");
-            var isDuplicate = _isDuplicate(matcheObject, value, valueLogic);
+            var noDuplicates = matchedObject.attr("data-no_duplicates");
+            var isDuplicate = _isDuplicate(matchedObject, value, valueLogic);
             if (noDuplicates && isDuplicate) {
                 return;
             }
@@ -564,7 +564,7 @@
             var selector = ".tag-field-tag";
             selector += value ? "[data-display=\"" + value + "\"]" : "";
             selector += valueLogic ? "[data-value=\"" + valueLogic + "\"]" : "";
-            var result = jQuery(selector, matcheObject);
+            var result = jQuery(selector, matchedObject);
             return result.length > 0;
         };
 
