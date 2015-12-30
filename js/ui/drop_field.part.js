@@ -335,6 +335,31 @@
                         textField.uxdisable();
                     });
 
+            // registers the current matched object for the show
+            // drop event that should display the drop field list
+            // and optionally update the current data source with
+            // the latest values according to definition
+            matchedObject.bind("show_drop", function(event, noUpdate) {
+                        var element = jQuery(this);
+                        !noUpdate && _update(element, options, true);
+                        _show(element);
+                    });
+
+            // registers for the hide drop event that should hide the
+            // drop field list with the default options
+            matchedObject.bind("hide_drop", function() {
+                        var element = jQuery(this);
+                        _hide(element);
+                    });
+
+            // registers for the update drop event that should refresh
+            // the currently associated drop list with the latest
+            // data comming from the data source
+            matchedObject.bind("update_drop", function() {
+                        var element = jQuery(this);
+                        _update(element, options, true);
+                    });
+
             // registers for the click event in the body
             !isRegistered && _body.click(function() {
                         // retrieves the element
