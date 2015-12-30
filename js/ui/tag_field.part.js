@@ -304,6 +304,16 @@
             // the tags (the place to insert the tags)
             var tagsContainer = jQuery(".tag-field-tags", matcheObject);
 
+            // verifies if duplicate values are not allowed for the current
+            // tag field and if that's the case and the current value is a
+            // duplicated value (both visual and logical) returns the control
+            // flow immediately, no changes are applied to the tag field
+            var noDuplicates = matcheObject.attr("data-no_duplicates");
+            var isDuplicate = _isDuplicate(matcheObject, value, valueLogic);
+            if (noDuplicates && isDuplicate) {
+                return;
+            }
+
             // constructs the tag element and updates its
             // (logic) data value reference in case it exists
             var tag = jQuery("<div class=\"tag-field-tag\">"
@@ -548,6 +558,14 @@
             // returns the "just" computed sequence value comprising
             // the list of valus separated with comas
             return value;
+        };
+
+        var _isDuplicate = function(matchedObject, value, valueLogic) {
+            var selector = ".tag-field-tag";
+            selector += value ? "[data-display=\"" + value + "\"]" : "";
+            selector += valueLogic ? "[data-value=\"" + valueLogic + "\"]" : "";
+            var result = jQuery(selector, matcheObject);
+            return result.length > 0;
         };
 
         // switches over the method
