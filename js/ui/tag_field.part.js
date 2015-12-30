@@ -99,7 +99,7 @@
                                     // adds a new tag to the tags container, this operation
                                     // will not trigger any layout change
                                     _addTag(_element, options, dataHtml,
-                                            dataValue);
+                                            dataValue, true);
                                 });
 
                         // removes the targs list from the tag field, this is
@@ -299,7 +299,7 @@
                     });
         };
 
-        var _addTag = function(matchedObject, options, value, valueLogic) {
+        var _addTag = function(matchedObject, options, value, valueLogic, noEvents) {
             // retrieves the reference to the container of
             // the tags (the place to insert the tags)
             var tagsContainer = jQuery(".tag-field-tags", matchedObject);
@@ -329,20 +329,53 @@
             var tagRemove = jQuery(".tag-field-remove", tag);
             tagRemove.click(function() {
                         // retrieves the element and uses it to retrieve
-                        // the parent drop field
+                        // the parent tag and tag field elements, then uses
+                        // them to remove the tag and update the layout structures
                         var element = jQuery(this);
                         var tag = element.parent(".tag-field-tag");
-                        var dropField = element.parents(".drop-field");
-
-                        // removes the tag from the structures and
-                        // runs the update operation to update the layout
-                        tag.remove();
-                        _update(dropField, options);
+                        var tagField = element.parents(".tag-field");
+                        _removeTag(tagField, options, tag);
+                        _update(tagField, options);
                     });
 
             // adds the tag element representation to the tags
             // container (visual append)
             tagsContainer.append(tag);
+
+            // in case the no events flag is set, must return the control
+            // flow immediately, event should not be triggered
+            if (noEvents) {
+                return;
+            }
+
+            // triggers the tag add event indicating that a
+            // tag has just been added to the tag field, then
+            // triggers the value change event to notify change
+            matchedObject.triggerHandler("tag_add", [value, valueLogic, tag]);
+            matchedObject.triggerHandler("value_change");
+        };
+
+        var _removeTag = function(matchedObject, options, tag, noEvents) {
+            // retrieves the values for both the value of the
+            // tag and the logical value (if present)
+            var value = tag.attr("data-display");
+            var valueLogic = tag.attr("data-value");
+
+            // removes the tag from the logical structure, note
+            // that this does not reflect an update immediately
+            tag.remove();
+
+            // in case the no events flag is set, must return the control
+            // flow immediately, event should not be triggered
+            if (noEvents) {
+                return;
+            }
+
+            // triggers the tag remove event indicating that a
+            // tag has just been removed from the tag field, then
+            // triggers the value change event to notify change
+            matchedObject.triggerHandler("tag_remove", [value, valueLogic, tag]);
+            matchedObject.triggerHandler("value_change");
         };
 
         var _update = function(matchedObject, options, noWidth) {
