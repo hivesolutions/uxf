@@ -1,4 +1,6 @@
-body.wait-load {
+.for-desktop,
+.for-tablet,
+.for-mobile {
     display: none;
 }
 

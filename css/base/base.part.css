@@ -1,21 +1,3 @@
-.for-desktop,
-.for-tablet,
-.for-mobile {
-    display: none;
-}
-
-body.desktop-s .for-desktop {
-    display: block;
-}
-
-body.tablet-s .for-tablet {
-    display: block;
-}
-
-body.mobile-s .for-mobile {
-    display: block;
-}
-
 .no-select {
     user-select: none;
     -o-user-select: none;
