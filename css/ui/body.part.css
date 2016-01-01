@@ -1,15 +1,3 @@
 body.wait-load {
     display: none;
 }
-
-body.desktop-s .for-desktop {
-    display: block;
-}
-
-body.tablet-s .for-tablet {
-    display: block;
-}
-
-body.mobile-s .for-mobile {
-    display: block;
-}
