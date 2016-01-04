@@ -339,8 +339,8 @@
             // set a new value in case that's required
             var value = options["value"];
 
-            // determines if the current opetation is a set one and
-            // if that's the case redirect the control flow to the
+            // determines if the current operation is a set one and
+            // if that's the case redirects the control flow to the
             // set operation so that it may be correctly used
             var isSet = value !== undefined;
             if (isSet) {
