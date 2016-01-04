@@ -375,6 +375,10 @@
                 return;
             }
 
+            // triggers the pre show event indicating that the panel is going to
+            // be shown and that pre operations must be performed now
+            matchedObject.triggerHandler("pre_show");
+
             // retrieves the reference for both the global menu contents and
             // basic menu values and to the drop down container, these are
             // going to be the elements to be updated by the show operation
@@ -391,27 +395,43 @@
             // various components of the drop down
             matchedObject.addClass("active");
             container.addClass("visible");
+
+            // triggers the post show event indicating that the panel has been
+            // shown an that post operations may now be performed
+            matchedObject.triggerHandler("post_show");
         };
 
         var _hide = function(matchedObject, options) {
+            // triggers the pre hide event indicating that the panel is going to
+            // be hidden and that pre operations must be performed now
+            matchedObject.triggerHandler("pre_hide");
+
             // retrieves the reference to the drop down container and updates
             // both the active and visible status of the container
             var container = matchedObject.parents(".drop-down-container");
             matchedObject.removeClass("active");
             container.removeClass("visible");
+
+            // triggers the post hide event indicating that the panel has been
+            // hidden an that post operations may now be performed
+            matchedObject.triggerHandler("post_hide");
         };
 
         var _enable = function(matchedObject, options) {
+            matchedObject.triggerHandler("pre_enable");
             var container = matchedObject.parents(".drop-down-container");
             container.removeClass("disabled");
             matchedObject.removeClass("disabled");
+            matchedObject.triggerHandler("post_enable");
         };
 
         var _disable = function(matchedObject, options) {
+            matchedObject.triggerHandler("pre_disable");
             var container = matchedObject.parents(".drop-down-container");
             _hide(matchedObject, options);
             container.addClass("disabled");
             matchedObject.addClass("disabled");
+            matchedObject.triggerHandler("post_disable");
         };
 
         var _original = function(matchedObject, options) {
