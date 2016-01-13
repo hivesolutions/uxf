@@ -1520,6 +1520,7 @@
                     });
             dropField.data("value", "");
             dropField.data("selection", 1);
+            dropField.data("updated", false);
 
             // removes the drop field lock class from the drop field
             // no need to retain the lock symbol in the drop field

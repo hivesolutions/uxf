@@ -353,6 +353,15 @@
         };
 
         var _startForm = function(matchedObject, options) {
+            // retrieves the complete set of forms currently defined
+            // in the window and runs the proper operations for each
+            var forms = jQuery(".form", matchedObject);
+            forms.each(function(index, element) {
+                        var _element = jQuery(this);
+                        _element.triggerHandler("unlock");
+                        _element.triggerHandler("reset");
+                    });
+
             // retrieves the complete set of fields (form fields)
             // for the current window and then retrieves the first
             // of these elements (to be focused)
