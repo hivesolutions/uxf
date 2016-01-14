@@ -247,11 +247,11 @@
             // registers for the reset event on the matched object
             // so that the form may perform the reset form operation
             // under such conditions
-            matchedObject.bind("reset", function(event) {
+            matchedObject.bind("reset", function(event, noFull) {
                         // retrieves the current element and runs
                         // the reset for operation for it
                         var element = jQuery(this);
-                        resetForm(element, options);
+                        resetForm(element, options, !noFull);
                     });
 
             // registers for the pre submit event that is going
@@ -630,7 +630,7 @@
             matchedObject.trigger("layout");
         };
 
-        var resetForm = function(matchedObject, options) {
+        var resetForm = function(matchedObject, options, full) {
             // restores the error part of the form to the original values so that
             // they don't appear in the form (original state)
             resetErrors(matchedObject, options);
@@ -640,6 +640,27 @@
             // to restore them to their original values
             var elements = matchedObject.uxfields();
             elements.uxreset();
+
+            // in case the current reset operation is not considered to be a full
+            // one the control flow should be returned immediately
+            if (!full) {
+                return;
+            }
+
+            // updates the visual oriented state classes of the form so that
+            // they reflect the original state of the form
+            matchedObject.removeClass("submitting");
+            matchedObject.removeClass("success");
+            matchedObject.removeClass("error");
+
+            // updates the current state of the form element so that it reflects
+            // the orginal state of the form elements (as expected)
+            matchedObject.data("submited", false);
+            matchedObject.data("confirmed", false);
+
+            // triggers the unlock event on the matched object so that any element
+            // pending to be unlocked is properly unlocked
+            matchedObject.triggerHandler("unlock");
         };
 
         var isAsync = function(request) {
