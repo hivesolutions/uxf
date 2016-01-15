@@ -96,14 +96,15 @@
                 return;
             }
 
-            var tabs = jQuery(".tab", tabPanel);
-            var tabSelectors = jQuery(".tab-selector", tabPanel);
-
             var tab = jQuery(hash, tabPanel);
-            var tabSelector = jQuery(".tab-selector[href='" + hash + "']", tabPanel);
 
             // If the hash corresponds to one of our tabs
             if (tab.length>0) {
+                var tabs = jQuery(".tab", tabPanel);
+                var tabSelectors = jQuery(".tab-selector", tabPanel);
+
+                var tabSelector = jQuery(".tab-selector[href='" + hash + "']", tabPanel);
+
                 // removes the active class from (all) the tabs
                 // and from (all) the tab selectors
                 tabs.removeClass("active");
