@@ -99,20 +99,21 @@
             var tabs = jQuery(".tab", tabPanel);
             var tabSelectors = jQuery(".tab-selector", tabPanel);
 
-            // removes the active class from (all) the tabs
-            // and from (all) the tab selectors
-            tabs.removeClass("active");
-            tabSelectors.removeClass("active");
-
             var tab = jQuery(hash, tabPanel);
             var tabSelector = jQuery(".tab-selector[href='" + hash + "']", tabPanel);
 
-            // adds the active class to both the
-            // tab and the tab selector
-            tab.addClass("active");
-            tabSelector.addClass("active");
-
+            // If the hash corresponds to one of our tabs
             if (tab.length>0) {
+                // removes the active class from (all) the tabs
+                // and from (all) the tab selectors
+                tabs.removeClass("active");
+                tabSelectors.removeClass("active");
+
+                // adds the active class to both the
+                // tab and the tab selector
+                tab.addClass("active");
+                tabSelector.addClass("active");
+
                 tabPanel.triggerHandler("tab_selected", tab);
             }
         };
