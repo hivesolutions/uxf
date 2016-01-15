@@ -16,8 +16,8 @@
         var count = integer == 0 ? 1 : parseInt(Math.log10(integer)) + 1;
         var places = FLOAT_PRECISION - count;
         places = places < 1 ? places = 1 : places;
-        var delta = 1 / Math.pow(10, places)
-        return delta
+        var delta = 1 / Math.pow(10, places);
+        return delta;
     };
 
     jQuery.uxround = function(value, decimalPlaces, noDecimal, nodelta, noSafe) {
