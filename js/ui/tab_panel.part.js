@@ -112,7 +112,9 @@
             tab.addClass("active");
             tabSelector.addClass("active");
 
-            tabPanel.triggerHandler("tab_selected", tab);
+            if (tab.length>0) {
+                tabPanel.triggerHandler("tab_selected", tab);
+            }
         };
 
         _window.bind("hashchange", function() {
