@@ -36,7 +36,9 @@
         var initialize = function() {
             _appendHtml();
             _registerHandlers();
-            _updateHashChange(matchedObject);
+            setTimeout(function() {
+                _updateHashChange(matchedObject);
+            }, 0);
         };
 
         /**
