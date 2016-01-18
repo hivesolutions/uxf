@@ -12,6 +12,8 @@
  */
 (function(jQuery) {
     jQuery.fn.uxtabpanel = function(options) {
+        var _window = jQuery(window);
+
         // the default values for the text field
         var defaults = {};
 
@@ -34,6 +36,9 @@
         var initialize = function() {
             _appendHtml();
             _registerHandlers();
+            setTimeout(function() {
+                _updateHashChange(matchedObject);
+            }, 0);
         };
 
         /**
@@ -80,8 +85,43 @@
                         // (avoids the normal link behaviour)
                         event.stopPropagation();
                         event.preventDefault();
+
+                        tabPanel.triggerHandler("tab_selected", targetElement);
                     })
         };
+
+        var _updateHashChange = function(tabPanel) {
+            var hash = window.location.hash;
+            if (hash.length == 0 || tabPanel.length == 0) {
+                return;
+            }
+
+            var tab = jQuery(hash, tabPanel);
+
+            // If the hash corresponds to one of our tabs
+            if (tab.length>0) {
+                var tabs = jQuery(".tab", tabPanel);
+                var tabSelectors = jQuery(".tab-selector", tabPanel);
+
+                var tabSelector = jQuery(".tab-selector[href='" + hash + "']", tabPanel);
+
+                // removes the active class from (all) the tabs
+                // and from (all) the tab selectors
+                tabs.removeClass("active");
+                tabSelectors.removeClass("active");
+
+                // adds the active class to both the
+                // tab and the tab selector
+                tab.addClass("active");
+                tabSelector.addClass("active");
+
+                tabPanel.triggerHandler("tab_selected", tab);
+            }
+        };
+
+        _window.bind("hashchange", function() {
+            _updateHashChange(matchedObject);
+        });
 
         // initializes the plugin
         initialize();
