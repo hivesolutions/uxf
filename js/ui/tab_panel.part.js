@@ -40,17 +40,32 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // in case the matched object is not defined
+            // or in case it's an empty list must return
+            // immediatly initialization is not meant to
+            // be run (corruption may occur)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
+            // registers an update hash operation for the next
+            // tick operation so that the initial hash is updated
+            setTimeout(function() {
+                        _updateHashChange(matchedObject, options);
+                    });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the tab selectors
+            // retrieves the various elements that are going to
+            // be used for the registration of handlers
+            var _window = jQuery(window);
             var tabSelectors = jQuery(".tab-selector", matchedObject);
 
-            // registers for the click event
-            // in the tab selectors
+            // registers for the click event in the tab selectors
+            // so that the selected may change on click
             tabSelectors.click(function(event) {
                         // retrieves the element
                         var element = jQuery(this);
@@ -76,11 +91,59 @@
                         element.addClass("active");
                         targetElement.addClass("active");
 
+                        // triggers the tab slected event on the tab panel
+                        // indicating that a new tab has been selected
+                        tabPanel.triggerHandler("tab_selected", [targetElement]);
+
                         // stops the event propagation
                         // (avoids the normal link behaviour)
                         event.stopPropagation();
                         event.preventDefault();
-                    })
+                    });
+
+            // registers for the hash change event on the window so
+            // that it's possible to change the tab accordingly
+            _window.bind("hashchange", function() {
+                        _updateHashChange(matchedObject, options);
+                    });
+        };
+
+        var _updateHashChange = function(matchedObject, options) {
+            // retrieves the current hash value from the window and
+            // verifies its current value (for validation)
+            var hash = window.location.hash;
+            if (hash.length == 0 || matchedObject.length == 0) {
+                return;
+            }
+
+            // tries to retrieve the target element from the matched
+            // object using the selected hash and if there's none
+            // selected returns the control flow immediately
+            var targetElement = jQuery(hash, matchedObject);
+            if (targetElement.length == 0) {
+                return;
+            }
+
+            // retrieves the complete set of elements from the provided
+            // matched object that are going to be used in the operation
+            var tabs = jQuery(".tab", matchedObject);
+            var tabSelectors = jQuery(".tab-selector", matchedObject);
+            var tabSelector = jQuery(".tab-selector[href=\"" + hash + "\"]",
+                    matchedObject);
+
+            // removes the active class from (all) the tabs
+            // and from (all) the tab selectors
+            tabs.removeClass("active");
+            tabSelectors.removeClass("active");
+
+            // adds the active class to both the tab selector
+            // and the target element (newly active elements)
+            tabSelector.addClass("active");
+            targetElement.addClass("active");
+
+            // triggers the tab selected event meaning that a new
+            // element has been touched/selected for the tab panel
+            matchedObject.triggerHandler("tab_selected", [targetElement]);
         };
 
         // initializes the plugin
