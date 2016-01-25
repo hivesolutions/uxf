@@ -42,8 +42,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -61,166 +60,155 @@
                 var targetObject = global ? jQuery(document) : _element;
 
                 targetObject.keydown(function(event) {
-                            // verifies if the event must be propagated or not
-                            _verifyPropagation(targetObject, event);
-                        });
+                    // verifies if the event must be propagated or not
+                    _verifyPropagation(targetObject, event);
+                });
 
                 targetObject.keypress(function(event) {
-                            // verifies if the event must be propagated or not
-                            _verifyPropagation(targetObject, event);
-                        });
+                    // verifies if the event must be propagated or not
+                    _verifyPropagation(targetObject, event);
+                });
 
                 // registers for the key down press in the target
                 // object reference
                 targetObject.keyup(function(event) {
-                            // retrieves the current data and then uses it
-                            // to retrieve the current timestamp
-                            var currentDate = new Date();
-                            var currentTime = currentDate.getTime();
+                    // retrieves the current data and then uses it
+                    // to retrieve the current timestamp
+                    var currentDate = new Date();
+                    var currentTime = currentDate.getTime();
 
-                            // retrieves the various data attribute from the target
-                            // object for the scanning
-                            var sequence = targetObject.data("sequence") || "";
-                            var previousTime = targetObject.data("previous_time")
-                                    || currentTime;
-                            var initialTime = targetObject.data("initial_time")
-                                    || currentTime;
-                            var ignoring = targetObject.data("ignoring") || false;
+                    // retrieves the various data attribute from the target
+                    // object for the scanning
+                    var sequence = targetObject.data("sequence") || "";
+                    var previousTime = targetObject.data("previous_time") || currentTime;
+                    var initialTime = targetObject.data("initial_time") || currentTime;
+                    var ignoring = targetObject.data("ignoring") || false;
 
-                            // calculates the delta (difference) value between the
-                            // current time and the previous time
-                            var delta = currentTime - previousTime;
+                    // calculates the delta (difference) value between the
+                    // current time and the previous time
+                    var delta = currentTime - previousTime;
 
-                            // retrieves the key value for the current event
-                            var keyValue = event.keyCode
-                                    ? event.keyCode
-                                    : event.charCode
-                                            ? event.charCode
-                                            : event.which;
+                    // retrieves the key value for the current event
+                    var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                        event.which;
 
-                            // in case the ignoring mode is set need
-                            // to check if we can get out of it
-                            if (ignoring) {
-                                // in case the delta time is less than the
-                                // time between scan (not getting out of ignore mode)
-                                if (delta < SCAN_INTERVAL) {
-                                    // in case the current key is an enter
-                                    // (time to send the scan error)
-                                    if (keyValue == 13) {
-                                        // triggers the scan error event
-                                        targetObject.trigger("scan_error",
-                                                [sequence]);
-                                    }
-
-                                    // updates the previous time data in the target
-                                    // object and returns the control
-                                    targetObject.data("previous_time",
-                                            currentTime);
-                                    return;
-                                }
-                                // otherwise the scan interval time has passed and
-                                // we're out of the ignore mode
-                                else {
-                                    // updates the ignoring flag in the target object
-                                    targetObject.data("ignoring", false);
-                                }
-                            }
-
-                            // in case the current delta is more that the interval
-                            // allowed between letters (probably keyboard or first
-                            // letter of the scanning)
-                            if (delta > LETTER_INTERVAL) {
-                                // in case the delta is less than the scan interval
-                                // (this is not the first letter) must enter in the
-                                // ignore mode
-                                if (delta < SCAN_INTERVAL) {
-                                    // in case the current key is an enter
-                                    // (time to send the scan error)
-                                    if (keyValue == 13) {
-                                        // triggers the scan error event
-                                        targetObject.trigger("scan_error",
-                                                [sequence]);
-                                    }
-
-                                    // updates the target object data to reflect
-                                    // the ignore mode entrance and returns the control
-                                    targetObject.data("sequence", null);
-                                    targetObject.data("previous_time",
-                                            currentTime);
-                                    targetObject.data("initial_time", null);
-                                    targetObject.data("ignoring", true);
-                                    return;
-                                }
-                                // otherwise this is considered to be the first letter
-                                // of the sequence and so the values must be reset
-                                else {
-                                    // resets the sequence to an empty string and
-                                    // sets the initial time (of the sequence) to the
-                                    // the current timestamp
-                                    sequence = "";
-                                    initialTime = currentTime;
-                                }
-                            }
-
-                            // in case the current key is an enters, must check if
-                            // the sequence can be finished
+                    // in case the ignoring mode is set need
+                    // to check if we can get out of it
+                    if (ignoring) {
+                        // in case the delta time is less than the
+                        // time between scan (not getting out of ignore mode)
+                        if (delta < SCAN_INTERVAL) {
+                            // in case the current key is an enter
+                            // (time to send the scan error)
                             if (keyValue == 13) {
-                                // retrieves the length of the current sequence, defaulting
-                                // to zero in case no sequence is present
-                                var sequenceLength = sequence
-                                        ? sequence.length
-                                        : 0;
-
-                                // calculates the delta value to the total time and them
-                                // verifies if it is valid
-                                var deltaTotal = currentTime - initialTime;
-                                var deltaValid = deltaTotal < sequenceLength
-                                        * WORD_RATIO * LETTER_INTERVAL;
-
-                                // checks if the current sequence is valid, it is
-                                // considered to be valid in case it's not empty
-                                // the length respect the minimum size and the delta
-                                // time for the word is valid
-                                var isValid = sequence
-                                        && sequence.length >= MINIMUM_LENGTH
-                                        && deltaValid;
-
-                                // in case the sequence is considered to be valid
-                                // the scan event is triggered
-                                isValid
-                                        && targetObject.trigger("scan",
-                                                [sequence])
-
-                                // resets the various data values in the
-                                // the target object to reflect the default values
-                                targetObject.data("sequence", null);
-                                targetObject.data("previous_time", null);
-                                targetObject.data("initial_time", null);
-
-                                // in case the sequence is not valid no need
-                                // to stop the event propagation
-                                if (!isValid) {
-                                    // returns immediately (avoids event propagation)
-                                    return
-                                }
-
-                                // the sequence is considered valid and so the event must
-                                // be avoided by any other handler (avoid possible problems)
-                                event.stopPropagation();
-                                event.stopImmediatePropagation();
-                                event.preventDefault();
-                            } else {
-                                // updates the sequence with the character representation
-                                // of the current key value (appends it to the sequence)
-                                sequence += String.fromCharCode(keyValue);
-
-                                // updates the various target object data values to reflect
-                                // the current scan state
-                                targetObject.data("sequence", sequence);
-                                targetObject.data("previous_time", currentTime);
-                                targetObject.data("initial_time", initialTime);
+                                // triggers the scan error event
+                                targetObject.trigger("scan_error", [sequence]);
                             }
-                        });
+
+                            // updates the previous time data in the target
+                            // object and returns the control
+                            targetObject.data("previous_time",
+                                currentTime);
+                            return;
+                        }
+                        // otherwise the scan interval time has passed and
+                        // we're out of the ignore mode
+                        else {
+                            // updates the ignoring flag in the target object
+                            targetObject.data("ignoring", false);
+                        }
+                    }
+
+                    // in case the current delta is more that the interval
+                    // allowed between letters (probably keyboard or first
+                    // letter of the scanning)
+                    if (delta > LETTER_INTERVAL) {
+                        // in case the delta is less than the scan interval
+                        // (this is not the first letter) must enter in the
+                        // ignore mode
+                        if (delta < SCAN_INTERVAL) {
+                            // in case the current key is an enter
+                            // (time to send the scan error)
+                            if (keyValue == 13) {
+                                // triggers the scan error event
+                                targetObject.trigger("scan_error", [sequence]);
+                            }
+
+                            // updates the target object data to reflect
+                            // the ignore mode entrance and returns the control
+                            targetObject.data("sequence", null);
+                            targetObject.data("previous_time",
+                                currentTime);
+                            targetObject.data("initial_time", null);
+                            targetObject.data("ignoring", true);
+                            return;
+                        }
+                        // otherwise this is considered to be the first letter
+                        // of the sequence and so the values must be reset
+                        else {
+                            // resets the sequence to an empty string and
+                            // sets the initial time (of the sequence) to the
+                            // the current timestamp
+                            sequence = "";
+                            initialTime = currentTime;
+                        }
+                    }
+
+                    // in case the current key is an enters, must check if
+                    // the sequence can be finished
+                    if (keyValue == 13) {
+                        // retrieves the length of the current sequence, defaulting
+                        // to zero in case no sequence is present
+                        var sequenceLength = sequence ? sequence.length : 0;
+
+                        // calculates the delta value to the total time and them
+                        // verifies if it is valid
+                        var deltaTotal = currentTime - initialTime;
+                        var deltaValid = deltaTotal < sequenceLength * WORD_RATIO *
+                            LETTER_INTERVAL;
+
+                        // checks if the current sequence is valid, it is
+                        // considered to be valid in case it's not empty
+                        // the length respect the minimum size and the delta
+                        // time for the word is valid
+                        var isValid = sequence && sequence.length >= MINIMUM_LENGTH &&
+                            deltaValid;
+
+                        // in case the sequence is considered to be valid
+                        // the scan event is triggered
+                        isValid
+                            && targetObject.trigger("scan", [sequence])
+
+                        // resets the various data values in the
+                        // the target object to reflect the default values
+                        targetObject.data("sequence", null);
+                        targetObject.data("previous_time", null);
+                        targetObject.data("initial_time", null);
+
+                        // in case the sequence is not valid no need
+                        // to stop the event propagation
+                        if (!isValid) {
+                            // returns immediately (avoids event propagation)
+                            return
+                        }
+
+                        // the sequence is considered valid and so the event must
+                        // be avoided by any other handler (avoid possible problems)
+                        event.stopPropagation();
+                        event.stopImmediatePropagation();
+                        event.preventDefault();
+                    } else {
+                        // updates the sequence with the character representation
+                        // of the current key value (appends it to the sequence)
+                        sequence += String.fromCharCode(keyValue);
+
+                        // updates the various target object data values to reflect
+                        // the current scan state
+                        targetObject.data("sequence", sequence);
+                        targetObject.data("previous_time", currentTime);
+                        targetObject.data("initial_time", initialTime);
+                    }
+                });
             });
         };
 
@@ -242,8 +230,7 @@
             // retrieves the various data attribute from the target
             // object for the scanning
             var sequence = targetObject.data("sequence") || "";
-            var previousTime = targetObject.data("previous_time")
-                    || currentTime;
+            var previousTime = targetObject.data("previous_time") || currentTime;
             var initialTime = targetObject.data("initial_time") || currentTime;
             var ignoring = targetObject.data("ignoring") || false;
 
@@ -252,9 +239,7 @@
             var delta = currentTime - previousTime;
 
             // retrieves the key value for the current event
-            var keyValue = event.keyCode ? event.keyCode : event.charCode
-                    ? event.charCode
-                    : event.which;
+            var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode : event.which;
 
             // in case the key is not an enter no need to do any
             // extra verification
@@ -270,15 +255,13 @@
             // calculates the delta value to the total time and them
             // verifies if it is valid
             var deltaTotal = currentTime - initialTime;
-            var deltaValid = deltaTotal < sequenceLength * WORD_RATIO
-                    * LETTER_INTERVAL;
+            var deltaValid = deltaTotal < sequenceLength * WORD_RATIO * LETTER_INTERVAL;
 
             // checks if the current sequence is valid, it is
             // considered to be valid in case it's not empty
             // the length respect the minimum size and the delta
             // time for the word is valid
-            var isValid = sequence && sequence.length >= MINIMUM_LENGTH
-                    && deltaValid;
+            var isValid = sequence && sequence.length >= MINIMUM_LENGTH && deltaValid;
 
             // in case the sequence is not valid no need
             // to stop the event propagation

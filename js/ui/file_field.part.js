@@ -38,12 +38,11 @@
          */
         var _appendHtml = function() {
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        var name = _element.attr("name")
-                                || _element.attr("data-name");
-                        name && _element.attr("data-name", name);
-                        _element.removeAttr("name");
-                    });
+                var _element = jQuery(this);
+                var name = _element.attr("name") || _element.attr("data-name");
+                name && _element.attr("data-name", name);
+                _element.removeAttr("name");
+            });
         };
 
         /**
@@ -51,22 +50,22 @@
          */
         var _registerHandlers = function() {
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        var parentForm = _element.parents("form");
+                var _element = jQuery(this);
+                var parentForm = _element.parents("form");
 
-                        parentForm.bind("pre_submit", function() {
-                                    var value = _element.val();
-                                    if (!value) {
-                                        return;
-                                    }
-                                    var name = _element.attr("data-name");
-                                    name && _element.attr("name", name);
-                                });
+                parentForm.bind("pre_submit", function() {
+                    var value = _element.val();
+                    if (!value) {
+                        return;
+                    }
+                    var name = _element.attr("data-name");
+                    name && _element.attr("name", name);
+                });
 
-                        parentForm.bind("post_submit", function() {
-                                    _element.removeAttr("name");
-                                });
-                    });
+                parentForm.bind("post_submit", function() {
+                    _element.removeAttr("name");
+                });
+            });
         };
 
         // initializes the plugin

@@ -55,11 +55,11 @@
             // switched over the type for the value and runs the
             // appropriate comparision operations
             switch (type) {
-                case "object" :
+                case "object":
                     valid = jQuery.uxequals(valueF, valueS);
                     break;
 
-                default :
+                default:
                     valid = valueF === valueS;
                     break;
             }

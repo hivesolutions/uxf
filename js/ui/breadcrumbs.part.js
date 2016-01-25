@@ -54,8 +54,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _next = function(matchedObject, options) {
             // retrieves the breadcrumbs associated with the
@@ -129,34 +128,34 @@
             // retrieves the current breadcrumb in the breadcrumbs
             // and selects it in the current context
             var currebtBreadcrumb = jQuery("> li:nth(" + index + ")",
-                    matchedObject);
+                matchedObject);
             currebtBreadcrumb.addClass("selected");
         };
 
         // switches over the method
         switch (method) {
-            case "next" :
+            case "next":
                 // increments the breadcrum to the matched object
                 _next(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "previous" :
+            case "previous":
                 // decrements the breadcrum from the matched object
                 _previous(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "set" :
+            case "set":
                 // sets the breadcrum from the matched object
                 _set(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

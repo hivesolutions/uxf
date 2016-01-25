@@ -43,27 +43,27 @@
             // iterates over all the matched objects
             // to update the submit values
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the element attribute value
-                        var link = _element.attr("data-link");
-                        var submit = _element.attr("data-submit");
-                        var action = _element.attr("data-action");
-                        var message = _element.attr("data-message");
-                        var show = _element.attr("data-show");
-                        var window = _element.attr("data-window");
-                        var windowOpen = _element.attr("data-window_open");
+                // retrieves the element attribute value
+                var link = _element.attr("data-link");
+                var submit = _element.attr("data-submit");
+                var action = _element.attr("data-action");
+                var message = _element.attr("data-message");
+                var show = _element.attr("data-show");
+                var window = _element.attr("data-window");
+                var windowOpen = _element.attr("data-window_open");
 
-                        // sets the "new" element data
-                        _element.data("link", link);
-                        _element.data("submit", submit);
-                        _element.data("action", action);
-                        _element.data("message", message);
-                        _element.data("show", show);
-                        _element.data("window", window);
-                        _element.data("window_open", windowOpen);
-                    });
+                // sets the "new" element data
+                _element.data("link", link);
+                _element.data("submit", submit);
+                _element.data("action", action);
+                _element.data("message", message);
+                _element.data("show", show);
+                _element.data("window", window);
+                _element.data("window_open", windowOpen);
+            });
         };
 
         /**
@@ -75,70 +75,70 @@
 
             // registers for the click event
             matchedObject.click(function(event) {
-                        // retrieves the element in order trigger
-                        // the action operation
-                        var element = jQuery(this);
+                // retrieves the element in order trigger
+                // the action operation
+                var element = jQuery(this);
 
-                        // verifies if the button is currently disabled
-                        // and in such cases prevents the propagation and
-                        // returns control immediately to the caller method
-                        var isDisabled = element.hasClass("disabled");
-                        if (isDisabled) {
-                            event.stopPropagation();
-                            event.stopImmediatePropagation();
-                            return;
-                        }
+                // verifies if the button is currently disabled
+                // and in such cases prevents the propagation and
+                // returns control immediately to the caller method
+                var isDisabled = element.hasClass("disabled");
+                if (isDisabled) {
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    return;
+                }
 
-                        // checks if the current click is from a middle
-                        // button and in such case sets the new window
-                        // option to open the link in a new window
-                        var window = event.which == 2;
-                        options["window"] = window;
+                // checks if the current click is from a middle
+                // button and in such case sets the new window
+                // option to open the link in a new window
+                var window = event.which == 2;
+                options["window"] = window;
 
-                        // triggers the handling of the click event to
-                        // the button sub system
-                        __trigger(element, options);
-                    });
+                // triggers the handling of the click event to
+                // the button sub system
+                __trigger(element, options);
+            });
 
             // registers for focus event
             matchedObject.mousedown(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // checks if the button is disabled in case
-                        // it is, nothing should be done returns the
-                        // control to the caller function immediately
-                        var isDisabled = element.hasClass("disabled");
-                        if (isDisabled) {
-                            return;
-                        }
+                // checks if the button is disabled in case
+                // it is, nothing should be done returns the
+                // control to the caller function immediately
+                var isDisabled = element.hasClass("disabled");
+                if (isDisabled) {
+                    return;
+                }
 
-                        // adds the click class to the element
-                        element.addClass("click");
+                // adds the click class to the element
+                element.addClass("click");
 
-                        // creates the mouse up handler function so that
-                        // there is a clojure in the element
-                        var _mouseUpHandler = function(event) {
-                            // retrieves the reference to the body element
-                            // then removes the click class from the element
-                            // and unbinds the element from the mouse up event
-                            var _body = jQuery("body");
-                            element.removeClass("click");
-                            _body.unbind("mouseup", _mouseUpHandler);
-                        };
+                // creates the mouse up handler function so that
+                // there is a clojure in the element
+                var _mouseUpHandler = function(event) {
+                    // retrieves the reference to the body element
+                    // then removes the click class from the element
+                    // and unbinds the element from the mouse up event
+                    var _body = jQuery("body");
+                    element.removeClass("click");
+                    _body.unbind("mouseup", _mouseUpHandler);
+                };
 
-                        // register for the mouse up in the body
-                        _body.mouseup(_mouseUpHandler);
+                // register for the mouse up in the body
+                _body.mouseup(_mouseUpHandler);
 
-                        // checks if the current click is a middle click
-                        // and in such case stops the propagation of the
-                        // event avoid the default behavior
-                        var isMiddle = event.which == 2;
-                        if (isMiddle) {
-                            event.stopPropagation();
-                            event.preventDefault();
-                        }
-                    });
+                // checks if the current click is a middle click
+                // and in such case stops the propagation of the
+                // event avoid the default behavior
+                var isMiddle = event.which == 2;
+                if (isMiddle) {
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+            });
 
             // iterates over each of the buttons to
             // register for their specific handlers
@@ -153,23 +153,23 @@
                 // class is remove in such ocasions
                 var parentForm = _element.parents("form");
                 parentForm.bind("pre_submit", function() {
-                            // verifies if the button is a child of a form
-                            // success element for such cases the disable is
-                            // prevented as disabling it would create problems
-                            var formSuccess = _element.parents(".form-success");
-                            if (formSuccess.length > 0) {
-                                return;
-                            }
+                    // verifies if the button is a child of a form
+                    // success element for such cases the disable is
+                    // prevented as disabling it would create problems
+                    var formSuccess = _element.parents(".form-success");
+                    if (formSuccess.length > 0) {
+                        return;
+                    }
 
-                            // disables the button element in order
-                            // to avoid further submits
-                            _element.uxdisable();
-                        });
+                    // disables the button element in order
+                    // to avoid further submits
+                    _element.uxdisable();
+                });
                 parentForm.bind("unlock", function() {
-                            // re-enables the button to the normal state
-                            // (because the form is in the normal state again)
-                            _element.uxenable();
-                        });
+                    // re-enables the button to the normal state
+                    // (because the form is in the normal state again)
+                    _element.uxenable();
+                });
             });
         };
 
@@ -196,16 +196,16 @@
             // calls the confirm window in the document, because the action
             // must be first validated before any redirection occurs
             isConfirm && _body.uxconfirm(message, function(result) {
-                        // in case the result is cancel (false),
-                        // avoids execution and returns immediately
-                        if (result == false) {
-                            return;
-                        }
+                // in case the result is cancel (false),
+                // avoids execution and returns immediately
+                if (result == false) {
+                    return;
+                }
 
-                        // executes the "punching" of the button this should trigger
-                        // the proper behavior to be executed
-                        __punch(matchedObject, options);
-                    });
+                // executes the "punching" of the button this should trigger
+                // the proper behavior to be executed
+                __punch(matchedObject, options);
+            });
 
             // in case the is confirm flag is set the control flow must
             // return immediately to the caller function to avoid any
@@ -328,7 +328,7 @@
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

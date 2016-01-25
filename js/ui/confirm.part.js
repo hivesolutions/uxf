@@ -37,15 +37,10 @@
             // retrieves the window (alert window) elements
             var window = jQuery(windowSelector, matchedObject);
             if (window.length == 0) {
-                window = jQuery("<div class=\"window window-alert window-hide\">"
-                        + "<h1></h1>"
-                        + "<p class=\"single\"></p>"
-                        + "<div class=\"window-buttons\">"
-                        + "<span class=\"button button-cancel\">"
-                        + cancel
-                        + "</span>"
-                        + "<span class=\"button button-confirm\">"
-                        + confirm + "</span>" + "</div>");
+                window = jQuery("<div class=\"window window-alert window-hide\">" + "<h1></h1>" +
+                    "<p class=\"single\"></p>" + "<div class=\"window-buttons\">" +
+                    "<span class=\"button button-cancel\">" + cancel + "</span>" +
+                    "<span class=\"button button-confirm\">" + confirm + "</span>" + "</div>");
                 window.uxwindow();
                 matchedObject.append(window);
             }
@@ -90,42 +85,42 @@
 
             // registers for the click event on the button confirm
             windowButtonConfirm.click(function() {
-                        // retrieves the element and uses it to gather
-                        // the reference to the associated window
-                        var element = jQuery(this);
-                        var window = element.parents(".window");
+                // retrieves the element and uses it to gather
+                // the reference to the associated window
+                var element = jQuery(this);
+                var window = element.parents(".window");
 
-                        // hides the window and calls the callback if
-                        // defined, note that the result of the hide
-                        // operation is considered to be success
-                        window.uxwindow("hide", {
-                                    "reason" : "success"
-                                });
-                        callback && callback(true);
-                    });
+                // hides the window and calls the callback if
+                // defined, note that the result of the hide
+                // operation is considered to be success
+                window.uxwindow("hide", {
+                    "reason": "success"
+                });
+                callback && callback(true);
+            });
 
             // registers for the click event on the button cancel
             windowButtonCancel.click(function() {
-                        // retrieves the element and uses it to gather
-                        // the reference to the associated window
-                        var element = jQuery(this);
-                        var window = element.parents(".window");
+                // retrieves the element and uses it to gather
+                // the reference to the associated window
+                var element = jQuery(this);
+                var window = element.parents(".window");
 
-                        // hides the window and calls the callback
-                        // if defined, note that the result of the
-                        // hide operation is considered to be cancel
-                        window.uxwindow("hide", {
-                                    "reason" : "cancel"
-                                });
-                        callback && callback(false);
-                    });
+                // hides the window and calls the callback
+                // if defined, note that the result of the
+                // hide operation is considered to be cancel
+                window.uxwindow("hide", {
+                    "reason": "cancel"
+                });
+                callback && callback(false);
+            });
 
             // registers for the cancel event in the associated
             // window so that the proper callback is called with
             // the error flag if it's defined
             window.bind("cancel", function() {
-                        callback && callback(false);
-                    });
+                callback && callback(false);
+            });
         };
 
         // initializes the plugin

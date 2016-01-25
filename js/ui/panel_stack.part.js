@@ -54,8 +54,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _next = function(matchedObject, options) {
             // retrieves the panels associated with the
@@ -130,35 +129,35 @@
             // and shows it in the current context, note that
             // the visibility attribute is also set
             var currentPanel = jQuery("> .panel:nth(" + index + ")",
-                    matchedObject);
+                matchedObject);
             currentPanel.show();
             currentPanel.css("visibility", "visible");
         };
 
         // switches over the method
         switch (method) {
-            case "next" :
+            case "next":
                 // increments the panel to the matched object
                 _next(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "previous" :
+            case "previous":
                 // decrements the panel from the matched object
                 _previous(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "set" :
+            case "set":
                 // sets the panel from the matched object
                 _set(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

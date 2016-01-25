@@ -131,15 +131,14 @@
             // in case the device has changed a device change event is raised
             // so thtat any listner is notified about such changed
             deviceChanged
-                    && matchedObject.triggerHandler("device_change",
-                            [nextDevice]);
+                && matchedObject.triggerHandler("device_change", [nextDevice]);
         };
 
         // registers for the resize event on the current window so
         // thtat the proper watch (tick) operation is performed
         _window.resize(function(event) {
-                    watch();
-                });
+            watch();
+        });
 
         // measures the curren pixel properties of the screen
         // and populates the proper structures

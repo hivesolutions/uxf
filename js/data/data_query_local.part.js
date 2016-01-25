@@ -29,8 +29,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -39,12 +38,12 @@
             // iterates over all the object to retrieve the
             // result associated
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the results for the element and query
-                        _getResults(_element, query, callback);
-                    });
+                // retrieves the results for the element and query
+                _getResults(_element, query, callback);
+            });
         };
 
         var _getResults = function(element, query, callback) {
@@ -89,9 +88,7 @@
             // representation in case the insensitive mode has been
             // set for the current context, this is required in order
             // for the search process to be executed correctly
-            filterString = insensitive
-                    ? filterString.toLowerCase()
-                    : filterString;
+            filterString = insensitive ? filterString.toLowerCase() : filterString;
 
             // creates a list to hold (the valid) items, the ones that
             // have filled the required filtering values
@@ -224,9 +221,7 @@
                     // retrieves the current compare string and converts it into
                     // a lowercased string in case the insensitive flag is set
                     var compareString = compareStrings[_index];
-                    compareString = insensitive
-                            ? compareString.toLowerCase()
-                            : compareString;
+                    compareString = insensitive ? compareString.toLowerCase() : compareString;
 
                     // checks if the compare string (current item) starts with the
                     // current filter string
@@ -248,8 +243,8 @@
 
             // filters "some" valid items (in
             // case the filter options flag is set)
-            var validItems = filter ? validItems.slice(startRecord, startRecord
-                            + numberRecords) : validItems;
+            var validItems = filter ? validItems.slice(startRecord, startRecord + numberRecords) :
+                validItems;
 
             // calls the callback with the "valid" items
             callback(validItems, moreItems);

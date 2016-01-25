@@ -36,8 +36,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -49,24 +48,23 @@
             // registers for the key down event in the overlay
             // search text field
             textField.keydown(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the parent overlay search
-                        var overlaySearch = element.parents(".overlay-search");
+                // retrieves the parent overlay search
+                var overlaySearch = element.parents(".overlay-search");
 
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // in case the escape key is pressed
-                        // need to hide the overlay search
-                        if (keyValue == 27) {
-                            // hides the overlay search
-                            _hide(overlaySearch, options);
-                        }
-                    });
+                // in case the escape key is pressed
+                // need to hide the overlay search
+                if (keyValue == 27) {
+                    // hides the overlay search
+                    _hide(overlaySearch, options);
+                }
+            });
         };
 
         var _hide = function(matchedObject, options) {

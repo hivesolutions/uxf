@@ -5,7 +5,7 @@
 
         // the default values for the eval
         var defaults = {
-            timeout : DEFAULT_TIMEOUT
+            timeout: DEFAULT_TIMEOUT
         };
 
         // sets the default method value
@@ -35,30 +35,29 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the element eval attribute or html
-                        // as the eval string
-                        var evalString = _element.attr("data-eval")
-                                ? _element.attr("data-eval")
-                                : _element.html();
+                // retrieves the element eval attribute or html
+                // as the eval string
+                var evalString = _element.attr("data-eval") ? _element.attr("data-eval") : _element
+                    .html();
 
-                        // in case the eval string is not valid
-                        if (!evalString) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the eval string is not valid
+                if (!evalString) {
+                    // returns immediately
+                    return;
+                }
 
-                        // trims the eval string
-                        evalString = evalString.trim();
+                // trims the eval string
+                evalString = evalString.trim();
 
-                        // sets the eval string in the element
-                        _element.data("eval_string", evalString);
+                // sets the eval string in the element
+                _element.data("eval_string", evalString);
 
-                        // evaluates the element components
-                        _eval(_element, options);
-                    });
+                // evaluates the element components
+                _eval(_element, options);
+            });
         };
 
         /**
@@ -75,9 +74,7 @@
                 // falling back to the timeout option
                 var timeout = _element.attr("data-timeout");
                 var timeoutInteger = parseInt(timeout);
-                var _timeout = isNaN(timeoutInteger)
-                        ? options["timeout"]
-                        : timeoutInteger;
+                var _timeout = isNaN(timeoutInteger) ? options["timeout"] : timeoutInteger;
 
                 // retrieves the value of the continuous attribute
                 // (flag) of the element
@@ -90,9 +87,9 @@
                 // in case the continuous flag is set and there
                 // is no (key) selector defined
                 continuous && !selector && setInterval(function() {
-                            // evaluates the element components
-                            _eval(_element, options);
-                        }, _timeout);
+                    // evaluates the element components
+                    _eval(_element, options);
+                }, _timeout);
 
                 // retrieves the selector using a fall back
                 // to the body element selector then uses the
@@ -111,8 +108,8 @@
                 keyUpHandler && triggerElement.unbind("keyup", keyUpHandler);
                 changeHandler && triggerElement.unbind("change", changeHandler);
                 valueChangedHandler
-                        && triggerElement.unbind("value_change",
-                                valueChangedHandler);
+                    && triggerElement.unbind("value_change",
+                        valueChangedHandler);
 
                 // sets the key up event handler in the selector in
                 // case the continuous flag is set
@@ -131,12 +128,12 @@
                 // sets the vlaue change event handler in the selector in
                 // case the continuous flag is set
                 continuous
-                        && triggerElement.bind(
-                                valueChangedHandler = "value_change",
-                                function() {
-                                    // evaluates the element components
-                                    _eval(_element, options);
-                                });
+                    && triggerElement.bind(
+                        valueChangedHandler = "value_change",
+                        function() {
+                            // evaluates the element components
+                            _eval(_element, options);
+                        });
 
                 // saves the various handlers in the element
                 // so that any further eveal request will unbind
@@ -194,8 +191,8 @@
                 // changes the value of the target component
                 // according to the result of the eval
                 matchedObject.uxtextfield("value", {
-                            value : evalResult
-                        });
+                    value: evalResult
+                });
             }
             // in case the target component is an input field
             // the value attribute must be changed
@@ -215,14 +212,14 @@
 
         // switches over the method
         switch (method) {
-            case "eval" :
+            case "eval":
                 // evaluates the matched object
                 _eval(matchedObject, options);
 
                 // returns the value
                 return value;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

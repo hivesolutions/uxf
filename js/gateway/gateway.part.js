@@ -44,14 +44,15 @@
             // adds the colony gateway code to the current matched object
             // only in case the plugin exists in the current environment
             hasPlugin
-                    && matchedObject.append("<object id=\"colony-gateway\" type=\"application/x-colony-gateway\" width=\"0\" height=\"0\"></object>")
+                && matchedObject.append(
+                    "<object id=\"colony-gateway\" type=\"application/x-colony-gateway\" width=\"0\" height=\"0\"></object>"
+                )
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         /**
          * Checks if a plugin with the provided name exists in the current

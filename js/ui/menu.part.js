@@ -40,8 +40,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -62,32 +61,32 @@
             // registers for the show operation in the current object
             // to be able to show its visual contents
             matchedObject.bind("show", function() {
-                        var element = jQuery(this);
-                        _show(element, options);
-                    });
+                var element = jQuery(this);
+                _show(element, options);
+            });
 
             // registers for the hide operation in the current object
             // to be able to hide its visual contents (as expected)
             matchedObject.bind("hide", function() {
-                        var element = jQuery(this);
-                        _hide(element, options);
-                    });
+                var element = jQuery(this);
+                _hide(element, options);
+            });
 
             // registers/binds the contents of the menu to the show
             // event in order to show the upper/parent menu
             menuContents.bind("show", function() {
-                        var element = jQuery(this);
-                        var menu = element.parents(".menu");
-                        show(menu, options);
-                    });
+                var element = jQuery(this);
+                var menu = element.parents(".menu");
+                show(menu, options);
+            });
 
             // registers/binds the contents of the menu to the hide
             // event in order to hide the upper/parent menu
             menuContents.bind("hide", function() {
-                        var element = jQuery(this);
-                        var menu = element.parents(".menu");
-                        _hide(menu, options);
-                    });
+                var element = jQuery(this);
+                var menu = element.parents(".menu");
+                _hide(menu, options);
+            });
         };
 
         var _show = function(matchedObject, options) {
@@ -107,19 +106,19 @@
         // switches over the method, so that the proper execution
         // logic is going to be performed
         switch (method) {
-            case "show" :
+            case "show":
                 // runs the show operation for the selected object effectivly
                 // showing its inner contents (as expected)
                 _show(matchedObject, options);
                 break;
 
-            case "hide" :
+            case "hide":
                 // runs the hide operation for the selected object effectivly
                 // hidding its inner contents (as expected)
                 _hide(matchedObject, options);
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin, and then breaks the current
                 // switch so that no more code is executed for workflow
                 initialize();

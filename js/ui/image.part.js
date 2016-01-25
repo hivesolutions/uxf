@@ -36,8 +36,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -68,8 +67,8 @@
                 // lightbox path retrieved from the image, note that
                 // the animation flag is controlled by class presence
                 _body.uxlightbox(lightboxPath, null, lightboxLargePath, {
-                            animated : animated
-                        });
+                    animated: animated
+                });
             });
         };
 

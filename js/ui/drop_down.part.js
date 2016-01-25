@@ -64,110 +64,105 @@
             // iterates over the complete set of drop down elements so that
             // it's possible to properly set each button's name
             matchedObject.each(function(index, element) {
-                        // retrieves the various elements, including the current element
-                        // so that the proper initializing operation may be performed
-                        var _element = jQuery(this);
-                        var container = _element.parents(".drop-down-container");
-                        var button = jQuery(".button-drop-down", container);
-                        var inputElement = jQuery("input", container);
-                        var elements = jQuery("> li", _element);
+                // retrieves the various elements, including the current element
+                // so that the proper initializing operation may be performed
+                var _element = jQuery(this);
+                var container = _element.parents(".drop-down-container");
+                var button = jQuery(".button-drop-down", container);
+                var inputElement = jQuery("input", container);
+                var elements = jQuery("> li", _element);
 
-                        // retrieves the various attributes that are going to
-                        // be applied also to the parent drop down element
-                        var name = _element.attr("data-name") || "";
-                        var input = _element.attr("data-input") || "";
-                        var extra = _element.attr("data-extra") || "";
-                        var error = _element.attr("data-error") || "";
-                        var classes = _element.attr("class") || "";
-                        var containerClasses = container.attr("class") || "";
-                        var buttonClasses = button.attr("class") || "";
+                // retrieves the various attributes that are going to
+                // be applied also to the parent drop down element
+                var name = _element.attr("data-name") || "";
+                var input = _element.attr("data-input") || "";
+                var extra = _element.attr("data-extra") || "";
+                var error = _element.attr("data-error") || "";
+                var classes = _element.attr("class") || "";
+                var containerClasses = container.attr("class") || "";
+                var buttonClasses = button.attr("class") || "";
 
-                        // retrieves the value of the various classes that are
-                        // going to condition the initial state of the element
-                        var isOpen = _element.hasClass("drop-down-open");
+                // retrieves the value of the various classes that are
+                // going to condition the initial state of the element
+                var isOpen = _element.hasClass("drop-down-open");
 
-                        // verifies if the current drop down is considered to
-                        // be an empty one (no elements contained in it)
-                        var isEmpty = elements.length == 0;
+                // verifies if the current drop down is considered to
+                // be an empty one (no elements contained in it)
+                var isEmpty = elements.length == 0;
 
-                        // verifies if the request for an input like drop
-                        // down exists and if that the case created or re-uses
-                        // the input associated with the drop down container
-                        if (input && inputElement.length == 0) {
-                            container.prepend("<input type=\"hidden\" name=\""
-                                    + input + "\"/>");
-                        } else if (input) {
-                            container.prepend(inputElement);
-                        }
+                // verifies if the request for an input like drop
+                // down exists and if that the case created or re-uses
+                // the input associated with the drop down container
+                if (input && inputElement.length == 0) {
+                    container.prepend("<input type=\"hidden\" name=\"" + input + "\"/>");
+                } else if (input) {
+                    container.prepend(inputElement);
+                }
 
-                        // retreives the compete set of elements that are meant
-                        // to be defaulted in case no logical value is defined
-                        // allowing proper value interface for them
-                        var defaults = input ? elements : jQuery([]);
-                        defaults.each(function() {
-                                    // retrieves the current element in iteration and
-                                    // verifies that a proper logical value is defined
-                                    // for it and if that's the case skips iteration
-                                    var __element = jQuery(this);
-                                    var value = __element.attr("data-value");
-                                    var hasValue = typeof value !== typeof undefined
-                                            && value !== false;
-                                    if (hasValue) {
-                                        return;
-                                    }
+                // retreives the compete set of elements that are meant
+                // to be defaulted in case no logical value is defined
+                // allowing proper value interface for them
+                var defaults = input ? elements : jQuery([]);
+                defaults.each(function() {
+                    // retrieves the current element in iteration and
+                    // verifies that a proper logical value is defined
+                    // for it and if that's the case skips iteration
+                    var __element = jQuery(this);
+                    var value = __element.attr("data-value");
+                    var hasValue = typeof value !== typeof undefined && value !== false;
+                    if (hasValue) {
+                        return;
+                    }
 
-                                    // no value is defined for the element and
-                                    // so the text representation of the element
-                                    // is used instead for its logical representation
-                                    var text = __element.uxcontent().trim()
-                                            || __element.text().trim();
-                                    __element.attr("data-value", text);
-                                });
+                    // no value is defined for the element and
+                    // so the text representation of the element
+                    // is used instead for its logical representation
+                    var text = __element.uxcontent().trim() || __element.text().trim();
+                    __element.attr("data-value", text);
+                });
 
-                        // retrieves the "original" (logical) value as the
-                        // value of the input element (in case it exists)
-                        // or an empty value otherwise
-                        var original = inputElement.val() || "";
+                // retrieves the "original" (logical) value as the
+                // value of the input element (in case it exists)
+                // or an empty value otherwise
+                var original = inputElement.val() || "";
 
-                        // updates the button text value with the original
-                        // name value and the classes for it (avoiding drop down)
-                        button.text(name);
-                        button.attr("class", buttonClasses + " " + classes);
-                        button.removeClass("drop-down");
+                // updates the button text value with the original
+                // name value and the classes for it (avoiding drop down)
+                button.text(name);
+                button.attr("class", buttonClasses + " " + classes);
+                button.removeClass("drop-down");
 
-                        // in case there's a valid extra (note) name to be added to
-                        // the drop down button it's added at the end of the button
-                        extra
-                                && button.append("<span class=\"extra\">"
-                                        + extra + "</span>");
+                // in case there's a valid extra (note) name to be added to
+                // the drop down button it's added at the end of the button
+                extra
+                    && button.append("<span class=\"extra\">" + extra + "</span>");
 
-                        // updates the drop down classes with the parent values
-                        // of classes according to the specification
-                        container.attr("class", containerClasses + " "
-                                        + classes);
-                        container.removeClass("drop-down");
+                // updates the drop down classes with the parent values
+                // of classes according to the specification
+                container.attr("class", containerClasses + " " + classes);
+                container.removeClass("drop-down");
 
-                        // in case there's an error defined for the drop down the
-                        // invalid class is added to all elements and sub-elements
-                        error && _element.addClass("invalid");
-                        error && container.addClass("invalid");
-                        error && button.addClass("invalid");
+                // in case there's an error defined for the drop down the
+                // invalid class is added to all elements and sub-elements
+                error && _element.addClass("invalid");
+                error && container.addClass("invalid");
+                error && button.addClass("invalid");
 
-                        // verifies if the drop down is empty and for that case
-                        // the container is hidden (not going to be displayed)
-                        isEmpty && container.hide();
+                // verifies if the drop down is empty and for that case
+                // the container is hidden (not going to be displayed)
+                isEmpty && container.hide();
 
-                        // updates the original (logical) value of the drop down
-                        // and then runs the original operation to restore it to the
-                        // initial valid state (include logical value initialization)
-                        _element.data("original", original);
-                        _original(_element, options);
+                // updates the original (logical) value of the drop down
+                // and then runs the original operation to restore it to the
+                // initial valid state (include logical value initialization)
+                _element.data("original", original);
+                _original(_element, options);
 
-                        // in case the open (class based) flag is defined for the
-                        // drop down element it is shown with the current options
-                        // defined as the open/shown state is considered initial
-                        isOpen && _show(_element, options);
-                    });
+                // in case the open (class based) flag is defined for the
+                // drop down element it is shown with the current options
+                // defined as the open/shown state is considered initial
+                isOpen && _show(_element, options);
+            });
 
             // adds the menu class to the matched object so that it's
             // possible to manage its visibility as typical menu element
@@ -203,73 +198,73 @@
             // registers for the click operation in the drop down button
             // that is going to toggle the current drop down list visibility
             button.click(function(event) {
-                        var element = jQuery(this);
-                        var container = element.parents(".drop-down-container");
-                        var dropDown = jQuery(".drop-down", container);
-                        _toggle(dropDown, options);
-                        event.stopPropagation();
-                    });
+                var element = jQuery(this);
+                var container = element.parents(".drop-down-container");
+                var dropDown = jQuery(".drop-down", container);
+                _toggle(dropDown, options);
+                event.stopPropagation();
+            });
 
             // registers for the click operation in the element so that the
             // visibility of the curren drop down is hidden
             elements.click(function(event) {
-                        // retrieves the reference to the "clicked" element and
-                        // the associated parent and child elements that are
-                        // going to be used in the selection change operation
-                        var element = jQuery(this);
-                        var container = element.parents(".drop-down-container");
-                        var dropDown = jQuery(".drop-down", container);
+                // retrieves the reference to the "clicked" element and
+                // the associated parent and child elements that are
+                // going to be used in the selection change operation
+                var element = jQuery(this);
+                var container = element.parents(".drop-down-container");
+                var dropDown = jQuery(".drop-down", container);
 
-                        // runs the select operation on the target element as
-                        // "requested" by the click operation in it
-                        _select(dropDown, options, element);
+                // runs the select operation on the target element as
+                // "requested" by the click operation in it
+                _select(dropDown, options, element);
 
-                        // stops the event propagation, avoiding possible issues with
-                        // the propagation of the click event on the element
-                        event.stopPropagation();
-                    });
+                // stops the event propagation, avoiding possible issues with
+                // the propagation of the click event on the element
+                event.stopPropagation();
+            });
 
             // registers for the "basic" show operation of the current
             // drop down so that the element is shown
             matchedObject.bind("show", function() {
-                        var element = jQuery(this);
-                        _show(element, options);
-                    });
+                var element = jQuery(this);
+                _show(element, options);
+            });
 
             // registers for the "basic" hide operation of the current
             // drop down so that the element is hidden
             matchedObject.bind("hide", function() {
-                        var element = jQuery(this);
-                        _hide(element, options);
-                    });
+                var element = jQuery(this);
+                _hide(element, options);
+            });
 
             // registers for the enable operation of the current
             // drop down so that the interaction is enabled
             matchedObject.bind("enable", function() {
-                        var element = jQuery(this);
-                        _enable(element, options);
-                    });
+                var element = jQuery(this);
+                _enable(element, options);
+            });
 
             // registers for the disable operation of the current
             // drop down so that the interaction is disabled
             matchedObject.bind("disable", function() {
-                        var element = jQuery(this);
-                        _disable(element, options);
-                    });
+                var element = jQuery(this);
+                _disable(element, options);
+            });
 
             // registers for the "basic" original operation of the current
             // drop down so that the element is restored to original state
             matchedObject.bind("original", function() {
-                        var element = jQuery(this);
-                        _original(element, options);
-                    });
+                var element = jQuery(this);
+                _original(element, options);
+            });
 
             // registers for the reset (values) operation of the current
             // drop down so that the element is restored to empty state
             matchedObject.bind("reset", function() {
-                        var element = jQuery(this);
-                        _reset(element, options)
-                    });
+                var element = jQuery(this);
+                _reset(element, options)
+            });
 
             // register for the key down event in the body,
             // only in case the registration was not already made
@@ -278,9 +273,8 @@
                 var element = jQuery(this);
 
                 // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode
-                        ? event.charCode
-                        : event.which;
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
                 // in case the key that was pressed in not the
                 // escape one there's nothing to be done and so
@@ -453,15 +447,13 @@
             var extra = matchedObject.attr("data-extra") || "";
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
-            var originalElement = elements.filter("[data-value=\"" + original
-                    + "\"]");
+            var originalElement = elements.filter("[data-value=\"" + original + "\"]");
 
             // verifies if an element was selected (original element) and if
             // that's the case retrieves the proper original text either from
             // it's content of from it's complete text
             if (originalElement.length > 0) {
-                var originalText = originalElement.uxcontent().trim()
-                        || originalElement.text().trim();
+                var originalText = originalElement.uxcontent().trim() || originalElement.text().trim();
                 var originalExtra = null;
             }
             // otherwise sets the original text as the name of the drop field
@@ -486,8 +478,7 @@
             // in case there's a valid extra (note) name to be added to
             // the drop down button it's added at the end of the button
             originalExtra
-                    && button.append("<span class=\"extra\">" + originalExtra
-                            + "</span>");
+                && button.append("<span class=\"extra\">" + originalExtra + "</span>");
         };
 
         var _reset = function(matchedObject, options) {
@@ -547,55 +538,55 @@
         // switches over the method that is going to be performed
         // for the current operation (as requested)
         switch (method) {
-            case "set" :
+            case "set":
                 // sets the value in the drop down according to
                 // the requested value (provided by options)
                 _set(matchedObject, options);
                 break
 
-            case "value" :
+            case "value":
                 // retrieves the value from the matched object and
                 // then returns the same value to the caller method
                 var value = _value(matchedObject, options);
                 return value;
 
-            case "show" :
+            case "show":
                 // runs the show operation on the currently matched
                 // object so that the proper contents are displayed
                 _show(matchedObject, options);
                 break;
 
-            case "hide" :
+            case "hide":
                 // runs the hide operation on the currently matched
                 // object so that the proper contents are hidden
                 _hide(matchedObject, options);
                 break;
 
-            case "enable" :
+            case "enable":
                 // runs the enable operation on the currently matched
                 // object so that interaction is enabled
                 _enable(matchedObject, options);
                 break;
 
-            case "disable" :
+            case "disable":
                 // runs the disable operation on the currently matched
                 // object so that interaction is disabled
                 _disable(matchedObject, options);
                 break;
 
-            case "original" :
+            case "original":
                 // runs the original operation on the currently matched
                 // object so that the element is restored to original
                 _original(matchedObject, options);
                 break;
 
-            case "reset" :
+            case "reset":
                 // runs the reset operation on the currently matched
                 // object so that the element is restored to empty
                 _reset(matchedObject, options);
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin and then breaks the current
                 // switch (no more operations)
                 initialize();

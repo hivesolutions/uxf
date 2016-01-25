@@ -32,22 +32,21 @@
             // iterates over all the matched object, to update
             // their respective values
             matchedObject.each(function(index, element) {
-                        // retrieves the current element for iteration
-                        var _element = jQuery(element);
+                // retrieves the current element for iteration
+                var _element = jQuery(element);
 
-                        // updates the element's width so that the defined
-                        // values overflows the maximum table value, provides
-                        // a way of creating a "pivot" column
-                        _element.css("width", MAXIMUM_WIDTH + "px");
-                        _element.css("max-width", MAXIMUM_WIDTH + "px");
-                    });
+                // updates the element's width so that the defined
+                // values overflows the maximum table value, provides
+                // a way of creating a "pivot" column
+                _element.css("width", MAXIMUM_WIDTH + "px");
+                _element.css("max-width", MAXIMUM_WIDTH + "px");
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

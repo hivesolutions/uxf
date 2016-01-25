@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -33,21 +32,21 @@
         var _registerHandlers = function() {
             // registers for the mouse enter in the matched object
             matchedObject.mouseenter(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // schedules a show of the template
-                        _scheduleTemplate(element, options);
-                    });
+                // schedules a show of the template
+                _scheduleTemplate(element, options);
+            });
 
             // registers for the mouse leave in the matched object
             matchedObject.mouseleave(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // cancels the show of the template
-                        _cancelTemplate(element, options);
-                    });
+                // cancels the show of the template
+                _cancelTemplate(element, options);
+            });
         };
 
         var _scheduleTemplate = function(matchedObject, options) {
@@ -65,12 +64,12 @@
             // sets the timeout for the showing of the
             // hovering box template
             var timeoutHandler = setTimeout(function() {
-                        // showes the template for the given options
-                        _showTemplate(matchedObject, options);
+                // showes the template for the given options
+                _showTemplate(matchedObject, options);
 
-                        // unsets the timeout handler in the matched object
-                        matchedObject.data("timeout_handler", null);
-                    }, 500);
+                // unsets the timeout handler in the matched object
+                matchedObject.data("timeout_handler", null);
+            }, 500);
 
             // sets the timeout handler in the matched object
             matchedObject.data("timeout_handler", timeoutHandler);
@@ -98,7 +97,7 @@
         var _containsTemplate = function(matchedObject, options) {
             // retrieves the hovering box template
             var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                    matchedObject);
+                matchedObject);
 
             // checks if the hovering box already contains the template
             var containsTemplate = hoveringBoxTemplate.length > 0;
@@ -129,41 +128,39 @@
 
             // runs the query in the data source
             dataSource.uxdataquery({
-                        id : dataSourceId
-                    }, function(validItems, moreItems) {
-                        // retrieves the current (and only)
-                        // item from the list of valid items
-                        var currentItem = validItems[0];
+                id: dataSourceId
+            }, function(validItems, moreItems) {
+                // retrieves the current (and only)
+                // item from the list of valid items
+                var currentItem = validItems[0];
 
-                        // applies the template to the hovering box
-                        // template (item) retrieving the resulting
-                        // template item
-                        var templateItem = hoveringBoxTemplate.uxtemplate(currentItem);
+                // applies the template to the hovering box
+                // template (item) retrieving the resulting
+                // template item
+                var templateItem = hoveringBoxTemplate.uxtemplate(currentItem);
 
-                        // adds the template item item to the
-                        // element (hovering box)
-                        matchedObject.append(templateItem);
+                // adds the template item item to the
+                // element (hovering box)
+                matchedObject.append(templateItem);
 
-                        // in case the hovering box right flag
-                        // is not set (no need to align to the right)
-                        if (!hoveringBoxRight) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the hovering box right flag
+                // is not set (no need to align to the right)
+                if (!hoveringBoxRight) {
+                    // returns immediately
+                    return;
+                }
 
-                        // retrieves both the matched object width
-                        // and the template item width
-                        var matchedObjectWidth = matchedObject.outerWidth()
-                        var templateItemWidth = templateItem.width();
+                // retrieves both the matched object width
+                // and the template item width
+                var matchedObjectWidth = matchedObject.outerWidth()
+                var templateItemWidth = templateItem.width();
 
-                        // calculates the template item margin left
-                        var templateItemMarginLeft = (templateItemWidth - matchedObjectWidth)
-                                * -1;
+                // calculates the template item margin left
+                var templateItemMarginLeft = (templateItemWidth - matchedObjectWidth) * -1;
 
-                        // sets the template item margin left
-                        templateItem.css("margin-left", templateItemMarginLeft
-                                        + "px");
-                    });
+                // sets the template item margin left
+                templateItem.css("margin-left", templateItemMarginLeft + "px");
+            });
         };
 
         var _showTemplate = function(matchedObject, options) {
@@ -176,7 +173,7 @@
 
             // retrieves the hovering box template
             var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                    matchedObject);
+                matchedObject);
 
             // hides the hovering box template
             hoveringBoxTemplate.show();
@@ -185,7 +182,7 @@
         var _hideTemplate = function(matchedObject, options) {
             // retrieves the hovering box template
             var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                    matchedObject);
+                matchedObject);
 
             // hides the hovering box template
             hoveringBoxTemplate.hide();

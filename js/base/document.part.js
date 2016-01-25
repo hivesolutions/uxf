@@ -18,12 +18,12 @@
         // so that the event is propagated for the resizable
         // elements in the proper way
         _window.resize(function() {
-                    var element = jQuery(this);
-                    var resizables = jQuery(".resizable:visible");
-                    resizables.hide();
-                    element.triggerHandler("size");
-                    resizables.show();
-                });
+            var element = jQuery(this);
+            var resizables = jQuery(".resizable:visible");
+            resizables.hide();
+            element.triggerHandler("size");
+            resizables.show();
+        });
 
         // returns the current context so that it may be used in
         // a chain based processing operation (as expected)

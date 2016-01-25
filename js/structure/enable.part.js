@@ -27,27 +27,26 @@
         var _appendHtml = function() {
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference and
-                        // removes the disabled class from the it
-                        var _element = jQuery(element);
-                        _element.removeClass("disabled");
+                // retrieves the element reference and
+                // removes the disabled class from the it
+                var _element = jQuery(element);
+                _element.removeClass("disabled");
 
-                        // checks if the currently matche object is an input field
-                        // in case it is removes the disabled attribute
-                        var isInput = _element.is("input, textarea");
-                        isInput && _element.removeAttr("disabled");
+                // checks if the currently matche object is an input field
+                // in case it is removes the disabled attribute
+                var isInput = _element.is("input, textarea");
+                isInput && _element.removeAttr("disabled");
 
-                        // triggers the enabled event on the element
-                        // to indicate that it has been enabled
-                        _element.triggerHandler("enabled");
-                    });
+                // triggers the enabled event on the element
+                // to indicate that it has been enabled
+                _element.triggerHandler("enabled");
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

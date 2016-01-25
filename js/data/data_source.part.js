@@ -27,24 +27,23 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // updates the query element
-                        _updateQueryElement(_element, options);
+                // updates the query element
+                _updateQueryElement(_element, options);
 
-                        // triggers the ready event on the data source
-                        // this should be able to notifiy possible listeners
-                        // that the data is ready to be managed and "explored"
-                        _element.trigger("data_ready");
-                    });
+                // triggers the ready event on the data source
+                // this should be able to notifiy possible listeners
+                // that the data is ready to be managed and "explored"
+                _element.trigger("data_ready");
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _updateQueryElement = function(element) {
             // retrieves the element type, to construct

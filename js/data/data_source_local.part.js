@@ -27,19 +27,18 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // updates the query element
-                        _updateQueryElement(_element, options);
-                    });
+                // updates the query element
+                _updateQueryElement(_element, options);
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         /**
          * Retrieves the sub-elements for the given element. The structure to be
@@ -68,43 +67,43 @@
             // iterates over all the children of the element
             // to populate the data structure
             elementChildren.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the children of the element
-                        // to check if the element contains children
-                        var children = _element.children();
-                        var containsChildren = children.length > 0;
+                // retrieves the children of the element
+                // to check if the element contains children
+                var children = _element.children();
+                var containsChildren = children.length > 0;
 
-                        // in case the element contains children
-                        if (containsChildren) {
-                            // retrieves the "composite" element value
-                            var elementValue = _getElements(_element);
-                        }
-                        // otherwise there are no children and
-                        // the ement contents must be directly
-                        // processed
-                        else {
-                            // retrieves the element value directly
-                            // from the element contents
-                            var elementValue = _element.text();
-                        }
+                // in case the element contains children
+                if (containsChildren) {
+                    // retrieves the "composite" element value
+                    var elementValue = _getElements(_element);
+                }
+                // otherwise there are no children and
+                // the ement contents must be directly
+                // processed
+                else {
+                    // retrieves the element value directly
+                    // from the element contents
+                    var elementValue = _element.text();
+                }
 
-                        // in case the data structure is a list
-                        if (isList) {
-                            // adds the element value to the
-                            // data structure (list)
-                            dataStructure.push(elementValue);
-                        }
-                        // otherwise the data structure must be a map
-                        else {
-                            // retrieves the element name and sets
-                            // the element value in the data structure
-                            // for the element name
-                            var elementName = _element.attr("name");
-                            dataStructure[elementName] = elementValue;
-                        }
-                    });
+                // in case the data structure is a list
+                if (isList) {
+                    // adds the element value to the
+                    // data structure (list)
+                    dataStructure.push(elementValue);
+                }
+                // otherwise the data structure must be a map
+                else {
+                    // retrieves the element name and sets
+                    // the element value in the data structure
+                    // for the element name
+                    var elementName = _element.attr("name");
+                    dataStructure[elementName] = elementValue;
+                }
+            });
 
             // returns the (created) data structure
             return dataStructure;

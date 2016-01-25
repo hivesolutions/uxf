@@ -28,10 +28,10 @@
             // iterates over the complete set of element to update their
             // initial right positions according to their width
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        var width = _element.outerWidth(true);
-                        _element.css("right", (width * -1) + "px");
-                    });
+                var _element = jQuery(this);
+                var width = _element.outerWidth(true);
+                _element.css("right", (width * -1) + "px");
+            });
         };
 
         /**
@@ -45,36 +45,36 @@
             // registers for the toggle event in the side panel so that
             // its current visibility state is "toggled"
             matchedObject.bind("toggle", function() {
-                        var element = jQuery(this);
-                        var isVisible = element.data("visible");
-                        if (isVisible) {
-                            element.triggerHandler("hide");
-                        } else {
-                            element.triggerHandler("show");
-                        }
-                    });
+                var element = jQuery(this);
+                var isVisible = element.data("visible");
+                if (isVisible) {
+                    element.triggerHandler("hide");
+                } else {
+                    element.triggerHandler("show");
+                }
+            });
 
             // registers for the show event so that the side panel
             // is properly shown in the current display container
             matchedObject.bind("show", function() {
-                        var element = jQuery(this);
-                        _show(element, options);
-                    });
+                var element = jQuery(this);
+                _show(element, options);
+            });
 
             // registers for the hide event so that the side panel
             // is properly hidden from the current display container
             matchedObject.bind("hide", function() {
-                        var element = jQuery(this);
-                        _hide(element, options);
-                    });
+                var element = jQuery(this);
+                _hide(element, options);
+            });
 
             // registers for the click event on the cancel buttons so that the
             // associated side panel element is hidden
             cancel.click(function() {
-                        var element = jQuery(this);
-                        var panel = element.parents(".side-panel");
-                        panel.triggerHandler("hide");
-                    });
+                var element = jQuery(this);
+                var panel = element.parents(".side-panel");
+                panel.triggerHandler("hide");
+            });
         };
 
         var _ensureOverlay = function() {
@@ -105,15 +105,15 @@
             matchedObject.css("right", (width * -1) + "px");
             matchedObject.show();
             matchedObject.animate({
-                        right : 0
-                    }, {
-                        duration : 350,
-                        easing : "swing",
-                        complete : function() {
-                            __registerClick(matchedObject, options);
-                            __registerKey(matchedObject, options);
-                        }
-                    });
+                right: 0
+            }, {
+                duration: 350,
+                easing: "swing",
+                complete: function() {
+                    __registerClick(matchedObject, options);
+                    __registerKey(matchedObject, options);
+                }
+            });
         };
 
         var _hide = function(matchedObject, options) {
@@ -129,14 +129,14 @@
             overlay.triggerHandler("hide", [350]);
             matchedObject.css("right", 0 + "px");
             matchedObject.animate({
-                        right : width * -1
-                    }, {
-                        duration : 350,
-                        easing : "swing",
-                        complete : function() {
-                            matchedObject.hide();
-                        }
-                    });
+                right: width * -1
+            }, {
+                duration: 350,
+                easing: "swing",
+                complete: function() {
+                    matchedObject.hide();
+                }
+            });
         };
 
         var __registerClick = function(matchedObject, options) {
@@ -167,18 +167,17 @@
             // current matched object
             var _document = jQuery(document);
             var handler = _document.keydown(function(event) {
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // switches over the key value
-                        switch (keyValue) {
-                            case 27 :
-                                matchedObject.triggerHandler("hide");
-                                break;
-                        }
-                    });
+                // switches over the key value
+                switch (keyValue) {
+                    case 27:
+                        matchedObject.triggerHandler("hide");
+                        break;
+                }
+            });
             matchedObject.data("key_handler", handler);
         };
 

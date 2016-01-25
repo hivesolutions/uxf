@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -68,71 +67,69 @@
                     // with the link element, note that cross site reference
                     // rules will applye to this request
                     jQuery.ajax({
-                                type : "get",
-                                url : href,
-                                success : function(data) {
-                                    element.triggerHandler("success", [data]);
-                                },
-                                error : function(request, textStatus, errorThrown) {
-                                    element.triggerHandler("error", [request]);
-                                }
-                            });
+                        type: "get",
+                        url: href,
+                        success: function(data) {
+                            element.triggerHandler("success", [data]);
+                        },
+                        error: function(request, textStatus, errorThrown) {
+                            element.triggerHandler("error", [request]);
+                        }
+                    });
                 });
 
                 // registers for the click event in
                 // the element only in case the dureation is valid
                 durationValid && _element.click(function(event) {
-                            // retrieves the element
-                            var element = jQuery(this);
+                    // retrieves the element
+                    var element = jQuery(this);
 
-                            // retrieves the href (link) attribute, that
-                            // contains the target location of the link,
-                            // this should be an internal identifier
-                            var href = element.attr("href");
-                            var hrefValid = jQuery(href).length > 0;
+                    // retrieves the href (link) attribute, that
+                    // contains the target location of the link,
+                    // this should be an internal identifier
+                    var href = element.attr("href");
+                    var hrefValid = jQuery(href).length > 0;
 
-                            // retrieves the value of the data hash value
-                            // that if existent enables hash changing
-                            var hash = element.attr("data-hash");
+                    // retrieves the value of the data hash value
+                    // that if existent enables hash changing
+                    var hash = element.attr("data-hash");
 
-                            // retrieves the offset and converts it
-                            // into an integer to be used in the animation
-                            // that is going to be performed in the element
-                            var offset = element.attr("data-offset");
-                            var offsetInteger = parseInt(offset);
+                    // retrieves the offset and converts it
+                    // into an integer to be used in the animation
+                    // that is going to be performed in the element
+                    var offset = element.attr("data-offset");
+                    var offsetInteger = parseInt(offset);
 
-                            // verifies if the target element for ther link
-                            // value is valid, and in case it's not returns
-                            // the control flow immediately (as it's not possible
-                            // to perform smooth scrolling)
-                            if (!hrefValid) {
-                                return;
-                            }
+                    // verifies if the target element for ther link
+                    // value is valid, and in case it's not returns
+                    // the control flow immediately (as it's not possible
+                    // to perform smooth scrolling)
+                    if (!hrefValid) {
+                        return;
+                    }
 
-                            // creates the settings map based on the offset
-                            // value that has just been calculated, this map
-                            // is going to be passed to the scroll extension
-                            var settings = {
-                                offset : isNaN(offsetInteger)
-                                        ? 0
-                                        : offsetInteger
-                            }
+                    // creates the settings map based on the offset
+                    // value that has just been calculated, this map
+                    // is going to be passed to the scroll extension
+                    var settings = {
+                        offset: isNaN(offsetInteger) ? 0 : offsetInteger
+                    }
 
-                            // in case the hash triggering value is defined
-                            // updates the current hash with the href value
-                            // with the provided value appended to it
-                            if (hash) {
-                                location.hash = href + "-" + hash;
-                            }
+                    // in case the hash triggering value is defined
+                    // updates the current hash with the href value
+                    // with the provided value appended to it
+                    if (hash) {
+                        location.hash = href + "-" + hash;
+                    }
 
-                            // starts the scrolling operation using the target
-                            // href location using the defined duration
-                            jQuery.uxscrollto(href, durationInteger, settings);
+                    // starts the scrolling operation using the target
+                    // href location using the defined duration
+                    jQuery.uxscrollto(href, durationInteger, settings);
 
-                            // prevents the default event (avoids the
-                            // effect of the link)
-                            event.preventDefault();
-                        });
+                    // prevents the default event (avoids the
+                    // effect of the link)
+                    event.preventDefault();
+                });
             });
         };
 

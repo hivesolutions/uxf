@@ -47,7 +47,7 @@
 
             // retrieves the first slider panel
             var firstSliderPanel = jQuery(".slider-panel:first-child",
-                    matchedObject);
+                matchedObject);
 
             // adds the active class to the first slider panel
             firstSliderPanel.addClass("active");
@@ -76,90 +76,89 @@
             // retrieves the slider panel arows
             // from the matched object
             var sliderPanelArrowNext = jQuery(".slider-panel-arrow-next",
-                    matchedObject);
+                matchedObject);
             var sliderPanelArrowPrevious = jQuery(
-                    ".slider-panel-arrow-previous", matchedObject);
+                ".slider-panel-arrow-previous", matchedObject);
 
             // registers for the click event in the slide panel
             // arrow next so that the next element is displayed
             sliderPanelArrowNext.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the current associated slider panel
-                        // and checks if it's currently active
-                        var sliderPanel = element.parents(".slider-panel");
-                        var isSliderPanelActive = sliderPanel.hasClass("active");
+                // retrieves the current associated slider panel
+                // and checks if it's currently active
+                var sliderPanel = element.parents(".slider-panel");
+                var isSliderPanelActive = sliderPanel.hasClass("active");
 
-                        // in case the current slider panel
-                        // is not active
-                        if (!isSliderPanelActive) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the current slider panel
+                // is not active
+                if (!isSliderPanelActive) {
+                    // returns immediately
+                    return;
+                }
 
-                        // retrieves the slider and the slider contents
-                        var slider = element.parents(".slider");
+                // retrieves the slider and the slider contents
+                var slider = element.parents(".slider");
 
-                        // moves to the next element
-                        _moveNext(slider, options);
-                    });
+                // moves to the next element
+                _moveNext(slider, options);
+            });
 
             // registers for the click event in the slider panel
             // arrow previous so that the previous element is displayed
             sliderPanelArrowPrevious.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the current associated slider panel
-                        // and checks if it's currently active
-                        var sliderPanel = element.parents(".slider-panel");
-                        var isSliderPanelActive = sliderPanel.hasClass("active");
+                // retrieves the current associated slider panel
+                // and checks if it's currently active
+                var sliderPanel = element.parents(".slider-panel");
+                var isSliderPanelActive = sliderPanel.hasClass("active");
 
-                        // in case the current slider panel
-                        // is not active
-                        if (!isSliderPanelActive) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the current slider panel
+                // is not active
+                if (!isSliderPanelActive) {
+                    // returns immediately
+                    return;
+                }
 
-                        // retrieves the slider and the slider contents
-                        var slider = element.parents(".slider");
+                // retrieves the slider and the slider contents
+                var slider = element.parents(".slider");
 
-                        // moves to the previous element
-                        _movePrevious(slider, options);
-                    });
+                // moves to the previous element
+                _movePrevious(slider, options);
+            });
 
             // registers for the key press in the document
             _document.keypress(function(event) {
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // switches over the key value
-                        switch (keyValue) {
-                            case 37 :
-                                // moves to the previous element
-                                _movePrevious(matchedObject, options);
+                // switches over the key value
+                switch (keyValue) {
+                    case 37:
+                        // moves to the previous element
+                        _movePrevious(matchedObject, options);
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            case 39 :
-                                // moves to the next element
-                                _moveNext(matchedObject, options);
+                    case 39:
+                        // moves to the next element
+                        _moveNext(matchedObject, options);
 
-                                // breaks the switch
-                                break;
-                        }
-                    });
+                        // breaks the switch
+                        break;
+                }
+            });
 
             // registers the resize in the window
             _window.resize(function(event) {
-                        // updates the slider
-                        _update(matchedObject, options);
-                    });
+                // updates the slider
+                _update(matchedObject, options);
+            });
         };
 
         var _show = function(matchedObject, options) {
@@ -233,10 +232,10 @@
 
             // animates the slider contents to the new margin left
             sliderContents.animate({
-                        marginLeft : targetMarginLeft
-                    }, 500, "linear", function() {
-                        slider.data("lock", false);
-                    });
+                marginLeft: targetMarginLeft
+            }, 500, "linear", function() {
+                slider.data("lock", false);
+            });
 
             // updates the active classes in the slider panel
             sliderPanel.removeClass("active");
@@ -297,10 +296,10 @@
 
             // animates the slider contents to the new margin left
             sliderContents.animate({
-                        marginLeft : targetMarginLeft
-                    }, 500, "linear", function() {
-                        slider.data("lock", false);
-                    });
+                marginLeft: targetMarginLeft
+            }, 500, "linear", function() {
+                slider.data("lock", false);
+            });
 
             // updates the active classes in the slider panel
             sliderPanel.removeClass("active");
@@ -340,12 +339,11 @@
 
             // retrieves the first slider panel
             var firstSliderPanel = jQuery(".slider-panel:first-child",
-                    matchedObject);
+                matchedObject);
             var firstSliderPanelWidth = firstSliderPanel.outerWidth();
 
             // calculates the left position for the slider contents
-            var leftPosition = ((windowWidth - firstSliderPanelWidth) / 2)
-                    + windowSrollLeft - offsetLeft;
+            var leftPosition = ((windowWidth - firstSliderPanelWidth) / 2) + windowSrollLeft - offsetLeft;
 
             // sets the (margin) left position in the slider contents
             sliderContents.css("margin-left", leftPosition + "px");
@@ -375,16 +373,16 @@
             // iterates over all the slider panels to calculate
             // the total slider panels width
             sliderPanels.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the element width
-                        var elementWidth = _element.outerWidth(true);
+                // retrieves the element width
+                var elementWidth = _element.outerWidth(true);
 
-                        // increments the slider panels with with
-                        // the element width
-                        sliderPanelsWidth += elementWidth;
-                    });
+                // increments the slider panels with with
+                // the element width
+                sliderPanelsWidth += elementWidth;
+            });
 
             // sets the slider panels width as the slider
             // contents width
@@ -397,35 +395,35 @@
 
         // switches over the method
         switch (method) {
-            case "show" :
+            case "show":
                 // shows the matched object
                 _show(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "hide" :
+            case "hide":
                 // hides the matched object
                 _hide(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "next" :
+            case "next":
                 // moves to the next element
                 _moveNext(matchedObject);
 
                 // breaks the switch
                 break;
 
-            case "previous" :
+            case "previous":
                 // moves to the previous element
                 _movePrevious(matchedObject);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

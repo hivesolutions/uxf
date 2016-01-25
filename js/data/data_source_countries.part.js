@@ -27,28 +27,27 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the list of countries to be used according
-                        // to the currently defined locale
-                        var COUNTRIES = jQuery.uxlocale("COUNTRIES");
-                        COUNTRIES = COUNTRIES.slice();
-                        COUNTRIES.sort();
+                // retrieves the list of countries to be used according
+                // to the currently defined locale
+                var COUNTRIES = jQuery.uxlocale("COUNTRIES");
+                COUNTRIES = COUNTRIES.slice();
+                COUNTRIES.sort();
 
-                        // updates the items data in the current element
-                        // ands runs the initializer of the items data
-                        // source extension
-                        _element.data("items", COUNTRIES);
-                        _element.uxdatasourceitems();
-                    });
+                // updates the items data in the current element
+                // ands runs the initializer of the items data
+                // source extension
+                _element.data("items", COUNTRIES);
+                _element.uxdatasourceitems();
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

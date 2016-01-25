@@ -36,7 +36,7 @@
             // creates the map that will associate the various
             // features with the proper test function/method
             var features = {
-                transition : __transition
+                transition: __transition
             }
 
             // iterates over the complete set of features to be
@@ -57,8 +57,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var __transition = function() {
             var b = document.body || document.documentElement

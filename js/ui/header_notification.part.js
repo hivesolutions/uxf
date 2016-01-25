@@ -40,17 +40,17 @@
             // iterates over all the header notification
             // to check if they are empty (should be hidden)
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the contents from the element
-                        // to check them for text
-                        var contents = _element.html();
+                // retrieves the contents from the element
+                // to check them for text
+                var contents = _element.html();
 
-                        // in case no contents are available
-                        // hides the element
-                        !contents && _element.hide();
-                    });
+                // in case no contents are available
+                // hides the element
+                !contents && _element.hide();
+            });
         };
 
         /**
@@ -79,11 +79,11 @@
             // registers for the click event on the set of closable
             // notifications (registers for such)
             closables.click(function() {
-                        // retrieves the element and then hides it in accordance
-                        // with the current specification
-                        var element = jQuery(this);
-                        element.hide();
-                    });
+                // retrieves the element and then hides it in accordance
+                // with the current specification
+                var element = jQuery(this);
+                element.hide();
+            });
         };
 
         // initializes the plugin

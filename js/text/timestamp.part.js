@@ -13,10 +13,12 @@
 
         // the lists for the month string values
         var FULL_MONTHS = ["January", "February", "March", "April", "May",
-                "June", "July", "August", "September", "October", "November",
-                "December"];
+            "June", "July", "August", "September", "October", "November",
+            "December"
+        ];
         var ABBREVIATED_MONTHS = ["JanS", "FebS", "MarS", "AprS", "MayS",
-                "JunS", "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"];
+            "JunS", "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"
+        ];
 
         // the default values for the timestamp
         var defaults = {};
@@ -49,56 +51,55 @@
             // iterates over all the matched object
             // elements to update the timestamp value
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference and verifies
-                        // if it has already been processed if that's the case
-                        // returns immediately as there's nothing to be done
-                        // but only in case the force flag is not set in options
-                        var _element = jQuery(element);
-                        var isProcessed = _element.hasClass("processed");
-                        if (isProcessed && !options.force) {
-                            return;
-                        }
+                // retrieves the element reference and verifies
+                // if it has already been processed if that's the case
+                // returns immediately as there's nothing to be done
+                // but only in case the force flag is not set in options
+                var _element = jQuery(element);
+                var isProcessed = _element.hasClass("processed");
+                if (isProcessed && !options.force) {
+                    return;
+                }
 
-                        // retrieves the current timestamp string
-                        // value from the element and converts
-                        // it into an integer
-                        var timestampString = _element.text();
-                        var timestamp = parseInt(timestampString);
+                // retrieves the current timestamp string
+                // value from the element and converts
+                // it into an integer
+                var timestampString = _element.text();
+                var timestamp = parseInt(timestampString);
 
-                        // in case the timestamp could not be parsed
-                        // (the timestamp is not a number)
-                        if (isNaN(timestamp)) {
-                            // adds the processed class to show the value
-                            // even for the default value (fallback) and
-                            // returns the control flow to the caller function
-                            _element.addClass("processed");
-                            return;
-                        }
+                // in case the timestamp could not be parsed
+                // (the timestamp is not a number)
+                if (isNaN(timestamp)) {
+                    // adds the processed class to show the value
+                    // even for the default value (fallback) and
+                    // returns the control flow to the caller function
+                    _element.addClass("processed");
+                    return;
+                }
 
-                        // retrieves the format from the element and if the
-                        // the provided timestamp value is defined in utc
-                        var format = _element.attr("data-format");
-                        var utc = _element.attr("data-utc");
+                // retrieves the format from the element and if the
+                // the provided timestamp value is defined in utc
+                var format = _element.attr("data-format");
+                var utc = _element.attr("data-utc");
 
-                        // converts the timestamp into a date object
-                        var date = new Date(timestamp * 1000);
+                // converts the timestamp into a date object
+                var date = new Date(timestamp * 1000);
 
-                        // processes the provided date string according
-                        // to the given format string as requested by user
-                        var dateString = _processDate(date, format, utc);
+                // processes the provided date string according
+                // to the given format string as requested by user
+                var dateString = _processDate(date, format, utc);
 
-                        // sets the "new" formated date value in the element and
-                        // adds the processed class to it
-                        _element.html(dateString);
-                        _element.addClass("processed");
-                    });
+                // sets the "new" formated date value in the element and
+                // adds the processed class to it
+                _element.html(dateString);
+                _element.addClass("processed");
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _processDate = function(date, format, utc) {
             // retrieves the various components of the date
@@ -123,17 +124,17 @@
                 // date values in the format string
                 format = format.replace(YEAR_CHARACTER, year);
                 format = format.replace(MONTH_CHARACTER, _getStringValue(month,
-                                2));
+                    2));
                 format = format.replace(DAY_CHARACTER, _getStringValue(day, 2));
                 format = format.replace(HOUR_CHARACTER, _getStringValue(hours,
-                                2));
+                    2));
                 format = format.replace(MINUTE_CHARACTER, _getStringValue(
-                                minutes, 2));
+                    minutes, 2));
                 format = format.replace(SECOND_CHARACTER, _getStringValue(
-                                seconds, 2));
+                    seconds, 2));
                 format = format.replace(FULL_MONTH_CHARACTER, fullMonth);
                 format = format.replace(ABBREVIATED_MONTH_CHARACTER,
-                        abbreviatedMonth);
+                    abbreviatedMonth);
 
                 // sets the date string as the final format
                 var dateString = format;
@@ -142,11 +143,9 @@
             else {
                 // creates the date string with the default
                 // (complete) format
-                var dateString = year + "-" + _getStringValue(month, 2) + "-"
-                        + _getStringValue(day, 2) + " "
-                        + _getStringValue(hours, 2) + ":"
-                        + _getStringValue(minutes, 2) + ":"
-                        + _getStringValue(seconds, 2)
+                var dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) +
+                    " " + _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" +
+                    _getStringValue(seconds, 2)
             }
 
             // returns the processed date string
@@ -191,7 +190,7 @@
 
         // switches over the method
         switch (method) {
-            case "format" :
+            case "format":
                 // retrieve both the date, the format and the utc from the map
                 // of provided options, to be sent to the process date
                 // function for processing
@@ -202,7 +201,7 @@
                 // processes (formats the date) and returns it
                 return _processDate(date, format, utc);
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

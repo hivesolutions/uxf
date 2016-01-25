@@ -20,8 +20,8 @@
 
         // sets the default options value
         var options = options ? options : {
-            numberOptions : null,
-            filterOptions : true
+            numberOptions: null,
+            filterOptions: true
         };
 
         // constructs the options
@@ -61,33 +61,33 @@
             // iterates over each of the matched objects to start
             // its internal structures and element data
             matchedObject.each(function(index, element) {
-                        // retrieves the current element for iteration
-                        var _element = jQuery(element);
+                // retrieves the current element for iteration
+                var _element = jQuery(element);
 
-                        // retrieves the select list element associated
-                        // with the current element in iteration
-                        var selectList = jQuery(".select-list", _element);
+                // retrieves the select list element associated
+                // with the current element in iteration
+                var selectList = jQuery(".select-list", _element);
 
-                        // retrieves the name of the current element and
-                        // in case it's valid set it in the select list
-                        var elementName = _element.attr("name");
-                        elementName && selectList.attr("name", elementName);
+                // retrieves the name of the current element and
+                // in case it's valid set it in the select list
+                var elementName = _element.attr("name");
+                elementName && selectList.attr("name", elementName);
 
-                        // retrieves the order of the current element and
-                        // in case it's valid set it in the select list
-                        var elementOrder = _element.attr("data-order");
-                        elementOrder
-                                && selectList.attr("data-order", elementOrder);
+                // retrieves the order of the current element and
+                // in case it's valid set it in the select list
+                var elementOrder = _element.attr("data-order");
+                elementOrder
+                    && selectList.attr("data-order", elementOrder);
 
-                        // updates the element data with parameters to
-                        // be used in the component actions
-                        _element.data("number_options", numberOptions);
-                        _element.data("filter_options", filterOptions);
+                // updates the element data with parameters to
+                // be used in the component actions
+                _element.data("number_options", numberOptions);
+                _element.data("filter_options", filterOptions);
 
-                        // runs the update operation using the current
-                        // source list with the set of options
-                        _update(_element, options);
-                    });
+                // runs the update operation using the current
+                // source list with the set of options
+                _update(_element, options);
+            });
         };
 
         /**
@@ -101,150 +101,142 @@
             // registers the source list to the items changed event
             // to propagate it down to the assicated select list
             sourceList.bind("items_changed", function(event) {
-                        // retrieves the current element (source list) and uses
-                        // it to retrieve the select list to propagate down the
-                        // event (lower propagation)
-                        var element = jQuery(this);
-                        var selectList = jQuery(".select-list", element);
+                // retrieves the current element (source list) and uses
+                // it to retrieve the select list to propagate down the
+                // event (lower propagation)
+                var element = jQuery(this);
+                var selectList = jQuery(".select-list", element);
 
-                        // runs the update operation on the current element so
-                        // that the new items are rendered for the data source
-                        // and then triggers the items changed event in the lower
-                        // select list to have them properly handled
-                        _update(element, options, true);
-                        selectList.triggerHandler("items_changed");
+                // runs the update operation on the current element so
+                // that the new items are rendered for the data source
+                // and then triggers the items changed event in the lower
+                // select list to have them properly handled
+                _update(element, options, true);
+                selectList.triggerHandler("items_changed");
 
-                        // stops the event propagation to avoid
-                        // possible loops in the handling
-                        event.stopPropagation();
-                    });
+                // stops the event propagation to avoid
+                // possible loops in the handling
+                event.stopPropagation();
+            });
 
             // registers for the key down event on the text field
             textField.keydown(function(event) {
-                        // retrieves th current element
-                        var element = jQuery(this);
-                        var sourceList = element.parent(".source-list");
-                        var selectList = jQuery(".select-list", sourceList);
+                // retrieves th current element
+                var element = jQuery(this);
+                var sourceList = element.parent(".source-list");
+                var selectList = jQuery(".select-list", sourceList);
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // switches over the event key code
-                        switch (eventKeyCode) {
-                            // in case it's the enter key
-                            case 13 :
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                // switches over the event key code
+                switch (eventKeyCode) {
+                    // in case it's the enter key
+                    case 13:
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case it's the page up key
-                            case 33 :
-                                // runs the all up action in the source list
-                                _allUp(sourceList, options);
+                        // in case it's the page up key
+                    case 33:
+                        // runs the all up action in the source list
+                        _allUp(sourceList, options);
 
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case it's the page down key
-                            case 34 :
-                                // runs the all down action in the source list
-                                _allDown(sourceList, options);
+                        // in case it's the page down key
+                    case 34:
+                        // runs the all down action in the source list
+                        _allDown(sourceList, options);
 
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case it's the up key
-                            case 38 :
-                                // runs the up action in the source list
-                                _up(sourceList, options);
+                        // in case it's the up key
+                    case 38:
+                        // runs the up action in the source list
+                        _up(sourceList, options);
 
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case it's the down key
-                            case 40 :
-                                // runs teh down action in the source list
-                                _down(sourceList, options);
+                        // in case it's the down key
+                    case 40:
+                        // runs teh down action in the source list
+                        _down(sourceList, options);
 
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
-                        }
-                    });
+                        // breaks the switch
+                        break;
+                }
+            });
 
             // registers for the key up even on the text field
             textField.keyup(function(event) {
-                        // retrieves th current element
-                        var element = jQuery(this);
-                        var sourceList = element.parent(".source-list");
-                        var selectList = jQuery(".select-list", sourceList);
+                // retrieves th current element
+                var element = jQuery(this);
+                var sourceList = element.parent(".source-list");
+                var selectList = jQuery(".select-list", sourceList);
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // switches over the event key code
-                        switch (eventKeyCode) {
-                            // in case it's the enter key
-                            case 13 :
-                                // retrieves the set of selected element
-                                var selectedItems = jQuery("li.selected",
-                                        sourceList);
+                // switches over the event key code
+                switch (eventKeyCode) {
+                    // in case it's the enter key
+                    case 13:
+                        // retrieves the set of selected element
+                        var selectedItems = jQuery("li.selected",
+                            sourceList);
 
-                                // triggers the select event in the select list
-                                // only in case there are items selected
-                                selectedItems.length
-                                        && selectList.trigger("selected",
-                                                [selectedItems]);
+                        // triggers the select event in the select list
+                        // only in case there are items selected
+                        selectedItems.length && selectList.trigger("selected", [selectedItems]);
 
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            default :
-                                // runs the update operation using the current
-                                // source list with the set of options
-                                _update(sourceList, options);
+                    default:
+                        // runs the update operation using the current
+                        // source list with the set of options
+                        _update(sourceList, options);
 
-                                // breaks the switch
-                                break;
-                        }
-                    });
+                        // breaks the switch
+                        break;
+                }
+            });
         };
 
         var _update = function(matchedObject, options, force) {
@@ -258,12 +250,9 @@
             var value = sourceList.data("value");
 
             // retrieves both the display, value and link attributes
-            var displayAttribute = matchedObject.attr("data-display_attribute")
-                    || "name";
-            var valueAttribute = matchedObject.attr("data-value_attribute")
-                    || "value";
-            var linkAttribute = matchedObject.attr("data-link_attribute")
-                    || "link";
+            var displayAttribute = matchedObject.attr("data-display_attribute") || "name";
+            var valueAttribute = matchedObject.attr("data-value_attribute") || "value";
+            var linkAttribute = matchedObject.attr("data-link_attribute") || "link";
 
             // retrieves the filter attributes
             var filterAttributes = matchedObject.data("filter_attributes");
@@ -288,95 +277,92 @@
 
             // nullifies the number of options in case it's necessary
             numberOptions = filterOptions ? numberOptions : null;
-            numberOptions = _numberOptions
-                    ? parseInt(_numberOptions)
-                    : numberOptions;
+            numberOptions = _numberOptions ? parseInt(_numberOptions) : numberOptions;
 
             // runs the query in the data source to retrieve the new
             // items and then contruct the list item from the
             // result provided by the data source
             dataSource.uxdataquery({
-                        filterString : textFieldValue,
-                        filterAttributes : filterAttributes,
-                        startRecord : 0,
-                        numberRecords : numberOptions
-                    }, function(validItems, moreItems) {
-                        // in case the valid items value
-                        // is not valid (error occurred)
-                        if (!validItems) {
-                            // returns immediately
-                            return;
-                        }
+                filterString: textFieldValue,
+                filterAttributes: filterAttributes,
+                startRecord: 0,
+                numberRecords: numberOptions
+            }, function(validItems, moreItems) {
+                // in case the valid items value
+                // is not valid (error occurred)
+                if (!validItems) {
+                    // returns immediately
+                    return;
+                }
 
-                        // empties (clears) the select list
-                        selectList.empty()
+                // empties (clears) the select list
+                selectList.empty()
 
-                        // iterates over all the valid and filtered items
-                        // to adds them to the select list
-                        for (var index = 0; index < validItems.length; index++) {
-                            // retrieves the current item (from the valid items)
-                            var currentItem = validItems[index];
+                // iterates over all the valid and filtered items
+                // to adds them to the select list
+                for (var index = 0; index < validItems.length; index++) {
+                    // retrieves the current item (from the valid items)
+                    var currentItem = validItems[index];
 
-                            // retrieves both the display and the value
-                            // attributes for the current item
-                            var currentDisplayAttribute = displayAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[displayAttribute])
-                                    ? currentItem[displayAttribute]
-                                    : currentItem;
-                            var currentValueAttribute = valueAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[valueAttribute])
-                                    ? currentItem[valueAttribute]
-                                    : currentItem;
-                            var currentLinkAttribute = linkAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[linkAttribute])
-                                    ? currentItem[linkAttribute]
-                                    : null;
+                    // retrieves both the display and the value
+                    // attributes for the current item
+                    var currentDisplayAttribute = displayAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[displayAttribute]) ? currentItem[displayAttribute] :
+                        currentItem;
+                    var currentValueAttribute = valueAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[valueAttribute]) ? currentItem[valueAttribute] :
+                        currentItem;
+                    var currentLinkAttribute = linkAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[linkAttribute]) ? currentItem[linkAttribute] :
+                        null;
 
-                            // triggers the event that will handle the validation of
-                            // the item creation and in case the return value of it
-                            // is invalid the current item is not created
-                            var result = sourceList.triggerHandler(
-                                    "validate_item", [currentItem,
-                                            currentValueAttribute]);
-                            if (result == false) {
-                                continue;
-                            }
+                    // triggers the event that will handle the validation of
+                    // the item creation and in case the return value of it
+                    // is invalid the current item is not created
+                    var result = sourceList.triggerHandler(
+                        "validate_item", [currentItem,
+                            currentValueAttribute
+                        ]);
+                    if (result == false) {
+                        continue;
+                    }
 
-                            // creates the base template item from
-                            // the current item
-                            var templateItem = jQuery("<li data-display=\""
-                                    + currentDisplayAttribute
-                                    + "\" data-value=\""
-                                    + currentValueAttribute + "\">"
-                                    + currentDisplayAttribute + "</li>");
+                    // creates the base template item from
+                    // the current item
+                    var templateItem = jQuery("<li data-display=\"" + currentDisplayAttribute +
+                        "\" data-value=\"" + currentValueAttribute + "\">" +
+                        currentDisplayAttribute + "</li>");
 
-                            // sets the current item in the template item data
-                            // so that it can be used for latter template rendering
-                            templateItem.data("item", currentItem);
+                    // sets the current item in the template item data
+                    // so that it can be used for latter template rendering
+                    templateItem.data("item", currentItem);
 
-                            // sets the data link attribute in the
-                            // template item in case it's valid
-                            currentLinkAttribute
-                                    && templateItem.attr("data-link",
-                                            currentLinkAttribute);
+                    // sets the data link attribute in the
+                    // template item in case it's valid
+                    currentLinkAttribute
+                        && templateItem.attr("data-link",
+                            currentLinkAttribute);
 
-                            // adds the template item item to the
-                            // select list
-                            selectList.append(templateItem);
-                        }
+                    // adds the template item item to the
+                    // select list
+                    selectList.append(templateItem);
+                }
 
-                        // runs the select list initializer again
-                        // to update the event handlers in the items
-                        selectList.uxselectlist();
+                // runs the select list initializer again
+                // to update the event handlers in the items
+                selectList.uxselectlist();
 
-                        // updates the source list value with the current
-                        // text field value
-                        sourceList.data("value", textFieldValue);
+                // updates the source list value with the current
+                // text field value
+                sourceList.data("value", textFieldValue);
 
-                        // triggers the items changed event on the select list
-                        // to be used for the update of the layour
-                        selectList.triggerHandler("items_changed");
-                    });
+                // triggers the items changed event on the select list
+                // to be used for the update of the layour
+                selectList.triggerHandler("items_changed");
+            });
         };
 
         var _up = function(matchedObject, options) {
@@ -416,8 +402,7 @@
             // retrieves the current index value defaulting to minus one
             // in case no item is currently selected
             var index = selectedItems.length ? selectedItems.index() : -1;
-            var _index = index >= items.length - 1 ? items.length - 1 : index
-                    + 1;
+            var _index = index >= items.length - 1 ? items.length - 1 : index + 1;
 
             // updates the index reference in the source list
             // and runs the update list process
@@ -481,24 +466,24 @@
             // retrieves the target item using the "just"
             // provided index value
             var targetItem = jQuery("li:nth-child(" + (index + 1) + ")",
-                    sourceList);
+                sourceList);
             targetItem.addClass("selected");
 
             // checks if the element is visible, this should be the
             // main reason for the scrolling of the select list
             var isVisible = targetItem && targetItem.length ? jQuery.uxvisible(
-                    targetItem, 0, 0, selectList) : true;
+                targetItem, 0, 0, selectList) : true;
 
             // scrolls to the select list in case the
             // target item is not visible
             !isVisible && targetItem.uxscroll({
-                        parent : selectList
-                    });
+                parent: selectList
+            });
         };
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

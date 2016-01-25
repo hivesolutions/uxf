@@ -43,38 +43,37 @@
             // iterates over each of the matched
             // objects to focus on them
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // removes the trigger focus class from the element
-                        // in case this is required it will be processed latter
-                        // as part of the normal focus processing
-                        _element.removeClass("focus");
+                // removes the trigger focus class from the element
+                // in case this is required it will be processed latter
+                // as part of the normal focus processing
+                _element.removeClass("focus");
 
-                        // focus on the element, this should trigger
-                        // the proper action in the underlying element
-                        _element.focus();
+                // focus on the element, this should trigger
+                // the proper action in the underlying element
+                _element.focus();
 
-                        // triges the flush operation in the current element
-                        // so that all of its internal structures are updated
-                        // to avoid any sync problem in the cursor
-                        _element.triggerHandler("flush");
+                // triges the flush operation in the current element
+                // so that all of its internal structures are updated
+                // to avoid any sync problem in the cursor
+                _element.triggerHandler("flush");
 
-                        // retrieves the (data) value from the element (from
-                        // data value) and then retrieves the length from it
-                        // and then uses it to set the cursor position
-                        // on the element (moves the cursor)
-                        var dataValue = _element.attr("data-value");
-                        var dataValueLength = dataValue ? dataValue.length : 0;
-                        _element.uxcursor(dataValueLength);
-                    });
+                // retrieves the (data) value from the element (from
+                // data value) and then retrieves the length from it
+                // and then uses it to set the cursor position
+                // on the element (moves the cursor)
+                var dataValue = _element.attr("data-value");
+                var dataValueLength = dataValue ? dataValue.length : 0;
+                _element.uxcursor(dataValueLength);
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

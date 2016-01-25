@@ -33,8 +33,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -43,12 +42,12 @@
             // iterates over all the object to retrieve the
             // result associated
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the results for the element and query
-                        _getResults(_element, query, callback);
-                    });
+                // retrieves the results for the element and query
+                _getResults(_element, query, callback);
+            });
         };
 
         var _getResults = function(element, query, callback) {
@@ -146,21 +145,19 @@
             // timeout value is used, note that if the data source is
             // not dirty no timeout is used (instant query)
             var timeout = matchedObject.attr("data-timeout");
-            timeout = !isDirty ? 0 : timeout
-                    ? parseInt(timeout)
-                    : DEFAULT_TIMEOUT;
+            timeout = !isDirty ? 0 : timeout ? parseInt(timeout) : DEFAULT_TIMEOUT;
 
             // creates the map containing the definition of the
             // query to be sent to the data source, then creates
             // the corresponding hash value to be used as the
             // (unique) identifier of the query
             var query = {
-                filter_string : filterString,
-                insensitive : insensitive,
-                sort : sortString,
-                filters : _filters,
-                start_record : startRecord,
-                number_records : numberRecords
+                filter_string: filterString,
+                insensitive: insensitive,
+                sort: sortString,
+                filters: _filters,
+                start_record: startRecord,
+                number_records: numberRecords
             }
             var queryHash = _queryHash(query);
 
@@ -181,7 +178,7 @@
             var cacheItem = cache[queryHash];
             if (cacheItem) {
                 callback(cacheItem.validItems, cacheItem.moreItems,
-                        cacheItem.extraItems);
+                    cacheItem.extraItems);
                 return;
             }
 
@@ -211,94 +208,93 @@
                 // executes the remote ajax call, with the provided
                 // query and for the defined url
                 jQuery.ajax({
-                            url : url,
-                            dataType : "text",
-                            data : query,
-                            error : function(request, status, error) {
-                                // retrieves the current identifier from the
-                                // matched object and checks it against the
-                                // clojure based identifier in case it's not
-                                // the same (the current response is not the
-                                // latest no need to parse it)
-                                var current = matchedObject.data("current");
-                                if (current != identifier) {
-                                    // returns immediately not going to parse
-                                    // the response (not required)
-                                    return;
-                                }
+                    url: url,
+                    dataType: "text",
+                    data: query,
+                    error: function(request, status, error) {
+                        // retrieves the current identifier from the
+                        // matched object and checks it against the
+                        // clojure based identifier in case it's not
+                        // the same (the current response is not the
+                        // latest no need to parse it)
+                        var current = matchedObject.data("current");
+                        if (current != identifier) {
+                            // returns immediately not going to parse
+                            // the response (not required)
+                            return;
+                        }
 
-                                // retrieves the body
-                                var _body = jQuery("body");
+                        // retrieves the body
+                        var _body = jQuery("body");
 
-                                // shows an info window about the problem retrieving
-                                // the data from the remote data source
-                                _body.uxinfo(
-                                        "There was an error retrieving json data",
-                                        "Warning", "warning");
+                        // shows an info window about the problem retrieving
+                        // the data from the remote data source
+                        _body.uxinfo(
+                            "There was an error retrieving json data",
+                            "Warning", "warning");
 
-                                // calls the callback with the failure values
-                                callback(null, null);
-                            },
-                            success : function(data) {
-                                // parses the data, retrieving the valid items
-                                var validItems = jQuery.parseJSON(data);
-                                var extraItems = validItems;
+                        // calls the callback with the failure values
+                        callback(null, null);
+                    },
+                    success: function(data) {
+                        // parses the data, retrieving the valid items
+                        var validItems = jQuery.parseJSON(data);
+                        var extraItems = validItems;
 
-                                // in case the received (items) is not a list
-                                // (single retrieval)
-                                if (!(validItems.constructor == Array)) {
-                                    // tries to retrieve the (private) base
-                                    // values that will serve as prototype for
-                                    // the retrieval of the valid items
-                                    var baseValue = validItems._base;
+                        // in case the received (items) is not a list
+                        // (single retrieval)
+                        if (!(validItems.constructor == Array)) {
+                            // tries to retrieve the (private) base
+                            // values that will serve as prototype for
+                            // the retrieval of the valid items
+                            var baseValue = validItems._base;
 
-                                    // constructs a list of valid items
-                                    // from the single valid item
-                                    validItems = baseValue
-                                            ? validItems[baseValue]
-                                            : [validItems];
-                                }
+                            // constructs a list of valid items
+                            // from the single valid item
+                            validItems = baseValue ? validItems[baseValue] : [
+                                validItems
+                            ];
+                        }
 
-                                // retrieves the valid items length to check if there
-                                // are more items available, this is performed by checking
-                                // the number of items retrieved against the requested
-                                var validItemsLength = validItems.length;
-                                var moreItems = validItemsLength >= numberRecords;
+                        // retrieves the valid items length to check if there
+                        // are more items available, this is performed by checking
+                        // the number of items retrieved against the requested
+                        var validItemsLength = validItems.length;
+                        var moreItems = validItemsLength >= numberRecords;
 
-                                // filters the valid valid items using the calculated
-                                // end slice to filter the "extra" items
-                                var endSlice = numberRecords ? numberRecords
-                                        - 1 : 1;
-                                validItems = validItems.slice(0, endSlice);
+                        // filters the valid valid items using the calculated
+                        // end slice to filter the "extra" items
+                        var endSlice = numberRecords ? numberRecords - 1 : 1;
+                        validItems = validItems.slice(0, endSlice);
 
-                                // retrieves the current cache structure and updates
-                                // it with the newly found item, indexing it by the
-                                // (representing) query hash value, note that if the
-                                // cache disable flag is set no value is set in cache
-                                var cache = matchedObject.data("cache") || {};
-                                cache[queryHash] = cacheD ? null : {
-                                    validItems : validItems,
-                                    moreItems : moreItems,
-                                    extraItems : extraItems
-                                };
+                        // retrieves the current cache structure and updates
+                        // it with the newly found item, indexing it by the
+                        // (representing) query hash value, note that if the
+                        // cache disable flag is set no value is set in cache
+                        var cache = matchedObject.data("cache") || {};
+                        cache[queryHash] = cacheD ? null : {
+                            validItems: validItems,
+                            moreItems: moreItems,
+                            extraItems: extraItems
+                        };
 
-                                // retrieves the current identifier from the
-                                // matched object and checks it against the
-                                // clojure based identifier in case it's not
-                                // the same (the current response is not the
-                                // latest no call the callback for it)
-                                var current = matchedObject.data("current");
-                                if (current != identifier) {
-                                    // returns immediately not going to send
-                                    // the response (not required)
-                                    return;
-                                }
+                        // retrieves the current identifier from the
+                        // matched object and checks it against the
+                        // clojure based identifier in case it's not
+                        // the same (the current response is not the
+                        // latest no call the callback for it)
+                        var current = matchedObject.data("current");
+                        if (current != identifier) {
+                            // returns immediately not going to send
+                            // the response (not required)
+                            return;
+                        }
 
-                                // calls the callback with the valid items
-                                // note that extra items are applied
-                                callback(validItems, moreItems, extraItems);
-                            }
-                        });
+                        // calls the callback with the valid items
+                        // note that extra items are applied
+                        callback(validItems, moreItems, extraItems);
+                    }
+                });
             }, timeout);
         };
 
@@ -319,8 +315,7 @@
             // creates the final query string from the various components
             // of the query and creates the digest for it returning it to
             // the caller function
-            var queryString = filterString + sort + _filters
-                    + String(startRecord) + String(numberRecords);
+            var queryString = filterString + sort + _filters + String(startRecord) + String(numberRecords);
             var hash = Md5.digest(queryString);
             return hash;
         };

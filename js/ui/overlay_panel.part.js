@@ -39,18 +39,18 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the vertical offset and
-                        // parses it as a float
-                        var offset = _element.attr("data-offset");
-                        var offsetFloat = parseFloat(offset);
+                // retrieves the vertical offset and
+                // parses it as a float
+                var offset = _element.attr("data-offset");
+                var offsetFloat = parseFloat(offset);
 
-                        // centers the matched object with the
-                        // current vertical offset in percentage
-                        _element.uxcenter(offsetFloat);
-                    });
+                // centers the matched object with the
+                // current vertical offset in percentage
+                _element.uxcenter(offsetFloat);
+            });
         };
 
         /**
@@ -74,101 +74,101 @@
             // registers for the click event on the element
             // to aovid propagation
             matchedObject.click(function(event) {
-                        // stops the event propagation, no need
-                        // to propagate clicks to the upper levels
-                        event.stopPropagation();
-                    });
+                // stops the event propagation, no need
+                // to propagate clicks to the upper levels
+                event.stopPropagation();
+            });
 
             // registers for the show event and if it's
             // triggered the show function is called for the
             // associated element (indirect show)
             matchedObject.bind("show", function() {
-                        // retrieves the current elemenet and runs the hide
-                        // operation in it (to hide it)
-                        var element = jQuery(this);
-                        _show(element, options);
-                    });
+                // retrieves the current elemenet and runs the hide
+                // operation in it (to hide it)
+                var element = jQuery(this);
+                _show(element, options);
+            });
 
             // registers for the hide event and if it's
             // triggered the hide function is called for the
             // associated element (indirect hide)
             matchedObject.bind("hide", function() {
-                        // retrieves the current elemenet and runs the hide
-                        // operation in it (to hide it)
-                        var element = jQuery(this);
-                        _hide(element, options);
-                    });
+                // retrieves the current elemenet and runs the hide
+                // operation in it (to hide it)
+                var element = jQuery(this);
+                _hide(element, options);
+            });
 
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the vertical offset and
-                        // parses it as a float
-                        var offset = _element.attr("data-offset");
-                        var offsetFloat = parseFloat(offset);
+                // retrieves the vertical offset and
+                // parses it as a float
+                var offset = _element.attr("data-offset");
+                var offsetFloat = parseFloat(offset);
 
-                        // retrieves the (ctrl) key and
-                        // parses it as an integer
-                        var key = _element.attr("data-key");
-                        var keyInteger = parseInt(key);
-                        var keyIsNaN = isNaN(keyInteger);
+                // retrieves the (ctrl) key and
+                // parses it as an integer
+                var key = _element.attr("data-key");
+                var keyInteger = parseInt(key);
+                var keyIsNaN = isNaN(keyInteger);
 
-                        // registers for the click event in the element
-                        _element.click(function(event) {
-                                    // stops the event propagation
-                                    // (avoids the faulty closing of the window)
-                                    event.stopPropagation();
-                                });
+                // registers for the click event in the element
+                _element.click(function(event) {
+                    // stops the event propagation
+                    // (avoids the faulty closing of the window)
+                    event.stopPropagation();
+                });
 
-                        // registers for the control key combination
-                        // in the global scope
-                        !keyIsNaN && jQuery.uxctrl(keyInteger, function() {
-                                    // checks if the element is visible
-                                    var elementVisible = _element.is(":visible");
+                // registers for the control key combination
+                // in the global scope
+                !keyIsNaN && jQuery.uxctrl(keyInteger, function() {
+                    // checks if the element is visible
+                    var elementVisible = _element.is(":visible");
 
-                                    // in case the element is visible, must hide hide
-                                    // in order to toggel visibility
-                                    if (elementVisible) {
-                                        _hide(_element, options);
-                                    }
-                                    // otherwise the element must be invisible and then
-                                    // it must be shown in the screen
-                                    else {
-                                        _show(_element, options);
-                                    }
-                                });
+                    // in case the element is visible, must hide hide
+                    // in order to toggel visibility
+                    if (elementVisible) {
+                        _hide(_element, options);
+                    }
+                    // otherwise the element must be invisible and then
+                    // it must be shown in the screen
+                    else {
+                        _show(_element, options);
+                    }
+                });
 
-                        // registers the resize in the window
-                        _window.resize(function(event) {
-                                    // centers the current element with the
-                                    // current vertical offset in percentage
-                                    _element.uxcenter(offsetFloat);
-                                });
+                // registers the resize in the window
+                _window.resize(function(event) {
+                    // centers the current element with the
+                    // current vertical offset in percentage
+                    _element.uxcenter(offsetFloat);
+                });
 
-                        // registers the scroll in the window
-                        _window.scroll(function() {
-                                    // centers the current element with the
-                                    // current vertical offset in percentage
-                                    _element.uxcenter(offsetFloat);
-                                });
+                // registers the scroll in the window
+                _window.scroll(function() {
+                    // centers the current element with the
+                    // current vertical offset in percentage
+                    _element.uxcenter(offsetFloat);
+                });
 
-                        // registers for the click in the overlay
-                        overlay.click(function() {
-                                    // checks if the element is visible
-                                    var elementVisible = _element.is(":visible");
+                // registers for the click in the overlay
+                overlay.click(function() {
+                    // checks if the element is visible
+                    var elementVisible = _element.is(":visible");
 
-                                    // in case the element is not visible
-                                    if (!elementVisible) {
-                                        // returns immediately
-                                        return;
-                                    }
+                    // in case the element is not visible
+                    if (!elementVisible) {
+                        // returns immediately
+                        return;
+                    }
 
-                                    // hides the element
-                                    _hide(_element, options);
-                                });
-                    });
+                    // hides the element
+                    _hide(_element, options);
+                });
+            });
         };
 
         var _show = function(matchedObject, options) {

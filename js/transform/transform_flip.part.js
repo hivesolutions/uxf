@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -36,21 +35,21 @@
 
             // registers for the click event
             !noClick && matchedObject.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // checks if the element contains
-                        // the flip class for removal
-                        if (element.hasClass("flip")) {
-                            // removes the flip class
-                            element.removeClass("flip");
-                        }
-                        // otherwise it should be added
-                        else {
-                            // add the flip class
-                            element.addClass("flip");
-                        }
-                    });
+                // checks if the element contains
+                // the flip class for removal
+                if (element.hasClass("flip")) {
+                    // removes the flip class
+                    element.removeClass("flip");
+                }
+                // otherwise it should be added
+                else {
+                    // add the flip class
+                    element.addClass("flip");
+                }
+            });
         };
 
         // initializes the plugin

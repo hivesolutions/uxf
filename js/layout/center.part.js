@@ -61,17 +61,17 @@
         // target position to be used for the positioning, note that it's
         // not possible to control the horizontal position
         switch (position) {
-            case "center" :
+            case "center":
                 var topPosition = ((referenceHeight - matchedObjectHeight) / 2);
                 var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
 
-            case "top" :
+            case "top":
                 var topPosition = 0;
                 var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
 
-            case "bottom" :
+            case "bottom":
                 var topPosition = referenceHeight - matchedObjectHeight;
                 var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
@@ -107,33 +107,33 @@
             // iterates over all the elements in the matched object
             // to register them for the events that require centering
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // registers the resize in the window
-                        // should keep the window centered
-                        _window.resize(function(event) {
-                                    _element.uxcenter(topOffset, leftOffset,
-                                            useMargin, avoidTop, avoidLeft,
-                                            false, reference, position);
-                                });
+                // registers the resize in the window
+                // should keep the window centered
+                _window.resize(function(event) {
+                    _element.uxcenter(topOffset, leftOffset,
+                        useMargin, avoidTop, avoidLeft,
+                        false, reference, position);
+                });
 
-                        // registers the scroll in the window
-                        // should keep the window centered
-                        _window.scroll(function() {
-                                    _element.uxcenter(topOffset, leftOffset,
-                                            useMargin, avoidTop, avoidLeft,
-                                            false, reference, position);
-                                });
+                // registers the scroll in the window
+                // should keep the window centered
+                _window.scroll(function() {
+                    _element.uxcenter(topOffset, leftOffset,
+                        useMargin, avoidTop, avoidLeft,
+                        false, reference, position);
+                });
 
-                        // registers the changing of contents in
-                        // the itnernal structure of the window
-                        _element.bind("layout", function() {
-                                    _element.uxcenter(topOffset, leftOffset,
-                                            useMargin, avoidTop, avoidLeft,
-                                            false, reference, position);
-                                });
-                    });
+                // registers the changing of contents in
+                // the itnernal structure of the window
+                _element.bind("layout", function() {
+                    _element.uxcenter(topOffset, leftOffset,
+                        useMargin, avoidTop, avoidLeft,
+                        false, reference, position);
+                });
+            });
         }
 
         // triggers the centered event meaning that the window has just

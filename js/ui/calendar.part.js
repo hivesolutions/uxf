@@ -17,8 +17,9 @@
 
         // the list of year month in english language
         var YEAR_MONTHS = ["January", "February", "March", "April", "May",
-                "June", "July", "August", "September", "October", "November",
-                "December"];
+            "June", "July", "August", "September", "October", "November",
+            "December"
+        ];
 
         // the (maximum) number of days in the calendar
         var NUMBER_DAYS = 42;
@@ -71,16 +72,14 @@
             weekDaysString += "</tr>"
 
             // adds the calendar header component to the matched object
-            matchedObject.append("<div class=\"calendar-header\">"
-                    + "<a class=\"calendar-arrow calendar-arrow-left\"></a>"
-                    + "<span class=\"calendar-title\"></span>"
-                    + "<a class=\"calendar-arrow calendar-arrow-right\"></a>"
-                    + "</div>");
+            matchedObject.append("<div class=\"calendar-header\">" +
+                "<a class=\"calendar-arrow calendar-arrow-left\"></a>" +
+                "<span class=\"calendar-title\"></span>" +
+                "<a class=\"calendar-arrow calendar-arrow-right\"></a>" + "</div>");
 
             // adds the calendar content component to the matched object
-            matchedObject.append("<table class=\"calendar-content\">"
-                    + "<thead>" + weekDaysString + "</thead>"
-                    + "<tbody></tbody>" + "</table>");
+            matchedObject.append("<table class=\"calendar-content\">" + "<thead>" + weekDaysString +
+                "</thead>" + "<tbody></tbody>" + "</table>");
 
             // creates a new date object to retrieve
             // the current year, month and day
@@ -91,9 +90,9 @@
 
             // creates the initial current (day) reference object
             var current = {
-                year : year,
-                month : month,
-                day : day
+                year: year,
+                month: month,
+                day: day
             };
 
             // sets the year and the month in the matched
@@ -119,27 +118,27 @@
 
             // registers for the click event the arrow left
             arrowLeft.click(function() {
-                        // retrievs the element
-                        var element = jQuery(this);
+                // retrievs the element
+                var element = jQuery(this);
 
-                        // retrieves the calendar for the element
-                        var calendar = element.parents(".calendar");
+                // retrieves the calendar for the element
+                var calendar = element.parents(".calendar");
 
-                        // decrements the month for the calendar
-                        _decrementMonth(calendar, options);
-                    });
+                // decrements the month for the calendar
+                _decrementMonth(calendar, options);
+            });
 
             // registers for the click event the arrow right
             arrowRight.click(function() {
-                        // retrievs the element
-                        var element = jQuery(this);
+                // retrievs the element
+                var element = jQuery(this);
 
-                        // retrieves the calendar for the element
-                        var calendar = element.parents(".calendar");
+                // retrieves the calendar for the element
+                var calendar = element.parents(".calendar");
 
-                        // increments the month for the calendar
-                        _incrementMonth(calendar, options);
-                    });
+                // increments the month for the calendar
+                _incrementMonth(calendar, options);
+            });
         };
 
         /**
@@ -264,22 +263,22 @@
             for (var index = 0; index < initialDayWeek; index++) {
                 // calculates the (current) previous day from the final day
                 // of the previous month, the initial week day and the index
-                var previousDay = finalDayPreviousNumber
-                        - (initialDayWeek - index) + 1;
+                var previousDay = finalDayPreviousNumber - (initialDayWeek - index) + 1;
 
                 // in case the (current) previous day is the currently select day
-                if (previousYear == currentDayYear
-                        && previousMonth == currentDayMonth
-                        && previousDay == currentDayNumber) {
+                if (previousYear == currentDayYear && previousMonth == currentDayMonth && previousDay ==
+                    currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([previousYear, previousMonth, previousDay,
-                            "faded active"]);
+                        "faded active"
+                    ]);
                 }
                 // otherwise it's just a "normal" day
                 else {
                     // adds the day tuple
                     days.push([previousYear, previousMonth, previousDay,
-                            "faded"]);
+                        "faded"
+                    ]);
                 }
             }
 
@@ -289,8 +288,7 @@
                 var day = index + 1;
 
                 // in case the (current) day is the currently select day
-                if (year == currentDayYear && month == currentDayMonth
-                        && day == currentDayNumber) {
+                if (year == currentDayYear && month == currentDayMonth && day == currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([year, month, day, "active"]);
                 }
@@ -311,8 +309,8 @@
                 var nextDay = index - daysLength + 1;
 
                 // in case the (current) next day is the currently select day
-                if (nextYear == currentDayYear && nextMonth == currentDayMonth
-                        && nextDay == currentDayNumber) {
+                if (nextYear == currentDayYear && nextMonth == currentDayMonth && nextDay ==
+                    currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([nextYear, nextMonth, nextDay, "faded active"]);
                 }
@@ -367,9 +365,8 @@
                 var dayClass = dayTuple[3];
 
                 // adds the cell code to the html code string
-                htmlCode += "<td class=\"" + dayClass + "\" data-year=\""
-                        + _year + "\" data-month=\"" + _month
-                        + "\" data-day=\"" + _day + "\" >" + _day + "</td>";
+                htmlCode += "<td class=\"" + dayClass + "\" data-year=\"" + _year + "\" data-month=\"" +
+                    _month + "\" data-day=\"" + _day + "\" >" + _day + "</td>";
             }
 
             // in case there is a line (still) open
@@ -467,57 +464,57 @@
 
             // registrs for the click event in the cells
             cells.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the calendar for the element
-                        var calendar = element.parents(".calendar");
+                // retrieves the calendar for the element
+                var calendar = element.parents(".calendar");
 
-                        // retrieves all the (valid) cells from the calendar
-                        var cells = jQuery("tbody td", calendar);
+                // retrieves all the (valid) cells from the calendar
+                var cells = jQuery("tbody td", calendar);
 
-                        // retrieves the various day elements from
-                        // the current element and then parses them
-                        // into integer values
-                        var year = element.attr("data-year");
-                        var month = element.attr("data-month");
-                        var day = element.attr("data-day");
-                        var yearInteger = parseInt(year);
-                        var monthInteger = parseInt(month) + 1;
-                        var dayInteger = parseInt(day);
+                // retrieves the various day elements from
+                // the current element and then parses them
+                // into integer values
+                var year = element.attr("data-year");
+                var month = element.attr("data-month");
+                var day = element.attr("data-day");
+                var yearInteger = parseInt(year);
+                var monthInteger = parseInt(month) + 1;
+                var dayInteger = parseInt(day);
 
-                        // creates the new current day reference object
-                        var current = {
-                            year : yearInteger,
-                            month : monthInteger,
-                            day : dayInteger
-                        };
+                // creates the new current day reference object
+                var current = {
+                    year: yearInteger,
+                    month: monthInteger,
+                    day: dayInteger
+                };
 
-                        // updates the current (day) value
-                        // in the calendar
-                        calendar.data("current", current);
+                // updates the current (day) value
+                // in the calendar
+                calendar.data("current", current);
 
-                        // removes the active class from all
-                        // the cells and then adds the active
-                        // class only to the clicked one
-                        cells.removeClass("active");
-                        element.addClass("active");
+                // removes the active class from all
+                // the cells and then adds the active
+                // class only to the clicked one
+                cells.removeClass("active");
+                element.addClass("active");
 
-                        // triggers the current change event
-                        calendar.triggerHandler("current_change", [current]);
-                    });
+                // triggers the current change event
+                calendar.triggerHandler("current_change", [current]);
+            });
         };
 
         // switches over the method
         switch (method) {
-            case "set" :
+            case "set":
                 // sets the new current value in the matched object
                 _set(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "reset" :
+            case "reset":
                 // resets the matched object to the value
                 // in the current state
                 _reset(matchedObject, options);
@@ -525,7 +522,7 @@
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

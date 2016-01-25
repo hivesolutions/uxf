@@ -27,19 +27,18 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // updates the query element
-                        _updateQueryElement(_element, options);
-                    });
+                // updates the query element
+                _updateQueryElement(_element, options);
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _updateQueryElement = function(element, options) {
             // retrieves the various attributes that are

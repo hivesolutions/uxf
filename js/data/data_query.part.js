@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -34,12 +33,12 @@
             // iterates over all the object to retrieve the
             // result associated
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the results for the element and query
-                        _getResults(_element, query, callback);
-                    });
+                // retrieves the results for the element and query
+                _getResults(_element, query, callback);
+            });
         };
 
         var _getResults = function(element, query, callback) {

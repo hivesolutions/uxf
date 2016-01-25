@@ -1,7 +1,7 @@
 (function(jQuery) {
     jQuery.uxruntimeerror = function(message) {
         return {
-            message : message
+            message: message
         }
     };
 })(jQuery);

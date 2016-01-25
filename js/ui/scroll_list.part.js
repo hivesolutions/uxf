@@ -41,8 +41,8 @@
             // retrieves it and adds the previous and next scroll buttons
             matchedObject.wrap("<div class=\"scroll-list-container\"></div>");
             var scrollListContainer = matchedObject.parents(".scroll-list-container");
-            scrollListContainer.prepend("<div class=\"scroll-previous\"></div>"
-                    + "<div class=\"scroll-next\"></div>");
+            scrollListContainer.prepend("<div class=\"scroll-previous\"></div>" +
+                "<div class=\"scroll-next\"></div>");
 
             matchedObject.each(function(index, element) {
                 // retrieves the current element and uses it to retrieve the
@@ -102,8 +102,8 @@
                 // animates the scroll right operation using the
                 // default animation mechanisms
                 scrollListContainer.animate({
-                            scrollLeft : "-=" + scrollWidth
-                        }, 400);
+                    scrollLeft: "-=" + scrollWidth
+                }, 400);
             });
 
             scrollNext.click(function() {
@@ -124,8 +124,8 @@
                 // animates the scroll left operation using the
                 // default animation mechanisms
                 scrollListContainer.animate({
-                            scrollLeft : "+=" + scrollWidth
-                        }, 400);
+                    scrollLeft: "+=" + scrollWidth
+                }, 400);
             });
         };
 
@@ -146,9 +146,8 @@
             // width is retrieved taking into accoun that a proper
             // outer width retrieval may fail under certain conditions
             var first = jQuery(children[0]);
-            var firstWidth = first.outerWidth(true) > first.outerWidth(false)
-                    ? first.outerWidth(true)
-                    : first.outerWidth(false);
+            var firstWidth = first.outerWidth(true) > first.outerWidth(false) ? first.outerWidth(true) :
+                first.outerWidth(false);
             var width = firstWidth * count;
 
             // calculates the complete scroll width to check if the
@@ -173,8 +172,8 @@
             // to ensure the proper and correct values are displayed
             var isVisible = first.is(":visible");
             !isVisible && setTimeout(function() {
-                        _refreshWidth(matchedObject, options)
-                    });
+                _refreshWidth(matchedObject, options)
+            });
         };
 
         // initializes the plugin

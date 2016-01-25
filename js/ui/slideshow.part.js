@@ -57,9 +57,9 @@
 
                 // adds the image and the controls section to the current element
                 // so that the normal placeholders are available
-                _element.prepend("<div class=\"slideshow-image\">" + "<img />"
-                        + "</div>" + "<div class=\"slideshow-controls\">"
-                        + "<ul class=\"slideshow-alternates\"></ul>" + "</div>");
+                _element.prepend("<div class=\"slideshow-image\">" + "<img />" + "</div>" +
+                    "<div class=\"slideshow-controls\">" +
+                    "<ul class=\"slideshow-alternates\"></ul>" + "</div>");
 
                 // retrieves both the alternates and the items section
                 // of the current element to be used for the construction
@@ -74,30 +74,30 @@
                 // iterates over each of the (element) items to construct the
                 // logical structure representation for them
                 items.each(function(index, element) {
-                            // retrieves the current item (element) and uses it to
-                            // retrieve the underlying elements
-                            var item = jQuery(this);
-                            var elements = jQuery("> *", item);
+                    // retrieves the current item (element) and uses it to
+                    // retrieve the underlying elements
+                    var item = jQuery(this);
+                    var elements = jQuery("> *", item);
 
-                            // creates the item structure and insets it to the
-                            // list of item structures
-                            var _item = {};
-                            _items.push(_item);
+                    // creates the item structure and insets it to the
+                    // list of item structures
+                    var _item = {};
+                    _items.push(_item);
 
-                            // iterates over each of the components (elements)
-                            // to populate the item structure
-                            elements.each(function(index, element) {
-                                        // retrieves the current element and the name (key)
-                                        // attribute and the contents as the value
-                                        var element = jQuery(this);
-                                        var name = element.attr("data-name");
-                                        var value = element.html();
+                    // iterates over each of the components (elements)
+                    // to populate the item structure
+                    elements.each(function(index, element) {
+                        // retrieves the current element and the name (key)
+                        // attribute and the contents as the value
+                        var element = jQuery(this);
+                        var name = element.attr("data-name");
+                        var value = element.html();
 
-                                        // update the item with the key associated
-                                        // with the value
-                                        _item[name] = value;
-                                    });
-                        });
+                        // update the item with the key associated
+                        // with the value
+                        _item[name] = value;
+                    });
+                });
 
                 // iteates over the range of the item to inset the
                 // list item representing the alternative for the item
@@ -114,8 +114,8 @@
                 // to the next one and then sets it in the current element
                 // data (for possible future cancelation)
                 var interval = setInterval(function() {
-                            __select(_element, options, null);
-                        }, 5000);
+                    __select(_element, options, null);
+                }, 5000);
                 _element.data("interval", interval);
 
                 // in case the paused flag is set the currently created
@@ -176,58 +176,58 @@
             // registers for the click event on the alternates list
             // items to change the current element
             alternates.click(function() {
-                        // retrieves the current element and the parent
-                        // slideshow
-                        var element = jQuery(this);
-                        var slideshow = element.parents(".slideshow");
+                // retrieves the current element and the parent
+                // slideshow
+                var element = jQuery(this);
+                var slideshow = element.parents(".slideshow");
 
-                        // retrieves the current interval and clears it (cancelation)
-                        // so that no more automated changing takes place
-                        var interval = slideshow.data("interval");
-                        clearInterval(interval);
+                // retrieves the current interval and clears it (cancelation)
+                // so that no more automated changing takes place
+                var interval = slideshow.data("interval");
+                clearInterval(interval);
 
-                        // retrieves the index of the curret element index
-                        // and selects the equivalent item in the slideshow
-                        var index = element.index();
-                        __select(slideshow, options, index);
-                    });
+                // retrieves the index of the curret element index
+                // and selects the equivalent item in the slideshow
+                var index = element.index();
+                __select(slideshow, options, index);
+            });
 
             // registers for the pause event on the matched object, that
             // should pause the current seqeunce of images
             matchedObject.bind("pause", function() {
-                        // retrives the current element (slideshow) and uses it to
-                        // gather the registered interval to cancel it (no more iterations)
-                        var element = jQuery(this);
-                        var interval = slideshow.data("interval");
-                        clearInterval(interval);
-                    });
+                // retrives the current element (slideshow) and uses it to
+                // gather the registered interval to cancel it (no more iterations)
+                var element = jQuery(this);
+                var interval = slideshow.data("interval");
+                clearInterval(interval);
+            });
 
             // registers for the next (item) event that changes the currently
             // displayed item to the next one (using the animation)
             matchedObject.bind("next", function() {
-                        // retrieves the reference to the current element an then
-                        // triggers the operations for the next item to be displayed
-                        var element = jQuery(this);
-                        __next(element, options);
-                    });
+                // retrieves the reference to the current element an then
+                // triggers the operations for the next item to be displayed
+                var element = jQuery(this);
+                __next(element, options);
+            });
 
             // registers for the event that takes the one item back
             // so that the slideshow is changed to the previous element
             matchedObject.bind("previous", function() {
-                        // gathers the reference to the top level element (slideshow)
-                        // and then runs the previous operation in it to go back one item
-                        var element = jQuery(this);
-                        __previous(element, options);
-                    });
+                // gathers the reference to the top level element (slideshow)
+                // and then runs the previous operation in it to go back one item
+                var element = jQuery(this);
+                __previous(element, options);
+            });
 
             // registers for the event that selects the target of
             // the slideshow "directly" from the index value of it
             matchedObject.bind("select", function(event, index) {
-                        // retrieves the reference to the (slideshow) element and then runs
-                        // the select operation on top of for proper index based selection
-                        var element = jQuery(this);
-                        __select(element, options, index);
-                    });
+                // retrieves the reference to the (slideshow) element and then runs
+                // the select operation on top of for proper index based selection
+                var element = jQuery(this);
+                __select(element, options, index);
+            });
         };
 
         var __next = function(matchedObject, options) {
@@ -279,9 +279,7 @@
             // in case the index value is not set selects the next
             // value (takes care of overflow) otherwise defaults to
             // the request index (from parameter)
-            index = index == null ? current + 1 < items.length
-                    ? current + 1
-                    : 0 : index;
+            index = index == null ? current + 1 < items.length ? current + 1 : 0 : index;
 
             // in case the current index is the same as the (target)
             // index, no need to select it (returns immediately)
@@ -297,13 +295,13 @@
             // retrieves the list of (selected) alternates and disables
             // the value (going to change the item)
             var alternates = jQuery(".slideshow-alternates > li.active",
-                    matchedObject);
+                matchedObject);
             alternates.removeClass("active");
 
             // retrieves the target index alternate and selects it by adding
             // the active class to it
-            var alternate = jQuery(".slideshow-alternates > li:nth-child("
-                            + (index + 1) + ")", matchedObject);
+            var alternate = jQuery(".slideshow-alternates > li:nth-child(" + (index + 1) + ")",
+                matchedObject);
             alternate.addClass("active");
 
             // retrieves the image element for the slideshow and then retrieves
@@ -338,13 +336,13 @@
             // iterates over each of the details to update the elements
             // with the value from the item structure
             details.each(function(index, element) {
-                        // retrieves the current element and the name of it and
-                        // updates the contents of it with the correspondent item
-                        // structure value
-                        var _element = jQuery(this);
-                        var name = _element.attr("data-name");
-                        _element.html(item[name]);
-                    });
+                // retrieves the current element and the name of it and
+                // updates the contents of it with the correspondent item
+                // structure value
+                var _element = jQuery(this);
+                var name = _element.attr("data-name");
+                _element.html(item[name]);
+            });
 
             // updates the url with the (current) item url and the
             // index value with the target index
@@ -357,10 +355,10 @@
             // the transition of the provided image according to
             // the data defined in the item
             switch (animation) {
-                case "static" :
+                case "static":
                     __static(image, item);
                     break;
-                case "fade" :
+                case "fade":
                     __fade(image, item);
                     break
             }
@@ -377,9 +375,9 @@
             // runs the fading of the image element and then changed the
             // source of the image and fades the image back in
             image.fadeOut(300, function() {
-                        image.attr("src", item.image);
-                        image.fadeIn(750);
-                    });
+                image.attr("src", item.image);
+                image.fadeIn(750);
+            });
         };
 
         // initializes the plugin

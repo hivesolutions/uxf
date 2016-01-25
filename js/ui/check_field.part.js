@@ -39,10 +39,10 @@
         var _appendHtml = function() {
             // iterates over all the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element refence
-                        var _element = jQuery(element);
-                        _update(_element, options);
-                    });
+                // retrieves the element refence
+                var _element = jQuery(element);
+                _update(_element, options);
+            });
         };
 
         /**
@@ -56,57 +56,57 @@
             // registers the check field label for the click
             // event to check the associated check field
             checkFieldLabel.click(function() {
-                        // retrieves the current element and uses it to retrieve
-                        // the previous check field
-                        var element = jQuery(this);
-                        var checkField = element.prev(".check-field");
+                // retrieves the current element and uses it to retrieve
+                // the previous check field
+                var element = jQuery(this);
+                var checkField = element.prev(".check-field");
 
-                        // toggles the "just" retrieved check field, this should
-                        // change its boolean value
-                        _toggle(checkField, options);
-                    });
+                // toggles the "just" retrieved check field, this should
+                // change its boolean value
+                _toggle(checkField, options);
+            });
 
             // iterates over the complete set of matched object to
             // register for their parent form submission
             matchedObject.each(function(index, element) {
-                        // retrieves the current element in iteration
-                        var _element = jQuery(element);
+                // retrieves the current element in iteration
+                var _element = jQuery(element);
 
-                        // retrieves the containing form so that it's
-                        // possible to register for its actions
-                        var parentForm = _element.parents("form");
+                // retrieves the containing form so that it's
+                // possible to register for its actions
+                var parentForm = _element.parents("form");
 
-                        // registers for the submit event on the parent
-                        // form, in order to be able to create the appropriate
-                        // structures for proper submission
-                        parentForm.bind("pre_submit", function() {
-                                    // retrieves the name of the element, this value is
-                                    // going to be used in the input element to be create
-                                    // in case the name does not exists no submission of
-                                    // values is created (returns immediately)
-                                    var elementName = _element.attr("name");
-                                    if (!elementName) {
-                                        return;
-                                    }
+                // registers for the submit event on the parent
+                // form, in order to be able to create the appropriate
+                // structures for proper submission
+                parentForm.bind("pre_submit", function() {
+                    // retrieves the name of the element, this value is
+                    // going to be used in the input element to be create
+                    // in case the name does not exists no submission of
+                    // values is created (returns immediately)
+                    var elementName = _element.attr("name");
+                    if (!elementName) {
+                        return;
+                    }
 
-                                    // removes all the input elements contained inside the
-                                    // current tag field (avoid duplicated submission)
-                                    var inputs = jQuery("input", _element)
-                                    inputs.remove("input");
+                    // removes all the input elements contained inside the
+                    // current tag field (avoid duplicated submission)
+                    var inputs = jQuery("input", _element)
+                    inputs.remove("input");
 
-                                    // in case the current element is checked no need to
-                                    // continue as the
-                                    var isChecked = _element.is(":checked");
-                                    if (isChecked) {
-                                        return;
-                                    }
+                    // in case the current element is checked no need to
+                    // continue as the
+                    var isChecked = _element.is(":checked");
+                    if (isChecked) {
+                        return;
+                    }
 
-                                    // adds the input element representing the unset
-                                    // check field value to the proper element
-                                    _element.append("<input type=\"hidden\" name=\""
-                                            + elementName + "\" value=\"\" />");
-                                });
-                    });
+                    // adds the input element representing the unset
+                    // check field value to the proper element
+                    _element.append("<input type=\"hidden\" name=\"" + elementName +
+                        "\" value=\"\" />");
+                });
+            });
         };
 
         var _toggle = function(matchedObject, options, force) {

@@ -58,10 +58,9 @@
 
             // adds the window mask to the window in case it does not exist
             !windowMaskExists
-                    && matchedObject.append("<div class=\"window-mask\">"
-                            + "<div class=\"window-mask-contents\">Loading "
-                            + "<span class=\"window-mask-dots\"></span>"
-                            + "</div>" + "</div>");
+                && matchedObject.append("<div class=\"window-mask\">" +
+                    "<div class=\"window-mask-contents\">Loading " +
+                    "<span class=\"window-mask-dots\"></span>" + "</div>" + "</div>");
 
             // positions the window
             _positionWindow(matchedObject, options);
@@ -85,88 +84,88 @@
 
             // registers for the click in the close button
             closeButton.click(function(event) {
-                        // retrieves the element and uses it
-                        // to retrieve the parent window
-                        var element = jQuery(this);
-                        var window = element.parents(".window");
+                // retrieves the element and uses it
+                // to retrieve the parent window
+                var element = jQuery(this);
+                var window = element.parents(".window");
 
-                        // hides the window with the success flag
-                        // set to invalid
-                        _hide(window, options, false);
-                    });
+                // hides the window with the success flag
+                // set to invalid
+                _hide(window, options, false);
+            });
 
             // registers for the click in the accept button
             acceptButton.click(function(event) {
-                        // retrieves the element and uses it
-                        // to retrieve the parent window
-                        var element = jQuery(this);
-                        var window = element.parents(".window");
+                // retrieves the element and uses it
+                // to retrieve the parent window
+                var element = jQuery(this);
+                var window = element.parents(".window");
 
-                        // hides the window with the success flag
-                        // set to valid
-                        _hide(window, options, true);
-                    });
+                // hides the window with the success flag
+                // set to valid
+                _hide(window, options, true);
+            });
 
             // registers for the success event triggered when
             // an async based form has completed the submission
             form.bind("success", function() {
-                        // retrieves the reference to the current form element
-                        // and uses it to gather the parent window and hides it
-                        // but just in case there's no form success
-                        var element = jQuery(this);
-                        var formSuccess = jQuery(".form-success", element);
-                        var shouldHide = formSuccess.length == 0;
-                        var window = element.parents(".window");
-                        shouldHide && window.uxwindow("hide");
-                    });
+                // retrieves the reference to the current form element
+                // and uses it to gather the parent window and hides it
+                // but just in case there's no form success
+                var element = jQuery(this);
+                var formSuccess = jQuery(".form-success", element);
+                var shouldHide = formSuccess.length == 0;
+                var window = element.parents(".window");
+                shouldHide && window.uxwindow("hide");
+            });
 
             // registers for the click event in the matched
             // object, to avoid event propagation
             matchedObject.click(function(event) {
-                        // stops the event propagation, no need
-                        // to propagate the click to the upper levels
-                        event.stopPropagation();
-                    });
+                // stops the event propagation, no need
+                // to propagate the click to the upper levels
+                event.stopPropagation();
+            });
 
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // registers the resize in the window
-                        // should keep the window centered
-                        _window.resize(function(event) {
-                                    // positions the window in the screen
-                                    // runs it using a delayed approach just
-                                    // to make sure the size is not modified meanwhile
-                                    _positionWindow(_element, options);
-                                    _positionDelay(_element, options);
-                                });
+                // registers the resize in the window
+                // should keep the window centered
+                _window.resize(function(event) {
+                    // positions the window in the screen
+                    // runs it using a delayed approach just
+                    // to make sure the size is not modified meanwhile
+                    _positionWindow(_element, options);
+                    _positionDelay(_element, options);
+                });
 
-                        // registers the scroll in the window
-                        // should keep the window centered
-                        _window.scroll(function() {
-                                    // positions the window in the screen
-                                    _positionWindow(_element, options);
-                                });
+                // registers the scroll in the window
+                // should keep the window centered
+                _window.scroll(function() {
+                    // positions the window in the screen
+                    _positionWindow(_element, options);
+                });
 
-                        // registers the changing of contents in
-                        // the internal structure of the window
-                        _element.bind("layout", function() {
-                                    // positions the window in the screen
-                                    _positionWindow(_element, options);
-                                });
+                // registers the changing of contents in
+                // the internal structure of the window
+                _element.bind("layout", function() {
+                    // positions the window in the screen
+                    _positionWindow(_element, options);
+                });
 
-                        // registers for the refresh event in the current
-                        // element so that the internal structures are updated
-                        // with the new elements added, for instance event
-                        // handling registration is performed
-                        _element.bind("refresh", function() {
-                                    // registers the new element for the window buttons only
-                                    // for the new added elements
-                                    _registerButtons(_element, options);
-                                });
-                    });
+                // registers for the refresh event in the current
+                // element so that the internal structures are updated
+                // with the new elements added, for instance event
+                // handling registration is performed
+                _element.bind("refresh", function() {
+                    // registers the new element for the window buttons only
+                    // for the new added elements
+                    _registerButtons(_element, options);
+                });
+            });
         };
 
         var _show = function(matchedObject, options) {
@@ -257,8 +256,8 @@
 
             // sets the interval for dot update
             var intervalHandler = setInterval(function() {
-                        __updateDots(matchedObject, options);
-                    }, 500);
+                __updateDots(matchedObject, options);
+            }, 500);
 
             // shows the window mask
             mask.fadeIn(250);
@@ -289,8 +288,8 @@
 
         var _positionDelay = function(matchedObject, options) {
             setTimeout(function() {
-                        _positionWindow(matchedObject, options);
-                    });
+                _positionWindow(matchedObject, options);
+            });
         };
 
         var _limitWindow = function(matchedObject, options) {
@@ -302,8 +301,7 @@
             // in the limits of the window, then it tries to parse
             // the string value and in case it fails fallsback to the
             // default value (as expected by behaviour)
-            var padding = matchedObject.attr("data-padding")
-                    || String(DEFAULT_PADDING);
+            var padding = matchedObject.attr("data-padding") || String(DEFAULT_PADDING);
             padding = parseInt(padding);
             padding = isNaN(padding) ? DEFAULT_PADDING : padding;
 
@@ -311,22 +309,16 @@
             // calculates the delta values for margins in the element
             var windowWidth = _window.width();
             var windowHeight = _window.height();
-            var extraWidth = matchedObject.outerWidth(false)
-                    - matchedObject.width();
-            var extraHeight = matchedObject.outerHeight(false)
-                    - matchedObject.height();
+            var extraWidth = matchedObject.outerWidth(false) - matchedObject.width();
+            var extraHeight = matchedObject.outerHeight(false) - matchedObject.height();
 
             // determines if the current element/object is currently
             // sized using content box and if that's the case reduces
             // the available dimensions with the extra (margin) value
             var boxSizing = matchedObject.css("box-sizing");
             var isContentBox = boxSizing == "content-box";
-            var maxWidth = isContentBox
-                    ? windowWidth - extraWidth
-                    : windowWidth;
-            var maxHeight = isContentBox
-                    ? windowHeight - extraHeight
-                    : windowHeight;
+            var maxWidth = isContentBox ? windowWidth - extraWidth : windowWidth;
+            var maxHeight = isContentBox ? windowHeight - extraHeight : windowHeight;
 
             // decrements both the dimensions by twice the value of
             // the paddin for both sides of the dimension
@@ -357,9 +349,9 @@
             // in the window and runs the proper operations for each
             var forms = jQuery(".form", matchedObject);
             forms.each(function(index, element) {
-                        var _element = jQuery(this);
-                        _element.triggerHandler("reset");
-                    });
+                var _element = jQuery(this);
+                _element.triggerHandler("reset");
+            });
 
             // retrieves the complete set of fields (form fields)
             // for the current window and then retrieves the first
@@ -439,18 +431,17 @@
             // current matched object
             var _document = jQuery(document);
             var handler = _document.keydown(function(event) {
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // switches over the key value
-                        switch (keyValue) {
-                            case 27 :
-                                _hide(matchedObject, options, false);
-                                break;
-                        }
-                    });
+                // switches over the key value
+                switch (keyValue) {
+                    case 27:
+                        _hide(matchedObject, options, false);
+                        break;
+                }
+            });
             matchedObject.data("key_handler", handler);
         };
 
@@ -473,57 +464,57 @@
             // they've already been registered and if they've not
             // registers them for the first time
             closeButton.each(function(index, element) {
-                        // retrieves the current element in iteration and verifies
-                        // if it has already been registered as a window button,
-                        // returning immediately if it has been
-                        var _element = jQuery(this);
-                        var registered = _element.data("window_button");
-                        if (registered) {
-                            return;
-                        }
+                // retrieves the current element in iteration and verifies
+                // if it has already been registered as a window button,
+                // returning immediately if it has been
+                var _element = jQuery(this);
+                var registered = _element.data("window_button");
+                if (registered) {
+                    return;
+                }
 
-                        // registers for the click even in the element
-                        // so that the window is closed on click returning
-                        // false (no success in form submission)
-                        _element.click(function(event) {
-                                    // retrieves the element and uses it
-                                    // to retrieve the parent window
-                                    var element = jQuery(this);
-                                    var window = element.parents(".window");
+                // registers for the click even in the element
+                // so that the window is closed on click returning
+                // false (no success in form submission)
+                _element.click(function(event) {
+                    // retrieves the element and uses it
+                    // to retrieve the parent window
+                    var element = jQuery(this);
+                    var window = element.parents(".window");
 
-                                    // hides the window with the success flag
-                                    // set to invalid
-                                    _hide(window, options, false);
-                                });
-                    });
+                    // hides the window with the success flag
+                    // set to invalid
+                    _hide(window, options, false);
+                });
+            });
 
             // iterates over all the accept buttons to try to find out the
             // ones that have not been registered as window buttons and for
             // those register the proper click event handler
             acceptButton.each(function(index, element) {
-                        // retrieves the current element in iteration and verifies
-                        // if it has already been registered as a window button,
-                        // returning immediately if it has been
-                        var _element = jQuery(this);
-                        var registered = _element.data("window_button");
-                        if (registered) {
-                            return;
-                        }
+                // retrieves the current element in iteration and verifies
+                // if it has already been registered as a window button,
+                // returning immediately if it has been
+                var _element = jQuery(this);
+                var registered = _element.data("window_button");
+                if (registered) {
+                    return;
+                }
 
-                        // registers for the click even in the element
-                        // so that the window is closed on click returning
-                        // true (correct form submission)
-                        _element.click(function(event) {
-                                    // retrieves the element and uses it
-                                    // to retrieve the parent window
-                                    var element = jQuery(this);
-                                    var window = element.parents(".window");
+                // registers for the click even in the element
+                // so that the window is closed on click returning
+                // true (correct form submission)
+                _element.click(function(event) {
+                    // retrieves the element and uses it
+                    // to retrieve the parent window
+                    var element = jQuery(this);
+                    var window = element.parents(".window");
 
-                                    // hides the window with the success flag
-                                    // set to valid
-                                    _hide(window, options, true);
-                                });
-                    });
+                    // hides the window with the success flag
+                    // set to valid
+                    _hide(window, options, true);
+                });
+            });
 
             // sets the window button submission flag in the complete set
             // of window buttons as they all have been registered
@@ -542,42 +533,42 @@
             // hdies the current set of windows that are visible and
             // at the end of the hide operation shows the window
             visibleWindow.fadeOut(150, function() {
-                        matchedObject.uxwindow("show");
-                    });
+                matchedObject.uxwindow("show");
+            });
             return true;
         };
 
         // switches over the method
         switch (method) {
-            case "show" :
+            case "show":
                 // shows the matched object
                 _show(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "hide" :
+            case "hide":
                 // hides the matched object
                 _hide(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "show_mask" :
+            case "show_mask":
                 // shows the mask in the matched object
                 _showMask(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "hide_mask" :
+            case "hide_mask":
                 // hide the mask in the matched object
                 _hideMask(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

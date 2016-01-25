@@ -43,7 +43,7 @@
             // retrieves the currently selected panel (if any) and then
             // calculates the initial panel index based on it
             var selectedPanel = jQuery(".panel-stack > .panel.selected",
-                    matchedObject);
+                matchedObject);
             var index = selectedPanel.length > 0 ? selectedPanel.index() : 0;
 
             // tries to update the initial index value based on the index
@@ -69,26 +69,26 @@
             // registers for the click event on the wizard next button
             // (must push the wizard to the next panel)
             buttonNext.click(function() {
-                        // rettrieves the element and then uses it to retrieve
-                        // the parent wizard
-                        var element = jQuery(this);
-                        var wizard = element.parents(".wizard");
+                // rettrieves the element and then uses it to retrieve
+                // the parent wizard
+                var element = jQuery(this);
+                var wizard = element.parents(".wizard");
 
-                        // "runs" to the next element in the wizard
-                        _next(wizard, options);
-                    });
+                // "runs" to the next element in the wizard
+                _next(wizard, options);
+            });
 
             // registers for the click event on the wizard previous button
             // (must push the wizard to the previous panel)
             buttonPrevious.click(function() {
-                        // rettrieves the element and then uses it to retrieve
-                        // the parent wizard
-                        var element = jQuery(this);
-                        var wizard = element.parents(".wizard");
+                // rettrieves the element and then uses it to retrieve
+                // the parent wizard
+                var element = jQuery(this);
+                var wizard = element.parents(".wizard");
 
-                        // "runs" to the previous element in the wizard
-                        _previous(wizard, options);
-                    });
+                // "runs" to the previous element in the wizard
+                _previous(wizard, options);
+            });
         };
 
         var _next = function(matchedObject, options) {
@@ -100,8 +100,7 @@
 
             // retrieves the last index of the panel either from
             // the attribute in the object or from the default value
-            var lastIndex = parseInt(matchedObject.attr("data-last_index"))
-                    || panels.length - 1;
+            var lastIndex = parseInt(matchedObject.attr("data-last_index")) || panels.length - 1;
 
             // retrieves the current index from the matched
             // object to update the current wizard index
@@ -128,8 +127,7 @@
 
             // retrieves the first index of the panel either from
             // the attribute in the object or from the default value
-            var firstIndex = parseInt(matchedObject.attr("data-first_index"))
-                    || 0;
+            var firstIndex = parseInt(matchedObject.attr("data-first_index")) || 0;
 
             // checks if the current index is the first, in such case
             // it's not possible to go to a previous position
@@ -154,10 +152,8 @@
             // current wizard and then uses then to calculate
             // the first and last indexes
             var panels = jQuery(".panel-stack > .panel", matchedObject);
-            var firstIndex = parseInt(matchedObject.attr("data-first_index"))
-                    || 0;
-            var lastIndex = parseInt(matchedObject.attr("data-last_index"))
-                    || panels.length - 1;
+            var firstIndex = parseInt(matchedObject.attr("data-first_index")) || 0;
+            var lastIndex = parseInt(matchedObject.attr("data-last_index")) || panels.length - 1;
 
             // checks if the current index greater thant the
             // first or the last positions, in such case
@@ -183,10 +179,8 @@
             // current wizard and then uses then to calculate
             // the first and last indexes
             var panels = jQuery(".panel-stack > .panel", matchedObject);
-            var firstIndex = parseInt(matchedObject.attr("data-first_index"))
-                    || 0;
-            var lastIndex = parseInt(matchedObject.attr("data-last_index"))
-                    || panels.length - 1;
+            var firstIndex = parseInt(matchedObject.attr("data-first_index")) || 0;
+            var lastIndex = parseInt(matchedObject.attr("data-last_index")) || panels.length - 1;
 
             // retrieves the references to the various buttons
             // associated with the current wizard to update their
@@ -258,11 +252,11 @@
             // updates the breadcrumbs and the panel stack indexes to
             // to reflect the new wizard index (graphical change)
             breadcrumbs.uxbreadcrumbs("set", {
-                        index : index
-                    });
+                index: index
+            });
             panelStack.uxpanelstack("set", {
-                        index : index
-                    });
+                index: index
+            });
 
             // triggers the index changed in the matched obect
             // so that listeners can change their behaviour accordingly
@@ -271,7 +265,7 @@
 
         // switches over the method
         switch (method) {
-            case "next" :
+            case "next":
                 // increments the wizard index to the next
                 // element in the sequence
                 _next(matchedObject, options);
@@ -279,7 +273,7 @@
                 // breaks the switch
                 break;
 
-            case "previous" :
+            case "previous":
                 // decrements the wizard index to the previous
                 // element in the sequence
                 _previous(matchedObject, options);
@@ -287,7 +281,7 @@
                 // breaks the switch
                 break;
 
-            case "set" :
+            case "set":
                 // sets the wizard index to the selected
                 // element in the sequence
                 _set(matchedObject, options);
@@ -295,7 +289,7 @@
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

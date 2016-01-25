@@ -73,65 +73,65 @@
 
             // registers for the click event on the minus button
             minusButton.click(function() {
-                        // retrieves the current element
-                        var element = jQuery(this);
+                // retrieves the current element
+                var element = jQuery(this);
 
-                        // retrieves the incremental field associated with
-                        // the current element and uses it to decrement the field
-                        // note that the text field is focused while the operation
-                        // is done this ensures total text field "emulation"
-                        var incrementalField = element.parents(".incremental-field");
-                        var textField = jQuery(".text-field", incrementalField);
-                        textField.focus();
-                        __decrement(incrementalField, options);
-                        textField.blur();
-                    });
+                // retrieves the incremental field associated with
+                // the current element and uses it to decrement the field
+                // note that the text field is focused while the operation
+                // is done this ensures total text field "emulation"
+                var incrementalField = element.parents(".incremental-field");
+                var textField = jQuery(".text-field", incrementalField);
+                textField.focus();
+                __decrement(incrementalField, options);
+                textField.blur();
+            });
 
             // registers for the click event on the plus button
             plusButton.click(function() {
-                        // retrieves the current element
-                        var element = jQuery(this);
+                // retrieves the current element
+                var element = jQuery(this);
 
-                        // retrieves the incremental field associated with
-                        // the current element and uses it to increment the field
-                        // note that the text field is focused while the operation
-                        // is done this ensures total text field "emulation"
-                        var incrementalField = element.parents(".incremental-field");
-                        var textField = jQuery(".text-field", incrementalField);
-                        textField.focus();
-                        __increment(incrementalField, options);
-                        textField.blur();
-                    });
+                // retrieves the incremental field associated with
+                // the current element and uses it to increment the field
+                // note that the text field is focused while the operation
+                // is done this ensures total text field "emulation"
+                var incrementalField = element.parents(".incremental-field");
+                var textField = jQuery(".text-field", incrementalField);
+                textField.focus();
+                __increment(incrementalField, options);
+                textField.blur();
+            });
 
             // binds the incremental field do the enabled event
             // so that is possible to propagate the enabling
             incrementalField.bind("enabled", function() {
-                        // retrieves the current element and the associated
-                        // text field and button elements
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
-                        var buttons = jQuery(".button", element);
+                // retrieves the current element and the associated
+                // text field and button elements
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
+                var buttons = jQuery(".button", element);
 
-                        // enables the text field and the buttons associated
-                        // with the element (incremental field)
-                        textField.uxenable();
-                        buttons.uxenable();
-                    });
+                // enables the text field and the buttons associated
+                // with the element (incremental field)
+                textField.uxenable();
+                buttons.uxenable();
+            });
 
             // binds the incremental field do the disabled event
             // so that is possible to propagate the disabling
             incrementalField.bind("disabled", function() {
-                        // retrieves the current element and the associated
-                        // text field and button elements
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
-                        var buttons = jQuery(".button", element);
+                // retrieves the current element and the associated
+                // text field and button elements
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
+                var buttons = jQuery(".button", element);
 
-                        // disables the text field and the buttons associated
-                        // with the element (incremental field)
-                        textField.uxdisable();
-                        buttons.uxdisable();
-                    });
+                // disables the text field and the buttons associated
+                // with the element (incremental field)
+                textField.uxdisable();
+                buttons.uxdisable();
+            });
         };
 
         var __increment = function(incrementalField, options) {
@@ -153,8 +153,8 @@
             // text field string representation value
             floatvalue += 1;
             textField.uxtextfield("value", {
-                        value : floatvalue
-                    });
+                value: floatvalue
+            });
         };
 
         var __decrement = function(incrementalField, options) {
@@ -188,13 +188,13 @@
             // text field string representation value
             floatvalue -= 1;
             textField.uxtextfield("value", {
-                        value : floatvalue
-                    });
+                value: floatvalue
+            });
         };
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

@@ -85,8 +85,8 @@
                     var errorMessage = errorStructure[index];
 
                     // creates the error description html
-                    var errorDescriptionHtml = "<div class=\"error-description\">"
-                            + errorMessage + "</div>";
+                    var errorDescriptionHtml = "<div class=\"error-description\">" + errorMessage +
+                        "</div>";
 
                     // creates the error description element and adds it
                     // after the element
@@ -99,8 +99,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

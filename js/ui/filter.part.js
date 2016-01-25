@@ -14,7 +14,7 @@
     jQuery.fn.uxfilter = function(options) {
         // the default values for the filter
         var defaults = {
-            numberRecords : 9
+            numberRecords: 9
         };
 
         // sets the default options value
@@ -80,9 +80,7 @@
                 // the original value otherwise used the newly processed one
                 var numberRecordsS = _element.attr("data-number_records");
                 var numberRecordsI = parseInt(numberRecordsS);
-                numberRecordsI = isNaN(numberRecordsI)
-                        ? numberRecords
-                        : numberRecordsI;
+                numberRecordsI = isNaN(numberRecordsI) ? numberRecords : numberRecordsI;
 
                 // retrieves the filter contents and
                 // the filter more (if present)
@@ -106,7 +104,8 @@
 
                     // creates the text field element and sets the various
                     // attributes in it
-                    var textField = jQuery("<input type=\"text\" class=\"text-field filter-input\" />");
+                    var textField = jQuery(
+                        "<input type=\"text\" class=\"text-field filter-input\" />");
                     textField.val(value);
                     textField.attr("name", name);
                     textField.attr("data-original_value", originalValue);
@@ -125,25 +124,22 @@
                 // creates the element representing the buttons for the filter
                 // fild (the more oprtions and the view changer) and adds it
                 // to the filter in case the advanced flag is set
-                var filterButtons = jQuery("<div class=\"filter-input-buttons\">"
-                        + "<div class=\"button filter-input-button filter-input-toggle-advanced filter-input-more\"></div>"
-                        + "<div class=\"button filter-input-button filter-input-toggle-views\"></div>"
-                        + "<div class=\"clear\"></div>" + "</div>");
+                var filterButtons = jQuery("<div class=\"filter-input-buttons\">" +
+                    "<div class=\"button filter-input-button filter-input-toggle-advanced filter-input-more\"></div>" +
+                    "<div class=\"button filter-input-button filter-input-toggle-views\"></div>" +
+                    "<div class=\"clear\"></div>" + "</div>");
                 advanced && filterButtons.insertAfter(textField);
 
                 // creates the advanced part of the filter (more options) and adds
                 // it to the filter in case the advanced flag is set
-                var filterAdvanced = jQuery("<div class=\"filter-advanced\">"
-                        + "<div class=\"filter-input-add filter-input-first\"></div>"
-                        + "<div class=\"filter-sort\">"
-                        + "<div class=\"filter-clear\"></div>"
-                        + "</div>"
-                        + "<div class=\"filter-advanced-filters\"></div>"
-                        + "<div class=\"filter-advanced-buttons\">"
-                        + "<div class=\"button small button-grey filter-advanced-select\">Select All</div>"
-                        + "<div class=\"button small button-grey disabled filter-advanced-save\">Save</div>"
-                        + "<div class=\"filter-clear\"></div>" + "</div>"
-                        + "</div>");
+                var filterAdvanced = jQuery("<div class=\"filter-advanced\">" +
+                    "<div class=\"filter-input-add filter-input-first\"></div>" +
+                    "<div class=\"filter-sort\">" + "<div class=\"filter-clear\"></div>" +
+                    "</div>" + "<div class=\"filter-advanced-filters\"></div>" +
+                    "<div class=\"filter-advanced-buttons\">" +
+                    "<div class=\"button small button-grey filter-advanced-select\">Select All</div>" +
+                    "<div class=\"button small button-grey disabled filter-advanced-save\">Save</div>" +
+                    "<div class=\"filter-clear\"></div>" + "</div>" + "</div>");
                 advanced && filterAdvanced.insertAfter(filterButtons);
 
                 // checks for the presence of the proper list class from
@@ -189,10 +185,9 @@
                     // element and then adds it to the filter sort (from clear)
                     var valueHtml = _element.html();
                     var valueName = _element.attr("data-name");
-                    var valueOrder = _element.attr("data-order")
-                            || "descending";
-                    var filterOption = jQuery("<div class=\"filter-sort-option\">"
-                            + valueHtml + "</div>");
+                    var valueOrder = _element.attr("data-order") || "descending";
+                    var filterOption = jQuery("<div class=\"filter-sort-option\">" +
+                        valueHtml + "</div>");
                     filterOption.attr("data-name", valueName);
                     filterOption.attr("data-order", valueOrder);
                     filterOption.insertBefore(filterClear);
@@ -200,7 +195,9 @@
 
                 // adds the devault sort option to the filter, this value exists for
                 // every search and indicates that no sort will occur (default is used)
-                filterSort.prepend("<div class=\"filter-sort-option selected equals\" data-order=\"equals\">default</div>");
+                filterSort.prepend(
+                    "<div class=\"filter-sort-option selected equals\" data-order=\"equals\">default</div>"
+                );
 
                 // checks if the filtering is enabled and valid for the
                 // current context of execution
@@ -220,8 +217,8 @@
                 // then adds it in conjuction to the spinner to the
                 // filter more component, as the new filter more contents
                 var filterMoreText = filterMore.html();
-                filterMore.html("<div class=\"text\">" + filterMoreText
-                        + "</div>" + "<div class=\"spinner\"></div>");
+                filterMore.html("<div class=\"text\">" + filterMoreText + "</div>" +
+                    "<div class=\"spinner\"></div>");
 
                 // retrieves the filter more length
                 var filterMoreLength = filterMore.length;
@@ -233,10 +230,8 @@
                     // filter according to the filter more status
                     var filterContents = jQuery("<div class=\"filter-contents\"></div>");
                     var filterClear = jQuery("<div class=\"filter-clear\"></div>");
-                    filterMoreLength > 0
-                            ? filterContents.insertBefore(filterMore)
-                                    && filterClear.insertBefore(filterMore)
-                            : _element.append(filterContents);
+                    filterMoreLength > 0 ? filterContents.insertBefore(filterMore) && filterClear.insertBefore(
+                        filterMore) : _element.append(filterContents);
                 }
 
                 // updates the element's number of records with
@@ -282,14 +277,14 @@
             // retrieves both the toggle advanced and the
             // toggle views buttons
             var toggleAdvanced = jQuery(".filter-input-toggle-advanced",
-                    matchedObject);
+                matchedObject);
             var toggleViews = jQuery(".filter-input-toggle-views",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the filter add button to be used to add
             // a new line of filtering to the filter advanced panel
             var filterAdd = jQuery(".filter-advanced > .filter-input-add",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the filter select (all) button used
             // to select the complete set of items in the filter
@@ -309,641 +304,628 @@
             // once this event is raises, this is expected to be done using
             // the trigger handler method so that no buble occurs
             matchedObject.bind("update", function() {
-                        // retrieves the current element (filter) and triggers an
-                        // update operation that is considered to be forced
-                        var element = jQuery(this);
-                        _update(element, options, true);
-                    });
+                // retrieves the current element (filter) and triggers an
+                // update operation that is considered to be forced
+                var element = jQuery(this);
+                _update(element, options, true);
+            });
 
             // registers for the new element event that triggers the
             // request for the insertion of a new element of data to
             // the top of the filter contents
             matchedObject.bind("new_element", function(event, element) {
-                        // retrieves the current element as the filter and then retrievs
-                        // the internal reference to the contents and the template
-                        var filter = jQuery(this);
-                        var filterContents = jQuery(".filter-contents", filter);
-                        var template = jQuery(".template", filter);
+                // retrieves the current element as the filter and then retrievs
+                // the internal reference to the contents and the template
+                var filter = jQuery(this);
+                var filterContents = jQuery(".filter-contents", filter);
+                var template = jQuery(".template", filter);
 
-                        // creates the map with the options for the
-                        // rendering of the template to changed the
-                        // default value to be used
-                        var options = {
-                            apply : true,
-                            nullify : true,
-                            localize : true,
-                            defaultValue : "-"
-                        };
+                // creates the map with the options for the
+                // rendering of the template to changed the
+                // default value to be used
+                var options = {
+                    apply: true,
+                    nullify: true,
+                    localize: true,
+                    defaultValue: "-"
+                };
 
-                        // tries to retrieve the object identifier from the
-                        // current item to be used as identifier of the element
-                        var objectId = element["object_id"] || element["oid"];
+                // tries to retrieve the object identifier from the
+                // current item to be used as identifier of the element
+                var objectId = element["object_id"] || element["oid"];
 
-                        // tries to retrieve the unique identifier from the
-                        // current item to be used as the cache key
-                        var uniqueId = element["unique_id"] || element["uid"];
+                // tries to retrieve the unique identifier from the
+                // current item to be used as the cache key
+                var uniqueId = element["unique_id"] || element["uid"];
 
-                        // applies the template to the template (item)
-                        // retrieving the resulting template item and
-                        // setting it the cache map for the unique id
-                        // only in case the unique id is valid (set)
-                        var templateItem = template.uxtemplate(element, options);
-                        if (uniqueId) {
-                            cache[uniqueId] = {
-                                item : templateItem,
-                                data : element
-                            }
-                        }
+                // applies the template to the template (item)
+                // retrieving the resulting template item and
+                // setting it the cache map for the unique id
+                // only in case the unique id is valid (set)
+                var templateItem = template.uxtemplate(element, options);
+                if (uniqueId) {
+                    cache[uniqueId] = {
+                        item: templateItem,
+                        data: element
+                    }
+                }
 
-                        // sets the object identifier information in the template
-                        // item (considered the main identifier for it)
-                        templateItem.data("object_id", objectId);
+                // sets the object identifier information in the template
+                // item (considered the main identifier for it)
+                templateItem.data("object_id", objectId);
 
-                        // removes the filter element class from the template item,
-                        // then initializes its structures (event handling registration)
-                        templateItem.addClass("filter-element");
-                        _initTemplateItem(filter, templateItem);
+                // removes the filter element class from the template item,
+                // then initializes its structures (event handling registration)
+                templateItem.addClass("filter-element");
+                _initTemplateItem(filter, templateItem);
 
-                        // adds the new template item to the initial part
-                        // of the filter contents section
-                        filterContents.prepend(templateItem);
-                    });
+                // adds the new template item to the initial part
+                // of the filter contents section
+                filterContents.prepend(templateItem);
+            });
 
             // registers for the focus event on the text field
             // to change the visibility of the filter buttons
             textField.focus(function() {
-                        // retrieves the current element and uses it to retrieve
-                        // the parent filter element
-                        var element = jQuery(this);
-                        var filter = element.parent(".filter");
+                // retrieves the current element and uses it to retrieve
+                // the parent filter element
+                var element = jQuery(this);
+                var filter = element.parent(".filter");
 
-                        // retrieves the filter buttons part of the filter
-                        // and adds the lower class to them
-                        var filterButtons = jQuery(".filter-input-buttons",
-                                filter);
-                        filterButtons.addClass("lower");
-                    });
+                // retrieves the filter buttons part of the filter
+                // and adds the lower class to them
+                var filterButtons = jQuery(".filter-input-buttons",
+                    filter);
+                filterButtons.addClass("lower");
+            });
 
             // registers for the blur event on the text field
             // to change the visibility of the filter buttons
             textField.blur(function() {
-                        // retrieves the current element and uses it to retrieve
-                        // the parent filter element
-                        var element = jQuery(this);
-                        var filter = element.parent(".filter");
+                // retrieves the current element and uses it to retrieve
+                // the parent filter element
+                var element = jQuery(this);
+                var filter = element.parent(".filter");
 
-                        // retrieves the filter buttons part of the filter
-                        // and removes the lower class from them
-                        var filterButtons = jQuery(".filter-input-buttons",
-                                filter);
-                        filterButtons.removeClass("lower");
-                    });
+                // retrieves the filter buttons part of the filter
+                // and removes the lower class from them
+                var filterButtons = jQuery(".filter-input-buttons",
+                    filter);
+                filterButtons.removeClass("lower");
+            });
 
             // registers for the key down event in the text field
             textField.keydown(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // switches over the event key code
-                        switch (eventKeyCode) {
-                            // in case it's the page up, the
-                            // page down, the up or the
-                            // down keys
-                            case 33 :
-                            case 34 :
-                            case 38 :
-                            case 40 :
-                                // stops the event propagation
-                                // (avoids extra problems in form)
-                                event.stopPropagation();
-                                event.preventDefault();
+                // switches over the event key code
+                switch (eventKeyCode) {
+                    // in case it's the page up, the
+                    // page down, the up or the
+                    // down keys
+                    case 33:
+                    case 34:
+                    case 38:
+                    case 40:
+                        // stops the event propagation
+                        // (avoids extra problems in form)
+                        event.stopPropagation();
+                        event.preventDefault();
 
-                                // breaks the switch
-                                break;
-                        }
-                    });
+                        // breaks the switch
+                        break;
+                }
+            });
 
             // registers for the key up event in the text field
             textField.keyup(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the filter
-                        var filter = element.parents(".filter");
+                // retrieves the filter
+                var filter = element.parents(".filter");
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // switches over the event key code
-                        switch (eventKeyCode) {
-                            // in case it's the page up key
-                            case 33 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // "ups" the "current" range (selection)
-                                    _upRange(filter, options);
-                                }
-                                // otherwise the "normal" up operation
-                                // must be used
-                                else {
-                                    // sets the "current" selection to the up
-                                    _upSelection(filter, options);
-                                }
-
-                                break;
-
-                            // in case it's the page down key
-                            case 34 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // "downs" the "current" range (selection)
-                                    _downRange(filter, options);
-                                }
-                                // otherwise the "normal" up operation
-                                // must be used
-                                else {
-                                    // sets the "current" selection to the bottom
-                                    _downSelection(filter, options);
-                                }
-
-                                break;
-
-                            // in case it's the up key
-                            case 38 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // increments the "current" range (selection)
-                                    _incrementRange(filter, options);
-                                }
-                                // otherwise the "normal" incrementing operation
-                                // must be used
-                                else {
-                                    // increments the "current" selection
-                                    _incrementSelection(filter, options);
-                                }
-
-                                // stops event propagation (avoids cursor
-                                // movement in the text field)
-                                event.stopPropagation();
-
-                                // breaks the switch
-                                break;
-
-                            // in case it's the down key
-                            case 40 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // decrements the "current" range (selection)
-                                    _decrementRange(filter, options);
-                                }
-                                // otherwise the "normal" decrementing operation
-                                // must be used
-                                else {
-                                    // decrements the "current" selection
-                                    _decrementSelection(filter, options);
-                                }
-
-                                // stops event propagation (avoids cursor
-                                // movement in the text field)
-                                event.stopPropagation();
-
-                                // breaks the switch
-                                break;
+                // switches over the event key code
+                switch (eventKeyCode) {
+                    // in case it's the page up key
+                    case 33:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // "ups" the "current" range (selection)
+                            _upRange(filter, options);
                         }
-                    });
+                        // otherwise the "normal" up operation
+                        // must be used
+                        else {
+                            // sets the "current" selection to the up
+                            _upSelection(filter, options);
+                        }
+
+                        break;
+
+                        // in case it's the page down key
+                    case 34:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // "downs" the "current" range (selection)
+                            _downRange(filter, options);
+                        }
+                        // otherwise the "normal" up operation
+                        // must be used
+                        else {
+                            // sets the "current" selection to the bottom
+                            _downSelection(filter, options);
+                        }
+
+                        break;
+
+                        // in case it's the up key
+                    case 38:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // increments the "current" range (selection)
+                            _incrementRange(filter, options);
+                        }
+                        // otherwise the "normal" incrementing operation
+                        // must be used
+                        else {
+                            // increments the "current" selection
+                            _incrementSelection(filter, options);
+                        }
+
+                        // stops event propagation (avoids cursor
+                        // movement in the text field)
+                        event.stopPropagation();
+
+                        // breaks the switch
+                        break;
+
+                        // in case it's the down key
+                    case 40:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // decrements the "current" range (selection)
+                            _decrementRange(filter, options);
+                        }
+                        // otherwise the "normal" decrementing operation
+                        // must be used
+                        else {
+                            // decrements the "current" selection
+                            _decrementSelection(filter, options);
+                        }
+
+                        // stops event propagation (avoids cursor
+                        // movement in the text field)
+                        event.stopPropagation();
+
+                        // breaks the switch
+                        break;
+                }
+            });
 
             // registers for the click event on the filter option
             // buttons to toggle their state
             filterOptions.click(function() {
-                        // retrieves the current element and the associated
-                        // filter element
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // retrieves the currently selected sort option
-                        // to check if it's the sames as the one that
-                        // has just been clicked
-                        var selectedOption = jQuery(
-                                ".filter-sort-option.selected", filter);
-                        var isSame = element[0] == selectedOption[0];
+                // retrieves the currently selected sort option
+                // to check if it's the sames as the one that
+                // has just been clicked
+                var selectedOption = jQuery(
+                    ".filter-sort-option.selected", filter);
+                var isSame = element[0] == selectedOption[0];
 
-                        // retrieves the value for the order attribute of
-                        // the element to be used in case new element is selected
-                        var order = element.attr("data-order");
+                // retrieves the value for the order attribute of
+                // the element to be used in case new element is selected
+                var order = element.attr("data-order");
 
-                        // checks if the currently selected option is of
-                        // type equals in such case returns immediately, nothing
-                        // is meant to be done (no change)
-                        var isEquals = element.hasClass("equals");
-                        if (isEquals) {
-                            return;
-                        }
+                // checks if the currently selected option is of
+                // type equals in such case returns immediately, nothing
+                // is meant to be done (no change)
+                var isEquals = element.hasClass("equals");
+                if (isEquals) {
+                    return;
+                }
 
-                        // in case the clicked option is the same the sorting
-                        // order must be changed
-                        if (isSame) {
-                            // checks if the current sort order is descending and
-                            // changes the sort order accordingly
-                            var isDescending = selectedOption.hasClass("descending");
-                            isDescending
-                                    ? selectedOption.removeClass("descending")
-                                    : selectedOption.removeClass("ascending");
-                            isDescending
-                                    ? selectedOption.addClass("ascending")
-                                    : selectedOption.addClass("descending");
-                        }
-                        // otherwise the the element is not the same and the
-                        // previous element must be unselected and the new one
-                        // selected in descending order
-                        else {
-                            // removes the selected classes from the selected
-                            // option, to unselect the selected option
-                            selectedOption.removeClass("selected");
-                            selectedOption.removeClass("ascending");
-                            selectedOption.removeClass("descending");
-                            selectedOption.removeClass("equals");
+                // in case the clicked option is the same the sorting
+                // order must be changed
+                if (isSame) {
+                    // checks if the current sort order is descending and
+                    // changes the sort order accordingly
+                    var isDescending = selectedOption.hasClass("descending");
+                    isDescending
+                        ? selectedOption.removeClass("descending") : selectedOption.removeClass(
+                            "ascending");
+                    isDescending
+                        ? selectedOption.addClass("ascending") : selectedOption.addClass(
+                            "descending");
+                }
+                // otherwise the the element is not the same and the
+                // previous element must be unselected and the new one
+                // selected in descending order
+                else {
+                    // removes the selected classes from the selected
+                    // option, to unselect the selected option
+                    selectedOption.removeClass("selected");
+                    selectedOption.removeClass("ascending");
+                    selectedOption.removeClass("descending");
+                    selectedOption.removeClass("equals");
 
-                            // selects the clicked element by adding the selected
-                            // class and the descending class (sort order)
-                            element.addClass("selected");
-                            element.addClass(order);
-                        }
+                    // selects the clicked element by adding the selected
+                    // class and the descending class (sort order)
+                    element.addClass("selected");
+                    element.addClass(order);
+                }
 
-                        // updates the filter state to reflect the changed
-                        // in the order for the filter
-                        _update(filter, options, true);
-                    });
+                // updates the filter state to reflect the changed
+                // in the order for the filter
+                _update(filter, options, true);
+            });
 
             // registers for the click event in the toggle advanced
             // button to change the state of the advanced panel
             toggleAdvanced.click(function() {
-                        // retrieves the current element and the associated
-                        // filter element
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // retrieves the advanced panel for the filter component
-                        // in order to toggle its visibility
-                        var filterAdvanced = jQuery(".filter-advanced", filter);
+                // retrieves the advanced panel for the filter component
+                // in order to toggle its visibility
+                var filterAdvanced = jQuery(".filter-advanced", filter);
 
-                        // checks if the advanced button is currently in the
-                        // "more" state to toggle the visility of the advanced
-                        // panel according to the state
-                        var isMore = element.hasClass("filter-input-more");
+                // checks if the advanced button is currently in the
+                // "more" state to toggle the visility of the advanced
+                // panel according to the state
+                var isMore = element.hasClass("filter-input-more");
 
-                        // in case the button is currently in the more state
-                        // the advanced panel must be shown
-                        if (isMore) {
-                            // changes the current filter input states
-                            // and shows the filter advanced panel
-                            element.removeClass("filter-input-more");
-                            element.addClass("filter-input-less");
-                            filterAdvanced.show();
-                        } else {
-                            // changes the current filter input states
-                            // and hides the filter advanced panel
-                            element.removeClass("filter-input-less");
-                            element.addClass("filter-input-more");
-                            filterAdvanced.hide();
-                        }
-                    });
+                // in case the button is currently in the more state
+                // the advanced panel must be shown
+                if (isMore) {
+                    // changes the current filter input states
+                    // and shows the filter advanced panel
+                    element.removeClass("filter-input-more");
+                    element.addClass("filter-input-less");
+                    filterAdvanced.show();
+                } else {
+                    // changes the current filter input states
+                    // and hides the filter advanced panel
+                    element.removeClass("filter-input-less");
+                    element.addClass("filter-input-more");
+                    filterAdvanced.hide();
+                }
+            });
 
             // registers for the click event in the toggle views
             // button to change the current view visibility
             toggleViews.click(function() {
-                        // retrieves the current element and the associated
-                        // filter element
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // checks the type of filter currently displayed
-                        // in the target filter associated with the toggle button
-                        var isList = element.hasClass("filter-input-list");
-                        var isTable = element.hasClass("filter-input-table");
+                // checks the type of filter currently displayed
+                // in the target filter associated with the toggle button
+                var isList = element.hasClass("filter-input-list");
+                var isTable = element.hasClass("filter-input-table");
 
-                        // checks the type of views possible to be displayed
-                        // for the current filter component
-                        var hasListView = jQuery(".list-view", filter).length;
-                        var hasTableView = jQuery(".table-view", filter).length;
-                        var hasGalleryView = jQuery(".gallery-view", filter).length;
+                // checks the type of views possible to be displayed
+                // for the current filter component
+                var hasListView = jQuery(".list-view", filter).length;
+                var hasTableView = jQuery(".table-view", filter).length;
+                var hasGalleryView = jQuery(".gallery-view", filter).length;
 
-                        // in case the current state is list
-                        if (isList) {
-                            // in case there is no table and gallery views
-                            // it's not possible to move "forward", returns
-                            // immediately from the function
-                            if (!hasTableView && !hasGalleryView) {
-                                return;
-                            }
+                // in case the current state is list
+                if (isList) {
+                    // in case there is no table and gallery views
+                    // it's not possible to move "forward", returns
+                    // immediately from the function
+                    if (!hasTableView && !hasGalleryView) {
+                        return;
+                    }
 
-                            // removes the list associated classes from both
-                            // the element and filter
-                            element.removeClass("filter-input-list");
-                            filter.removeClass("list-list");
+                    // removes the list associated classes from both
+                    // the element and filter
+                    element.removeClass("filter-input-list");
+                    filter.removeClass("list-list");
 
-                            // adds the appropriate classes based on the
-                            // existence of the table view
-                            hasTableView
-                                    ? element.addClass("filter-input-table")
-                                    : element.addClass("filter-input-gallery");
-                            hasTableView
-                                    ? filter.addClass("table-list")
-                                    : filter.addClass("gallery-list");
-                        } else if (isTable) {
-                            // in case there is no gallery and list views
-                            // it's not possible to move "forward", returns
-                            // immediately from the function
-                            if (!hasGalleryView && !hasListView) {
-                                return;
-                            }
+                    // adds the appropriate classes based on the
+                    // existence of the table view
+                    hasTableView
+                        ? element.addClass("filter-input-table") : element.addClass(
+                            "filter-input-gallery");
+                    hasTableView
+                        ? filter.addClass("table-list") : filter.addClass("gallery-list");
+                } else if (isTable) {
+                    // in case there is no gallery and list views
+                    // it's not possible to move "forward", returns
+                    // immediately from the function
+                    if (!hasGalleryView && !hasListView) {
+                        return;
+                    }
 
-                            // removes the table associated classes from both
-                            // the element and filter
-                            element.removeClass("filter-input-table");
-                            filter.removeClass("table-list");
+                    // removes the table associated classes from both
+                    // the element and filter
+                    element.removeClass("filter-input-table");
+                    filter.removeClass("table-list");
 
-                            // adds the appropriate classes based on the
-                            // existence of the gallery view
-                            hasGalleryView
-                                    ? element.addClass("filter-input-gallery")
-                                    : element.addClass("filter-input-list");
-                            hasGalleryView
-                                    ? filter.addClass("gallery-list")
-                                    : filter.addClass("list-list");
-                        } else {
-                            // in case there is no list and table views
-                            // it's not possible to move "forward", returns
-                            // immediately from the function
-                            if (!hasListView && !hasTableView) {
-                                return;
-                            }
+                    // adds the appropriate classes based on the
+                    // existence of the gallery view
+                    hasGalleryView
+                        ? element.addClass("filter-input-gallery") : element.addClass(
+                            "filter-input-list");
+                    hasGalleryView
+                        ? filter.addClass("gallery-list") : filter.addClass("list-list");
+                } else {
+                    // in case there is no list and table views
+                    // it's not possible to move "forward", returns
+                    // immediately from the function
+                    if (!hasListView && !hasTableView) {
+                        return;
+                    }
 
-                            // removes the gallery associated classes from both
-                            // the element and filter
-                            element.removeClass("filter-input-gallery");
-                            filter.removeClass("gallery-list");
+                    // removes the gallery associated classes from both
+                    // the element and filter
+                    element.removeClass("filter-input-gallery");
+                    filter.removeClass("gallery-list");
 
-                            // adds the appropriate classes based on the
-                            // existence of the list view
-                            hasListView
-                                    ? element.addClass("filter-input-list")
-                                    : element.addClass("filter-input-table");
-                            hasListView
-                                    ? filter.addClass("list-list")
-                                    : filter.addClass("table-list");
-                        }
-                    });
+                    // adds the appropriate classes based on the
+                    // existence of the list view
+                    hasListView
+                        ? element.addClass("filter-input-list") : element.addClass(
+                            "filter-input-table");
+                    hasListView
+                        ? filter.addClass("list-list") : filter.addClass("table-list");
+                }
+            });
 
             // registers for the click event on the filter add button
             // to add a new filtering line to the filter
             filterAdd.click(function() {
-                        // retrieves the current element and the associated
-                        // filter element
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // adds a "new" filter line to the current filter
-                        // element (component) and updates the filter
-                        _addFilter(filter);
-                        _update(filter, options, true);
-                    });
+                // adds a "new" filter line to the current filter
+                // element (component) and updates the filter
+                _addFilter(filter);
+                _update(filter, options, true);
+            });
 
             // registers for the click event on the filter select
             // to select all the filter element currently shown
             filterSelect.click(function() {
-                        // retrieves the current element and the associated
-                        // filter element
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the current element and the associated
+                // filter element
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // retrieves the currently (visible) filer elements
-                        // to count them for the selection range
-                        var filterElements = jQuery(".filter-element", filter);
-                        var numberElements = filterElements.length;
+                // retrieves the currently (visible) filer elements
+                // to count them for the selection range
+                var filterElements = jQuery(".filter-element", filter);
+                var numberElements = filterElements.length;
 
-                        // creates the list for the elements to be selected
-                        // to be part of the selection
-                        var selection = []
+                // creates the list for the elements to be selected
+                // to be part of the selection
+                var selection = []
 
-                        // iterates over the number of elements to insert the
-                        // index into the selection list
-                        for (var index = 1; index < numberElements + 1; index++) {
-                            selection.push(index);
-                        }
+                // iterates over the number of elements to insert the
+                // index into the selection list
+                for (var index = 1; index < numberElements + 1; index++) {
+                    selection.push(index);
+                }
 
-                        // resets the current selection to be the
-                        // currently selected element
-                        filter.data("selection", selection);
-                        filter.data("pivot", 1);
+                // resets the current selection to be the
+                // currently selected element
+                filter.data("selection", selection);
+                filter.data("pivot", 1);
 
-                        // updates the current selection
-                        _updateSelection(filter, options);
-                    });
+                // updates the current selection
+                _updateSelection(filter, options);
+            });
 
             // registers for the key up in the filter input
             filterInput.keyup(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the (parent) filter
-                        var filter = element.parents(".filter");
+                // retrieves the (parent) filter
+                var filter = element.parents(".filter");
 
-                        // retrieves the filter string and the filter
-                        // input value (to check for string value changes)
-                        var filterString = filter.data("filter_string");
-                        var filterInputValue = filterInput.attr("data-value");
+                // retrieves the filter string and the filter
+                // input value (to check for string value changes)
+                var filterString = filter.data("filter_string");
+                var filterInputValue = filterInput.attr("data-value");
 
-                        // in case no string value changes occured
-                        if (filterString == filterInputValue) {
-                            // returns immediately
-                            return;
-                        }
+                // in case no string value changes occured
+                if (filterString == filterInputValue) {
+                    // returns immediately
+                    return;
+                }
 
-                        // updates the filter state
-                        _update(filter, options);
-                    });
+                // updates the filter state
+                _update(filter, options);
+            });
 
             // registers for the paste event on the filter input
             // so that if there's a "pasted" value the
             filterInput.bind("paste", function() {
-                        // retrieves the reference to the target element
-                        // of the paster operation and uses it to retrieve
-                        // the "parent" filter element to be updated
-                        var element = jQuery(this);
-                        var filter = element.parents(".filter");
+                // retrieves the reference to the target element
+                // of the paster operation and uses it to retrieve
+                // the "parent" filter element to be updated
+                var element = jQuery(this);
+                var filter = element.parents(".filter");
 
-                        // creates a timeout so that the update operation
-                        // only occurs in the next execution cycle after
-                        // the text field value has been proper updated
-                        setTimeout(function() {
-                                    // runs the update operation in the filter so that
-                                    // new values are retrieved if required
-                                    _update(filter, options);
-                                });
-                    });
+                // creates a timeout so that the update operation
+                // only occurs in the next execution cycle after
+                // the text field value has been proper updated
+                setTimeout(function() {
+                    // runs the update operation in the filter so that
+                    // new values are retrieved if required
+                    _update(filter, options);
+                });
+            });
 
             // registers for the click in the filter input
             filterMore.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the (parent) filter
-                        var filter = element.parents(".filter");
+                // retrieves the (parent) filter
+                var filter = element.parents(".filter");
 
-                        // updates the filter state
-                        _update(filter, options);
-                    });
+                // updates the filter state
+                _update(filter, options);
+            });
 
             // registers for the key down in the document
             // element in case the matched object is valid and then
             // sets the on destroy handler to avoid duplicated
             // handlers in a multiple filter environment
-            matchedObject.length > 0
-                    && _document.keydown(onKeyDown = function(event) {
-                        // sets the filter as the matched object
-                        var filter = matchedObject;
+            matchedObject.length > 0 && _document.keydown(onKeyDown = function(event) {
+                // sets the filter as the matched object
+                var filter = matchedObject;
 
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // switches over the key value
-                        switch (keyValue) {
-                            // in case it's the enter key
-                            case 13 :
-                                // retrieves the selected list item
-                                var listItemSelected = jQuery(
-                                        ".filter-contents > .selected", filter);
+                // switches over the key value
+                switch (keyValue) {
+                    // in case it's the enter key
+                    case 13:
+                        // retrieves the selected list item
+                        var listItemSelected = jQuery(
+                            ".filter-contents > .selected", filter);
 
-                                // updates the current selection, runs the
-                                // appropriate (default) actions
-                                _select(listItemSelected, filter, options);
+                        // updates the current selection, runs the
+                        // appropriate (default) actions
+                        _select(listItemSelected, filter, options);
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case it's the j key
-                            case 74 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // decrements the "current" range (selection)
-                                    _decrementRange(filter, options);
-                                }
-                                // otherwise the "normal" decrementing operation
-                                // must be used
-                                else {
-                                    // decrements the "current" selection
-                                    _decrementSelection(filter, options);
-                                }
-
-                                // breaks the switch
-                                break;
-
-                            // in case it's the k key
-                            case 75 :
-                                // in case the shift key is pressed range mode
-                                // must be "activated"
-                                if (event.shiftKey) {
-                                    // increments the "current" range (selection)
-                                    _incrementRange(filter, options);
-                                }
-                                // otherwise the "normal" incrementing operation
-                                // must be used
-                                else {
-                                    // increments the "current" selection
-                                    _incrementSelection(filter, options);
-                                }
-
-                                // breaks the switch
-                                break;
-
-                            // in case it's default
-                            default :
-                                // breaks the switch
-                                break;
+                        // in case it's the j key
+                    case 74:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // decrements the "current" range (selection)
+                            _decrementRange(filter, options);
                         }
-                    });
+                        // otherwise the "normal" decrementing operation
+                        // must be used
+                        else {
+                            // decrements the "current" selection
+                            _decrementSelection(filter, options);
+                        }
+
+                        // breaks the switch
+                        break;
+
+                        // in case it's the k key
+                    case 75:
+                        // in case the shift key is pressed range mode
+                        // must be "activated"
+                        if (event.shiftKey) {
+                            // increments the "current" range (selection)
+                            _incrementRange(filter, options);
+                        }
+                        // otherwise the "normal" incrementing operation
+                        // must be used
+                        else {
+                            // increments the "current" selection
+                            _incrementSelection(filter, options);
+                        }
+
+                        // breaks the switch
+                        break;
+
+                        // in case it's default
+                    default:
+                        // breaks the switch
+                        break;
+                }
+            });
             matchedObject.bind("destroyed", function() {
-                        _document.unbind("keydown", onKeyDown);
-                    });
+                _document.unbind("keydown", onKeyDown);
+            });
 
             // registers for the click event in order
             // to avoid problems with deselection
             matchedObject.length > 0 && matchedObject.click(function(event) {
-                        // sets the avoid next flag to avoid deselection
-                        matchedObject.data("avoid_next", true);
-                    });
+                // sets the avoid next flag to avoid deselection
+                matchedObject.data("avoid_next", true);
+            });
 
             // registers for the click event in the body element
             // to deselect the element only in case no previous
             // registration was made (avoids duplicates)
-            matchedObject.length > 0 && !isRegistered
-                    && _body.click(onClick = function(event) {
-                        // retrieves the value of the avoid next flag and
-                        // then unsets the avoid next flag
-                        var avoidNext = matchedObject.data("avoid_next");
-                        matchedObject.data("avoid_next", false);
+            matchedObject.length > 0 && !isRegistered && _body.click(onClick = function(event) {
+                // retrieves the value of the avoid next flag and
+                // then unsets the avoid next flag
+                var avoidNext = matchedObject.data("avoid_next");
+                matchedObject.data("avoid_next", false);
 
-                        // in case the avoid next flag is set
-                        if (avoidNext) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the avoid next flag is set
+                if (avoidNext) {
+                    // returns immediately
+                    return;
+                }
 
-                        // resets both the selection and the pivot values
-                        matchedObject.data("selection", [0]);
-                        matchedObject.data("pivot", 0);
+                // resets both the selection and the pivot values
+                matchedObject.data("selection", [0]);
+                matchedObject.data("pivot", 0);
 
-                        // updates the current selection
-                        _updateSelection(matchedObject, options);
-                    });
-            matchedObject.length > 0 && !isRegistered
-                    && matchedObject.bind("destroyed", function() {
-                                _body.unbind("click", onClick);
-                            });
+                // updates the current selection
+                _updateSelection(matchedObject, options);
+            });
+            matchedObject.length > 0 && !isRegistered && matchedObject.bind("destroyed", function() {
+                _body.unbind("click", onClick);
+            });
 
             // registers for the scroll event in the window in case
             // the infinite scroll support is enabled
-            matchedObject.length > 0 && infinite
-                    && _window.scroll(onScroll = function() {
-                        // sets the filter as the matched object, this
-                        // considered to be a global singleton handler
-                        var filter = matchedObject;
+            matchedObject.length > 0 && infinite && _window.scroll(onScroll = function() {
+                // sets the filter as the matched object, this
+                // considered to be a global singleton handler
+                var filter = matchedObject;
 
-                        // retrieves the top offset of the page, using
-                        // the margin element (from the margin top)
-                        var margin = jQuery(".margin");
-                        var pageOffset = margin.outerHeight(true);
+                // retrieves the top offset of the page, using
+                // the margin element (from the margin top)
+                var margin = jQuery(".margin");
+                var pageOffset = margin.outerHeight(true);
 
-                        // retrieves the filter more element height as the
-                        // delta value for the visibility testing this way
-                        // the visibility test is done agains the top
-                        var delta = filterMore.outerHeight() * -1;
+                // retrieves the filter more element height as the
+                // delta value for the visibility testing this way
+                // the visibility test is done agains the top
+                var delta = filterMore.outerHeight() * -1;
 
-                        // checks if the element is visible
-                        var isVisible = filterMore.length ? jQuery.uxvisible(
-                                filterMore, pageOffset, delta) : false;
+                // checks if the element is visible
+                var isVisible = filterMore.length ? jQuery.uxvisible(
+                    filterMore, pageOffset, delta) : false;
 
-                        // updates the filter state
-                        isVisible && _update(filter, options);
-                    });
-            matchedObject.length > 0 && infinite
-                    && matchedObject.bind("destroyed", function() {
-                                _window.unbind("scroll", onScroll);
-                            });
+                // updates the filter state
+                isVisible && _update(filter, options);
+            });
+            matchedObject.length > 0 && infinite && matchedObject.bind("destroyed", function() {
+                _window.unbind("scroll", onScroll);
+            });
         };
 
         var _update = function(matchedObject, options, force) {
@@ -1025,8 +1007,7 @@
             // retrieves the selected sort options and then uses it
             // to retrieve the value to be used for the sorting
             var sortSelected = jQuery(".filter-sort-option.selected", filter);
-            var sortValue = sortSelected.attr("data-name")
-                    || sortSelected.html();
+            var sortValue = sortSelected.attr("data-name") || sortSelected.html();
 
             // checks if the sort option is currently in the ascending mode
             // and "calculates" the sort order string based on it, then created
@@ -1043,63 +1024,62 @@
             // various filter tuples and then add them to the base filters
             // list that will be used for the query in the data source
             filters.each(function() {
-                        // retrieves the current element in iteration
-                        var element = jQuery(this);
+                // retrieves the current element in iteration
+                var element = jQuery(this);
 
-                        // retrieves the various components of the filter line
-                        // (drop field, operation field and value field)
-                        var dropField = jQuery(
-                                "> .drop-field:not(.operation-field)", element);
-                        var operationField = jQuery("> .operation-field",
-                                element);
-                        var valueField = jQuery("> .value-field", element);
+                // retrieves the various components of the filter line
+                // (drop field, operation field and value field)
+                var dropField = jQuery(
+                    "> .drop-field:not(.operation-field)", element);
+                var operationField = jQuery("> .operation-field",
+                    element);
+                var valueField = jQuery("> .value-field", element);
 
-                        // retrieves the data source of the operation field to be
-                        // used for the retrieval of the items and operations lists
-                        var operationSource = jQuery("> .data-source",
-                                operationField);
+                // retrieves the data source of the operation field to be
+                // used for the retrieval of the items and operations lists
+                var operationSource = jQuery("> .data-source",
+                    operationField);
 
-                        // checks if the current value field is of type drop field
-                        // and retrieves the value accordingly
-                        var isDropField = valueField.hasClass("drop-field");
-                        if (isDropField) {
-                            // retrieves the hidden field associated with the value
-                            // field and uses its value as the value
-                            var hiddenField = jQuery(".hidden-field",
-                                    valueField);
-                            var value = hiddenField.val();
-                        } else {
-                            // retrieves the value of the value field using the text
-                            // field based approach
-                            var value = valueField.uxtextfield("value");
-                        }
+                // checks if the current value field is of type drop field
+                // and retrieves the value accordingly
+                var isDropField = valueField.hasClass("drop-field");
+                if (isDropField) {
+                    // retrieves the hidden field associated with the value
+                    // field and uses its value as the value
+                    var hiddenField = jQuery(".hidden-field",
+                        valueField);
+                    var value = hiddenField.val();
+                } else {
+                    // retrieves the value of the value field using the text
+                    // field based approach
+                    var value = valueField.uxtextfield("value");
+                }
 
-                        // in case no value is present this filter is ignored
-                        // not possible to filter value
-                        if (!value) {
-                            return;
-                        }
+                // in case no value is present this filter is ignored
+                // not possible to filter value
+                if (!value) {
+                    return;
+                }
 
-                        // retrieves the attribute for the filter line and the currently
-                        // selected operation value
-                        var attribute = element.data("name")
-                                || dropField.uxdropfield("value");
-                        var operation = operationField.uxdropfield("value");
+                // retrieves the attribute for the filter line and the currently
+                // selected operation value
+                var attribute = element.data("name") || dropField.uxdropfield("value");
+                var operation = operationField.uxdropfield("value");
 
-                        // retrieves the lists for the items and for the operations
-                        var items = operationSource.data("items");
-                        var operations = operationSource.data("operations");
+                // retrieves the lists for the items and for the operations
+                var items = operationSource.data("items");
+                var operations = operationSource.data("operations");
 
-                        // retrieves the operation (logical) associated with the current
-                        // (graphical) operation value
-                        var itemIndex = items.indexOf(operation);
-                        var _operation = operations[itemIndex];
+                // retrieves the operation (logical) associated with the current
+                // (graphical) operation value
+                var itemIndex = items.indexOf(operation);
+                var _operation = operations[itemIndex];
 
-                        // creates the filter tuple containing the atrtibutem, the operation
-                        // and the value and then adds the filter tuple to the filters list
-                        var filter = [attribute, _operation, value];
-                        _filters.push(filter);
-                    });
+                // creates the filter tuple containing the atrtibutem, the operation
+                // and the value and then adds the filter tuple to the filters list
+                var filter = [attribute, _operation, value];
+                _filters.push(filter);
+            });
 
             // sets the (query) pending flag in the filter
             filter.data("pending", true);
@@ -1114,217 +1094,211 @@
             // operation that may take some time to be executed the proper
             // callback will be called at the end of the execution
             dataSource.uxdataquery({
-                        filterString : filterInputValue,
-                        sort : sort,
-                        filters : _filters,
-                        startRecord : startRecord,
-                        numberRecords : numberRecords
-                    }, function(validItems, moreItems) {
-                        // removes the loading class from the filter (and the
-                        // filter more bytton), so that the loading information
-                        // is hidden and the proper style "notified"
-                        filter.removeClass("loading");
-                        filterMore.removeClass("loading");
+                filterString: filterInputValue,
+                sort: sort,
+                filters: _filters,
+                startRecord: startRecord,
+                numberRecords: numberRecords
+            }, function(validItems, moreItems) {
+                // removes the loading class from the filter (and the
+                // filter more bytton), so that the loading information
+                // is hidden and the proper style "notified"
+                filter.removeClass("loading");
+                filterMore.removeClass("loading");
 
-                        // in case the valid items value
-                        // is not valid (error occurred)
-                        if (!validItems) {
-                            // unsets the (query) pending flag in the filter, and then
-                            // returns immediately, nothing more to be done
-                            filter.data("pending", false);
-                            return;
+                // in case the valid items value
+                // is not valid (error occurred)
+                if (!validItems) {
+                    // unsets the (query) pending flag in the filter, and then
+                    // returns immediately, nothing more to be done
+                    filter.data("pending", false);
+                    return;
+                }
+
+                // in case the reset flag is set, all of the currently defined
+                // filter element should be removed from structure
+                if (reset) {
+                    // retrieves the current filter elements to remove
+                    // them (refresh of the list)
+                    var filterElements = jQuery(".filter-element",
+                        filter);
+                    filterElements.remove();
+                }
+
+                // retrieves the cache map to be used to determine if the
+                // various elements should be contructed from scratch or
+                // if an already existing element should be used instead
+                var cache = filter.data("cache") || {};
+
+                // retrieves the valid items reference
+                var _validItems = jQuery(validItems);
+
+                // retrieves the valid items length
+                var validItemsLength = validItems.length;
+
+                // creates the list that will hold the complete set of elements
+                // resulting from the apply of the template
+                var templateItems = [];
+
+                // iterates over all the valid items to create
+                // proper elements
+                _validItems.each(function(index, element) {
+                    // creates the map with the options for the
+                    // rendering of the template to changed the
+                    // default value to be used
+                    var options = {
+                        apply: true,
+                        nullify: true,
+                        localize: true,
+                        defaultValue: "-"
+                    };
+
+                    // tries to retrieve the object identifier from the
+                    // current item to be used as identifier of the element
+                    var objectId = element["object_id"] || element["oid"];
+
+                    // tries to retrieve the unique identifier from the
+                    // current item to be used as the cache key
+                    var uniqueId = element["unique_id"] || element["uid"];
+
+                    // retrieves the cache map from the filter and
+                    // tries to find the cache item for the unique identifier
+                    // validates it so that the data contained in it matches
+                    // the one cached in such case sets the template item as
+                    // the cached item (cache match usage)
+                    var cacheItem = cache[uniqueId];
+                    var cachedData = cacheItem ? cacheItem.data : null;
+                    var cacheValid = cachedData ? jQuery.uxequals(cachedData,
+                        element) : false;
+                    if (cacheItem && cacheValid) {
+                        // sets the item contained in the cache item as
+                        // the current cache item (layout item reference)
+                        cacheItem = cacheItem.item;
+
+                        // sets the template item as the currently cached
+                        // item so that no construction occurs then removes
+                        // the selection classes from it (avoiding possible
+                        // layout problems)
+                        var templateItem = cacheItem;
+                        templateItem.removeClass("selected");
+                        templateItem.removeClass("first");
+                        templateItem.removeClass("last");
+
+                        // re-runs the apply operation on the cached item so
+                        // that its configuration is re-loaded as defined in
+                        // the specification (correct behaviour)
+                        templateItem.uxapply();
+                    }
+                    // otherwise must re-create the template item by runing
+                    // the template engine again
+                    else {
+                        // applies the template to the template (item)
+                        // retrieving the resulting template item and
+                        // setting it the cache map for the unique id
+                        // only in case the unique id is valid (set)
+                        var templateItem = template.uxtemplate(
+                            element, options);
+                        if (uniqueId) {
+                            cache[uniqueId] = {
+                                item: templateItem,
+                                data: element
+                            }
                         }
+                    }
 
-                        // in case the reset flag is set, all of the currently defined
-                        // filter element should be removed from structure
-                        if (reset) {
-                            // retrieves the current filter elements to remove
-                            // them (refresh of the list)
-                            var filterElements = jQuery(".filter-element",
-                                    filter);
-                            filterElements.remove();
-                        }
+                    // sets the object identifier information in the template
+                    // item (considered the main identifier for it)
+                    templateItem.data("object_id", objectId);
 
-                        // retrieves the cache map to be used to determine if the
-                        // various elements should be contructed from scratch or
-                        // if an already existing element should be used instead
-                        var cache = filter.data("cache") || {};
+                    // removes the filter element class from the template item,
+                    // then adds it to the filter contents, then initializes its
+                    // structures (event handling registration)
+                    templateItem.addClass("filter-element");
+                    templateItems.push(templateItem[0]);
+                    _initTemplateItem(filter, templateItem);
+                });
 
-                        // retrieves the valid items reference
-                        var _validItems = jQuery(validItems);
+                // adds the complete set of generated template items to the
+                // contents of the current filter
+                filterContents.append(templateItems);
 
-                        // retrieves the valid items length
-                        var validItemsLength = validItems.length;
+                // in case there are no items to be shown
+                if (validItemsLength > 0) {
+                    // hides the filter no results panel and
+                    // removes the no results class from tghe
+                    // currently defined filter element
+                    filterNoResults.hide();
+                    filter.removeClass("no-results");
+                }
+                // otherwise there are no item to be shown
+                else {
+                    // shows the filter no results panel
+                    // and adds the no results class to
+                    // the main filter element (as expected)
+                    filterNoResults.show();
+                    filter.addClass("no-results");
+                }
 
-                        // creates the list that will hold the complete set of elements
-                        // resulting from the apply of the template
-                        var templateItems = [];
+                // in case there are more items available
+                // to be retrieved
+                if (moreItems) {
+                    // shows the filter more item
+                    filterMore.show();
+                }
+                // otherwise the are no more items to be shown
+                else {
+                    // hides the filter more item
+                    filterMore.hide();
+                }
 
-                        // iterates over all the valid items to create
-                        // proper elements
-                        _validItems.each(function(index, element) {
-                                    // creates the map with the options for the
-                                    // rendering of the template to changed the
-                                    // default value to be used
-                                    var options = {
-                                        apply : true,
-                                        nullify : true,
-                                        localize : true,
-                                        defaultValue : "-"
-                                    };
+                // retrieves the current list items
+                var listItems = jQuery(".filter-contents > *",
+                    matchedObject);
 
-                                    // tries to retrieve the object identifier from the
-                                    // current item to be used as identifier of the element
-                                    var objectId = element["object_id"]
-                                            || element["oid"];
+                // unregisters from the right click in the list
+                // items (avoids duplicates) and then registers
+                // the handler for the context menu
+                listItems.unbind("contextmenu rightclick",
+                    _handleContext);
+                listItems.bind("contextmenu rightclick", _handleContext);
 
-                                    // tries to retrieve the unique identifier from the
-                                    // current item to be used as the cache key
-                                    var uniqueId = element["unique_id"]
-                                            || element["uid"];
+                // retrieves the complete set of menus from the
+                // list items and then initializes them with the
+                // the current filter
+                var menus = jQuery(".menu", listItems);
+                menus.each(function(index, element) {
+                    // retrieves the element reference
+                    // and initializes it as a menu
+                    var _element = jQuery(element);
+                    _initMenu(_element, filter, true);
+                });
 
-                                    // retrieves the cache map from the filter and
-                                    // tries to find the cache item for the unique identifier
-                                    // validates it so that the data contained in it matches
-                                    // the one cached in such case sets the template item as
-                                    // the cached item (cache match usage)
-                                    var cacheItem = cache[uniqueId];
-                                    var cachedData = cacheItem
-                                            ? cacheItem.data
-                                            : null;
-                                    var cacheValid = cachedData
-                                            ? jQuery.uxequals(cachedData,
-                                                    element)
-                                            : false;
-                                    if (cacheItem && cacheValid) {
-                                        // sets the item contained in the cache item as
-                                        // the current cache item (layout item reference)
-                                        cacheItem = cacheItem.item;
+                // registers for the show event in the various menus
+                // to update the visual in such case
+                menus.bind("show", function() {
+                    // retrieves the reference to the current element
+                    // (menu) in iteration
+                    var _element = jQuery(this);
 
-                                        // sets the template item as the currently cached
-                                        // item so that no construction occurs then removes
-                                        // the selection classes from it (avoiding possible
-                                        // layout problems)
-                                        var templateItem = cacheItem;
-                                        templateItem.removeClass("selected");
-                                        templateItem.removeClass("first");
-                                        templateItem.removeClass("last");
+                    // retrieves ther complete set of buttons currently present
+                    // in the menu and removes the selected class from them
+                    // (avoiding any possible visual problems)
+                    var buttons = jQuery(
+                        ".button:not(.menu-link)", _element);
+                    buttons.removeClass("selected");
+                });
 
-                                        // re-runs the apply operation on the cached item so
-                                        // that its configuration is re-loaded as defined in
-                                        // the specification (correct behaviour)
-                                        templateItem.uxapply();
-                                    }
-                                    // otherwise must re-create the template item by runing
-                                    // the template engine again
-                                    else {
-                                        // applies the template to the template (item)
-                                        // retrieving the resulting template item and
-                                        // setting it the cache map for the unique id
-                                        // only in case the unique id is valid (set)
-                                        var templateItem = template.uxtemplate(
-                                                element, options);
-                                        if (uniqueId) {
-                                            cache[uniqueId] = {
-                                                item : templateItem,
-                                                data : element
-                                            }
-                                        }
-                                    }
+                // triggers the update complete event, notice that the
+                // reset flat value is passes so that the listener is
+                // able to determine if this is a full replace operation
+                filter.triggerHandler("update_complete", [reset]);
 
-                                    // sets the object identifier information in the template
-                                    // item (considered the main identifier for it)
-                                    templateItem.data("object_id", objectId);
-
-                                    // removes the filter element class from the template item,
-                                    // then adds it to the filter contents, then initializes its
-                                    // structures (event handling registration)
-                                    templateItem.addClass("filter-element");
-                                    templateItems.push(templateItem[0]);
-                                    _initTemplateItem(filter, templateItem);
-                                });
-
-                        // adds the complete set of generated template items to the
-                        // contents of the current filter
-                        filterContents.append(templateItems);
-
-                        // in case there are no items to be shown
-                        if (validItemsLength > 0) {
-                            // hides the filter no results panel and
-                            // removes the no results class from tghe
-                            // currently defined filter element
-                            filterNoResults.hide();
-                            filter.removeClass("no-results");
-                        }
-                        // otherwise there are no item to be shown
-                        else {
-                            // shows the filter no results panel
-                            // and adds the no results class to
-                            // the main filter element (as expected)
-                            filterNoResults.show();
-                            filter.addClass("no-results");
-                        }
-
-                        // in case there are more items available
-                        // to be retrieved
-                        if (moreItems) {
-                            // shows the filter more item
-                            filterMore.show();
-                        }
-                        // otherwise the are no more items to be shown
-                        else {
-                            // hides the filter more item
-                            filterMore.hide();
-                        }
-
-                        // retrieves the current list items
-                        var listItems = jQuery(".filter-contents > *",
-                                matchedObject);
-
-                        // unregisters from the right click in the list
-                        // items (avoids duplicates) and then registers
-                        // the handler for the context menu
-                        listItems.unbind("contextmenu rightclick",
-                                _handleContext);
-                        listItems.bind("contextmenu rightclick", _handleContext);
-
-                        // retrieves the complete set of menus from the
-                        // list items and then initializes them with the
-                        // the current filter
-                        var menus = jQuery(".menu", listItems);
-                        menus.each(function(index, element) {
-                                    // retrieves the element reference
-                                    // and initializes it as a menu
-                                    var _element = jQuery(element);
-                                    _initMenu(_element, filter, true);
-                                });
-
-                        // registers for the show event in the various menus
-                        // to update the visual in such case
-                        menus.bind("show", function() {
-                                    // retrieves the reference to the current element
-                                    // (menu) in iteration
-                                    var _element = jQuery(this);
-
-                                    // retrieves ther complete set of buttons currently present
-                                    // in the menu and removes the selected class from them
-                                    // (avoiding any possible visual problems)
-                                    var buttons = jQuery(
-                                            ".button:not(.menu-link)", _element);
-                                    buttons.removeClass("selected");
-                                });
-
-                        // triggers the update complete event, notice that the
-                        // reset flat value is passes so that the listener is
-                        // able to determine if this is a full replace operation
-                        filter.triggerHandler("update_complete", [reset]);
-
-                        // updates the filter data
-                        filter.data("filter_string", filterInputValue);
-                        filter.data("start_record", startRecord + numberRecords);
-                        filter.data("complete", !moreItems);
-                        filter.data("pending", false);
-                    });
+                // updates the filter data
+                filter.data("filter_string", filterInputValue);
+                filter.data("start_record", startRecord + numberRecords);
+                filter.data("complete", !moreItems);
+                filter.data("pending", false);
+            });
         };
 
         var _handleContext = function(event) {
@@ -1389,12 +1363,8 @@
 
             // retrieves the correct scroll position coordinates
             // according to the current browser implementation
-            var scrollY = window.scrollY
-                    ? window.scrollY
-                    : document.body.scrollTop;
-            var scrollX = window.scrollX
-                    ? window.scrollX
-                    : document.body.scrollLeft;
+            var scrollY = window.scrollY ? window.scrollY : document.body.scrollTop;
+            var scrollX = window.scrollX ? window.scrollX : document.body.scrollLeft;
 
             // updates the menu contents attributes to reflect
             // the proper attributes (position)
@@ -1439,74 +1409,74 @@
             // varios mouse event to control the sub menu behavior)
             var targetButtons = jQuery(".button[data-target]", menu);
             var nonTargetButtons = jQuery(
-                    ":not(.sub-menu) .button:not([data-target])", menu);
+                ":not(.sub-menu) .button:not([data-target])", menu);
 
             // registers for the mouse enter event so that the
             // menu may be shown
             targetButtons.mouseenter(function() {
-                        // retrieves the current element and add the hover
-                        // class to it
-                        var element = jQuery(this);
-                        element.addClass("hover");
+                // retrieves the current element and add the hover
+                // class to it
+                var element = jQuery(this);
+                element.addClass("hover");
 
-                        // creates the timeout to handle the proper show of
-                        // the sub menu (but only in case the element is still
-                        // correctly slected)
-                        setTimeout(function() {
-                                    // in case the element is not selected anymore
-                                    // need to avoid showing the sub menu
-                                    if (!element.hasClass("hover")) {
-                                        // returns immediately, avoiding
-                                        // the show of the sub menu
-                                        return;
-                                    }
+                // creates the timeout to handle the proper show of
+                // the sub menu (but only in case the element is still
+                // correctly slected)
+                setTimeout(function() {
+                    // in case the element is not selected anymore
+                    // need to avoid showing the sub menu
+                    if (!element.hasClass("hover")) {
+                        // returns immediately, avoiding
+                        // the show of the sub menu
+                        return;
+                    }
 
-                                    // show the sub menu for the currently selected
-                                    // button element and menu
-                                    _showSubMenu(element, menu);
-                                }, 500);
-                    });
+                    // show the sub menu for the currently selected
+                    // button element and menu
+                    _showSubMenu(element, menu);
+                }, 500);
+            });
 
             // registers for the mouse leave event in the target buttons
             // to be able to remove the hover class reference
             targetButtons.mouseleave(function() {
-                        // retrieves the current element and removes the
-                        // hover class reference
-                        var element = jQuery(this);
-                        element.removeClass("hover");
-                    });
+                // retrieves the current element and removes the
+                // hover class reference
+                var element = jQuery(this);
+                element.removeClass("hover");
+            });
 
             // registers for the mouse enter event in the
             // non target button to be able to hide the sub menus
             nonTargetButtons.mouseenter(function() {
-                        // retrieves the reference to the current element
-                        // (the hovered button)
-                        var element = jQuery(this);
+                // retrieves the reference to the current element
+                // (the hovered button)
+                var element = jQuery(this);
 
-                        // removes the selected class from the target buttons
-                        // so that no target button remains selected
-                        targetButtons.removeClass("selected");
+                // removes the selected class from the target buttons
+                // so that no target button remains selected
+                targetButtons.removeClass("selected");
 
-                        // creates a timeout to handle the proper hide of the
-                        // visible sub menus (selected non target elements)
-                        setTimeout(function() {
-                                    // retrieves the complete set of visible sub menus
-                                    // to be hidden in case of validation passing
-                                    var subMenu = jQuery(".sub-menu:visible",
-                                            menu);
+                // creates a timeout to handle the proper hide of the
+                // visible sub menus (selected non target elements)
+                setTimeout(function() {
+                    // retrieves the complete set of visible sub menus
+                    // to be hidden in case of validation passing
+                    var subMenu = jQuery(".sub-menu:visible",
+                        menu);
 
-                                    // checks if the current element (button)
-                                    // is still in the ohover state in case it's
-                                    // not returns immediately, not meat to hide
-                                    // the other sub menus, otherwise hides the complete
-                                    // set of sub menus
-                                    var isHovered = element.is(":hover");
-                                    if (!isHovered) {
-                                        return;
-                                    }
-                                    _hideSubMenu(subMenu);
-                                }, 300);
-                    });
+                    // checks if the current element (button)
+                    // is still in the ohover state in case it's
+                    // not returns immediately, not meat to hide
+                    // the other sub menus, otherwise hides the complete
+                    // set of sub menus
+                    var isHovered = element.is(":hover");
+                    if (!isHovered) {
+                        return;
+                    }
+                    _hideSubMenu(subMenu);
+                }, 300);
+            });
 
             // iterates over all the buttons to update their actions
             // and remove the current default button behavior
@@ -1526,135 +1496,131 @@
                 // registers for the click event on the element so
                 // that it's possible to "raise" the actions
                 _element.click(function(event) {
-                            // retrieves the current element
-                            var element = jQuery(this);
+                    // retrieves the current element
+                    var element = jQuery(this);
 
-                            // checks if the currently clicked element is
-                            // of type sub element (must open sub menu)
-                            var isSubElement = element.hasClass("sub-element");
+                    // checks if the currently clicked element is
+                    // of type sub element (must open sub menu)
+                    var isSubElement = element.hasClass("sub-element");
 
-                            // in case the current element is of type sub element
-                            // (special case) must open the submenu
-                            if (isSubElement) {
-                                // shows the sub menu associated with the element
-                                // for the current menu and then returns immediately
-                                _showSubMenu(element, menu);
-                                return;
+                    // in case the current element is of type sub element
+                    // (special case) must open the submenu
+                    if (isSubElement) {
+                        // shows the sub menu associated with the element
+                        // for the current menu and then returns immediately
+                        _showSubMenu(element, menu);
+                        return;
+                    }
+
+                    // retrieves the complete set of selected list items
+                    // to apply the global characteristics to them
+                    var selectedListItem = jQuery(
+                        ".filter-contents > .selected", filter);
+
+                    // retrieves the menu contents associated with the
+                    // current element and then retrieves the identifier
+                    // of that menu contents
+                    var _menuContents = element.parents(".menu-contents");
+                    var menuId = _menuContents.attr("data-menu_id");
+
+                    // removes the active class from the menu
+                    // (should disable the layout)
+                    menu.removeClass("active");
+
+                    // hides the menu and removes it from the current
+                    // context (it's not going to be used anymore) but
+                    // only in case the stay flag is not set
+                    menuContents.hide();
+                    !stay && menu.remove();
+
+                    // iterates over each of the selected list items
+                    // to execute the proper "sequential" action
+                    selectedListItem.each(function(index, element) {
+                        // retrieves the current element
+                        var __element = jQuery(element);
+
+                        // retrieves the buttons associated with the equivalent
+                        // button in its context menu
+                        var button = jQuery(
+                            ".context-menu > .menu-contents[data-menu_id=" +
+                            menuId + "] > :nth-child(" + String(elementIndex +
+                                1) + ")",
+                            __element);
+
+                        // checks if the button is of type document
+                        // (open in same window) and then retrieves the
+                        // value of the link attribute
+                        var isDocument = button.attr("data-document");
+                        var link = button.attr("data-link");
+
+                        // in cas no link is defined, not possible
+                        // to open the link (must return)
+                        if (!link) {
+                            // returns immediately no need to open
+                            // the link
+                            return;
+                        }
+
+                        // in case the current button refers a link that
+                        // must be opened as a document and this is the first
+                        // element to be parsed opens the link in the current
+                        // document otherwise creates a new window and opend
+                        // the link in it (external opening)
+                        isDocument && index == 0 ? jQuery.uxlocation(link) : window
+                            .open(link, "_blank");
+                    });
+
+                    // tries to retrieve the bulk (to many link)
+                    // from the element
+                    var linkBulk = _element.attr("data-link_bulk");
+
+                    // in case the bulk link exists a recursive operation
+                    // call must be made
+                    if (linkBulk) {
+                        // initializes the string that will hold the various
+                        // string identifier values to be sent for the bulk operation
+                        var identifiersList = "";
+
+                        // iterates over each of the selected items to update the
+                        // list of items accordingly
+                        selectedListItem.each(function(index, element) {
+                            // retrieves the current element reference
+                            var __element = jQuery(element);
+
+                            // retrieves the object id from the current
+                            // element (this is the element identifier)
+                            var objectId = __element.data("object_id");
+
+                            // in case the index is greater than zero a comma
+                            // must be appended to the identifiers list
+                            if (index > 0) {
+                                // adds the comma to the identifiers list
+                                identifiersList += ",";
                             }
 
-                            // retrieves the complete set of selected list items
-                            // to apply the global characteristics to them
-                            var selectedListItem = jQuery(
-                                    ".filter-contents > .selected", filter);
-
-                            // retrieves the menu contents associated with the
-                            // current element and then retrieves the identifier
-                            // of that menu contents
-                            var _menuContents = element.parents(".menu-contents");
-                            var menuId = _menuContents.attr("data-menu_id");
-
-                            // removes the active class from the menu
-                            // (should disable the layout)
-                            menu.removeClass("active");
-
-                            // hides the menu and removes it from the current
-                            // context (it's not going to be used anymore) but
-                            // only in case the stay flag is not set
-                            menuContents.hide();
-                            !stay && menu.remove();
-
-                            // iterates over each of the selected list items
-                            // to execute the proper "sequential" action
-                            selectedListItem.each(function(index, element) {
-                                        // retrieves the current element
-                                        var __element = jQuery(element);
-
-                                        // retrieves the buttons associated with the equivalent
-                                        // button in its context menu
-                                        var button = jQuery(
-                                                ".context-menu > .menu-contents[data-menu_id="
-                                                        + menuId
-                                                        + "] > :nth-child("
-                                                        + String(elementIndex
-                                                                + 1) + ")",
-                                                __element);
-
-                                        // checks if the button is of type document
-                                        // (open in same window) and then retrieves the
-                                        // value of the link attribute
-                                        var isDocument = button.attr("data-document");
-                                        var link = button.attr("data-link");
-
-                                        // in cas no link is defined, not possible
-                                        // to open the link (must return)
-                                        if (!link) {
-                                            // returns immediately no need to open
-                                            // the link
-                                            return;
-                                        }
-
-                                        // in case the current button refers a link that
-                                        // must be opened as a document and this is the first
-                                        // element to be parsed opens the link in the current
-                                        // document otherwise creates a new window and opend
-                                        // the link in it (external opening)
-                                        isDocument && index == 0
-                                                ? jQuery.uxlocation(link)
-                                                : window.open(link, "_blank");
-                                    });
-
-                            // tries to retrieve the bulk (to many link)
-                            // from the element
-                            var linkBulk = _element.attr("data-link_bulk");
-
-                            // in case the bulk link exists a recursive operation
-                            // call must be made
-                            if (linkBulk) {
-                                // initializes the string that will hold the various
-                                // string identifier values to be sent for the bulk operation
-                                var identifiersList = "";
-
-                                // iterates over each of the selected items to update the
-                                // list of items accordingly
-                                selectedListItem.each(function(index, element) {
-                                            // retrieves the current element reference
-                                            var __element = jQuery(element);
-
-                                            // retrieves the object id from the current
-                                            // element (this is the element identifier)
-                                            var objectId = __element.data("object_id");
-
-                                            // in case the index is greater than zero a comma
-                                            // must be appended to the identifiers list
-                                            if (index > 0) {
-                                                // adds the comma to the identifiers list
-                                                identifiersList += ",";
-                                            }
-
-                                            // adds the identifier to the identifiers list
-                                            identifiersList += objectId
-                                        });
-
-                                // updates the current documents location to the bulk
-                                // link, so that the bulk operation takes place
-                                jQuery.uxlocation(linkBulk + "?object_id="
-                                        + identifiersList);
-                            }
-
-                            // stops the event propagation and prevents
-                            // the default bahavior (avoids propagation problems)
-                            event.stopPropagation();
-                            event.preventDefault();
+                            // adds the identifier to the identifiers list
+                            identifiersList += objectId
                         });
+
+                        // updates the current documents location to the bulk
+                        // link, so that the bulk operation takes place
+                        jQuery.uxlocation(linkBulk + "?object_id=" + identifiersList);
+                    }
+
+                    // stops the event propagation and prevents
+                    // the default bahavior (avoids propagation problems)
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
 
                 // registers for the double click event on the button
                 // to avoid unwanted propagation
                 _element.dblclick(function(event) {
-                            // stops the event propagation and prevents
-                            // the default bahavior (avoids propagation problems)
-                            event.stopPropagation();
-                            event.preventDefault();
-                        });
+                    // stops the event propagation and prevents
+                    // the default bahavior (avoids propagation problems)
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
             });
         };
 
@@ -1779,10 +1745,10 @@
             // orders the selection according
             // to the typical arithmetic function
             selection.sort(function(first, second) {
-                        // returns the diference between the first
-                        // adn the second elements
-                        return first - second;
-                    });
+                // returns the diference between the first
+                // adn the second elements
+                return first - second;
+            });
 
             // iterates over all the items in the selection
             // to correclty update their control classes
@@ -1794,8 +1760,8 @@
                 var _next_selection = selection[index + 1];
 
                 // retrieves the list item to be selected
-                var _selectedListItem = jQuery(".filter-contents > :nth-child("
-                                + _selection + ")", matchedObject);
+                var _selectedListItem = jQuery(".filter-contents > :nth-child(" + _selection + ")",
+                    matchedObject);
 
                 // adds the selected class to the selected list item
                 _selectedListItem.addClass("selected");
@@ -1811,8 +1777,7 @@
 
                 // in case the current index if the last or in case the
                 // the current selection is not succeeded by a contiguous value
-                if (index == selection.length - 1
-                        || _next_selection != _selection + 1) {
+                if (index == selection.length - 1 || _next_selection != _selection + 1) {
                     // adds the last class to the current selected
                     // list item (indicates that it is the last of
                     // a contiguous selection)
@@ -1823,7 +1788,7 @@
             // retrieves the complete set of selected list items
             // to apply the global characteristics to them
             var selectedListItem = jQuery(".filter-contents > .selected",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
@@ -1837,16 +1802,15 @@
             // cheks if the element is visible using
             // the appropriate visibility extension
             var isVisible = _element ? jQuery.uxvisible(selectedListItem,
-                    pageOffset) : true;
+                pageOffset) : true;
 
             // scrolls to the reference in case the element
             // is not visible, this is required so that the
             // end user is able to interact with the element
-            !isVisible && selectedListItem.length == 1
-                    && selectedListItem.uxscroll({
-                                offset : pageOffset,
-                                padding : 10
-                            });
+            !isVisible && selectedListItem.length == 1 && selectedListItem.uxscroll({
+                offset: pageOffset,
+                padding: 10
+            });
 
             // triggers the selected event indicating that the list
             // of selected items has changed
@@ -1901,7 +1865,7 @@
             // retrieves the complete set of selected list items
             // to apply the global characteristics to them
             var selectedListItem = jQuery(".filter-contents > .selected",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
@@ -1924,9 +1888,9 @@
             // not scroll the current viewport into the item
             var isVisible = item ? jQuery.uxvisible(item, pageOffset) : true;
             !isVisible && item.uxscroll({
-                        offset : pageOffset,
-                        padding : 10
-                    });
+                offset: pageOffset,
+                padding: 10
+            });
         };
 
         var _decrementRange = function(matchedObject, options) {
@@ -1982,7 +1946,7 @@
             // retrieves the complete set of selected list items
             // to apply the global characteristics to them
             var selectedListItem = jQuery(".filter-contents > .selected",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
@@ -2005,9 +1969,9 @@
             // not scroll the current viewport into the item
             var isVisible = item ? jQuery.uxvisible(item, pageOffset) : true;
             !isVisible && item.uxscroll({
-                        offset : pageOffset,
-                        padding : 10
-                    });
+                offset: pageOffset,
+                padding: 10
+            });
         };
 
         var _upRange = function(matchedObject, options) {
@@ -2028,7 +1992,7 @@
             // retrieves the complete set of selected list items
             // to apply the global characteristics to them
             var selectedListItem = jQuery(".filter-contents > .selected",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
@@ -2042,9 +2006,9 @@
             // not scroll the current viewport into the item
             var isVisible = item ? jQuery.uxvisible(item, pageOffset) : true;
             !isVisible && item.uxscroll({
-                        offset : pageOffset,
-                        padding : 10
-                    });
+                offset: pageOffset,
+                padding: 10
+            });
         };
 
         var _downRange = function(matchedObject, options) {
@@ -2080,7 +2044,7 @@
             // retrieves the complete set of selected list items
             // to apply the global characteristics to them
             var selectedListItem = jQuery(".filter-contents > .selected",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the top offset of the page, using
             // the margin element (from the margin top)
@@ -2094,9 +2058,9 @@
             // not scroll the current viewport into the item
             var isVisible = item ? jQuery.uxvisible(item, pageOffset) : true;
             !isVisible && item.uxscroll({
-                        offset : pageOffset,
-                        padding : 10
-                    });
+                offset: pageOffset,
+                padding: 10
+            });
         };
 
         var _rangeSelection = function(index, matchedObject, options) {
@@ -2172,9 +2136,7 @@
                 // selected list item, then uses it to retrieve
                 // its hyperlink reference (in case it's necessary)
                 var linkElement = jQuery("a", _listItem);
-                var valueLink = valueLink
-                        ? valueLink
-                        : linkElement.attr("href");
+                var valueLink = valueLink ? valueLink : linkElement.attr("href");
 
                 // in case the value link is set
                 if (valueLink) {
@@ -2197,7 +2159,7 @@
 
                         // creates the settings map based on the offset
                         var settings = {
-                            offset : isNaN(offsetInteger) ? 0 : offsetInteger
+                            offset: isNaN(offsetInteger) ? 0 : offsetInteger
                         }
 
                         // scrolls to the reference
@@ -2210,9 +2172,8 @@
                         // (only one element present) changes the current
                         // document location, otherwise opens a new window
                         // with the value link location (popup)
-                        listItem.length <= 1
-                                ? jQuery.uxlocation(valueLink)
-                                : window.open(valueLink, "_blank");
+                        listItem.length <= 1 ? jQuery.uxlocation(valueLink) : window.open(valueLink,
+                            "_blank");
                     }
                 }
             });
@@ -2261,12 +2222,8 @@
 
             // retrieves the correct scroll position coordinates
             // according to the current browser implementation
-            var scrollY = window.scrollY
-                    ? window.scrollY
-                    : document.body.scrollTop;
-            var scrollX = window.scrollX
-                    ? window.scrollX
-                    : document.body.scrollLeft;
+            var scrollY = window.scrollY ? window.scrollY : document.body.scrollTop;
+            var scrollX = window.scrollX ? window.scrollX : document.body.scrollLeft;
 
             // sets the proper postion attributes for the
             // submenu so that it's positioned to the right
@@ -2287,16 +2244,16 @@
             // the data for the sub buttons
             var mouseenter = subButtons.data("mouseenter");
             mouseenter = mouseenter || subButtons.mouseenter(function() {
-                        element.addClass("selected");
-                    });
+                element.addClass("selected");
+            });
             subButtons.data("mouseenter", mouseenter);
 
             // shows the sub menu with a fade effect
             subMenu.fadeIn(150, function() {
-                        // unsets the flag that controlls the
-                        // showing state of the sub menu
-                        subMenu.data("showing", false);
-                    });
+                // unsets the flag that controlls the
+                // showing state of the sub menu
+                subMenu.data("showing", false);
+            });
         };
 
         var _hideSubMenu = function(subMenu) {
@@ -2352,23 +2309,25 @@
             // (different type will have different operation and different
             // value fields)
             switch (type) {
-                case "string" :
+                case "string":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["contains", "matches", "begins with",
-                            "ends with"];
+                        "ends with"
+                    ];
                     var _operations = ["like", "equals", "rlike", "llike"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" />");
+                    var valueField = jQuery(
+                        "<input type=\"text\" class=\"text-field small value-field\" />");
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
 
                     // breaks the switch
                     break;
 
-                case "number" :
+                case "number":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["equals", "greater than", "less than"];
@@ -2376,14 +2335,16 @@
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"integer\" />");
+                    var valueField = jQuery(
+                        "<input type=\"text\" class=\"text-field small value-field\" data-type=\"integer\" />"
+                    );
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
 
                     // breaks the switch
                     break;
 
-                case "float" :
+                case "float":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["equals", "greater than", "less than"];
@@ -2391,14 +2352,16 @@
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"float\" />");
+                    var valueField = jQuery(
+                        "<input type=\"text\" class=\"text-field small value-field\" data-type=\"float\" />"
+                    );
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
 
                     // breaks the switch
                     break;
 
-                case "date" :
+                case "date":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["in", "after", "before"];
@@ -2406,14 +2369,16 @@
 
                     // creates the value field as a text field (calendar field),
                     // inserts it after the operation field and initializes it
-                    var valueField = jQuery("<input type=\"text\" class=\"text-field small value-field\" data-type=\"date\" data-original_value=\"yyyy/mm/dd\" />");
+                    var valueField = jQuery(
+                        "<input type=\"text\" class=\"text-field small value-field\" data-type=\"date\" data-original_value=\"yyyy/mm/dd\" />"
+                    );
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
 
                     // breaks the switch
                     break;
 
-                case "reference" :
+                case "reference":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["search"];
@@ -2430,16 +2395,14 @@
 
                     // retrieves the display and the value attributes from the
                     // element to the propagated to the value field
-                    var displayAttribute = element.attr("data-sdisplay_attribute")
-                            || "name";
-                    var valueAttribute = element.attr("data-svalue_attribute")
-                            || "value";
+                    var displayAttribute = element.attr("data-sdisplay_attribute") || "name";
+                    var valueAttribute = element.attr("data-svalue_attribute") || "value";
 
                     // creates the value field as a drop field (reference field),
                     // inserts it after the operation field and initializes it
-                    var valueField = jQuery("<div class=\"drop-field small value-field\">"
-                            + "<input type=\"hidden\" class=\"hidden-field\" />"
-                            + "<ul class=\"data-source\"></ul>" + "</div>");
+                    var valueField = jQuery("<div class=\"drop-field small value-field\">" +
+                        "<input type=\"hidden\" class=\"hidden-field\" />" +
+                        "<ul class=\"data-source\"></ul>" + "</div>");
 
                     // retrieves the data source associated with the value
                     // field an then updates the url and the type of the
@@ -2460,7 +2423,7 @@
                     // breaks the switch
                     break;
 
-                default :
+                default:
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
                     var _items = ["undefined"];
@@ -2489,14 +2452,14 @@
             // in case the select flag is set a value must be set in
             // the (field) drop field set the value as that field
             select && dropField.uxdropfield("set", {
-                        value : value
-                    });
+                value: value
+            });
 
             // updates the operation field to be set to the
             // first item in the items sequence
             operationField.uxdropfield("set", {
-                        value : _items[0]
-                    });
+                value: _items[0]
+            });
 
             // in case the disabled flag is set disables the operation
             // field otherwise enables it
@@ -2505,37 +2468,37 @@
             // registers for the value select event in the
             // operation field to update the filter results
             operationField.bind("value_select",
-                    function(event, value, valueLogic, item) {
-                        // updates the current filter to reflect the
-                        // changes in the operation field
-                        _update(_filter, options, true);
-                    });
+                function(event, value, valueLogic, item) {
+                    // updates the current filter to reflect the
+                    // changes in the operation field
+                    _update(_filter, options, true);
+                });
 
             // registers for the value change event in the
             // value field to update the filter results
             valueField.bind("value_change",
-                    function(event, value, valueLogic, item) {
-                        // updates the current filter to reflect the
-                        // changes in the value field
-                        _update(_filter, options, true);
-                    });
+                function(event, value, valueLogic, item) {
+                    // updates the current filter to reflect the
+                    // changes in the value field
+                    _update(_filter, options, true);
+                });
 
             // registers for the value select event in the
             // value field to update the filter results
             valueField.bind("value_select",
-                    function(event, value, valueLogic, item) {
-                        // updates the current filter to reflect the
-                        // changes in the value field
-                        _update(_filter, options, true);
-                    });
+                function(event, value, valueLogic, item) {
+                    // updates the current filter to reflect the
+                    // changes in the value field
+                    _update(_filter, options, true);
+                });
 
             // registers for the value unselect event in the
             // value field to update the filter results
             valueField.bind("value_unselect", function(event) {
-                        // updates the current filter to reflect the
-                        // changes in the value field
-                        _update(_filter, options, true);
-                    });
+                // updates the current filter to reflect the
+                // changes in the value field
+                _update(_filter, options, true);
+            });
         };
 
         var _addFilter = function(matchedObject, target) {
@@ -2547,19 +2510,17 @@
             // retrieves the advanced filters section of the filter, this
             // area is going to be used to add the "new" filter
             var advancedFilters = jQuery(".filter-advanced-filters",
-                    matchedObject);
+                matchedObject);
 
             // creates the new filter element and the associated drop field
             // operation field (drop field) and the text field
             var filter = jQuery("<div class=\"filter-advanced-filter\"></div>");
-            var dropField = jQuery("<div class=\"drop-field drop-field-select small\""
-                    + " data-number_options=\"-1\">"
-                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
-                    + "</div>");
-            var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\""
-                    + " data-number_options=\"-1\">"
-                    + "<ul class=\"data-source\" data-type=\"local\"></ul>"
-                    + "</div>");
+            var dropField = jQuery("<div class=\"drop-field drop-field-select small\"" +
+                " data-number_options=\"-1\">" + "<ul class=\"data-source\" data-type=\"local\"></ul>" +
+                "</div>");
+            var operationField = jQuery("<div class=\"drop-field drop-field-select small operation-field\"" +
+                " data-number_options=\"-1\">" + "<ul class=\"data-source\" data-type=\"local\"></ul>" +
+                "</div>");
 
             // creates the remove and add buttons for the filter line
             // and creates the clear element to clear eht float layout strucure
@@ -2583,23 +2544,23 @@
             // be able to "parse" the items and insert them into the
             // the items and types lists
             dataFiltering.each(function(index, element) {
-                        // retrives the current element in iteration
-                        var _element = jQuery(this);
+                // retrives the current element in iteration
+                var _element = jQuery(this);
 
-                        // retrieves the html value of the element and
-                        // retrieves the data type attribute of it to
-                        // be used both as the item and the type
-                        var dataHtml = _element.html();
-                        var dataType = _element.attr("data-type");
-                        var dataName = _element.attr("data-name");
+                // retrieves the html value of the element and
+                // retrieves the data type attribute of it to
+                // be used both as the item and the type
+                var dataHtml = _element.html();
+                var dataType = _element.attr("data-type");
+                var dataName = _element.attr("data-name");
 
-                        // adds the data html (item) and the data type
-                        // to the corresponding lists
-                        items.push(dataHtml);
-                        types.push(dataType);
-                        names.push(dataName);
-                        elements.push(_element);
-                    });
+                // adds the data html (item) and the data type
+                // to the corresponding lists
+                items.push(dataHtml);
+                types.push(dataType);
+                names.push(dataName);
+                elements.push(_element);
+            });
 
             // updates the items, types and names lists in the drop
             // field data source data references
@@ -2612,44 +2573,44 @@
             // so that the other components are changed according to the
             // value to be used for filtering (data type change)
             dropField.bind("value_select",
-                    function(event, value, valueLogic, item) {
-                        _selectFilter(filter, value);
-                        _update(matchedObject, options, true);
-                    });
+                function(event, value, valueLogic, item) {
+                    _selectFilter(filter, value);
+                    _update(matchedObject, options, true);
+                });
 
             // registers for the click event in the remove button to
             // remove the filter line from the list of filters
             remove.click(function() {
-                        // retrieves the current button element and uses it
-                        // to retrieve the parent filter and remove it
-                        var element = jQuery(this);
-                        var _filter = element.parents(".filter-advanced-filter");
-                        _filter.remove();
-                        _update(matchedObject, options, true);
-                    });
+                // retrieves the current button element and uses it
+                // to retrieve the parent filter and remove it
+                var element = jQuery(this);
+                var _filter = element.parents(".filter-advanced-filter");
+                _filter.remove();
+                _update(matchedObject, options, true);
+            });
 
             // regiters for the click event in the add button to
             // add a new filter line next to the current filter
             add.click(function() {
-                        // retrieves the current button element and uses it
-                        // to retrieve the parent filter and add a new filter
-                        // in the next position
-                        var element = jQuery(this);
-                        var _filter = element.parents(".filter-advanced-filter");
-                        _addFilter(matchedObject, _filter);
-                        _update(matchedObject, options, true);
-                    });
+                // retrieves the current button element and uses it
+                // to retrieve the parent filter and add a new filter
+                // in the next position
+                var element = jQuery(this);
+                var _filter = element.parents(".filter-advanced-filter");
+                _addFilter(matchedObject, _filter);
+                _update(matchedObject, options, true);
+            });
 
             // initializes the drop field components both in the
             // drop field and n the operation field
             dropField.uxdropfield("default", {
-                        numberOptions : 10,
-                        filterOptions : true
-                    });
+                numberOptions: 10,
+                filterOptions: true
+            });
             operationField.uxdropfield("default", {
-                        numberOptions : 10,
-                        filterOptions : true
-                    });
+                numberOptions: 10,
+                filterOptions: true
+            });
 
             // adds the various "partial" components to the filter
             // (line) component, there should be a visual impact
@@ -2663,8 +2624,7 @@
             // the filter is inserted after the target, otherwise the
             // filter (line) is prepended to the advanced filters
             target
-                    ? filter.insertAfter(target)
-                    : advancedFilters.prepend(filter);
+                ? filter.insertAfter(target) : advancedFilters.prepend(filter);
 
             // selects the initial element of the "newly" created filter
             // this is the first value to be viewed by the end user
@@ -2675,7 +2635,7 @@
             // retrieves the filter add element (in the advanced panel)
             // and disables it to avoid insertion of filters
             var filterAdd = jQuery(".filter-advanced > .filter-input-add",
-                    matchedObject);
+                matchedObject);
             filterAdd.hide();
         };
 
@@ -2706,8 +2666,7 @@
 
                     // in case the current selection is empty it's time to update
                     // the pivot value (it's the first element of the selection)
-                    selection.length == 0
-                            && filter.data("pivot", templateItemIndex + 1);
+                    selection.length == 0 && filter.data("pivot", templateItemIndex + 1);
 
                     // retrieves the index of the element in the selection
                     // index, this is going to be used to check if the element
@@ -2751,46 +2710,45 @@
 
             // binds the template item to the selected event
             templateItem.bind("selected", function() {
-                        // retrieves the template item index
-                        var templateItemIndex = templateItem.index();
+                // retrieves the template item index
+                var templateItemIndex = templateItem.index();
 
-                        // retrieves the current selection and the index of
-                        // the selected template index from the filter
-                        // to be able check if the element is currently selected
-                        var selection = filter.data("selection");
-                        var elementIndex = selection.indexOf(templateItemIndex
-                                + 1);
+                // retrieves the current selection and the index of
+                // the selected template index from the filter
+                // to be able check if the element is currently selected
+                var selection = filter.data("selection");
+                var elementIndex = selection.indexOf(templateItemIndex + 1);
 
-                        // in case the element is currently selected
-                        // nothing is to be done
-                        if (elementIndex != -1) {
-                            // returns immediately, avoids selection
-                            return;
-                        }
+                // in case the element is currently selected
+                // nothing is to be done
+                if (elementIndex != -1) {
+                    // returns immediately, avoids selection
+                    return;
+                }
 
-                        // resets the current selection to be the
-                        // currently selected element
-                        filter.data("selection", [templateItemIndex + 1]);
-                        filter.data("pivot", templateItemIndex + 1);
+                // resets the current selection to be the
+                // currently selected element
+                filter.data("selection", [templateItemIndex + 1]);
+                filter.data("pivot", templateItemIndex + 1);
 
-                        // updates the current selection
-                        _updateSelection(filter, options);
-                    });
+                // updates the current selection
+                _updateSelection(filter, options);
+            });
 
             // binds the template item to the double click event
             // so that the item becomes select on such operation
             templateItem.dblclick(function() {
-                        // updates the current selection, runs the
-                        // appropriate (default) actions
-                        _select(templateItem, filter, options);
-                    });
+                // updates the current selection, runs the
+                // appropriate (default) actions
+                _select(templateItem, filter, options);
+            });
 
             // registers for the click event on the links in order
             // to avoid the propagation of the event to the
             // upper layers (would trigger focus on item)
             links.click(function(event) {
-                        event.stopPropagation();
-                    });
+                event.stopPropagation();
+            });
         };
 
         // initializes the plugin

@@ -1,17 +1,18 @@
 {
-    "_target_directories" : ["../bin/css",
-            "../../../bin/styles/ulite_print/css",
-            "../../../externals/ux/styles/ulite_print/css"],
-    "ux.css" : {
-        "files" : ["header.part.css", "footer.part.css"]
+    "_target_directories": ["../bin/css",
+        "../../../bin/styles/ulite_print/css",
+        "../../../externals/ux/styles/ulite_print/css"
+    ],
+    "ux.css": {
+        "files": ["header.part.css", "footer.part.css"]
     },
-    "ux-min.css" : {
-        "files" : ["header.part.css", "footer.part.css"],
-        "minify" : "css"
+    "ux-min.css": {
+        "files": ["header.part.css", "footer.part.css"],
+        "minify": "css"
     },
-    "ux-min.css.gz" : {
-        "files" : ["header.part.css", "footer.part.css"],
-        "minify" : "css",
-        "compress" : "gzip"
+    "ux-min.css.gz": {
+        "files": ["header.part.css", "footer.part.css"],
+        "minify": "css",
+        "compress": "gzip"
     }
 }

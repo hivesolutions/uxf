@@ -51,8 +51,8 @@
             // registers an update hash operation for the next
             // tick operation so that the initial hash is updated
             setTimeout(function() {
-                        _updateHashChange(matchedObject, options);
-                    });
+                _updateHashChange(matchedObject, options);
+            });
         };
 
         /**
@@ -67,57 +67,56 @@
             // registers for the click event in the tab selectors
             // so that the selected may change on click
             tabSelectors.click(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the tab panel and the child
-                        // tab selectors
-                        var tabPanel = element.parents(".tab-panel");
-                        var tabs = jQuery(".tab", tabPanel);
-                        var tabSelectors = jQuery(".tab-selector", tabPanel);
+                // retrieves the tab panel and the child
+                // tab selectors
+                var tabPanel = element.parents(".tab-panel");
+                var tabs = jQuery(".tab", tabPanel);
+                var tabSelectors = jQuery(".tab-selector", tabPanel);
 
-                        // removes the active class from (all) the tabs
-                        // and from (all) the tab selectors
-                        tabs.removeClass("active");
-                        tabSelectors.removeClass("active");
+                // removes the active class from (all) the tabs
+                // and from (all) the tab selectors
+                tabs.removeClass("active");
+                tabSelectors.removeClass("active");
 
-                        // retrieves the link reference and
-                        // then uses it to retrieve the target element
-                        var href = element.attr("href");
-                        var targetElement = jQuery(href, tabPanel);
+                // retrieves the link reference and
+                // then uses it to retrieve the target element
+                var href = element.attr("href");
+                var targetElement = jQuery(href, tabPanel);
 
-                        // verifies if the target element is already active and if
-                        // that's the case returns immediately (avoids loop in selection)
-                        var isActive = targetElement.hasClass("active");
-                        if (isActive) {
-                            return true;
-                        }
+                // verifies if the target element is already active and if
+                // that's the case returns immediately (avoids loop in selection)
+                var isActive = targetElement.hasClass("active");
+                if (isActive) {
+                    return true;
+                }
 
-                        // adds the active class to both the
-                        // element and the target element
-                        element.addClass("active");
-                        targetElement.addClass("active");
+                // adds the active class to both the
+                // element and the target element
+                element.addClass("active");
+                targetElement.addClass("active");
 
-                        // triggers the tab slected event on the tab panel
-                        // indicating that a new tab has been selected
-                        tabPanel.triggerHandler("tab_selected", [targetElement]);
+                // triggers the tab slected event on the tab panel
+                // indicating that a new tab has been selected
+                tabPanel.triggerHandler("tab_selected", [targetElement]);
 
-                        // in case the push state function is available for
-                        // the window element it is used for href change
-                        window.history.pushState && href
-                                && window.history.pushState(null, null, href);
+                // in case the push state function is available for
+                // the window element it is used for href change
+                window.history.pushState && href && window.history.pushState(null, null, href);
 
-                        // stops the event propagation
-                        // (avoids the normal link behaviour)
-                        event.stopPropagation();
-                        event.preventDefault();
-                    });
+                // stops the event propagation
+                // (avoids the normal link behaviour)
+                event.stopPropagation();
+                event.preventDefault();
+            });
 
             // registers for the hash change event on the window so
             // that it's possible to change the tab accordingly
             _window.bind("hashchange", function() {
-                        _updateHashChange(matchedObject, options);
-                    });
+                _updateHashChange(matchedObject, options);
+            });
         };
 
         var _updateHashChange = function(matchedObject, options) {
@@ -148,7 +147,7 @@
             var tabs = jQuery(".tab", matchedObject);
             var tabSelectors = jQuery(".tab-selector", matchedObject);
             var tabSelector = jQuery(".tab-selector[href=\"" + hash + "\"]",
-                    matchedObject);
+                matchedObject);
 
             // removes the active class from (all) the tabs
             // and from (all) the tab selectors

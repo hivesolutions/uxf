@@ -56,7 +56,7 @@
 
                 // retrieves the password meter contents
                 var passwordMeterContents = jQuery(".password-meter-contents",
-                        _element);
+                    _element);
 
                 // retrieves the target reference and then
                 // retrieves the target element
@@ -78,8 +78,7 @@
 
                     // changes the current level class
                     passwordMeterContents.removeClass("level-" + String(level));
-                    passwordMeterContents.addClass("level-"
-                            + String(passwordStrength));
+                    passwordMeterContents.addClass("level-" + String(passwordStrength));
 
                     // updates the level value with the password
                     // strength value
@@ -149,8 +148,7 @@
 
             // in case the password contains both lower case and
             // upper case letters
-            if (LETTER_LOWER_REGEX.test(password)
-                    && LETTER_UPPER_REGEX.test(password)) {
+            if (LETTER_LOWER_REGEX.test(password) && LETTER_UPPER_REGEX.test(password)) {
                 // increments the strength value
                 strengthValue++;
             }

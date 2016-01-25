@@ -39,8 +39,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -71,249 +70,246 @@
 
             // registers for the click in the matched object
             matchedObject.click(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // in case the menu link is currently disable must
-                        // return immediately to avoid the typical work
-                        // to be done (not required)
-                        var isDisabled = element.hasClass("disabled");
-                        if (isDisabled) {
-                            return;
-                        }
+                // in case the menu link is currently disable must
+                // return immediately to avoid the typical work
+                // to be done (not required)
+                var isDisabled = element.hasClass("disabled");
+                if (isDisabled) {
+                    return;
+                }
 
-                        // tries to retrieve the menu selector associated
-                        // with the current menu link (this is for custom)
-                        // menu references
-                        var menuSelector = element.attr("data-menu");
+                // tries to retrieve the menu selector associated
+                // with the current menu link (this is for custom)
+                // menu references
+                var menuSelector = element.attr("data-menu");
 
-                        // retrieves the menu to retieve the
-                        // menu contents
-                        var menu = menuSelector
-                                ? jQuery(menuSelector)
-                                : element.parents(".menu");
-                        var menuButton = jQuery("> .menu-button", menu);
-                        var menuContents = jQuery(
-                                "> .menu-contents:not(.sub-menu)", menu);
+                // retrieves the menu to retieve the
+                // menu contents
+                var menu = menuSelector ? jQuery(menuSelector) : element.parents(".menu");
+                var menuButton = jQuery("> .menu-button", menu);
+                var menuContents = jQuery(
+                    "> .menu-contents:not(.sub-menu)", menu);
 
-                        // retrieves the current set of visible menus and menu
-                        // contents to be able to control them
-                        var _menu = jQuery(".menu.active");
-                        var _menuContents = jQuery(".menu-contents:visible");
+                // retrieves the current set of visible menus and menu
+                // contents to be able to control them
+                var _menu = jQuery(".menu.active");
+                var _menuContents = jQuery(".menu-contents:visible");
 
-                        // checks if the menu is currently active, current
-                        // visibility status is based on this flag
-                        var isActive = menu.hasClass("active");
+                // checks if the menu is currently active, current
+                // visibility status is based on this flag
+                var isActive = menu.hasClass("active");
 
-                        // iterates over each of the other menu in order to be
-                        // able to inactivate their owners
-                        _menu.each(function(index, element) {
-                                    var _element = jQuery(this);
-                                    var owner = _element.data("owner");
-                                    owner && owner.removeClass("active");
-                                });
+                // iterates over each of the other menu in order to be
+                // able to inactivate their owners
+                _menu.each(function(index, element) {
+                    var _element = jQuery(this);
+                    var owner = _element.data("owner");
+                    owner && owner.removeClass("active");
+                });
 
-                        // triggers the hide event for all the menu and menu contents
-                        // so that their contents are properly disabled/hidden
-                        _menu.trigger("hide");
-                        _menuContents.trigger("hide");
+                // triggers the hide event for all the menu and menu contents
+                // so that their contents are properly disabled/hidden
+                _menu.trigger("hide");
+                _menuContents.trigger("hide");
 
-                        // in case the menu already has the active class
-                        // (the menu is shown)
-                        if (isActive) {
-                            // tries to retrieve the current owner of the menu
-                            // contents and in case it exists removes the active
-                            // class from it
-                            var owner = menu.data("owner");
-                            owner && owner.removeClass("active");
+                // in case the menu already has the active class
+                // (the menu is shown)
+                if (isActive) {
+                    // tries to retrieve the current owner of the menu
+                    // contents and in case it exists removes the active
+                    // class from it
+                    var owner = menu.data("owner");
+                    owner && owner.removeClass("active");
 
-                            // triggers the hide event handler on the
-                            // on the menu and removes the active class
-                            // from the same menu
-                            menu.triggerHandler("hide");
-                            menu.removeClass("active");
+                    // triggers the hide event handler on the
+                    // on the menu and removes the active class
+                    // from the same menu
+                    menu.triggerHandler("hide");
+                    menu.removeClass("active");
 
-                            // hides the menu contents
-                            menuContents.hide();
-                            menuContents.triggerHandler("hidden");
+                    // hides the menu contents
+                    menuContents.hide();
+                    menuContents.triggerHandler("hidden");
 
-                            // triggers the hidden event handler on the
-                            // on the menu
-                            menu.triggerHandler("hidden");
-                        }
-                        // otherwise the menu contents are probably hidden
-                        else {
-                            // sets the owner of the menu contents as the current
-                            // element as it was the responsible for the show of
-                            // the contents
-                            menu.data("owner", element);
-                            element.addClass("active");
+                    // triggers the hidden event handler on the
+                    // on the menu
+                    menu.triggerHandler("hidden");
+                }
+                // otherwise the menu contents are probably hidden
+                else {
+                    // sets the owner of the menu contents as the current
+                    // element as it was the responsible for the show of
+                    // the contents
+                    menu.data("owner", element);
+                    element.addClass("active");
 
-                            // triggers the show event handler on the
-                            // on the menu and adds the active class
-                            // into the same menu
-                            menu.triggerHandler("show");
-                            menu.addClass("active");
+                    // triggers the show event handler on the
+                    // on the menu and adds the active class
+                    // into the same menu
+                    menu.triggerHandler("show");
+                    menu.addClass("active");
 
-                            // shows the menu contents an then
-                            // repositions them in the display
-                            menuContents.show();
-                            menuContents.triggerHandler("shown");
-                            _reposition(menu, menuButton, element);
+                    // shows the menu contents an then
+                    // repositions them in the display
+                    menuContents.show();
+                    menuContents.triggerHandler("shown");
+                    _reposition(menu, menuButton, element);
 
-                            // triggers the shown event handler on the
-                            // on the menu
-                            menu.triggerHandler("shown");
-                        }
+                    // triggers the shown event handler on the
+                    // on the menu
+                    menu.triggerHandler("shown");
+                }
 
-                        // stops the event propagation (avoids
-                        // extra problems)
-                        event.stopPropagation();
-                    });
+                // stops the event propagation (avoids
+                // extra problems)
+                event.stopPropagation();
+            });
 
             // registers for the double click in the matched object
             matchedObject.dblclick(function(event) {
-                        // stops the event propagation (avoids
-                        // extra problems)
-                        event.stopPropagation();
-                    });
+                // stops the event propagation (avoids
+                // extra problems)
+                event.stopPropagation();
+            });
 
             // registers for the click event in the menu contents
             menuContents.click(function(event) {
-                        // stops the event propagation (avoids
-                        // unecessary closing of the window)
-                        event.stopPropagation();
-                    });
+                // stops the event propagation (avoids
+                // unecessary closing of the window)
+                event.stopPropagation();
+            });
 
             // registers for the hide event in the menu so
             // that if such event is triggerred the menu
             // is correctly hidden from the environment
             menu.bind("hide", function() {
-                        // retrieves the current element and sets it as the
-                        // current menu to be used in the function
-                        var element = jQuery(this);
-                        var menu = element;
+                // retrieves the current element and sets it as the
+                // current menu to be used in the function
+                var element = jQuery(this);
+                var menu = element;
 
-                        // tries to retrieve the current owner of the menu
-                        // contents and in case it exists removes the active
-                        // class from it
-                        var owner = menu.data("owner");
-                        owner && owner.removeClass("active");
+                // tries to retrieve the current owner of the menu
+                // contents and in case it exists removes the active
+                // class from it
+                var owner = menu.data("owner");
+                owner && owner.removeClass("active");
 
-                        // removes the active class from the menu and
-                        // then hides the menu contents
-                        menu.removeClass("active");
-                        menuContents.hide();
-                        menuContents.triggerHandler("hidden");
-                    });
+                // removes the active class from the menu and
+                // then hides the menu contents
+                menu.removeClass("active");
+                menuContents.hide();
+                menuContents.triggerHandler("hidden");
+            });
 
             // register for the key down event in the body,
             // only in case the registration was not already made
             !isRegistered && _body.keydown(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // in case the key that was pressed in not the
-                        // escape one there's nothing to be done and so
-                        // the control flow is returned immediately
-                        if (keyValue != 27) {
-                            return;
-                        }
+                // in case the key that was pressed in not the
+                // escape one there's nothing to be done and so
+                // the control flow is returned immediately
+                if (keyValue != 27) {
+                    return;
+                }
 
-                        // retrieves the menu to retieve the and uses it to
-                        // retrieve the reference to the menu contents
-                        var menu = jQuery(".menu.active", element);
-                        var menuContents = jQuery(".menu-contents:visible",
-                                menu);
+                // retrieves the menu to retieve the and uses it to
+                // retrieve the reference to the menu contents
+                var menu = jQuery(".menu.active", element);
+                var menuContents = jQuery(".menu-contents:visible",
+                    menu);
 
-                        // checks if the current menu is of type drop
-                        // (it must be removed and not hidden)
-                        var isDrop = menu.hasClass("drop-menu");
+                // checks if the current menu is of type drop
+                // (it must be removed and not hidden)
+                var isDrop = menu.hasClass("drop-menu");
 
-                        // in case the current menu is of type drop
-                        // (must be removed)
-                        if (isDrop) {
-                            // removes the menu from the environment
-                            menu.remove();
-                        }
-                        // otherwise the normal behavior applies (hidding)
-                        else {
-                            // tries to retrieve the current owner of the menu
-                            // contents and in case it exists removes the active
-                            // class from it
-                            var owner = menu.data("owner");
-                            owner && owner.removeClass("active");
+                // in case the current menu is of type drop
+                // (must be removed)
+                if (isDrop) {
+                    // removes the menu from the environment
+                    menu.remove();
+                }
+                // otherwise the normal behavior applies (hidding)
+                else {
+                    // tries to retrieve the current owner of the menu
+                    // contents and in case it exists removes the active
+                    // class from it
+                    var owner = menu.data("owner");
+                    owner && owner.removeClass("active");
 
-                            // removes the active class from the menu and
-                            // then hides the menu contents
-                            menu.removeClass("active");
-                            menuContents.hide();
-                            menuContents.triggerHandler("hidden");
-                        }
-                    });
+                    // removes the active class from the menu and
+                    // then hides the menu contents
+                    menu.removeClass("active");
+                    menuContents.hide();
+                    menuContents.triggerHandler("hidden");
+                }
+            });
 
             // register for the click event in the body,
             // only in case the registration was not already made
             !isRegistered && _body.click(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the menu to retieve the
-                        // menu contents
-                        var menu = jQuery(".menu.active", element);
-                        var menuContents = jQuery(".menu-contents:visible",
-                                menu);
+                // retrieves the menu to retieve the
+                // menu contents
+                var menu = jQuery(".menu.active", element);
+                var menuContents = jQuery(".menu-contents:visible",
+                    menu);
 
-                        // checks if the current menu is of type drop
-                        // (it must be removed and not hidden)
-                        var isDrop = menu.hasClass("drop-menu");
+                // checks if the current menu is of type drop
+                // (it must be removed and not hidden)
+                var isDrop = menu.hasClass("drop-menu");
 
-                        // in case the current menu is of type drop
-                        // (must be removed)
-                        if (isDrop) {
-                            // removes the menu from the environment
-                            menu.remove();
-                        }
-                        // otherwise the normal behavior applies (hidding)
-                        else {
-                            // tries to retrieve the current owner of the menu
-                            // contents and in case it exists removes the active
-                            // class from it
-                            var owner = menu.data("owner");
-                            owner && owner.removeClass("active");
+                // in case the current menu is of type drop
+                // (must be removed)
+                if (isDrop) {
+                    // removes the menu from the environment
+                    menu.remove();
+                }
+                // otherwise the normal behavior applies (hidding)
+                else {
+                    // tries to retrieve the current owner of the menu
+                    // contents and in case it exists removes the active
+                    // class from it
+                    var owner = menu.data("owner");
+                    owner && owner.removeClass("active");
 
-                            // removes the active class from the menu and
-                            // then hides the menu contents
-                            menu.removeClass("active");
-                            menuContents.hide();
-                            menuContents.triggerHandler("hidden");
-                        }
-                    });
+                    // removes the active class from the menu and
+                    // then hides the menu contents
+                    menu.removeClass("active");
+                    menuContents.hide();
+                    menuContents.triggerHandler("hidden");
+                }
+            });
 
             // register for the right click event in the body,
             // only in case the registration was not already made
             !isRegistered && _window.resize(function() {
-                        // retrieves the currently active drop menus
-                        // to be able to remove them
-                        var menu = jQuery(".drop-menu.active");
+                // retrieves the currently active drop menus
+                // to be able to remove them
+                var menu = jQuery(".drop-menu.active");
 
-                        // removes the (drop) menu
-                        menu.remove();
-                    });
+                // removes the (drop) menu
+                menu.remove();
+            });
 
             !isRegistered && _window.scroll(function() {
-                        // retrieves the currently active drop menus
-                        // to be able to remove them
-                        var menu = jQuery(".drop-menu.active");
+                // retrieves the currently active drop menus
+                // to be able to remove them
+                var menu = jQuery(".drop-menu.active");
 
-                        // removes the (drop) menu
-                        menu.remove();
-                    });
+                // removes the (drop) menu
+                menu.remove();
+            });
         };
 
         /**
@@ -357,9 +353,7 @@
             // it as the button with value in case it exists, this is
             // required so that it's possible to use decimal pixel values
             // for the calculus of the required offset margins
-            var buttonBounding = menuButtonElement
-                    ? menuButtonElement.getBoundingClientRect()
-                    : {};
+            var buttonBounding = menuButtonElement ? menuButtonElement.getBoundingClientRect() : {};
             var buttonWidthF = buttonBounding.width;
             buttonWidth = buttonWidthF ? buttonWidthF : buttonWidth;
 
@@ -402,24 +396,22 @@
             // be able to position the menu to the left of the corresponding link
             // in case the menu is meant bo displayed to the right no margin is
             // applies as the menu contents should be displayed to the right already
-            var contentsMarginLeft = ((contentsWidth - buttonWidth) - borderWidth)
-                    * -1;
+            var contentsMarginLeft = ((contentsWidth - buttonWidth) - borderWidth) * -1;
             contentsMarginLeft = right ? 0 : contentsMarginLeft;
             !isReference
-                    && menuContents.css("margin-left", contentsMarginLeft
-                                    + "px");
+                && menuContents.css("margin-left", contentsMarginLeft + "px");
         };
 
         // switches over the method
         switch (method) {
-            case "reposition" :
+            case "reposition":
                 // repositions the matched object (menu)
                 _reposition(matchedObject);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

@@ -34,15 +34,10 @@
             // retrieves the window (alert window) elements
             var window = jQuery(".window.window-alert", matchedObject);
             if (window.length == 0) {
-                window = jQuery("<div class=\"window window-alert window-hide\">"
-                        + "<h1></h1>"
-                        + "<p class=\"single\"></p>"
-                        + "<div class=\"window-buttons\">"
-                        + "<span class=\"button button-cancel\">"
-                        + cancel
-                        + "</span>"
-                        + "<span class=\"button button-confirm\">"
-                        + confirm + "</span>" + "</div>");
+                window = jQuery("<div class=\"window window-alert window-hide\">" + "<h1></h1>" +
+                    "<p class=\"single\"></p>" + "<div class=\"window-buttons\">" +
+                    "<span class=\"button button-cancel\">" + cancel + "</span>" +
+                    "<span class=\"button button-confirm\">" + confirm + "</span>" + "</div>");
                 window.uxwindow();
                 matchedObject.append(window);
             }
@@ -80,17 +75,17 @@
 
             // registers for the click event on the button confirm
             windowButtonConfirm.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the associated window
-                        var window = element.parents(".window");
+                // retrieves the associated window
+                var window = element.parents(".window");
 
-                        // hides the window and calls the
-                        // callback if defined
-                        window.uxwindow("hide");
-                        callback && callback(true);
-                    });
+                // hides the window and calls the
+                // callback if defined
+                window.uxwindow("hide");
+                callback && callback(true);
+            });
         };
 
         // initializes the plugin

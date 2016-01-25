@@ -28,8 +28,8 @@
             // retrieves the window (alert window) elements
             var window = jQuery(".window.window-info", matchedObject);
             if (window.length == 0) {
-                window = jQuery("<div class=\"window window-info window-hide\">"
-                        + "<h1></h1>" + "<p class=\"single\"></p>" + "</div>");
+                window = jQuery("<div class=\"window window-info window-hide\">" + "<h1></h1>" +
+                    "<p class=\"single\"></p>" + "</div>");
                 window.uxwindow();
                 matchedObject.append(window);
             }
@@ -59,8 +59,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

@@ -47,26 +47,26 @@
 
             // iterates over all the items in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var elementReference = jQuery(element);
+                // retrieves the element reference
+                var elementReference = jQuery(element);
 
-                        // retrieves the (data) type of the element reference
-                        // and adds it as class to the element reference
-                        var type = elementReference.attr("data-type");
-                        elementReference.addClass(type);
+                // retrieves the (data) type of the element reference
+                // and adds it as class to the element reference
+                var type = elementReference.attr("data-type");
+                elementReference.addClass(type);
 
-                        // starts the type specific structures
-                        var startMethodName = "__start" + type;
-                        type
-                                && __callMethod(startMethodName,
-                                        elementReference, options);
+                // starts the type specific structures
+                var startMethodName = "__start" + type;
+                type
+                    && __callMethod(startMethodName,
+                        elementReference, options);
 
-                        // starts the element
-                        __start(elementReference, options);
+                // starts the element
+                __start(elementReference, options);
 
-                        // resets the element
-                        __reset(elementReference, options);
-                    });
+                // resets the element
+                __reset(elementReference, options);
+            });
         };
 
         /**
@@ -75,231 +75,228 @@
         var _registerHandlers = function() {
             // registers for focus event
             matchedObject.focus(function() {
-                        // retrieves the element and runs the focus
-                        // mrthod on top of it (focus the text field)
-                        var element = jQuery(this);
-                        _focus(element, options);
-                    });
+                // retrieves the element and runs the focus
+                // mrthod on top of it (focus the text field)
+                var element = jQuery(this);
+                _focus(element, options);
+            });
 
             // registers for blur event
             matchedObject.blur(function(event) {
-                        // retrieves the element and runs the blur
-                        // mrthod on top of it (blurs the text field)
-                        var element = jQuery(this);
-                        _blur(element, options);
-                    });
+                // retrieves the element and runs the blur
+                // mrthod on top of it (blurs the text field)
+                var element = jQuery(this);
+                _blur(element, options);
+            });
 
             // registers for the keypress event
             matchedObject.keypress(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the attributes
-                        var value = element.val();
-                        var type = element.attr("data-type");
-                        var regexString = element.attr("data-regex");
-                        var maximumLength = element.attr("data-maximum_length");
-                        var decimalPlaces = element.attr("data-decimal_places");
+                // retrieves the attributes
+                var value = element.val();
+                var type = element.attr("data-type");
+                var regexString = element.attr("data-regex");
+                var maximumLength = element.attr("data-maximum_length");
+                var decimalPlaces = element.attr("data-decimal_places");
 
-                        // retrieves the start index of the selection as the
-                        // caret position this may be used for validation
-                        var caret = this.selectionStart;
+                // retrieves the start index of the selection as the
+                // caret position this may be used for validation
+                var caret = this.selectionStart;
 
-                        // retrieves the key value, the key code and
-                        // the which value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
-                        var keyCode = event.keyCode;
-                        var which = event.which;
+                // retrieves the key value, the key code and
+                // the which value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
+                var keyCode = event.keyCode;
+                var which = event.which;
 
-                        // in case the pressed key is a backspace,
-                        // cursor, enter or any other movement key
-                        // the default behavior must be prevented
-                        if (keyCode == 8 || keyCode == 13 || keyCode > 8
-                                && keyCode <= 46 && which == 0) {
-                            // returns since the key press is valid
-                            return true;
-                        }
+                // in case the pressed key is a backspace,
+                // cursor, enter or any other movement key
+                // the default behavior must be prevented
+                if (keyCode == 8 || keyCode == 13 || keyCode > 8 && keyCode <= 46 && which == 0) {
+                    // returns since the key press is valid
+                    return true;
+                }
 
-                        // checks if the current length of the value is valid and
-                        // in case it's not returns in error (avoids writing)
-                        var lengthValid = __testlength(value, maximumLength);
-                        if (!lengthValid) {
-                            // prevents the current default event and the
-                            // returns immediately, no more logic executed
-                            event.preventDefault();
-                            event.stopPropagation();
-                            return;
-                        }
+                // checks if the current length of the value is valid and
+                // in case it's not returns in error (avoids writing)
+                var lengthValid = __testlength(value, maximumLength);
+                if (!lengthValid) {
+                    // prevents the current default event and the
+                    // returns immediately, no more logic executed
+                    event.preventDefault();
+                    event.stopPropagation();
+                    return;
+                }
 
-                        // converts the key value to a string
-                        var keyValueString = String.fromCharCode(keyValue);
+                // converts the key value to a string
+                var keyValueString = String.fromCharCode(keyValue);
 
-                        // initializes the valid input flag
-                        var validInput = true;
+                // initializes the valid input flag
+                var validInput = true;
 
-                        // switches over each of the (data) types
-                        switch (type) {
-                            // in case the type is natural
-                            case "natural" :
-                                // tests the input against the regular expression
-                                validInput = /^\d$/.test(keyValueString);
+                // switches over each of the (data) types
+                switch (type) {
+                    // in case the type is natural
+                    case "natural":
+                        // tests the input against the regular expression
+                        validInput = /^\d$/.test(keyValueString);
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case the type is integer
-                            case "integer" :
-                                // tests the input against the regular expression
-                                validInput = /^-|\d$/.test(keyValueString);
+                        // in case the type is integer
+                    case "integer":
+                        // tests the input against the regular expression
+                        validInput = /^-|\d$/.test(keyValueString);
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case the type is float
-                            case "float" :
-                                // tests the input against the regular expression
-                                // and then in case the input is still valid runs the test
-                                // on the number of decimal places
-                                validInput = /^-|\d|\.$/.test(keyValueString);
-                                validInput = validInput ? __testplaces(value,
-                                        decimalPlaces, caret) : validInput;
+                        // in case the type is float
+                    case "float":
+                        // tests the input against the regular expression
+                        // and then in case the input is still valid runs the test
+                        // on the number of decimal places
+                        validInput = /^-|\d|\.$/.test(keyValueString);
+                        validInput = validInput ? __testplaces(value,
+                            decimalPlaces, caret) : validInput;
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case the type is float positive
-                            case "floatp" :
-                                // tests the input against the regular expression
-                                // and then in case the input is still valid runs the test
-                                // on the number of decimal places
-                                validInput = /^\d|\.$/.test(keyValueString);
-                                validInput = validInput ? __testplaces(value,
-                                        decimalPlaces, caret) : validInput;
+                        // in case the type is float positive
+                    case "floatp":
+                        // tests the input against the regular expression
+                        // and then in case the input is still valid runs the test
+                        // on the number of decimal places
+                        validInput = /^\d|\.$/.test(keyValueString);
+                        validInput = validInput ? __testplaces(value,
+                            decimalPlaces, caret) : validInput;
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case the type is percent
-                            case "percent" :
-                                // tests the input against the regular expression
-                                // and then in case the input is still valid runs the test
-                                // on the number of decimal places
-                                validInput = /^-|\d|\.$/.test(keyValueString);
-                                validInput = validInput ? __testplaces(value,
-                                        decimalPlaces, caret) : validInput;
+                        // in case the type is percent
+                    case "percent":
+                        // tests the input against the regular expression
+                        // and then in case the input is still valid runs the test
+                        // on the number of decimal places
+                        validInput = /^-|\d|\.$/.test(keyValueString);
+                        validInput = validInput ? __testplaces(value,
+                            decimalPlaces, caret) : validInput;
 
-                                // breaks the switch
-                                break;
+                        // breaks the switch
+                        break;
 
-                            // in case the type is regex
-                            case "regex" :
-                                // tests the input against the regular expression
-                                var regex = new RegExp(regexString);
-                                validInput = regex.test(keyValueString);
+                        // in case the type is regex
+                    case "regex":
+                        // tests the input against the regular expression
+                        var regex = new RegExp(regexString);
+                        validInput = regex.test(keyValueString);
 
-                                // breaks the switch
-                                break;
-                        }
+                        // breaks the switch
+                        break;
+                }
 
-                        // returns valid input
-                        return validInput;
-                    });
+                // returns valid input
+                return validInput;
+            });
 
             // registers for key down event
             matchedObject.keydown(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the avoid escape data attribute
-                        var avoidEscape = element.data("avoid_escape");
+                // retrieves the avoid escape data attribute
+                var avoidEscape = element.data("avoid_escape");
 
-                        // in case the escape key should be escaped
-                        // must return immediately nothing to be done
-                        if (avoidEscape) {
-                            // returns immediately, nothing to be done
-                            return;
-                        }
+                // in case the escape key should be escaped
+                // must return immediately nothing to be done
+                if (avoidEscape) {
+                    // returns immediately, nothing to be done
+                    return;
+                }
 
-                        // retrieves the key value
-                        var keyValue = event.keyCode
-                                ? event.keyCode
-                                : event.charCode ? event.charCode : event.which;
+                // retrieves the key value
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
 
-                        // in case the escape key is pressed
-                        // need to blur the text field
-                        if (keyValue == 27) {
-                            // blurs the text field
-                            element.blur();
-                        }
+                // in case the escape key is pressed
+                // need to blur the text field
+                if (keyValue == 27) {
+                    // blurs the text field
+                    element.blur();
+                }
 
-                        // in case the key value represents an alpha
-                        // numeric value the propagation must be avoided
-                        if (keyValue > 64 && keyValue < 91) {
-                            // stops the event propagation
-                            // (avoid problems in global key
-                            // listening)
-                            event.stopImmediatePropagation();
-                        }
-                    });
+                // in case the key value represents an alpha
+                // numeric value the propagation must be avoided
+                if (keyValue > 64 && keyValue < 91) {
+                    // stops the event propagation
+                    // (avoid problems in global key
+                    // listening)
+                    event.stopImmediatePropagation();
+                }
+            });
 
             // registers for key up event
             matchedObject.keyup(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // checks if the text field is "lower"
-                        var isLower = element.hasClass("lower");
+                // checks if the text field is "lower"
+                var isLower = element.hasClass("lower");
 
-                        // in case the text field is "lower"
-                        if (isLower) {
-                            // returns immediately (avoids problems
-                            // of double update value calls on blur)
-                            return;
-                        }
+                // in case the text field is "lower"
+                if (isLower) {
+                    // returns immediately (avoids problems
+                    // of double update value calls on blur)
+                    return;
+                }
 
-                        // updates the value using the input
-                        __updateValue(element, options);
+                // updates the value using the input
+                __updateValue(element, options);
 
-                        // resets the error state
-                        __resetError(element, options);
+                // resets the error state
+                __resetError(element, options);
 
-                        // stops the event propagation
-                        // (avoid problems in global key
-                        // listening)
-                        event.stopPropagation();
-                    });
+                // stops the event propagation
+                // (avoid problems in global key
+                // listening)
+                event.stopPropagation();
+            });
 
             // registers for the change event so that it's possible
             // to update the error state of the current field
             matchedObject.change(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // resets the error state
-                        __resetError(element, options);
-                    });
+                // resets the error state
+                __resetError(element, options);
+            });
 
             // registers for the paste operation so that the
             // new text field contents are properly updated
             matchedObject.bind("paste", function() {
-                        // retrieves the reference to the current text element
-                        // and uses it to trigger the update value and the rese
-                        // error operation for the current element
-                        var element = jQuery(this);
-                        setTimeout(function() {
-                                    __updateValue(element, options);
-                                    __resetError(element, options);
-                                });
-                    });
+                // retrieves the reference to the current text element
+                // and uses it to trigger the update value and the rese
+                // error operation for the current element
+                var element = jQuery(this);
+                setTimeout(function() {
+                    __updateValue(element, options);
+                    __resetError(element, options);
+                });
+            });
 
             // registers for the flush event to update the current
             // internal state variables to the latest version
             matchedObject.bind("flush", function() {
-                        var element = jQuery(this);
-                        __updateValue(element, options);
-                    });
+                var element = jQuery(this);
+                __updateValue(element, options);
+            });
 
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
@@ -321,8 +318,8 @@
                         // and then uses it to create a clone of the element
                         // with the hidden type and with the same name
                         var elementName = elementReference.attr("name");
-                        var elementClone = jQuery("<input type=\"hidden\" name=\""
-                                + elementName + "\"/>");
+                        var elementClone = jQuery("<input type=\"hidden\" name=\"" +
+                            elementName + "\"/>");
 
                         // removes the name attribute from the element, it's
                         // no longer required and avoids unwanted submits
@@ -354,29 +351,29 @@
 
                 // registers for the success event
                 parentForm.bind("success", function() {
-                            __reset(elementReference, options);
-                        });
+                    __reset(elementReference, options);
+                });
 
                 // registers for the error event
                 parentForm.bind("error", function() {
-                            __reset(elementReference, options);
-                        });
+                    __reset(elementReference, options);
+                });
 
                 // sets an interval to check for modifications
                 // in the text field
                 setInterval(function() {
-                            // checks if the text field is "lower"
-                            var isLower = elementReference.hasClass("lower");
+                    // checks if the text field is "lower"
+                    var isLower = elementReference.hasClass("lower");
 
-                            // in case the text field is "lower"
-                            if (isLower) {
-                                // returns immediately
-                                return;
-                            }
+                    // in case the text field is "lower"
+                    if (isLower) {
+                        // returns immediately
+                        return;
+                    }
 
-                            // updates the value conveniently
-                            __updateValue(elementReference, options);
-                        }, 250);
+                    // updates the value conveniently
+                    __updateValue(elementReference, options);
+                }, 250);
             });
         };
 
@@ -400,9 +397,9 @@
                 var type = matchedObject.attr("data-type");
                 var valueMethodName = "__value" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
-                        options);
+                    options);
                 var elementValue = hasMethod ? __callMethod(valueMethodName,
-                        matchedObject, options) : elementValue;
+                    matchedObject, options) : elementValue;
 
                 // returns the retrieved value
                 return elementValue;
@@ -419,9 +416,9 @@
                 var type = matchedObject.attr("data-type");
                 var valueMethodName = "__fvalue" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
-                        options);
+                    options);
                 var value = hasMethod && value != "" ? __callMethod(
-                        valueMethodName, matchedObject, value) : value;
+                    valueMethodName, matchedObject, value) : value;
 
                 // sets the value in the attributes
                 matchedObject.val(value);
@@ -439,8 +436,8 @@
 
         var _reset = function(matchedObject, options) {
             _value(matchedObject, {
-                        value : ""
-                    });
+                value: ""
+            });
         };
 
         var _focus = function(matchedObject, options) {
@@ -574,8 +571,7 @@
             // in case the autocomplete has been already disabled
             // there is no need to do this because the problem
             // is not observed
-            forceComplete && inputFieldValue == originalValue
-                    && matchedObject.val("");
+            forceComplete && inputFieldValue == originalValue && matchedObject.val("");
 
             // runs the initial update operations for both the error
             // and the value, the updating of the value is
@@ -634,9 +630,9 @@
 
             // triggers the value change event in case the previous
             // input field value is different from the current
-            inputFieldValue != previousInputFieldValue
-                    && matchedObject.triggerHandler("value_change",
-                            [inputFieldValue]);
+            inputFieldValue != previousInputFieldValue && matchedObject.triggerHandler("value_change", [
+                inputFieldValue
+            ]);
         };
 
         var __updateError = function(matchedObject, options) {
@@ -664,17 +660,15 @@
 
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "if(typeof " + methodName
-                    + " != \"undefined\") { var result = " + methodName
-                    + "(element, options)} else { var result = null; }";
+            var evalString = "if(typeof " + methodName + " != \"undefined\") { var result = " + methodName +
+                "(element, options)} else { var result = null; }";
             eval(evalString);
             return result;
         };
 
         var __hasMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "var result = typeof " + methodName
-                    + " != \"undefined\";";
+            var evalString = "var result = typeof " + methodName + " != \"undefined\";";
             eval(evalString);
             return result;
         };
@@ -707,18 +701,13 @@
                 // creates the date string from the various
                 // date components
                 var yearString = String(year);
-                var monthString = month > 9 ? String(month) : "0"
-                        + String(month);
+                var monthString = month > 9 ? String(month) : "0" + String(month);
                 var dayString = day > 9 ? String(day) : "0" + String(day);
-                var hoursString = hours > 9 ? String(hours) : "0"
-                        + String(hours);
-                var minutesString = minutes > 9 ? String(minutes) : "0"
-                        + String(minutes);
-                var secondsString = seconds > 9 ? String(seconds) : "0"
-                        + String(seconds);
-                var dateString = yearString + "/" + monthString + "/"
-                        + dayString + " " + hoursString + ":" + minutesString
-                        + ":" + secondsString;
+                var hoursString = hours > 9 ? String(hours) : "0" + String(hours);
+                var minutesString = minutes > 9 ? String(minutes) : "0" + String(minutes);
+                var secondsString = seconds > 9 ? String(seconds) : "0" + String(seconds);
+                var dateString = yearString + "/" + monthString + "/" + dayString + " " + hoursString + ":" +
+                    minutesString + ":" + secondsString;
 
                 // updates both the logical value and the real value
                 element.attr("data-value", dateString);
@@ -731,54 +720,47 @@
             // registers for the submit event in the parent form
             // to create an hidden field that "sends" the converted timestamp
             parentForm.bind("pre_submit", function() {
-                        // in case the no process flag is set the processing
-                        // will be avoided and the value set is the one shown
-                        var noProcess = element.attr("data-no_process");
+                // in case the no process flag is set the processing
+                // will be avoided and the value set is the one shown
+                var noProcess = element.attr("data-no_process");
 
-                        // retrieves the current value and then uses it to parse
-                        // it as current timestamp
-                        var currentValue = element.val();
-                        var currentTimestamp = utc
-                                ? (Date.parse(currentValue + " UTC") / 1000)
-                                : (Date.parseUtc(currentValue) / 1000);
+                // retrieves the current value and then uses it to parse
+                // it as current timestamp
+                var currentValue = element.val();
+                var currentTimestamp = utc ? (Date.parse(currentValue + " UTC") / 1000) : (Date.parseUtc(
+                    currentValue) / 1000);
 
-                        // retrieves the proper string representation of the current
-                        // timestamp value taking into account if the current value
-                        // rerpresents a number or not (invalid value validation)
-                        var currentTimestampS = isNaN(currentTimestamp)
-                                ? ""
-                                : String(currentTimestamp);
+                // retrieves the proper string representation of the current
+                // timestamp value taking into account if the current value
+                // rerpresents a number or not (invalid value validation)
+                var currentTimestampS = isNaN(currentTimestamp) ? "" : String(currentTimestamp);
 
-                        // retrieves the name attribute from the element
-                        // and then removes it to avoid sending the literal date value
-                        var name = element.attr("name")
-                                || element.attr("data-name");
-                        element.attr("data-name", name)
-                        element.removeAttr("name");
+                // retrieves the name attribute from the element
+                // and then removes it to avoid sending the literal date value
+                var name = element.attr("name") || element.attr("data-name");
+                element.attr("data-name", name)
+                element.removeAttr("name");
 
-                        // in case the name is not defined or the value is unset must
-                        // return immediately in order to avoid any more problems
-                        if (!name) {
-                            return;
-                        }
+                // in case the name is not defined or the value is unset must
+                // return immediately in order to avoid any more problems
+                if (!name) {
+                    return;
+                }
 
-                        // tries to retrieve and remove any previously existing
-                        // hidden element representing the current value
-                        var previous = element.next("input[type=hidden][name=\""
-                                + name + "\"]");
-                        previous.remove();
+                // tries to retrieve and remove any previously existing
+                // hidden element representing the current value
+                var previous = element.next("input[type=hidden][name=\"" + name + "\"]");
+                previous.remove();
 
-                        // calculates the apropriate value taking into account
-                        // if the no process flag is currently set
-                        var value = noProcess
-                                ? currentValue
-                                : currentTimestampS;
+                // calculates the apropriate value taking into account
+                // if the no process flag is currently set
+                var value = noProcess ? currentValue : currentTimestampS;
 
-                        // creates the hidden field to submit the timestamp value
-                        // described in the text field
-                        element.after("<input type=\"hidden\" name=\"" + name
-                                + "\" value=\"" + value + "\" />");
-                    });
+                // creates the hidden field to submit the timestamp value
+                // described in the text field
+                element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value +
+                    "\" />");
+            });
         };
 
         var __startdate = function(element, options) {
@@ -845,21 +827,19 @@
                 // sets the calendar value to reflect
                 // the initial date value
                 calendar.uxcalendar("set", {
-                            current : {
-                                year : year,
-                                month : month,
-                                day : day
-                            }
-                        });
+                    current: {
+                        year: year,
+                        month: month,
+                        day: day
+                    }
+                });
 
                 // creates the date string from the various
                 // date components
                 var yearString = String(year);
-                var monthString = month > 9 ? String(month) : "0"
-                        + String(month);
+                var monthString = month > 9 ? String(month) : "0" + String(month);
                 var dayString = day > 9 ? String(day) : "0" + String(day);
-                var dateString = yearString + "/" + monthString + "/"
-                        + dayString;
+                var dateString = yearString + "/" + monthString + "/" + dayString;
 
                 // updates both the logical value and the real value
                 element.attr("data-value", dateString);
@@ -869,82 +849,82 @@
             // registers for the current change event in the calendar
             // to update the text field accordingly
             calendar.bind("current_change", function(event, current) {
-                        // retrieves the date format defined in the current element
-                        // and uses it with the current map to retrieve the date string
-                        var format = element.attr("data-format") || "%Y/%m/%d";
-                        var dateString = jQuery.uxformat(current, format);
+                // retrieves the date format defined in the current element
+                // and uses it with the current map to retrieve the date string
+                var format = element.attr("data-format") || "%Y/%m/%d";
+                var dateString = jQuery.uxformat(current, format);
 
-                        // updates both the logical value and the real value
-                        element.attr("data-value", dateString);
-                        element.val(dateString);
+                // updates both the logical value and the real value
+                element.attr("data-value", dateString);
+                element.val(dateString);
 
-                        // triggers the value change event for the element
-                        // to notify the event handlers
-                        element.triggerHandler("value_change", [dateString]);
-                    });
+                // triggers the value change event for the element
+                // to notify the event handlers
+                element.triggerHandler("value_change", [dateString]);
+            });
 
             // registers for the mouse down event on the calendar
             calendar.mousedown(function() {
-                        //element to avoid the next (blur)
-                        element.data("avoid_next", true);
-                    });
+                //element to avoid the next (blur)
+                element.data("avoid_next", true);
+            });
 
             // registers for the mouse up event on the calendar
             calendar.mouseup(function() {
-                        // re-focus on the element
-                        element.focus();
-                    });
+                // re-focus on the element
+                element.focus();
+            });
 
             // registers for the value change event on the element
             // to update the value in the calendar
             element.bind("value_change", function(event, inputFieldValue) {
-                        // parses the input field value, retrieving
-                        // the corresponding timestamp
-                        var timestamp = Date.parse(inputFieldValue);
+                // parses the input field value, retrieving
+                // the corresponding timestamp
+                var timestamp = Date.parse(inputFieldValue);
 
-                        // in case the timestamp was not correctly
-                        // parsed (not a number)
-                        if (isNaN(timestamp)) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the timestamp was not correctly
+                // parsed (not a number)
+                if (isNaN(timestamp)) {
+                    // returns immediately
+                    return;
+                }
 
-                        // creates the date object from the timestamp
-                        // and then uses it to unpack the various date
-                        // values fro it (value decomposition)
-                        var date = new Date(timestamp);
-                        var year = date.getFullYear();
-                        var month = date.getMonth() + 1;
-                        var day = date.getDate();
+                // creates the date object from the timestamp
+                // and then uses it to unpack the various date
+                // values fro it (value decomposition)
+                var date = new Date(timestamp);
+                var year = date.getFullYear();
+                var month = date.getMonth() + 1;
+                var day = date.getDate();
 
-                        // sets the calendar value to reflect
-                        // the text field value changes
-                        calendar.uxcalendar("set", {
-                                    current : {
-                                        year : year,
-                                        month : month,
-                                        day : day
-                                    }
-                                });
-                    });
+                // sets the calendar value to reflect
+                // the text field value changes
+                calendar.uxcalendar("set", {
+                    current: {
+                        year: year,
+                        month: month,
+                        day: day
+                    }
+                });
+            });
 
             // registers the resize in the window to reposition
             // the calendar in the correct place
             _window.resize(function(event) {
-                        // retrieves the offset and height values
-                        // from the element to calculate
-                        // the relative position for the calendar
-                        var offset = element.position();
-                        var height = element.outerHeight(true);
+                // retrieves the offset and height values
+                // from the element to calculate
+                // the relative position for the calendar
+                var offset = element.position();
+                var height = element.outerHeight(true);
 
-                        // calculates the calendar top and left
-                        // positions from the element offset and height
-                        // and then sets them in the calendar
-                        var calendarTop = offset["top"] + height;
-                        var calendarLeft = offset["left"];
-                        calendar.css("top", calendarTop + "px");
-                        calendar.css("left", calendarLeft + "px");
-                    });
+                // calculates the calendar top and left
+                // positions from the element offset and height
+                // and then sets them in the calendar
+                var calendarTop = offset["top"] + height;
+                var calendarLeft = offset["left"];
+                calendar.css("top", calendarTop + "px");
+                calendar.css("left", calendarLeft + "px");
+            });
 
             // retrieves the containing form
             var parentForm = element.parents("form");
@@ -964,9 +944,7 @@
                 // retrieves the proper string representation of the current
                 // timestamp value taking into account if the current value
                 // rerpresents a number or not (invalid value validation)
-                var currentTimestampS = isNaN(currentTimestamp)
-                        ? ""
-                        : String(currentTimestamp);
+                var currentTimestampS = isNaN(currentTimestamp) ? "" : String(currentTimestamp);
 
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
@@ -982,8 +960,7 @@
 
                 // tries to retrieve and remove any previously existing
                 // hidden element representing the current value
-                var previous = element.next("input[type=hidden][name=\"" + name
-                        + "\"]");
+                var previous = element.next("input[type=hidden][name=\"" + name + "\"]");
                 previous.remove();
 
                 // calculates the apropriate value taking into account
@@ -992,8 +969,8 @@
 
                 // creates the hidden field to submit the timestamp value
                 // described in the text field
-                element.after("<input type=\"hidden\" name=\"" + name
-                        + "\" value=\"" + value + "\" />");
+                element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value +
+                    "\" />");
             });
 
             // sets the calendar in the element
@@ -1135,9 +1112,7 @@
             // then using it checks if the float number is still
             // valid (decimal places within range)
             var separatorIndex = stringValue.indexOf(".");
-            var valid = separatorIndex >= stringValue.length
-                    - decimalPlacesInteger
-                    || separatorIndex == -1;
+            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex == -1;
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run
@@ -1163,34 +1138,34 @@
             // iterates over all the elements that are
             // considered to be active text fields
             active.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // checks if the current element reference
-                        // dom element is the same as the matched
-                        // object (top level reference) in such
-                        // case the object cannot be blured
-                        if (_element.get(0) == matchedObject.get(0)) {
-                            // returns immediately, avoids blur
-                            return;
-                        }
+                // checks if the current element reference
+                // dom element is the same as the matched
+                // object (top level reference) in such
+                // case the object cannot be blured
+                if (_element.get(0) == matchedObject.get(0)) {
+                    // returns immediately, avoids blur
+                    return;
+                }
 
-                        // blurs the current element according to the
-                        // the current options map
-                        _blur(_element, options);
-                    });
+                // blurs the current element according to the
+                // the current options map
+                _blur(_element, options);
+            });
         };
 
         // switches over the method
         switch (method) {
-            case "value" :
+            case "value":
                 // retrieves the value
                 var value = _value(matchedObject, options);
 
                 // returns the value
                 return value;
 
-            case "reset" :
+            case "reset":
                 // resets the current text field value to
                 // its original value
                 _reset(matchedObject, options);
@@ -1198,21 +1173,21 @@
                 // breaks the switch
                 break;
 
-            case "focus" :
+            case "focus":
                 // focus the matched object
                 _focus(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "blur" :
+            case "blur":
                 // blurs the matched object
                 _blur(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

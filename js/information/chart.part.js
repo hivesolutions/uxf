@@ -36,41 +36,40 @@
             // iterates over all the bars of the matched object for
             // width calculation
             bars.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the percentage from the elment
-                        // and parses it as a float
-                        var percentage = _element.attr("data-percentage");
-                        percentage = parseFloat(percentage);
+                // retrieves the percentage from the elment
+                // and parses it as a float
+                var percentage = _element.attr("data-percentage");
+                percentage = parseFloat(percentage);
 
-                        // checks if the chart is meant to be represented
-                        // in a linear manner (linear scale)
-                        var linear = _element.attr("data-linear");
+                // checks if the chart is meant to be represented
+                // in a linear manner (linear scale)
+                var linear = _element.attr("data-linear");
 
-                        // in case the linear flag is set the ratio is
-                        // meant to be the percentage itself
-                        if (linear) {
-                            // sets the percentage as the ratio to be used
-                            // in the bar
-                            var ratio = percentage;
-                        }
-                        // otherwise the ratio must be controlled using a
-                        // logarithmic approach
-                        else {
-                            // calculates the ratio for the current bar, takes
-                            // into account the cases where the value is invalid
-                            var ratio = (Math.log(percentage + 1) / Math.log(101.0))
-                                    * 100.0;
-                            ratio = percentage > 0 ? ratio : 0.0;
-                        }
+                // in case the linear flag is set the ratio is
+                // meant to be the percentage itself
+                if (linear) {
+                    // sets the percentage as the ratio to be used
+                    // in the bar
+                    var ratio = percentage;
+                }
+                // otherwise the ratio must be controlled using a
+                // logarithmic approach
+                else {
+                    // calculates the ratio for the current bar, takes
+                    // into account the cases where the value is invalid
+                    var ratio = (Math.log(percentage + 1) / Math.log(101.0)) * 100.0;
+                    ratio = percentage > 0 ? ratio : 0.0;
+                }
 
-                        // converts the ratio into a fixed sized string
-                        var ratio = ratio.toFixed(0);
+                // converts the ratio into a fixed sized string
+                var ratio = ratio.toFixed(0);
 
-                        // sets the ratio as the element width
-                        _element.width(ratio + "%");
-                    });
+                // sets the ratio as the element width
+                _element.width(ratio + "%");
+            });
 
             // iterates over all the bars of the matched object for
             // content overflow testing
@@ -108,8 +107,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

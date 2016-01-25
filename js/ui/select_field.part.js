@@ -39,8 +39,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -53,11 +52,11 @@
             // registers for the change in the text field
             // (select) this occurs when a new option is selected
             textField.change(function() {
-                        // retrieves the current element and updates
-                        // the current values
-                        var element = jQuery(this);
-                        _update(element);
-                    });
+                // retrieves the current element and updates
+                // the current values
+                var element = jQuery(this);
+                _update(element);
+            });
 
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
@@ -79,34 +78,34 @@
                     // runs the initial data query in the data source to
                     // set the options in the select field
                     dataSource.uxdataquery({
-                                filterString : "",
-                                filterAttributes : [value]
-                            }, function(validItems, moreItems) {
-                                // in case there are no valid items
-                                // returns immediately nothing to be done
-                                if (validItems.length == 0) {
-                                    // returns immediately
-                                    return;
-                                }
+                        filterString: "",
+                        filterAttributes: [value]
+                    }, function(validItems, moreItems) {
+                        // in case there are no valid items
+                        // returns immediately nothing to be done
+                        if (validItems.length == 0) {
+                            // returns immediately
+                            return;
+                        }
 
-                                // iterates over all the valid items to create the
-                                // proper options and set them in the text field
-                                for (var index = 0; index < validItems.length; index++) {
-                                    // retrieves the current valid item and then creates
-                                    // the option and set the proper data item
-                                    var validItem = validItems[index];
-                                    var option = jQuery("<option>"
-                                            + validItem[display] + "</option>");
-                                    option.data("item", validItem);
+                        // iterates over all the valid items to create the
+                        // proper options and set them in the text field
+                        for (var index = 0; index < validItems.length; index++) {
+                            // retrieves the current valid item and then creates
+                            // the option and set the proper data item
+                            var validItem = validItems[index];
+                            var option = jQuery("<option>" + validItem[display] +
+                                "</option>");
+                            option.data("item", validItem);
 
-                                    // adds the option to the text field (select)
-                                    textField.append(option);
-                                }
+                            // adds the option to the text field (select)
+                            textField.append(option);
+                        }
 
-                                // updates the current text field setting the proper
-                                // value in the template item (render value)
-                                _update(textField, options);
-                            });
+                        // updates the current text field setting the proper
+                        // value in the template item (render value)
+                        _update(textField, options);
+                    });
                 });
             });
         };
@@ -140,7 +139,7 @@
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

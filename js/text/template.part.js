@@ -8,9 +8,9 @@
 
         // sets the default options value
         var options = options ? options : {
-            apply : true,
-            nullify : true,
-            defaultValue : ""
+            apply: true,
+            nullify: true,
+            defaultValue: ""
         };
 
         // constructs the options
@@ -31,14 +31,12 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _applyTemplate = function(element) {
             // retrieves the ux apply option, taking into account
@@ -144,8 +142,8 @@
                     // based in the current attribute value and with
                     // the new base key value
                     templateContents = _applyAttributes(templateContents,
-                            attributeValue, nullify, localize, defaultValue,
-                            newBaseKey);
+                        attributeValue, nullify, localize, defaultValue,
+                        newBaseKey);
                 }
                 // otherwise the attribute value must be
                 // a simple basic type
@@ -156,15 +154,13 @@
                     // in case the localize flag is set, tries to localize the
                     // current attribute value into the current locale, the return
                     // value should default to the proper value in case of failure
-                    attributeValue = localize
-                            ? jQuery.uxlocale(attributeValue)
-                            : attributeValue;
+                    attributeValue = localize ? jQuery.uxlocale(attributeValue) : attributeValue;
 
                     // replaces the template strings in the html with the proper attribute
                     // values this may be an expesive operation in case it's repeated
                     // frequently for a lot of times (modify with care)
                     templateContents = templateContents.replace(keyRegex,
-                            attributeValue);
+                        attributeValue);
                 }
             }
 
@@ -181,47 +177,47 @@
             var defaultValue = options["defaultValue"];
 
             // retrirves the for each elments for the current template element
-            var foreachElements = jQuery(".template-foreach", templateElement).not(".template-foreach .template-foreach");
+            var foreachElements = jQuery(".template-foreach", templateElement).not(
+                ".template-foreach .template-foreach");
 
             // iterates over all the for each elements
             foreachElements.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the variable for the element
-                        var variableName = _element.attr("data-variable");
-                        var variable = attributes[variableName];
+                // retrieves the variable for the element
+                var variableName = _element.attr("data-variable");
+                var variable = attributes[variableName];
 
-                        // retrieves the target element (type) for the for
-                        // each substituin
-                        var target = _element.attr("data-target");
+                // retrieves the target element (type) for the for
+                // each substituin
+                var target = _element.attr("data-target");
 
-                        // start the for each buffer
-                        var forEachBuffer = "";
+                // start the for each buffer
+                var forEachBuffer = "";
 
-                        // iterates over all the items in the variable
-                        for (var variableIndex in variable) {
-                            // retrieves the (current) variable item
-                            var variableItem = variable[variableIndex];
+                // iterates over all the items in the variable
+                for (var variableIndex in variable) {
+                    // retrieves the (current) variable item
+                    var variableItem = variable[variableIndex];
 
-                            // creates the template element
-                            var _templateElement = _element.clone();
+                    // creates the template element
+                    var _templateElement = _element.clone();
 
-                            // applies the template to the current element
-                            var forEachTemplateElement = __applyTemplate(
-                                    _templateElement, variableItem);
+                    // applies the template to the current element
+                    var forEachTemplateElement = __applyTemplate(
+                        _templateElement, variableItem);
 
-                            // adds the new element to the for each
-                            // buffer string value
-                            forEachBuffer += "<" + target + ">"
-                                    + forEachTemplateElement + "</" + target
-                                    + ">";
-                        }
+                    // adds the new element to the for each
+                    // buffer string value
+                    forEachBuffer += "<" + target + ">" + forEachTemplateElement + "</" + target +
+                        ">";
+                }
 
-                        // replaces the element value with the value
-                        // in the for each buffer
-                        _element.replaceWith(forEachBuffer);
-                    });
+                // replaces the element value with the value
+                // in the for each buffer
+                _element.replaceWith(forEachBuffer);
+            });
 
             // retrieves the template contents
             var templateContents = templateElement.html();
@@ -229,8 +225,8 @@
             // applies the attributes to the template contents
             // in case the template contents is correctly set
             templateContents = templateContents ? _applyAttributes(
-                    templateContents, attributes, nullify, localize,
-                    defaultValue) : templateContents;
+                templateContents, attributes, nullify, localize,
+                defaultValue) : templateContents;
 
             // returns the template contents
             return templateContents;

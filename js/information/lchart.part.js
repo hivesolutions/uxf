@@ -26,16 +26,15 @@
          */
         var _appendHtml = function() {
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        _initialize(_element, options);
-                    });
+                var _element = jQuery(this);
+                _initialize(_element, options);
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _initialize = function(matchedObject, options) {
             matchedObject.prepend("<canvas></canvas>");

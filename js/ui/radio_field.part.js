@@ -47,10 +47,10 @@
             // iterates over all the matched objects to update their
             // current internal state values
             matchedObject.each(function(index, element) {
-                        // retrieves the element refence
-                        var _element = jQuery(element);
-                        _update(_element, options);
-                    });
+                // retrieves the element refence
+                var _element = jQuery(element);
+                _update(_element, options);
+            });
         };
 
         /**
@@ -64,15 +64,15 @@
             // registers the radio field label for the click
             // event to check the associated radio field
             radioFieldLabel.click(function() {
-                        // retrieves the current element and uses it to retrieve
-                        // the previous radio field
-                        var element = jQuery(this);
-                        var radioField = element.prev(".radio-field");
+                // retrieves the current element and uses it to retrieve
+                // the previous radio field
+                var element = jQuery(this);
+                var radioField = element.prev(".radio-field");
 
-                        // checks the "just" retrieved radio field, this should
-                        // enable its boolean value
-                        _check(radioField, options);
-                    });
+                // checks the "just" retrieved radio field, this should
+                // enable its boolean value
+                _check(radioField, options);
+            });
         };
 
         var _check = function(matchedObject, options, force) {
@@ -119,14 +119,14 @@
 
         // switches over the method
         switch (method) {
-            case "reset" :
+            case "reset":
                 // runs the reset method in the current element
                 _reset(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

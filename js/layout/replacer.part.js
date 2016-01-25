@@ -40,26 +40,26 @@
             // iterates over all the matched objects
             // to check for target value existence
             matchedObject.each(function(index, element) {
-                        // retrieves the replacer
-                        var replacer = jQuery(element);
+                // retrieves the replacer
+                var replacer = jQuery(element);
 
-                        // retrieves the selector value for the target
-                        // and then uses it to retrieve the target
-                        var targetSelector = replacer.attr("data-target");
-                        var noAuto = replacer.attr("data-no_auto");
-                        var target = jQuery(targetSelector);
+                // retrieves the selector value for the target
+                // and then uses it to retrieve the target
+                var targetSelector = replacer.attr("data-target");
+                var noAuto = replacer.attr("data-no_auto");
+                var target = jQuery(targetSelector);
 
-                        // retrieves the target element value so that it's
-                        // possible to check if the target should be automaitcally
-                        // shown (replaced)
-                        var value = target.uxvalue();
+                // retrieves the target element value so that it's
+                // possible to check if the target should be automaitcally
+                // shown (replaced)
+                var value = target.uxvalue();
 
-                        // replaces the elements (not focusing in the
-                        // target element) because the target element
-                        // already contains a value, this is only done
-                        // when the not auto attribute is not set
-                        !noAuto && value && _replace(replacer, options, false);
-                    });
+                // replaces the elements (not focusing in the
+                // target element) because the target element
+                // already contains a value, this is only done
+                // when the not auto attribute is not set
+                !noAuto && value && _replace(replacer, options, false);
+            });
         };
 
         /**
@@ -69,13 +69,13 @@
             // register for the click event on the matched
             // object (replacement action)
             matchedObject.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // replaces the elements (focusing in the
-                        // target element)
-                        _replace(element, options, true);
-                    });
+                // replaces the elements (focusing in the
+                // target element)
+                _replace(element, options, true);
+            });
         };
 
         var _replace = function(matchedObject, options, focus) {
@@ -87,10 +87,9 @@
             // checks if the current target is a text field or a
             // text area in case it's not the target for focus
             // should be a sub element that is a text field (or area)
-            var isTextField = target.hasClass("text-field")
-                    || target.hasClass("text-area");
+            var isTextField = target.hasClass("text-field") || target.hasClass("text-area");
             focusTarget = isTextField ? target : jQuery(
-                    ".text-field, .text-area", target);
+                ".text-field, .text-area", target);
 
             // hides the matched object and then shows (and focus)
             // the target (element)

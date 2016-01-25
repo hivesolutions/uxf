@@ -13,9 +13,11 @@
     // the lists for the month string values both in full
     // name mode and in abreviated mode
     var FULL_MONTHS = ["January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"];
+        "July", "August", "September", "October", "November", "December"
+    ];
     var ABBREVIATED_MONTHS = ["JanS", "FebS", "MarS", "AprS", "MayS", "JunS",
-            "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"];
+        "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"
+    ];
 
     jQuery.uxformat = function(date, format, utc) {
         /**
@@ -92,12 +94,12 @@
             format = format.replace(DAY_CHARACTER, _getStringValue(day, 2));
             format = format.replace(HOUR_CHARACTER, _getStringValue(hours, 2));
             format = format.replace(MINUTE_CHARACTER, _getStringValue(minutes,
-                            2));
+                2));
             format = format.replace(SECOND_CHARACTER, _getStringValue(seconds,
-                            2));
+                2));
             format = format.replace(FULL_MONTH_CHARACTER, fullMonth);
             format = format.replace(ABBREVIATED_MONTH_CHARACTER,
-                    abbreviatedMonth);
+                abbreviatedMonth);
 
             // sets the date string as the final format
             var dateString = format;
@@ -107,10 +109,9 @@
         else {
             // creates the date string with the default
             // (complete) format in accordance with standard
-            var dateString = year + "-" + _getStringValue(month, 2) + "-"
-                    + _getStringValue(day, 2) + " " + _getStringValue(hours, 2)
-                    + ":" + _getStringValue(minutes, 2) + ":"
-                    + _getStringValue(seconds, 2)
+            var dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) + " " +
+                _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" + _getStringValue(seconds,
+                    2)
         }
 
         // returns the processed date string to the caller method

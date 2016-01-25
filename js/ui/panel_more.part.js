@@ -40,23 +40,21 @@
             // iterates over each of the panel more elements
             // to construct their internal structures
             matchedObject.each(function(index, element) {
-                        // retrieves the current element (panel more)
-                        // and the associated more string
-                        var element = jQuery(this);
-                        var moreString = element.attr("data-more");
+                // retrieves the current element (panel more)
+                // and the associated more string
+                var element = jQuery(this);
+                var moreString = element.attr("data-more");
 
-                        // wrapps the current element inside the panel more
-                        // contents to be able to change the visibility
-                        element.wrapInner("<div class=\"panel-more-contents\"></div>");
+                // wrapps the current element inside the panel more
+                // contents to be able to change the visibility
+                element.wrapInner("<div class=\"panel-more-contents\"></div>");
 
-                        // adds the panel more action container with the
-                        // button and the divider
-                        element.append("<div class=\"panel-more-action\">"
-                                + "<li class=\"list-more\">"
-                                + "<span class=\"button\">" + moreString
-                                + "</span>" + "</li>"
-                                + "<li class=\"list-divider\"></li>" + "</div>");
-                    });
+                // adds the panel more action container with the
+                // button and the divider
+                element.append("<div class=\"panel-more-action\">" + "<li class=\"list-more\">" +
+                    "<span class=\"button\">" + moreString + "</span>" + "</li>" +
+                    "<li class=\"list-divider\"></li>" + "</div>");
+            });
         };
 
         /**
@@ -70,43 +68,43 @@
             // registers for the click event on the more
             // button to toggle the contents state
             moreButton.click(function() {
-                        // retrieves the current element and uses it to retrieve the
-                        // associated panel more element to be changed
-                        var element = jQuery(this);
-                        var panelMore = element.parents(".panel-more");
+                // retrieves the current element and uses it to retrieve the
+                // associated panel more element to be changed
+                var element = jQuery(this);
+                var panelMore = element.parents(".panel-more");
 
-                        // triggers the toggle visibility operation that will
-                        // start the process of "toggling"
-                        _toggle(panelMore, options);
-                    });
+                // triggers the toggle visibility operation that will
+                // start the process of "toggling"
+                _toggle(panelMore, options);
+            });
 
             // registers the various elements to the show operation
             // so that it's possible to force the show of the panel
             matchedObject.bind("show", function() {
-                        var element = jQuery(this);
-                        _show(element, options);
-                    });
+                var element = jQuery(this);
+                _show(element, options);
+            });
 
             // registers the various elements to the hide operation
             // so that it's possible to force the hide of the panel
             matchedObject.bind("hide", function() {
-                        var element = jQuery(this);
-                        _hide(element, options);
-                    });
+                var element = jQuery(this);
+                _hide(element, options);
+            });
 
             // registers the various elements to the toggle operation
             // so that it's possible to force the toggle of the panel
             matchedObject.bind("toggle", function() {
-                        var element = jQuery(this);
-                        _toggle(element, options);
-                    });
+                var element = jQuery(this);
+                _toggle(element, options);
+            });
         };
 
         var _show = function(matchedObject, options) {
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the show operation
             var panelMoreContents = jQuery(".panel-more-contents",
-                    matchedObject);
+                matchedObject);
             var moreButton = jQuery("li.list-more .button", matchedObject);
 
             // retrieves the string that is going to be used to
@@ -123,7 +121,7 @@
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the hide operation
             var panelMoreContents = jQuery(".panel-more-contents",
-                    matchedObject);
+                matchedObject);
             var moreButton = jQuery("li.list-more .button", matchedObject);
 
             // retrieves the string that is going to be used to
@@ -140,7 +138,7 @@
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the toggle operation
             var panelMoreContents = jQuery(".panel-more-contents",
-                    matchedObject);
+                matchedObject);
 
             // checks if the the panel more contents is currently
             // visible, to toggle the visibility

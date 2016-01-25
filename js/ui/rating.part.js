@@ -36,37 +36,37 @@
             // iterates over each of the selected rating element to
             // create the structure for each of them
             matchedObject.each(function(index, element) {
-                        // retrieves the reference to the current element in
-                        // iterateion that is going to be constructed
-                        var _element = jQuery(this);
+                // retrieves the reference to the current element in
+                // iterateion that is going to be constructed
+                var _element = jQuery(this);
 
-                        // retrieves the value of the count attribute and tries
-                        // to parse it as an integer value in case it fails defaults
-                        // the current value to the zero value
-                        var count = _element.attr("data-count");
-                        count = count ? parseInt(count) : 0;
+                // retrieves the value of the count attribute and tries
+                // to parse it as an integer value in case it fails defaults
+                // the current value to the zero value
+                var count = _element.attr("data-count");
+                count = count ? parseInt(count) : 0;
 
-                        // retrieves the currently set value (default one) and tries
-                        // to parse it as an integer value defaulting to zero in case
-                        // parsing was not possible (default behaviour)
-                        var value = _element.attr("data-value");
-                        value = value ? parseInt(value) : 0;
+                // retrieves the currently set value (default one) and tries
+                // to parse it as an integer value defaulting to zero in case
+                // parsing was not possible (default behaviour)
+                var value = _element.attr("data-value");
+                value = value ? parseInt(value) : 0;
 
-                        // sets the original count value in the element so that latter
-                        // it's faster to retrieve it (no parsing required)
-                        _element.data("count", count);
-                        _element.data("default", value);
+                // sets the original count value in the element so that latter
+                // it's faster to retrieve it (no parsing required)
+                _element.data("count", count);
+                _element.data("default", value);
 
-                        // iterates over the range of requested rating values to
-                        // create the various values (as requested)
-                        for (var index = 0; index < count; index++) {
-                            _element.append("<div class=\"rating-item\"></div>");
-                        }
+                // iterates over the range of requested rating values to
+                // create the various values (as requested)
+                for (var index = 0; index < count; index++) {
+                    _element.append("<div class=\"rating-item\"></div>");
+                }
 
-                        // selects the initial value by triggering the value change
-                        // function with the original (default) value
-                        _value(_element, value);
-                    });
+                // selects the initial value by triggering the value change
+                // function with the original (default) value
+                _value(_element, value);
+            });
         };
 
         /**
@@ -80,35 +80,35 @@
             // registers for the reset event on the current element so
             // that the default value is set instead of the current one
             matchedObject.bind("_reset", function() {
-                        var element = jQuery(this);
-                        _value(element, 0);
-                    });
+                var element = jQuery(this);
+                _value(element, 0);
+            });
 
             // register for the mouse over event in the rating elements
             // to be able to focus on the various items
             items.mouseover(function() {
-                        var element = jQuery(this);
-                        var rating = element.parents(".rating");
-                        var _index = element.index();
-                        _focus(rating, _index);
-                    });
+                var element = jQuery(this);
+                var rating = element.parents(".rating");
+                var _index = element.index();
+                _focus(rating, _index);
+            });
 
             // registers for the mouse out event in the rating items so
             // that the behaviour is returned to normal (no more hover)
             items.mouseout(function() {
-                        var element = jQuery(this);
-                        var rating = element.parents(".rating");
-                        _blur(rating, options);
-                    });
+                var element = jQuery(this);
+                var rating = element.parents(".rating");
+                _blur(rating, options);
+            });
 
             // registers for the click operation in the items
             // so that the value is correctly set on click
             items.click(function() {
-                        var element = jQuery(this);
-                        var rating = element.parents(".rating");
-                        var _index = element.index();
-                        _value(rating, _index + 1);
-                    });
+                var element = jQuery(this);
+                var rating = element.parents(".rating");
+                var _index = element.index();
+                _value(rating, _index + 1);
+            });
 
             // iterates over the complete set of elements to be able
             // to register for the specific elements of each component
@@ -127,30 +127,30 @@
                 // of the current element so that the "virtual" hidden input
                 // field may be created before the form submission
                 parentForm.bind("pre_submit", function() {
-                            // retrieves both the name and the vale of the current rating
-                            // element to be used in the creation of the new virtual element
-                            // that is going to represent the rating element
-                            var name = _element.attr("data-name");
-                            var value = _element.attr("data-value");
+                    // retrieves both the name and the vale of the current rating
+                    // element to be used in the creation of the new virtual element
+                    // that is going to represent the rating element
+                    var name = _element.attr("data-name");
+                    var value = _element.attr("data-value");
 
-                            // in case the name is not defined or the value is unset must
-                            // return immediately in order to avoid any more problems
-                            if (!name) {
-                                return;
-                            }
+                    // in case the name is not defined or the value is unset must
+                    // return immediately in order to avoid any more problems
+                    if (!name) {
+                        return;
+                    }
 
-                            // tries to retrieve and remove any previously existing
-                            // hidden element representing the current value, this
-                            // avoids problems whild using ajax based form submit
-                            var previous = _element.next("input[type=hidden][name=\""
-                                    + name + "\"]");
-                            previous.remove();
+                    // tries to retrieve and remove any previously existing
+                    // hidden element representing the current value, this
+                    // avoids problems whild using ajax based form submit
+                    var previous = _element.next("input[type=hidden][name=\"" + name +
+                        "\"]");
+                    previous.remove();
 
-                            // creates the hidden input field that is going to represent the
-                            // rating element with the proper name and value set
-                            _element.after("<input type=\"hidden\" name=\""
-                                    + name + "\" value=\"" + value + "\" />");
-                        });
+                    // creates the hidden input field that is going to represent the
+                    // rating element with the proper name and value set
+                    _element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" +
+                        value + "\" />");
+                });
             });
         };
 
@@ -228,7 +228,7 @@
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

@@ -37,22 +37,22 @@
             // binds the matched object to the file enter
             // event
             matchedObject.bind("file_enter", function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // adds the drag class to the element
-                        element.addClass("drag");
-                    });
+                // adds the drag class to the element
+                element.addClass("drag");
+            });
 
             // binds the matched object to the file leave
             // event
             matchedObject.bind("file_leave", function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // removes the drag class from the element
-                        element.removeClass("drag");
-                    });
+                // removes the drag class from the element
+                element.removeClass("drag");
+            });
 
             // binds the matched object to the file
             // drop event
@@ -67,23 +67,23 @@
 
                 // iterates over the files
                 _files.each(function(index, element) {
-                            // creates the image element and adds it to the image upload
-                            var image = jQuery("<img class=\"image-upload-image\" />");
-                            imageUpload.append(image);
+                    // creates the image element and adds it to the image upload
+                    var image = jQuery("<img class=\"image-upload-image\" />");
+                    imageUpload.append(image);
 
-                            // creates a new file reader for reading the file
-                            var fileReader = new FileReader();
+                    // creates a new file reader for reading the file
+                    var fileReader = new FileReader();
 
-                            // registers the file reader for the on load
-                            // event
-                            fileReader.onload = function(event) {
-                                // sets the new src attribute in the image
-                                image.attr("src", event.target.result);
-                            };
+                    // registers the file reader for the on load
+                    // event
+                    fileReader.onload = function(event) {
+                        // sets the new src attribute in the image
+                        image.attr("src", event.target.result);
+                    };
 
-                            // reads the file as a data url
-                            fileReader.readAsDataURL(element);
-                        });
+                    // reads the file as a data url
+                    fileReader.readAsDataURL(element);
+                });
 
                 // removes the drag class from the element
                 element.removeClass("drag");

@@ -39,7 +39,7 @@
                 var hasSubmit = submitButton.length > 0;
                 var requiresSubmit = !noKeyboard && !hasSubmit;
                 requiresSubmit
-                        && _element.append("<input type=\"submit\" class=\"submit-button\" />");
+                    && _element.append("<input type=\"submit\" class=\"submit-button\" />");
             });
         };
 
@@ -50,59 +50,88 @@
             // registers for the submit event so that
             // duplicate submits may be avoided
             matchedObject.submit(function(event) {
-                        // retrieves the current element, so that access to
-                        // the current form is possible, and then retrieves
-                        // the reference to the body element that may be used
-                        // for some of the possible global operations
-                        var element = jQuery(this);
-                        var _body = jQuery("body");
+                // retrieves the current element, so that access to
+                // the current form is possible, and then retrieves
+                // the reference to the body element that may be used
+                // for some of the possible global operations
+                var element = jQuery(this);
+                var _body = jQuery("body");
 
-                        // gathers the reference to the complete set of input
-                        // like elements contained in the current form element
-                        var inputs = jQuery("input", element);
+                // gathers the reference to the complete set of input
+                // like elements contained in the current form element
+                var inputs = jQuery("input", element);
 
-                        // verifies if the current form is of type (message) confirm
-                        // and if that's the case retrieves the associated message
-                        var isConfirm = matchedObject.hasClass("form-confirm");
-                        var message = matchedObject.attr("data-message");
-                        isConfirm = isConfirm && message;
+                // verifies if the current form is of type (message) confirm
+                // and if that's the case retrieves the associated message
+                var isConfirm = matchedObject.hasClass("form-confirm");
+                var message = matchedObject.attr("data-message");
+                isConfirm = isConfirm && message;
 
-                        // retrieves the currently set attribute value
-                        // for the trim operation on the form
-                        var noTrim = element.attr("data-no_trim") || false;
+                // retrieves the currently set attribute value
+                // for the trim operation on the form
+                var noTrim = element.attr("data-no_trim") || false;
 
-                        // tries to detect if the current form is already confirmed
-                        // if it's confirmed this is a second (special) submission,
-                        // round-trip that should be handled carefully
-                        var confirmed = element.data("confirmed");
+                // tries to detect if the current form is already confirmed
+                // if it's confirmed this is a second (special) submission,
+                // round-trip that should be handled carefully
+                var confirmed = element.data("confirmed");
 
-                        // retrieves the state of the submited flag
-                        // and then updates it to the valid value
-                        var submited = element.data("submited");
-                        element.data("submited", true);
+                // retrieves the state of the submited flag
+                // and then updates it to the valid value
+                var submited = element.data("submited");
+                element.data("submited", true);
 
-                        // in case the form was not already submited
-                        // need to prevent the event from bubling and
-                        // then the function must return immediately
-                        if (submited) {
-                            // stops the event propagation and prevents
-                            // the default behavior (avoids duplicate
-                            // submission) then returns the function
-                            event.stopPropagation();
-                            event.stopImmediatePropagation();
-                            event.preventDefault();
-                            return;
-                        }
+                // in case the form was not already submited
+                // need to prevent the event from bubling and
+                // then the function must return immediately
+                if (submited) {
+                    // stops the event propagation and prevents
+                    // the default behavior (avoids duplicate
+                    // submission) then returns the function
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return;
+                }
 
-                        // triggers the pre submit event so that the typical pre
-                        // validation process is set and raised, this is required
-                        // otherwise invalid data can be set, the returned value
-                        // is used to determine if the submission of the form should
-                        // continue or if the form submission should be canceled, note
-                        // that if the form is already confirmed there's no need to
-                        // run the pre-validation process one more time
-                        var result = confirmed
-                                || element.triggerHandler("pre_submit");
+                // triggers the pre submit event so that the typical pre
+                // validation process is set and raised, this is required
+                // otherwise invalid data can be set, the returned value
+                // is used to determine if the submission of the form should
+                // continue or if the form submission should be canceled, note
+                // that if the form is already confirmed there's no need to
+                // run the pre-validation process one more time
+                var result = confirmed || element.triggerHandler("pre_submit");
+                if (result == false) {
+                    // triggers the unlock (elements) events to emulate the
+                    // end of the submission of the form (compatability)
+                    // this should release the elements state to the normal
+                    // state so that they may be re-used again
+                    element.triggerHandler("unlock");
+                    element.triggerHandler("post_submit");
+
+                    // updates the submited flag to the original invalid value
+                    // so that the form may be re-submited latter on
+                    element.data("submited", false)
+
+                    // stops the event propagation and prevents
+                    // the default behavior (avoids duplicate
+                    // submission) then returns the function
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return;
+                }
+
+                // verifies if the current form should be confirmed and if that's
+                // the case and the form is not yet confirmed the proper confirmation
+                // (modal) window should be presented to confirm/cancel the submission
+                if (isConfirm && !confirmed) {
+                    // presents the confirm window to the end user so that it's
+                    // possible to cancel/confirm the current form submission
+                    _body.uxconfirm(message, function(result) {
+                        // in case the result is cancel, must revert the current
+                        // partial state and then return the control flow
                         if (result == false) {
                             // triggers the unlock (elements) events to emulate the
                             // end of the submission of the form (compatability)
@@ -111,183 +140,153 @@
                             element.triggerHandler("unlock");
                             element.triggerHandler("post_submit");
 
-                            // updates the submited flag to the original invalid value
-                            // so that the form may be re-submited latter on
-                            element.data("submited", false)
-
-                            // stops the event propagation and prevents
-                            // the default behavior (avoids duplicate
-                            // submission) then returns the function
-                            event.stopPropagation();
-                            event.stopImmediatePropagation();
-                            event.preventDefault();
+                            // returns the control from to the caller method, there's
+                            // nothing remaining to be done (submission interception)
                             return;
                         }
 
-                        // verifies if the current form should be confirmed and if that's
-                        // the case and the form is not yet confirmed the proper confirmation
-                        // (modal) window should be presented to confirm/cancel the submission
-                        if (isConfirm && !confirmed) {
-                            // presents the confirm window to the end user so that it's
-                            // possible to cancel/confirm the current form submission
-                            _body.uxconfirm(message, function(result) {
-                                        // in case the result is cancel, must revert the current
-                                        // partial state and then return the control flow
-                                        if (result == false) {
-                                            // triggers the unlock (elements) events to emulate the
-                                            // end of the submission of the form (compatability)
-                                            // this should release the elements state to the normal
-                                            // state so that they may be re-used again
-                                            element.triggerHandler("unlock");
-                                            element.triggerHandler("post_submit");
-
-                                            // returns the control from to the caller method, there's
-                                            // nothing remaining to be done (submission interception)
-                                            return;
-                                        }
-
-                                        // sets the current form element as confirmed and
-                                        // the re-submits the form (should proceed now)
-                                        element.data("confirmed", true);
-                                        element.submit();
-                                    });
-
-                            // removes the focus from any input "like" element that
-                            // are contained in the current form (avoids glitches)
-                            inputs.blur();
-
-                            // unsets the submited flag for the current form, so
-                            // that the form may be submited on confirm (latter)
-                            element.data("submited", false);
-
-                            // stops the event propagation so that the current submit
-                            // operation is delayed by one tick (until confirmation)
-                            event.stopPropagation();
-                            event.stopImmediatePropagation();
-                            event.preventDefault();
-                            return;
-                        }
-
-                        // retrieves the complete set of (input) fields
-                        // contained in the form  an itreates over them
-                        // so that trailing spaces are removed
-                        var fields = jQuery(".text-field[data-object]", element);
-                        !noTrim && fields.each(function(index, element) {
-                                    // retrieves the current element in iteration
-                                    // and the value associated, then verifies if
-                                    // the data type from it is string an in case it's not
-                                    // ignores the current value
-                                    var _element = jQuery(this)
-                                    var value = _element.uxvalue();
-                                    if (typeof value !== "string") {
-                                        return;
-                                    }
-
-                                    // verifies if the current element is "lowered" and if
-                                    // that's the case skips the trim operation as it's
-                                    // considered to be and invalid element to be operated
-                                    var isLower = _element.hasClass("lower");
-                                    if (isLower) {
-                                        return;
-                                    }
-
-                                    // "gathers" the original value so that it's able
-                                    // to detect if there was a change in the value
-                                    // (resulting from the trim operation) that should
-                                    // trigger the changing of the element's value
-                                    var _value = value;
-
-                                    // trims the value removing any trailing and leading
-                                    // spaces and then verifies if the value is different
-                                    // from the original value if that's not the case skips
-                                    // the current iteration as there's nothing to be done
-                                    value = value.trim();
-                                    if (_value == value) {
-                                        return;
-                                    }
-
-                                    // updates both the "physical" and the logical value
-                                    // representation of the value in the element, so that
-                                    // its value becomes trimmed as expected
-                                    _element.val(value);
-                                    _element.attr("data-value", value);
-                                });
-
-                        // retrieves the current body element and uses it to retrieve
-                        // the async flag state, that indicates if the interactions with
-                        // the server side should be performed using an async strategy then
-                        // runs an extra validation to check if the current layout
-                        // is ready to be changed using an async approach
-                        var _body = jQuery("body");
-                        var async = _body.data("async");
-                        async &= element.hasClass("no-async") == false;
-                        async &= _body.triggerHandler("async") != false;
-
-                        // checks if the current element has the ajax form
-                        // class, in such cases must avoid normal submission
-                        // and instead should submit the form in ajax
-                        var isAjax = element.hasClass("form-ajax");
-                        if (isAjax) {
-                            // schedules the execution of the ajax submit fo
-                            // the next tick so that the submit event handlers
-                            // may be executed before the submission
-                            setTimeout(function() {
-                                        submitAjax(element, options);
-                                    }, 0);
-
-                            // prevents the default behavior (avoids
-                            // the normal submit)
-                            event.preventDefault();
-                        } else if (async && window.FormData) {
-                            submit(element, options);
-                            event.preventDefault();
-                        }
+                        // sets the current form element as confirmed and
+                        // the re-submits the form (should proceed now)
+                        element.data("confirmed", true);
+                        element.submit();
                     });
+
+                    // removes the focus from any input "like" element that
+                    // are contained in the current form (avoids glitches)
+                    inputs.blur();
+
+                    // unsets the submited flag for the current form, so
+                    // that the form may be submited on confirm (latter)
+                    element.data("submited", false);
+
+                    // stops the event propagation so that the current submit
+                    // operation is delayed by one tick (until confirmation)
+                    event.stopPropagation();
+                    event.stopImmediatePropagation();
+                    event.preventDefault();
+                    return;
+                }
+
+                // retrieves the complete set of (input) fields
+                // contained in the form  an itreates over them
+                // so that trailing spaces are removed
+                var fields = jQuery(".text-field[data-object]", element);
+                !noTrim && fields.each(function(index, element) {
+                    // retrieves the current element in iteration
+                    // and the value associated, then verifies if
+                    // the data type from it is string an in case it's not
+                    // ignores the current value
+                    var _element = jQuery(this)
+                    var value = _element.uxvalue();
+                    if (typeof value !== "string") {
+                        return;
+                    }
+
+                    // verifies if the current element is "lowered" and if
+                    // that's the case skips the trim operation as it's
+                    // considered to be and invalid element to be operated
+                    var isLower = _element.hasClass("lower");
+                    if (isLower) {
+                        return;
+                    }
+
+                    // "gathers" the original value so that it's able
+                    // to detect if there was a change in the value
+                    // (resulting from the trim operation) that should
+                    // trigger the changing of the element's value
+                    var _value = value;
+
+                    // trims the value removing any trailing and leading
+                    // spaces and then verifies if the value is different
+                    // from the original value if that's not the case skips
+                    // the current iteration as there's nothing to be done
+                    value = value.trim();
+                    if (_value == value) {
+                        return;
+                    }
+
+                    // updates both the "physical" and the logical value
+                    // representation of the value in the element, so that
+                    // its value becomes trimmed as expected
+                    _element.val(value);
+                    _element.attr("data-value", value);
+                });
+
+                // retrieves the current body element and uses it to retrieve
+                // the async flag state, that indicates if the interactions with
+                // the server side should be performed using an async strategy then
+                // runs an extra validation to check if the current layout
+                // is ready to be changed using an async approach
+                var _body = jQuery("body");
+                var async = _body.data("async");
+                async &= element.hasClass("no-async") == false;
+                async &= _body.triggerHandler("async") != false;
+
+                // checks if the current element has the ajax form
+                // class, in such cases must avoid normal submission
+                // and instead should submit the form in ajax
+                var isAjax = element.hasClass("form-ajax");
+                if (isAjax) {
+                    // schedules the execution of the ajax submit fo
+                    // the next tick so that the submit event handlers
+                    // may be executed before the submission
+                    setTimeout(function() {
+                        submitAjax(element, options);
+                    }, 0);
+
+                    // prevents the default behavior (avoids
+                    // the normal submit)
+                    event.preventDefault();
+                } else if (async && window.FormData) {
+                    submit(element, options);
+                    event.preventDefault();
+                }
+            });
 
             // registers for the reset event on the matched object
             // so that the form may perform the reset form operation
             // under such conditions
             matchedObject.bind("reset", function(event, noFull) {
-                        // retrieves the current element and runs
-                        // the reset for operation for it
-                        var element = jQuery(this);
-                        resetForm(element, options, !noFull);
-                    });
+                // retrieves the current element and runs
+                // the reset for operation for it
+                var element = jQuery(this);
+                resetForm(element, options, !noFull);
+            });
 
             // registers for the pre submit event that is going
             // to be triggered whenever the form is going to start
             // submitting new data to the server side, so that the
             // proper pre commit operations are performed
             matchedObject.bind("pre_submit", function(event) {
-                        var element = jQuery(this);
-                        element.addClass("submitting");
-                    });
+                var element = jQuery(this);
+                element.addClass("submitting");
+            });
 
             // registers for the post submit operations in the form
             // so that the form is restores to the original state
             // (before the start of the form submission)
             matchedObject.bind("post_submit", function(event) {
-                        var element = jQuery(this);
-                        element.removeClass("submitting");
-                    });
+                var element = jQuery(this);
+                element.removeClass("submitting");
+            });
 
             // registers for the success event on the form so that
             // it's possible to properly decorate it with the correct
             // classes for proper layout interactions
             matchedObject.bind("success", function(event) {
-                        var element = jQuery(this);
-                        element.removeClass("error");
-                        element.addClass("success");
-                    });
+                var element = jQuery(this);
+                element.removeClass("error");
+                element.addClass("success");
+            });
 
             // registers for the error event on the form so that
             // it's possible to properly decorate it with the correct
             // classes for proper layout interactions
             matchedObject.bind("error", function(event) {
-                        var element = jQuery(this);
-                        element.removeClass("success");
-                        element.addClass("error");
-                    });
+                var element = jQuery(this);
+                element.removeClass("success");
+                element.addClass("error");
+            });
         };
 
         var submit = function(matchedObject, options) {
@@ -324,17 +323,14 @@
             // retrieves the encoding type that is going to be used to encode
             // the current form to be submited, this will change the way the
             // submission will be done
-            var enctype = matchedObject.attr("enctype")
-                    || "application/x-www-form-urlencoded";
+            var enctype = matchedObject.attr("enctype") || "application/x-www-form-urlencoded";
 
             // creates the form data object from the form element, this is the
             // object that is going to be used for the asyncronous request in
             // the form is not of type multipart the default serialization
             // process is used instead to create a "query string"
             var form = matchedObject[0];
-            var data = enctype == "multipart/form-data"
-                    ? new FormData(form)
-                    : matchedObject.serialize();
+            var data = enctype == "multipart/form-data" ? new FormData(form) : matchedObject.serialize();
 
             // verifies if the current form processing is a get based one and in
             // case it's encapsulates the parameters in the current request
@@ -353,8 +349,7 @@
             // type in case the form is not of type multipart
             var request = new XMLHttpRequest();
             request.open(method, href);
-            enctype != "multipart/form-data"
-                    && request.setRequestHeader("Content-Type", enctype);
+            enctype != "multipart/form-data" && request.setRequestHeader("Content-Type", enctype);
             request.setRequestHeader("X-Async", "all");
             request.onload = function() {
                 // in case the current state of the request is not final ignores
@@ -412,7 +407,8 @@
                 // handling of the page (improved user experience)
                 var _body = jQuery("body");
                 _body.triggerHandler("data", [data, url || document.URL, null,
-                                isGet, href]);
+                    isGet, href
+                ]);
             };
             request.readystatechange = function() {
                 // in case the current request state is not headers ready there's
@@ -457,10 +453,10 @@
             // creates the ajax request that is going to simulate
             // a complete form request in the background
             jQuery.ajax({
-                type : method,
-                url : action,
-                data : data,
-                complete : function(request, textStatus) {
+                type: method,
+                url: action,
+                data: data,
+                complete: function(request, textStatus) {
                     // removes the submited and confirmed flags from the
                     // form so that it's possible to re-submit it
                     matchedObject.data("submited", false);
@@ -474,7 +470,7 @@
                     // (form) indicating that the form has been submitted
                     matchedObject.triggerHandler("post_submit");
                 },
-                success : function(data) {
+                success: function(data) {
                     // in case no data was received the connection is
                     // assumed to be down (no data receved) an error
                     // is triggered and the control returned immediately
@@ -504,7 +500,7 @@
                         // retrieves the complate set of items in the form
                         // that are not part of the form success panel
                         var otherItems = jQuery("> :not(.form-success)",
-                                matchedObject);
+                            matchedObject);
 
                         // uses the form success panel to render it as a template
                         // using as base the form success template provided then
@@ -528,7 +524,7 @@
                     // should indicate that the form was correctly submited
                     matchedObject.triggerHandler("success", [data]);
                 },
-                error : function(request, textStatus, errorThrown) {
+                error: function(request, textStatus, errorThrown) {
                     // resets the form error contents to the original values
                     // this should remove all the values in it
                     resetErrors(matchedObject, options);

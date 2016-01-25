@@ -32,30 +32,27 @@
             var rightBar = matchedObject.attr("data-right_bar");
 
             // adds the progress bar contents to the matched object
-            matchedObject.append("<span class=\"progress-bar-bar bar-left\">"
-                    + "<span class=\"progress-bar-percentage\">0%</span>"
-                    + "</span>");
+            matchedObject.append("<span class=\"progress-bar-bar bar-left\">" +
+                "<span class=\"progress-bar-percentage\">0%</span>" + "</span>");
 
             // in case the right bar flag is set adds the second progress
             // bar to the matched object
             rightBar
-                    && matchedObject.append("<span class=\"progress-bar-bar bar-right\">"
-                            + "<span class=\"progress-bar-percentage\">0%</span>"
-                            + "</span>");
+                && matchedObject.append("<span class=\"progress-bar-bar bar-right\">" +
+                    "<span class=\"progress-bar-percentage\">0%</span>" + "</span>");
 
             // tries to retrieve the percentage and in case it
             // exists changes it
             var percentage = matchedObject.attr("data-percentage");
             percentage && _change(matchedObject, {
-                        percentage : percentage
-                    });
+                percentage: percentage
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         /**
          * Changes the current (pecentage) value for the progress bar component.
@@ -75,17 +72,17 @@
 
             // retrieves the progress bar bars
             var progressBarBarLeft = jQuery(".progress-bar-bar.bar-left",
-                    matchedObject);
+                matchedObject);
             var progressBarBarRight = jQuery(".progress-bar-bar.bar-right",
-                    matchedObject);
+                matchedObject);
 
             // retrieves the progress bar percentages
             var progressBarPercentageLeft = jQuery(
-                    ".progress-bar-bar.bar-left .progress-bar-percentage",
-                    matchedObject);
+                ".progress-bar-bar.bar-left .progress-bar-percentage",
+                matchedObject);
             var progressBarPercentageRight = jQuery(
-                    ".progress-bar-bar.bar-right .progress-bar-percentage",
-                    matchedObject);
+                ".progress-bar-bar.bar-right .progress-bar-percentage",
+                matchedObject);
 
             // updates both the progress bar bar and percentage
             progressBarBarLeft.css("width", percentage + "%");
@@ -96,14 +93,14 @@
 
         // switches over the method
         switch (method) {
-            case "change" :
+            case "change":
                 // initializes the plugin
                 _change(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

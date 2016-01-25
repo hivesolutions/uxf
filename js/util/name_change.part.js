@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -41,44 +40,44 @@
 
                 // registers for the form submit
                 form.bind("pre_submit", function() {
-                            // retrieves the element value
-                            var value = _element.val();
+                    // retrieves the element value
+                    var value = _element.val();
 
-                            // in case the value is not (need
-                            // to change the name attribute)
-                            if (!value) {
-                                // retrieves the "original" name of the element
-                                // to create a backup value
-                                var name = _element.attr("name", nameEmpty);
+                    // in case the value is not (need
+                    // to change the name attribute)
+                    if (!value) {
+                        // retrieves the "original" name of the element
+                        // to create a backup value
+                        var name = _element.attr("name", nameEmpty);
 
-                                // retrieves the name empty value to change the
-                                // attribute name in the element
-                                var nameEmpty = _element.attr("data-name_empty");
-                                _element.attr("name", nameEmpty);
+                        // retrieves the name empty value to change the
+                        // attribute name in the element
+                        var nameEmpty = _element.attr("data-name_empty");
+                        _element.attr("name", nameEmpty);
 
-                                // sets the name in the new name old attribute
-                                _element.attr("data-name_old", name);
-                            }
-                        });
+                        // sets the name in the new name old attribute
+                        _element.attr("data-name_old", name);
+                    }
+                });
 
                 // sets an interval to check for old name
                 // values, it's important in some browser to avoid
                 // form corruption
                 setInterval(function() {
-                            // retrieves the name old value
-                            var nameOld = _element.attr("data-name_old");
+                    // retrieves the name old value
+                    var nameOld = _element.attr("data-name_old");
 
-                            // in case no name old value is set
-                            if (!nameOld) {
-                                // returns immediately
-                                return;
-                            }
+                    // in case no name old value is set
+                    if (!nameOld) {
+                        // returns immediately
+                        return;
+                    }
 
-                            // sets the name old value for the name attribute
-                            // and removes the name old attribute from the element
-                            _element.attr("name", nameOld);
-                            _element.removeAttr("data-name_old");
-                        }, 250);
+                    // sets the name old value for the name attribute
+                    // and removes the name old attribute from the element
+                    _element.attr("name", nameOld);
+                    _element.removeAttr("data-name_old");
+                }, 250);
             });
         };
 

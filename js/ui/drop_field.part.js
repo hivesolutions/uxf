@@ -23,8 +23,8 @@
 
         // sets the default options value
         var options = options ? options : {
-            numberOptions : 6,
-            filterOptions : true
+            numberOptions: 6,
+            filterOptions: true
         };
 
         // constructs the options
@@ -71,9 +71,7 @@
                 // the original value otherwise used the newly processed one
                 var numberOptionsS = _element.attr("data-number_options");
                 var numberOptionsI = parseInt(numberOptionsS);
-                numberOptions = isNaN(numberOptionsI)
-                        ? numberOptions
-                        : numberOptionsI;
+                numberOptions = isNaN(numberOptionsI) ? numberOptions : numberOptionsI;
 
                 // checks if the element (drop field) is of type select
                 var isSelect = _element.hasClass("drop-field-select");
@@ -82,29 +80,22 @@
                 // additionally retrieves also the placeholder so that it may
                 // propagated to the lower layers
                 var placeholder = _element.attr("placeholder");
-                var displayAttribute = _element.attr("data-display_attribute")
-                        || "name";
-                var extraAttribute = _element.attr("data-extra_attribute")
-                        || "extra";
-                var valueAttribute = _element.attr("data-value_attribute")
-                        || "value";
-                var linkAttribute = _element.attr("data-link_attribute")
-                        || "link";
+                var displayAttribute = _element.attr("data-display_attribute") || "name";
+                var extraAttribute = _element.attr("data-extra_attribute") || "extra";
+                var valueAttribute = _element.attr("data-value_attribute") || "value";
+                var linkAttribute = _element.attr("data-link_attribute") || "link";
 
                 // retrieves any possible filter information, both the name
                 //and the operation, these values may be used to change the
                 // default behavior of the query so that a "composite" filter
                 // is used instead giveing more flexibility to the query
                 var filterName = _element.attr("data-filter_name") || null;
-                var filterOperation = _element.attr("data-filter_operation")
-                        || "like";
+                var filterOperation = _element.attr("data-filter_operation") || "like";
 
                 // retrieves the filter attributes and converts it
                 // to a list of string from the token separator
                 var filterAttributes = _element.attr("data-filter_attributes");
-                var filterAttributesList = filterAttributes
-                        ? filterAttributes.split(",")
-                        : null;
+                var filterAttributesList = filterAttributes ? filterAttributes.split(",") : null;
 
                 // retrieves the text field (element)
                 var textField = jQuery(".text-field", _element);
@@ -150,9 +141,9 @@
 
                 // adds the "extra" html to the matched object,
                 // in case no drop field contents is found
-                dropFieldContents.length == 0
-                        && _element.append("<div class=\"drop-field-clear\"></div>")
-                        && _element.append("<ul class=\"drop-field-contents\"></ul>");
+                dropFieldContents.length == 0 && _element.append(
+                    "<div class=\"drop-field-clear\"></div>") && _element.append(
+                    "<ul class=\"drop-field-contents\"></ul>");
 
                 // retrieves the hidden field and tries to retrieve its value
                 // using the proper operator for that
@@ -168,15 +159,15 @@
                 // and set them in the element associated with the
                 // attribute they "represent"
                 valueFields.each(function(element, index) {
-                            // retrieves the current element (value field) in
-                            // iteration and the attribute it represents
-                            var _element = jQuery(this);
-                            var attribute = _element.attr("data-attribute");
+                    // retrieves the current element (value field) in
+                    // iteration and the attribute it represents
+                    var _element = jQuery(this);
+                    var attribute = _element.attr("data-attribute");
 
-                            // sets the current element (value field) in the
-                            // map associated with the attribute it represents
-                            _valueFields[attribute] = _element;
-                        });
+                    // sets the current element (value field) in the
+                    // map associated with the attribute it represents
+                    _valueFields[attribute] = _element;
+                });
 
                 // adds the lock class to the element
                 // in case the hidden field value is already set and valid
@@ -220,9 +211,12 @@
                 // carrefully in order to avoid extra server side calls
                 var bootstrap = !textFieldValue && hiddenFieldValue;
                 bootstrap && setTimeout(function() {
-                            _update(_element, options, true, [[valueAttribute,
-                                            "equals", hiddenFieldValue]]);
-                        });
+                    _update(_element, options, true, [
+                        [valueAttribute,
+                            "equals", hiddenFieldValue
+                        ]
+                    ]);
+                });
             });
         };
 
@@ -235,7 +229,7 @@
 
             // retrieves the matched object elements
             var dropFieldContents = jQuery(".drop-field-contents",
-                    matchedObject);
+                matchedObject);
             var textField = jQuery(".text-field", matchedObject);
 
             // checks if the drop field click event is already
@@ -247,280 +241,278 @@
             // iterates over each of the matched objects
             // to register the select elements
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // retrieves the drop field and the drop field elements
-                        var dropField = _element;
-                        var textField = jQuery(".text-field", dropField);
-                        var dropFieldContents = jQuery(".drop-field-contents",
-                                dropField);
+                // retrieves the drop field and the drop field elements
+                var dropField = _element;
+                var textField = jQuery(".text-field", dropField);
+                var dropFieldContents = jQuery(".drop-field-contents",
+                    dropField);
 
-                        // checks if the drop field is of type select
-                        var isSelect = dropField.hasClass("drop-field-select");
+                // checks if the drop field is of type select
+                var isSelect = dropField.hasClass("drop-field-select");
 
-                        // registers for the click event in the text field
-                        // (select click) so that the proper
-                        isSelect && textField.click(function(event) {
-                                    // checks if the drop field to verify that the
-                                    // drop field is not disabled, in case it is
-                                    // no action is done
-                                    var isDisabled = dropField.hasClass("disabled");
-                                    if (isDisabled) {
-                                        return;
-                                    }
+                // registers for the click event in the text field
+                // (select click) so that the proper
+                isSelect && textField.click(function(event) {
+                    // checks if the drop field to verify that the
+                    // drop field is not disabled, in case it is
+                    // no action is done
+                    var isDisabled = dropField.hasClass("disabled");
+                    if (isDisabled) {
+                        return;
+                    }
 
-                                    // in case the drop field contents is visible
-                                    // (should move the cursor)
-                                    if (dropFieldContents.is(":visible")) {
-                                        // hides the drop field contents, so that the
-                                        // options are removed from user's visibility
-                                        _hide(dropField)
-                                    }
-                                    // otherwise it should show the updated
-                                    // drop field contents
-                                    else {
-                                        // tries to retieve the updated flag from the
-                                        // drop field and in case it's not been already
-                                        // updated, runs the update process on it after
-                                        // that sets the updated flag on its data
-                                        var updated = dropField.data("updated");
-                                        !updated && _update(dropField, options);
-                                        dropField.data("updated", true)
+                    // in case the drop field contents is visible
+                    // (should move the cursor)
+                    if (dropFieldContents.is(":visible")) {
+                        // hides the drop field contents, so that the
+                        // options are removed from user's visibility
+                        _hide(dropField)
+                    }
+                    // otherwise it should show the updated
+                    // drop field contents
+                    else {
+                        // tries to retieve the updated flag from the
+                        // drop field and in case it's not been already
+                        // updated, runs the update process on it after
+                        // that sets the updated flag on its data
+                        var updated = dropField.data("updated");
+                        !updated && _update(dropField, options);
+                        dropField.data("updated", true)
 
-                                        // shows the drop field contents, so that the
-                                        // options remain visible to the user
-                                        _show(dropField);
-                                    }
+                        // shows the drop field contents, so that the
+                        // options remain visible to the user
+                        _show(dropField);
+                    }
 
-                                    // stops the event propagation (avoids immediate closing of
-                                    // the drop field contents, from the click)
-                                    event.stopPropagation();
-                                });
+                    // stops the event propagation (avoids immediate closing of
+                    // the drop field contents, from the click)
+                    event.stopPropagation();
+                });
 
-                        // registers for the click operation in case the current
-                        // drop field is not of type select, this should only prevent
-                        // a series of default behaviours (would cause issues)
-                        !isSelect && textField.click(function(event) {
-                                    event.stopPropagation();
-                                });
-                    });
+                // registers for the click operation in case the current
+                // drop field is not of type select, this should only prevent
+                // a series of default behaviours (would cause issues)
+                !isSelect && textField.click(function(event) {
+                    event.stopPropagation();
+                });
+            });
 
             // binds the drop field do the enabled event
             // so that is possible to propagate the enabling
             matchedObject.bind("enabled", function() {
-                        // retrieves the current element and the associated
-                        // text field element
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
+                // retrieves the current element and the associated
+                // text field element
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
 
-                        // enables the text field associated with
-                        // the element (drop field)
-                        textField.uxenable();
-                    });
+                // enables the text field associated with
+                // the element (drop field)
+                textField.uxenable();
+            });
 
             // binds the drop field to the disabled event
             // so that is possible to propagate the disabling
             matchedObject.bind("disabled", function() {
-                        // retrieves the current element and the associated
-                        // text field element
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
+                // retrieves the current element and the associated
+                // text field element
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
 
-                        // disables the text field associated with
-                        // the element (drop field)
-                        textField.uxdisable();
-                    });
+                // disables the text field associated with
+                // the element (drop field)
+                textField.uxdisable();
+            });
 
             // registers the current matched object for the show
             // drop event that should display the drop field list
             // and optionally update the current data source with
             // the latest values according to definition
             matchedObject.bind("show_drop", function(event, noUpdate) {
-                        var element = jQuery(this);
-                        !noUpdate && _update(element, options, true);
-                        _show(element);
-                    });
+                var element = jQuery(this);
+                !noUpdate && _update(element, options, true);
+                _show(element);
+            });
 
             // registers for the hide drop event that should hide the
             // drop field list with the default options
             matchedObject.bind("hide_drop", function() {
-                        var element = jQuery(this);
-                        _hide(element);
-                    });
+                var element = jQuery(this);
+                _hide(element);
+            });
 
             // registers for the update drop event that should refresh
             // the currently associated drop list with the latest
             // data comming from the data source
             matchedObject.bind("update_drop", function() {
-                        var element = jQuery(this);
-                        _update(element, options, true);
-                    });
+                var element = jQuery(this);
+                _update(element, options, true);
+            });
 
             // registers for the click event in the body
             !isRegistered && _body.click(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves all the visible drop fields contents
-                        // contained in the current element context (body)
-                        var dropFieldContents = jQuery(
-                                ".drop-field .drop-field-contents:visible",
-                                element);
+                // retrieves all the visible drop fields contents
+                // contained in the current element context (body)
+                var dropFieldContents = jQuery(
+                    ".drop-field .drop-field-contents:visible",
+                    element);
 
-                        // hides the drop field contents
-                        dropFieldContents.hide();
-                    });
+                // hides the drop field contents
+                dropFieldContents.hide();
+            });
 
             // registers for the key down even on the text field
             textField.keydown(function(event) {
-                        // retrieves th current element
-                        var element = jQuery(this);
+                // retrieves th current element
+                var element = jQuery(this);
 
-                        // retrieves the drop field associated with the
-                        // current element (text field) and then retrieves
-                        // its contents
-                        var dropField = element.parents(".drop-field");
-                        var dropFieldContents = jQuery(".drop-field-contents",
-                                dropField);
+                // retrieves the drop field associated with the
+                // current element (text field) and then retrieves
+                // its contents
+                var dropField = element.parents(".drop-field");
+                var dropFieldContents = jQuery(".drop-field-contents",
+                    dropField);
 
-                        // checks if the drop field to verify that the
-                        // drop field is not disabled, in case it is
-                        // no action is done
-                        var isDisabled = dropField.hasClass("disabled");
-                        if (isDisabled) {
-                            return;
-                        }
+                // checks if the drop field to verify that the
+                // drop field is not disabled, in case it is
+                // no action is done
+                var isDisabled = dropField.hasClass("disabled");
+                if (isDisabled) {
+                    return;
+                }
 
-                        // retrieves the event key code
-                        var eventKeyCode = event.keyCode
-                                ? event.keyCode
-                                : event.which;
+                // retrieves the event key code
+                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
-                        // in case the pressed key is not the escape
-                        // key no need to act
-                        if (eventKeyCode != 27) {
-                            // returns immediately
-                            return;
-                        }
+                // in case the pressed key is not the escape
+                // key no need to act
+                if (eventKeyCode != 27) {
+                    // returns immediately
+                    return;
+                }
 
-                        // in case the drop field contents are
-                        // visible must act accordingly
-                        if (dropFieldContents.is(":visible")) {
-                            // hides the drop field contents
-                            dropFieldContents.hide();
-                        }
-                        // otherwise the normal behavior applies
-                        // must blur from the element
-                        else {
-                            // blurs from the element (unfocus)
-                            element.blur();
-                        }
-                    });
+                // in case the drop field contents are
+                // visible must act accordingly
+                if (dropFieldContents.is(":visible")) {
+                    // hides the drop field contents
+                    dropFieldContents.hide();
+                }
+                // otherwise the normal behavior applies
+                // must blur from the element
+                else {
+                    // blurs from the element (unfocus)
+                    element.blur();
+                }
+            });
 
             // registers for the focus event in the matched object
             // in order to propagate it to the underlying elements
             // that are "focusable"
             matchedObject.focus(function() {
-                        // retrieves the element and the associated text
-                        // field and propagates the focus event to it
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
-                        var isFocus = textField.hasClass("focus");
-                        !isFocus && textField.focus();
-                    });
+                // retrieves the element and the associated text
+                // field and propagates the focus event to it
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
+                var isFocus = textField.hasClass("focus");
+                !isFocus && textField.focus();
+            });
 
             // registers for the blur event in the matched object
             // in order to propagate it to the underlying elements
             // that are "focusable"
             matchedObject.blur(function() {
-                        // retrieves the element and the associated text
-                        // field and propagates the blur event to it
-                        var element = jQuery(this);
-                        var textField = jQuery(".text-field", element);
-                        var isFocus = textField.hasClass("focus");
-                        isFocus && textField.blur();
-                    });
+                // retrieves the element and the associated text
+                // field and propagates the blur event to it
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
+                var isFocus = textField.hasClass("focus");
+                isFocus && textField.blur();
+            });
 
             // registers for the focus event in the text field
             textField.focus(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the parent dopr field associated
-                        // with the current text field in event
-                        var dropField = element.parents(".drop-field");
+                // retrieves the parent dopr field associated
+                // with the current text field in event
+                var dropField = element.parents(".drop-field");
 
-                        // adds the focus class to the drop field indicating
-                        // that the current drop field "contains" focus
-                        dropField.addClass("focus");
+                // adds the focus class to the drop field indicating
+                // that the current drop field "contains" focus
+                dropField.addClass("focus");
 
-                        // triggers the focus event on the drop field so that
-                        // any listner gets notified abou the new event
-                        dropField.triggerHandler("focus");
+                // triggers the focus event on the drop field so that
+                // any listner gets notified abou the new event
+                dropField.triggerHandler("focus");
 
-                        // avoids the propagation of the event otherwise
-                        // a loop may be created
-                        event.stopPropagation();
-                    });
+                // avoids the propagation of the event otherwise
+                // a loop may be created
+                event.stopPropagation();
+            });
 
             // registers for the blur event in the text field
             textField.blur(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the drop field in order to get
-                        // the mouse control flag
-                        var dropField = element.parents(".drop-field");
-                        var mouseControl = dropField.data("mouse_control");
+                // retrieves the drop field in order to get
+                // the mouse control flag
+                var dropField = element.parents(".drop-field");
+                var mouseControl = dropField.data("mouse_control");
 
-                        // hides the drop field contents, only in case the mouse
-                        // control flag is set, prevents the browser from hidding
-                        // the drop field contents in case before the click event
-                        // is propagated
-                        !mouseControl && dropFieldContents.hide();
+                // hides the drop field contents, only in case the mouse
+                // control flag is set, prevents the browser from hidding
+                // the drop field contents in case before the click event
+                // is propagated
+                !mouseControl && dropFieldContents.hide();
 
-                        // checks if the drop field is of type select
-                        var isSelect = dropField.hasClass("drop-field-select");
+                // checks if the drop field is of type select
+                var isSelect = dropField.hasClass("drop-field-select");
 
-                        // updates the drop field data, only in case
-                        // current drop field is not of type select
-                        !isSelect && _update(dropField, options);
+                // updates the drop field data, only in case
+                // current drop field is not of type select
+                !isSelect && _update(dropField, options);
 
-                        // removes the focus class from the parent drop field
-                        // it's not focused anymore
-                        dropField.removeClass("focus");
+                // removes the focus class from the parent drop field
+                // it's not focused anymore
+                dropField.removeClass("focus");
 
-                        // triggers the blur event on the drop field so that
-                        // any listner gets notified abou the new event
-                        dropField.triggerHandler("blur");
+                // triggers the blur event on the drop field so that
+                // any listner gets notified abou the new event
+                dropField.triggerHandler("blur");
 
-                        // avoids the propagation of the event otherwise
-                        // a loop may be created
-                        event.stopPropagation();
-                    });
+                // avoids the propagation of the event otherwise
+                // a loop may be created
+                event.stopPropagation();
+            });
 
             // registers for the mouse enter event in the drop field contents
             dropFieldContents.mouseenter(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the drop field to set the
-                        // mouse control flag
-                        var dropField = element.parents(".drop-field");
-                        dropField.data("mouse_control", true);
-                    });
+                // retrieves the drop field to set the
+                // mouse control flag
+                var dropField = element.parents(".drop-field");
+                dropField.data("mouse_control", true);
+            });
 
             // registers for the mouse leave event in the drop field contents
             dropFieldContents.mouseleave(function() {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // retrieves the drop field to unset the
-                        // mouse control flag
-                        var dropField = element.parents(".drop-field");
-                        dropField.data("mouse_control", false);
-                    });
+                // retrieves the drop field to unset the
+                // mouse control flag
+                var dropField = element.parents(".drop-field");
+                dropField.data("mouse_control", false);
+            });
 
             // registers for the key down event in the text field
             textField.keydown(function(event) {
@@ -533,7 +525,7 @@
                 var hiddenTemplate = jQuery(".hidden-template", dropField);
                 var textField = jQuery(".text-field", dropField);
                 var dropFieldContents = jQuery(".drop-field-contents",
-                        dropField);
+                    dropField);
                 var template = jQuery(".template", dropField);
 
                 // checks if the drop field to verify that the
@@ -550,13 +542,13 @@
                 // switches over the event key code
                 switch (eventKeyCode) {
                     // in case it's the tab key
-                    case 9 :
+                    case 9:
                         // in case the drop field contents is visible
                         if (dropFieldContents.is(":visible")) {
                             // retrieves the selected list item
                             var listItemSelected = jQuery(
-                                    ".drop-field-contents > .selected",
-                                    dropField);
+                                ".drop-field-contents > .selected",
+                                dropField);
 
                             // retrieves the value, the logic value
                             // and the value link from the selected list item
@@ -584,8 +576,8 @@
                             // updates the value fields
                             hiddenField.val(valueLogic);
                             textField.uxtextfield("value", {
-                                        value : value
-                                    });
+                                value: value
+                            });
                             dropField.data("value", value);
 
                             // iterates over all the value fields to apply the
@@ -599,12 +591,13 @@
                             // adds the lock class to the drop field
                             // in case the hidden field is present
                             // and there is a logic field "selected"
-                            hiddenField.length > 0 && valueLogic
-                                    && dropField.addClass("drop-field-lock");
+                            hiddenField.length > 0 && valueLogic && dropField.addClass(
+                                "drop-field-lock");
 
                             // triggers the value select event
                             dropField.triggerHandler("value_select", [value,
-                                            valueLogic, item]);
+                                valueLogic, item
+                            ]);
 
                             // hides the drop field contents, so that they
                             // are no longer visible to the end-user
@@ -619,8 +612,8 @@
                         // breaks the switch
                         break;
 
-                    // in case it's the enter key
-                    case 13 :
+                        // in case it's the enter key
+                    case 13:
                         // in case the drop field contents are visible
                         if (dropFieldContents.is(":visible")) {
                             // stops the event propagation
@@ -632,13 +625,13 @@
                         // breaks the switch
                         break;
 
-                    // in case it's the page up, the
-                    // page down, the up or the
-                    // down keys
-                    case 33 :
-                    case 34 :
-                    case 38 :
-                    case 40 :
+                        // in case it's the page up, the
+                        // page down, the up or the
+                        // down keys
+                    case 33:
+                    case 34:
+                    case 38:
+                    case 40:
                         // stops the event propagation
                         // (avoids extra problems in form)
                         event.stopPropagation();
@@ -661,7 +654,7 @@
                 var hiddenTemplate = jQuery(".hidden-template", dropField);
                 var textField = jQuery(".text-field", dropField);
                 var dropFieldContents = jQuery(".drop-field-contents",
-                        dropField);
+                    dropField);
                 var template = jQuery(".template", dropField);
 
                 // verifies if the drop field is currently configured to
@@ -687,13 +680,13 @@
                 // switches over the event key code
                 switch (eventKeyCode) {
                     // in case it's the enter key
-                    case 13 :
+                    case 13:
                         // in case the drop field contents is visible
                         if (dropFieldContents.is(":visible")) {
                             // retrieves the selected list item
                             var listItemSelected = jQuery(
-                                    ".drop-field-contents > .selected",
-                                    dropField);
+                                ".drop-field-contents > .selected",
+                                dropField);
 
                             // retrieves the value, the logic value
                             // and the value link from the selected list item
@@ -721,8 +714,8 @@
                             // updates the value fields
                             hiddenField.val(valueLogic);
                             textField.uxtextfield("value", {
-                                        value : value
-                                    });
+                                value: value
+                            });
                             dropField.data("value", value);
 
                             // iterates over all the value field to apply the
@@ -736,12 +729,13 @@
                             // adds the lock class to the drop field
                             // in case the hidden field is present
                             // and there is a logic field "selected"
-                            hiddenField.length > 0 && valueLogic
-                                    && dropField.addClass("drop-field-lock");
+                            hiddenField.length > 0 && valueLogic && dropField.addClass(
+                                "drop-field-lock");
 
                             // triggers the value select event
                             dropField.triggerHandler("value_select", [value,
-                                            valueLogic, item]);
+                                valueLogic, item
+                            ]);
 
                             // in case the value link is set it must be used
                             // so that the current context gets switched
@@ -764,8 +758,8 @@
                         // breaks the switch
                         break;
 
-                    // in case it's the escape key
-                    case 27 :
+                        // in case it's the escape key
+                    case 27:
                         // hides the drop field contents
                         dropFieldContents.hide();
 
@@ -776,8 +770,8 @@
                         // breaks the switch
                         break;
 
-                    // in case it's the page up key
-                    case 33 :
+                        // in case it's the page up key
+                    case 33:
                         // in case the drop field contents is visible
                         // (should move the cursor)
                         if (dropFieldContents.is(":visible")) {
@@ -793,14 +787,13 @@
                             // shows the drop field contents, only in case
                             // the current drop field contents is not empty
                             !hiddenFieldValue
-                                    && !dropFieldContents.is(":empty")
-                                    && _show(dropField);
+                                && !dropFieldContents.is(":empty") && _show(dropField);
                         }
 
                         break;
 
-                    // in case it's the page down key
-                    case 34 :
+                        // in case it's the page down key
+                    case 34:
                         // in case the drop field contents is visible
                         // (should move the cursor)
                         if (dropFieldContents.is(":visible")) {
@@ -816,14 +809,13 @@
                             // shows the drop field contents, only in case
                             // the current drop field contents is not empty
                             !hiddenFieldValue
-                                    && !dropFieldContents.is(":empty")
-                                    && _show(dropField);
+                                && !dropFieldContents.is(":empty") && _show(dropField);
                         }
 
                         break;
 
-                    // in case it's the up key
-                    case 38 :
+                        // in case it's the up key
+                    case 38:
                         // in case the drop field contents is visible
                         // (should move the cursor)
                         if (dropFieldContents.is(":visible")) {
@@ -839,15 +831,14 @@
                             // shows the drop field contents, only in case
                             // the current drop field contents is not empty
                             !hiddenFieldValue
-                                    && !dropFieldContents.is(":empty")
-                                    && _show(dropField);
+                                && !dropFieldContents.is(":empty") && _show(dropField);
                         }
 
                         // breaks the switch
                         break;
 
-                    // in case it's the down key
-                    case 40 :
+                        // in case it's the down key
+                    case 40:
                         // in case the drop field contents is visible
                         // (should move the cursor)
                         if (dropFieldContents.is(":visible")) {
@@ -863,15 +854,14 @@
                             // shows the drop field contents, only in case
                             // the current drop field contents is not empty
                             !hiddenFieldValue
-                                    && !dropFieldContents.is(":empty")
-                                    && _show(dropField);
+                                && !dropFieldContents.is(":empty") && _show(dropField);
                         }
 
                         // breaks the switch
                         break;
 
-                    // in case it's any other key
-                    default :
+                        // in case it's any other key
+                    default:
                         // checks if the drop field is of type select
                         var isSelect = dropField.hasClass("drop-field-select");
 
@@ -896,12 +886,12 @@
                 // schedules a new timeout operation for the next execution
                 // cycle so that the text is properly updated
                 setTimeout(function() {
-                            // checks if the drop field is of type select
-                            // updates the drop field data, only in case
-                            // current drop field is not of type select
-                            var isSelect = dropField.hasClass("drop-field-select");
-                            !isSelect && _update(dropField, options);
-                        });
+                    // checks if the drop field is of type select
+                    // updates the drop field data, only in case
+                    // current drop field is not of type select
+                    var isSelect = dropField.hasClass("drop-field-select");
+                    !isSelect && _update(dropField, options);
+                });
             });
         };
 
@@ -1014,311 +1004,293 @@
             // runs the query in the data source, this should be
             // redirected to the proper data source handler
             dataSource.uxdataquery({
-                        filterString : filterString,
-                        filterAttributes : filterAttributes,
-                        filters : filters,
-                        startRecord : 0,
-                        numberRecords : numberOptions
-                    }, function(validItems, moreItems) {
-                        // in case the valid items value is not valid (error occurred)
-                        // so items are avaiable for the update (must avoid update)
-                        if (!validItems) {
-                            return;
+                filterString: filterString,
+                filterAttributes: filterAttributes,
+                filters: filters,
+                startRecord: 0,
+                numberRecords: numberOptions
+            }, function(validItems, moreItems) {
+                // in case the valid items value is not valid (error occurred)
+                // so items are avaiable for the update (must avoid update)
+                if (!validItems) {
+                    return;
+                }
+
+                // in case the drop field is locked or the containing
+                // text field does not contains focus there is no need
+                // to process the results (something occured in betweed
+                // the request and the response) must return immediately,
+                // note that this immediate return operation may be skipped
+                // in case the force flag is set (avoids skipping)
+                var isInvalid = (!isSelect && dropField.hasClass("drop-field-lock")) || !textField.hasClass(
+                    "focus");
+                if (isInvalid && !force) {
+                    return;
+                }
+
+                // empties (clears) the drop field contents
+                dropFieldContents.empty()
+
+                // in case no valid items were retrieves, must show
+                // the no results element
+                if (validItems.length == 0) {
+                    // clones the drop field no results element, to create
+                    // an instance to be added, then removes the hidding
+                    // class from it
+                    var _dropFieldNoResults = dropFieldNoResults.clone();
+                    _dropFieldNoResults.removeClass("drop-field-no-results");
+
+                    // adds the filter no results element to the
+                    // drop field contents
+                    dropFieldContents.append(_dropFieldNoResults);
+                }
+
+                // retrieves the cache map to be used to determine if the
+                // various elements should be contructed from scratch or
+                // if an already existing element should be used instead
+                var cache = dropField.data("cache") || {};
+
+                // iterates over all the valid and filtered items
+                // to adds them to the drop field contents
+                for (var index = 0; index < validItems.length; index++) {
+                    // retrieves the current item (from the valid items)
+                    var currentItem = validItems[index];
+
+                    // triggers the (new) item event so that the
+                    // current item may be (changed)
+                    dropField.triggerHandler("item", [currentItem]);
+
+                    // tries to retrieve the unique identifier from the
+                    // current item to be used as the cache key
+                    var uniqueId = currentItem["unique_id"] || currentItem["uid"];
+
+                    // retrieves the cache map from the drop field and
+                    // tries to find the cache item for the unique identifier
+                    // in case it's found validates it so that the data contained
+                    // in it matches the one cached in such case (valid case)
+                    // adds the item to the drop field contents and continues
+                    // the loop immediately (no layout rendering)
+                    var cacheItem = cache[uniqueId];
+                    var cachedData = cacheItem ? cacheItem.data : null;
+                    var cacheValid = cachedData ? jQuery.uxequals(
+                        cachedData, currentItem) : false;
+                    if (cacheItem && cacheValid) {
+                        // sets the cache item as the inner item contained
+                        // in the cache item (layout element)
+                        cacheItem = cacheItem.item;
+
+                        // sets the current item in the cache item data
+                        // so that it can be used for latter template rendering
+                        cacheItem.data("item", currentItem);
+
+                        // adds the template item item to the
+                        // drop field contents
+                        dropFieldContents.append(cacheItem);
+                        continue;
+                    }
+
+                    // retrieves both the display and the value
+                    // attributes for the current item
+                    var currentDisplayAttribute = displayAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[displayAttribute]) ? currentItem[displayAttribute] :
+                        currentItem;
+                    var currentExtraAttribute = extraAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[extraAttribute]) ? currentItem[extraAttribute] :
+                        null;
+                    var currentValueAttribute = valueAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[valueAttribute]) ? currentItem[valueAttribute] :
+                        currentItem;
+                    var currentLinkAttribute = linkAttribute && ["object", "string", "number",
+                            "boolean"
+                        ].isIn(typeof currentItem[linkAttribute]) ? currentItem[linkAttribute] :
+                        null;
+
+                    // retrieves the default values for the display
+                    // and values taking into account the type of
+                    // the retrieved values (in case it's map resolves again)
+                    currentDisplayAttribute = currentDisplayAttribute && typeof currentDisplayAttribute ==
+                        "object" ? currentDisplayAttribute["name"] : currentDisplayAttribute;
+                    currentExtraAttribute = currentExtraAttribute && typeof currentExtraAttribute ==
+                        "object" ? currentExtraAttribute["extra"] : currentExtraAttribute;
+                    currentValueAttribute = currentValueAttribute && typeof currentValueAttribute ==
+                        "object" ? currentValueAttribute["value"] : currentValueAttribute;
+                    currentLinkAttribute = currentLinkAttribute && typeof currentLinkAttribute ==
+                        "object" ? currentLinkAttribute["link"] : currentLinkAttribute;
+
+                    // in case the template is defined
+                    if (template.length > 0) {
+                        // applies the template to the template (item)
+                        // retrieving the resulting template item
+                        var templateItem = template.uxtemplate(currentItem);
+
+                        // sets the data display and data value
+                        // attributes in the template item
+                        templateItem.attr("data-display",
+                            currentDisplayAttribute);
+                        templateItem.attr("data-value",
+                            currentValueAttribute);
+
+                        // sets the current item in the template item data
+                        // so that it can be used for latter template rendering
+                        templateItem.data("item", currentItem);
+                    }
+                    // otherwise the template is not defined and
+                    // it must be constructed from base
+                    else {
+                        // creates the base template item from
+                        // the current item
+                        var templateItem = jQuery("<li data-display=\"" + currentDisplayAttribute +
+                            "\" data-value=\"" + currentValueAttribute + "\">" +
+                            currentDisplayAttribute + "</li>");
+
+                        // in case the extra attribute value is defined the
+                        // subscript section should also be added to
+                        // the generated template item
+                        currentExtraAttribute
+                            && templateItem.append("<span class=\"subscript-extra\">" +
+                                currentExtraAttribute + "</span>");
+
+                        // sets the current item in the template item data
+                        // so that it can be used for latter template rendering
+                        templateItem.data("item", currentItem);
+                    }
+
+                    // retrieves the first link element available in the
+                    // template item, then uses it to retrieve
+                    // its hyperlink reference (in case it's necessary)
+                    var linkElement = jQuery("a", templateItem);
+                    currentLinkAttribute = linkElement.length ? linkElement.attr("href") :
+                        currentLinkAttribute;
+
+                    // sets the data link attribute in the
+                    // template item in case it's valid
+                    currentLinkAttribute
+                        && templateItem.attr("data-link",
+                            currentLinkAttribute);
+
+                    // sets the template item in the cache map
+                    // to provide cache for the visual element
+                    // only in case the unique id is valid (set)
+                    if (uniqueId) {
+                        cache[uniqueId] = {
+                            item: templateItem,
+                            data: currentItem
                         }
+                    }
 
-                        // in case the drop field is locked or the containing
-                        // text field does not contains focus there is no need
-                        // to process the results (something occured in betweed
-                        // the request and the response) must return immediately,
-                        // note that this immediate return operation may be skipped
-                        // in case the force flag is set (avoids skipping)
-                        var isInvalid = (!isSelect && dropField.hasClass("drop-field-lock"))
-                                || !textField.hasClass("focus");
-                        if (isInvalid && !force) {
-                            return;
-                        }
+                    // adds the template item item to the
+                    // drop field contents
+                    dropFieldContents.append(templateItem);
+                }
 
-                        // empties (clears) the drop field contents
-                        dropFieldContents.empty()
+                // retrieves the "current" list items
+                var listItems = jQuery(".drop-field-contents > *",
+                    dropField);
 
-                        // in case no valid items were retrieves, must show
-                        // the no results element
-                        if (validItems.length == 0) {
-                            // clones the drop field no results element, to create
-                            // an instance to be added, then removes the hidding
-                            // class from it
-                            var _dropFieldNoResults = dropFieldNoResults.clone();
-                            _dropFieldNoResults.removeClass("drop-field-no-results");
+                // registers for the mouse down event in the list items
+                listItems.mousedown(function(event) {
+                    // avoids event propagation this way the focus
+                    // is not lost when clicking on a list item
+                    // (this is the desired behavior)
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
 
-                            // adds the filter no results element to the
-                            // drop field contents
-                            dropFieldContents.append(_dropFieldNoResults);
-                        }
+                // registers for the mouse over event in the list items
+                // on order to prevent propagation of such events
+                listItems.mouseover(function() {
+                    // removes the propagation and prevents the default operations
+                    // to be performed for the current event
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
 
-                        // retrieves the cache map to be used to determine if the
-                        // various elements should be contructed from scratch or
-                        // if an already existing element should be used instead
-                        var cache = dropField.data("cache") || {};
+                // registers for the click event in each of the list items
+                // that have just been constructed
+                listItems.click(function(event) {
+                    // retrieves the element to be used in click handling
+                    // this should be the list item (element) reference
+                    var element = jQuery(this);
 
-                        // iterates over all the valid and filtered items
-                        // to adds them to the drop field contents
-                        for (var index = 0; index < validItems.length; index++) {
-                            // retrieves the current item (from the valid items)
-                            var currentItem = validItems[index];
+                    // retrieves the index associated with the current
+                    // selected element and updates the options map with
+                    // this value to condition the index change call
+                    var index = element.index();
+                    options["index"] = index;
 
-                            // triggers the (new) item event so that the
-                            // current item may be (changed)
-                            dropField.triggerHandler("item", [currentItem]);
+                    // changes the index of the current drop field to match
+                    // the one "required" in the provided options map
+                    _index(dropField, options);
 
-                            // tries to retrieve the unique identifier from the
-                            // current item to be used as the cache key
-                            var uniqueId = currentItem["unique_id"]
-                                    || currentItem["uid"];
+                    // avoids event propagation this way the focus
+                    // is not lost when clicking on a list item
+                    // (this is the desired behavior)
+                    event.stopPropagation();
+                    event.preventDefault();
+                });
 
-                            // retrieves the cache map from the drop field and
-                            // tries to find the cache item for the unique identifier
-                            // in case it's found validates it so that the data contained
-                            // in it matches the one cached in such case (valid case)
-                            // adds the item to the drop field contents and continues
-                            // the loop immediately (no layout rendering)
-                            var cacheItem = cache[uniqueId];
-                            var cachedData = cacheItem ? cacheItem.data : null;
-                            var cacheValid = cachedData ? jQuery.uxequals(
-                                    cachedData, currentItem) : false;
-                            if (cacheItem && cacheValid) {
-                                // sets the cache item as the inner item contained
-                                // in the cache item (layout element)
-                                cacheItem = cacheItem.item;
+                // retrieves the previous selection (original selection)
+                // using the value from the text field, then tries to guess
+                // the index by comparing the string value agains the
+                // display value of the list item (this is usefull for the
+                // select type drop fields)
+                var preSelection = jQuery("li[data-display='" + textFieldValue + "']",
+                    dropFieldContents);
+                var preSelectionIndex = preSelection.length > 0 ? preSelection.index() + 1 : 0;
 
-                                // sets the current item in the cache item data
-                                // so that it can be used for latter template rendering
-                                cacheItem.data("item", currentItem);
+                // updates the drop field state, note that the index is updated
+                // differenty in case it's a select drop field (uses the pre select
+                // index value)
+                isSelect ? dropField.data("selection",
+                    preSelectionIndex) : dropField.data(
+                    "selection", 1);
+                dropField.data("value", textFieldValue);
 
-                                // adds the template item item to the
-                                // drop field contents
-                                dropFieldContents.append(cacheItem);
-                                continue;
-                            }
+                // shows the drop field contents in case there
+                // are valid items pending to be show otherwise
+                // hides the drop field contents (no need to show)
+                // an empty set of items, the drop field contents
+                // are only shown in case there is still focus in
+                // the text field
+                validItems.length > 0 && textField.hasClass("focus") && (textFieldValue != "" ||
+                    isSelect) ? _show(dropField) : _hide(dropField);
 
-                            // retrieves both the display and the value
-                            // attributes for the current item
-                            var currentDisplayAttribute = displayAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[displayAttribute])
-                                    ? currentItem[displayAttribute]
-                                    : currentItem;
-                            var currentExtraAttribute = extraAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[extraAttribute])
-                                    ? currentItem[extraAttribute]
-                                    : null;
-                            var currentValueAttribute = valueAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[valueAttribute])
-                                    ? currentItem[valueAttribute]
-                                    : currentItem;
-                            var currentLinkAttribute = linkAttribute
-                                    && ["object", "string", "number", "boolean"].isIn(typeof currentItem[linkAttribute])
-                                    ? currentItem[linkAttribute]
-                                    : null;
+                // in case the auto resize options is set
+                // (must position the drop field contents)
+                if (autoResize != "false") {
+                    _resize(dropField);
+                }
 
-                            // retrieves the default values for the display
-                            // and values taking into account the type of
-                            // the retrieved values (in case it's map resolves again)
-                            currentDisplayAttribute = currentDisplayAttribute
-                                    && typeof currentDisplayAttribute == "object"
-                                    ? currentDisplayAttribute["name"]
-                                    : currentDisplayAttribute;
-                            currentExtraAttribute = currentExtraAttribute
-                                    && typeof currentExtraAttribute == "object"
-                                    ? currentExtraAttribute["extra"]
-                                    : currentExtraAttribute;
-                            currentValueAttribute = currentValueAttribute
-                                    && typeof currentValueAttribute == "object"
-                                    ? currentValueAttribute["value"]
-                                    : currentValueAttribute;
-                            currentLinkAttribute = currentLinkAttribute
-                                    && typeof currentLinkAttribute == "object"
-                                    ? currentLinkAttribute["link"]
-                                    : currentLinkAttribute;
+                // updates the current selection, this operation should change
+                // the "focus" to the currently selected liste item
+                _updateSelection(dropField, options);
 
-                            // in case the template is defined
-                            if (template.length > 0) {
-                                // applies the template to the template (item)
-                                // retrieving the resulting template item
-                                var templateItem = template.uxtemplate(currentItem);
+                // verifies if the current loading of values should be considered
+                // bootstrap ones, if that's the case an extra iteration should
+                // be performed on the complete set of list items trying to find
+                // the one that matched the current logic value and then uses it
+                // to update the "visual" drop field value
+                var bootstrap = !value && valueLogic;
+                bootstrap && listItems.each(function(index, element) {
+                    // retrieves the current list item (element) in iteration and
+                    // unpacks its data value, checking it agains the currently
+                    // set logic value (for proper match value)
+                    var _element = jQuery(this);
+                    var isValid = valueLogic == _element.attr("data-value");
+                    if (!isValid) {
+                        return;
+                    }
 
-                                // sets the data display and data value
-                                // attributes in the template item
-                                templateItem.attr("data-display",
-                                        currentDisplayAttribute);
-                                templateItem.attr("data-value",
-                                        currentValueAttribute);
-
-                                // sets the current item in the template item data
-                                // so that it can be used for latter template rendering
-                                templateItem.data("item", currentItem);
-                            }
-                            // otherwise the template is not defined and
-                            // it must be constructed from base
-                            else {
-                                // creates the base template item from
-                                // the current item
-                                var templateItem = jQuery("<li data-display=\""
-                                        + currentDisplayAttribute
-                                        + "\" data-value=\""
-                                        + currentValueAttribute + "\">"
-                                        + currentDisplayAttribute + "</li>");
-
-                                // in case the extra attribute value is defined the
-                                // subscript section should also be added to
-                                // the generated template item
-                                currentExtraAttribute
-                                        && templateItem.append("<span class=\"subscript-extra\">"
-                                                + currentExtraAttribute
-                                                + "</span>");
-
-                                // sets the current item in the template item data
-                                // so that it can be used for latter template rendering
-                                templateItem.data("item", currentItem);
-                            }
-
-                            // retrieves the first link element available in the
-                            // template item, then uses it to retrieve
-                            // its hyperlink reference (in case it's necessary)
-                            var linkElement = jQuery("a", templateItem);
-                            currentLinkAttribute = linkElement.length
-                                    ? linkElement.attr("href")
-                                    : currentLinkAttribute;
-
-                            // sets the data link attribute in the
-                            // template item in case it's valid
-                            currentLinkAttribute
-                                    && templateItem.attr("data-link",
-                                            currentLinkAttribute);
-
-                            // sets the template item in the cache map
-                            // to provide cache for the visual element
-                            // only in case the unique id is valid (set)
-                            if (uniqueId) {
-                                cache[uniqueId] = {
-                                    item : templateItem,
-                                    data : currentItem
-                                }
-                            }
-
-                            // adds the template item item to the
-                            // drop field contents
-                            dropFieldContents.append(templateItem);
-                        }
-
-                        // retrieves the "current" list items
-                        var listItems = jQuery(".drop-field-contents > *",
-                                dropField);
-
-                        // registers for the mouse down event in the list items
-                        listItems.mousedown(function(event) {
-                                    // avoids event propagation this way the focus
-                                    // is not lost when clicking on a list item
-                                    // (this is the desired behavior)
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                });
-
-                        // registers for the mouse over event in the list items
-                        // on order to prevent propagation of such events
-                        listItems.mouseover(function() {
-                                    // removes the propagation and prevents the default operations
-                                    // to be performed for the current event
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                });
-
-                        // registers for the click event in each of the list items
-                        // that have just been constructed
-                        listItems.click(function(event) {
-                                    // retrieves the element to be used in click handling
-                                    // this should be the list item (element) reference
-                                    var element = jQuery(this);
-
-                                    // retrieves the index associated with the current
-                                    // selected element and updates the options map with
-                                    // this value to condition the index change call
-                                    var index = element.index();
-                                    options["index"] = index;
-
-                                    // changes the index of the current drop field to match
-                                    // the one "required" in the provided options map
-                                    _index(dropField, options);
-
-                                    // avoids event propagation this way the focus
-                                    // is not lost when clicking on a list item
-                                    // (this is the desired behavior)
-                                    event.stopPropagation();
-                                    event.preventDefault();
-                                });
-
-                        // retrieves the previous selection (original selection)
-                        // using the value from the text field, then tries to guess
-                        // the index by comparing the string value agains the
-                        // display value of the list item (this is usefull for the
-                        // select type drop fields)
-                        var preSelection = jQuery("li[data-display='"
-                                        + textFieldValue + "']",
-                                dropFieldContents);
-                        var preSelectionIndex = preSelection.length > 0
-                                ? preSelection.index() + 1
-                                : 0;
-
-                        // updates the drop field state, note that the index is updated
-                        // differenty in case it's a select drop field (uses the pre select
-                        // index value)
-                        isSelect ? dropField.data("selection",
-                                preSelectionIndex) : dropField.data(
-                                "selection", 1);
-                        dropField.data("value", textFieldValue);
-
-                        // shows the drop field contents in case there
-                        // are valid items pending to be show otherwise
-                        // hides the drop field contents (no need to show)
-                        // an empty set of items, the drop field contents
-                        // are only shown in case there is still focus in
-                        // the text field
-                        validItems.length > 0 && textField.hasClass("focus")
-                                && (textFieldValue != "" || isSelect)
-                                ? _show(dropField)
-                                : _hide(dropField);
-
-                        // in case the auto resize options is set
-                        // (must position the drop field contents)
-                        if (autoResize != "false") {
-                            _resize(dropField);
-                        }
-
-                        // updates the current selection, this operation should change
-                        // the "focus" to the currently selected liste item
-                        _updateSelection(dropField, options);
-
-                        // verifies if the current loading of values should be considered
-                        // bootstrap ones, if that's the case an extra iteration should
-                        // be performed on the complete set of list items trying to find
-                        // the one that matched the current logic value and then uses it
-                        // to update the "visual" drop field value
-                        var bootstrap = !value && valueLogic;
-                        bootstrap && listItems.each(function(index, element) {
-                            // retrieves the current list item (element) in iteration and
-                            // unpacks its data value, checking it agains the currently
-                            // set logic value (for proper match value)
-                            var _element = jQuery(this);
-                            var isValid = valueLogic == _element.attr("data-value");
-                            if (!isValid) {
-                                return;
-                            }
-
-                            // if this logic is reached there was a match with the list
-                            // item value and the proper index change should be triggered
-                            index = _element.index();
-                            options["index"] = index;
-                            _index(dropField, options);
-                        });
-                    });
+                    // if this logic is reached there was a match with the list
+                    // item value and the proper index change should be triggered
+                    index = _element.index();
+                    options["index"] = index;
+                    _index(dropField, options);
+                });
+            });
         };
 
         var _value = function(matchedObject, options) {
@@ -1421,8 +1393,8 @@
             listItems.removeClass("selected");
 
             // retrieves the list item to be selected
-            var selectedListItem = jQuery(".drop-field-contents > :nth-child("
-                            + selection + ")", matchedObject);
+            var selectedListItem = jQuery(".drop-field-contents > :nth-child(" + selection + ")",
+                matchedObject);
 
             // adds the selected class to the selected list item
             selectedListItem.addClass("selected");
@@ -1445,8 +1417,7 @@
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
-            var valueAttribute = dropField.attr("data-value_attribute")
-                    || "value";
+            var valueAttribute = dropField.attr("data-value_attribute") || "value";
 
             // verifies if the bootstrap mode is set meaning that the
             // logic value has been set but the visual one not, this
@@ -1469,8 +1440,8 @@
             // in the options map
             hiddenField.val(valueLogic);
             textField.uxtextfield("value", {
-                        value : value
-                    });
+                value: value
+            });
             dropField.data("value", value);
             dropField.data("selection", 1);
 
@@ -1490,8 +1461,11 @@
             // operation is scheduled to updata the values of the drop
             // field according to the logic attribute that has been set
             bootstrap
-                    && _update(dropField, options, true, [[valueAttribute,
-                                    "equals", valueLogic]]);
+                && _update(dropField, options, true, [
+                    [valueAttribute,
+                        "equals", valueLogic
+                    ]
+                ]);
         };
 
         var _reset = function(matchedObject, options) {
@@ -1516,8 +1490,8 @@
             hiddenField.val(null);
             valueFields.val(null);
             textField.uxtextfield("value", {
-                        value : ""
-                    });
+                value: ""
+            });
             dropField.data("value", "");
             dropField.data("selection", 1);
             dropField.data("updated", false);
@@ -1544,7 +1518,7 @@
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
             var element = jQuery("> :nth-child(" + (index + 1) + ")",
-                    dropFieldContents);
+                dropFieldContents);
 
             // verifies if the drop field is currently configured to
             // be submited after the pressing of the action
@@ -1576,8 +1550,8 @@
             // updates the value fields
             hiddenField.val(valueLogic);
             textField.uxtextfield("value", {
-                        value : value
-                    });
+                value: value
+            });
             dropField.data("value", value);
 
             // iterates over all the value field to apply the
@@ -1591,8 +1565,7 @@
             // adds the lock class to the drop field
             // in case the hidden field is present
             // and there is a logic field "selected"
-            hiddenField.length > 0 && valueLogic
-                    && dropField.addClass("drop-field-lock");
+            hiddenField.length > 0 && valueLogic && dropField.addClass("drop-field-lock");
 
             // triggers the value select event
             dropField.triggerHandler("value_select", [value, valueLogic, item]);
@@ -1648,7 +1621,7 @@
                 // creates the settings map based on the offset
                 // note that the value gets defaulted to zero
                 var settings = {
-                    offset : isNaN(offsetInteger) ? 0 : offsetInteger
+                    offset: isNaN(offsetInteger) ? 0 : offsetInteger
                 }
 
                 // scrolls to the reference using the proper
@@ -1688,10 +1661,8 @@
             // to be removed from the dropfield as the extra margin
             // (and border) values that it may contain
             var textFieldWidth = textField.outerWidth(true);
-            var dropFieldContentsExtraWidth = dropFieldContents.outerWidth()
-                    - dropFieldContents.width();
-            var dropFieldContentsWidth = textFieldWidth
-                    - dropFieldContentsExtraWidth;
+            var dropFieldContentsExtraWidth = dropFieldContents.outerWidth() - dropFieldContents.width();
+            var dropFieldContentsWidth = textFieldWidth - dropFieldContentsExtraWidth;
 
             // in case the current drop field contents are not visible
             // hides them back (original visibility)
@@ -1732,21 +1703,21 @@
 
         // switches over the method
         switch (method) {
-            case "set" :
+            case "set":
                 // sets the value in the drop field value
                 _set(matchedObject, options);
 
                 // breaks the switch
                 break
 
-            case "reset" :
+            case "reset":
                 // resets the drop field value
                 _reset(matchedObject, options);
 
                 // breaks the switch
                 break
 
-            case "index" :
+            case "index":
                 // selects the proper index value in the drop
                 // field, usefull for drop field select elements
                 _index(matchedObject, options);
@@ -1754,14 +1725,14 @@
                 // breaks the switch
                 break
 
-            case "value" :
+            case "value":
                 // retrieves the value
                 var value = _value(matchedObject, options);
 
                 // returns the value
                 return value;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

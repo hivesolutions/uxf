@@ -2,9 +2,9 @@
     jQuery.fn.uxscroll = function(options) {
         // the default values for the scrill
         var defaults = {
-            offset : 0,
-            padding : 0,
-            parent : window
+            offset: 0,
+            padding: 0,
+            parent: window
         };
 
         // sets the default options value
@@ -65,31 +65,25 @@
             scrollTop = _parent[0] == window ? scrollTop : _parent.scrollTop();
 
             // retrieves the height of the parent element
-            var parentHeight = _parent[0] == window
-                    ? _parent.height()
-                    : _parent.outerHeight();
+            var parentHeight = _parent[0] == window ? _parent.height() : _parent.outerHeight();
 
             // calculates the top offset value for the parent element
             // to be used for some calculus (in no window mode)
             var parentOffset = _parent.offset();
-            var parentOffsetTop = parentOffset
-                    ? parentOffset.top - scrollTop
-                    : 0;
+            var parentOffsetTop = parentOffset ? parentOffset.top - scrollTop : 0;
 
             // calculates the bottom position for the matched object
             // and uses the value to determine if the element is position
             // below of above the position of the scroll viewport
-            var bottomPosition = offsetTop - parentOffsetTop
-                    + matchedObject.outerHeight();
+            var bottomPosition = offsetTop - parentOffsetTop + matchedObject.outerHeight();
             var isBelow = scrollTop + parentHeight < bottomPosition;
 
             // calculates the appropriate (new) scroll top value taking
             // into account if the element is below the viewport or
             // abover, this calculus also takes into account the offset
             // and padding values
-            var scrollTop = isBelow ? offsetTop - parentOffsetTop
-                    - parentHeight + height + padding : offsetTop
-                    - parentOffsetTop - offset - padding;
+            var scrollTop = isBelow ? offsetTop - parentOffsetTop - parentHeight + height + padding :
+                offsetTop - parentOffsetTop - offset - padding;
 
             // changes the scroll top value in the parent element,
             // this should make visible the matched object
@@ -99,8 +93,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

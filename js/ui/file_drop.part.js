@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -33,49 +32,49 @@
         var _registerHandlers = function() {
             // registers the matched object for the drag enter event
             matchedObject.bind("dragenter", function(event) {
-                        // stops the event propagation and prevents
-                        // the default event operation
-                        event.stopPropagation();
-                        event.preventDefault();
+                // stops the event propagation and prevents
+                // the default event operation
+                event.stopPropagation();
+                event.preventDefault();
 
-                        // triggers the file enter event
-                        matchedObject.triggerHandler("file_enter", [])
-                    });
+                // triggers the file enter event
+                matchedObject.triggerHandler("file_enter", [])
+            });
 
             // registers the matched object for the drag leave event
             matchedObject.bind("dragleave", function(event) {
-                        // stops the event propagation and prevents
-                        // the default event operation
-                        event.stopPropagation();
-                        event.preventDefault();
+                // stops the event propagation and prevents
+                // the default event operation
+                event.stopPropagation();
+                event.preventDefault();
 
-                        // triggers the file leave event
-                        matchedObject.triggerHandler("file_leave", [])
-                    });
+                // triggers the file leave event
+                matchedObject.triggerHandler("file_leave", [])
+            });
 
             // registers the matched object for the drag over event
             matchedObject.bind("dragover", function(event) {
-                        // stops the event propagation and prevents
-                        // the default event operation
-                        event.stopPropagation();
-                        event.preventDefault();
-                    });
+                // stops the event propagation and prevents
+                // the default event operation
+                event.stopPropagation();
+                event.preventDefault();
+            });
 
             // registers the matched object for the drop event
             matchedObject.bind("drop", function(event) {
-                        // stops the event propagation and prevents
-                        // the default event operation
-                        event.stopPropagation();
-                        event.preventDefault();
+                // stops the event propagation and prevents
+                // the default event operation
+                event.stopPropagation();
+                event.preventDefault();
 
-                        // retrieves the data tranfer and the files
-                        // rom the original event
-                        var dataTransfer = event.originalEvent.dataTransfer;
-                        var files = dataTransfer.files;
+                // retrieves the data tranfer and the files
+                // rom the original event
+                var dataTransfer = event.originalEvent.dataTransfer;
+                var files = dataTransfer.files;
 
-                        // triggers the file drop event
-                        matchedObject.triggerHandler("file_drop", [files])
-                    });
+                // triggers the file drop event
+                matchedObject.triggerHandler("file_drop", [files])
+            });
         };
 
         // initializes the plugin

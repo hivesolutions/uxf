@@ -43,11 +43,11 @@
             // iterates over each of the matched object to arrange
             // them according to their options
             matchedObject.each(function(index, element) {
-                        // retrieves the current element and uses it
-                        // to update ths current arrange structure
-                        var _element = jQuery(this);
-                        _update(_element, options);
-                    });
+                // retrieves the current element and uses it
+                // to update ths current arrange structure
+                var _element = jQuery(this);
+                _update(_element, options);
+            });
         };
 
         /**
@@ -61,15 +61,15 @@
             // registers for the items changed event on the matched
             // object to update the visuals of the new elements
             matchedObject.bind("items_changed", function(event) {
-                        // retrieves the current element and runs the
-                        // visuals update operation on them
-                        var element = jQuery(this);
-                        _update(element, options);
+                // retrieves the current element and runs the
+                // visuals update operation on them
+                var element = jQuery(this);
+                _update(element, options);
 
-                        // stops the event propagation to avoid
-                        // possible loops in the handling
-                        event.stopPropagation();
-                    });
+                // stops the event propagation to avoid
+                // possible loops in the handling
+                event.stopPropagation();
+            });
 
             // registers for the click event on the list items
             // to change their selection states
@@ -97,14 +97,13 @@
                 // switches over the action to be performed
                 // on the current item selection state
                 switch (action) {
-                    case "change" :
+                    case "change":
                         // checks if the element is currently selected and
                         // adds or removes the selected class from it for
                         // each case (complementary)
                         var isSelected = element.hasClass("selected");
                         isSelected
-                                ? element.removeClass("selected")
-                                : element.addClass("selected");
+                            ? element.removeClass("selected") : element.addClass("selected");
 
                         // sets the previous element in the select list
                         // useful for later referral
@@ -113,14 +112,12 @@
                         // breaks the switch
                         break;
 
-                    case "contiguous" :
+                    case "contiguous":
                         // retrieves the previous selected element and checks
                         // if it contains the selected, defaulting to null
                         // in case it does not contains such class
                         var previous = selectList.data("previous");
-                        previous = previous.hasClass("selected")
-                                ? previous
-                                : null;
+                        previous = previous.hasClass("selected") ? previous : null;
 
                         // retrieves the base index from the previous element
                         // (in case it's set) and retrieves the target index
@@ -144,15 +141,14 @@
                         for (index = baseIndex; index < targetIndex + 1; index++) {
                             // retrieves the current element in the select list and
                             // adds the selected class to it
-                            var _element = jQuery(":nth-child(" + (index + 1)
-                                            + ")", selectList);
+                            var _element = jQuery(":nth-child(" + (index + 1) + ")", selectList);
                             _element.addClass("selected");
                         }
 
                         // breaks the switch
                         break;
 
-                    case "normal" :
+                    case "normal":
                         // retrieves the currently selected list items
                         var listItems = jQuery("li.selected", selectList);
 
@@ -173,14 +169,14 @@
             // registers for the double click event on the list itesm
             // to trigger the select action
             listItems.dblclick(function(event) {
-                        // retrieves the current element and then uses
-                        // it to retrieve the select list
-                        var element = jQuery(this);
-                        var selectList = element.parent(".select-list");
+                // retrieves the current element and then uses
+                // it to retrieve the select list
+                var element = jQuery(this);
+                var selectList = element.parent(".select-list");
 
-                        // triggers the select event in the element
-                        element.trigger("selected", [element]);
-                    });
+                // triggers the select event in the element
+                element.trigger("selected", [element]);
+            });
 
             // iterates over each of the matched objects
             // to register them agains the submission of the form
@@ -193,52 +189,50 @@
 
                 // registers for the submit event
                 parentForm.bind("pre_submit", function() {
-                            // retrieves the name of the element, this value is
-                            // going to be used in the input element to be create
-                            // in case the name does not exists no submission of
-                            // values is created (returns immediately)
-                            var elementName = _element.attr("name");
-                            if (!elementName) {
-                                return;
-                            }
+                    // retrieves the name of the element, this value is
+                    // going to be used in the input element to be create
+                    // in case the name does not exists no submission of
+                    // values is created (returns immediately)
+                    var elementName = _element.attr("name");
+                    if (!elementName) {
+                        return;
+                    }
 
-                            // removes all the input elements contained inside the
-                            // current select list (avoid duplicated submission)
-                            var inputs = jQuery("input", _element)
-                            inputs.remove("input");
+                    // removes all the input elements contained inside the
+                    // current select list (avoid duplicated submission)
+                    var inputs = jQuery("input", _element)
+                    inputs.remove("input");
 
-                            // retrieves the complete set of elements in the current
-                            // select list, this values are going to be used to create
-                            // the series of form input elements
-                            var listItems = jQuery("li", _element);
+                    // retrieves the complete set of elements in the current
+                    // select list, this values are going to be used to create
+                    // the series of form input elements
+                    var listItems = jQuery("li", _element);
 
-                            // in case the're no valid list items to be sent an empty
-                            // value with the same name is posted (so that an empty value
-                            // is submitted), required for compliance
-                            if (listItems.length == 0) {
-                                _element.append("<input type=\"hidden\" name=\""
-                                        + elementName + "\" />");
-                            }
+                    // in case the're no valid list items to be sent an empty
+                    // value with the same name is posted (so that an empty value
+                    // is submitted), required for compliance
+                    if (listItems.length == 0) {
+                        _element.append("<input type=\"hidden\" name=\"" + elementName +
+                            "\" />");
+                    }
 
-                            // iterates over all the element in the list items to
-                            // creates the associated input values
-                            for (var index = 0; index < listItems.length; index++) {
-                                // retrieves the current list items in iteration
-                                // and retrieves the value to be used as data value
-                                // defaulting to the html value in case none is provided
-                                var listItem = jQuery(listItems[index]);
-                                var dataValue = listItem.attr("data-value");
-                                var htmlValue = listItem.html();
-                                dataValue = dataValue ? dataValue : htmlValue;
+                    // iterates over all the element in the list items to
+                    // creates the associated input values
+                    for (var index = 0; index < listItems.length; index++) {
+                        // retrieves the current list items in iteration
+                        // and retrieves the value to be used as data value
+                        // defaulting to the html value in case none is provided
+                        var listItem = jQuery(listItems[index]);
+                        var dataValue = listItem.attr("data-value");
+                        var htmlValue = listItem.html();
+                        dataValue = dataValue ? dataValue : htmlValue;
 
-                                // adds the input element representing the list item
-                                // to the list item itself
-                                _element.append("<input type=\"hidden\" name=\""
-                                        + elementName
-                                        + "\" value=\""
-                                        + dataValue + "\" />");
-                            }
-                        });
+                        // adds the input element representing the list item
+                        // to the list item itself
+                        _element.append("<input type=\"hidden\" name=\"" + elementName +
+                            "\" value=\"" + dataValue + "\" />");
+                    }
+                });
             });
         };
 
@@ -361,10 +355,8 @@
                     }
                     // checks if the target position is overflowing
                     // the bottom position of the select list
-                    else if (targetY + clonedHeight > selectListTop
-                            + selectListHeight) {
-                        targetY = selectListTop + selectListHeight
-                                - clonedHeight;
+                    else if (targetY + clonedHeight > selectListTop + selectListHeight) {
+                        targetY = selectListTop + selectListHeight - clonedHeight;
                     }
 
                     // calculates the offset position vertically and uses
@@ -383,22 +375,18 @@
                     _index = _index < numberItems ? _index : numberItems - 1;
 
                     // retrieves the currently targeted list element
-                    var listElement = jQuery("li:nth-child(" + (_index + 2)
-                                    + ")", selectList);
+                    var listElement = jQuery("li:nth-child(" + (_index + 2) + ")", selectList);
 
                     // checks if the current index position is
                     // valid (new position) taking into account
                     // the direction of the movement then in case
                     // it's valid executes the position change
-                    var isValid = offsetY > previousOffsetY
-                            ? _index + 1 != element.index()
-                            : _index + 2 != element.index();
-                    isValid && listElement[0] != element[0]
-                            && listElement.after(element)
-                            && selectList.trigger("order_changed");
-                    offsetY == 0 && listElement[0] != element[0]
-                            && cloned.after(element)
-                            && selectList.trigger("order_changed");
+                    var isValid = offsetY > previousOffsetY ? _index + 1 != element.index() :
+                        _index + 2 != element.index();
+                    isValid && listElement[0] != element[0] && listElement.after(element) &&
+                        selectList.trigger("order_changed");
+                    offsetY == 0 && listElement[0] != element[0] && cloned.after(element) &&
+                        selectList.trigger("order_changed");
 
                     // updates the top position of the cloned element
                     // to position it
@@ -449,7 +437,7 @@
 
         // switches over the method
         switch (method) {
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

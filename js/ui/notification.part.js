@@ -14,10 +14,10 @@
     jQuery.fn.uxnotification = function(options) {
         // the default values for the notification
         var defaults = {
-            title : "Title",
-            message : "Message",
-            timeout : 7500,
-            fadeTimeout : 500
+            title: "Title",
+            message: "Message",
+            timeout: 7500,
+            fadeTimeout: 500
         };
 
         // sets the default options value
@@ -58,10 +58,8 @@
 
             // creates the message element from the html code
             // that is going to be used as the base for display
-            var messageElement = jQuery("<div class=\"notification\">"
-                    + "<p class=\"notification-title\">" + title + "</p>"
-                    + "<p class=\"notification-text\">" + message + "</p>"
-                    + "</div>");
+            var messageElement = jQuery("<div class=\"notification\">" + "<p class=\"notification-title\">" +
+                title + "</p>" + "<p class=\"notification-text\">" + message + "</p>" + "</div>");
 
             // adds message element to the matched object making
             // it ready in ters of visual display (ui display)
@@ -76,27 +74,26 @@
             // sets the timeout for hiding the notification, once
             // the final timeout of the message has been reached
             setTimeout(function() {
-                        messageElement.fadeOut(fadeTimeout, function() {
-                                    messageElement.remove();
-                                });
-                    }, timeout);
+                messageElement.fadeOut(fadeTimeout, function() {
+                    messageElement.remove();
+                });
+            }, timeout);
 
             // registers for the click event on the created
             // message element so that it fades out when a
             // click occurs in it (as expected)
             link && messageElement.click(function() {
-                        var element = jQuery(this);
-                        element.fadeOut(fadeTimeout, function() {
-                                    element.remove();
-                                });
-                    });
+                var element = jQuery(this);
+                element.fadeOut(fadeTimeout, function() {
+                    element.remove();
+                });
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

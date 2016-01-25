@@ -62,9 +62,7 @@
 
                 // retrieves the value string replacing the decimal
                 // separator in case one was defined
-                valueString = separator
-                        ? valueString.replace(".", separator)
-                        : valueString;
+                valueString = separator ? valueString.replace(".", separator) : valueString;
 
                 // in case the magnitude separator is defined
                 // there's a necessecity to process it by spliting
@@ -94,9 +92,7 @@
                     // retrieves the initial index value, using
                     // the modulus of the inter part length
                     // or three the division jump
-                    var initialIndex = integerPart.length % 3
-                            ? integerPart.length % 3
-                            : 3;
+                    var initialIndex = integerPart.length % 3 ? integerPart.length % 3 : 3;
 
                     // retrieves the initial integer part for
                     // magnitute
@@ -107,8 +103,7 @@
                     for (var index = initialIndex; index < integerPart.length; index += 3) {
                         // adds the magnitude separator and current slice of the integer part
                         // to the current re-calculated integer part
-                        _integerPart += magnitudeSeparator
-                                + integerPart.slice(index, index + 3);
+                        _integerPart += magnitudeSeparator + integerPart.slice(index, index + 3);
                     }
 
                     // sets the integer part as the recently calculated
@@ -119,8 +114,7 @@
                     // there is a decimal part to the number in case it exists
                     // it concatenates the integer and the decimal part using the separator
                     // otherwise only the integer part is used in the value string
-                    valueString = decimalPart ? integerPart + separator
-                            + decimalPart : integerPart;
+                    valueString = decimalPart ? integerPart + separator + decimalPart : integerPart;
                 }
 
                 // sets the new value string in the element and
@@ -134,8 +128,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

@@ -50,8 +50,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         var _push = function(matchedObject, options) {
             // retrieves the "new" panel to be pushed
@@ -101,21 +100,21 @@
 
         // switches over the method
         switch (method) {
-            case "push" :
+            case "push":
                 // pushes the panel to the matched object
                 _push(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "pop" :
+            case "pop":
                 // pops a panel from the matched object
                 _pop(matchedObject, options);
 
                 // breaks the switch
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin
                 initialize();
 

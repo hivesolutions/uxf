@@ -68,9 +68,7 @@
 
         // checks if the default status method is available, defaulting
         // to invalid in case it's not
-        gatewayElement = gatewayElement && gatewayElement.status
-                ? gatewayElement
-                : null;
+        gatewayElement = gatewayElement && gatewayElement.status ? gatewayElement : null;
 
         // returns the reference to the gateway element
         return gatewayElement;

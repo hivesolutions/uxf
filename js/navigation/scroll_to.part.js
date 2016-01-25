@@ -23,8 +23,8 @@
     // creation takes into account the current jquery version
     // to define the proper default duration of the animation
     uxscrollto.defaults = {
-        axis : "xy",
-        duration : parseFloat(jQuery.fn.jquery) >= 1.3 ? 0 : 1
+        axis: "xy",
+        duration: parseFloat(jQuery.fn.jquery) >= 1.3 ? 0 : 1
     };
 
     /**
@@ -55,9 +55,9 @@
             // checks if the current element is in fact
             // a window, by checking it's value against a
             // series of pre-defined values
-            var isWindow = !element.nodeName
-                    || jQuery.inArray(element.nodeName.toLowerCase(), [
-                                    "iframe", "#document", "html", "body"]) != -1;
+            var isWindow = !element.nodeName || jQuery.inArray(element.nodeName.toLowerCase(), [
+                "iframe", "#document", "html", "body"
+            ]) != -1;
 
             // in case the element is not a window it's immediately
             // considered scrollable and so it's returned to the
@@ -68,17 +68,15 @@
 
             // retrieves the document from the window taking into account
             // the element's possible owner value (for legacy support)
-            var _document = (element.contentWindow || element).document
-                    || element.ownerDocument || element;
+            var _document = (element.contentWindow || element).document || element.ownerDocument ||
+                element;
 
             // runs the fallback process of returning the body element
             // of the current document as the scrolling element/target
             // note that the proper element to be returned is defined
             // using browser detection (webkit is considered special)
-            return jQuery.browser.webkit
-                    || _document.compatMode == "BackCompat"
-                    ? _document.body
-                    : _document.documentElement;
+            return jQuery.browser.webkit || _document.compatMode == "BackCompat" ? _document.body :
+                _document.documentElement;
         });
     };
 
@@ -100,7 +98,7 @@
         // the end of the animation
         if (typeof settings == "function") {
             settings = {
-                onAfter : settings
+                onAfter: settings
             };
         }
 
@@ -146,15 +144,15 @@
             switch (typeof _target) {
                 // in case it's a number or string
                 // will pass the regex
-                case "number" :
-                case "string" :
+                case "number":
+                case "string":
                     if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(_target)) {
                         _target = both(_target);
                         break;
                     }
                     // relative selector, avoids break
                     _target = jQuery(_target, this);
-                case "object" :
+                case "object":
                     // in case it's a dom element or jquery element
                     if (_target.is || _target.style) {
                         // retrieves the real position of the target
@@ -180,27 +178,22 @@
 
                 // in case there is a target offset defined
                 if (targetOffset) {
-                    attributes[key] = targetOffset[positionLower]
-                            + (win ? 0 : old - _element.offset()[positionLower]);
+                    attributes[key] = targetOffset[positionLower] + (win ? 0 : old - _element.offset()[
+                        positionLower]);
 
                     // in case it's a dom element, reduces the margin
                     if (settings.margin) {
-                        attributes[key] -= parseInt(_target.css("margin"
-                                + position))
-                                || 0;
-                        attributes[key] -= parseInt(_target.css("border"
-                                + position + "Width"))
-                                || 0;
+                        attributes[key] -= parseInt(_target.css("margin" + position)) || 0;
+                        attributes[key] -= parseInt(_target.css("border" + position + "Width")) ||
+                            0;
                     }
 
                     attributes[key] += settings.offset[positionLower] || 0;
 
                     if (settings.over[positionLower])
-                        // scrolls to a fraction of its width/height
-                        attributes[key] += _target[axis == "x"
-                                ? "width"
-                                : "height"]()
-                                * settings.over[positionLower];
+                    // scrolls to a fraction of its width/height
+                        attributes[key] += _target[axis == "x" ? "width" : "height"]() *
+                        settings.over[positionLower];
                 }
                 // otherwise no offset should be used
                 else {
@@ -208,16 +201,15 @@
                     var value = _target[positionLower];
 
                     // handles the percentage values
-                    attributes[key] = value.slice && value.slice(-1) == "%"
-                            ? parseFloat(value) / 100 * max
-                            : value;
+                    attributes[key] = value.slice && value.slice(-1) == "%" ? parseFloat(value) /
+                        100 * max : value;
                 }
 
                 // in case it's umber or "number"
                 if (/^\d+$/.test(attributes[key])) {
                     // checks the limits
                     attributes[key] = attributes[key] <= 0 ? 0 : Math.min(
-                            attributes[key], max);
+                        attributes[key], max);
                 }
 
                 // in case it's queueing axes
@@ -243,9 +235,9 @@
              */
             var animate = function(callback) {
                 _element.animate(attributes, duration, settings.easing,
-                        callback && function() {
-                            callback.call(this, target, settings);
-                        });
+                    callback && function() {
+                        callback.call(this, target, settings);
+                    });
             };
 
             // runs the animation and calls
@@ -275,8 +267,7 @@
         if (!jQuery(element).is("html, body")) {
             // returns the element scroll minus the element
             // dimensions
-            return element[scroll]
-                    - jQuery(element)[dimensions.toLowerCase()]();
+            return element[scroll] - jQuery(element)[dimensions.toLowerCase()]();
         }
 
         // creates the size key and retrieves
@@ -289,8 +280,7 @@
         // returns the maximum between the scroll of
         // the html and body minus the minimum between
         // the html and body size
-        return Math.max(html[scroll], body[scroll])
-                - Math.min(html[size], body[size]);
+        return Math.max(html[scroll], body[scroll]) - Math.min(html[size], body[size]);
     };
 
     /**
@@ -303,8 +293,8 @@
      */
     var both = function(value) {
         return typeof value == "object" ? value : {
-            top : value,
-            left : value
+            top: value,
+            left: value
         };
     };
 })(jQuery);

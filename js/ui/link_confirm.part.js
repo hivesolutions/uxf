@@ -24,8 +24,7 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.
@@ -34,19 +33,19 @@
             // registers for the click event in
             // the matched object
             matchedObject.click(function(event) {
-                        // retrieves the element
-                        var element = jQuery(this);
+                // retrieves the element
+                var element = jQuery(this);
 
-                        // calls the confirm part
-                        _call(element, options);
+                // calls the confirm part
+                _call(element, options);
 
-                        // stops the propagation of the event both
-                        // ot the next handlers and to the immediate
-                        //one and then prevent the default behaviour
-                        event.stopPropagation();
-                        event.stopImmediatePropagation();
-                        event.preventDefault();
-                    });
+                // stops the propagation of the event both
+                // ot the next handlers and to the immediate
+                //one and then prevent the default behaviour
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                event.preventDefault();
+            });
         };
 
         var _call = function(matchedObject, options) {
@@ -63,19 +62,19 @@
             // in case the window value is set the proper window is
             // going to be used for the confirmation display
             _body.uxconfirm(message, function(result) {
-                        // in case the result is cancel avoids the current
-                        // execution and returns immediately
-                        if (result == false) {
-                            return;
-                        }
+                // in case the result is cancel avoids the current
+                // execution and returns immediately
+                if (result == false) {
+                    return;
+                }
 
-                        // retrieves the matched object location and
-                        // sets it in the document
-                        var location = matchedObject.attr("href");
-                        jQuery.uxlocation(location);
-                    }, {
-                        window : window
-                    });
+                // retrieves the matched object location and
+                // sets it in the document
+                var location = matchedObject.attr("href");
+                jQuery.uxlocation(location);
+            }, {
+                window: window
+            });
         };
 
         // initializes the plugin

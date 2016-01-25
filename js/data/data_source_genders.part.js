@@ -30,22 +30,21 @@
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // updates the items data in the current element
-                        // ands runs the initializer of the items data
-                        // source extension
-                        _element.data("items", GENDERS);
-                        _element.uxdatasourceitems();
-                    });
+                // updates the items data in the current element
+                // ands runs the initializer of the items data
+                // source extension
+                _element.data("items", GENDERS);
+                _element.uxdatasourceitems();
+            });
         };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
-        };
+        var _registerHandlers = function() {};
 
         // initializes the plugin
         initialize();

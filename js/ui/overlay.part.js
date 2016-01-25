@@ -53,11 +53,11 @@
             // able to resets each of the elements to the original/expected
             // values so that a proper rendering is possible
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        setTimeout(function() {
-                                    _reset(_element, options);
-                                });
-                    });
+                var _element = jQuery(this);
+                setTimeout(function() {
+                    _reset(_element, options);
+                });
+            });
         };
 
         /**
@@ -70,75 +70,75 @@
             // registers the ready event in the window, avoids
             // possible initial resize problem
             _window.ready(function(event) {
-                        // resizes the overlay in the screen
-                        _resize(matchedObject, options);
-                    });
+                // resizes the overlay in the screen
+                _resize(matchedObject, options);
+            });
 
             // registers the laod event in the window, avoids
             // possible initial resize problem
             _window.load(function(event) {
-                        // resizes the overlay in the screen
-                        _resize(matchedObject, options);
-                    });
+                // resizes the overlay in the screen
+                _resize(matchedObject, options);
+            });
 
             // registers the resize in the window, this is a custom
             // event triggered at the correct timing of the window
             // sizing workflow, this will trigger a delayed based
             // resizing operation on the oeverlay element
             _window.bind("size", function(event) {
-                        // resizes the overlay in the screen
-                        _resizeDelay(matchedObject, options);
-                    });
+                // resizes the overlay in the screen
+                _resizeDelay(matchedObject, options);
+            });
 
             // registers for the click event so that
             // no propagation of it is done
             matchedObject.click(function(event) {
-                        // stops the event propagation, no need to propagate
-                        // clicks to the upper levels
-                        event.stopPropagation();
-                    });
+                // stops the event propagation, no need to propagate
+                // clicks to the upper levels
+                event.stopPropagation();
+            });
 
             // registers for the toggle (visibility) event so that the proper
             // hide operation is performed in the associated overlay
             matchedObject.bind("toggle", function(event, timeout) {
-                        var element = jQuery(this);
-                        _toggle(element, options, timeout);
-                    });
+                var element = jQuery(this);
+                _toggle(element, options, timeout);
+            });
 
             // registers for the show event so that the proper
             // hide operation is performed in the associated overlay
             matchedObject.bind("show", function(event, timeout) {
-                        var element = jQuery(this);
-                        _show(element, options, timeout);
-                    });
+                var element = jQuery(this);
+                _show(element, options, timeout);
+            });
 
             // registers for the hide event so that the proper
             // hide operation is performed in the associated overlay
             matchedObject.bind("hide", function(event, timeout) {
-                        var element = jQuery(this);
-                        _hide(element, options, timeout);
-                    });
+                var element = jQuery(this);
+                _hide(element, options, timeout);
+            });
 
             // registers for the resize event on the overlayy
             // so that the overlay may be resized in for such events
             matchedObject.bind("resize", function() {
-                        // retrieves teh current element and uses it
-                        // resize the overlay in the screen
-                        var element = jQuery(this);
-                        _resize(element, options);
-                    });
+                // retrieves teh current element and uses it
+                // resize the overlay in the screen
+                var element = jQuery(this);
+                _resize(element, options);
+            });
 
             // registers for the transition end envet so that the
             // visual state of the element is properly updated
             matchedObject.bind("transitionend", function(event) {
-                        var element = jQuery(this);
-                        var transition = element.data("transition");
-                        if (transition != "fadeout") {
-                            return;
-                        }
-                        element.hide();
-                        element.removeData("transition");
-                    });
+                var element = jQuery(this);
+                var transition = element.data("transition");
+                if (transition != "fadeout") {
+                    return;
+                }
+                element.hide();
+                element.removeData("transition");
+            });
         };
 
         var _toggle = function(matchedObject, options, timeout) {
@@ -192,9 +192,7 @@
             // the current browser is the internet explorer
             // the window width is used (to avoid the well
             // internet explorer's overflow width bug)
-            var documentWidth = jQuery.browser.msie
-                    ? _window.width()
-                    : _document.width();
+            var documentWidth = jQuery.browser.msie ? _window.width() : _document.width();
             var documentHeight = _document.height();
 
             // sets the "new" matched object dimensions,
@@ -205,8 +203,8 @@
 
         var _resizeDelay = function(matchedObject, options) {
             setTimeout(function() {
-                        _resize(matchedObject, options);
-                    });
+                _resize(matchedObject, options);
+            });
         };
 
         var __fadeIn = function(matchedObject, options, timeout, useHardware) {
@@ -218,14 +216,14 @@
                 __transition(matchedObject, options, timeout);
                 matchedObject.show();
                 setTimeout(function() {
-                            matchedObject.css("opacity", String(original));
-                        });
+                    matchedObject.css("opacity", String(original));
+                });
             } else {
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeIn(timeout, function() {
-                            matchedObject.removeData("transition");
-                        });
+                    matchedObject.removeData("transition");
+                });
             }
         };
 
@@ -240,8 +238,8 @@
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeOut(timeout, function() {
-                            matchedObject.removeData("transition");
-                        });
+                    matchedObject.removeData("transition");
+                });
             }
 
             // creates the timeout for the operation that will run the
@@ -249,13 +247,13 @@
             // required to avoid situations where the overlay would stay
             // displayed in the dom as a "invisible" overlay
             setTimeout(function() {
-                        var transition = matchedObject.data("transition");
-                        if (transition != "fadeout") {
-                            return;
-                        }
-                        matchedObject.hide();
-                        matchedObject.removeData("transition");
-                    }, timeout + EXTRA_GC)
+                var transition = matchedObject.data("transition");
+                if (transition != "fadeout") {
+                    return;
+                }
+                matchedObject.hide();
+                matchedObject.removeData("transition");
+            }, timeout + EXTRA_GC)
         };
 
         var __transition = function(matchedObject, options, timeout) {

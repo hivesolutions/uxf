@@ -74,7 +74,8 @@
             var checkField = jQuery(".check-field", matchedObject).not(".template .check-field");
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
-            var incrementalField = jQuery(".incremental-field", matchedObject).not(".template .incremental-field");
+            var incrementalField = jQuery(".incremental-field", matchedObject).not(
+                ".template .incremental-field");
             var toggleField = jQuery(".toggle-field", matchedObject).not(".template .toggle-field");
             var fileField = jQuery(".file-field", matchedObject).not(".template .file-field");
             var dropList = jQuery(".drop-list", matchedObject).not(".template .drop-list");
@@ -104,7 +105,7 @@
             var filter = jQuery(".filter", matchedObject).not(".template .filter");
             var hoveringbox = jQuery(".hovering-box", matchedObject).not(".template .hovering-box");
             var headerNotification = jQuery(".header-notification",
-                    matchedObject).not(".template .header-notification");
+                matchedObject).not(".template .header-notification");
             var link = jQuery(".link", matchedObject).not(".template .link");
             var linkConfirm = jQuery(".link-confirm", matchedObject).not(".template .link-confirm");
             var list = jQuery(".list", matchedObject).not(".template .list");
@@ -305,8 +306,8 @@
             // after the visibility is set so that no problem
             // with focus operations occurs (safe operation)
             setTimeout(function() {
-                        focus.uxfocus();
-                    });
+                focus.uxfocus();
+            });
         };
 
         /**
@@ -363,10 +364,9 @@
                 // so that all the xml http requests are
                 // considered asynchronous
                 jQuery.ajaxPrefilter(function(options) {
-                            options.async = true;
-                        });
-            } catch (exception) {
-            }
+                    options.async = true;
+                });
+            } catch (exception) {}
         };
 
         // initializes the plugin

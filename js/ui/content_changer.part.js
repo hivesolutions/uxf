@@ -43,46 +43,45 @@
          */
         var _registerHandlers = function() {
             matchedObject.each(function(index, element) {
-                        // retrieves the element reference
-                        var _element = jQuery(element);
+                // retrieves the element reference
+                var _element = jQuery(element);
 
-                        // rerieves the trigger (element) attribute, this is
-                        // going to be used to retrieve the element to be used
-                        // for the binding of the change event in case the trigger
-                        // mode is enabled
-                        var trigger = _element.attr("data-trigger");
+                // rerieves the trigger (element) attribute, this is
+                // going to be used to retrieve the element to be used
+                // for the binding of the change event in case the trigger
+                // mode is enabled
+                var trigger = _element.attr("data-trigger");
 
-                        // retrieves the timeout of the element, to be
-                        // used in case the timeout mode is enabled, defaults
-                        // to the default timeout
-                        var timeout = _element.attr("data-timeout")
-                                ? parseInt(_element.attr("data-timeout"))
-                                : DEFAULT_TIMEOUT;
+                // retrieves the timeout of the element, to be
+                // used in case the timeout mode is enabled, defaults
+                // to the default timeout
+                var timeout = _element.attr("data-timeout") ? parseInt(_element.attr("data-timeout")) :
+                    DEFAULT_TIMEOUT;
 
-                        // in case the trigger mode is enable must bind the
-                        // element to the change event
-                        if (trigger) {
-                            // retrieves the trigger element and bind to
-                            // the change event of it to process the update
-                            var triggerElement = jQuery(trigger);
-                            triggerElement.bind("change", function() {
-                                        // updates the changer value to show the
-                                        // "next" section
-                                        _update(_element, options);
-                                    });
-                        }
-                        // otherwise the interval mode is enabled, the timeout
-                        // must be used to set the interval
-                        else {
-                            // sets a new inteval with the defined timeout value
-                            // (this is considered to be the default behavior)
-                            setInterval(function() {
-                                        // updates the changer value to show the
-                                        //"next" section
-                                        _update(_element, options);
-                                    }, timeout);
-                        }
+                // in case the trigger mode is enable must bind the
+                // element to the change event
+                if (trigger) {
+                    // retrieves the trigger element and bind to
+                    // the change event of it to process the update
+                    var triggerElement = jQuery(trigger);
+                    triggerElement.bind("change", function() {
+                        // updates the changer value to show the
+                        // "next" section
+                        _update(_element, options);
                     });
+                }
+                // otherwise the interval mode is enabled, the timeout
+                // must be used to set the interval
+                else {
+                    // sets a new inteval with the defined timeout value
+                    // (this is considered to be the default behavior)
+                    setInterval(function() {
+                        // updates the changer value to show the
+                        //"next" section
+                        _update(_element, options);
+                    }, timeout);
+                }
+            });
         };
 
         var _update = function(matchedObject, options) {

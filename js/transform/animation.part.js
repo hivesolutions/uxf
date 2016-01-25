@@ -29,9 +29,9 @@
          */
         var _appendHtml = function() {
             matchedObject.each(function(index, element) {
-                        var _element = jQuery(this);
-                        _register(_element, options);
-                    });
+                var _element = jQuery(this);
+                _register(_element, options);
+            });
         };
 
         /**
@@ -41,16 +41,16 @@
             // registers for the change event on the current object
             // so that the animation gets updated/re-registered
             matchedObject.change(function() {
-                        var element = jQuery(this);
-                        _register(element, options);
-                    });
+                var element = jQuery(this);
+                _register(element, options);
+            });
 
             // registers for the refresh event on the current object
             // so that the animation gets updated/re-registered
             matchedObject.bind("refresh", function() {
-                        var element = jQuery(this);
-                        _register(element, options);
-                    });
+                var element = jQuery(this);
+                _register(element, options);
+            });
         };
 
         var _duration = function(element, options) {
@@ -61,10 +61,8 @@
             cssDuration = cssDuration || element.css("-o-animation-duration");
             cssDuration = cssDuration || element.css("-ms-animation-duration");
             cssDuration = cssDuration || element.css("-moz-animation-duration");
-            cssDuration = cssDuration
-                    || element.css("-webkit-animation-duration");
-            cssDuration = cssDuration
-                    || element.css("-khtml-animation-duration");
+            cssDuration = cssDuration || element.css("-webkit-animation-duration");
+            cssDuration = cssDuration || element.css("-khtml-animation-duration");
             if (cssDuration) {
                 return parseFloat(cssDuration) * 1000;
             }
@@ -103,9 +101,9 @@
             // registers the element for the load event so that the proper
             // sprite height may be used in the initialization
             imageElement.load(function() {
-                        var spriteHeight = image.height;
-                        _init(element, options, height, spriteHeight, duration);
-                    });
+                var spriteHeight = image.height;
+                _init(element, options, height, spriteHeight, duration);
+            });
 
             // updates the image url for the image element, this operation
             // should trigger the loading of the image
@@ -145,8 +143,8 @@
             // creates th interval that is going to be used for the animation
             // with the frame timeout that has just been defined/calculated
             var interval = window.setInterval(function() {
-                        _animate(element, options);
-                    }, frameTimeout);
+                _animate(element, options);
+            }, frameTimeout);
 
             // updates the reference to the interval in the element so that
             // it may be refernced latter for cancellation
@@ -197,33 +195,33 @@
         // switches over the method so that the proper execution is going
         // to be perfoemed for the selected element
         switch (method) {
-            case "init" :
+            case "init":
                 // starts the sprite based animation for the current object
                 // creating a proper interval object for it
                 _init(matchedObject, options);
                 break;
 
-            case "finalize" :
+            case "finalize":
                 // stops the current sprite base animation from running this
                 // should clear the associated interval object
                 _finalize(matchedObject, options);
                 break;
 
-            case "enable" :
+            case "enable":
                 // enables the css animations for the current element (resume)
                 // taking into account that proper css is required, then
                 // breaks the current switch opertation
                 _enable(matchedObject, options);
                 break;
 
-            case "disable" :
+            case "disable":
                 // enables the css animations for the current element (pause)
                 // taking into account that proper css is required, then
                 // breaks the current switch opertation
                 _disable(matchedObject, options);
                 break;
 
-            case "default" :
+            case "default":
                 // initializes the plugin with the normal options
                 // and then breaks the current switch
                 initialize();
