@@ -6,7 +6,7 @@
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin
- * @copyright Copyright (c) 2008-2015 Hive Solutions Lda.
+ * @copyright Copyright (c) 2008-2016 Hive Solutions Lda.
  * @license Hive Solutions Confidential Usage License (HSCUL) -
  *          http://www.hive.pt/licenses/
  * @credits Ariel Flesler <aflesler@gmail.com>
