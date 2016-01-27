@@ -134,19 +134,28 @@
                 && matchedObject.triggerHandler("device_change", [nextDevice]);
         };
 
+        var watchDelayed = function() {
+            // sets a timeout callback to be called after the current tick
+            // operation in order to run the watch operation (as expected)
+            setTimeout(function() {
+                watch();
+            });
+        };
+
         // registers for the resize event on the current window so
         // thtat the proper watch (tick) operation is performed
         _window.resize(function(event) {
             watch();
         });
 
-        // measures the curren pixel properties of the screen
+        // measures the current pixel properties of the screen
         // and populates the proper structures
         measure();
 
         // starts the watching process for the currently matched
         // object so that the proper (initial) classes are set
         watch();
+        watchDelayed();
 
         // returns the reference to the current context to
         // the caller object so that it may be "re-used"
