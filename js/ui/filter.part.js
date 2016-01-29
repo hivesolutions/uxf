@@ -1099,6 +1099,10 @@
             noContents && filter.addClass("no-contents");
             noContents && filterMore.addClass("no-contents");
 
+            // triggers the update start event so that any listener is notified
+            // about the intent so start a new (possible) remote query
+            filter.triggerHandler("update_start");
+
             // runs the query in the data source, this is a non blocking
             // operation that may take some time to be executed the proper
             // callback will be called at the end of the execution
