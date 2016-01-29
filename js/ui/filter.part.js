@@ -966,7 +966,11 @@
             // string in case no valid value is retrieved
             var filterInputValue = filterInput.attr("data-value") || "";
 
-            // sets the initial vaalue for the reset flag
+            // determines if there are no valid contents currently set in the
+            // filter to be able to change the classes of it accordingly
+            var noContents = filterContents.children().length == 0;
+
+            // sets the initial value for the reset flag
             var reset = false;
 
             // verifies if at least one data source is available for the
@@ -1090,6 +1094,11 @@
             filter.addClass("loading");
             filterMore.addClass("loading");
 
+            // in case the no contents flag is set the extra no contents
+            // class is also added to both the filter and the filter more
+            noContents && filter.addClass("no-contents");
+            noContents && filterMore.addClass("no-contents");
+
             // runs the query in the data source, this is a non blocking
             // operation that may take some time to be executed the proper
             // callback will be called at the end of the execution
@@ -1105,6 +1114,8 @@
                 // is hidden and the proper style "notified"
                 filter.removeClass("loading");
                 filterMore.removeClass("loading");
+                filter.removeClass("no-contents");
+                filterMore.removeClass("no-contents");
 
                 // in case the valid items value
                 // is not valid (error occurred)
