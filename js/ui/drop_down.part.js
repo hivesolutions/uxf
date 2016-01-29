@@ -362,7 +362,7 @@
         var _toggle = function(matchedObject, options) {
             // verifies the current visibility of the object and then uses
             // the value to decide the operation to be performed
-            var isVisible = matchedObject.is(":visible");
+            var isVisible = matchedObject.hasClass("active");
             if (isVisible) {
                 _hide(matchedObject, options);
             } else {
