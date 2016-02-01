@@ -108,6 +108,7 @@
                 matchedObject).not(".template .header-notification");
             var link = jQuery(".link", matchedObject).not(".template .link");
             var linkConfirm = jQuery(".link-confirm", matchedObject).not(".template .link-confirm");
+            var imageLazy = jQuery(".image-lazy", matchedObject).not(".template .image-lazy");
             var list = jQuery(".list", matchedObject).not(".template .list");
             var selectList = jQuery(".select-list", matchedObject).not(".template .select-list");
             var sourceList = jQuery(".source-list", matchedObject).not(".template .source-list");
@@ -223,6 +224,7 @@
             headerNotification.uxheadernotification();
             link.uxlink();
             linkConfirm.uxlinkconfirm();
+            imageLazy.uximagelazy();
             list.uxlist();
             selectList.uxselectlist();
             sourceList.uxsourcelist();
