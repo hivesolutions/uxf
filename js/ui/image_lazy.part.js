@@ -58,6 +58,7 @@
 
             // retrieves the reference to some of the global
             // elements to be used in the operation
+            var _window = jQuery(window);
             var _body = jQuery("body");
 
             // verifies if the current image lazy global
@@ -112,6 +113,7 @@
         };
 
         var isVisible = function(element) {
+            var _window = jQuery(window);
             var windowTop = _window.scrollTop();
             var windowHeight = _window.height();
             var elementTop = element.offset().top;
@@ -126,6 +128,7 @@
         };
 
         var _getOffset = function(element, selectorAttribute, defaultSelector) {
+            var _body = jQuery("body");
             var selector = element.attr(selectorAttribute);
             selector = selector ? selector : defaultSelector;
             var container = jQuery(selector, _body);
