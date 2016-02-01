@@ -38,6 +38,9 @@
             // this operations is delayed by timeout
             matchedObject.each(function(index, element) {
                 var _element = jQuery(this);
+                var src = _element.attr("src") || _element.attr("data-url");
+                _element.attr("data-url", src);
+                _element.removeAttr("src");
                 setTimeout(function() {
                     updateState(_element);
                 });
@@ -121,8 +124,8 @@
             var headerOffset = getHeaderOffset(element);
             var footerOffset = getFooterOffset(element);
 
-            var belowTop = elementTop + elementHeight > windowTop + headerOffset;
-            var aboveBottom = elementTop < windowTop + windowHeight - footerOffset;
+            var belowTop = elementTop + elementHeight >= windowTop + headerOffset;
+            var aboveBottom = elementTop <= windowTop + windowHeight - footerOffset;
             var visible = belowTop && aboveBottom;
             return visible;
         };
