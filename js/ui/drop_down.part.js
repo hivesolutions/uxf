@@ -70,6 +70,7 @@
                 var container = _element.parents(".drop-down-container");
                 var button = jQuery(".button-drop-down", container);
                 var inputElement = jQuery("input", container);
+                var extra = jQuery(".drop-down-extra", _element);
                 var elements = jQuery("> li", _element);
 
                 // retrieves the various attributes that are going to
@@ -98,6 +99,10 @@
                 } else if (input) {
                     container.prepend(inputElement);
                 }
+
+                // moves the extra part of the drop down (if any) top the top
+                // container element so that it may be correctly used
+                container.prepend(extra);
 
                 // retreives the compete set of elements that are meant
                 // to be defaulted in case no logical value is defined
