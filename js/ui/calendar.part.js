@@ -210,10 +210,11 @@
          *            options The map of options to be used.
          */
         var _update = function(matchedObject, options) {
-            // in case the matched object does not contains any
-            // elements (empty matched object)
-            if (matchedObject.length == 0) {
-                // returns immediately (nothing to be done)
+            // in case the matched object is not defined
+            // or in case it's an empty list must return
+            // immediatly update operation is not meant to
+            // be run (corruption may occur)
+            if (!matchedObject || matchedObject.length == 0) {
                 return;
             }
 

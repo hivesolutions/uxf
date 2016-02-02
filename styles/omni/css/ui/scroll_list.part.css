@@ -1,0 +1,33 @@
+.omni-style .scroll-list-container {
+    overflow: hidden;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.omni-style .scroll-list-container > .scroll-previous,
+.omni-style .scroll-list-container > .scroll-next {
+    background: transparent none no-repeat left 0px;
+    cursor: pointer;
+    height: 24px;
+    margin-top: 78px;
+    position: absolute;
+    width: 15px;
+}
+
+.omni-style .scroll-list-container > .scroll-previous:hover,
+.omni-style .scroll-list-container > .scroll-next:hover {
+    background-position: left -24px;
+}
+
+.omni-style .scroll-list-container > .scroll-previous {
+    background-image: url(../images/scroll-list-previous.png);
+    margin-left: -20px;
+}
+
+.omni-style .scroll-list-container > .scroll-next {
+    background-image: url(../images/scroll-list-next.png);
+    margin-left: 905px;
+}
