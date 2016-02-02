@@ -138,14 +138,6 @@
                 _movePrevious(slider, options);
             });
 
-            // registers for the (pre) hide event in the overlay
-            // so that the current element is also hidden
-            overlay.bind("pre_hide", function() {
-                // hides the element, using the proper strategy
-                // to perform such operation
-                _hide(matchedObject, options);
-            });
-
             // registers for the click event on the overlay panel
             // to hide the current overlay panel
             overlay.click(function() {
@@ -176,6 +168,10 @@
                         _moveNext(matchedObject, options);
 
                         // breaks the switch
+                        break;
+
+                    case 27:
+                        _hide(matchedObject, options);
                         break;
                 }
             });
