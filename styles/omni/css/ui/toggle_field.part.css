@@ -1,8 +1,14 @@
-.toggle-field {
+.omni-style .toggle-field {
     height: auto;
 }
 
-.toggle-field .button {
+.omni-style .toggle-field::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.omni-style .toggle-field .button {
     background-color: #f4f4f4;
     background-position: center center;
     background-repeat: no-repeat;
@@ -15,48 +21,49 @@
     width: 36px;
 }
 
-.toggle-field.small .button {
+.omni-style .toggle-field.small .button {
     height: 30px;
     line-height: 28px;
     width: 30px;
 }
 
-.toggle-field .button:hover {
+.omni-style .toggle-field .button:hover {
     background-color: #f0f0f0;
 }
 
-.toggle-field .button.active,
-.toggle-field .button:active {
+.omni-style .toggle-field .button.active,
+.omni-style .toggle-field .button:active {
     background-color: #e8e8e8;
 }
 
-.toggle-field .button.currency {
+.omni-style .toggle-field .button.currency {
     background-image: url(../images/toggle-field-currency.png);
 }
 
-.toggle-field .button.percent {
+.omni-style .toggle-field .button.percent {
     background-image: url(../images/toggle-field-percent.png);
 }
 
-.toggle-field .textfield {
+.omni-style .toggle-field .text-field {
     float: left;
+    width: 233px;
 }
 
-.toggle-field.disabled .button:hover {
+.omni-style .toggle-field.disabled .button:hover {
     background-color: #f4f4f4;
 }
 
-.toggle-field.disabled .button.active,
-.toggle-field.disabled .button:active {
+.omni-style .toggle-field.disabled .button.active,
+.omni-style .toggle-field.disabled .button:active {
     background-color: #f4f4f4;
 }
 
-.toggle-field.toggle-left .button {
+.omni-style .toggle-field.toggle-left .button {
     border-left: 1px solid #dddddd;
     border-right: none;
     float: left;
 }
 
-.toggle-field.toggle-left .textfield {
+.omni-style .toggle-field.toggle-left .textfield {
     float: right;
 }
