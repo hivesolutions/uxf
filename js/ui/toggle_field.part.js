@@ -60,7 +60,7 @@
             matchedObject.uxtextfield();
 
             // iterates over all the matched objects to be able to start
-            // their modes structure
+            // their modes structure  and layout
             matchedObject.each(function(index, element) {
                 // retrieves the current element and uses it to retrieve
                 // the parent toggle field
@@ -72,6 +72,20 @@
                 // adds the proper class to the toggle field
                 var isLeft = _element.hasClass("toggle-left");
                 isLeft && toggleField.addClass("toggle-left");
+
+                // verifies if the current element is considered
+                // to be small and if that's the case propagates
+                // the value to the upper toggle field
+                var isSmall = _element.hasClass("small");
+                isSmall && toggleField.addClass("small");
+                isSmall && _element.removeClass("small");
+
+                // verifies if the current element is considered
+                // to be large and if that's the case propagates
+                // the value to the upper toggle field
+                var isLarge = _element.hasClass("large");
+                isLarge && toggleField.addClass("large");
+                isLarge && _element.removeClass("large");
 
                 // retrieves the value of the attribute that defines
                 // the various modes in case the value is not defined
