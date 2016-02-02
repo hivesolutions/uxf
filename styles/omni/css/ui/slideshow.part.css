@@ -1,0 +1,31 @@
+.omni-style .slideshow .slideshow-image {
+    cursor: pointer;
+    height: 100px;
+    line-height: 100px;
+}
+
+.omni-style .slideshow .slideshow-image img {
+    vertical-align: middle;
+}
+
+.omni-style .slideshow  ul.slideshow-alternates {
+    display: inline-block;
+    margin: 4px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.omni-style .slideshow  ul.slideshow-alternates li {
+    background: transparent url(../images/slideshow-alternates.png) no-repeat center 0px;
+    float: left;
+    height: 16px;
+    list-style: none;
+    width: 16px;
+}
+
+.omni-style .slideshow  ul.slideshow-alternates li.active {
+    background-position: center -16px;
+}
+
+.omni-style .slideshow  ul.slideshow-alternates li:hover {
+    background-position: center -16px;
+}

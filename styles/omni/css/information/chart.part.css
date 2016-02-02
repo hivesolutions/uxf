@@ -1,0 +1,55 @@
+.omni-style .chart {
+    padding: 5px 0px 5px 0px;
+}
+
+.omni-style .chart .title {
+    margin-bottom: 12px;
+    margin-top: 12px;
+}
+
+.omni-style .chart .bar-container {
+    height: 45px;
+    width: 100%;
+}
+
+.omni-style .chart .bar {
+    background-color: #4d4d4d;
+    box-shadow: 2px 2px 2px #e0e0e0;
+    -moz-box-shadow: 2px 2px 2px #e0e0e0;
+    -webkit-box-shadow: 2px 2px 2px #e0e0e0;
+    color: #fefefe;
+    float: left;
+    font-size: 11px;
+    font-weight: bold;
+    height: 26px;
+    margin-bottom: 4px;
+    margin-top: 4px;
+    padding-top: 11px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.omni-style .chart .bar-orange {
+    background-color: #f99023;
+}
+
+.omni-style .chart .bar-red {
+    background-color: #d3503f;
+}
+
+.omni-style .chart .bar-blue {
+    background-color: #54728c;
+}
+
+.omni-style .chart .bar-green {
+    background-color: #72ae49;
+}
+
+.omni-style .chart .bar-transparent {
+    background-color: transparent;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    color: #4d4d4d;
+    margin-left: 6px;
+}

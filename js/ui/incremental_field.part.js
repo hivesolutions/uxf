@@ -59,6 +59,35 @@
             matchedObject.removeClass("incremental-field");
             matchedObject.addClass("text-field");
             matchedObject.uxtextfield();
+
+            // iterates over all the matched objects to be able to start
+            // their modes structure and layout
+            matchedObject.each(function(index, element) {
+                // retrieves the current element and uses it to retrieve
+                // the parent incremental field
+                var _element = jQuery(this);
+                var incrementalField = _element.parents(".incremental-field");
+
+                // verifies if the current element is meant to be
+                // positioned to the left and in case it's meant
+                // adds the proper class to the incremental field
+                var isLeft = _element.hasClass("incremental-left");
+                isLeft && incrementalField.addClass("incremental-left");
+
+                // verifies if the current element is considered
+                // to be small and if that's the case propagates
+                // the value to the upper incremental field
+                var isSmall = _element.hasClass("small");
+                isSmall && incrementalField.addClass("small");
+                isSmall && _element.removeClass("small");
+
+                // verifies if the current element is considered
+                // to be large and if that's the case propagates
+                // the value to the upper incremental field
+                var isLarge = _element.hasClass("large");
+                isLarge && incrementalField.addClass("large");
+                isLarge && _element.removeClass("large");
+            });
         };
 
         /**

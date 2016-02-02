@@ -35,7 +35,7 @@
             // will be added to the currently matched object latter
             var range = "<div class=\"range\">" +
                 "<input type=\"text\" class=\"text-field start-date\" data-original_value=\"" + startDate +
-                "\" />" + "<span>" + to + "</span>" +
+                "\" />" + "<span class=\"range-separator\">" + to + "</span>" +
                 "<input type=\"text\" class=\"text-field end-date\" data-original_value=\"" + endDate +
                 "\" />" + "</div>";
             var calendar = "<div class=\"calendar no-layout\"></div>";

@@ -6,6 +6,13 @@
     z-index: 30;
 }
 
+.omni-style .slider > .slider-contents {
+    transition: margin-left 0.5s ease-in-out;
+    -o-transition: margin-left 0.5s ease-in-out;
+    -moz-transition: margin-left 0.5s ease-in-out;
+    -webkit-transition: margin-left 0.5s ease-in-out;
+}
+
 .omni-style .slider .slider-panel.active {
     opacity: 1.0;
 }
@@ -19,8 +26,12 @@
     float: left;
     height: 172px;
     margin-right: 90px;
-    opacity: 0.75;
+    opacity: 0.50;
     padding: 64px 48px 64px 48px;
+    transition: opacity 0.5s ease-in-out;
+    -o-transition: opacity 0.5s ease-in-out;
+    -moz-transition: opacity 0.5s ease-in-out;
+    -webkit-transition: opacity 0.5s ease-in-out;
     width: 488px;
 }
 

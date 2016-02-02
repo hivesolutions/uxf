@@ -53,8 +53,7 @@
             firstSliderPanel.addClass("active");
 
             // sets the initial data attributes
-            matchedObject.data("lock", false);
-            matchedObject.data("offsetLeft", 0);
+            matchedObject.data("offset_left", 0);
 
             // resizes the slider (matched object) dimensions
             _resize(matchedObject, options);
@@ -67,11 +66,10 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the document (element)
-            var _document = jQuery(document);
-
-            // retrieves the window
+            // retrieves the reference to some of the top level
+            // elements that are going to be used in registration
             var _window = jQuery(window);
+            var _body = jQuery("body");
 
             // retrieves the slider panel arows
             // from the matched object
@@ -130,8 +128,10 @@
                 _movePrevious(slider, options);
             });
 
-            // registers for the key press in the document
-            _document.keypress(function(event) {
+            // registers for the key down in the body element
+            // so that it may change the current selection based
+            // on the arrow key pressing
+            _body.keydown(function(event) {
                 // retrieves the key value
                 var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
                     event.which;
@@ -151,6 +151,10 @@
 
                         // breaks the switch
                         break;
+
+                    case 27:
+                        _hide(matchedObject, options);
+                        break;
                 }
             });
 
@@ -169,6 +173,11 @@
             // object, this should provide a modal view
             overlay.triggerHandler("show", [250]);
             matchedObject.fadeIn(250);
+
+            // runs the update operation on the slider
+            // to be able to display it correctlty
+            _resize(matchedObject, options);
+            _update(matchedObject, options);
         };
 
         var _hide = function(matchedObject, options) {
@@ -198,14 +207,7 @@
 
             // retrieves the slider attributes, that are going to be
             // used through this function
-            var lock = slider.data("lock");
-            var offsetLeft = slider.data("offsetLeft");
-
-            // in case the lock attribute is set (animation still
-            // pending) must return immediately
-            if (lock) {
-                return;
-            }
+            var offsetLeft = slider.data("offset_left");
 
             // retrieves the currently active slider panel
             // and then retrieves its width
@@ -230,22 +232,16 @@
             // updates the offset left value
             offsetLeft += sliderPanelWidth;
 
-            // animates the slider contents to the new margin left
-            sliderContents.animate({
-                marginLeft: targetMarginLeft
-            }, 500, "linear", function() {
-                slider.data("lock", false);
-            });
+            // changes the margin left of the slider contents to the
+            // new value (new panel to be shown)
+            sliderContents.css("margin-left", targetMarginLeft);
 
             // updates the active classes in the slider panel
             sliderPanel.removeClass("active");
             nextSliderPanel.addClass("active");
 
-            // sets the lock attribute in the slider
-            slider.data("lock", true);
-
             // updates the offset left in the slider data
-            slider.data("offsetLeft", offsetLeft);
+            slider.data("offset_left", offsetLeft);
         };
 
         var _movePrevious = function(matchedObject, options) {
@@ -262,14 +258,7 @@
 
             // retrieves the slider attributes, that are going to be
             // used through this function
-            var lock = slider.data("lock");
-            var offsetLeft = slider.data("offsetLeft");
-
-            // in case the lock attribute is set (animation still
-            // pending) must return immediately
-            if (lock) {
-                return;
-            }
+            var offsetLeft = slider.data("offset_left");
 
             // retrieves the currently active slider panel
             // and then retrieves its width
@@ -294,22 +283,16 @@
             // updates the offset left value
             offsetLeft -= sliderPanelWidth;
 
-            // animates the slider contents to the new margin left
-            sliderContents.animate({
-                marginLeft: targetMarginLeft
-            }, 500, "linear", function() {
-                slider.data("lock", false);
-            });
+            // changes the margin left of the slider contents to the
+            // new value (new panel to be shown)
+            sliderContents.css("margin-left", targetMarginLeft + "px");
 
             // updates the active classes in the slider panel
             sliderPanel.removeClass("active");
             previousSliderPanel.addClass("active");
 
-            // sets the lock attribute in the slider
-            slider.data("lock", true);
-
             // updates the offset left in the slider data
-            slider.data("offsetLeft", offsetLeft);
+            slider.data("offset_left", offsetLeft);
         };
 
         var _update = function(matchedObject, options) {
@@ -325,7 +308,7 @@
             !sliderVisible && slider.show();
 
             // retrieves the offsert left of the slider
-            var offsetLeft = slider.data("offsetLeft");
+            var offsetLeft = slider.data("offset_left");
 
             // retrieves the window
             var _window = jQuery(window);
@@ -345,7 +328,8 @@
             // calculates the left position for the slider contents
             var leftPosition = ((windowWidth - firstSliderPanelWidth) / 2) + windowSrollLeft - offsetLeft;
 
-            // sets the (margin) left position in the slider contents
+            // changes the margin left of the slider contents to the
+            // new value (new panel to be shown)
             sliderContents.css("margin-left", leftPosition + "px");
 
             // in case the slider is not visible hides

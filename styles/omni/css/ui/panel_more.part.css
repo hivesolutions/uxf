@@ -1,12 +1,13 @@
 .omni-style .panel-more > .panel-more-action {
     clear: both;
+    list-style: none;
+    text-align: center;
 }
 
 .omni-style .panel-more > .panel-more-action > li.list-more {
-    margin-top: 7px;
-    position: absolute;
+    display: inline-block;
+    list-style: none;
     text-align: center;
-    width: 532px;
 }
 
 .omni-style .panel-more > .panel-more-action > li.list-more span {

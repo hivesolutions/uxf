@@ -25,16 +25,24 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the selected links from the matched object
-            var selectedLinks = jQuery("> li > a.selected", matchedObject)
+            // in case the matched object is not defined
+            // or in case it's an empty list must return
+            // immediatly initialization is not meant to
+            // be run (corruption may occur)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
 
-            // retrieves the links that represent exapnded sub list
+            // retrieves the selected links from the matched object
+            var selectedLinks = jQuery("> li > a.selected", matchedObject);
+
+            // retrieves the links that represent expanded sub lists
             // for empty sub list verification
             var epandedLinks = jQuery("> li > a > .link-expand:contains(+)",
-                matchedObject)
+                matchedObject);
 
             // opens the menus for all the selected links
-            // of the list
+            // of the list, changes also the expand icon
             selectedLinks.each(function() {
                 // retrieves the element
                 var element = jQuery(this);
@@ -91,6 +99,14 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // in case the matched object is not defined
+            // or in case it's an empty list must return
+            // immediatly initialization is not meant to
+            // be run (corruption may occur)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the links from the matched object
             var links = jQuery("> li > a", matchedObject)
 
