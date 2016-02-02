@@ -152,16 +152,36 @@
         };
 
         var _show = function(matchedObject, options, timeout) {
+            // verifies if the current object is visible and if
+            // that's already the case returns immediately
+            var visible = matchedObject.data("visible") || false;
+            matchedObject.data("visible", true);
+            if (visible) {
+                return;
+            }
+
             // shows the matched object and then runs
             // the show operation for the overlay element
+            matchedObject.triggerHandler("pre_show");
             _resize(matchedObject, options);
             __fadeIn(matchedObject, options, timeout || 250);
+            matchedObject.triggerHandler("post_show");
         };
 
         var _hide = function(matchedObject, options, timeout) {
+            // verifies if the current object is not visible and if
+            // that's already the case returns immediately
+            var visible = matchedObject.data("visible") || false;
+            matchedObject.data("visible", false);
+            if (!visible) {
+                return;
+            }
+
             // hides the matched object, using the default
             // strategy for such operation (as expected)
+            matchedObject.triggerHandler("pre_hide");
             __fadeOut(matchedObject, options, timeout || 100);
+            matchedObject.triggerHandler("post_hide");
         };
 
         var _reset = function(matchedObject, options) {
@@ -253,7 +273,7 @@
                 }
                 matchedObject.hide();
                 matchedObject.removeData("transition");
-            }, timeout + EXTRA_GC)
+            }, timeout + EXTRA_GC);
         };
 
         var __transition = function(matchedObject, options, timeout) {

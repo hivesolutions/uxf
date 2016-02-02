@@ -154,18 +154,20 @@
                     _element.uxcenter(offsetFloat);
                 });
 
-                // registers for the click in the overlay
-                overlay.click(function() {
+                // registers for the (pre) hide event in the overlay
+                // so that the current element is also hidden
+                overlay.bind("pre_hide", function() {
                     // checks if the element is visible
                     var elementVisible = _element.is(":visible");
 
-                    // in case the element is not visible
+                    // in case the element is not visible returns
+                    // immediately, nothing pending to be done
                     if (!elementVisible) {
-                        // returns immediately
                         return;
                     }
 
-                    // hides the element
+                    // hides the element, using the proper strategy
+                    // to perform such operation
                     _hide(_element, options);
                 });
             });
