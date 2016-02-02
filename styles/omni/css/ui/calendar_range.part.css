@@ -1,0 +1,11 @@
+.omni-style .calendar-range > .range > .range-separator {
+    margin: 0px 12px 0px 12px;
+}
+
+.omni-style .calendar-range > .calendar {
+    display: none;
+}
+
+.omni-style .calendar-range.calendar-visible > .calendar {
+    display: inline-block;
+}

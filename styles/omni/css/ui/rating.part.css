@@ -1,0 +1,26 @@
+.omni-style .rating {
+    height: 24px;
+    padding: 8px 0px 8px 0px;
+    text-align: left;
+}
+
+.omni-style .rating .rating-item {
+    background: transparent url(../images/rating.png) no-repeat left 0px;
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    padding-left: 4px;
+    width: 24px;
+}
+
+.omni-style .rating .rating-item.active {
+    background-position: left -24px;
+}
+
+.omni-style .rating .rating-item.inactive {
+    background-position: left 0px;
+}
+
+.omni-style .rating .rating-item.hover {
+    background-position: left -24px;
+}
