@@ -1,8 +1,9 @@
 .omni-style .image-upload {
     background: #fcfcfc no-repeat center center;
     border: 1px dashed #eaeaea;
+    font-size: 0px;
     min-height: 160px;
-    padding: 6px 6px 6px 6px;
+    padding: 8px 8px 8px 8px;
     text-align: center;
 }
 

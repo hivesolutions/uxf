@@ -2,6 +2,10 @@
     float: right;
 }
 
+.omni-style .button-group.button-group-left {
+    float: left;
+}
+
 .omni-style .button-group .button,
 .omni-style .button-group .button.small,
 .omni-style .button-group .button.large {
@@ -10,6 +14,10 @@
     cursor: pointer;
     float: left;
     text-align: center;
+}
+
+.omni-style .button-group .button.button-solid {
+    border-left: none;
 }
 
 .omni-style .button-group .button > .button-icon {

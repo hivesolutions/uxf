@@ -10,6 +10,12 @@
     border-left: none;
     float: right;
     font-size: 14px;
+    height: 36px;
+    line-height: 24px;
+    width: 36px;
+}
+
+.toggle-field.small .button {
     height: 30px;
     line-height: 28px;
     width: 30px;
