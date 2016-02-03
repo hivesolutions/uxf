@@ -107,7 +107,7 @@
             index == sectionCount ? index = 0 : index = index;
 
             // retrieves the current panel to be shown and
-            // shows it
+            // shows it with the default approach
             var panel = panels.get(index)
             jQuery(panel).show();
 
