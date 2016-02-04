@@ -191,6 +191,7 @@
             // then and in case the element is invisible sets the
             // opacity to the default zero value (for animation)
             var isVisible = matchedObject.css("display") == "block";
+            matchedObject.css("opacity", "");
             var target = matchedObject.css("opacity") || "1";
             var targetF = parseFloat(target);
             matchedObject.data("original", targetF);
