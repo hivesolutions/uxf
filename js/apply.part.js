@@ -98,6 +98,7 @@
             var sidePanel = jQuery(".side-panel", matchedObject).not(".template .side-panel");
             var panelMore = jQuery(".panel-more", matchedObject).not(".template .panel-more");
             var panelStack = jQuery(".panel-stack", matchedObject).not(".template .panel-stack");
+            var stack = jQuery(".stack", matchedObject).not(".template .stack");
             var breadcrumbs = jQuery(".breadcrumbs", matchedObject).not(".template .breadcrumbs");
             var hightlightBox = jQuery(".hightlight-box", matchedObject).not(".template .hightlight-box");
             var replacer = jQuery(".replacer", matchedObject).not(".template .replacer");
@@ -215,6 +216,7 @@
             sidePanel.uxsidepanel();
             panelMore.uxpanelmore();
             panelStack.uxpanelstack();
+            stack.uxstack();
             breadcrumbs.uxbreadcrumbs();
             hightlightBox.uxhightlightbox();
             replacer.uxreplacer();
