@@ -184,6 +184,13 @@
         };
 
         var _show = function(matchedObject, options) {
+            // verifies if the current slider object is already
+            // visible and if that's the case ignores action
+            var isVisible = matchedObject.is(":visible");
+            if (isVisible) {
+                return;
+            }
+
             // retrieves the overlay element
             var overlay = jQuery(".overlay:first");
 
@@ -199,6 +206,13 @@
         };
 
         var _hide = function(matchedObject, options) {
+            // verifies if the current slider object is already
+            // invisible and if that's the case ignores action
+            var isVisible = matchedObject.is(":visible");
+            if (!isVisible) {
+                return;
+            }
+
             // retrieves the overlay element
             var overlay = jQuery(".overlay:first");
 
