@@ -232,6 +232,7 @@
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadein");
             if (useHardware) {
+                _reset(matchedObject, options);
                 var original = matchedObject.data("original");
                 __transition(matchedObject, options, timeout);
                 matchedObject.show();

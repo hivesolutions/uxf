@@ -71,7 +71,7 @@
             // effect in the changing)
             matchedObject.fadeOut(500, function() {
                 // removes the current section class value from
-            	// the matched object (no longer required)
+                // the matched object (no longer required)
                 matchedObject.removeClass("section-" + (index + 1));
 
                 // increments the current index value
