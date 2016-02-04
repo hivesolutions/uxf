@@ -151,7 +151,7 @@
             }
         };
 
-        var _show = function(matchedObject, options, timeout) {
+        var _show = function(matchedObject, options, timeout, extraClass) {
             // verifies if the current object is visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -164,11 +164,11 @@
             // the show operation for the overlay element
             matchedObject.triggerHandler("pre_show");
             _resize(matchedObject, options);
-            __fadeIn(matchedObject, options, timeout || 250);
+            __fadeIn(matchedObject, options, timeout || 250, extraClass);
             matchedObject.triggerHandler("post_show");
         };
 
-        var _hide = function(matchedObject, options, timeout) {
+        var _hide = function(matchedObject, options, timeout, extraClass) {
             // verifies if the current object is not visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -180,7 +180,7 @@
             // hides the matched object, using the default
             // strategy for such operation (as expected)
             matchedObject.triggerHandler("pre_hide");
-            __fadeOut(matchedObject, options, timeout || 100);
+            __fadeOut(matchedObject, options, timeout || 100, extraClass);
             matchedObject.triggerHandler("post_hide");
         };
 
@@ -228,10 +228,11 @@
             });
         };
 
-        var __fadeIn = function(matchedObject, options, timeout, useHardware) {
+        var __fadeIn = function(matchedObject, options, timeout, extraClass, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadein");
+            extraClass && matchedObject.addClass(extraClass);
             if (useHardware) {
                 _reset(matchedObject, options);
                 var original = matchedObject.data("original");
@@ -240,27 +241,37 @@
                 setTimeout(function() {
                     matchedObject.css("opacity", String(original));
                 });
+                matchedObject.one("transitionend", function() {
+                    matchedObject.triggerHandler("after_show");
+                });
             } else {
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeIn(timeout, function() {
                     matchedObject.removeData("transition");
+                    matchedObject.triggerHandler("after_show");
                 });
             }
         };
 
-        var __fadeOut = function(matchedObject, options, timeout, useHardware) {
+        var __fadeOut = function(matchedObject, options, timeout, extraClass, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadeout");
             if (useHardware) {
                 __transition(matchedObject, options, timeout);
                 matchedObject.css("opacity", "0");
+                matchedObject.one("transitionend", function() {
+                    extraClass && matchedObject.removeClass(extraClass);
+                    matchedObject.triggerHandler("after_hide");
+                });
             } else {
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeOut(timeout, function() {
+                    extraClass && matchedObject.removeClass(extraClass);
                     matchedObject.removeData("transition");
+                    matchedObject.triggerHandler("after_hide");
                 });
             }
 
