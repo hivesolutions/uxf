@@ -100,16 +100,16 @@
 
             // registers for the toggle (visibility) event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("toggle", function(event, timeout) {
+            matchedObject.bind("toggle", function(event, timeout, extra) {
                 var element = jQuery(this);
-                _toggle(element, options, timeout);
+                _toggle(element, options, timeout, extra);
             });
 
             // registers for the show event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("show", function(event, timeout) {
+            matchedObject.bind("show", function(event, timeout, extra) {
                 var element = jQuery(this);
-                _show(element, options, timeout);
+                _show(element, options, timeout, extra);
             });
 
             // registers for the hide event so that the proper
@@ -141,17 +141,17 @@
             });
         };
 
-        var _toggle = function(matchedObject, options, timeout) {
+        var _toggle = function(matchedObject, options, timeout, extra) {
             // in case the matched object is visible hides the
             // overlay otherwise shows it (opposite operation)
             if (matchedObject.is(":visible")) {
                 _hide(matchedObject, options, timeout);
             } else {
-                _show(matchedObject, options, timeout);
+                _show(matchedObject, options, timeout, extra);
             }
         };
 
-        var _show = function(matchedObject, options, timeout, extraClass) {
+        var _show = function(matchedObject, options, timeout, extra) {
             // verifies if the current object is visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -164,11 +164,11 @@
             // the show operation for the overlay element
             matchedObject.triggerHandler("pre_show");
             _resize(matchedObject, options);
-            __fadeIn(matchedObject, options, timeout || 250, extraClass);
+            __fadeIn(matchedObject, options, timeout || 250, extra);
             matchedObject.triggerHandler("post_show");
         };
 
-        var _hide = function(matchedObject, options, timeout, extraClass) {
+        var _hide = function(matchedObject, options, timeout) {
             // verifies if the current object is not visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -180,7 +180,7 @@
             // hides the matched object, using the default
             // strategy for such operation (as expected)
             matchedObject.triggerHandler("pre_hide");
-            __fadeOut(matchedObject, options, timeout || 100, extraClass);
+            __fadeOut(matchedObject, options, timeout || 100);
             matchedObject.triggerHandler("post_hide");
         };
 
@@ -228,11 +228,12 @@
             });
         };
 
-        var __fadeIn = function(matchedObject, options, timeout, extraClass, useHardware) {
+        var __fadeIn = function(matchedObject, options, timeout, extra, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadein");
-            extraClass && matchedObject.addClass(extraClass);
+            matchedObject.data("extra", extra);
+            extra && matchedObject.addClass(extra);
             if (useHardware) {
                 _reset(matchedObject, options);
                 var original = matchedObject.data("original");
@@ -254,22 +255,24 @@
             }
         };
 
-        var __fadeOut = function(matchedObject, options, timeout, extraClass, useHardware) {
+        var __fadeOut = function(matchedObject, options, timeout, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadeout");
+            var extra = matchedObject.data("extra");
+            matchedObject.removeData("extra");
             if (useHardware) {
                 __transition(matchedObject, options, timeout);
                 matchedObject.css("opacity", "0");
                 matchedObject.one("transitionend", function() {
-                    extraClass && matchedObject.removeClass(extraClass);
+                    extra && matchedObject.removeClass(extra);
                     matchedObject.triggerHandler("after_hide");
                 });
             } else {
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeOut(timeout, function() {
-                    extraClass && matchedObject.removeClass(extraClass);
+                    extra && matchedObject.removeClass(extra);
                     matchedObject.removeData("transition");
                     matchedObject.triggerHandler("after_hide");
                 });

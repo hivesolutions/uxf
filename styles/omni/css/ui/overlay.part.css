@@ -4,6 +4,11 @@
     z-index: 20;
 }
 
+.omni-style .overlay.dark {
+    background-color: #4d4d4d;
+    opacity: 0.8;
+}
+
 .omni-style.dark .overlay {
     background-color: #666666;
     opacity: 0.3;
