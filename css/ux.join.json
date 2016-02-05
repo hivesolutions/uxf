@@ -18,9 +18,9 @@
             "ui/panel_more.part.css", "ui/panel_stack.part.css",
             "ui/radio_field.part.css", "ui/select_list.part.css",
             "ui/slider.part.css", "ui/slideshow.part.css",
-            "ui/tab_panel.part.css", "ui/text_field.part.css",
-            "ui/uploader.part.css", "ui/top_bar.part.css",
-            "ui/window.part.css", "footer.part.css",
+            "ui/stack.part.css", "ui/tab_panel.part.css",
+            "ui/text_field.part.css", "ui/uploader.part.css",
+            "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css",
             "../util/prism/prism.css"
         ]
     },
@@ -42,9 +42,9 @@
             "ui/panel_more.part.css", "ui/panel_stack.part.css",
             "ui/radio_field.part.css", "ui/select_list.part.css",
             "ui/slider.part.css", "ui/slideshow.part.css",
-            "ui/tab_panel.part.css", "ui/text_field.part.css",
-            "ui/uploader.part.css", "ui/top_bar.part.css",
-            "ui/window.part.css", "footer.part.css",
+            "ui/stack.part.css", "ui/tab_panel.part.css",
+            "ui/text_field.part.css", "ui/uploader.part.css",
+            "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css",
             "../util/prism/prism.css"
         ],
         "minify": "css"
@@ -67,9 +67,9 @@
             "ui/panel_more.part.css", "ui/panel_stack.part.css",
             "ui/radio_field.part.css", "ui/select_list.part.css",
             "ui/slider.part.css", "ui/slideshow.part.css",
-            "ui/tab_panel.part.css", "ui/text_field.part.css",
-            "ui/uploader.part.css", "ui/top_bar.part.css",
-            "ui/window.part.css", "footer.part.css",
+            "ui/stack.part.css", "ui/tab_panel.part.css",
+            "ui/text_field.part.css", "ui/uploader.part.css",
+            "ui/top_bar.part.css", "ui/window.part.css", "footer.part.css",
             "../util/prism/prism.css"
         ],
         "minify": "css",

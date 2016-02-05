@@ -1,0 +1,24 @@
+.stack {
+    overflow: hidden;
+}
+
+.stack > .stack-in {
+    font-size: 0px;
+    position: relative;
+    text-align: left;
+}
+
+.stack > .stack-out {
+    display: none;
+}
+
+.stack .stack-item {
+    display: inline-block;
+    font-size: medium;
+    overflow: auto;
+    vertical-align: middle;
+}
+
+.stack .stack-item.stack-bottom {
+    overflow: hidden;
+}
