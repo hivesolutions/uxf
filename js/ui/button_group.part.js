@@ -7,8 +7,7 @@
  * @version 1.0
  * @category jQuery plugin
  * @copyright Copyright (c) 2008-2016 Hive Solutions Lda.
- * @license Hive Solutions Confidential Usage License (HSCUL) -
- *          http://www.hive.pt/licenses/
+ * @license Apache License, Version 2.0 - http://www.apache.org/licenses/
  */
 (function(jQuery) {
     jQuery.fn.uxbuttongroup = function(method, options) {
