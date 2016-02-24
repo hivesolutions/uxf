@@ -19,7 +19,7 @@
 }
 
 .omni-print-style .table thead th:first-child,
-.omni-print-style .table tbody td:first-child  {
+.omni-print-style .table tbody td:first-child {
     border-left: 0px none;
 }
 

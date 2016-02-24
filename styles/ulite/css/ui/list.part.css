@@ -205,7 +205,7 @@
     -webkit-user-select: none;
 }
 
-.ulite-style .list.product-description-list > .product-area  > .item {
+.ulite-style .list.product-description-list > .product-area > .item {
     user-select: all;
     -o-user-select: all;
     -moz-user-select: all;
@@ -213,7 +213,7 @@
     -webkit-user-select: all;
 }
 
-.ulite-style .list.product-description-list > .list-area  > .item {
+.ulite-style .list.product-description-list > .list-area > .item {
     opacity: 0.0;
     transition: opacity 0.50s linear;
     -o-transition: opacity 0.50s linear;

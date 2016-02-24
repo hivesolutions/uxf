@@ -62,6 +62,6 @@
     -webkit-box-shadow: 0px 0px 6px #4d4d4d;
 }
 
-.omni-style.dark  .notification.button:hover {
+.omni-style.dark .notification.button:hover {
     border-color: #000000;
 }
