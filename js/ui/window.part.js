@@ -69,8 +69,10 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the window
+            // retrieves the top level elements that are going
+            // to be used on the event registration steps
             var _window = jQuery(window);
+            var _body = jQuery("body");
 
             // retrieves the references to both the close and
             // the accept buttons to be used in the registration
@@ -146,6 +148,12 @@
                 _window.scroll(function() {
                     // positions the window in the screen
                     _positionWindow(_element, options);
+                });
+
+                // registers for the global hide modal event
+                // so that the window is properly hidden
+                _body.bind("hide_modal", function() {
+                    _hide(window, options, true);
                 });
 
                 // registers the changing of contents in
