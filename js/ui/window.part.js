@@ -539,7 +539,7 @@
                 return false;
             }
 
-            // hdies the current set of windows that are visible and
+            // hides the current set of windows that are visible and
             // at the end of the hide operation shows the window
             visibleWindow.fadeOut(150, function() {
                 matchedObject.uxwindow("show");
