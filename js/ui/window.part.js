@@ -153,7 +153,9 @@
                 // registers for the global hide modal event
                 // so that the window is properly hidden
                 _body.bind("hide_modal", function() {
-                    _hide(window, options, true);
+                    // runs the hide operation for the current
+                    // window in clojure
+                    _hide(_element, options, false);
                 });
 
                 // registers the changing of contents in
