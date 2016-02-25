@@ -178,6 +178,10 @@
         };
 
         var _show = function(matchedObject, options) {
+            // retrieves the reference to the top level body element
+            // that is going to be used for global operations
+            var _body = jQuery("body");
+
             // retrieves the overlay element and in case it's not present
             // creates a default element adding it to the start of the
             // top level body element (default behaviour)
@@ -200,6 +204,10 @@
             if (pending) {
                 return;
             }
+
+            // triggers the hide modal event that is going to ensure
+            // that no modal windows are present in the screen
+            _body.triggerHandler("hide_modal");
 
             // shows the overlay and shows at the same time the
             // current object (window)
