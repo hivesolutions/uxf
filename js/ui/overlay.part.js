@@ -230,6 +230,8 @@
         var __fadeIn = function(matchedObject, options, timeout, extra, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
+            var _extra = matchedObject.data("extra");
+            _extra && matchedObject.removeClass(_extra);
             matchedObject.data("transition", "fadein");
             matchedObject.data("extra", extra);
             extra && matchedObject.addClass(extra);
@@ -258,20 +260,16 @@
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadeout");
-            var extra = matchedObject.data("extra");
-            matchedObject.removeData("extra");
             if (useHardware) {
                 __transition(matchedObject, options, timeout);
                 matchedObject.css("opacity", "0");
                 matchedObject.one("transitionend", function() {
-                    extra && matchedObject.removeClass(extra);
                     matchedObject.triggerHandler("after_hide");
                 });
             } else {
                 matchedObject.css("opacity", "");
                 __transitionUnset(matchedObject, options);
                 matchedObject.fadeOut(timeout, function() {
-                    extra && matchedObject.removeClass(extra);
                     matchedObject.removeData("transition");
                     matchedObject.triggerHandler("after_hide");
                 });
@@ -297,6 +295,7 @@
             matchedObject.css("-o-transition", value);
             matchedObject.css("-ms-transition", value);
             matchedObject.css("-moz-transition", value);
+            matchedObject.css("-khtml-transition", value);
             matchedObject.css("-webkit-transition", value);
         };
 
@@ -305,6 +304,7 @@
             matchedObject.css("-o-transition", "");
             matchedObject.css("-ms-transition", "");
             matchedObject.css("-moz-transition", "");
+            matchedObject.css("-khtml-transition", "");
             matchedObject.css("-webkit-transition", "");
         };
 
