@@ -61,8 +61,8 @@
             cssDuration = cssDuration || element.css("-o-animation-duration");
             cssDuration = cssDuration || element.css("-ms-animation-duration");
             cssDuration = cssDuration || element.css("-moz-animation-duration");
-            cssDuration = cssDuration || element.css("-webkit-animation-duration");
             cssDuration = cssDuration || element.css("-khtml-animation-duration");
+            cssDuration = cssDuration || element.css("-webkit-animation-duration");
             if (cssDuration) {
                 return parseFloat(cssDuration) * 1000;
             }
@@ -178,18 +178,20 @@
 
         var _enable = function(element, options) {
             element.css("transition", "");
-            element.css("-webkit-transition", "");
-            element.css("-moz-transition", "");
             element.css("-o-transition", "");
             element.css("-ms-transition", "");
+            element.css("-moz-transition", "");
+            element.css("-khtml-transition", "");
+            element.css("-webkit-transition", "");
         };
 
         var _disable = function(element, options) {
             element.css("transition", "none");
-            element.css("-webkit-transition", "none");
-            element.css("-moz-transition", "none");
             element.css("-o-transition", "none");
             element.css("-ms-transition", "none");
+            element.css("-moz-transition", "none");
+            element.css("-khtml-transition", "none");
+            element.css("-webkit-transition", "none");
         };
 
         // switches over the method so that the proper execution is going
