@@ -1686,6 +1686,10 @@
             // shows/displays the current drop field contents so that the
             // proper layout is positioned in the screen
             dropFieldContents.show();
+
+            // adds the drop field (visible) class to the drop field, meaning
+            // that currently the contents are visible on the layout
+            dropField.addClass("visible");
         };
 
         var _hide = function(matchedObject) {
@@ -1698,6 +1702,10 @@
             // hides/removes the current drop field contents so that the
             // proper layout is removed from the screen
             dropFieldContents.hide();
+
+            // removes the visible class from the drop field, meaning
+            // that the drop field contents are no longer visible
+            dropField.removeClass("visible");
         };
 
         // switches over the method
