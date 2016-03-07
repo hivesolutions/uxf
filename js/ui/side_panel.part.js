@@ -156,8 +156,8 @@
             // callback function then unbinds it from the click
             // even on the overlay
             var overlay = jQuery(".overlay:first");
-            var handle = matchedObject.data("click_handler");
-            overlay.unbind("click", handle);
+            var handler = matchedObject.data("click_handler");
+            handler && overlay.unbind("click", handler);
         };
 
         var __registerKey = function(matchedObject, options) {
