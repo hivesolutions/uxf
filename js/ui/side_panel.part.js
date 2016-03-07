@@ -186,8 +186,8 @@
             // element and then unregisters the key down event
             // handler from it (avoid duplicated events)
             var _document = jQuery(document);
-            var handle = matchedObject.data("key_handler");
-            _document.unbind("keydown", handle);
+            var handler = matchedObject.data("key_handler");
+            handler && _document.unbind("keydown", handler);
         };
 
         // initializes the plugin
