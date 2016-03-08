@@ -68,7 +68,7 @@
                 // completely handled (click enabling)
                 var buttonGroup = element.parents(".button-group");
                 var continueChange = buttonGroup.triggerHandler(
-                    "index_changed", [index]);
+                    "index_changed", [index, element]);
                 if (continueChange == false) {
                     return;
                 }
@@ -80,6 +80,12 @@
 
                 // adds the selected class to the current element (selects it)
                 element.addClass("selected");
+
+                // triggers the index selected event, so that any listener is
+                // notified about the selection changing (after change)
+                buttonGroup.triggerHandler("index_selected", [index,
+                    element
+                ]);
             });
 
             // registers for the pre submit event on the associated parent
@@ -130,6 +136,14 @@
                 var buttonGroups = jQuery(".button-group", element);
                 var inputs = jQuery("input[type=hidden]", buttonGroups);
                 inputs.remove();
+            });
+
+            // registers for the unselect event on the matched object so that the
+            // complete set of button defined in it are unselected
+            matchedObject.bind("unselect", function() {
+                var element = jQuery(this);
+                var buttons = jQuery(".button", element);
+                buttons.removeClass("selected");
             });
         };
 
