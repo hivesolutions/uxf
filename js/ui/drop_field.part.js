@@ -273,14 +273,6 @@
                     // otherwise it should show the updated
                     // drop field contents
                     else {
-                        // tries to retieve the updated flag from the
-                        // drop field and in case it's not been already
-                        // updated, runs the update process on it after
-                        // that sets the updated flag on its data
-                        var updated = dropField.data("updated");
-                        !updated && _update(dropField, options);
-                        dropField.data("updated", true)
-
                         // shows the drop field contents, so that the
                         // options remain visible to the user
                         _show(dropField);
@@ -1451,8 +1443,9 @@
             });
             dropField.data("value", value);
             dropField.data("selection", 1);
+            dropField.data("updated", false);
 
-            // iterates over all the value field to apply the
+            // iterates over all the value fields to apply the
             // correct item (from options) value to them
             for (var key in valueFields) {
                 var field = valueFields[key];
@@ -1465,7 +1458,7 @@
             dropField.addClass("drop-field-lock");
 
             // in case the bootstrap mode is enabled and extra update
-            // operation is scheduled to updata the values of the drop
+            // operation is scheduled to update the values of the drop
             // field according to the logic attribute that has been set
             bootstrap
                 && _update(dropField, options, true, [
@@ -1686,6 +1679,14 @@
             // that are going to be used in the show operation
             var dropField = matchedObject;
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
+
+            // tries to retieve the updated flag from the
+            // drop field and in case it's not been already
+            // updated, runs the update process on it after
+            // that sets the updated flag on its data
+            var updated = dropField.data("updated");
+            !updated && _update(dropField, options);
+            dropField.data("updated", true)
 
             // runs the resize operation in the drop field so that the proper
             // size is defined for the contents and the other elements
