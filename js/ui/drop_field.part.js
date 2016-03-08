@@ -1685,8 +1685,8 @@
             // updated, runs the update process on it after
             // that sets the updated flag on its data
             var updated = dropField.data("updated");
+            dropField.data("updated", true);
             !updated && _update(dropField, options);
-            dropField.data("updated", true)
 
             // runs the resize operation in the drop field so that the proper
             // size is defined for the contents and the other elements
