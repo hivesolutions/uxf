@@ -239,6 +239,7 @@
             var submit = element.data("submit");
             var show = element.data("show");
             var windowOpen = element.data("window_open");
+            var oneShot = element.data("one_shot");
 
             // links the element in case the link flag is set
             link && __link(element, options);
