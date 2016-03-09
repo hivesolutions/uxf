@@ -53,6 +53,7 @@
                 var show = _element.attr("data-show");
                 var window = _element.attr("data-window");
                 var windowOpen = _element.attr("data-window_open");
+                var oneShot = _element.attr("data-one_shot");
 
                 // sets the "new" element data
                 _element.data("link", link);
@@ -62,6 +63,7 @@
                 _element.data("show", show);
                 _element.data("window", window);
                 _element.data("window_open", windowOpen);
+                _element.data("one_shot", oneShot);
             });
         };
 
@@ -254,6 +256,10 @@
             // opens the window associated with the provided selector
             // it should be displayed as modal in the current viewport
             windowOpen && __windowOpen(element, options);
+
+            // in case the one shot flag is enabled the element is
+            // disabled so that no more actions occur
+            oneShot && __oneShot(element, options);
         };
 
         var __submit = function(matchedObject, options) {
@@ -316,13 +322,19 @@
 
         var __windowOpen = function(matchedObject, options) {
             // retrieves the window open value from the matched object
-            // this valud should contain the window selector
+            // this value should contain the window selector
             var windowOpen = matchedObject.data("window_open");
 
             // retrieves the window to be show and display it on
             // the current viewport
             var window = jQuery(windowOpen);
             window.uxwindow("show");
+        };
+
+        var __oneShot = function(matchedObject, options) {
+            // runs the disable operation on the current object
+            // so that no more actions are triggered
+            matchedObject.uxdisable();
         };
 
         // switches over the method
