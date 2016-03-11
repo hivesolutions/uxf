@@ -32,6 +32,7 @@
                 var width = _element.outerWidth(true);
                 var side = _element.attr("data-side") || "right";
                 _element.css(side, (width * -1) + "px");
+                _element.addClass("side-panel-" + side);
             });
         };
 
