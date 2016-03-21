@@ -162,7 +162,10 @@
 
         // starts the watching process for the currently matched
         // object so that the proper (initial) classes are set
+        // also schedules a delayed operation, that is going to
+        // be executed on the next tick operation
         watch();
+        watchDelayed();
 
         // returns the reference to the current context to
         // the caller object so that it may be "re-used"
