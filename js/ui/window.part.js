@@ -178,6 +178,14 @@
         };
 
         var _show = function(matchedObject, options) {
+            // verifies if the current window is already visible and
+            // if that's the case returns immediately, as there's nothing
+            // pending to be performed (as expected)
+            var isVisible = matchedObject.is(":visible");
+            if (isVisible) {
+                return;
+            }
+
             // retrieves the reference to the top level body element
             // that is going to be used for global operations
             var _body = jQuery("body");
@@ -236,6 +244,14 @@
         };
 
         var _hide = function(matchedObject, options, success) {
+            // verifies if the current window is already invisible and
+            // if that's the case returns immediately, as there's nothing
+            // pending to be performed (as expected)
+            var isVisible = matchedObject.is(":visible");
+            if (!isVisible) {
+                return;
+            }
+
             // retrieves the overlay element
             var overlay = jQuery(".overlay:first");
 
