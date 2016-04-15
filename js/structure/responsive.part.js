@@ -4,7 +4,6 @@
         // and the window object, to be used in the resize event
         var matchedObject = this;
         var _window = jQuery(window);
-        var _body = jQuery("body");
 
         // verifies if there's at leat one valid object matched and
         // if that's not the case returns the current context immediately
@@ -156,13 +155,6 @@
         _window.resize(function() {
             watch();
         });
-
-        // registers a new interval that is going to passively wath
-        // the current viewport from time to time, this is required
-        // as some browsers don't trigger the resize event correctly
-        setInterval(function() {
-            watch();
-        }, 1000);
 
         // measures the current pixel properties of the screen
         // and populates the proper structures
