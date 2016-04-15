@@ -29,8 +29,8 @@
          * process for it is enabled.
          */
         var setup = function(matchedObject, options) {
-            var secure = matchedObject.hasClass("secure");
-            var valid = !secure || _element.height() > 0;
+            var safe = matchedObject.hasClass("safe");
+            var valid = !safe || matchedObject.height() > 0;
             if (!valid) {
                 setTimeout(function() {
                     setup(matchedObject, options);
