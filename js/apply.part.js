@@ -13,18 +13,46 @@
         var matchedObject = this;
 
         /**
+         * Initial boot operation that triggers the multiplexing
+         * opertion for each of the selected elements.
+         */
+        var boot = function() {
+            matchedObject.each(function(index, element) {
+                var _element = jQuery(this);
+                setup(_element, options);
+            });
+        };
+
+        /**
+         * Setup operation responsible for the (optional) validation
+         * of the provided object and in case it passes the initialization
+         * process for it is enabled.
+         */
+        var setup = function(matchedObject, options) {
+            var secure = matchedObject.hasClass("secure");
+            var valid = !secure || _element.height() > 0;
+            if (!valid) {
+                setTimeout(function() {
+                    setup(matchedObject, options);
+                }, 25);
+                return;
+            }
+            initialize(matchedObject, options);
+        };
+
+        /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
          */
-        var initialize = function() {
-            _appendHtml();
-            _registerHandlers();
+        var initialize = function(matchedObject, options) {
+            _appendHtml(matchedObject, options);
+            _registerHandlers(matchedObject, options);
         };
 
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
+        var _appendHtml = function(matchedObject, options) {
             // validates that there's a valid matched object,
             // otherwise returns immediately
             if (!matchedObject || matchedObject.length == 0) {
@@ -317,7 +345,7 @@
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {
+        var _registerHandlers = function(matchedObject, options) {
             // validates that there's a valid matched object,
             // otherwise returns immediately
             if (!matchedObject || matchedObject.length == 0) {
@@ -373,17 +401,10 @@
             } catch (exception) {}
         };
 
-        // initializes the plugin
-        initialize();
-
-        // triggers an event indicating that the ux components
-        // have finished the application of the structures, note
-        // that the base of the apply is sent as an argument, this
-        // is not a jquery standard and is used as an exception
-        var _body = jQuery("body");
-        _body.triggerHandler("pre_applied", [matchedObject]);
-        _body.triggerHandler("applied", [matchedObject]);
-        _body.triggerHandler("post_applied", [matchedObject]);
+        // runs the "initial" boot operation that should be
+        // able to apply all the values to a certain set of
+        // target or targets (multiplexing handled)
+        boot();
 
         // returns the object
         return this;
