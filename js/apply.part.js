@@ -30,11 +30,13 @@
          */
         var setup = function(matchedObject, options) {
             var safe = matchedObject.hasClass("safe");
-            var valid = !safe || matchedObject.height() > 0;
+            var valid = !safe || _isValid(matchedObject, options);
             if (!valid) {
+                var timeout = matchedObject.attr("data-timeout") || 25;
+                timeout = parseInt(timeout);
                 setTimeout(function() {
                     setup(matchedObject, options);
-                }, 25);
+                }, timeout);
                 return;
             }
 
@@ -411,6 +413,16 @@
                     options.async = true;
                 });
             } catch (exception) {}
+        };
+
+        var _isValid = function(matchedObject, options) {
+            if (matchedObject.width() <= 0) {
+                return false;
+            }
+            if (matchedObject.height() <= 0) {
+                return false;
+            }
+            return true
         };
 
         // runs the "initial" boot operation that should be
