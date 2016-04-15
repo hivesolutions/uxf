@@ -13,8 +13,8 @@
         var matchedObject = this;
 
         /**
-         * Initial boot operation that triggers the multiplexing
-         * opertion for each of the selected elements.
+         * Initial boot operation that triggers the multiplexing operation for
+         * each of the selected elements.
          */
         var boot = function() {
             matchedObject.each(function(index, element) {
@@ -24,9 +24,9 @@
         };
 
         /**
-         * Setup operation responsible for the (optional) validation
-         * of the provided object and in case it passes the initialization
-         * process for it is enabled.
+         * Setup operation responsible for the (optional) validation of the
+         * provided object and in case it passes the initialization process for
+         * it is enabled.
          */
         var setup = function(matchedObject, options) {
             var safe = matchedObject.hasClass("safe");
@@ -37,7 +37,19 @@
                 }, 25);
                 return;
             }
+
+            // runs the initialization process for the current
+            // (validated object) with the proper options
             initialize(matchedObject, options);
+
+            // triggers an event indicating that the ux components
+            // have finished the application of the structures, note
+            // that the base of the apply is sent as an argument, this
+            // is not a jquery standard and is used as an exception
+            var _body = jQuery("body");
+            _body.triggerHandler("pre_applied", [matchedObject]);
+            _body.triggerHandler("applied", [matchedObject]);
+            _body.triggerHandler("post_applied", [matchedObject]);
         };
 
         /**
