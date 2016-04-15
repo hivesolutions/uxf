@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
                 delay(element, 25);
                 return;
             }
-            elements.uxapply();
+            element.uxapply();
         }, timeout);
     };
 

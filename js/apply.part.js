@@ -27,7 +27,7 @@
         var _appendHtml = function() {
             // validates that there's a valid matched object,
             // otherwise returns immediately
-            if (matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length == 0) {
                 return;
             }
 
@@ -320,7 +320,7 @@
         var _registerHandlers = function() {
             // validates that there's a valid matched object,
             // otherwise returns immediately
-            if (matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length == 0) {
                 return;
             }
 
