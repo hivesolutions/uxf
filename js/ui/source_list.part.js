@@ -42,7 +42,13 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the options values
+            // sets the ux global object representation as source
+            // list, this value may be used latter for fast ux
+            // object type access (hash based conditions)
+            matchedObject.uxobject("sourcelist");
+
+            // retrieves the options values that are going to
+            // condition the way the source list is initialized
             var numberOptions = options["numberOptions"];
             var filterOptions = options["filterOptions"];
 
