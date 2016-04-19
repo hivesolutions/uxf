@@ -1,5 +1,5 @@
 (function(jQuery) {
-    jQuery.fn.uxobject = function(type, force, notElement) {
+    jQuery.fn.uxobject = function(type, transparent, force) {
         // retrieves the reference to the object in context
         // the one that is going to be set with the proper
         // object type for future reference
@@ -10,7 +10,7 @@
         // the top level element entrypoints, relevant to
         // determined the correct entry hierarchy levels
         // for each of the graphical components/elements
-        var isElement = notElement ? false : true;
+        var isElement = transparent ? false : true;
 
         // iterates over the complete set of selected elements
         // in order to change their internal structure
@@ -31,15 +31,15 @@
             // tries to find any top element in the parent hierarchy
             // in case none is found the element is considered to
             // be a top one and the proper attribute is added
-            var parents = _element.parents("[data-top]");
-            var isTop = parents.length == 0;
+            var parents = isElement ? _element.parents("[data-top]") : [];
+            var isTop = parents.length == 0 && isElement;
             isTop && _element.attr("data-top", "1")
 
             // retrieves the complete set of children elements
             // marked as top and removes such association, as
             // they are no longer considered to be top objects
-            var childrenTop = jQuery("[data-top]", _element);
-            isElement && childrenTop.removeAttr("data-top");
+            var childrenTop = isTop ? jQuery("[data-top]", _element) : [];
+            isTop && childrenTop.removeAttr("data-top");
 
             // sets the object type in the data object attribute
             // for the currently matched object
