@@ -565,7 +565,7 @@
                         var field = jQuery(selector, matchedObject);
                         parents = field.parents("[data-top]");
                         field = field.filter("[data-top]");
-                        field.add(parents);
+                        field = field.add(parents);
                         field.attr("data-error", _errorsString);
                         field.uxerror();
                         field.addClass("invalid");
