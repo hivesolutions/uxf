@@ -560,8 +560,10 @@
 
                         // retrieves the field from the form associated with the
                         // provided value and updates it's error state adding the
-                        // invalid class to it also
-                        var field = jQuery("[name=" + name + "]", matchedObject);
+                        // invalid class to it also (error state adding)
+                        var selector = "[name=" + name + "][data-object][data-top]," +
+                            "[data-name=" + name + "][data-object][data-top]";
+                        var field = jQuery(selector, matchedObject);
                         field.attr("data-error", _errorsString);
                         field.uxerror();
                         field.addClass("invalid");
