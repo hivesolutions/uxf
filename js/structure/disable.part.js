@@ -27,7 +27,7 @@
                 // verifies that it's not currently disabled
                 // if that's the case returns immediately
                 var _element = jQuery(element);
-                var isDisabled = _element.hasClass("disabled") || element.attr(name);
+                var isDisabled = _element.hasClass("disabled") || _element.attr(name);
                 if (isDisabled) {
                     return;
                 }
