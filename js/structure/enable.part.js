@@ -28,8 +28,16 @@
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
                 // retrieves the element reference and
-                // removes the disabled class from the it
+                // verifies that it is currently disabled
+                // if that's not the case returns immediately
                 var _element = jQuery(element);
+                var isDisabled = _element.hasClass("disabled") || element.attr("disabled");
+                if (!isDisabled) {
+                    return;
+                }
+
+                // removes the disabled class from the element, marking
+                // it as currently enabled
                 _element.removeClass("disabled");
 
                 // checks if the currently matche object is an input field
