@@ -33,7 +33,7 @@
             // be a top one and the proper attribute is added
             var parents = _element.parents("[data-top]");
             var isTop = parents.length == 0;
-            isTop && _element.attr("data-top")
+            isTop && _element.attr("data-top", "1")
 
             // retrieves the complete set of children elements
             // marked as top and removes such association, as
