@@ -427,6 +427,8 @@
         var _enable = function(matchedObject, options) {
             matchedObject.triggerHandler("pre_enable");
             var container = matchedObject.parents(".drop-down-container");
+            var button = jQuery(".button-drop-down", container);
+            button.uxenable();
             container.removeClass("disabled");
             matchedObject.removeClass("disabled");
             matchedObject.triggerHandler("post_enable");
@@ -435,7 +437,9 @@
         var _disable = function(matchedObject, options) {
             matchedObject.triggerHandler("pre_disable");
             var container = matchedObject.parents(".drop-down-container");
+            var button = jQuery(".button-drop-down", container);
             _hide(matchedObject, options);
+            button.uxdisable();
             container.addClass("disabled");
             matchedObject.addClass("disabled");
             matchedObject.triggerHandler("post_disable");
