@@ -147,7 +147,7 @@
 
             // binds the toggle field do the enabled event
             // so that is possible to propagate the enabling
-            toggleField.bind("enabled", function() {
+            toggleField.bind("enable enabled", function() {
                 // retrieves the current element and the associated
                 // text field and button elements
                 var element = jQuery(this);
@@ -162,7 +162,7 @@
 
             // binds the toggle field do the disabled event
             // so that is possible to propagate the disabling
-            toggleField.bind("disabled", function() {
+            toggleField.bind("disable disabled", function() {
                 // retrieves the current element and the associated
                 // text field and button elements
                 var element = jQuery(this);

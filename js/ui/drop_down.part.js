@@ -244,14 +244,14 @@
 
             // registers for the enable operation of the current
             // drop down so that the interaction is enabled
-            matchedObject.bind("enable", function() {
+            matchedObject.bind("enable enabled", function() {
                 var element = jQuery(this);
                 _enable(element, options);
             });
 
             // registers for the disable operation of the current
             // drop down so that the interaction is disabled
-            matchedObject.bind("disable", function() {
+            matchedObject.bind("disable disabled", function() {
                 var element = jQuery(this);
                 _disable(element, options);
             });

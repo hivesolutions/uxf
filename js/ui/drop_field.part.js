@@ -293,7 +293,7 @@
 
             // binds the drop field do the enabled event
             // so that is possible to propagate the enabling
-            matchedObject.bind("enabled", function() {
+            matchedObject.bind("enable enabled", function() {
                 // retrieves the current element and the associated
                 // text field element
                 var element = jQuery(this);
@@ -306,7 +306,7 @@
 
             // binds the drop field to the disabled event
             // so that is possible to propagate the disabling
-            matchedObject.bind("disabled", function() {
+            matchedObject.bind("disable disabled", function() {
                 // retrieves the current element and the associated
                 // text field element
                 var element = jQuery(this);

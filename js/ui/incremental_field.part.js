@@ -133,7 +133,7 @@
 
             // binds the incremental field do the enabled event
             // so that is possible to propagate the enabling
-            incrementalField.bind("enabled", function() {
+            incrementalField.bind("enable enabled", function() {
                 // retrieves the current element and the associated
                 // text field and button elements
                 var element = jQuery(this);
@@ -148,7 +148,7 @@
 
             // binds the incremental field do the disabled event
             // so that is possible to propagate the disabling
-            incrementalField.bind("disabled", function() {
+            incrementalField.bind("disable disabled", function() {
                 // retrieves the current element and the associated
                 // text field and button elements
                 var element = jQuery(this);

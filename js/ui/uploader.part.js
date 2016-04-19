@@ -153,15 +153,15 @@
                     uploaderInput.trigger("click");
                 });
 
-                // registers for the disavled event in the element
+                // registers for the disabled event in the element
                 // to hide the uploader input from the layout
-                _element.bind("disabled", function() {
+                _element.bind("disable disabled", function() {
                     uploaderInput.hide();
                 });
 
                 // registers for the enabled event in the element
                 // to (re)-show the upload input again the layout
-                _element.bind("enabled", function() {
+                _element.bind("enable enabled", function() {
                     uploaderInput.show();
                 });
 
