@@ -1158,39 +1158,30 @@
         // switches over the method
         switch (method) {
             case "value":
-                // retrieves the value
+                // retrieves the value and returns it to
+                // the caller method for proper handling
                 var value = _value(matchedObject, options);
-
-                // returns the value
                 return value;
 
             case "reset":
                 // resets the current text field value to
                 // its original value
                 _reset(matchedObject, options);
-
-                // breaks the switch
-                break;
+                return true;
 
             case "focus":
                 // focus the matched object
                 _focus(matchedObject, options);
-
-                // breaks the switch
                 break;
 
             case "blur":
                 // blurs the matched object
                 _blur(matchedObject, options);
-
-                // breaks the switch
                 break;
 
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

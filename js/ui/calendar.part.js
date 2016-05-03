@@ -510,23 +510,18 @@
             case "set":
                 // sets the new current value in the matched object
                 _set(matchedObject, options);
-
-                // breaks the switch
                 break;
 
             case "reset":
                 // resets the matched object to the value
-                // in the current state
+                // in the current state and returns a valid
+                // value, meaning that proper reset was performed
                 _reset(matchedObject, options);
-
-                // breaks the switch
-                break;
+                return true;
 
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

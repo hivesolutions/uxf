@@ -586,13 +586,13 @@
                 // runs the original operation on the currently matched
                 // object so that the element is restored to original
                 _original(matchedObject, options);
-                break;
+                return true;
 
             case "reset":
                 // runs the reset operation on the currently matched
                 // object so that the element is restored to empty
                 _reset(matchedObject, options);
-                break;
+                return true;
 
             case "default":
                 // initializes the plugin and then breaks the current

@@ -121,15 +121,11 @@
             case "reset":
                 // runs the reset method in the current element
                 _reset(matchedObject, options);
-
-                // breaks the switch
-                break;
+                return true;
 
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

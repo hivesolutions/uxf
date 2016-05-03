@@ -1722,37 +1722,28 @@
             case "set":
                 // sets the value in the drop field value
                 _set(matchedObject, options);
-
-                // breaks the switch
                 break
 
             case "reset":
                 // resets the drop field value
                 _reset(matchedObject, options);
-
-                // breaks the switch
-                break
+                return true;
 
             case "index":
                 // selects the proper index value in the drop
                 // field, usefull for drop field select elements
                 _index(matchedObject, options);
-
-                // breaks the switch
                 break
 
             case "value":
-                // retrieves the value
+                // retrieves the value and returns it to the
+                // caler function for handling
                 var value = _value(matchedObject, options);
-
-                // returns the value
                 return value;
 
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

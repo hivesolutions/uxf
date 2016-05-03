@@ -243,6 +243,16 @@
                 }
             });
 
+            // registers for the original event on the matched object
+            // so that the form may perform the original form operation
+            // under such conditions
+            matchedObject.bind("original", function(event, noFull) {
+                // retrieves the current element and runs
+                // the original for operation for it
+                var element = jQuery(this);
+                originalForm(element, options, !noFull);
+            });
+
             // registers for the reset event on the matched object
             // so that the form may perform the reset form operation
             // under such conditions
@@ -630,6 +640,18 @@
             matchedObject.trigger("layout");
         };
 
+        var originalForm = function(matchedObject, options) {
+            // restores the error part of the form to the original values so that
+            // they don't appear in the form (original state)
+            resetErrors(matchedObject, options);
+
+            // retrieves the complete set of elements from the matched object
+            // and runs the original operation on all of them, this should be able
+            // to restore them to their original values
+            var elements = matchedObject.uxfields();
+            elements.uxoriginal();
+        };
+
         var resetForm = function(matchedObject, options, full) {
             // restores the error part of the form to the original values so that
             // they don't appear in the form (original state)
@@ -637,7 +659,7 @@
 
             // retrieves the complete set of elements from the matched object
             // and runs the reset operation on all of them, this should be able
-            // to restore them to their original values
+            // to restore them to their empty values
             var elements = matchedObject.uxfields();
             elements.uxreset();
 
