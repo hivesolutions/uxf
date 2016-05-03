@@ -383,7 +383,7 @@
             var forms = jQuery(".form", matchedObject);
             forms.each(function(index, element) {
                 var _element = jQuery(this);
-                _element.triggerHandler("reset");
+                _element.triggerHandler("original");
             });
 
             // retrieves the complete set of fields (form fields)
