@@ -433,6 +433,13 @@
             }
         };
 
+        var _original = function(matchedObject, options) {
+            var original = matchedObject.data("original") || ""
+            _value(matchedObject, {
+                value: original
+            });
+        };
+
         var _reset = function(matchedObject, options) {
             _value(matchedObject, {
                 value: ""
@@ -551,6 +558,10 @@
             // if the autcomplete feature must be forced in non compliant
             // browsers (eg: firefox)
             var forceComplete = matchedObject.attr("data-force_complete");
+
+            // sets the proper original value that is going to be used latter
+            // for the original envent to restore original state
+            matchedObject.data("original", originalValue || elementValue || inputFieldValue);
 
             // in case the element value is not provided
             if (elementValue != null) {
@@ -1163,9 +1174,15 @@
                 var value = _value(matchedObject, options);
                 return value;
 
+            case "original":
+                // restores the text field value to the
+                // its original value
+                _original(matchedObject, options);
+                return true;
+
             case "reset":
                 // resets the current text field value to
-                // its original value
+                // its default/empty value
                 _reset(matchedObject, options);
                 return true;
 

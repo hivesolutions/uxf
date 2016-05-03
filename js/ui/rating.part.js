@@ -81,7 +81,7 @@
             // that the default value is set instead of the current one
             matchedObject.bind("_reset", function() {
                 var element = jQuery(this);
-                _value(element, 0);
+                _reset(element, options);
             });
 
             // register for the mouse over event in the rating elements
@@ -212,7 +212,7 @@
                 var item = jQuery(items[index]);
                 item.addClass("inactive");
             }
-        }
+        };
 
         var _blur = function(matchedObject, options) {
             // sets the passed matched object as the current element
@@ -224,15 +224,23 @@
             // set of items as none of them is selected (focused) now
             items.removeClass("hover");
             items.removeClass("inactive");
-        }
+        };
+
+        var _reset = function(matchedObject, options) {
+            _value(matchedObject, 0);
+        };
 
         // switches over the method
         switch (method) {
+            case "reset":
+                // runs the reset operation in the current
+                // object and returns a valid operation
+                _reset(matchedObject, options);
+                return true;
+
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

@@ -396,7 +396,7 @@
             // focus the control on the first field of the window
             // form, providing a rapid interaction scheme for
             // the end user (form reset operation)
-            fields.uxreset();
+            fields.uxoriginal();
             first.uxfocus();
         };
 
