@@ -1,6 +1,6 @@
 (function(jQuery) {
     jQuery.fn.uxlink = function(options) {
-        // the default values for the link confirm
+        // the default values for the link
         var defaults = {};
 
         // sets the default options value
