@@ -72,7 +72,14 @@
 
             matchedObject.bind("load", function() {
                 var element = jQuery(this);
+                element.removeClass("loading");
                 element.addClass("loaded");
+            });
+
+            matchedObject.bind("error", function() {
+                var element = jQuery(this);
+                element.removeClass("loading");
+                element.addClass("error");
             });
 
             !isRegistered && _window.scroll(function() {
@@ -105,6 +112,7 @@
             }
 
             element.attr("src", dataUrl);
+            element.addClass("loading");
         };
 
         var getHeaderOffset = function(element) {
