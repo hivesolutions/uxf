@@ -33,12 +33,19 @@
                 return;
             }
 
+            // retrieves the reference to the top level body
+            // element to be used for global retrieval
+            var _body = jQuery("body");
+
             // iterates over each of the selected images
-            // to starts they (initial) state, note that
-            // this operations is delayed by timeout
+            // to start their (initial) state, note that
+            // this operation is delayed by timeout
             matchedObject.each(function(index, element) {
                 var _element = jQuery(this);
-                var src = _element.attr("src") || _element.attr("data-url");
+                var isRetina = _body.hasClass("retina-s");
+                var attribute = isRetina ? "data-url_retina" : "data-url";
+                var src = _element.attr("src") || _element.attr(attribute);
+                src = src || _element.attr("data-url");
                 _element.attr("data-url", src);
                 _element.removeAttr("src");
                 setTimeout(function() {
