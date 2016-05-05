@@ -180,6 +180,18 @@
             // element according to the available features
             _body.uxfeature();
 
+            // applies the mobile plugin, this extension is going
+            // to change the classes of the body for a mobile browser
+            // situation, that way the code may be used conditionaly
+            // taking into account if this is a desktop or mobile browser
+            _body.uxmobile();
+
+            // applies the responsive plugin, responsible for the registration
+            // of the handler that changes the top level classes of the body
+            // according to the current dimensions/size of the viewport so that
+            // the layout may adjust to the current dimensions (responsive design)
+            _body.uxresponsive();
+
             // applies the various component plugins, these should start
             // the specific plugin behavior for each case
             overlay.uxoverlay();
@@ -283,18 +295,6 @@
             // pre-defined timeout interval, this way it's possible to overcome
             // some resize event related limitations on some browsers
             _body.uxresize();
-
-            // applies the mobile plugin, this extension is going
-            // to change the classes of the body for a mobile browser
-            // situation, that way the code may be used conditionaly
-            // taking into account if this is a desktop or mobile browser
-            _body.uxmobile();
-
-            // applies the responsive plugin, responsible for the registration
-            // of the handler that changes the top level classes of the body
-            // according to the current dimensions/size of the viewport so that
-            // the layout may adjust to the current dimensions (responsive design)
-            _body.uxresponsive();
 
             // applies the eval (javascript evalutation)
             // this is a dangerous operation
