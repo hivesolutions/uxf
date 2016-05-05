@@ -44,7 +44,8 @@
                 var _element = jQuery(this);
                 var isRetina = _body.hasClass("retina-s");
                 var attribute = isRetina ? "data-url_retina" : "data-url";
-                var src = _element.attr("src") || _element.attr(attribute);
+                var src = _element.attr(attribute);
+                src = src || _element.attr("data-src") || _element.attr("src");
                 _element.attr(attribute, src);
                 _element.removeAttr("src");
                 setTimeout(function() {
