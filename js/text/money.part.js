@@ -25,7 +25,8 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // iterates over all the matched objects
+            // iterates over all the matched objects to be able
+            // to format each of them accordingly as money values
             matchedObject.each(function(index, element) {
                 var _element = jQuery(this);
                 var value = _element.attr("data-value") || _element.text();

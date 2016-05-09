@@ -253,7 +253,7 @@
             dateTime.uxdatetime();
             enumeration.uxenumeration();
             number.uxnumber();
-            number.uxmoney();
+            money.uxmoney();
             timestamp.uxtimestamp();
             slideshow.uxslideshow();
             chart.uxchart();
