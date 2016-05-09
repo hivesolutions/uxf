@@ -123,6 +123,7 @@
             var dateTime = jQuery(".date-time", matchedObject).not(".template .date-time");
             var enumeration = jQuery(".enumeration", matchedObject).not(".template .enumeration");
             var number = jQuery(".number", matchedObject).not(".template .number");
+            var money = jQuery(".money", matchedObject).not(".template .money");
             var timestamp = jQuery(".timestamp", matchedObject).not(".template .timestamp");
             var slideshow = jQuery(".slideshow", matchedObject).not(".template .slideshow");
             var chart = jQuery(".chart", matchedObject).not(".template .chart");
@@ -252,6 +253,7 @@
             dateTime.uxdatetime();
             enumeration.uxenumeration();
             number.uxnumber();
+            number.uxmoney();
             timestamp.uxtimestamp();
             slideshow.uxslideshow();
             chart.uxchart();
