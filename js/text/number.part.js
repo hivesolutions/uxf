@@ -31,7 +31,7 @@
                 var _element = jQuery(element);
 
                 // retrieves the various attributes of
-                // the element
+                // the element to be used in the format
                 var places = _element.attr("data-places");
                 var separator = _element.attr("data-separator");
                 var magnitudeSeparator = _element.attr("data-magnitude_separator");
