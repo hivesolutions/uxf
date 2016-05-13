@@ -90,6 +90,16 @@
                     var href = element.attr("href");
                     var hrefValid = jQuery(href).length > 0;
 
+                    // determines if this is a no action link meaning
+                    // that nothing should be performed and if that the
+                    // case returns immeidately, avoiding the propagation
+                    // of the event to the upper layers
+                    var noAction = element.attr("data-no_action");
+                    if (noAction) {
+                        event.stopPropagation();
+                        event.preventDefault();
+                    }
+
                     // retrieves the value of the data hash value
                     // that if existent enables hash changing
                     var hash = element.attr("data-hash");
