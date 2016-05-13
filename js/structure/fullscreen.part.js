@@ -16,8 +16,8 @@
             && _document.bind(
                 "fullscreenchange webkitfullscreenchange mozfullscreenchange",
                 function() {
-                    var isFullScreen = this.fullScreen || this.mozFullScreen || this.webkitIsFullScreen;
-                    isFullscreen = isFullScreen || this.fullscreenElement || this.mozFullScreenElement || this.webkitFullscreenElement ||
+                    var isFullscreen = this.fullScreen || this.mozFullScreen || this.webkitIsFullScreen;
+                    isFullscreen = isFullscreen || this.fullscreenElement || this.mozFullScreenElement || this.webkitFullscreenElement ||
                         this.msFullscreenElement;
                     isFullscreen = isFullscreen ? true : false;
                     if (isFullscreen) {
