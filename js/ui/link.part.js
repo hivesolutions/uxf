@@ -58,8 +58,6 @@
                 // event handler is register that only sets a series of
                 // minimal operations to be performed
                 noAction && _element.click(function(event) {
-                    event.stopPropagation();
-                    event.stopImmediatePropagation();
                     event.preventDefault();
                     return;
                 });
