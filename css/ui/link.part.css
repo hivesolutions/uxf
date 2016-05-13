@@ -2,6 +2,6 @@
     cursor: pointer;
 }
 
-.link[data-no_action] {
+.link.no-action {
     pointer-events: none;
 }

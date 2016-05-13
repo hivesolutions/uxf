@@ -46,26 +46,14 @@
                 var duration = _element.attr("data-duration");
                 var durationInteger = parseInt(duration);
 
-                // tries to deterine if this is a no action link because
-                // if that's the case special action is required
-                var noAction = _element.attr("data-no_action");
-
                 // checks if the duration integer value is valid
                 // conversion successful
                 var durationValid = !isNaN(durationInteger);
 
-                // in case the no action flag is set a "special" click
-                // event handler is register that only sets a series of
-                // minimal operations to be performed
-                noAction && _element.click(function(event) {
-                    event.preventDefault();
-                    return;
-                });
-
                 // in case the ajax flag set a "special" click handler
                 // must be registered to intercept the call and use
                 // ajax techniques to retrieve it
-                !noAction && ajax && _element.click(function(event) {
+                ajax && _element.click(function(event) {
                     // retrieves the element and retrieves the hiperlink
                     // reference value from it to be used as the url
                     var element = jQuery(this);
@@ -92,7 +80,7 @@
 
                 // registers for the click event in
                 // the element only in case the dureation is valid
-                !noAction && durationValid && _element.click(function(event) {
+                durationValid && _element.click(function(event) {
                     // retrieves the element
                     var element = jQuery(this);
 
