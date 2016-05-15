@@ -1,5 +1,5 @@
 (function(jQuery) {
-    jQuery.uxfullscreen = function() {
+    jQuery.uxfullscreen = function(leave) {
         // retrieves the reference to the top level elements, that
         // are going to be used for part of the fullscreen operation
         var _document = jQuery(document);
@@ -32,6 +32,7 @@
         // in fullscreen or if it's under a window mode
         var isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ||
             document.msFullscreenElement;
+        isFullscreen = isFullscreen || leave;
         isFullscreen = isFullscreen ? true : false;
 
         if (!isFullscreen) {
