@@ -40,6 +40,12 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // verifies if there's at leat on matched object and if that's
+            // not the case returns immediately (avoiding possible issues)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // resizes the overlay in the screen, this is the initial
             // operation so that it becomes of the correct size, then
             // adds the resizable class to the current element to identify
@@ -63,6 +69,12 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // verifies if there's at leat on matched object and if that's
+            // not the case returns immediately (avoiding possible issues)
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the window
             var _window = jQuery(window);
 
@@ -92,24 +104,40 @@
             // registers for the click event so that
             // no propagation of it is done
             matchedObject.click(function(event) {
+                // retrieves the current element (overlay) and the
+                // reference to the body top elemenet
+                var element = jQuery(this);
+                var _body = jQuery("body");
+
                 // stops the event propagation, no need to propagate
                 // clicks to the upper levels
                 event.stopPropagation();
+
+                // verifies if the autohide mode is enabled for the
+                // overlay and if that's the case trigger the hide
+                // modal event to hide all modal windows
+                var autohide = element.data("autohide");
+                if (!autohide) {
+                    return;
+                }
+                _body.triggerHandler("hide_modal");
             });
 
             // registers for the toggle (visibility) event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("toggle", function(event, timeout, extra) {
-                var element = jQuery(this);
-                _toggle(element, options, timeout, extra);
-            });
+            matchedObject.bind("toggle",
+                function(event, timeout, extra, autohide) {
+                    var element = jQuery(this);
+                    _toggle(element, options, timeout, extra, autohide);
+                });
 
             // registers for the show event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("show", function(event, timeout, extra) {
-                var element = jQuery(this);
-                _show(element, options, timeout, extra);
-            });
+            matchedObject.bind("show",
+                function(event, timeout, extra, autohide) {
+                    var element = jQuery(this);
+                    _show(element, options, timeout, extra, autohide);
+                });
 
             // registers for the hide event so that the proper
             // hide operation is performed in the associated overlay
@@ -140,17 +168,17 @@
             });
         };
 
-        var _toggle = function(matchedObject, options, timeout, extra) {
+        var _toggle = function(matchedObject, options, timeout, extra, autohide) {
             // in case the matched object is visible hides the
             // overlay otherwise shows it (opposite operation)
             if (matchedObject.is(":visible")) {
                 _hide(matchedObject, options, timeout);
             } else {
-                _show(matchedObject, options, timeout, extra);
+                _show(matchedObject, options, timeout, extra, autohide);
             }
         };
 
-        var _show = function(matchedObject, options, timeout, extra) {
+        var _show = function(matchedObject, options, timeout, extra, autohide) {
             // verifies if the current object is visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -158,6 +186,10 @@
             if (visible) {
                 return;
             }
+
+            // updates the autohide value of the matched object
+            // with the proper (and new) value
+            matchedObject.data("autohide", autohide)
 
             // shows the matched object and then runs
             // the show operation for the overlay element
