@@ -51,7 +51,7 @@
             // the localization process for both the title and the message,
             // this is considered the default behaviour for info
             title = title || "Information";
-            fullMonth = jQuery.uxlocale(title);
+            title = jQuery.uxlocale(title);
             message = jQuery.uxlocale(message);
 
             // sets the window properties so that it displays the proper values
