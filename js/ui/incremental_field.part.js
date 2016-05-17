@@ -167,13 +167,25 @@
             // field then retrieves the current value of it and converts
             // it into a float representation
             var textField = jQuery(".text-field", incrementalField);
-            var floatvalue = textField.uxfloat()
+            var floatvalue = textField.uxfloat();
+
+            // tries to retrive a possibly existing increment url value
+            // to be used for location change
+            var incrementUrl = incrementalField.attr("data-increment_url");
 
             // checks if the incremental field to verify that the
             // incremental field is not disabled, in case it is
             // no action is done
             var isDisabled = incrementalField.hasClass("disabled");
             if (isDisabled) {
+                return;
+            }
+
+            // verifies if the increment url is defined and if that's the
+            // cases runs the location plugin to change the current browser's
+            // location to the one defined in the increment url
+            if (incrementUrl) {
+                jQuery.uxlocation(incrementUrl);
                 return;
             }
 
@@ -196,6 +208,10 @@
             var textField = jQuery(".text-field", incrementalField);
             var floatvalue = textField.uxfloat();
 
+            // tries to retrive a possibly existing decrement url value
+            // to be used for location change
+            var decrementUrl = incrementalField.attr("data-decrement_url");
+
             // retrieves the data type for associated with the text field
             // for the incremental field (non natural validation)
             var type = textField.attr("data-type");
@@ -213,6 +229,14 @@
             // less no changes are done
             if ((type == "natural" || type == "floatp") && floatvalue <= 0) {
                 // returns immediately (avoids changing the value)
+                return;
+            }
+
+            // verifies if the decrement url is defined and if that's the
+            // cases runs the location plugin to change the current browser's
+            // location to the one defined in the decrement url
+            if (decrementUrl) {
+                jQuery.uxlocation(decrementUrl);
                 return;
             }
 
