@@ -47,9 +47,16 @@
             message = typeof message === "string" ? message : String(message);
             message = matchedObject.uxwiki(message);
 
-            // sets the window properties and hides
-            // button cancel
-            windowHeader.html(title || "Information");
+            // defaults the title value in case none is defined as then runs
+            // the localization process for both the title and the message,
+            // this is considered the default behaviour for info
+            title = title || "Information";
+            fullMonth = jQuery.uxlocale(title);
+            message = jQuery.uxlocale(message);
+
+            // sets the window properties so that it displays the proper values
+            // as expected, so that it's ready to be shown
+            windowHeader.html(title);
             windowContents.html(message);
 
             // shows the window
