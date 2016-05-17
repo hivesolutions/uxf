@@ -171,7 +171,7 @@
 
             // tries to retrive a possibly existing increment url value
             // to be used for location change
-            var incrementUrl = incrementalField.attr("data-increment_url");
+            var incrementUrl = textField.attr("data-increment_url");
 
             // checks if the incremental field to verify that the
             // incremental field is not disabled, in case it is
@@ -210,7 +210,7 @@
 
             // tries to retrive a possibly existing decrement url value
             // to be used for location change
-            var decrementUrl = incrementalField.attr("data-decrement_url");
+            var decrementUrl = textField.attr("data-decrement_url");
 
             // retrieves the data type for associated with the text field
             // for the incremental field (non natural validation)
