@@ -183,6 +183,10 @@
             textField.uxtextfield("value", {
                 value: floatvalue
             });
+
+            // triggers the incremented event, notifying any listener
+            // about the value that has changed
+            incrementalField.triggerHandler("incremented", [floatvalue]);
         };
 
         var __decrement = function(incrementalField, options) {
@@ -218,6 +222,10 @@
             textField.uxtextfield("value", {
                 value: floatvalue
             });
+
+            // triggers the decremented event, notifying any listener
+            // about the value that has changed
+            incrementalField.triggerHandler("decremented", [floatvalue]);
         };
 
         // switches over the method
