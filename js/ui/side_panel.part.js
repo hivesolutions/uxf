@@ -25,6 +25,12 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // verifies that at leat one object is selected and if that's
+            // not the case returns the control flow immediately
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // iterates over the complete set of element to update their
             // initial side positions according to their width
             matchedObject.each(function(index, element) {
@@ -40,9 +46,22 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
+            // verifies that at leat one object is selected and if that's
+            // not the case returns the control flow immediately
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
             // retrieves the various element that are going to be registerd
             // for events for the current side panel element
+            var _body = jQuery("body");
             var cancel = jQuery(".button-cancel", matchedObject);
+
+            // checks if the side panel value is already
+            // registerrd in the body and sets the variable as
+            // true to avoid further registrations
+            var isRegistered = _body.data("side_panel");
+            _body.data("side_panel", true);
 
             // registers for the toggle event in the side panel so that
             // its current visibility state is "toggled"
@@ -76,6 +95,24 @@
                 var element = jQuery(this);
                 var panel = element.parents(".side-panel");
                 panel.triggerHandler("hide");
+            });
+
+            // registers for the global hide modal event
+            // so that the side panel is properly hidden
+            !isRegistered && _body.bind("hide_modal", function() {
+                // retrieves the current element (body) and uses it
+                // to retrieve the complete set of side panels
+                var element = jQuery(this);
+                var sidePanels = jQuery(".side-panel", element);
+
+                // iterates over the complete set of side panels present
+                // to be able to hide everyone
+                sidePanels.each(function() {
+                    // runs the hide operation for the current
+                    // element (side panel in iteration)
+                    var _element = jQuery(this);
+                    _hide(_element, options);
+                });
             });
         };
 

@@ -194,7 +194,7 @@
             var elements = jQuery("> li", matchedObject);
 
             // checks if the drop down click event is already
-            // registerd in the body and sets the variable as
+            // registered in the body and sets the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("drop_down_click");
             _body.data("drop_down_click", true);
