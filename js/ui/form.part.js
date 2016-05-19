@@ -567,9 +567,10 @@
                     // errors value in the various items of the form (error indication)
                     for (var name in errors) {
                         // retrieves the errors list for the current name in
-                        // iteration and then converts the list into an
-                        // equivalent json string
-                        var _errors = errors[name];
+                        // iteration and then converts the list into an equivalent
+                        // json string, notice that the values are properly converted
+                        // using the currently defined locale
+                        var _errors = jQuery.uxlocale(errors[name]);
                         var _errorsString = JSON.stringify(_errors);
 
                         // retrieves the field from the form associated with the
