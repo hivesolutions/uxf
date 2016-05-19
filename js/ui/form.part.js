@@ -497,9 +497,13 @@
                         return;
                     }
 
+                    // retrieves the currently set attribute value
+                    // for the reset operation on the form (after success)
+                    var noReset = matchedObject.attr("data-no_reset") || false;
+
                     // resets the form contents to the original values
                     // this should remove all the values in it
-                    resetForm(matchedObject, options);
+                    !noReset && resetForm(matchedObject, options);
 
                     // checks if the success for panel exists in the form
                     // in case it exist it must be shown and the other contents
