@@ -478,6 +478,12 @@
             elements.removeClass("selected");
             originalElement.addClass("selected");
 
+            // removes the selected matched object class and then if the
+            // value is valid (not empty or invalid) adds the selected class
+            // to it meaning that at least one value of the drop down is selected
+            matchedObject.removeClass("selected");
+            original && matchedObject.addClass("selected");
+
             // changes the value of the "logical" input value and updates
             // the text of the button with the "new" original text
             input.val(original);
@@ -532,6 +538,12 @@
             // but only in case a logical value is defined (input mode)
             value && input.val(value);
             value && button.text(text);
+
+            // removes the selected matched object class and then if the
+            // value is valid (not empty or invalid) adds the selected class
+            // to it meaning that at least one value of the drop down is selected
+            matchedObject.removeClass("selected");
+            value && matchedObject.addClass("selected");
 
             // hides the drop down as it's no longer required to be open
             // (the value has been selected)
