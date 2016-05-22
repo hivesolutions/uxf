@@ -317,7 +317,6 @@
             // the data to the server side
             var method = matchedObject.attr("method") || "get";
             var action = matchedObject.attr("action");
-            var data = matchedObject.serialize();
 
             // resolves the provided link so that were able to find out the
             // absolute url out of it and set it as the location to be retrieved
