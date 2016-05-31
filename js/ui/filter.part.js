@@ -961,17 +961,17 @@
             // done so that the proper value is defined
             numberRecords = filter.hasClass("table-list") ? 14 : numberRecords;
 
+            // determines if the provided filter value (parameter) is defined
+            // (diferent from undefined) if that's the case updates the filter
+            // value data state for the filter
+            var setValue = filterValue !== undefined;
+            setValue && filter.data("filter_value", filterValue || "");
+
             // retrieves the filter input value, defaulting to empty
             // string in case no valid value is retrieved, notice that
             // the provided filter value is used as the latest fallback
             // for the filter value (as expected)
             var filterInputValue = filterInput.attr("data-value") || filter.data("filter_value") || "";
-            filterInputValue = filterValue !== undefined ? filterValue : filterInputValue;
-            filterInputValue = filterInputValue || "";
-
-            // updates the current filter value (logical) of the filter
-            // with the new filter value retrieved previously
-            filter.data("filter_value", filterInputValue);
 
             // determines if there are no valid contents currently set in the
             // filter to be able to change the classes of it accordingly
