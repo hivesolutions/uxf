@@ -963,13 +963,15 @@
 
             // retrieves the filter input value, defaulting to empty
             // string in case no valid value is retrieved, notice that
-            // the data based value is used as a fallback
-            var filterInputValue = filterValue || filterInput.attr("data-value");
-            filterInputValue = filterInputValue || filterInput.data("filter_value") || "";
+            // the provided filter value is used as the latest fallback
+            // for the filter value (as expected)
+            var filterInputValue = filterInput.attr("data-value") || filter.data("filter_value") || "";
+            filterInputValue = filterValue !== undefined ? filterValue : filterInputValue;
+            filterInputValue = filterInputValue || "";
 
             // updates the current filter value (logical) of the filter
             // with the new filter value retrieved previously
-            filter.data("filter_value", filterValue);
+            filter.data("filter_value", filterInputValue);
 
             // determines if there are no valid contents currently set in the
             // filter to be able to change the classes of it accordingly
