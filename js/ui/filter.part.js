@@ -962,8 +962,14 @@
             numberRecords = filter.hasClass("table-list") ? 14 : numberRecords;
 
             // retrieves the filter input value, defaulting to empty
-            // string in case no valid value is retrieved
-            var filterInputValue = filterValue || filterInput.attr("data-value") || "";
+            // string in case no valid value is retrieved, notice that
+            // the data based value is used as a fallback
+            var filterInputValue = filterValue || filterInput.attr("data-value");
+            filterInputValue = filterInputValue || filterInput.data("filter_value") || "";
+
+            // updates the current filter value (logical) of the filter
+            // with the new filter value retrieved previously
+            filter.data("filter_value", filterValue);
 
             // determines if there are no valid contents currently set in the
             // filter to be able to change the classes of it accordingly
