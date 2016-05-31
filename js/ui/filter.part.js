@@ -302,11 +302,11 @@
             // registers for the update event so that the data is reloaded
             // once this event is raises, this is expected to be done using
             // the trigger handler method so that no buble occurs
-            matchedObject.bind("update", function() {
+            matchedObject.bind("update", function(event, filterValue) {
                 // retrieves the current element (filter) and triggers an
                 // update operation that is considered to be forced
                 var element = jQuery(this);
-                _update(element, options, true);
+                _update(element, options, true, filterValue);
             });
 
             // registers for the new element event that triggers the
@@ -927,9 +927,9 @@
             });
         };
 
-        var _update = function(matchedObject, options, force) {
-            // retrieves the (parent) filter and the
-            // associated template
+        var _update = function(matchedObject, options, force, filterValue) {
+            // retrieves the (parent) filter and the various inner
+            // elements that are going to be used in the update
             var filter = matchedObject;
             var filterInput = jQuery(".filter-input", filter);
             var filterContents = jQuery(".filter-contents", filter);
@@ -963,7 +963,7 @@
 
             // retrieves the filter input value, defaulting to empty
             // string in case no valid value is retrieved
-            var filterInputValue = filterInput.attr("data-value") || "";
+            var filterInputValue = filterValue || filterInput.attr("data-value") || "";
 
             // determines if there are no valid contents currently set in the
             // filter to be able to change the classes of it accordingly
