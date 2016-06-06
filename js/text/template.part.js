@@ -145,22 +145,36 @@
                         attributeValue, nullify, localize, defaultValue,
                         newBaseKey);
                 }
-                // otherwise the attribute value must be
-                // a simple basic type
+                // otherwise the attribute value must be a simple basic type
+                // and the normal replace strategy is applied
                 else {
                     // creates the regular expression for global search on the key
-                    var keyRegex = new RegExp("%\\[" + key + "\\]", "g");
+                    // note that this regex should match any possible
+                    var keyRegex = new RegExp("%\\[(" + key + ")(:.+)?\\]", "g");
 
                     // in case the localize flag is set, tries to localize the
                     // current attribute value into the current locale, the return
                     // value should default to the proper value in case of failure
-                    attributeValue = localize ? jQuery.uxlocale(attributeValue) : attributeValue;
+                    var attributeLocale = localize ? jQuery.uxlocale(attributeValue) : attributeValue;
+
+                    // creates the replacer function that is going to be used by
+                    // the replace operation to determine if the raw string should
+                    // be used or if instead the localized should be used
+                    var replacer = function(match) {
+                        var matchSplit = match.split(":");
+                        var flags = matchSplit.length > 1 ? matchSplit[1] : null;
+                        if (flags === null) {
+                            return attributeValue;
+                        }
+                        var isRaw = flags.indexOf("r") != -1;
+                        return isRaw ? attributeValue : attributeLocale;
+                    };
 
                     // replaces the template strings in the html with the proper attribute
                     // values this may be an expesive operation in case it's repeated
                     // frequently for a lot of times (modify with care)
                     templateContents = templateContents.replace(keyRegex,
-                        attributeValue);
+                        replacer);
                 }
             }
 
