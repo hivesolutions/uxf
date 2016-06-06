@@ -523,7 +523,7 @@
             // field associated with the tag field, note that this
             // operation is only performed in case the no width flag
             // is not set (conditional execution)
-            !noWidth && !autoWidth && textField.css("width", width + "px");
+            !noWidth && !autoWidth && textField.width("width", width);
             !noWidth && textField.css("padding-left", lineWidth + "px");
         };
 
