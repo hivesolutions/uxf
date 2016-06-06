@@ -150,7 +150,7 @@
                 else {
                     // creates the regular expression for global search on the key
                     // note that this regex should match any possible
-                    var keyRegex = new RegExp("%\\[(" + key + ")(:[^\]]+)?\\]", "g");
+                    var keyRegex = new RegExp("%\\[(" + key + ")(:[a-z]+)?\\]", "g");
 
                     // in case the localize flag is set, tries to localize the
                     // current attribute value into the current locale, the return
