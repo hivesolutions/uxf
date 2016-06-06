@@ -164,7 +164,7 @@
                         var matchSplit = match.split(":");
                         var flags = matchSplit.length > 1 ? matchSplit[1] : null;
                         if (flags === null) {
-                            return attributeValue;
+                            return attributeLocale;
                         }
                         var isRaw = flags.indexOf("r") != -1;
                         return isRaw ? attributeValue : attributeLocale;
@@ -204,7 +204,7 @@
                 var variable = attributes[variableName];
 
                 // retrieves the target element (type) for the for
-                // each substituin
+                // each substitution
                 var target = _element.attr("data-target");
 
                 // start the for each buffer
