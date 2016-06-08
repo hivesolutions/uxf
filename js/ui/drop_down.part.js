@@ -508,6 +508,13 @@
                 return;
             }
 
+            // in case the target element for selection is disabled
+            // returns immediately (not possible to select it)
+            var isDisabled = element.hasClass("disabled");
+            if (isDisabled) {
+                return;
+            }
+
             // retrieves the reference to the various elements
             // tha are going to be used in the element selection
             var container = matchedObject.parents(".drop-down-container");
