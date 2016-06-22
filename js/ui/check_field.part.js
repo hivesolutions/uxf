@@ -119,12 +119,13 @@
 
             // retrieves the current checked state from the matched
             // object and "invert" it to toggle the state
-            var checked = matchedObject.attr("checked");
+            var checked = matchedObject.is(":checked");
             var _checked = checked ? false : true;
 
             // checks the current matched object by setting
             // the its checked attribute
             matchedObject.attr("checked", _checked);
+            matchedObject.prop && matchedObject.prop("checked", _checked);
 
             // triggers the (value) change event meaning that the value
             // for the check field has changed (as expected by developer)
@@ -141,11 +142,13 @@
             if (checked == value) {
                 // sets the element as checked
                 matchedObject.attr("checked", true);
+                matchedObject.prop && matchedObject.prop("checked", true);
             }
             // otherwise it's not the selected element
             else {
                 // sets the element as unchecked
                 matchedObject.attr("checked", false);
+                matchedObject.prop && matchedObject.prop("checked", false);
             }
         };
 
