@@ -67,17 +67,36 @@
             var _window = jQuery(window);
             var _body = jQuery("body");
 
+            // retrieves the reference to some of the elements
+            // that are part of the carousel structure
+            var views = jQuery("> .views", matchedObject);
+            var viewItems = jQuery("> li", views);
+
             // verifies if the current carousel global
             // operation is already registers and then marks
             // the element as registered (default behaviour)
             var isRegistered = _body.data("carousel_click");
             _body.data("carousel_click", true);
 
+            // registers for the click event in the view items
+            // so that a new index is set on the click event
+            viewItems.click(function() {
+                var element = jQuery(this);
+                var carousel = element.parents(".carousel");
+                var index = element.index();
+                _set(carousel, options, index);
+                _schedule(carousel, options);
+            });
+
+            // registers for the next event on the carousel to
+            // trigger the execution of the next operation
             matchedObject.bind("next", function() {
                 var element = jQuery(this);
                 _next(element, options);
             });
 
+            // registers for the previous event on the carousel to
+            // trigger the execution of the previous operation
             matchedObject.bind("previous", function() {
                 var element = jQuery(this);
                 _previous(element, options);
@@ -110,7 +129,14 @@
             if (timeout == -1) {
                 return;
             }
-            var interval = setInterval(function() {
+            var interval = matchedObject.data("interval");
+            interval && clearInterval(interval);
+            interval = setInterval(function() {
+                var index = matchedObject.data("index");
+                if (index === undefined) {
+                    clearInterval(interval);
+                    return;
+                }
                 _next(matchedObject, options);
             }, timeout);
             matchedObject.data("interval", interval);
@@ -128,8 +154,14 @@
 
         var _updateSimple = function(matchedObject, options) {
             var items = jQuery("> .items", matchedObject);
+            var views = jQuery("> .views", matchedObject);
+            var viewItems = jQuery("> li", views);
             var width = matchedObject.outerWidth();
             var index = matchedObject.data("index");
+            var activeItem = jQuery(
+                "> li:nth-child(" + String(index + 1) + ")", views);
+            viewItems.removeClass("active");
+            activeItem.addClass("active");
             items.css("margin-left", String(width * index * -1) + "px");
         };
 
