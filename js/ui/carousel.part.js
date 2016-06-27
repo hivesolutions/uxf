@@ -44,7 +44,14 @@
                 return;
             }
 
-            console.info(matchedObject);
+            // iterates over the complete set of selected elements
+            // to correclty initialize all of them
+            matchedObject.each(function(index, element) {
+                var _element = jQuery(this);
+                setTimeout(function() {
+                    _init(_element, options);
+                });
+            });
         };
 
         /**
@@ -54,9 +61,86 @@
             if (!matchedObject || matchedObject.length == 0) {
                 return;
             }
+
+            // retrieves the reference to some of the global
+            // elements to be used in the operation
+            var _window = jQuery(window);
+            var _body = jQuery("body");
+
+            // verifies if the current carousel global
+            // operation is already registers and then marks
+            // the element as registered (default behaviour)
+            var isRegistered = _body.data("carousel_click");
+            _body.data("carousel_click", true);
+
+            matchedObject.bind("next", function() {
+                var element = jQuery(this);
+                _next(element, options);
+            });
+
+            matchedObject.bind("previous", function() {
+                var element = jQuery(this);
+                _previous(element, options);
+            });
+
+            // registers for the resize event on the window
+            // so that the current width and position are updated
+            !isRegistered && _window.resize(function() {
+                var carousel = jQuery(".carousel", _body);
+                carousel.each(function(index, element) {
+                    var _element = jQuery(this);
+                    _update(_element, options);
+                });
+            });
         };
 
-        // switches over the method
+        var _init = function(matchedObject, options) {
+            var items = jQuery("> .items", matchedObject);
+            var item = jQuery("> .item", items);
+            var count = item.length;
+            matchedObject.data("count", count);
+            matchedObject.data("index", 0);
+            _update(matchedObject, options);
+        };
+
+        var _update = function(matchedObject, options) {
+            var items = jQuery("> .items", matchedObject);
+            var item = jQuery("> .item", items);
+            var width = matchedObject.outerWidth();
+            var count = matchedObject.data("count");
+            item.width(width);
+            items.width(width * count);
+            _updateSimple(matchedObject, options);
+        };
+
+        var _updateSimple = function(matchedObject, options) {
+            var items = jQuery("> .items", matchedObject);
+            var width = matchedObject.outerWidth();
+            var index = matchedObject.data("index");
+            items.css("margin-left", String(width * index * -1) + "px");
+        };
+
+        var _next = function(matchedObject, options) {
+            var count = matchedObject.data("count");
+            var index = matchedObject.data("index");
+            var next = index + 1 == count ? 0 : index + 1;
+            _set(matchedObject, options, next);
+        };
+
+        var _previous = function(matchedObject, options) {
+            var count = matchedObject.data("count");
+            var index = matchedObject.data("index");
+            var next = index - 1 == -1 ? count - 1 : index - 1;
+            _set(matchedObject, options, next);
+        };
+
+        var _set = function(matchedObject, options, index) {
+            matchedObject.data("index", index);
+            _updateSimple(matchedObject, options);
+        };
+
+        // switches over the method, to be able to correctly handle
+        // the action that was rquested by logic
         switch (method) {
             case "next":
                 _next(matchedObject, options);
