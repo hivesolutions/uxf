@@ -102,6 +102,28 @@
                 _previous(element, options);
             });
 
+            // registers for the key down operation on the body
+            // so that the carousel may move accordingly
+            !isRegistered && _body.keydown(function(event) {
+                var element = jQuery(this);
+                var carousel = jQuery(".carousel", element);
+
+                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
+                    event.which;
+
+                switch (keyValue) {
+                    case 37:
+                        _previous(carousel, options);
+                        _schedule(carousel, options);
+                        break;
+
+                    case 39:
+                        _next(carousel, options);
+                        _schedule(carousel, options);
+                        break;
+                }
+            });
+
             // registers for the resize event on the window
             // so that the current width and position are updated
             !isRegistered && _window.resize(function() {
