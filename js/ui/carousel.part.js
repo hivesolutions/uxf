@@ -101,6 +101,19 @@
             matchedObject.data("count", count);
             matchedObject.data("index", 0);
             _update(matchedObject, options);
+            _schedule(matchedObject, options);
+        };
+
+        var _schedule = function(matchedObject, options) {
+            var timeout = matchedObject.attr("data-timeout") || "5000";
+            timeout = parseInt(timeout);
+            if (timeout == -1) {
+                return;
+            }
+            var interval = setInterval(function() {
+                _next(matchedObject, options);
+            }, timeout);
+            matchedObject.data("interval", interval);
         };
 
         var _update = function(matchedObject, options) {
