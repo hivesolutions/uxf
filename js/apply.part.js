@@ -126,6 +126,7 @@
             var money = jQuery(".money", matchedObject).not(".template .money");
             var timestamp = jQuery(".timestamp", matchedObject).not(".template .timestamp");
             var slideshow = jQuery(".slideshow", matchedObject).not(".template .slideshow");
+            var carousel = jQuery(".carousel", matchedObject).not(".template .carousel");
             var chart = jQuery(".chart", matchedObject).not(".template .chart");
             var lchart = jQuery(".lchart", matchedObject).not(".template .lchart");
             var video = jQuery(".video", matchedObject).not(".template .video");
@@ -256,6 +257,7 @@
             money.uxmoney();
             timestamp.uxtimestamp();
             slideshow.uxslideshow();
+            carousel.uxcarousel();
             chart.uxchart();
             lchart.uxlchart();
             video.uxvideo();

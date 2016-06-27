@@ -39,12 +39,22 @@
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {};
+        var _appendHtml = function() {
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+
+            console.info(matchedObject);
+        };
 
         /**
          * Registers the event handlers for the created objects.
          */
-        var _registerHandlers = function() {};
+        var _registerHandlers = function() {
+            if (!matchedObject || matchedObject.length == 0) {
+                return;
+            }
+        };
 
         // switches over the method
         switch (method) {
