@@ -2,7 +2,7 @@
  * jQuery button plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a button component.
  *
- * @name jquery-button.js
+ * @name uxf-button.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

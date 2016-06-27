@@ -2,7 +2,7 @@
  * jQuery text field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a text field component.
  *
- * @name jquery-text-field.js
+ * @name uxf-text-field.js
  * @author João Magalhães <joamag@hive.pt> & Luís Martinho <lmartinho@hive.pt>
  * @version 1.0
  * @category jQuery plugin

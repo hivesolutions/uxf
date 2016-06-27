@@ -2,7 +2,7 @@
  * jQuery table plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a table component.
  *
- * @name jquery-table.js
+ * @name uxf-table.js
  * @author João Magalhães <joamag@hive.pt> & Luís Martinho <lmartinho@hive.pt>
  * @version 1.0
  * @category jQuery plugin

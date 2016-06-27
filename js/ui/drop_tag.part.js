@@ -4,7 +4,7 @@
  * situations where a drop list is selected from a list of tag values and then
  * it may be disabled using the removal icon.
  *
- * @name jquery-drop-tag.js
+ * @name uxf-drop-tag.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

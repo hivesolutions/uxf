@@ -2,7 +2,7 @@
  * jQuery scroll list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a scroll list component.
  *
- * @name jquery-scroll-list.js
+ * @name uxf-scroll-list.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

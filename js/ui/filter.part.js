@@ -2,7 +2,7 @@
  * jQuery filter plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a filter component.
  *
- * @name jquery-filter.js
+ * @name uxf-filter.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

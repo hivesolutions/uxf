@@ -2,7 +2,7 @@
  * jQuery overlay search plugin, this jQuery plugin provides the base
  * infra-structure for the creation of an overlay search component.
  *
- * @name jquery-overlay-search.js
+ * @name uxf-overlay-search.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

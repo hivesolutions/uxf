@@ -2,7 +2,7 @@
  * jQuery replacer plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a replacer component.
  *
- * @name jquery-replacer.js
+ * @name uxf-replacer.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

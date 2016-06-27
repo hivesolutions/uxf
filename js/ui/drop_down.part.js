@@ -3,7 +3,7 @@
  * for the creation of a drop down component. Should be used for situations
  * where a menu should be displayed uppon a button based action.
  *
- * @name jquery-drop-down.js
+ * @name uxf-drop-down.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

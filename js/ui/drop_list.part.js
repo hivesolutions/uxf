@@ -4,7 +4,7 @@
  * where the list of elements to be selected (both text or graphical) should not
  * allways be viewable and its visibility should be "togglable".
  *
- * @name jquery-drop-list.js
+ * @name uxf-drop-list.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

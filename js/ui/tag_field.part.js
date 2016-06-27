@@ -2,7 +2,7 @@
  * jQuery tag field plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a tag field component.
  *
- * @name jquery-select-list.js
+ * @name uxf-select-list.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

@@ -5,7 +5,7 @@
  * sequence that is changed using a set of animations. Total control of the
  * component is provided through event triggering.
  *
- * @name jquery-slideshow.js
+ * @name uxf-slideshow.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

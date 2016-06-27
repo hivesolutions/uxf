@@ -4,7 +4,7 @@
  * considered to be a top level modal "window like" components that "moves"
  * through panels using either a manual (arrow based) or automated approach.
  *
- * @name jquery-slider.js
+ * @name uxf-slider.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

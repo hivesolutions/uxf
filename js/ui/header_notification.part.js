@@ -2,7 +2,7 @@
  * jQuery header notification plugin, this jQuery plugin provides the base
  * infra-structure for the creation of an header notification component.
  *
- * @name jquery-header-notification.js
+ * @name uxf-header-notification.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

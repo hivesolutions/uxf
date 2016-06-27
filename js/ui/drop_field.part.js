@@ -5,7 +5,7 @@
  * provides both the select and the "find" modes of working for active (mouse
  * only) or passive (kwyboard based) models of interaction.
  *
- * @name jquery-drop-field.js
+ * @name uxf-drop-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

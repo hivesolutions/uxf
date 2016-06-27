@@ -2,7 +2,7 @@
  * jQuery overlay plugin, this jQuery plugin provides the base infra-structure
  * for the creation of an overlay component.
  *
- * @name jquery-overlay.js
+ * @name uxf-overlay.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

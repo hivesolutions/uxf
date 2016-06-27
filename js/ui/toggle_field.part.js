@@ -2,7 +2,7 @@
  * jQuery toggle field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a toggle field component.
  *
- * @name jquery-toggle-field.js
+ * @name uxf-toggle-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

@@ -1,8 +1,9 @@
 /**
- * jQuery slider bar plugin, this jQuery plugin provides the base
- * infra-structure for the creation of a slider bar component.
+ * jQuery carousel plugin, this jQuery plugin provides the base infra-structure
+ * for the creation of a carousel component that display various items over a
+ * set of time.
  *
- * @name uxf-slider-bar.js
+ * @name uxf-carousel.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin
@@ -10,8 +11,8 @@
  * @license Apache License, Version 2.0 - http://www.apache.org/licenses/
  */
 (function(jQuery) {
-    jQuery.fn.uxsliderbar = function(method, options) {
-        // the default values for the plugin
+    jQuery.fn.uxcarousel = function(method, options) {
+        // the default values for the carousel
         var defaults = {};
 
         // sets the default method value
@@ -47,11 +48,17 @@
 
         // switches over the method
         switch (method) {
+            case "next":
+                _next(matchedObject, options);
+                return value;
+
+            case "previous":
+                _previous(matchedObject, options);
+                return true;
+
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

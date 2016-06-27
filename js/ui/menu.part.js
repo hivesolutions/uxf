@@ -3,7 +3,7 @@
  * the creation of a menu component. This plugin is meant to be used both
  * directly and indirectly as a decorator.
  *
- * @name jquery-menu.js
+ * @name uxf-menu.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

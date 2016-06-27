@@ -2,7 +2,7 @@
  * jQuery cross list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a cross list component.
  *
- * @name jquery-cross-list.js
+ * @name uxf-cross-list.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

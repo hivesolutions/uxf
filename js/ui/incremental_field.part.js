@@ -2,7 +2,7 @@
  * jQuery incremental field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a incremental field component.
  *
- * @name jquery-incremental-field.js
+ * @name uxf-incremental-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

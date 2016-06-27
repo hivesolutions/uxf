@@ -3,7 +3,7 @@
  * the creation of a special "stackable" panel that may be used as a navigation
  * controller for contained panels. Basic operations include push and pop.
  *
- * @name jquery-stack.js
+ * @name uxf-stack.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

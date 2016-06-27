@@ -2,7 +2,7 @@
  * jQuery scroll to plugin, this jQuery plugin provides the base infra-structure
  * for smooth scrolling in the viewport.
  *
- * @name jquery-scrollto.js
+ * @name uxf-scrollto.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

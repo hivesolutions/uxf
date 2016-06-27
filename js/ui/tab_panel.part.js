@@ -2,7 +2,7 @@
  * jQuery tab panel plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a tab panel component.
  *
- * @name jquery-tab-panel.js
+ * @name uxf-tab-panel.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

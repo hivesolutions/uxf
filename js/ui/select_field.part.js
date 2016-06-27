@@ -2,7 +2,7 @@
  * jQuery select field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a select field component.
  *
- * @name jquery-select-field.js
+ * @name uxf-select-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

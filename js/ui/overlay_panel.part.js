@@ -2,7 +2,7 @@
  * jQuery overlay panel plugin, this jQuery plugin provides the base
  * infra-structure for the creation of an overlay panel component.
  *
- * @name jquery-overlay-panel.js
+ * @name uxf-overlay-panel.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

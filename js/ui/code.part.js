@@ -2,7 +2,7 @@
  * jQuery code plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a code component.
  *
- * @name jquery-check-field.js
+ * @name uxf-check-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

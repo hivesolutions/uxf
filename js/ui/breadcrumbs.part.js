@@ -2,7 +2,7 @@
  * jQuery breadcrumbs plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a breadcrumbs component.
  *
- * @name jquery-breadcrumbs.js
+ * @name uxf-breadcrumbs.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

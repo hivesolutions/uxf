@@ -2,7 +2,7 @@
  * jQuery file field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a file field component.
  *
- * @name jquery-file-field.js
+ * @name uxf-file-field.js
  * @author João Magalhães <joamag@hive.pt> & Luís Martinho <lmartinho@hive.pt>
  * @version 1.0
  * @category jQuery plugin

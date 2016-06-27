@@ -2,7 +2,7 @@
  * jQuery panel stack plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a panel stack component.
  *
- * @name jquery-panel-stack.js
+ * @name uxf-panel-stack.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

@@ -2,7 +2,7 @@
  * jQuery radio field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a radio field component.
  *
- * @name jquery-radio-field.js
+ * @name uxf-radio-field.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin

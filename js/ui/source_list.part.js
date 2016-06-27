@@ -2,7 +2,7 @@
  * jQuery source list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a source list component.
  *
- * @name jquery-source-list.js
+ * @name uxf-source-list.js
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin
