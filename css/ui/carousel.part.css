@@ -8,6 +8,7 @@
 
 .carousel > .items > .item {
     display: inline-block;
+    vertical-align: top;
 }
 
 .carousel > .views {
