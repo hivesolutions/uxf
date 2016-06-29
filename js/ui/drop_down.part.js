@@ -528,6 +528,10 @@
             var text = element.uxcontent().trim() || element.text().trim();
             var value = element.attr("data-value");
 
+            // verifies if the element already has the selected class
+            // if that's the case the (is) same flag is activated
+            var same = element.hasClass("selected");
+
             // removes the invalid class from both the container and the
             // drop down (matched object) element, as at leat one selection
             // has been performed (invalidation has been removed)
@@ -559,7 +563,7 @@
             // triggers the value changed operation with the text/visual
             // value and the logical value, so that listeners may be
             // properly notified about the changing value
-            matchedObject.triggerHandler("value_change", [text, value]);
+            matchedObject.triggerHandler("value_change", [text, value, same]);
         };
 
         // switches over the method that is going to be performed
