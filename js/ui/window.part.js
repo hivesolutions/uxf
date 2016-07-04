@@ -425,11 +425,11 @@
             // iterates over the dots contents range
             for (index = 0; index < windowMaskDotsContentsLength; index++) {
                 // adds a new dot to the contents
-                windowMaskDotsContents += "."
+                windowMaskDotsContents += ".";
             }
 
             // updates the window mask dots contents
-            windowMaskDots.html(windowMaskDotsContents)
+            windowMaskDots.html(windowMaskDotsContents);
         };
 
         var __registerClick = function(matchedObject, options) {
@@ -559,7 +559,7 @@
             // retrieves the current visible set of windows (only
             // one should be visible at a certain time)
             var visibleWindow = jQuery(".window:visible");
-            if (visibleWindow.length == 0) {
+            if (visibleWindow.length === 0) {
                 return false;
             }
 

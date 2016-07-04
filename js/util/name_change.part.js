@@ -3,11 +3,10 @@
         // the default values for the name change
         var defaults = {};
 
-        // sets the default options value
-        var options = options ? options : {};
-
-        // constructs the options
-        var options = jQuery.extend(defaults, options);
+        // sets the default options value and then
+        // runs the proper extension/construction
+        options = options ? options : {};
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
