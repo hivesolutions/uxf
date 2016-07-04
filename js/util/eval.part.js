@@ -74,7 +74,7 @@
                 // falling back to the timeout option
                 var timeout = _element.attr("data-timeout");
                 var timeoutInteger = parseInt(timeout);
-                var _timeout = isNaN(timeoutInteger) ? options["timeout"] : timeoutInteger;
+                var _timeout = isNaN(timeoutInteger) ? options.timeout : timeoutInteger;
 
                 // retrieves the value of the continuous attribute
                 // (flag) of the element
