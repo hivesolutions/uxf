@@ -243,8 +243,7 @@
 
             // filters "some" valid items (in
             // case the filter options flag is set)
-            var validItems = filter ? validItems.slice(startRecord, startRecord + numberRecords) :
-                validItems;
+            validItems = filter ? validItems.slice(startRecord, startRecord + numberRecords) : validItems;
 
             // calls the callback with the "valid" items
             callback(validItems, moreItems);
