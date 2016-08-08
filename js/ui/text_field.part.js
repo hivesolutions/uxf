@@ -359,14 +359,24 @@
                 });
 
                 // sets an interval to check for modifications
-                // in the text field
-                setInterval(function() {
+                // in the text field, note that in case the text
+                // field gets out of the dom the interval is removed
+                var interval = setInterval(function() {
+                    // verifiers if the text field is still defined in
+                    // the dome and if that's not the case removes/clear
+                    // the interval to allow proper removal
+                    var inDom = elementReference.uxindom();
+                    if (!inDom) {
+                        clearInterval(interval);
+                        return;
+                    }
+
                     // checks if the text field is "lower"
                     var isLower = elementReference.hasClass("lower");
 
-                    // in case the text field is "lower"
+                    // in case the text field is "lower" returns immediately
+                    // as there's nothing remaining to be done
                     if (isLower) {
-                        // returns immediately
                         return;
                     }
 
