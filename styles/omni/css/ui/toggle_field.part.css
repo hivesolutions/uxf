@@ -40,8 +40,18 @@
     background-image: url(../images/toggle-field-currency.png);
 }
 
+.omni-style.retina-s .toggle-field .button.currency {
+    background-image: url(../images/toggle-field-currency-2x.png);
+    background-size: 16px 16px;
+}
+
 .omni-style .toggle-field .button.percent {
     background-image: url(../images/toggle-field-percent.png);
+}
+
+.omni-style.retina-s .toggle-field .button.percent {
+    background-image: url(../images/toggle-field-percent-2x.png);
+    background-size: 23px 16px;
 }
 
 .omni-style .toggle-field .text-field {
