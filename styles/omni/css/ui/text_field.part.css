@@ -43,10 +43,20 @@
     background-repeat: no-repeat;
 }
 
+.omni-style.retina-s .text-field.date {
+    background-image: url(../images/text-field-date-2x.png);
+    background-size: 23px 16px;
+}
+
 .omni-style .text-field.time {
     background-image: url(../images/text-field-time.png);
     background-position: right center;
     background-repeat: no-repeat;
+}
+
+.omni-style.retina-s .text-field.time {
+    background-image: url(../images/text-field-time-2x.png);
+    background-size: 23px 16px;
 }
 
 .omni-style .text-field.natural,
@@ -58,16 +68,34 @@
     background-repeat: no-repeat;
 }
 
+.omni-style.retina-s .text-field.natural,
+.omni-style.retina-s .text-field.integer,
+.omni-style.retina-s .text-field.float,
+.omni-style.retina-s .text-field.floatp {
+    background-image: url(../images/text-field-number-2x.png);
+    background-size: 23px 16px;
+}
+
 .omni-style .text-field.percent {
     background-image: url(../images/text-field-percent.png);
     background-position: right center;
     background-repeat: no-repeat;
 }
 
+.omni-style.retina-s .text-field.percent {
+    background-image: url(../images/text-field-percent-2x.png);
+    background-size: 23px 16px;
+}
+
 .omni-style .text-field.email {
     background-image: url(../images/text-field-email.png);
     background-position: right center;
     background-repeat: no-repeat;
+}
+
+.omni-style.retina-s .text-field.email {
+    background-image: url(../images/text-field-email-2x.png);
+    background-size: 23px 16px;
 }
 
 .omni-style .text-field.no-icon {
