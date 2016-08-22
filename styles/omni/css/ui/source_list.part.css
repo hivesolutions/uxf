@@ -9,3 +9,8 @@
     padding-right: 28px;
     width: 212px;
 }
+
+.omni-style.retina-s .source-list .text-field {
+    background-image: url(../images/source-list-dots-2x.png);
+    background-size: 23px 16px;
+}

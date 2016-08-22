@@ -24,12 +24,26 @@
     width: 30px;
 }
 
+.omni-style.retina-s .window.window-lightbox .button-confirm {
+    background-image: url(../images/lightbox-close-2x.png);
+    background-size: 30px 30px;
+}
+
 .omni-style .window.window-lightbox.loading .button-confirm {
     background-image: url(../images/lightbox-loading.png);
 }
 
+.omni-style.retina-s .window.window-lightbox.loading .button-confirm {
+    background-image: url(../images/lightbox-loading-2x.png);
+    background-size: 30px 330px;
+}
+
 .omni-style .window.window-lightbox.loaded .button-confirm {
     background-image: url(../images/lightbox-close.png);
+}
+
+.omni-style.retina-s .window.window-lightbox.loaded .button-confirm {
+    background-image: url(../images/lightbox-close-2x.png);
 }
 
 .omni-style .window.window-lightbox .button-expand {
@@ -41,6 +55,16 @@
     width: 30px;
 }
 
+.omni-style.retina-s .window.window-lightbox .button-expand {
+    background-image: url(../images/lightbox-expand-2x.png);
+    background-size: 30px 30px;
+}
+
 .omni-style .window.window-lightbox.loading .button-expand {
     background-image: url(../images/lightbox-loading.png);
+}
+
+.omni-style.retina-s .window.window-lightbox.loading .button-expand {
+    background-image: url(../images/lightbox-loading-2x.png);
+    background-size: 30px 330px;
 }
