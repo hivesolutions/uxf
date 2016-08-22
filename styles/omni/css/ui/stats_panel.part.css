@@ -19,12 +19,27 @@
     background-image: url(../images/stat-panel-up.png);
 }
 
+.omni-style.retina-s .stats-panel > .stat-panel.up {
+    background-image: url(../images/stat-panel-up-2x.png);
+    background-size: 5px 5px;
+}
+
 .omni-style .stats-panel > .stat-panel.down {
     background-image: url(../images/stat-panel-down.png);
 }
 
+.omni-style.retina-s .stats-panel > .stat-panel.down {
+    background-image: url(../images/stat-panel-down-2x.png);
+    background-size: 5px 5px;
+}
+
 .omni-style .stats-panel > .stat-panel.equal {
     background-image: url(../images/stat-panel-equal.png);
+}
+
+.omni-style.retina-s .stats-panel > .stat-panel.equal {
+    background-image: url(../images/stat-panel-equal-2x.png);
+    background-size: 5px 5px;
 }
 
 .omni-style .stats-panel > .link-panel {

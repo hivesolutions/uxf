@@ -13,9 +13,17 @@
     z-index: 10;
 }
 
+.omni-style.retina-s .banner {
+    background-size: 1px 60px;
+}
+
 .omni-style .banner.information {
     background: #3668c6 url(../images/banner-blue.png) repeat-x center center;
     border-color: #203e76;
+}
+
+.omni-style.retina-s .banner.information {
+    background-image: url(../images/banner-blue-2x.png);
 }
 
 .omni-style .banner.warning {
@@ -23,14 +31,26 @@
     border-color: #936621;
 }
 
+.omni-style.retina-s .banner.warning {
+    background-image: url(../images/banner-yellow-2x.png);
+}
+
 .omni-style .banner.success {
     background: #6fad3e url(../images/banner-green.png) repeat-x center center;
     border-color: #426725;
 }
 
+.omni-style.retina-s .banner.success {
+    background-image: url(../images/banner-green-2x.png);
+}
+
 .omni-style .banner.error {
     background: #d54a50 url(../images/banner-red.png) repeat-x center center;
     border-color: #7f2c30;
+}
+
+.omni-style.retina-s .banner.error {
+    background-image: url(../images/banner-red-2x.png);
 }
 
 .omni-style .banner .banner-contents {

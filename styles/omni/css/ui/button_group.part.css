@@ -54,6 +54,11 @@
     background: transparent url(../images/button-group-button-medium.png) no-repeat left top;
 }
 
+.omni-style.retina-s .button-group .button.medium {
+    background-image: url(../images/button-group-button-medium.png);
+    background-size: 44px 324px;
+}
+
 .omni-style .button-group .button.medium:hover {
     background-position: left 0px;
 }
@@ -113,6 +118,11 @@
     height: 30px;
     line-height: 30px;
     width: 30px;
+}
+
+.omni-style.retina-s .button-group .button.small {
+    background-image: url(../images/button-group-button-small-2x.png);
+    background-size: 30px 288px;
 }
 
 .omni-style .button-group .button.small:hover {

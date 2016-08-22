@@ -35,6 +35,11 @@
     width: 11px;
 }
 
+.omni-style.retina-s .tag-field .tag-field-remove {
+    background-image: url(../images/tag-field-remove-2x.png);
+    background-size: 11px 22px;
+}
+
 .omni-style .tag-field .tag-field-remove:hover {
     background-position: 0px -11px;
 }
