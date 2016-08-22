@@ -13,6 +13,11 @@
     width: 17px;
 }
 
+.omni-style.retina-s .radio-field {
+    background-image: url(../images/radio-field-2x.png);
+    background-size: 15px 90px;
+}
+
 .omni-style .radio-field:hover {
     background-position: 0px -15px;
 }
