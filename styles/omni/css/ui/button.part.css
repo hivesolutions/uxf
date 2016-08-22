@@ -9,6 +9,12 @@
     text-shadow: 0px -1px 0px #4a7b38;
 }
 
+.omni-style.retina-s .button.button-solid,
+.omni-style.retina-s .button.button-green {
+    background-image: url(../images/button-green-2x.png);
+    background-size: 2px 108px;
+}
+
 .omni-style .button.button-solid:hover,
 .omni-style .button.button-green:hover {
     background-position: left -36px;
@@ -37,6 +43,11 @@
     text-shadow: 0px -1px 0px #3a5070;
 }
 
+.omni-style.retina-s .button.button-blue {
+    background-image: url(../images/button-blue-2x.png);
+    background-size: 2px 108px;
+}
+
 .omni-style .button.button-blue:hover {
     background-position: left -36px;
 }
@@ -61,6 +72,11 @@
     text-shadow: 0px -1px 0px #9e4651;
 }
 
+.omni-style.retina-s .button.button-blue {
+    background-image: url(../images/button-red-2x.png);
+    background-size: 2px 108px;
+}
+
 .omni-style .button.button-red:hover {
     background-position: left -36px;
 }
@@ -83,6 +99,11 @@
     line-height: 36px;
     padding: 0px 18px 0px 18px;
     text-shadow: 0px -1px 0px #999999;
+}
+
+.omni-style.retina-s .button.button-grey {
+    background-image: url(../images/button-grey-2x.png);
+    background-size: 2px 108px;
 }
 
 .omni-style .button.button-grey:hover {
@@ -116,6 +137,10 @@
     width: 120px;
 }
 
+.omni-style.retina-s .button.large {
+    background-size: 6px 192px;
+}
+
 .omni-style.opensans .button.large {
     font-weight: bold;
 }
@@ -145,10 +170,18 @@
     text-shadow: -1px -1px 0px #9e4651;
 }
 
+.omni-style.retina-s .button.large.button-red {
+    background-image: url(../images/button-large-red-2x.png);
+}
+
 .omni-style .button.large.button-green {
     background-image: url(../images/button-large-green.png);
     border-color: #598543;
     text-shadow: -1px -1px 0px #4a7b38;
+}
+
+.omni-style.retina-s .button.large.button-green {
+    background-image: url(../images/button-large-green-2x.png);
 }
 
 .omni-style .button.large.button-orange {
@@ -157,16 +190,28 @@
     text-shadow: -1px -1px 0px #bf8100;
 }
 
+.omni-style.retina-s .button.large.button-orange {
+    background-image: url(../images/button-large-orange-2x.png);
+}
+
 .omni-style .button.large.button-yellow {
     background-image: url(../images/button-large-yellow.png);
     border-color: #baaa57;
     text-shadow: -1px -1px 0px #b99200;
 }
 
+.omni-style.retina-s .button.large.button-yellow {
+    background-image: url(../images/button-large-yellow-2x.png);
+}
+
 .omni-style .button.large.button-grey {
     background-image: url(../images/button-large-grey.png);
     border-color: #999999;
     text-shadow: -1px -1px 0px #999999;
+}
+
+.omni-style.retina-s .button.large.button-grey {
+    background-image: url(../images/button-large-grey-2x.png);
 }
 
 .omni-style .button.large.button-light-grey {
@@ -201,6 +246,10 @@
     width: 86px;
 }
 
+.omni-style.retina-s .button.small {
+    background-size: 4px 84px;
+}
+
 .omni-style .button.small:hover {
     background-position: 0px -28px;
 }
@@ -221,6 +270,10 @@
     border-color: #dddddd;
 }
 
+.omni-style.retina-s .button.small.button-grey {
+    background-image: url(../images/button-small-grey-2x.png);
+}
+
 .omni-style .button.button-more {
     background: transparent url(../images/button-more.png) repeat-x left top;
     border: 1px solid #bbbbbb;
@@ -232,6 +285,11 @@
     text-align: center;
     text-shadow: 0px 1px 0px #ffffff;
     width: 100%;
+}
+
+.omni-style.retina-s .button.button-more {
+    background-image: url(../images/button-more-2x.png);
+    background-size: 6px 160px;
 }
 
 .omni-style .button.button-more:hover {
