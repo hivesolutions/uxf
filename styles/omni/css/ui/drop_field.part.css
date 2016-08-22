@@ -12,6 +12,11 @@
     width: 248px;
 }
 
+.omni-style.retina-s .drop-field > .text-field {
+    background-image: url(../images/drop-field-dots-2x.png);
+    background-size: 23px 16px;
+}
+
 .omni-style .drop-field.strong > .text-field {
     color: #000000;
 }
@@ -36,6 +41,11 @@
     -webkit-user-select: none;
 }
 
+.omni-style.retina-s .drop-field.drop-field-select > .text-field {
+    background-image: url(../images/drop-field-select-2x.png);
+    background-size: 940px 40px;
+}
+
 .omni-style .drop-field.drop-field-select.disabled > .text-field {
     cursor: default;
 }
@@ -44,8 +54,18 @@
     background-image: url(../images/drop-field-lock.png);
 }
 
+.omni-style.retina-s .drop-field.drop-field-lock > .text-field {
+    background-image: url(../images/drop-field-lock-2x.png);
+    background-size: 20px 16px;
+}
+
 .omni-style .drop-field.drop-field-select.drop-field-lock > .text-field {
     background-image: url(../images/drop-field-select.png);
+}
+
+.omni-style.retina-s .drop-field.drop-field-select.drop-field-lock > .text-field {
+    background-image: url(../images/drop-field-select-2x.png);
+    background-size: 940px 40px;
 }
 
 .omni-style .drop-field.drop-field-select > .text-field.active {

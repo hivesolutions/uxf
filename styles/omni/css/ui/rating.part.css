@@ -13,6 +13,11 @@
     width: 24px;
 }
 
+.omni-style.retina-s .rating .rating-item {
+    background-image: url(../images/rating-2x.png);
+    background-size: 24px 48px;
+}
+
 .omni-style .rating .rating-item.active {
     background-position: left -24px;
 }

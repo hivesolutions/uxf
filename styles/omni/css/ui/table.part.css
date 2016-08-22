@@ -107,9 +107,19 @@
     margin-left: 6px;
 }
 
+.omni-style.retina-s .table .table-add .inline-add {
+    background-image: url(../images/table-add-2x.png);
+    background-size: 11px 22px;
+}
+
 .omni-style .table .table-remove .inline-remove {
     background-image: url(../images/table-remove.png);
     margin-left: 5px;
+}
+
+.omni-style.retina-s .table .table-remove .inline-remove {
+    background-image: url(../images/table-remove-2x.png);
+    background-size: 11px 22px;
 }
 
 .omni-style .table .table-new-line-row {
@@ -161,6 +171,16 @@
     background-image: none;
 }
 
+.omni-style.retina-s .table .text-field.date,
+.omni-style.retina-s .table .text-field.natural,
+.omni-style.retina-s .table .text-field.integer,
+.omni-style.retina-s .table .text-field.float,
+.omni-style.retina-s .table .text-field.floatp,
+.omni-style.retina-s .table .text-field.percent,
+.omni-style.retina-s .table .text-field.email {
+    background-image: none;
+}
+
 .omni-style .table .drop-field > .text-field {
     background-image: none;
 }
@@ -170,8 +190,18 @@
     background-position: right bottom;
 }
 
+.omni-style.retina-s .table .drop-field.drop-field-lock > .text-field {
+    background-image: url(../images/drop-field-lock-small-2x.png);
+    background-size: 7px 7px;
+}
+
 .omni-style .table .drop-field.drop-field-select > .text-field {
     background-image: url(../images/drop-field-select-medium.png);
+}
+
+.omni-style.retina-s .table .drop-field.drop-field-select > .text-field {
+    background-image: url(../images/drop-field-select-medium-2x.png);
+    background-size: 940px 30px;
 }
 
 .omni-style .table .drop-field.drop-field-select > .text-field.active {

@@ -36,6 +36,10 @@
     width: 6px;
 }
 
+.omni-style.retina-s .calendar-header .calendar-arrow {
+    background-size: 6px 8px;
+}
+
 .omni-style .calendar-header .calendar-arrow:hover {
     opacity: 1;
 }
@@ -45,9 +49,17 @@
     float: left;
 }
 
+.omni-style.retina-s .calendar-header .calendar-arrow-left {
+    background-image: url(../images/calendar-arrow-left-2x.png);
+}
+
 .omni-style .calendar-header .calendar-arrow-right {
     background: transparent url(../images/calendar-arrow-right.png) no-repeat center center;
     float: right;
+}
+
+.omni-style.retina-s .calendar-header .calendar-arrow-right {
+    background-image: url(../images/calendar-arrow-right-2x.png);
 }
 
 .omni-style .calendar-content {
