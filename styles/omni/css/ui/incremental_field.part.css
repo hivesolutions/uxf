@@ -26,6 +26,10 @@
     width: 30px;
 }
 
+.omni-style.retina-s .incremental-field .button {
+    background-size: 16px 16px;
+}
+
 .omni-style .incremental-field .button:hover {
     background-color: #f0f0f0;
 }
@@ -40,9 +44,17 @@
     border-right: none;
 }
 
+.omni-style.retina-s .incremental-field .button.minus {
+    background-image: url(../images/incremental-field-minus-2x.png);
+}
+
 .omni-style .incremental-field .button.plus {
     background-image: url(../images/incremental-field-plus.png);
     border-left: none;
+}
+
+.omni-style.retina-s .incremental-field .button.plus {
+    background-image: url(../images/incremental-field-plus-2x.png);
 }
 
 .omni-style .incremental-field .text-field {

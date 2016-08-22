@@ -102,6 +102,10 @@
     background-image: none;
 }
 
+.omni-style.retina-s .text-field.no-icon {
+    background-image: none;
+}
+
 .omni-style .text-area {
     background-color: #ffffff;
     border: 1px solid #dddddd;
