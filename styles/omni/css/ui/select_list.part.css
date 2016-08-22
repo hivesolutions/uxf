@@ -46,6 +46,11 @@
     width: 16px;
 }
 
+.omni-style.retina-s .select-list li .order-icon {
+    background-image: url(../images/select-list-order-2x.png);
+    background-size: 16px 32px;
+}
+
 .omni-style .select-list li .order-icon:hover {
     background-position: 0 -16px;
 }

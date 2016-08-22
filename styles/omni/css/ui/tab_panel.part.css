@@ -20,6 +20,11 @@
     color: #3668c6;
 }
 
+.omni-style.retina-s .tab-panel .tab-selector.active {
+    background-image: url(../images/tab-panel-arrow-2x.png);
+    background-size: 5px 3px;
+}
+
 .omni-style .tab-panel .tab-selector:hover {
     color: #3668c6;
 }
