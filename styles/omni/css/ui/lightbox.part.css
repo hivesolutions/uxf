@@ -44,6 +44,7 @@
 
 .omni-style.retina-s .window.window-lightbox.loaded .button-confirm {
     background-image: url(../images/lightbox-close-2x.png);
+    background-size: 30px 30px;
 }
 
 .omni-style .window.window-lightbox .button-expand {

@@ -117,8 +117,10 @@
 
             // calculates the various partial values that are going
             // to be used in the processing of the various frames from
-            // the "original" gathered values from the element
-            var frameCount = spriteHeight / height;
+            // the "original" gathered values from the element, note that
+            // this value is calculated taking into account the pixel
+            // ratio currently defined in the window/viewport
+            var frameCount = spriteHeight / height / (window.devicePixelRatio || 1);
             var frameTimeout = duration / frameCount;
 
             // in case the number of frames is one there's no need to continue
