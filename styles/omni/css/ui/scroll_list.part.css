@@ -17,6 +17,11 @@
     width: 15px;
 }
 
+.omni-style.retina-s .scroll-list-container > .scroll-previous,
+.omni-style.retina-s .scroll-list-container > .scroll-next {
+    background-size: 15px 72px;
+}
+
 .omni-style .scroll-list-container > .scroll-previous:hover,
 .omni-style .scroll-list-container > .scroll-next:hover {
     background-position: left -24px;
@@ -27,7 +32,15 @@
     margin-left: -20px;
 }
 
+.omni-style.retina-s .scroll-list-container > .scroll-previous {
+    background-image: url(../images/scroll-list-previous-2x.png);
+}
+
 .omni-style .scroll-list-container > .scroll-next {
     background-image: url(../images/scroll-list-next.png);
     margin-left: 905px;
+}
+
+.omni-style.retina-s .scroll-list-container > .scroll-next {
+    background-image: url(../images/scroll-list-next-2x.png);
 }

@@ -17,6 +17,11 @@
     width: 12px;
 }
 
+.omni-style.retina-s .slider-bar .slider-bar-cursor {
+    background-image: url(../images/slider-bar-cursor-2x.png);
+    background-size: 12px 52px;
+}
+
 .omni-style .slider-bar .slider-bar-cursor:hover {
     background-position: 0px -13px;
 }

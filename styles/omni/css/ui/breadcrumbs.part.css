@@ -13,6 +13,11 @@
     padding-left: 22px;
 }
 
+.omni-style.retina-s .breadcrumbs li {
+    background-image: url(../images/breadcrumbs-arrow-2x.png);
+    background-size: 16px 16px;
+}
+
 .omni-style .breadcrumbs li:first-child {
     background: none;
     padding-left: 0px;
