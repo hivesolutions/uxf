@@ -100,6 +100,13 @@
                     // is going to be used for the current call
                     var binieUrl = binieUrls[index];
 
+                    // verifies if the current binie url is valid an
+                    // not empty and if that's not the case skips the
+                    // current loop iteration (nothing to be done)
+                    if (!binieUrl) {
+                        continue;
+                    }
+
                     // runs the remote call to retrieve the binie
                     // contents, once they are retrieve they are going
                     // to be sent to the plugin for printing
