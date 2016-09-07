@@ -93,47 +93,12 @@
                 var method = matchedObject["uxgprint" + format];
                 method && method(gateway, data);
 
-                // iterates over the complete set of binie url value
-                // to be able to print all of them concurrently
-                for (var index = 0; index < binieUrls.length; index++) {
-                    // retrieves the current binie url in iteration that
-                    // is going to be used for the current call
-                    var binieUrl = binieUrls[index];
-
-                    // verifies if the current binie url is valid an
-                    // not empty and if that's not the case skips the
-                    // current loop iteration (nothing to be done)
-                    if (!binieUrl) {
-                        continue;
-                    }
-
-                    // runs the remote call to retrieve the binie
-                    // contents, once they are retrieve they are going
-                    // to be sent to the plugin for printing
-                    jQuery.ajax({
-                        url: binieUrl,
-                        data: data,
-                        complete: function() {
-                            // calls the callback function, marking the end of
-                            // the printing execution (maintains order)
-                            callback();
-                        },
-                        success: function(data) {
-                            // prints the "just" received data using the
-                            // gateway plugin (direct access to driver)
-                            gateway.print(false, data);
-                        },
-                        error: function() {
-                            // retrieves the body and uses it to raise an info message
-                            // about the error in the retrieval of the data
-                            var _body = jQuery("body");
-                            _body.uxinfo(
-                                "There was an error retrieving remote print data.<br />" +
-                                "Please try again latter or contact the support team.",
-                                "Error", "warning");
-                        }
-                    });
-                }
+                // reverses the binie urls list and then uses this
+                // list as the queue for the printin operation, note
+                // that the callback should be called only after the
+                // complete set of queue elements have been processed
+                binieUrls = binieUrls.reverse();
+                _printQueue(binieUrls, data, gateway, callback)
             }
             // otherwise the normal printing process must be used
             // in case a fallback url exists
@@ -169,6 +134,57 @@
                     jQuery.uxlocation(fallbackUrl);
                 }
             }
+        };
+
+        var _printQueue = function(queue, data, gateway, callback) {
+            // tries to determine if the queue is empty and if
+            // that's the case calls the callback as all the
+            // elements in the queue have been processed
+            if (queue.length == 0) {
+                callback();
+                return;
+            }
+
+            // removes one element from the queue and considers
+            // it to be the binie url of the printing document
+            var binieUrl = queue.pop();
+
+            // verifies if the current binie url is valid and
+            // not empty and if that's not the case skips the
+            // current loop iteration (nothing to be done)
+            if (!binieUrl) {
+                // calls the print queue method, meaning that
+                // this iteration is skipped, then returns immediately
+                _printQueue(queue, data, gateway, callback);
+                return;
+            }
+
+            // runs the remote call to retrieve the binie
+            // contents, once they are retrieve they are going
+            // to be sent to the plugin for printing
+            jQuery.ajax({
+                url: binieUrl,
+                data: data,
+                complete: function() {
+                    // calls the print queue function, meaning that
+                    // the next element is ready to be processed
+                    _printQueue(queue, data, gateway, callback);
+                },
+                success: function(data) {
+                    // prints the "just" received data using the
+                    // gateway plugin (direct access to driver)
+                    gateway.print(false, data);
+                },
+                error: function() {
+                    // retrieves the body and uses it to raise an info message
+                    // about the error in the retrieval of the data
+                    var _body = jQuery("body");
+                    _body.uxinfo(
+                        "There was an error retrieving remote print data.<br />" +
+                        "Please try again latter or contact the support team.",
+                        "Error", "warning");
+                }
+            });
         };
 
         // switches over the method
