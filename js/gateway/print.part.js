@@ -74,9 +74,10 @@
             // colony cloud print action, in case they are defined
             // they will take priority for usage of print infra-structure
             var printUrl = window.localStorage && localStorage.getItem("uxf:gateway:base_url") || "";
-            var printKey = window.localStorage.getItem("uxf:gateway:key") || "";
-            var printNode = window.localStorage.getItem("uxf:gateway:node:id") || "";
-            var printPrinter = window.localStorage.getItem("uxf:gateway:printer:id") || "";
+            var printKey = window.localStorage && window.localStorage.getItem("uxf:gateway:key") || "";
+            var printNode = window.localStorage && window.localStorage.getItem("uxf:gateway:node:id") || "";
+            var printPrinter = window.localStorage && window.localStorage.getItem("uxf:gateway:printer:id") ||
+                "";
 
             // in case the complete set of required colony print field
             // are defined the gateway object is overriden with a new
