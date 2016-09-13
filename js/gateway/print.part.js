@@ -70,6 +70,41 @@
             // gateway plugin to be used for plugin calls
             var gateway = _document.uxg();
 
+            // tries to retrieve the complete set of element for the
+            // colony cloud print action, in case they are defined
+            // they will take priority for usage of print infra-structure
+            var printUrl = window.localStorage && localStorage.getItem("uxf:gateway:base_url") || "";
+            var printKey = window.localStorage.getItem("uxf:gateway:key") || "";
+            var printNode = window.localStorage.getItem("uxf:gateway:node:id") || "";
+            var printPrinter = window.localStorage.getItem("uxf:gateway:printer:id") || "";
+
+            // in case the complete set of required colony print field
+            // are defined the gateway object is overriden with a new
+            // map that emulates the same interface but using the colony
+            // cloud infra-structure for proper printing
+            if (printUrl && printKey && printNode) {
+                gateway = {
+                    pformat: function() {
+                        return "binie";
+                    },
+                    print: function(showDialog, dataBase64) {
+                        var jobUrl = printUrl + "nodes/" + printNode + "/";
+                        jobUrl += printPrinter ? "printers/" + printPrinter + "/print" : "print";
+                        jQuery.ajax({
+                            type: "post",
+                            url: jobUrl,
+                            data: {
+                                data_b64: dataBase64,
+                                skey: printKey
+                            },
+                            headers: {
+                                "X-Secret-Key": printKey
+                            }
+                        });
+                    }
+                }
+            }
+
             // in case the gateway was successfully retrieved
             // time to retrieve the binie data to be printed
             if (gateway) {
