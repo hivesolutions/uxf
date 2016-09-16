@@ -76,6 +76,7 @@
             dataType: "html",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-Async", "all");
+                xhr.setRequestHeader("X-Partial", "all");
             },
             success: function(data, status, request) {
                 // verifies if the current result if of type (async) redirect, this

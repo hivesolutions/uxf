@@ -98,8 +98,9 @@
                                 data_b64: dataBase64,
                                 skey: printKey
                             },
-                            headers: {
-                                "X-Secret-Key": printKey
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader("X-Secret-Key",
+                                    printKey);
                             }
                         });
                     }

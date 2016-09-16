@@ -360,6 +360,7 @@
             request.open(method, href);
             enctype != "multipart/form-data" && request.setRequestHeader("Content-Type", enctype);
             request.setRequestHeader("X-Async", "all");
+            request.setRequestHeader("X-Partial", "all");
             request.onload = function() {
                 // in case the current state of the request is not final ignores
                 // the update status change (not relevant)
