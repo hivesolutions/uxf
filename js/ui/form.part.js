@@ -348,6 +348,13 @@
             href = isGet ? href + "?" + data : href;
             data = isGet ? "" : data;
 
+            // calculates the aditional set of values of the base href value
+            // so that this request may be "marked" as special avoiding possible
+            // errors with cache in the browser/client side
+            var hasQuery = href.indexOf("?") != -1;
+            var extraParams = "x-async=1&x-partial=1";
+            var extraQuery = hasQuery ? "&" + extraParams : "?" + extraParams;
+
             // defines the url of the operation (final redirection) as the current
             // href value, resolved from the process action and get parameters
             var url = href;
@@ -357,7 +364,7 @@
             // forces the content type header for the requested encoding
             // type in case the form is not of type multipart
             var request = new XMLHttpRequest();
-            request.open(method, href);
+            request.open(method, href + extraQuery);
             enctype != "multipart/form-data" && request.setRequestHeader("Content-Type", enctype);
             request.setRequestHeader("X-Async", "all");
             request.setRequestHeader("X-Partial", "all");
