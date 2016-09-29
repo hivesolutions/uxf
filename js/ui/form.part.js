@@ -657,7 +657,7 @@
             matchedObject.trigger("layout");
         };
 
-        var originalForm = function(matchedObject, options) {
+        var originalForm = function(matchedObject, options, full) {
             // restores the error part of the form to the original values so that
             // they don't appear in the form (original state)
             resetErrors(matchedObject, options);
@@ -667,6 +667,27 @@
             // to restore them to their original values
             var elements = matchedObject.uxfields();
             elements.uxoriginal();
+
+            // in case the current original operation is not considered to be a full
+            // one the control flow should be returned immediately
+            if (!full) {
+                return;
+            }
+
+            // updates the visual oriented state classes of the form so that
+            // they reflect the original state of the form
+            matchedObject.removeClass("submitting");
+            matchedObject.removeClass("success");
+            matchedObject.removeClass("error");
+
+            // updates the current state of the form element so that it reflects
+            // the orginal state of the form elements (as expected)
+            matchedObject.data("submited", false);
+            matchedObject.data("confirmed", false);
+
+            // triggers the unlock event on the matched object so that any element
+            // pending to be unlocked is properly unlocked
+            matchedObject.triggerHandler("unlock");
         };
 
         var resetForm = function(matchedObject, options, full) {
