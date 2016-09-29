@@ -642,6 +642,11 @@
             var errorDescription = jQuery(".error-description", matchedObject);
             errorDescription.remove();
 
+            // retrieves the various error description elements and sets their
+            // value to the default empty value (as expected)
+            var errorMessage = jQuery(".error-message", matchedObject);
+            errorMessage.text("");
+
             // retrieves both the form success panel and the other items and then
             // removes the form success (item) panel and shows the "original" items
             // then triggers the layout event to update any "upper" elements
