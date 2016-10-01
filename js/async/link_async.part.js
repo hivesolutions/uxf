@@ -56,10 +56,6 @@
             return false;
         }
 
-        // tries to determine if the extra query class is set in the body,
-        // if that's not the case the extra query is not going to be applied
-        var hasExtra = _body.hasClass("extra-query");
-
         // calculates the aditional set of values of the base href value
         // so that this request may be "marked" as special avoiding possible
         // errors with cache in the browser/client side
@@ -83,7 +79,7 @@
         // the extra async data parameter sent indicating that this is meant
         // to be handled differently (notably the redirection process)
         var request = jQuery.ajax({
-            url: href + (hasExtra ? extraQuery : ""),
+            url: href + extraQuery,
             dataType: "html",
             beforeSend: function(xhr) {
                 xhr.setRequestHeader("X-Async", "all");
