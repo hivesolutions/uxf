@@ -161,10 +161,11 @@
             var elementHeight = element.outerHeight(true);
             var headerOffset = getHeaderOffset(element);
             var footerOffset = getFooterOffset(element);
+            var displayed = element.is(":visible");
 
             var belowTop = elementTop + elementHeight >= windowTop + headerOffset;
             var aboveBottom = elementTop <= windowTop + windowHeight - footerOffset;
-            var visible = belowTop && aboveBottom;
+            var visible = belowTop && aboveBottom && displayed;
             return visible;
         };
 
