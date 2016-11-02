@@ -69,6 +69,8 @@
 
             // retrieves the reference to some of the elements
             // that are part of the carousel structure
+            var items = jQuery("> .items", matchedObject);
+            var itemItems = jQuery("> .item", items);
             var views = jQuery("> .views", matchedObject);
             var viewItems = jQuery("> li", views);
 
@@ -77,6 +79,22 @@
             // the element as registered (default behaviour)
             var isRegistered = _body.data("carousel_click");
             _body.data("carousel_click", true);
+
+            // registers for the click event on the items to be
+            // able to skip the current carousel item on click
+            itemItems.click(function() {
+                var element = jQuery(this);
+                var carousel = element.parents(".carousel");
+                var items = jQuery(".item", carousel);
+                var click = carousel.attr("data-click");
+                if (!click) {
+                    return;
+                }
+                var index = element.index();
+                var nextIndex = (index + 1) % items.length;
+                _set(carousel, options, nextIndex);
+                _schedule(carousel, options);
+            });
 
             // registers for the click event in the view items
             // so that a new index is set on the click event
