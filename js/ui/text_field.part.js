@@ -388,7 +388,7 @@
 
         var _value = function(matchedObject, options) {
             // tries to retrieve the value from options
-            var value = options["value"];
+            var value = options.value;
 
             // in case it's a "normal" get operation
             // (no value defined)

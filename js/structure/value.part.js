@@ -9,6 +9,11 @@
         var options = arguments.length > 0 ? {
             value: arguments[0]
         } : {};
+
+        // verifies if the provided first argument is an object
+        // and if that's the case uses it as the options that
+        // are going to be passed as part of the arguments
+        options = typeof(arguments[0]) === "object" ? arguments[0] : options;
         var _arguments = ["value", options];
 
         // retrieves the correct fallback method to be used to

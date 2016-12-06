@@ -1293,12 +1293,24 @@
         };
 
         var _value = function(matchedObject, options) {
-            // retrieves the text field associated with the
+            // sets the default value that is going to be returned
+            // in case no other has been selected
+            var value = null;
+
+            // retrieves the field associated with the (logic of visual)
             // current matched object and runs the value method
             // in it retrieving and returning the value (pipeline)
-            var textField = jQuery(".text-field", matchedObject);
-            var returnValue = textField.uxtextfield("value", options);
-            return returnValue;
+            if (options.logic) {
+                var field = jQuery(".hidden-field", matchedObject);
+                value = field.uxvalue();
+            } else {
+                var textField = jQuery(".text-field", matchedObject);
+                value = textField.uxtextfield("value", options);
+            }
+
+            // returns the final value to the caller method, this
+            // value come from the proper data sourcing
+            return value;
         };
 
         var _incrementSelection = function(matchedObject, options) {
