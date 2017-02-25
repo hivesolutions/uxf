@@ -190,7 +190,7 @@
                     attributes[key] += settings.offset[positionLower] || 0;
 
                     if (settings.over[positionLower])
-                    // scrolls to a fraction of its width/height
+                        // scrolls to a fraction of its width/height
                         attributes[key] += _target[axis == "x" ? "width" : "height"]() *
                         settings.over[positionLower];
                 }
