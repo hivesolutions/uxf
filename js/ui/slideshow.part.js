@@ -17,7 +17,7 @@
         // the base64 code of an image that may be used to
         // clear an image based element, this is used to provide
         // a way to clear the element between image transitions
-        var IMAGE_CLEAR = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+        var IMAGE_CLEAR = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
         // the default values for the data query json
         var defaults = {};
