@@ -153,7 +153,7 @@
             return _getOffset(element, "data-footer", ".footer-container");
         };
 
-        var isVisible = function(element) {
+        var isVisible = function(element, strict) {
             var _window = jQuery(window);
             var windowTop = _window.scrollTop();
             var windowHeight = _window.height();
@@ -161,7 +161,8 @@
             var elementHeight = element.outerHeight(true);
             var headerOffset = getHeaderOffset(element);
             var footerOffset = getFooterOffset(element);
-            var displayed = element.is(":visible");
+            var strict = strict || element.hasClass("strict");
+            var displayed = strict ? element.is(":visible") : true;
 
             var belowTop = elementTop + elementHeight >= windowTop + headerOffset;
             var aboveBottom = elementTop <= windowTop + windowHeight - footerOffset;
