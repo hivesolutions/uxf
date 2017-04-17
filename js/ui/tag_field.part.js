@@ -409,7 +409,8 @@
 
             // tries to retrieve the "original" height value for the text field
             // and updates the register to this same value (only one retrieval)
-            var textFieldHeight = textField.data("height") || textField.height();
+            var textFieldHeight = textField.data("height") || (isBorderBox ? textField.outerHeight() :
+                textField.height());
             textField.data("height", textFieldHeight);
 
             // retrieves the last tag in the tag sequence then uses
