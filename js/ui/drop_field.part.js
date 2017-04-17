@@ -1668,13 +1668,20 @@
             var isVisible = dropFieldContents.is(":visible");
             !isVisible && dropFieldContents.show();
 
+            // determines if the drop field contents is bord box based
+            // sizing, if that the case a different sizing is going to
+            // be applied to determine the width of the drop field
+            var boxSizing = dropFieldContents.css("box-sizing");
+            var isBorderBox = boxSizing == "border-box";
+
             // calculates the drop field contents width using the text
             // field width as reference and calculating the extra width
             // to be removed from the dropfield as the extra margin
             // (and border) values that it may contain
             var textFieldWidth = textField.outerWidth(true);
             var dropFieldContentsExtraWidth = dropFieldContents.outerWidth() - dropFieldContents.width();
-            var dropFieldContentsWidth = textFieldWidth - dropFieldContentsExtraWidth;
+            var dropFieldContentsWidth = isBorderBox ? textFieldWidth : textFieldWidth -
+                dropFieldContentsExtraWidth;
 
             // in case the current drop field contents are not visible
             // hides them back (original visibility)
