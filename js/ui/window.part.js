@@ -312,7 +312,15 @@
         };
 
         var _positionWindow = function(matchedObject, options, noLimit) {
-            // in case the no limit flag is unset limits the size
+            // verfies if the current window is visible and if that's
+            // not the case returns immedaitely, avoiding possible extra
+            // usage of resources (position operation is expensive)
+            var isVisible = matchedObject.is(":visible");
+            if (!isVisible) {
+                return;
+            }
+
+            // in case the no limit flag is unset, limits the size
             // of the current window according to the global window
             // and then runs the centering operation in the window
             !noLimit && _limitWindow(matchedObject, options);
