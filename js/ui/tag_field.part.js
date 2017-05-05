@@ -509,7 +509,8 @@
 
             // calculates the "new" width value to be used validating it
             // to be a positive value (avoids possible problems)
-            var width = textFieldWidth - textFieldExtra > 0 ? textFieldWidth - textFieldExtra : 0;
+            var width = isBorderBox ? textFieldWidth : textFieldWidth - textFieldExtra;
+            width = width > 0 ? width : 0;
 
             // updates the margin top of the tag container according to the
             // margin top of the text field
