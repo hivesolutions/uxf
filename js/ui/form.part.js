@@ -345,7 +345,9 @@
             // case it's encapsulates the parameters in the current request
             // url and removes the data payload from the request
             var isGet = method.toLowerCase() == "get";
-            href = isGet ? href + "?" + data : href;
+            var hasQuery = href.indexOf("?") != -1;
+            var token = hasQuery ? "&" : "?";
+            href = isGet ? href + token + data : href;
             data = isGet ? "" : data;
 
             // tries to determine if the extra query class is set in the body,
@@ -355,9 +357,10 @@
             // calculates the aditional set of values of the base href value
             // so that this request may be "marked" as special avoiding possible
             // errors with cache in the browser/client side
-            var hasQuery = href.indexOf("?") != -1;
+            hasQuery = href.indexOf("?") != -1;
+            token = hasQuery ? "&" : "?";
             var extraParams = "x-async=1&x-partial=1";
-            var extraQuery = hasQuery ? "&" + extraParams : "?" + extraParams;
+            var extraQuery = token + extraParams;
 
             // defines the url of the operation (final redirection) as the current
             // href value, resolved from the process action and get parameters
