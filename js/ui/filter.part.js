@@ -749,7 +749,7 @@
                 // retrieves the filter string and the filter
                 // input value (to check for string value changes)
                 var filterString = filter.data("filter_string");
-                var filterInputValue = filterInput.attr("data-value");
+                var filterInputValue = element.attr("data-value");
 
                 // in case no string value changes occured
                 if (filterString == filterInputValue) {
