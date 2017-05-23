@@ -295,10 +295,6 @@
             var isRegistered = _body.data("filter_click");
             matchedObject.length > 0 && _body.data("filter_click", true);
 
-            // tries to retrieve the value for the infinite loading
-            // support in the matched object (by default it's disabled)
-            var infinite = matchedObject.attr("data-infinite") || false;
-
             // registers for the update event so that the data is reloaded
             // once this event is raises, this is expected to be done using
             // the trigger handler method so that no buble occurs
@@ -898,32 +894,59 @@
                 _body.unbind("click", onClick);
             });
 
-            // registers for the scroll event in the window in case
-            // the infinite scroll support is enabled
-            matchedObject.length > 0 && infinite && _window.scroll(onScroll = function() {
-                // sets the filter as the matched object, this
-                // considered to be a global singleton handler
-                var filter = matchedObject;
+            // iterates over the complete set of objects to run the context
+            // enabled registration of event handlers
+            matchedObject.each(function() {
+                // retrieves the reference to the current element in iteration
+                // to be used for proper instance registration
+                var element = jQuery(this);
 
-                // retrieves the top offset of the page, using
-                // the margin element (from the margin top)
-                var margin = jQuery(".margin");
-                var pageOffset = margin.outerHeight(true);
+                // tries to retrieve the value for the infinite loading
+                // support in the matched object (by default it's disabled)
+                // in case the value is not eabled returns immediately, as
+                // there's nothing to be done for it
+                var infinite = element.attr("data-infinite") || false;
+                if (!infinite) {
+                    return;
+                }
 
-                // retrieves the filter more element height as the
-                // delta value for the visibility testing this way
-                // the visibility test is done agains the top
-                var delta = filterMore.outerHeight() * -1;
+                // registers for the scroll event in the window in case
+                // the infinite scroll support is enabled
+                _window.scroll(onScroll = function() {
+                    // sets the filter as the matched object, this
+                    // considered to be a global singleton handler
+                    var filter = element;
 
-                // checks if the element is visible
-                var isVisible = filterMore.length ? jQuery.uxvisible(
-                    filterMore, pageOffset, delta) : false;
+                    // retrieves the top offset of the page, using
+                    // the margin element (from the margin top)
+                    var margin = jQuery(".margin");
+                    var pageOffset = margin.outerHeight(true);
 
-                // updates the filter state
-                isVisible && _update(filter, options);
-            });
-            matchedObject.length > 0 && infinite && matchedObject.bind("destroyed", function() {
-                _window.unbind("scroll", onScroll);
+                    // retrieves the filter more element height as the
+                    // delta value for the visibility testing this way
+                    // the visibility test is done agains the top
+                    var delta = filterMore.outerHeight() * -1;
+
+                    // checks if the element is currentyl visible
+                    var isVisible = filterMore.length ? jQuery.uxvisible(filterMore,
+                        pageOffset,
+                        delta) : false;
+
+                    // updates the filter state
+                    isVisible && _update(filter, options);
+                });
+
+                // stores the on scroll event handler in the current context
+                // so thtat it may be used altter on for unregistration
+                element.data("on_scroll", onScroll);
+
+                // registers for the destroyed event on the element and
+                // for that runs the unbind operation on the scroll
+                element.bind("destroyed", function() {
+                    var element = jQuery(this);
+                    var onScroll = element.data("on_scroll");
+                    _window.unbind("scroll", onScroll);
+                });
             });
         };
 
