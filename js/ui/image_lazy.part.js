@@ -124,6 +124,7 @@
                 var imagesLazy = jQuery(".image-lazy", _body);
                 imagesLazy = imagesLazy.not(".loading");
                 imagesLazy = imagesLazy.not(".loaded");
+                imagesLazy = imagesLazy.not(".error");
                 imagesLazy.each(function(index, element) {
                     var _element = jQuery(this);
                     updateState(_element);
@@ -134,6 +135,7 @@
                 var imagesLazy = jQuery(".image-lazy", _body);
                 imagesLazy = imagesLazy.not(".loading");
                 imagesLazy = imagesLazy.not(".loaded");
+                imagesLazy = imagesLazy.not(".error");
                 imagesLazy.each(function(index, element) {
                     var _element = jQuery(this);
                     updateState(_element);
@@ -144,6 +146,7 @@
                 var imagesLazy = jQuery(".image-lazy", _body);
                 imagesLazy = imagesLazy.not(".loading");
                 imagesLazy = imagesLazy.not(".loaded");
+                imagesLazy = imagesLazy.not(".error");
                 imagesLazy.each(function(index, element) {
                     var _element = jQuery(this);
                     updateState(_element);
