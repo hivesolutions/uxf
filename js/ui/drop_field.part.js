@@ -1517,7 +1517,8 @@
                 ]);
 
             // in case the imcimplete mode is enabled an extra operation
-            // is sheduled to update the drop field accordingly
+            // is sheduled to update the drop field accordingly, this is
+            // performed only if the force option is set
             incomplete
                 && options.force && _update(dropField, options, true, [
                     [displayAttribute,
