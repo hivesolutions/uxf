@@ -1297,6 +1297,14 @@
             // in case no other has been selected
             var value = null;
 
+            // in case the value is defined then this is a set operation
+            // and should be handled as such
+            if (options.value) {
+                return _set(matchedObject, {
+                    value: options.value
+                });
+            }
+
             // retrieves the field associated with the (logic of visual)
             // current matched object and runs the value method
             // in it retrieving and returning the value (pipeline)

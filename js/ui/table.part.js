@@ -148,9 +148,10 @@
                 _registerLineHandlers(row, options);
             });
 
-            // iterates over all the items in the matched object
+            // iterates over all the items in the matched object, meaning
+            // that the complete set of tables are going to be iterated
             matchedObject.each(function(index, element) {
-                // retrieves the element reference
+                // retrieves the element reference (the table element)
                 var elementReference = jQuery(element);
 
                 // checks if the current table is of type edit, in such
@@ -159,7 +160,8 @@
                 var isEdit = elementReference.hasClass("table-edit");
                 var rows = jQuery("tbody > tr:not(.template)", elementReference);
 
-                // retrieves the containing form
+                // retrieves the parent form in case it exits, as it's possible
+                // to not have a parent (form) for a table
                 var parentForm = elementReference.parents("form");
 
                 // registers for the submit event
@@ -511,6 +513,96 @@
                 // all the associated (frontier text fields)
                 _unsetInvalid(element, options);
             });
+
+            // registers for the paste operation so that it's possible
+            // to correctly parse it as a dynamic value
+            textField.bind("paste", function(event) {
+                // retrieves the reference to the current element (text field)
+                // that is going to be used in the processing operation
+                var element = jQuery(this);
+                var column = element.parents("td");
+                var target = jQuery("> [data-object]", column);
+
+                // retrieves the reference to the original event (not processed)
+                // and then retrieves the clipboard data from it
+                var original = event.originalEvent;
+                var clipboardData = original.clipboardData || window.clipboardData;
+                var textData = clipboardData && clipboardData.getData("Text");
+
+                // in case no valid data was able to be retrieved from the clipboard
+                // returns the control flow immediately
+                if (!textData) {
+                    return;
+                }
+
+                // verifies if the provided text data is valid for the structured paste
+                // oepration and if that's not the case reuturns immedidately
+                var isValid = textData.indexOf("\n") != -1 || textData.indexOf("\t") != -1;
+                if (!isValid) {
+                    return;
+                }
+
+                // sets the first initial value as the current target, assumes that
+                // the current target should be the first to be populated
+                var initial = target;
+
+                // splits the provided text data arround the newline character to
+                // retrieve the multiple line values of it
+                var lines = textData.split("\n");
+
+                // iterates over the miltiple lines contained in the text to populate
+                // the associated lines in the table
+                for (var index = 0; index < lines.length; index++) {
+                    // retrieves the current line and splits arrount its columns
+                    var line = lines[index];
+                    var columns = line.split("\t");
+
+                    // in case there are no columns in the current line, simply
+                    // ignores it (no applicability)
+                    if (columns.length == 0) {
+                        continue
+                    }
+
+                    // iterates over the complete set of columns to set the values
+                    // for the current line in iteration in the table
+                    for (var _index = 0; _index < columns.length; _index++) {
+                        // tries to retrieve the current element to be used in the
+                        // operation that is going to populate the value
+                        current = initial ? initial : _next(current,
+                            "> [data-object]");
+                        initial = null;
+                        console.info(current);
+                        if (!current) {
+                            break;
+                        }
+
+                        // retrieves the current column in iteration (value) and uses
+                        // it to populate the current element using the normal value
+                        // setting operation (as expected)
+                        var column = columns[_index];
+                        current.uxvalue(column);
+                        current.uxfocus();
+                    }
+
+                    // retrieves the current row associated with the current element
+                    // in iteration and then uses it to retrieve the last column
+                    var row = current.parents("tr");
+                    var lastColumn = jQuery("td.last", row);
+                    initial = _next(null, "> [data-object]", lastColumn);
+
+                    // in case the next initial is an invalid one (not possible to set it)
+                    // must break the current iteration no more rows available in table
+                    if (!initial) {
+                        break;
+                    }
+                }
+
+                // stops the propagation of the event and then prevents the default
+                // set of operations from happending
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                event.preventDefault();
+            });
         };
 
         var _newLine = function(matchedObject, elementRow, options) {
@@ -741,6 +833,44 @@
             // triggers the cleared event, no arguments are sent
             // for this event
             matchedObject.triggerHandler("cleared");
+        };
+
+        var _next = function(element, selector, column, row) {
+            // tries to retrieve the reference column and row using
+            // either the provided ones or the current element context
+            column = column || element.parents("td");
+            row = row || column.parents("tr");
+
+            // iterates continuously trying to find the next element
+            // in reference to the provided one using the provided selector
+            while (true) {
+                // retrieves the complete set of remaining columns relative
+                // to the current one in selection and then retrieves the
+                // elements that are compliant with the current selector
+                // in case at least one valid element exists returns it,
+                // otherwise we must try to find a new element in next row
+                var remainingColumns = column.nextAll();
+                var remainingTargets = jQuery(selector, remainingColumns);
+                if (remainingTargets.length > 0) {
+                    return jQuery(remainingTargets[0]);
+                }
+
+                // verifies if this is the last row if that's the case there's
+                // nothing remaing to be done and the loop must break
+                var isLast = row.hasClass("last");
+                if (isLast) {
+                    break;
+                }
+
+                // retieves the next row and the column in set as the first one
+                // so that its possible to continue the loop
+                var row = row.next();
+                var column = jQuery("> td:first-child", row);
+            }
+
+            // reurns the default invalid value meaning that no valid next element
+            // was found according to the provided criterea
+            return null;
         };
 
         // switches over the method
