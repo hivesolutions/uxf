@@ -877,7 +877,7 @@
                     // tick will be made on the next column
                     var targets = jQuery(selector, column);
                     if (targets.length > 0) {
-                        return jQuery(targets[0]);
+                        return jQuery(targets.get(0));
                     }
 
                     // retrieves the reference to the next column in the current
