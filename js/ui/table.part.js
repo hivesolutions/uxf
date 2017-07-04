@@ -521,7 +521,7 @@
                 // that is going to be used in the processing operation
                 var element = jQuery(this);
                 var column = element.parents("td");
-                var target = jQuery("> [data-object]", column);
+                var target = jQuery("> [data-object]:not([disabled], .disabled)", column);
 
                 // retrieves the reference to the original event (not processed)
                 // and then retrieves the clipboard data from it
@@ -574,7 +574,7 @@
                         // tries to retrieve the current element to be used in the
                         // operation that is going to populate the value
                         current = initial ? initial : _next(current,
-                            "> [data-object]", null, null, true);
+                            "> [data-object]:not([disabled], .disabled)", null, null, true);
                         initial = null;
                         if (!current) {
                             break;
@@ -853,18 +853,36 @@
             column = column || element.parents("td");
             row = row || column.parents("tr");
 
+            // sets the current column (for iteration) as the next column
+            // in the current row, this is the starting point for row iteration
+            column = column.next();
+
             // iterates continuously trying to find the next element
             // in reference to the provided one using the provided selector
             while (true) {
-                // retrieves the complete set of remaining columns relative
-                // to the current one in selection and then retrieves the
-                // elements that are compliant with the current selector
-                // in case at least one valid element exists returns it,
-                // otherwise we must try to find a new element in next row
-                var remainingColumns = column.nextAll();
-                var remainingTargets = jQuery(selector, remainingColumns);
-                if (remainingTargets.length > 0) {
-                    return jQuery(remainingTargets[0]);
+                // iterates continuosly over the complete set of remaining
+                // columns in the curren row, trying to find any that contains
+                // elements that comply with the provided selectors
+                while (true) {
+                    // in case the current column selector is invalid, no
+                    // value in sequence, breaks the loop no more columns
+                    // available for the current row
+                    if (column.length === 0) {
+                        break;
+                    }
+
+                    // tries to retrieve any possible valid target (according
+                    // to the selector) and if there's at least one returns it
+                    // as the valid next element, otherwise the next iteration
+                    // tick will be made on the next column
+                    var targets = jQuery(selector, column);
+                    if (targets.length > 0) {
+                        return jQuery(targets[0]);
+                    }
+
+                    // retrieves the reference to the next column in the current
+                    // row, this is the next element in the iteration cycle
+                    column = column.next();
                 }
 
                 // verifies if this is the last row if that's the case there's
