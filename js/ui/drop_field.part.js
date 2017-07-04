@@ -1264,7 +1264,7 @@
                 }
 
                 // updates the current selection, this operation should change
-                // the "focus" to the currently selected liste item
+                // the "focus" to the currently selected list item
                 _updateSelection(dropField, options);
 
                 // verifies if the current loading of values should be considered
@@ -1289,6 +1289,29 @@
                     options["index"] = index;
                     _index(dropField, options);
                 });
+
+                // verifies if the current loading of values should be considered
+                // incomplete ones, if that's the case an extra iteration should
+                // be performed on the complete set of list items trying to find
+                // the one that matched the current (display) value and then uses it
+                // to update the "logic" drop field value
+                var incomplete = value && !valueLogic;
+                incomplete && options.force && listItems.each(function(index, element) {
+                    // retrieves the current list item (element) in iteration and
+                    // unpacks its data value, checking it agains the currently
+                    // set "display" value (for proper match value)
+                    var _element = jQuery(this);
+                    var isValid = value == _element.attr("data-display");
+                    if (!isValid) {
+                        return;
+                    }
+
+                    // if this logic is reached there was a match with the list
+                    // item value and the proper index change should be triggered
+                    index = _element.index();
+                    options["index"] = index;
+                    _index(dropField, options);
+                });
             });
         };
 
@@ -1301,7 +1324,8 @@
             // and should be handled as such
             if (options.value) {
                 return _set(matchedObject, {
-                    value: options.value
+                    value: options.value,
+                    force: true
                 });
             }
 
@@ -1436,12 +1460,17 @@
             var hiddenTemplate = jQuery(".hidden-template", dropField);
             var textField = jQuery(".text-field", dropField);
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
+            var displayAttribute = dropField.attr("data-display_attribute") || "name";
             var valueAttribute = dropField.attr("data-value_attribute") || "value";
 
             // verifies if the bootstrap mode is set meaning that the
             // logic value has been set but the visual one not, this
             // should trigger an extra query to the data source
             var bootstrap = !value && valueLogic;
+
+            // verifies if the incomplete mode is enabled, meaning that
+            // the visual value is provided but the logical one not
+            var incomplete = value && !valueLogic;
 
             // retrieves the complete set of value fields from the drop
             // field to apply the item values into them
@@ -1484,6 +1513,15 @@
                 && _update(dropField, options, true, [
                     [valueAttribute,
                         "equals", valueLogic
+                    ]
+                ]);
+
+            // in case the imcimplete mode is enabled an extra operation
+            // is sheduled to update the drop field accordingly
+            incomplete
+                && options.force && _update(dropField, options, true, [
+                    [displayAttribute,
+                        "equals", value
                     ]
                 ]);
         };

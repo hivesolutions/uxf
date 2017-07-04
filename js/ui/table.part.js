@@ -535,6 +535,11 @@
                     return;
                 }
 
+                // normalizes the text data, so that no extra (not required) operations
+                // are going to be performed from the content of it (optimization)
+                textData = textData.strip("\n");
+                textData = textData.strip("\t");
+
                 // verifies if the provided text data is valid for the structured paste
                 // oepration and if that's not the case reuturns immedidately
                 var isValid = textData.indexOf("\n") != -1 || textData.indexOf("\t") != -1;
@@ -569,9 +574,8 @@
                         // tries to retrieve the current element to be used in the
                         // operation that is going to populate the value
                         current = initial ? initial : _next(current,
-                            "> [data-object]");
+                            "> [data-object]", null, null, true);
                         initial = null;
-                        console.info(current);
                         if (!current) {
                             break;
                         }
@@ -584,11 +588,19 @@
                         current.uxfocus();
                     }
 
+                    // determines if this is the last iteration (over lines) and if that's
+                    // the case breaks the current loop (avoids extra elements creation)
+                    var isLast = index === lines.length - 1;
+                    if (isLast) {
+                        break;
+                    }
+
                     // retrieves the current row associated with the current element
                     // in iteration and then uses it to retrieve the last column
                     var row = current.parents("tr");
                     var lastColumn = jQuery("td.last", row);
-                    initial = _next(null, "> [data-object]", lastColumn);
+                    initial = _next(null, "> [data-object]",
+                        lastColumn, null, true);
 
                     // in case the next initial is an invalid one (not possible to set it)
                     // must break the current iteration no more rows available in table
@@ -835,7 +847,7 @@
             matchedObject.triggerHandler("cleared");
         };
 
-        var _next = function(element, selector, column, row) {
+        var _next = function(element, selector, column, row, force) {
             // tries to retrieve the reference column and row using
             // either the provided ones or the current element context
             column = column || element.parents("td");
@@ -866,6 +878,15 @@
                 // so that its possible to continue the loop
                 var row = row.next();
                 var column = jQuery("> td:first-child", row);
+            }
+
+            // in case the force flag is set a new line should be created so that
+            // the table may properly handle the next element request
+            if (force) {
+                var table = row.parents(".table");
+                var tableBody = jQuery("tbody", table);
+                _newLine(table, tableBody);
+                return _next(element, selector, column, row, false);
             }
 
             // reurns the default invalid value meaning that no valid next element
