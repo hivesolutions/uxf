@@ -225,7 +225,7 @@
 
                     // checks if the compare string (current item) starts with the
                     // current filter string
-                    if (compareString.indexOf(filterString) == 0) {
+                    if (compareString.indexOf(filterString) === 0) {
                         // adds the current item to the list
                         // of valid items (valid item)
                         validItems.push(currentItem);

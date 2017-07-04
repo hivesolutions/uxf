@@ -599,7 +599,7 @@
                     // in iteration and then uses it to retrieve the last column
                     var row = current.parents("tr");
                     var lastColumn = jQuery("td.last", row);
-                    initial = _next(null, "> [data-object]",
+                    initial = _next(null, "> [data-object]:not([disabled], .disabled)",
                         lastColumn, null, true);
 
                     // in case the next initial is an invalid one (not possible to set it)

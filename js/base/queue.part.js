@@ -14,7 +14,7 @@
             // queue is now empty, if that the case the control
             // flow is returned immediately to the caller
             queue.shift();
-            if (queue.length == 0) {
+            if (queue.length === 0) {
                 return;
             }
 

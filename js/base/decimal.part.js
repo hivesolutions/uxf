@@ -7,7 +7,7 @@
 
     jQuery.uxdecimal = function(value) {
         var integer = Math.abs(parseInt(value));
-        var count = integer == 0 ? 1 : parseInt(Math.log10(integer)) + 1;
+        var count = integer === 0 ? 1 : parseInt(Math.log10(integer)) + 1;
         var places = FLOAT_PRECISION - count;
         var multiplier = Math.pow(10, places);
         value = Math.round(value * multiplier) / multiplier;

@@ -268,7 +268,7 @@
 })(jQuery);
 
 function onYoutubeStateChange(state) {
-    if (state == 0) {
+    if (state === 0) {
         var video = jQuery("#youtube-player");
         var parent = video.parents(".video");
         parent.trigger("ended");
