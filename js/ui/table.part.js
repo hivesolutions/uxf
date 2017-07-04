@@ -183,7 +183,7 @@
                         elementReference);
 
                     // in case there are no rows available
-                    if (rows.length == 0) {
+                    if (rows.length === 0) {
                         // returns immediately (no need to proceed
                         // with the row removal)
                         return;
@@ -220,7 +220,7 @@
                 // in case the table is of type edit and the table is emtpy
                 // a line must be added to the end of the table in
                 // case the table is empty
-                if (isEdit && rows.length == 0) {
+                if (isEdit && rows.length === 0) {
                     // retrieves the table elements
                     var table = elementReference;
                     var tableBody = jQuery("tbody", table);
@@ -564,7 +564,7 @@
 
                     // in case there are no columns in the current line, simply
                     // ignores it (no applicability)
-                    if (columns.length == 0) {
+                    if (columns.length === 0) {
                         continue
                     }
 

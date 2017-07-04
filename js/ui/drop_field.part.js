@@ -101,7 +101,7 @@
 
                 // in case there is no text field defined for the
                 // current element one must be created
-                if (textField.length == 0) {
+                if (textField.length === 0) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
                     var name = _element.attr("name");
@@ -140,7 +140,7 @@
 
                 // adds the "extra" html to the matched object,
                 // in case no drop field contents is found
-                dropFieldContents.length == 0 && _element.append(
+                dropFieldContents.length === 0 && _element.append(
                     "<div class=\"drop-field-clear\"></div>") && _element.append(
                     "<ul class=\"drop-field-contents\"></ul>");
 
@@ -1032,7 +1032,7 @@
 
                 // in case no valid items were retrieves, must show
                 // the no results element
-                if (validItems.length == 0) {
+                if (validItems.length === 0) {
                     // clones the drop field no results element, to create
                     // an instance to be added, then removes the hidding
                     // class from it
