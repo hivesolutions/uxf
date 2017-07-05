@@ -525,7 +525,9 @@
                 // in the processing of the paste event on the table
                 var column = element.parents("td");
                 var table = column.parents(".table");
-                var target = jQuery("> [data-object]:not([disabled], .disabled)", column);
+                var target = jQuery(
+                    "> [data-object]:not([disabled], .disabled)",
+                    column);
 
                 // verifies if the paste feature has been explicitly disabled for
                 // the current table and if that's the case returns immedidately
@@ -550,11 +552,13 @@
                 // normalizes the text data, so that no extra (not required) operations
                 // are going to be performed from the content of it (optimization)
                 textData = textData.strip("\n");
+                textData = textData.strip("\r");
                 textData = textData.strip("\t");
 
                 // verifies if the provided text data is valid for the structured paste
                 // oepration and if that's not the case reuturns immedidately
-                var isValid = textData.indexOf("\n") != -1 || textData.indexOf("\t") != -1;
+                var isValid = textData.indexOf("\n") != -1 || textData.indexOf("\r") != -1 ||
+                    textData.indexOf("\t") != -1;
                 if (!isValid) {
                     return;
                 }
@@ -585,8 +589,10 @@
                     for (var _index = 0; _index < columns.length; _index++) {
                         // tries to retrieve the current element to be used in the
                         // operation that is going to populate the value
-                        current = initial ? initial : _next(current,
-                            "> [data-object]:not([disabled], .disabled)", null, null, true);
+                        current = initial ? initial : _next(
+                            current,
+                            "> [data-object]:not([disabled], .disabled)",
+                            null, null, true);
                         initial = null;
                         if (!current) {
                             break;
@@ -611,7 +617,9 @@
                     // in iteration and then uses it to retrieve the last column
                     var row = current.parents("tr");
                     var lastColumn = jQuery("td.last", row);
-                    initial = _next(null, "> [data-object]:not([disabled], .disabled)",
+                    initial = _next(
+                        null,
+                        "> [data-object]:not([disabled], .disabled)",
                         lastColumn, null, true);
 
                     // in case the next initial is an invalid one (not possible to set it)
