@@ -520,8 +520,20 @@
                 // retrieves the reference to the current element (text field)
                 // that is going to be used in the processing operation
                 var element = jQuery(this);
+
+                // retrieves the reference to some of the elements to be used
+                // in the processing of the paste event on the table
                 var column = element.parents("td");
+                var table = column.parents(".table");
                 var target = jQuery("> [data-object]:not([disabled], .disabled)", column);
+
+                // verifies if the paste feature has been explicitly disabled for
+                // the current table and if that's the case returns immedidately
+                // as there's nothing left to be done
+                var noPaste = table.attr("data-no_paste");
+                if (noPaste) {
+                    return;
+                }
 
                 // retrieves the reference to the original event (not processed)
                 // and then retrieves the clipboard data from it
