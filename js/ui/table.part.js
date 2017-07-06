@@ -11,6 +11,10 @@
  */
 (function(jQuery) {
     jQuery.fn.uxtable = function(method, options) {
+        // the complete set of line ending that may be used for
+        // the separation of lines in the paste values
+        var ENDINGS = ["\r\n", "\r", "\n"];
+
         // the default values for the table
         var defaults = {};
 
@@ -446,7 +450,7 @@
                     // in case the shift key is set or the currently
                     // pressed key is not the tab key, no need to
                     // create a new line
-                    if (shiftKey || eventKeyCode != 9) {
+                    if (shiftKey || eventKeyCode !== 9) {
                         // returns immediately, no need to create
                         // a new line
                         return;
@@ -551,14 +555,30 @@
 
                 // normalizes the text data, so that no extra (not required) operations
                 // are going to be performed from the content of it (optimization)
-                textData = textData.strip("\n");
+                textData = textData.strip("\r\n");
                 textData = textData.strip("\r");
+                textData = textData.strip("\n");
                 textData = textData.strip("\t");
+
+                // sets the default (line) ending that is going to be used for verification
+                // in case no valid one is found
+                var ending = "\n";
+
+                // iterates over the complete set of possible (line) endings trying to
+                // find the one that best fits the current text data scenario
+                for (var index = 0; index < ENDINGS.length; index++) {
+                    var _ending = ENDINGS[index];
+                    var exists = textData.indexOf(_ending) !== -1;
+                    if (!exists) {
+                        continue;
+                    }
+                    ending = _ending;
+                    break;
+                }
 
                 // verifies if the provided text data is valid for the structured paste
                 // oepration and if that's not the case reuturns immedidately
-                var isValid = textData.indexOf("\n") != -1 || textData.indexOf("\r") != -1 ||
-                    textData.indexOf("\t") != -1;
+                var isValid = textData.indexOf(ending) !== -1 || textData.indexOf("\t") !== -1;
                 if (!isValid) {
                     return;
                 }
@@ -569,7 +589,7 @@
 
                 // splits the provided text data arround the newline character to
                 // retrieve the multiple line values of it
-                var lines = textData.split("\n");
+                var lines = textData.split(ending);
 
                 // iterates over the miltiple lines contained in the text to populate
                 // the associated lines in the table
