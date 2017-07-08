@@ -173,12 +173,15 @@
 
             // retrieves the cache structure for the matched object
             // and tries to find the result from the cache in case
-            // their found calls the callback immediately with them
+            // their found schedules the call of the callback on
+            // the next available "tick" of the event loop
             var cache = matchedObject.data("cache") || {};
             var cacheItem = cache[queryHash];
             if (cacheItem) {
-                callback(cacheItem.validItems, cacheItem.moreItems,
-                    cacheItem.extraItems);
+                setTimeout(function() {
+                    callback(cacheItem.validItems, cacheItem.moreItems,
+                        cacheItem.extraItems);
+                });
                 return;
             }
 
