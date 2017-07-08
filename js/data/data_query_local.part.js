@@ -245,8 +245,12 @@
             // case the filter options flag is set)
             validItems = filter ? validItems.slice(startRecord, startRecord + numberRecords) : validItems;
 
-            // calls the callback with the "valid" items
-            callback(validItems, moreItems);
+            // schedules the calling of the callback with the "valid" items
+            // for the next event loop "tick", this better simulates the
+            // global nature of the data retrieval (eg: remote sourcing)
+            setTimeout(function() {
+                callback(validItems, moreItems);
+            });
         };
 
         // initializes the plugin
