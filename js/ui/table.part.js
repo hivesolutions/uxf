@@ -601,7 +601,7 @@
                     // in case there are no columns in the current line, simply
                     // ignores it (no applicability)
                     if (columns.length === 0) {
-                        continue
+                        continue;
                     }
 
                     // iterates over the complete set of columns to set the values
@@ -887,15 +887,17 @@
             matchedObject.triggerHandler("cleared");
         };
 
-        var _next = function(element, selector, column, row, force) {
+        var _next = function(element, selector, column, row, force, noNext) {
             // tries to retrieve the reference column and row using
             // either the provided ones or the current element context
             column = column || element.parents("td");
             row = row || column.parents("tr");
 
             // sets the current column (for iteration) as the next column
-            // in the current row, this is the starting point for row iteration
-            column = column.next();
+            // in the current row, this is the starting point for row iteration,
+            // notice that if the no next (column) flag is set the current
+            // provided column should be used instead
+            column = noNext ? column : column.next();
 
             // iterates continuously trying to find the next element
             // in reference to the provided one using the provided selector
@@ -935,7 +937,8 @@
                 // retieves the next row and the column in set as the first one
                 // so that its possible to continue the loop
                 var row = row.next();
-                var column = jQuery("> td:first-child", row);
+                var columns = jQuery("> td", row);
+                column = jQuery(columns.get(0));
             }
 
             // in case the force flag is set a new line should be created so that
@@ -943,8 +946,10 @@
             if (force) {
                 var table = row.parents(".table");
                 var tableBody = jQuery("tbody", table);
-                _newLine(table, tableBody);
-                return _next(element, selector, column, row, false);
+                row = _newLine(table, tableBody);
+                var columns = jQuery("> td", row);
+                column = jQuery(columns.get(0));
+                return _next(element, selector, column, row, false, true);
             }
 
             // reurns the default invalid value meaning that no valid next element
