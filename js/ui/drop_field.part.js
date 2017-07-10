@@ -1325,7 +1325,7 @@
             if (options.value) {
                 return _set(matchedObject, {
                     value: options.value,
-                    force: true
+                    force: options.force === undefined ? true : options.force
                 });
             }
 
