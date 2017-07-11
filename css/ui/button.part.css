@@ -1,8 +1,8 @@
 .button {
     cursor: pointer;
     user-select: none;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
 }
 
 .button.disabled {

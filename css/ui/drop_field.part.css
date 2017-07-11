@@ -1,7 +1,7 @@
 .drop-field {
     user-select: none;
-    -moz-user-select: -moz-none;
-    -khtml-user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
 }
 
 .drop-field > .drop-field-no-results {
