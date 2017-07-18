@@ -230,17 +230,22 @@
                     var tableBody = jQuery("tbody", table);
 
                     // creates a new line in the table and inserts
-                    // it into the table body
+                    // it into the table body, and then retrieves
+                    // the associated text fields from it
                     var _line = _newLine(table, tableBody, options);
+                    var textFields = jQuery(".text-field", _line);
 
                     // adds the class default field to the line and register
                     // for the key down (and up) event on it for the removal
                     // of the default field token
                     _line.addClass("table-default-field");
-                    jQuery(".text-field", _line).keydown(function() {
+                    textFields.keydown(function() {
                         _line.removeClass("table-default-field");
                     });
-                    jQuery(".text-field", _line).keyup(function() {
+                    textFields.keyup(function() {
+                        _line.removeClass("table-default-field");
+                    });
+                    textFields.bind("value_change", function() {
                         _line.removeClass("table-default-field");
                     });
                 }
@@ -870,14 +875,22 @@
                 var tableBody = jQuery("tbody", table);
 
                 // creates a new line in the table and inserts
-                // it into the table body
+                // it into the table body, and then retrieves
+                // the associated text fields from it
                 var _line = _newLine(table, tableBody, options);
+                var textFields = jQuery(".text-field", _line);
 
-                // adds the class default field to the line and register
+                // adds the class default field to the line and registers
                 // for the key down even on it for the removal of the
                 // default field token
                 _line.addClass("table-default-field");
-                jQuery(".text-field", _line).keydown(function() {
+                textFields.keydown(function() {
+                    _line.removeClass("table-default-field");
+                });
+                textFields.keyup(function() {
+                    _line.removeClass("table-default-field");
+                });
+                textFields.bind("value_change", function() {
                     _line.removeClass("table-default-field");
                 });
             }
