@@ -235,7 +235,7 @@
                     var _line = _newLine(table, tableBody, options);
                     var textFields = jQuery(".text-field", _line);
 
-                    // adds the class default field to the line and register
+                    // adds the class default field to the line and registers
                     // for the key down (and up) event on it for the removal
                     // of the default field token
                     _line.addClass("table-default-field");
@@ -247,6 +247,17 @@
                     });
                     textFields.bind("value_change", function() {
                         _line.removeClass("table-default-field");
+                    });
+
+                    // adds the class untouched field to the line and registers
+                    // for the key down (and up) event on it for the removal
+                    // of the untouched field token
+                    _line.addClass("table-untouched-field");
+                    textFields.keydown(function() {
+                        _line.removeClass("table-untouched-field");
+                    });
+                    textFields.keyup(function() {
+                        _line.removeClass("table-untouched-field");
                     });
                 }
             });
@@ -892,6 +903,17 @@
                 });
                 textFields.bind("value_change", function() {
                     _line.removeClass("table-default-field");
+                });
+
+                // adds the class untouched field to the line and registers
+                // for the key down (and up) event on it for the removal
+                // of the untouched field token
+                _line.addClass("table-untouched-field");
+                textFields.keydown(function() {
+                    _line.removeClass("table-untouched-field");
+                });
+                textFields.keyup(function() {
+                    _line.removeClass("table-untouched-field");
                 });
             }
 
