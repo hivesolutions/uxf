@@ -127,8 +127,6 @@
                     return;
                 }
 
-                uuid = jQuery("body").data("uuid");
-
                 // retrieves the body element and uses it to trigger the data
                 // event indicating that new panel data is available and that
                 // the current layout must be updated (async fashion)
