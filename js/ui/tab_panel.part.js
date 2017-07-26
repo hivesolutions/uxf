@@ -43,7 +43,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -71,15 +71,10 @@
                 var element = jQuery(this);
 
                 // retrieves the tab panel and the child
-                // tab selectors
+                // tab selectors elements to be used latter
                 var tabPanel = element.parents(".tab-panel");
                 var tabs = jQuery(".tab", tabPanel);
                 var tabSelectors = jQuery(".tab-selector", tabPanel);
-
-                // removes the active class from (all) the tabs
-                // and from (all) the tab selectors
-                tabs.removeClass("active");
-                tabSelectors.removeClass("active");
 
                 // retrieves the link reference and
                 // then uses it to retrieve the target element
@@ -88,10 +83,18 @@
 
                 // verifies if the target element is already active and if
                 // that's the case returns immediately (avoids loop in selection)
+                // notice that the event propagation is still prevented
                 var isActive = targetElement.hasClass("active");
                 if (isActive) {
-                    return true;
+                    event.stopPropagation();
+                    event.preventDefault();
+                    return;
                 }
+
+                // removes the active class from (all) the tabs
+                // and from (all) the tab selectors
+                tabs.removeClass("active");
+                tabSelectors.removeClass("active");
 
                 // adds the active class to both the
                 // element and the target element
@@ -136,7 +139,7 @@
             // retrieves the current hash value from the window and
             // verifies its current value (for validation)
             var hash = window.location.hash;
-            if (hash.length == 0 || matchedObject.length == 0) {
+            if (hash.length === 0 || matchedObject.length === 0) {
                 return;
             }
 
@@ -144,7 +147,7 @@
             // object using the selected hash and if there's none
             // selected returns the control flow immediately
             var targetElement = jQuery(hash, matchedObject);
-            if (targetElement.length == 0) {
+            if (targetElement.length === 0) {
                 return;
             }
 
