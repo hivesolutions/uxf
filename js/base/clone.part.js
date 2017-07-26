@@ -3,7 +3,7 @@
         // in case the provided value is not valid or
         // in case it's not an object returns the same
         // object to the caller method
-        if (value === null || typeof value !== "object") {
+        if (value === null || value === undefined || typeof value !== "object") {
             return value;
         }
 
