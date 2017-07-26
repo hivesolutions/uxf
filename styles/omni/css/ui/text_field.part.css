@@ -9,6 +9,10 @@
     font-size: 13px;
     height: 32px;
     padding: 2px 6px 2px 6px;
+    transition: border-color 0.10s ease-in;
+    -o-transition: border-color 0.10s ease-in;
+    -moz-transition: border-color 0.10s ease-in;
+    -webkit-transition: border-color 0.10s ease-in;
     width: 270px;
 }
 
@@ -118,6 +122,10 @@
     height: 100px;
     padding: 2px 6px 2px 6px;
     resize: none;
+    transition: border-color 0.10s ease-in;
+    -o-transition: border-color 0.10s ease-in;
+    -moz-transition: border-color 0.10s ease-in;
+    -webkit-transition: border-color 0.10s ease-in;
     width: 270px;
 }
 
@@ -170,6 +178,11 @@
 }
 
 .omni-style .text-field-calendar {
+    animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     position: absolute;
     z-index: 10;
 }
