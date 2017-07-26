@@ -555,13 +555,15 @@
         };
 
         var __start = function(matchedObject, options) {
-            // retrieves the input value
+            // retrieves the input's current value
             var inputFieldValue = matchedObject.val();
 
-            // retrieves the element value
+            // retrieves the element value, that should define the
+            // initial value to populate the text field
             var elementValue = matchedObject.attr("data-value");
 
-            // retrieves the original value
+            // retrieves the original value, that should define the value
+            // to be displayed in the text field by default
             var originalValue = matchedObject.attr("data-original_value");
 
             // retrieves the force complete value, this value controls
@@ -573,9 +575,9 @@
             // for the original event to restore original state
             matchedObject.data("original", originalValue || elementValue || inputFieldValue);
 
-            // in case the element value is not provided
-            if (elementValue !== null) {
-                // returns immediately
+            // in case the element value is provided, returns immediately
+            // as there's nothing pending to be done
+            if (elementValue) {
                 return;
             }
 
@@ -604,18 +606,20 @@
             // retrieves the element value
             var elementValue = matchedObject.attr("data-value");
 
-            // in case the element value is not empty
+            // in case the element value is not empty must return
+            // immedidately as the original value cannot be set
+            // (would override the current value)
             if (elementValue !== "") {
-                // returns immediately
                 return;
             }
 
-            // retrieves the original value
+            // retrieves the original value, to be used to populate
+            // the text field with the original value
             var originalValue = matchedObject.attr("data-original_value");
 
             // in case the original value is not defined, must
             // return control flow immediately (nothing to be done)
-            if (originalValue === null) {
+            if (!originalValue) {
                 return;
             }
 
