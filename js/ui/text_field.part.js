@@ -577,7 +577,7 @@
 
             // in case the element value is provided, returns immediately
             // as there's nothing pending to be done
-            if (elementValue) {
+            if (elementValue !== null && elementValue !== undefined) {
                 return;
             }
 
@@ -619,7 +619,7 @@
 
             // in case the original value is not defined, must
             // return control flow immediately (nothing to be done)
-            if (!originalValue) {
+            if (originalValue === null || originalValue === undefined) {
                 return;
             }
 
