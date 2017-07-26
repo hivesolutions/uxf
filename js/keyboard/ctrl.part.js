@@ -14,7 +14,7 @@
             // in case the control key is set and the currently
             // pressed key is the one defined for registration
             // the event callback is called and the event prevented
-            if ((event.ctrlKey || event.metaKey) && keyValue == keycode) {
+            if ((event.ctrlKey || event.metaKey) && keyValue === keycode) {
                 // calls the callback with the current context
                 // and the arguments
                 callback.apply(this, arguments);

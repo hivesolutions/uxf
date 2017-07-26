@@ -44,7 +44,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -61,7 +61,7 @@
                 var stackItems = jQuery("> .stack-item", _element);
                 var stackTop = jQuery("> .stack-item.stack-top",
                     _element);
-                stackTop = stackTop.length == 0 ? jQuery(
+                stackTop = stackTop.length === 0 ? jQuery(
                     "> .stack-item:first", _element) : stackTop;
                 stackOut.append(stackItems);
                 push(_element, stackTop, false);
@@ -76,7 +76,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -122,7 +122,7 @@
         };
 
         var push = function(element, target, animated) {
-            if (!target || target.length == 0) {
+            if (!target || target.length === 0) {
                 return false;
             }
 
@@ -142,10 +142,10 @@
             var stackOut = jQuery("> .stack-out", element);
             var stackItems = jQuery("> .stack-item", stackIn);
             var stackTop = jQuery("> .stack-item.stack-top", stackIn);
-            if (stackItems.length == 1) {
+            if (stackItems.length === 1) {
                 return false;
             }
-            if (stackTop.length == 0) {
+            if (stackTop.length === 0) {
                 return false;
             }
             var stackNext = stackTop.prev();

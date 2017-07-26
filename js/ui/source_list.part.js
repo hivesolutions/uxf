@@ -275,7 +275,7 @@
 
             // in case the value did not change (no need to
             // show the contents)
-            if (textFieldValue == value && !force) {
+            if (textFieldValue === value && !force) {
                 // returns immediately
                 return;
             }
@@ -331,7 +331,7 @@
                         "validate_item", [currentItem,
                             currentValueAttribute
                         ]);
-                    if (result == false) {
+                    if (result === false) {
                         continue;
                     }
 

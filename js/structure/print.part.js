@@ -27,7 +27,7 @@
         var _appendHtml = function() {
             // in case the matched object is empty, returns immediately
             // as there's nothing pending to be done
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 

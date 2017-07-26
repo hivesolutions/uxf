@@ -107,7 +107,7 @@
 
             // checks if the current index overflows the
             // current count of panels (greater than last index)
-            if (index == lastIndex) {
+            if (index === lastIndex) {
                 // returns immediately
                 return;
             }
@@ -130,7 +130,7 @@
 
             // checks if the current index is the first, in such case
             // it's not possible to go to a previous position
-            if (index == firstIndex) {
+            if (index === firstIndex) {
                 // returns immediately
                 return;
             }
@@ -190,7 +190,7 @@
 
             // in case this is the last index in the wizard
             // the finish button must be displayed
-            if (index == lastIndex) {
+            if (index === lastIndex) {
                 // in case the button finish is present and
                 // defined (must be shown)
                 if (buttonFinish.length > 0) {
@@ -230,7 +230,7 @@
             // in case this is the first index in the wizard
             // the previous button must be shown as disabled
             // no more steps back
-            if (index == firstIndex) {
+            if (index === firstIndex) {
                 // disables the previous button, removing
                 // the action from it
                 buttonPrevious.uxdisable();

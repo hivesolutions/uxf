@@ -68,7 +68,7 @@
 
             // checks if the current index overflows the
             // current count of breadcrumbs
-            if (index == breadcrumbsLength - 1) {
+            if (index === breadcrumbsLength - 1) {
                 // returns immediately
                 return;
             }
@@ -87,7 +87,7 @@
 
             // checks if the current index is zero, in case
             // it's, not possible to go to a previous position
-            if (index == 0) {
+            if (index === 0) {
                 // returns immediately
                 return;
             }

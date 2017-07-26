@@ -139,7 +139,7 @@
                 // the (parent) toggle field, note that the text field
                 // is focused while the operation is done this ensures
                 // total text field "emulation"
-                var _index = index == modes.length - 1 ? 0 : index + 1;
+                var _index = index === modes.length - 1 ? 0 : index + 1;
                 textField.focus();
                 _setMode(toggleField, options, _index);
                 textField.blur();

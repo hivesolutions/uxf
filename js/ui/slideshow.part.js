@@ -148,7 +148,7 @@
                 var url = slideshow.data("url");
                 var open = slideshow.attr("data-window");
                 if (url) {
-                    var _window = event.which == 2
+                    var _window = event.which === 2
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
                 }
             });
@@ -167,7 +167,7 @@
                 var url = slideshow.data("url");
                 var open = slideshow.attr("data-window");
                 if (url) {
-                    var _window = event.which == 2
+                    var _window = event.which === 2
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
                 }
             });
@@ -278,7 +278,7 @@
             // in case the index value is not set selects the next
             // value (takes care of overflow) otherwise defaults to
             // the request index (from parameter)
-            index = index == null ? current + 1 < items.length ? current + 1 : 0 : index;
+            index = index === null ? current + 1 < items.length ? current + 1 : 0 : index;
 
             // in case the current index is the same as the (target)
             // index, no need to select it (returns immediately)

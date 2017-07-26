@@ -390,7 +390,7 @@
 
                 // in case the pressed key is not the escape
                 // key no need to act
-                if (eventKeyCode != 27) {
+                if (eventKeyCode !== 27) {
                     // returns immediately
                     return;
                 }
@@ -944,14 +944,14 @@
             // (no need to show the contents) returns immediately
             // the control flow to the caller function/method, note
             // that the force flag will override this behavior
-            if ((textFieldValue == value || isLower) && !isSelect && !force) {
+            if ((textFieldValue === value || isLower) && !isSelect && !force) {
                 return;
             }
 
             // in case the text field value is empty and the current
             // type is not select the drop field contents panel must
             // be hidden (nova valid data to be shown)
-            if (textFieldValue == "" && !isSelect) {
+            if (textFieldValue === "" && !isSelect) {
                 _hide(dropField);
             }
 
@@ -1254,12 +1254,12 @@
                 // an empty set of items, the drop field contents
                 // are only shown in case there is still focus in
                 // the text field
-                validItems.length > 0 && textField.hasClass("focus") && (textFieldValue != "" ||
+                validItems.length > 0 && textField.hasClass("focus") && (textFieldValue !== "" ||
                     isSelect) ? _show(dropField) : _hide(dropField);
 
                 // in case the auto resize options is set
                 // (must position the drop field contents)
-                if (autoResize != "false") {
+                if (autoResize !== "false") {
                     _resize(dropField);
                 }
 
@@ -1278,7 +1278,7 @@
                     // unpacks its data value, checking it agains the currently
                     // set logic value (for proper match value)
                     var _element = jQuery(this);
-                    var isValid = valueLogic == _element.attr("data-value");
+                    var isValid = valueLogic === _element.attr("data-value");
                     if (!isValid) {
                         return;
                     }
@@ -1301,7 +1301,7 @@
                     // unpacks its data value, checking it agains the currently
                     // set "display" value (for proper match value)
                     var _element = jQuery(this);
-                    var isValid = value == _element.attr("data-display");
+                    var isValid = value === _element.attr("data-display");
                     if (!isValid) {
                         return;
                     }
@@ -1705,7 +1705,7 @@
             // that's the case and the force flag is not set the
             // control flow is returned immediately to caller
             var autoResize = dropField.attr("data-auto_size");
-            if (autoResize == "false" && !force) {
+            if (autoResize === "false" && !force) {
                 return;
             }
 
@@ -1719,7 +1719,7 @@
             // sizing, if that the case a different sizing is going to
             // be applied to determine the width of the drop field
             var boxSizing = dropFieldContents.css("box-sizing");
-            var isBorderBox = boxSizing == "border-box";
+            var isBorderBox = boxSizing === "border-box";
 
             // calculates the drop field contents width using the text
             // field width as reference and calculating the extra width

@@ -115,7 +115,7 @@
                 // but just in case there's no form success
                 var element = jQuery(this);
                 var formSuccess = jQuery(".form-success", element);
-                var shouldHide = formSuccess.length == 0;
+                var shouldHide = formSuccess.length === 0;
                 var window = element.parents(".window");
                 shouldHide && window.uxwindow("hide");
             });
@@ -194,7 +194,7 @@
             // creates a default element adding it to the start of the
             // top level body element (default behaviour)
             var overlay = jQuery(".overlay:first");
-            if (overlay.length == 0) {
+            if (overlay.length === 0) {
                 var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
                 overlay.uxoverlay();
@@ -357,7 +357,7 @@
             // sized using content box and if that's the case reduces
             // the available dimensions with the extra (margin) value
             var boxSizing = matchedObject.css("box-sizing");
-            var isContentBox = boxSizing == "content-box";
+            var isContentBox = boxSizing === "content-box";
             var maxWidth = isContentBox ? windowWidth - extraWidth : windowWidth;
             var maxHeight = isContentBox ? windowHeight - extraHeight : windowHeight;
 
@@ -417,7 +417,7 @@
             windowMaskDotsContentsLength = windowMaskDotsContents.length;
 
             // in case the dots contents length overflows
-            if (windowMaskDotsContentsLength == 3) {
+            if (windowMaskDotsContentsLength === 3) {
                 // resets the dots contents length
                 windowMaskDotsContentsLength = 0;
             }

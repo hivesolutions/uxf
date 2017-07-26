@@ -59,7 +59,7 @@
 
                 // in case the escape key is pressed
                 // need to hide the overlay search
-                if (keyValue == 27) {
+                if (keyValue === 27) {
                     // hides the overlay search
                     _hide(overlaySearch, options);
                 }

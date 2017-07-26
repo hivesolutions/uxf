@@ -760,7 +760,7 @@
             // retrieves the index of the current row to check
             // it it's the last row
             var index = templateItem.index();
-            var isLastRow = index == rowCount
+            var isLastRow = index === rowCount
 
             // in case the current row is the last one the last
             // classes must be updated to reflect that

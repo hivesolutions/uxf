@@ -40,7 +40,7 @@
         // currently being used for the position of the object
         // and then verifies if the strategy is a fixed one
         var positioning = matchedObject.css("position");
-        var isFixed = positioning == "fixed";
+        var isFixed = positioning === "fixed";
 
         // re-sets the initial position of the matched object to
         // the upper left corner of screen so that no measures are

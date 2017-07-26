@@ -126,7 +126,7 @@
             // in case the number of frames is one there's no need to continue
             // with the animation process, as this is considered to be a "normal"
             // static image, not requiring any kind of animation process
-            if (frameCount == 1) {
+            if (frameCount === 1) {
                 element.css("background-position", "");
                 return;
             }
@@ -169,7 +169,7 @@
 
             // calculates the "new" or next index value taking the previous
             // one as reference and the re-calculates the offset value
-            var next = index == frameCount - 1 ? 0 : index + 1;
+            var next = index === frameCount - 1 ? 0 : index + 1;
             var offset = height * next * -1;
 
             // updates the element's css position and the frame (index) value

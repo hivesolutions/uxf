@@ -100,7 +100,7 @@
 
             // in case the checked value is the same
             // as the value (current option)
-            if (checked == value) {
+            if (checked === value) {
                 // sets the element as checked
                 matchedObject.attr("checked", true);
                 matchedObject.prop && matchedObject.prop("checked", true);

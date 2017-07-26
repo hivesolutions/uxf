@@ -29,7 +29,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -103,7 +103,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -128,7 +128,7 @@
 
                 // in case there's no (child) list in the list
                 // element (no child elements present)
-                if (list.length == 0) {
+                if (list.length === 0) {
                     return;
                 }
 

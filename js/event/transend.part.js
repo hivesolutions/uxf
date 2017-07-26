@@ -16,7 +16,7 @@
             var element = jQuery(this);
             var propertyS = element.css("transition-property");
             var propertys = propertyS.split(",")
-            if (property && propertys.indexOf(property) == -1) {
+            if (property && propertys.indexOf(property) === -1) {
                 callback.call(this);
                 return;
             }
@@ -26,7 +26,7 @@
             var onEnd = function(event) {
                 var element = jQuery(this);
                 var _property = event.originalEvent.propertyName;
-                var isValid = property == _property || !property;
+                var isValid = property === _property || !property;
                 if (!isValid) {
                     return;
                 }

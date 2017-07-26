@@ -60,7 +60,7 @@
             // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
-            numberRecords = numberRecords == -1 ? MAX_RECORDS : numberRecords
+            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords
 
             // sets the initial filter flag value
             var filter = false;
@@ -118,7 +118,7 @@
 
                     // in case the current item
                     // id is the id to be found
-                    if (itemId == id) {
+                    if (itemId === id) {
                         // adds the item to the items
                         // id list
                         itemsId.push(item);
@@ -200,7 +200,7 @@
                 }
                 // otherwise in case the current item is a map the
                 // default attribute must be used
-                else if (typeof currentItem == "object") {
+                else if (typeof currentItem === "object") {
                     // retrieves the name attribute from the current
                     // item and sets it in the list of compaare strings
                     var name = currentItem["name"];

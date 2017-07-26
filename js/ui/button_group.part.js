@@ -69,7 +69,7 @@
                 var buttonGroup = element.parents(".button-group");
                 var continueChange = buttonGroup.triggerHandler(
                     "index_changed", [index, element]);
-                if (continueChange == false) {
+                if (continueChange === false) {
                     return;
                 }
 
@@ -108,7 +108,7 @@
                     // verifies if there's a selected element and if that's
                     // not the case returns immediately, no value is going
                     // to be submitted (according to specification)
-                    if (selected.length == 0) {
+                    if (selected.length === 0) {
                         return;
                     }
 

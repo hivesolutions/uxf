@@ -42,7 +42,7 @@
                     // retrieves the current item in iteration and checks
                     // if the type of it is a string, conditional action
                     var item = items[index];
-                    var isString = typeof item == "string";
+                    var isString = typeof item === "string";
 
                     // in case the current item is a string it must be
                     // added directly

@@ -29,7 +29,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -86,7 +86,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -205,7 +205,7 @@
             var attribute = isRetina ? "data-url_retina" : "data-url";
             var dataUrl = element.attr(attribute);
             var url = element.attr("src");
-            return dataUrl == url;
+            return dataUrl === url;
         };
 
         var isSet = function(element) {
@@ -228,7 +228,7 @@
             var height = container.outerHeight(true);
 
             var position = container.css("position");
-            if (position != "fixed") {
+            if (position !== "fixed") {
                 return 0.0;
             }
 

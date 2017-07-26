@@ -10,7 +10,7 @@
 
         var COUNTRIES_ISO = jQuery.uxlocale("COUNTRIES", localeC);
         var index = COUNTRIES_ISO.indexOf(value);
-        if (index == -1) {
+        if (index === -1) {
             return value;
         }
 

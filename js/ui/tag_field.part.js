@@ -391,7 +391,7 @@
             // happens when the current tag container is not visible, must
             // delay the update operation until the next tick, note that
             // this is only possible when the element is contained (in dom)
-            if (tagsContainerHeight == 0 && tags.length > 0) {
+            if (tagsContainerHeight === 0 && tags.length > 0) {
                 isContained && setTimeout(function() {
                     _update(matchedObject, options, noWidth);
                 }, 100);
@@ -405,7 +405,7 @@
 
             // verifies if the text field is currently handled using a border
             // box based strategy as this will employ different calculus
-            var isBorderBox = textField.css("box-sizing") == "border-box";
+            var isBorderBox = textField.css("box-sizing") === "border-box";
 
             // tries to retrieve the "original" height value for the text field
             // and updates the register to this same value (only one retrieval)
@@ -433,7 +433,7 @@
                 // in case the current reference to the top is not
                 // the same the tag is not in the last line, need
                 // to break the loop
-                if (_referenceTop != referenceTop) {
+                if (_referenceTop !== referenceTop) {
                     break;
                 }
 

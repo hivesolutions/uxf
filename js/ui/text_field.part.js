@@ -114,7 +114,7 @@
                 // in case the pressed key is a backspace,
                 // cursor, enter or any other movement key
                 // the default behavior must be prevented
-                if (keyCode == 8 || keyCode == 13 || keyCode > 8 && keyCode <= 46 && which == 0) {
+                if (keyCode === 8 || keyCode === 13 || keyCode > 8 && keyCode <= 46 && which === 0) {
                     // returns since the key press is valid
                     return true;
                 }
@@ -225,7 +225,7 @@
 
                 // in case the escape key is pressed
                 // need to blur the text field
-                if (keyValue == 27) {
+                if (keyValue === 27) {
                     // blurs the text field
                     element.blur();
                 }
@@ -426,7 +426,7 @@
                 var valueMethodName = "__fvalue" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
                     options);
-                var value = hasMethod && value != "" ? __callMethod(
+                var value = hasMethod && value !== "" ? __callMethod(
                     valueMethodName, matchedObject, value) : value;
 
                 // sets the value in the attributes
@@ -574,7 +574,7 @@
             matchedObject.data("original", originalValue || elementValue || inputFieldValue);
 
             // in case the element value is not provided
-            if (elementValue != null) {
+            if (elementValue !== null) {
                 // returns immediately
                 return;
             }
@@ -591,7 +591,7 @@
             // in case the autocomplete has been already disabled
             // there is no need to do this because the problem
             // is not observed
-            forceComplete && inputFieldValue == originalValue && matchedObject.val("");
+            forceComplete && inputFieldValue === originalValue && matchedObject.val("");
 
             // runs the initial update operations for both the error
             // and the value, the updating of the value is
@@ -605,7 +605,7 @@
             var elementValue = matchedObject.attr("data-value");
 
             // in case the element value is not empty
-            if (elementValue != "") {
+            if (elementValue !== "") {
                 // returns immediately
                 return;
             }
@@ -615,7 +615,7 @@
 
             // in case the original value is not defined, must
             // return control flow immediately (nothing to be done)
-            if (originalValue == null) {
+            if (originalValue === null) {
                 return;
             }
 
@@ -649,7 +649,7 @@
 
             // triggers the value change event in case the previous
             // input field value is different from the current
-            inputFieldValue != previousInputFieldValue && matchedObject.triggerHandler("value_change", [
+            inputFieldValue !== previousInputFieldValue && matchedObject.triggerHandler("value_change", [
                 inputFieldValue
             ]);
         };
@@ -679,7 +679,7 @@
 
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "if(typeof " + methodName + " != \"undefined\") { var result = " + methodName +
+            var evalString = "if(typeof " + methodName + " !== \"undefined\") { var result = " + methodName +
                 "(element, options)} else { var result = null; }";
             eval(evalString);
             return result;
@@ -687,7 +687,7 @@
 
         var __hasMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "var result = typeof " + methodName + " != \"undefined\";";
+            var evalString = "var result = typeof " + methodName + " !== \"undefined\";";
             eval(evalString);
             return result;
         };
@@ -1131,7 +1131,8 @@
             // then using it checks if the float number is still
             // valid (decimal places within range)
             var separatorIndex = stringValue.indexOf(".");
-            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex == -1;
+            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex === -
+                1;
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run
@@ -1164,7 +1165,7 @@
                 // dom element is the same as the matched
                 // object (top level reference) in such
                 // case the object cannot be blured
-                if (_element.get(0) == matchedObject.get(0)) {
+                if (_element.get(0) === matchedObject.get(0)) {
                     // returns immediately, avoids blur
                     return;
                 }

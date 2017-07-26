@@ -62,7 +62,7 @@
             _body.uxconfirm(message, function(result) {
                 // in case the result is cancel avoids the current
                 // execution and returns immediately
-                if (result == false) {
+                if (result === false) {
                     return;
                 }
 

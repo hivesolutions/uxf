@@ -27,12 +27,12 @@
         // if the current parent is the window (avoids problems)
         var viewOffset = _parent.offset();
         var viewOffsetTop = viewOffset ? viewOffset.top : 0;
-        var viewHeight = _parent[0] == window ? _parent.height() : _parent.outerHeight();
+        var viewHeight = _parent[0] === window ? _parent.height() : _parent.outerHeight();
         var viewScrollTop = _parent.scrollTop();
 
         // retrieves the offset top the top of the element taking into
         // account if the current parent in use is the window element
-        var elementOffsetTop = _parent[0] == window ? element.offset().top : element.offset().top +
+        var elementOffsetTop = _parent[0] === window ? element.offset().top : element.offset().top +
             viewScrollTop;
 
         // retrieves the top and bottom positions of the

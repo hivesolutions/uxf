@@ -82,7 +82,7 @@
                     }, function(validItems, moreItems) {
                         // in case there are no valid items
                         // returns immediately nothing to be done
-                        if (validItems.length == 0) {
+                        if (validItems.length === 0) {
                             // returns immediately
                             return;
                         }

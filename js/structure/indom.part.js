@@ -3,7 +3,7 @@
         // retrieves the current matched object and in case the
         // length of it is zero returns immediately in error
         var matchedObject = this;
-        if (!matchedObject || matchedObject.length == 0) {
+        if (!matchedObject || matchedObject.length === 0) {
             return false;
         }
 

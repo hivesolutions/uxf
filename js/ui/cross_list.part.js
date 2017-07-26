@@ -207,7 +207,7 @@
                 // verifies if the current item in validation exists in
                 // the target data source and in case it does returns
                 // false so that it gets invalidated
-                var exists = targetItems.indexOfObject(item) != -1;
+                var exists = targetItems.indexOfObject(item) !== -1;
                 return exists ? false : true;
             });
 
@@ -300,7 +300,7 @@
                 // in case the item value exists in the target items
                 // must return immediately cannot add duplicates to
                 // the target list
-                var exists = targetItems.indexOfObject(item) != -1;
+                var exists = targetItems.indexOfObject(item) !== -1;
                 if (!duplicates && exists) {
                     return;
                 }
@@ -449,7 +449,7 @@
 
                     // checks if the data value already exists in the list of target
                     // items in case it does continues the loop (duplicated value)
-                    var exists = targetItems.indexOfObject(item) != -1;
+                    var exists = targetItems.indexOfObject(item) !== -1;
                     if (!duplicates && exists) {
                         continue;
                     }
@@ -505,7 +505,7 @@
                     // in case the're no valid list items to be sent an empty
                     // value with the same name is posted (so that an empty value
                     // is submitted), required for compliance
-                    if (listItems.length == 0) {
+                    if (listItems.length === 0) {
                         targetList.append("<input type=\"hidden\" name=\"" + elementName +
                             "\" />");
                     }

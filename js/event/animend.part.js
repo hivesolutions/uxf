@@ -16,7 +16,7 @@
             var element = jQuery(this);
             var nameS = element.css("animation-name");
             var names = nameS.split(",")
-            if (name && names.indexOf(name) == -1) {
+            if (name && names.indexOf(name) === -1) {
                 callback.call(this);
                 return;
             }
@@ -26,7 +26,7 @@
             var onEnd = function(event) {
                 var element = jQuery(this);
                 var _name = event.originalEvent.animationName;
-                var isValid = name == _name || !name;
+                var isValid = name === _name || !name;
                 if (!isValid) {
                     return;
                 }

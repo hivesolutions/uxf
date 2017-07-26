@@ -28,7 +28,7 @@
         // to be processed and then in case the queue is now empy
         // runs the callable providing it with the callbacl
         queue.push(callable);
-        if (queue.length == 1) {
+        if (queue.length === 1) {
             callable(callback);
         }
 

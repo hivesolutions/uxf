@@ -40,7 +40,7 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -58,7 +58,7 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -166,7 +166,7 @@
         var _schedule = function(matchedObject, options) {
             var timeout = matchedObject.attr("data-timeout") || "5000";
             timeout = parseInt(timeout);
-            if (timeout == -1) {
+            if (timeout === -1) {
                 return;
             }
             var interval = matchedObject.data("interval");
@@ -208,14 +208,14 @@
         var _next = function(matchedObject, options) {
             var count = matchedObject.data("count");
             var index = matchedObject.data("index");
-            var next = index + 1 == count ? 0 : index + 1;
+            var next = index + 1 === count ? 0 : index + 1;
             _set(matchedObject, options, next);
         };
 
         var _previous = function(matchedObject, options) {
             var count = matchedObject.data("count");
             var index = matchedObject.data("index");
-            var next = index - 1 == -1 ? count - 1 : index - 1;
+            var next = index - 1 === -1 ? count - 1 : index - 1;
             _set(matchedObject, options, next);
         };
 

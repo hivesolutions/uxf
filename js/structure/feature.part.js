@@ -29,7 +29,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (performance issues may be created)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -64,7 +64,7 @@
             var s = b.style;
             var p = "transition";
 
-            if (typeof s[p] == "string") {
+            if (typeof s[p] === "string") {
                 return true;
             }
 

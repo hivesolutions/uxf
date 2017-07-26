@@ -31,7 +31,7 @@
         var _appendHtml = function() {
             // in case the matched object is not defined
             // or in case it's an empty list
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 // returns immediately
                 return;
             }
@@ -62,10 +62,10 @@
 
             // updates the scroll top value taking into account if the
             // current parent elemeent is the window
-            scrollTop = _parent[0] == window ? scrollTop : _parent.scrollTop();
+            scrollTop = _parent[0] === window ? scrollTop : _parent.scrollTop();
 
             // retrieves the height of the parent element
-            var parentHeight = _parent[0] == window ? _parent.height() : _parent.outerHeight();
+            var parentHeight = _parent[0] === window ? _parent.height() : _parent.outerHeight();
 
             // calculates the top offset value for the parent element
             // to be used for some calculus (in no window mode)

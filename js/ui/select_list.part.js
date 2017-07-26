@@ -210,7 +210,7 @@
                     // in case the're no valid list items to be sent an empty
                     // value with the same name is posted (so that an empty value
                     // is submitted), required for compliance
-                    if (listItems.length == 0) {
+                    if (listItems.length === 0) {
                         _element.append("<input type=\"hidden\" name=\"" + elementName +
                             "\" />");
                     }
@@ -380,11 +380,11 @@
                     // valid (new position) taking into account
                     // the direction of the movement then in case
                     // it's valid executes the position change
-                    var isValid = offsetY > previousOffsetY ? _index + 1 != element.index() :
-                        _index + 2 != element.index();
-                    isValid && listElement[0] != element[0] && listElement.after(element) &&
+                    var isValid = offsetY > previousOffsetY ? _index + 1 !== element.index() :
+                        _index + 2 !== element.index();
+                    isValid && listElement[0] !== element[0] && listElement.after(element) &&
                         selectList.trigger("order_changed");
-                    offsetY == 0 && listElement[0] != element[0] && cloned.after(element) &&
+                    offsetY === 0 && listElement[0] !== element[0] && cloned.after(element) &&
                         selectList.trigger("order_changed");
 
                     // updates the top position of the cloned element

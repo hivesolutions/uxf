@@ -44,7 +44,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -88,12 +88,12 @@
 
                 // verifies if the current drop down is considered to
                 // be an empty one (no elements contained in it)
-                var isEmpty = elements.length == 0;
+                var isEmpty = elements.length === 0;
 
                 // verifies if the request for an input like drop
                 // down exists and if that the case created or re-uses
                 // the input associated with the drop down container
-                if (input && inputElement.length == 0) {
+                if (input && inputElement.length === 0) {
                     container.prepend("<input type=\"hidden\" name=\"" + input + "\"/>");
                 } else if (input) {
                     container.prepend(inputElement);
@@ -181,7 +181,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -283,7 +283,7 @@
                 // in case the key that was pressed in not the
                 // escape one there's nothing to be done and so
                 // the control flow is returned immediately
-                if (keyValue != 27) {
+                if (keyValue !== 27) {
                     return;
                 }
 
@@ -504,7 +504,7 @@
             // in case no element is selected nothing is meant to
             // be performed under the current function, and the
             // control flow must be returned immediately
-            if (element.length == 0) {
+            if (element.length === 0) {
                 return;
             }
 

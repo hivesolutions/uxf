@@ -102,7 +102,7 @@
                 // that if the form is already confirmed there's no need to
                 // run the pre-validation process one more time
                 var result = confirmed || element.triggerHandler("pre_submit");
-                if (result == false) {
+                if (result === false) {
                     // triggers the unlock (elements) events to emulate the
                     // end of the submission of the form (compatability)
                     // this should release the elements state to the normal
@@ -132,7 +132,7 @@
                     _body.uxconfirm(message, function(result) {
                         // in case the result is cancel, must revert the current
                         // partial state and then return the control flow
-                        if (result == false) {
+                        if (result === false) {
                             // triggers the unlock (elements) events to emulate the
                             // end of the submission of the form (compatability)
                             // this should release the elements state to the normal
@@ -201,7 +201,7 @@
                     // from the original value if that's not the case skips
                     // the current iteration as there's nothing to be done
                     value = value.trim();
-                    if (_value == value) {
+                    if (_value === value) {
                         return;
                     }
 
@@ -219,8 +219,8 @@
                 // is ready to be changed using an async approach
                 var _body = jQuery("body");
                 var async = _body.data("async");
-                async &= element.hasClass("no-async") == false;
-                async &= _body.triggerHandler("async") != false;
+                async &= element.hasClass("no-async") === false;
+                async &= _body.triggerHandler("async") !== false;
 
                 // checks if the current element has the ajax form
                 // class, in such cases must avoid normal submission
@@ -339,13 +339,13 @@
             // the form is not of type multipart the default serialization
             // process is used instead to create a "query string"
             var form = matchedObject[0];
-            var data = enctype == "multipart/form-data" ? new FormData(form) : matchedObject.serialize();
+            var data = enctype === "multipart/form-data" ? new FormData(form) : matchedObject.serialize();
 
             // verifies if the current form processing is a get based one and in
             // case it's encapsulates the parameters in the current request
             // url and removes the data payload from the request
-            var isGet = method.toLowerCase() == "get";
-            var hasQuery = href.indexOf("?") != -1;
+            var isGet = method.toLowerCase() === "get";
+            var hasQuery = href.indexOf("?") !== -1;
             var token = hasQuery ? "&" : "?";
             href = isGet ? href + token + data : href;
             data = isGet ? "" : data;
@@ -357,7 +357,7 @@
             // calculates the aditional set of values of the base href value
             // so that this request may be "marked" as special avoiding possible
             // errors with cache in the browser/client side
-            hasQuery = href.indexOf("?") != -1;
+            hasQuery = href.indexOf("?") !== -1;
             token = hasQuery ? "&" : "?";
             var extraParams = "x-async=1&x-partial=1";
             var extraQuery = token + extraParams;
@@ -372,13 +372,13 @@
             // type in case the form is not of type multipart
             var request = new XMLHttpRequest();
             request.open(method, href + (isGet && hasExtra ? extraQuery : ""));
-            enctype != "multipart/form-data" && request.setRequestHeader("Content-Type", enctype);
+            enctype !== "multipart/form-data" && request.setRequestHeader("Content-Type", enctype);
             request.setRequestHeader("X-Async", "all");
             request.setRequestHeader("X-Partial", "all");
             request.onload = function() {
                 // in case the current state of the request is not final ignores
                 // the update status change (not relevant)
-                if (request.readyState != 4) {
+                if (request.readyState !== 4) {
                     return;
                 }
 
@@ -386,7 +386,7 @@
                 // and if that's not the case runs the fallback process (typical
                 // synchronous form submission) and aborts the current request
                 var requestAsync = isAsync(request);
-                if (requestAsync == false) {
+                if (requestAsync === false) {
                     fallback(matchedObject, options);
                     request.abort();
                     return;
@@ -403,7 +403,7 @@
                 // special strategy by retrieving the new location and setting it as
                 // new async contents to be loaded, note that only requests that
                 // contain a valid location header will be used for redirection
-                var isRedirect = request.status == 280;
+                var isRedirect = request.status === 280;
                 var hrefR = request.getResponseHeader("Location");
                 if (isRedirect && hrefR) {
                     hrefR = jQuery.uxresolve(hrefR, href);
@@ -437,7 +437,7 @@
             request.readystatechange = function() {
                 // in case the current request state is not headers ready there's
                 // no need to continue as we're going to verify the content type
-                if (request.readyState != 2) {
+                if (request.readyState !== 2) {
                     return;
                 }
 
@@ -445,7 +445,7 @@
                 // and if that's not the case runs the fallback process (typical
                 // synchronous form submission) and aborts the current request
                 var requestAsync = isAsync(request);
-                if (requestAsync == true) {
+                if (requestAsync === true) {
                     return;
                 }
                 fallback(matchedObject, options);
@@ -740,7 +740,7 @@
             var contentType = request.getResponseHeader("Content-Type") || "";
             contentType = contentType.split(";")[0];
             contentType = contentType.strip();
-            return location || contentType == "text/html";
+            return location || contentType === "text/html";
         };
 
         // initializes the plugin

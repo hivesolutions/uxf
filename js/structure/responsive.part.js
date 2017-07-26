@@ -7,7 +7,7 @@
 
         // verifies if there's at leat one valid object matched and
         // if that's not the case returns the current context immediately
-        if (!matchedObject || matchedObject.length == 0) {
+        if (!matchedObject || matchedObject.length === 0) {
             return this;
         }
 

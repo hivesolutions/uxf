@@ -84,7 +84,7 @@
 
                 // in case the name of the current plugin is the
                 // one to being searched
-                if (currentPlugin.name == name) {
+                if (currentPlugin.name === name) {
                     // returns valid the plugin was found
                     return true;
                 }

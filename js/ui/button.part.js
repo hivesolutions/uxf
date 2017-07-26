@@ -93,7 +93,7 @@
                 // checks if the current click is from a middle
                 // button and in such case sets the new window
                 // option to open the link in a new window
-                var window = event.which == 2;
+                var window = event.which === 2;
                 options["window"] = window;
 
                 // triggers the handling of the click event to
@@ -134,7 +134,7 @@
                 // checks if the current click is a middle click
                 // and in such case stops the propagation of the
                 // event avoid the default behavior
-                var isMiddle = event.which == 2;
+                var isMiddle = event.which === 2;
                 if (isMiddle) {
                     event.stopPropagation();
                     event.preventDefault();
@@ -199,7 +199,7 @@
             isConfirm && _body.uxconfirm(message, function(result) {
                 // in case the result is cancel (false),
                 // avoids execution and returns immediately
-                if (result == false) {
+                if (result === false) {
                     return;
                 }
 

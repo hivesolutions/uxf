@@ -79,7 +79,7 @@
 
                 // in case the current value "overflows" the current
                 // section count the index calue is reseted
-                index == sectionCount ? index = 0 : index = index;
+                index === sectionCount ? index = 0 : index = index;
 
                 // adds the new section calss and shows the matched object
                 // with a fade effect

@@ -37,8 +37,8 @@
         // note that in case the verify flag is set this is ignore as
         // the loading is considered to be forced
         var hasHash = href.indexOf("#") != -1;
-        var isInternal = hasHash && href.split("#")[0] == document.location.href.split("#")[0];
-        isInternal = isInternal || href[0] == "#";
+        var isInternal = hasHash && href.split("#")[0] === document.location.href.split("#")[0];
+        isInternal = isInternal || href[0] === "#";
         if (isInternal && !verify) {
             return false;
         }
@@ -95,7 +95,7 @@
                 // special strateg by retrieving the new location and setting it as
                 // new async contents to be loaded, note that only requests that
                 // contain a valid location header will be used for redirection
-                var isRedirect = request.status == 280;
+                var isRedirect = request.status === 280;
                 var hrefR = request.getResponseHeader("Location");
                 if (isRedirect && hrefR) {
                     hrefR = jQuery.uxresolve(hrefR, href);
@@ -157,7 +157,7 @@
             // and if that's not the case runs the fallback process (user agent
             // document redirection) and aborts the current request
             var requestAsync = isAsync(request);
-            if (requestAsync == true) {
+            if (requestAsync === true) {
                 return;
             }
             document.location = href;
@@ -174,7 +174,7 @@
             var contentType = request.getResponseHeader("Content-Type") || "";
             contentType = contentType.split(";")[0];
             contentType = contentType.strip();
-            return location || contentType == "text/html";
+            return location || contentType === "text/html";
         };
 
         // returns valid as the link execution has been started

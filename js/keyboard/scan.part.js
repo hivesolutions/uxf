@@ -100,7 +100,7 @@
                         if (delta < SCAN_INTERVAL) {
                             // in case the current key is an enter
                             // (time to send the scan error)
-                            if (keyValue == 13) {
+                            if (keyValue === 13) {
                                 // triggers the scan error event
                                 targetObject.trigger("scan_error", [sequence]);
                             }
@@ -129,7 +129,7 @@
                         if (delta < SCAN_INTERVAL) {
                             // in case the current key is an enter
                             // (time to send the scan error)
-                            if (keyValue == 13) {
+                            if (keyValue === 13) {
                                 // triggers the scan error event
                                 targetObject.trigger("scan_error", [sequence]);
                             }
@@ -156,7 +156,7 @@
 
                     // in case the current key is an enters, must check if
                     // the sequence can be finished
-                    if (keyValue == 13) {
+                    if (keyValue === 13) {
                         // retrieves the length of the current sequence, defaulting
                         // to zero in case no sequence is present
                         var sequenceLength = sequence ? sequence.length : 0;

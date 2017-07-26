@@ -42,7 +42,7 @@
         var _appendHtml = function() {
             // verifies if there's at leat on matched object and if that's
             // not the case returns immediately (avoiding possible issues)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -71,7 +71,7 @@
         var _registerHandlers = function() {
             // verifies if there's at leat on matched object and if that's
             // not the case returns immediately (avoiding possible issues)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -160,7 +160,7 @@
             matchedObject.bind("transitionend", function(event) {
                 var element = jQuery(this);
                 var transition = element.data("transition");
-                if (transition != "fadeout") {
+                if (transition !== "fadeout") {
                     return;
                 }
                 element.hide();
@@ -221,7 +221,7 @@
             // considered the original value (to be restored latter)
             // then and in case the element is invisible sets the
             // opacity to the default zero value (for animation)
-            var isVisible = matchedObject.css("display") == "block";
+            var isVisible = matchedObject.css("display") === "block";
             matchedObject.css("opacity", "");
             var target = matchedObject.css("opacity") || "1";
             var targetF = parseFloat(target);
@@ -313,7 +313,7 @@
             // displayed in the dom as a "invisible" overlay
             setTimeout(function() {
                 var transition = matchedObject.data("transition");
-                if (transition != "fadeout") {
+                if (transition !== "fadeout") {
                     return;
                 }
                 matchedObject.hide();

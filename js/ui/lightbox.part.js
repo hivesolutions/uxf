@@ -28,7 +28,7 @@
             // tries retrieves the window (lightbox window) elements
             // in case the elements do not exists creates a new element
             var window = jQuery(".window.window-lightbox", matchedObject);
-            if (window.length == 0) {
+            if (window.length === 0) {
                 window = jQuery("<div class=\"window window-lightbox\">" +
                     "<div class=\"button-confirm\"></div>" + "<div class=\"button-expand\"></div>" +
                     "<img alt=\"\" />" + "</div>");
@@ -48,7 +48,7 @@
             // retrieves the current path from the window image and
             // then checks of it has changed
             var currentPath = windowImage.attr("src");
-            var hasChanged = path != currentPath;
+            var hasChanged = path !== currentPath;
 
             // hides the current window image and sets the image
             // path in the window image (changes the current image
@@ -166,7 +166,7 @@
                 // verifies if the maximum dimensions for the image have changed
                 // and if that's not the case returns immediately, this return
                 // avoids a loop in the centering process (required)
-                var hasChanged = maxHeight != _maxHeight || maxWidth != _maxWidth;
+                var hasChanged = maxHeight !== _maxHeight || maxWidth !== _maxWidth;
                 if (!hasChanged) {
                     return;
                 }
@@ -220,7 +220,7 @@
                 // (image) path and uses it to determine the next
                 // (target) path for iamge source updating
                 var currentPath = windowImage.attr("src");
-                var targetPath = currentPath == path ? largePath : path;
+                var targetPath = currentPath === path ? largePath : path;
                 window.addClass("loading");
                 window.triggerHandler("loading");
                 windowImage.attr("src", targetPath);

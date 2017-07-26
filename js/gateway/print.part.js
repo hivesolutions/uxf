@@ -177,7 +177,7 @@
             // tries to determine if the queue is empty and if
             // that's the case calls the callback as all the
             // elements in the queue have been processed
-            if (queue.length == 0) {
+            if (queue.length === 0) {
                 callback();
                 return;
             }

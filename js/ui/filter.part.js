@@ -93,7 +93,7 @@
                 // in case there is no text field defined for the
                 // current element one must be created, only in case
                 // the no input flag is not set
-                if (textField.length == 0 && !noInput) {
+                if (textField.length === 0 && !noInput) {
                     // retrieves the various attributes from the element
                     // to be propagated to the text field
                     var name = _element.attr("name");
@@ -118,7 +118,7 @@
 
                 // in case the text field is still not found the extra no input
                 // class is aded to the currently selected filter element
-                textField.length == 0 && _element.addClass("no-input")
+                textField.length === 0 && _element.addClass("no-input")
 
                 // creates the element representing the buttons for the filter
                 // fild (the more oprtions and the view changer) and adds it
@@ -224,7 +224,7 @@
 
                 // adds the "extra" html to the matched object,
                 // in case no filter contents is found
-                if (filterContents.length == 0) {
+                if (filterContents.length === 0) {
                     // creates the filter contents element and adds it to the
                     // filter according to the filter more status
                     var filterContents = jQuery("<div class=\"filter-contents\"></div>");
@@ -522,7 +522,7 @@
                 // has just been clicked
                 var selectedOption = jQuery(
                     ".filter-sort-option.selected", filter);
-                var isSame = element[0] == selectedOption[0];
+                var isSame = element[0] === selectedOption[0];
 
                 // retrieves the value for the order attribute of
                 // the element to be used in case new element is selected
@@ -748,7 +748,7 @@
                 var filterInputValue = element.attr("data-value");
 
                 // in case no string value changes occured
-                if (filterString == filterInputValue) {
+                if (filterString === filterInputValue) {
                     // returns immediately
                     return;
                 }
@@ -998,7 +998,7 @@
 
             // determines if there are no valid contents currently set in the
             // filter to be able to change the classes of it accordingly
-            var noContents = filterContents.children().length == 0;
+            var noContents = filterContents.children().length === 0;
 
             // sets the initial value for the reset flag
             var reset = false;
@@ -1007,13 +1007,13 @@
             // update operation and if that's not the case returns immediately
             // as it's not possible to run the update operation without
             // any valid/enabled data source element
-            if (dataSource.length == 0) {
+            if (dataSource.length === 0) {
                 return
             }
 
             // in case the value in the filter input
             // has changed (reset required)
-            if (filterString != filterInputValue || force) {
+            if (filterString !== filterInputValue || force) {
                 // resets the (current) selection value
                 filter.data("selection", [0]);
                 filter.data("pivot", 0);
@@ -1361,7 +1361,7 @@
 
             // in case there's no context menu for the
             // current element no need to continue
-            if (menu.length == 0) {
+            if (menu.length === 0) {
                 // returns immediately no context menu
                 // for the current element
                 return;
@@ -1611,7 +1611,8 @@
                         // element to be parsed opens the link in the current
                         // document otherwise creates a new window and opend
                         // the link in it (external opening)
-                        isDocument && index == 0 ? jQuery.uxlocation(link) : window
+                        isDocument && index === 0 ? jQuery.uxlocation(link) :
+                            window
                             .open(link, "_blank");
                     });
 
@@ -1747,7 +1748,7 @@
 
             // in case the selection row is the last
             // need to load more elements
-            if (_selection == listItems.length) {
+            if (_selection === listItems.length) {
                 // updates the matched object (runs the loading
                 // of additional values)
                 _update(matchedObject, options);
@@ -1813,7 +1814,7 @@
 
                 // in case the current index is the first or in case the
                 // current selection is not preceded by a contiguous value
-                if (index == 0 || _previous_selection != _selection - 1) {
+                if (index === 0 || _previous_selection !== _selection - 1) {
                     // adds the first class to the current selected
                     // list item (indicates that it is the first of
                     // a contiguous selection)
@@ -1822,7 +1823,7 @@
 
                 // in case the current index if the last or in case the
                 // the current selection is not succeeded by a contiguous value
-                if (index == selection.length - 1 || _next_selection != _selection + 1) {
+                if (index === selection.length - 1 || _next_selection !== _selection + 1) {
                     // adds the last class to the current selected
                     // list item (indicates that it is the last of
                     // a contiguous selection)
@@ -1852,7 +1853,7 @@
             // scrolls to the reference in case the element
             // is not visible, this is required so that the
             // end user is able to interact with the element
-            !isVisible && selectedListItem.length == 1 && selectedListItem.uxscroll({
+            !isVisible && selectedListItem.length === 1 && selectedListItem.uxscroll({
                 offset: pageOffset,
                 padding: 10
             });
@@ -1874,7 +1875,7 @@
 
             // checks if the pivot is zero and in case it is consider
             // it to be one (first element)
-            pivot = pivot == 0 ? 1 : pivot;
+            pivot = pivot === 0 ? 1 : pivot;
 
             // retrieves the first and last element from the current
             // selection for reference
@@ -1883,7 +1884,7 @@
 
             // in case the current first element is the pivot
             // need to use the last value as reference
-            if (first == pivot) {
+            if (first === pivot) {
                 // increments the last value and sets it as
                 // the proper value
                 var value = last - 1;
@@ -1897,7 +1898,7 @@
 
             // in case the current index value is zero
             // it's considered to be invalid, returns immediately
-            if (value == 0) {
+            if (value === 0) {
                 // returns immediately, invalid index
                 return;
             }
@@ -1919,7 +1920,7 @@
 
             // in case the current first element is the pivot
             // need to use the last value as reference
-            if (first == pivot) {
+            if (first === pivot) {
                 // retrieves the last item as the reference one
                 var item = jQuery(selectedListItem[selectedListItem.length - 1]);
             }
@@ -1950,7 +1951,7 @@
 
             // checks if the pivot is zero and in case it is consider
             // it to be one (first element)
-            pivot = pivot == 0 ? 1 : pivot;
+            pivot = pivot === 0 ? 1 : pivot;
 
             // retrieves the first and last element from the current
             // selection for reference
@@ -1959,7 +1960,7 @@
 
             // in case the current last element is the pivot
             // need to use the first value as reference
-            if (last == pivot) {
+            if (last === pivot) {
                 // increments the first value and sets it as
                 // the proper value
                 var value = first + 1;
@@ -2000,7 +2001,7 @@
 
             // in case the current last element is the pivot
             // need to use the first value as reference
-            if (last == pivot) {
+            if (last === pivot) {
                 // retrieves the first item as the reference one
                 var item = jQuery(selectedListItem[0]);
             }
@@ -2073,7 +2074,7 @@
 
             // in case the selection row is the last
             // need to load more elements
-            if (_selection == listItems.length) {
+            if (_selection === listItems.length) {
                 // updates the matched object (runs the loading
                 // of additional values) and returns immediately
                 // to avoid further updates
@@ -2120,12 +2121,12 @@
 
             // checks if the pivot is zero and in case it is consider
             // it to be one (first element)
-            pivot = pivot == 0 ? 1 : pivot;
+            pivot = pivot === 0 ? 1 : pivot;
 
             // checks if the current selection is the initial
             // empty selection, in case it's "pops" it from the
             // current selection set (avoids problems in selection)
-            var isInitial = selection.length == 1 && selection[0] == 0;
+            var isInitial = selection.length === 1 && selection[0] === 0;
             isInitial && selection.pop();
 
             // in case the index value is greater than the pivot index
@@ -2706,12 +2707,12 @@
                     // checks if the current selection is the initial
                     // empty selection, in case it's "pops" it from the
                     // current selection set (avoids problems in selection)
-                    var isInitial = selection.length == 1 && selection[0] == 0;
+                    var isInitial = selection.length === 1 && selection[0] === 0;
                     isInitial && selection.pop();
 
                     // in case the current selection is empty it's time to update
                     // the pivot value (it's the first element of the selection)
-                    selection.length == 0 && filter.data("pivot", templateItemIndex + 1);
+                    selection.length === 0 && filter.data("pivot", templateItemIndex + 1);
 
                     // retrieves the index of the element in the selection
                     // index, this is going to be used to check if the element
@@ -2720,7 +2721,7 @@
 
                     // in case the element index is invalid (it's not present
                     // in the selection set) must be added to set (selection)
-                    if (elementIndex == -1) {
+                    if (elementIndex === -1) {
                         // adds the index to the selection set (selection)
                         selection.push(templateItemIndex + 1);
                     }
@@ -2766,7 +2767,7 @@
 
                 // in case the element is currently selected
                 // nothing is to be done
-                if (elementIndex != -1) {
+                if (elementIndex !== -1) {
                     // returns immediately, avoids selection
                     return;
                 }

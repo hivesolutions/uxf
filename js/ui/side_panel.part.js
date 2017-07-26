@@ -27,7 +27,7 @@
         var _appendHtml = function() {
             // verifies that at leat one object is selected and if that's
             // not the case returns the control flow immediately
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -48,7 +48,7 @@
         var _registerHandlers = function() {
             // verifies that at leat one object is selected and if that's
             // not the case returns the control flow immediately
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 

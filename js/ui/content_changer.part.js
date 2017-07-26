@@ -104,7 +104,7 @@
 
             // in case the current value "overflows" the current
             // section count the index calue is reseted
-            index == sectionCount ? index = 0 : index = index;
+            index === sectionCount ? index = 0 : index = index;
 
             // retrieves the current panel to be shown and
             // shows it with the default approach

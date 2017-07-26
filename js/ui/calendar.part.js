@@ -213,7 +213,7 @@
             // or in case it's an empty list must return
             // immediatly update operation is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -266,7 +266,7 @@
                 var previousDay = finalDayPreviousNumber - (initialDayWeek - index) + 1;
 
                 // in case the (current) previous day is the currently select day
-                if (previousYear == currentDayYear && previousMonth == currentDayMonth && previousDay ==
+                if (previousYear === currentDayYear && previousMonth === currentDayMonth && previousDay ==
                     currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([previousYear, previousMonth, previousDay,
@@ -288,7 +288,7 @@
                 var day = index + 1;
 
                 // in case the (current) day is the currently select day
-                if (year == currentDayYear && month == currentDayMonth && day == currentDayNumber) {
+                if (year === currentDayYear && month === currentDayMonth && day === currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([year, month, day, "active"]);
                 }
@@ -309,7 +309,7 @@
                 var nextDay = index - daysLength + 1;
 
                 // in case the (current) next day is the currently select day
-                if (nextYear == currentDayYear && nextMonth == currentDayMonth && nextDay ==
+                if (nextYear === currentDayYear && nextMonth === currentDayMonth && nextDay ==
                     currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([nextYear, nextMonth, nextDay, "faded active"]);
@@ -331,7 +331,7 @@
             for (var index = 0; index < days.length; index++) {
                 // checks if the current cell is of type
                 // start (line) cell (end/start of week)
-                var isStartCell = index % 7 == 0;
+                var isStartCell = index % 7 === 0;
 
                 // in case the current cell is of type
                 // start cell (end/start of week)
@@ -407,7 +407,7 @@
             var month = matchedObject.data("month");
 
             // in case the final month is the current month
-            if (month == 12) {
+            if (month === 12) {
                 // increments the year value and sets the
                 // month value as the first month
                 year++;
@@ -437,7 +437,7 @@
             var month = matchedObject.data("month");
 
             // in case the first month is the current month
-            if (month == 1) {
+            if (month === 1) {
                 // decrements the year value and sets the
                 // month value as the last month
                 year--;

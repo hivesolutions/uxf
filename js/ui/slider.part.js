@@ -74,7 +74,7 @@
             // does not exists creates a new element and then appends it
             // to the current body element (default action)
             var overlay = jQuery(".overlay:first");
-            if (overlay.length == 0) {
+            if (overlay.length === 0) {
                 var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
                 overlay.uxoverlay();
@@ -250,7 +250,7 @@
 
             // in case there are no more items to the
             // "right" index is maximum
-            if (nextSliderPanel.length == 0) {
+            if (nextSliderPanel.length === 0) {
                 // returns immediately
                 return;
             }
@@ -301,7 +301,7 @@
 
             // in case there are no more items to the
             // "right" index is zero
-            if (previousSliderPanel.length == 0) {
+            if (previousSliderPanel.length === 0) {
                 // returns immediately
                 return;
             }

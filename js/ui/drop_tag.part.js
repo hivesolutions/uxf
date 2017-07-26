@@ -53,7 +53,7 @@
                 // and in case it does not exists creates an empty version
                 // of it (default behaviour)
                 var items = jQuery("> .items", _element);
-                if (items.length == 0) {
+                if (items.length === 0) {
                     _element.append("<ul class=\"items\"></ul>");
                 }
 

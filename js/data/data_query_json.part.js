@@ -75,7 +75,7 @@
             // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
-            numberRecords = numberRecords == -1 ? MAX_RECORDS : numberRecords
+            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords
 
             // unpacks the sort value and the sort oder from the
             // sort tuple and uses them to create the "final" sort
@@ -100,7 +100,7 @@
 
                 // in case the current value is a sequence must join
                 // all of its values arround the separator token
-                var isSequence = typeof value == "object";
+                var isSequence = typeof value === "object";
                 if (isSequence) {
                     value = value.join(";")
                 }
@@ -246,7 +246,7 @@
 
                         // in case the received (items) is not a list
                         // (single retrieval)
-                        if (!(validItems.constructor == Array)) {
+                        if (!(validItems.constructor === Array)) {
                             // tries to retrieve the (private) base
                             // values that will serve as prototype for
                             // the retrieval of the valid items

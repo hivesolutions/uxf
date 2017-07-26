@@ -227,7 +227,7 @@
             // in case the current text field is of data type natural
             // (negative numbers not allowed) and the value is zero or
             // less no changes are done
-            if ((type == "natural" || type == "floatp") && floatvalue <= 0) {
+            if ((type === "natural" || type === "floatp") && floatvalue <= 0) {
                 // returns immediately (avoids changing the value)
                 return;
             }

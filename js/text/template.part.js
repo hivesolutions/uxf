@@ -121,7 +121,7 @@
 
                 // in case the attribute value is null
                 // (special case)
-                if (attributeValue == null) {
+                if (attributeValue === null) {
                     // sets the appropriate attribute value according
                     // to the nullify value
                     attributeValue = nullify ? defaultValue : "null";
@@ -133,7 +133,7 @@
 
                 // in case the attribute value is
                 // an object
-                if (attributeValueType == "object") {
+                if (attributeValueType === "object") {
                     // re-calculates the (new) base key to be
                     // sued in next iteration
                     var newBaseKey = key + ".";

@@ -50,7 +50,7 @@
             // in case the element type is not valid calls the callback
             // immediately with no results because it was not possible
             // to retrieve any kind of data from an invalid data source
-            if (elementType == null || elementType == undefined) {
+            if (elementType === null || elementType === undefined) {
                 callback([], false);
                 return;
             }

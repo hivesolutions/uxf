@@ -48,7 +48,7 @@
             // or in case it's an empty list must return
             // immediatly initialization is not meant to
             // be run (corruption may occur)
-            if (!matchedObject || matchedObject.length == 0) {
+            if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
@@ -216,7 +216,7 @@
                 // in case the key that was pressed in not the
                 // escape one there's nothing to be done and so
                 // the control flow is returned immediately
-                if (keyValue != 27) {
+                if (keyValue !== 27) {
                     return;
                 }
 
@@ -333,7 +333,7 @@
             // in case no menu link is defined it's not possible
             // to run the reposition operation, not enought information
             // to archive the objective
-            if (menuLink.length == 0) {
+            if (menuLink.length === 0) {
                 return;
             }
 
