@@ -2,6 +2,14 @@
     height: 30px;
 }
 
+.omni-style .filter .filter-contents {
+    animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+}
+
 .omni-style .filter .filter-no-results {
     animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
