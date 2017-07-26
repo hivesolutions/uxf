@@ -1,6 +1,6 @@
 .omni-style .overlay {
-    background-color: #dddddd;
-    opacity: 0.4;
+    background-color: #4d4d4d;
+    opacity: 0.6;
     z-index: 20;
 }
 
@@ -10,6 +10,6 @@
 }
 
 .omni-style.dark .overlay {
-    background-color: #666666;
-    opacity: 0.3;
+    background-color: #4d4d4d;
+    opacity: 0.8;
 }

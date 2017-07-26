@@ -1,9 +1,14 @@
 .omni-style .window {
+    animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     background-color: #ffffff;
-    border: 1px solid #aaaaaa;
-    box-shadow: 0px 0px 5px #bbbbbb;
-    -moz-box-shadow: 0px 0px 5px #bbbbbb;
-    -webkit-box-shadow: 0px 0px 5px #bbbbbb;
+    border: 1px solid #666666;
+    box-shadow: 0px 0px 5px #777777;
+    -moz-box-shadow: 0px 0px 5px #777777;
+    -webkit-box-shadow: 0px 0px 5px #777777;
     color: #2d2d2d;
     overflow: auto;
     padding: 20px 20px 20px 20px;
@@ -61,4 +66,11 @@
 
 .omni-style .window-buttons > .button-cancel {
     margin-left: 10px;
+}
+
+.omni-style.dark .window {
+    border-color: #555555;
+    box-shadow: 0px 0px 5px #444444;
+    -moz-box-shadow: 0px 0px 5px #444444;
+    -webkit-box-shadow: 0px 0px 5px #444444;
 }
