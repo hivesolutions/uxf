@@ -3,6 +3,11 @@
 }
 
 .omni-style .filter .filter-no-results {
+    animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-in 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     padding: 20px 20px 20px 20px;
     text-align: center;
 }
@@ -90,6 +95,11 @@
 }
 
 .omni-style .filter .filter-advanced {
+    animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     border-bottom: 1px solid #dddddd;
     border-left: 1px solid #dddddd;
     border-right: 1px solid #dddddd;
