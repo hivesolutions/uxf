@@ -149,6 +149,7 @@
             // the case in case there's a valid version legacy value and the
             // current browser version is lower than that one
             var isLegacy = versionLegacy && browserVersion < versionLegacy;
+            isLegacy = Boolean(isLegacy);
 
             // adds the browser classes to the body item, so that
             // they may be used for declarative conditionals
