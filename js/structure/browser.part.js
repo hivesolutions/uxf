@@ -65,7 +65,8 @@
             versionSearch: "Mozilla"
         }];
 
-        // the data os values
+        // the data os values, to be used for proper
+        // indeitification of the operative systems
         var DATA_OS = [{
             string: navigator.platform,
             subString: "Win",
@@ -83,6 +84,15 @@
             subString: "Linux",
             identity: "Linux"
         }];
+
+        // the legacy dictionary that is going to map the
+        // name of the browser with the minimum version from
+        // which the browser is considered not legacy (or current)
+        var BROWSER_LEGACY = {
+            "chrome": 40,
+            "firefox": 30,
+            "explorer": 10
+        };
 
         // the default values for the browser
         var defaults = {};
@@ -123,9 +133,22 @@
                 "Unknown version";
             var browserOs = _searchString(DATA_OS) || "Unknown OS";
 
-            // lower cases the browser values
+            // lower cases the browser values, so that it becomes
+            // normalized (in the common sense)
             browserName = browserName.toLowerCase();
             browserOs = browserOs.toLowerCase();
+
+            // tries to retrieve the minimum version version from which the
+            // browser is considered to be a current one (not legacy) either
+            // from the current element or the static definitions
+            var versionLegacy = matchedObject.attr("data-" + browserName + "_legacy") || BROWSER_LEGACY[
+                browserName];
+            versionLegacy = parseInt(versionLegacy);
+
+            // tries to determine if the current browser is a legacy one, that
+            // the case in case there's a valid version legacy value and the
+            // current browser version is lower than that one
+            var isLegacy = versionLegacy && browserVersion < versionLegacy;
 
             // adds the browser classes to the body item, so that
             // they may be used for declarative conditionals
@@ -133,16 +156,29 @@
             matchedObject.addClass(browserName + "-" + browserVersion);
             matchedObject.addClass(browserOs);
 
+            // adds the extra legacy classes in the current browser
+            // is considered to be a legacy one
+            isLegacy && matchedObject.addClass("browser-legacy");
+            isLegacy && matchedObject.addClass(browserName + "-legacy");
+
             // updates a series of attributes in the body so that
-            // it's possibel to access browser and operative system
+            // it's possible to access browser and operative system
             // information from the matched object
             matchedObject.attr("data-browser", browserName)
             matchedObject.attr("data-browser_version", browserVersion)
             matchedObject.attr("data-os", browserOs)
 
+            // adds the extra legacy attribute in the current browser
+            // is considered to be a legacy one
+            isLegacy && matchedObject.attr("data-browser_legacy", "1")
+
             // applies the patch to the kquery infra-structure so that
             // the old mode of broewser detection is still possible
             _applyPatch(browserName, browserOs);
+
+            // remove the classes that are not legacy compliant if the
+            // current browser is considered to be a legacy one
+            _removeLegacy(matchedObject, isLegacy);
         };
 
         /**
@@ -190,6 +226,28 @@
             // it with the proper browser name index set to valid
             jQuery.browser = {}
             jQuery.browser[browserName] = true;
+        };
+
+        var _removeLegacy = function(matchedObject, isLegacy) {
+            // verifies if the current browser is considered to be
+            // a legacy one, and if that's not the case returns the
+            // control flow immediately to the caller method
+            if (!isLegacy) {
+                return;
+            }
+
+            // tries to retrieve the complete set of classes that
+            // are meant to be removed in case this is a legacy
+            // browser and splits them around the space character
+            var legacy = matchedObject.attr("data-legacy");
+            legacy = legacy.split(" ");
+
+            // iterates over the complete set of legacy classes and
+            // removes them from the current element
+            for (var index = 0; index < legacy.length; index++) {
+                var legacyClass = legacy[index];
+                matchedObject.removeClass(legacyClass);
+            }
         };
 
         // initializes the plugin
