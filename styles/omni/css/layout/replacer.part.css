@@ -2,7 +2,7 @@
     cursor: pointer;
 }
 
-.omni-style.animations .replacer {
+.omni-style.animations .replacer-target {
     animation: fade-grow 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-grow 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-grow 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
