@@ -178,13 +178,16 @@
 }
 
 .omni-style .text-field-calendar {
+    position: absolute;
+    z-index: 10;
+}
+
+.omni-style.animations .text-field-calendar {
     animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
-    position: absolute;
-    z-index: 10;
 }
 
 .omni-style.opensans .text-field,

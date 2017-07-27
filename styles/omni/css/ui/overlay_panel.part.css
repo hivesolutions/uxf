@@ -1,4 +1,4 @@
-.omni-style .overlay-panel {
+.omni-style.animations .overlay-panel {
     animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
