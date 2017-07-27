@@ -5,6 +5,13 @@
     text-decoration: none;
 }
 
+.omni-style.animations .link {
+    transition: border-color 0.05s ease-in;
+    -o-transition: border-color 0.05s ease-in;
+    -moz-transition: border-color 0.05s ease-in;
+    -webkit-transition: border-color 0.05s ease-in;
+}
+
 .omni-style .link.link-blue {
     color: #3668c6;
 }
