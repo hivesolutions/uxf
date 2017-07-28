@@ -118,7 +118,6 @@
             // of records is set
             if (startRecord !== null && startRecord !== undefined && numberRecords !== null &&
                 numberRecords !== undefined) {
-                // sets the filter flag
                 filter = true;
             }
 

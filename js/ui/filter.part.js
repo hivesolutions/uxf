@@ -987,7 +987,7 @@
             // determines if the provided filter value (parameter) is defined
             // (diferent from undefined) if that's the case updates the filter
             // value data state for the filter
-            var setValue = filterValue !== undefined;
+            var setValue = filterValue !== null && filterValue !== undefined;
             setValue && filter.data("filter_value", filterValue || "");
 
             // retrieves the filter input value, defaulting to empty
