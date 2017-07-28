@@ -174,7 +174,7 @@
             // result to check for differences and then checks
             // if the current element has focus
             var current = isInput ? matchedObject.val() : matchedObject.html();
-            var different = evalResult != current;
+            var different = evalResult !== current;
             var hasFocus = matchedObject.hasClass("focus");
 
             // in case the value is not different or in case there's

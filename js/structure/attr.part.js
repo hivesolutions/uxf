@@ -26,7 +26,7 @@
             // note that the attribute value is first verified for
             // possible illegal values and skipped if it's illegal
             var attribute = _element.attr(attrName);
-            var isIlegal = attribute.match(ATTR_REGEX) != null;
+            var isIlegal = attribute.match(ATTR_REGEX) !== null;
             if (isIlegal) {
                 return;
             }

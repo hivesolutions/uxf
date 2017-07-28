@@ -166,7 +166,7 @@
                         if (flags === null) {
                             return attributeLocale;
                         }
-                        var isRaw = flags.indexOf("r") != -1;
+                        var isRaw = flags.indexOf("r") !== -1;
                         return isRaw ? attributeValue : attributeLocale;
                     };
 

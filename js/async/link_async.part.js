@@ -36,7 +36,7 @@
         // sequential async loading procedures may also be created,
         // note that in case the verify flag is set this is ignore as
         // the loading is considered to be forced
-        var hasHash = href.indexOf("#") != -1;
+        var hasHash = href.indexOf("#") !== -1;
         var isInternal = hasHash && href.split("#")[0] === document.location.href.split("#")[0];
         isInternal = isInternal || href[0] === "#";
         if (isInternal && !verify) {
@@ -63,7 +63,7 @@
         // calculates the aditional set of values of the base href value
         // so that this request may be "marked" as special avoiding possible
         // errors with cache in the browser/client side
-        var hasQuery = href.indexOf("?") != -1;
+        var hasQuery = href.indexOf("?") !== -1;
         var extraParams = "x-async=1&x-partial=1";
         var extraQuery = hasQuery ? "&" + extraParams : "?" + extraParams;
 
@@ -111,7 +111,7 @@
                 // it's not the same as the current link returns immediately as the
                 // current process has been canceled "by a newer one"
                 var state = _body.data("async_state");
-                if (state != href) {
+                if (state !== href) {
                     return;
                 }
 
@@ -123,7 +123,7 @@
                 // may pile up and so we must verify if the document location
                 // in the current document is the same as the document we're
                 // trying to retrieve, if it's not return immediately (ignore)
-                if (verify && document.location != href) {
+                if (verify && document.location !== href) {
                     return;
                 }
 
@@ -149,7 +149,7 @@
 
             // in case the current request state is not headers ready there's
             // no need to continue as we're going to verify the content type
-            if (request.readyState != 2) {
+            if (request.readyState !== 2) {
                 return;
             }
 

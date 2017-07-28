@@ -19,7 +19,7 @@
             var object = _element.attr("data-object");
             var method = _element["ux" + object];
             var result = method ? method.call(_element, "original") : false;
-            result != true && method && method.call(_element, "reset");
+            result !== true && method && method.call(_element, "reset");
 
             // triggers the original event on the current element indicating
             // that a original operation has been performed in it

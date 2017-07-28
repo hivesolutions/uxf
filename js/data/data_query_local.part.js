@@ -69,7 +69,8 @@
             // of records is set the filtering mosde should
             // be enabled so that only a slice of the results
             // is returned at the end of the query process
-            if (startRecord != null && numberRecords != null) {
+            if (startRecord !== null && startRecord !== undefined && numberRecords !== null &&
+                numberRecords !== undefined) {
                 filter = true;
             }
 
@@ -157,7 +158,7 @@
                     // in case the operator of the filter is not the equals one
                     // or the current item is not an object, must skip the current
                     // iteraion (format not compatible with filter to be applied)
-                    if (operator !== "equals" || typeof currentItem != "object") {
+                    if (operator !== "equals" || typeof currentItem !== "object") {
                         continue;
                     }
 

@@ -116,7 +116,8 @@
 
             // in case the start record and the number
             // of records is set
-            if (startRecord != null && numberRecords != null) {
+            if (startRecord !== null && startRecord !== undefined && numberRecords !== null &&
+                numberRecords !== undefined) {
                 // sets the filter flag
                 filter = true;
             }
@@ -195,7 +196,7 @@
                 // the same (the current request is not the
                 // latest no need to perform it)
                 var current = matchedObject.data("current");
-                if (current != identifier) {
+                if (current !== identifier) {
                     // returns immediately not going to perform
                     // the request (not required)
                     return;
@@ -221,7 +222,7 @@
                         // the same (the current response is not the
                         // latest no need to parse it)
                         var current = matchedObject.data("current");
-                        if (current != identifier) {
+                        if (current !== identifier) {
                             // returns immediately not going to parse
                             // the response (not required)
                             return;
@@ -287,7 +288,7 @@
                         // the same (the current response is not the
                         // latest no call the callback for it)
                         var current = matchedObject.data("current");
-                        if (current != identifier) {
+                        if (current !== identifier) {
                             // returns immediately not going to send
                             // the response (not required)
                             return;

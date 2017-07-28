@@ -193,7 +193,7 @@
                 var dataProp = data[index].prop;
                 jQuery.fn.uxbrowser.versionSearchString = data[index].versionSearch || data[index].identity;
                 if (dataString) {
-                    if (dataString.indexOf(data[index].subString) != -1) {
+                    if (dataString.indexOf(data[index].subString) !== -1) {
                         return data[index].identity;
                     }
                 } else if (dataProp) {

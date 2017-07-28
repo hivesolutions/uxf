@@ -56,7 +56,7 @@
             // series of pre-defined values
             var isWindow = !element.nodeName || jQuery.inArray(element.nodeName.toLowerCase(), [
                 "iframe", "#document", "html", "body"
-            ]) != -1;
+            ]) !== -1;
 
             // in case the element is not a window it's immediately
             // considered scrollable and so it's returned to the
@@ -214,7 +214,7 @@
                 // in case it's queueing axes
                 if (!index && settings.queue) {
                     // avoids wasting time animating, if there's no need
-                    if (old != attributes[key]) {
+                    if (old !== attributes[key]) {
                         // intermediate animation
                         animate(settings.onAfterFirst);
                     }

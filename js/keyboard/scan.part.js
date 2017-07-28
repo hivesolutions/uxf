@@ -243,7 +243,7 @@
 
             // in case the key is not an enter no need to do any
             // extra verification
-            if (keyValue != 13) {
+            if (keyValue !== 13) {
                 // returns immediately (no extra verification required)
                 return;
             }

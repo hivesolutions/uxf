@@ -128,7 +128,7 @@
 
             // determines if the device has changed from the previous step
             // if that's the case a new event should be raised
-            var deviceChanged = device != nextDevice;
+            var deviceChanged = device !== nextDevice;
 
             // updates both the width, height and device values of the matched
             // object so that easy reference is possible from scripts
