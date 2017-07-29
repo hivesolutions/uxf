@@ -240,7 +240,7 @@
             // tries to retrieve the complete set of classes that
             // are meant to be removed in case this is a legacy
             // browser and splits them around the space character
-            var legacy = matchedObject.attr("data-legacy");
+            var legacy = matchedObject.attr("data-legacy") || "";
             legacy = legacy.split(" ");
 
             // iterates over the complete set of legacy classes and
