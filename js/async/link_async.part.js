@@ -123,7 +123,7 @@
                 // may pile up and so we must verify if the document location
                 // in the current document is the same as the document we're
                 // trying to retrieve, if it's not return immediately (ignore)
-                if (verify && document.location !== href) {
+                if (verify && document.location.href !== href) {
                     return;
                 }
 
