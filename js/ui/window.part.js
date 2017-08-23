@@ -226,7 +226,8 @@
             // for the matched window (may be zero), and uses the value
             // in the hide operation of the overlay
             var duration = __duration(matchedObject);
-            overlay.triggerHandler("show", [duration]);
+            var timing = __timing(matchedObject);
+            overlay.triggerHandler("show", [duration, null, null, timing]);
 
             // registers for the click event on the global overlay
             // so that the window hides in such case
@@ -277,12 +278,13 @@
             // for the matched window (may be zero), and uses the value
             // in the hide operation of the overlay
             var duration = __duration(matchedObject);
-            overlay.triggerHandler("hide", [duration]);
+            var timing = __timing(matchedObject);
+            overlay.triggerHandler("hide", [duration, timing]);
 
             // schedules an operation that is going to remove the invible
             // class after the appropriate amount of time (garbage collection)
             setTimeout(function() {
-                visibleWindow.removeClass("invisible");
+                matchedObject.removeClass("invisible");
             }, duration);
 
             // retrieves the appropriate name for the event to be
@@ -613,6 +615,13 @@
             duration = duration ? parseFloat(duration) : 0;
             duration = duration * 1000;
             return duration;
+        };
+
+        var __timing = function(element) {
+            // computes the timing function for  animation extracting it
+            // from the associated css property
+            var timing = element.css("animation-timing-function");
+            return timing;
         };
 
         // switches over the method

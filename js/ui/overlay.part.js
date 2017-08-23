@@ -134,16 +134,16 @@
             // registers for the show event so that the proper
             // hide operation is performed in the associated overlay
             matchedObject.bind("show",
-                function(event, timeout, extra, autohide) {
+                function(event, timeout, extra, autohide, timing) {
                     var element = jQuery(this);
-                    _show(element, options, timeout, extra, autohide);
+                    _show(element, options, timeout, extra, autohide, timing);
                 });
 
             // registers for the hide event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("hide", function(event, timeout) {
+            matchedObject.bind("hide", function(event, timeout, timing) {
                 var element = jQuery(this);
-                _hide(element, options, timeout);
+                _hide(element, options, timeout, timing);
             });
 
             // registers for the resize event on the overlayy
@@ -178,7 +178,7 @@
             }
         };
 
-        var _show = function(matchedObject, options, timeout, extra, autohide) {
+        var _show = function(matchedObject, options, timeout, extra, autohide, timing) {
             // verifies if the current object is visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -195,11 +195,11 @@
             // the show operation for the overlay element
             matchedObject.triggerHandler("pre_show");
             _resize(matchedObject, options);
-            __fadeIn(matchedObject, options, timeout || 250, extra);
+            __fadeIn(matchedObject, options, timeout || 250, extra, timing);
             matchedObject.triggerHandler("post_show");
         };
 
-        var _hide = function(matchedObject, options, timeout) {
+        var _hide = function(matchedObject, options, timeout, timing) {
             // verifies if the current object is not visible and if
             // that's already the case returns immediately
             var visible = matchedObject.data("visible") || false;
@@ -211,7 +211,7 @@
             // hides the matched object, using the default
             // strategy for such operation (as expected)
             matchedObject.triggerHandler("pre_hide");
-            __fadeOut(matchedObject, options, timeout || 100);
+            __fadeOut(matchedObject, options, timeout || 100, timing);
             matchedObject.triggerHandler("post_hide");
         };
 
@@ -259,7 +259,7 @@
             });
         };
 
-        var __fadeIn = function(matchedObject, options, timeout, extra, useHardware) {
+        var __fadeIn = function(matchedObject, options, timeout, extra, timing, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             var _extra = matchedObject.data("extra");
@@ -270,7 +270,7 @@
             if (useHardware) {
                 _reset(matchedObject, options);
                 var original = matchedObject.data("original");
-                __transition(matchedObject, options, timeout);
+                __transition(matchedObject, options, timeout, timing);
                 matchedObject.show();
                 setTimeout(function() {
                     matchedObject.css("opacity", String(original));
@@ -288,12 +288,12 @@
             }
         };
 
-        var __fadeOut = function(matchedObject, options, timeout, useHardware) {
+        var __fadeOut = function(matchedObject, options, timeout, timing, useHardware) {
             var _body = jQuery("body");
             useHardware = useHardware || _body.data("transition-f");
             matchedObject.data("transition", "fadeout");
             if (useHardware) {
-                __transition(matchedObject, options, timeout);
+                __transition(matchedObject, options, timeout, timing);
                 matchedObject.css("opacity", "0");
                 matchedObject.one("transitionend", function() {
                     matchedObject.triggerHandler("after_hide");
@@ -321,8 +321,9 @@
             }, timeout + EXTRA_GC);
         };
 
-        var __transition = function(matchedObject, options, timeout) {
-            var value = "opacity " + String(timeout) + "ms ease-in-out";
+        var __transition = function(matchedObject, options, timeout, timing) {
+            var timing = timing || "ease-in-out";
+            var value = "opacity " + String(timeout) + "ms " + timing;
             matchedObject.css("transition", value);
             matchedObject.css("-o-transition", value);
             matchedObject.css("-ms-transition", value);
