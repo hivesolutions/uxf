@@ -181,7 +181,7 @@
             // verifies if the current window is already visible and
             // if that's the case returns immediately, as there's nothing
             // pending to be performed (as expected)
-            var isVisible = matchedObject.is(":visible");
+            var isVisible = matchedObject.hasClass("visible");
             if (isVisible) {
                 return;
             }
@@ -220,7 +220,8 @@
             // shows the overlay and shows at the same time the
             // current object (window)
             overlay.triggerHandler("show", [250]);
-            matchedObject.fadeIn(250);
+            matchedObject.removeClass("hidden");
+            matchedObject.addClass("visible");
 
             // registers for the click event on the global overlay
             // so that the window hides in such case
@@ -247,7 +248,7 @@
             // verifies if the current window is already invisible and
             // if that's the case returns immediately, as there's nothing
             // pending to be performed (as expected)
-            var isVisible = matchedObject.is(":visible");
+            var isVisible = matchedObject.hasClass("visible");
             if (!isVisible) {
                 return;
             }
@@ -266,7 +267,8 @@
             // hides the overlay and hides at the same time the
             // current object (window)
             overlay.triggerHandler("hide", [250]);
-            matchedObject.fadeOut(250);
+            matchedObject.removeClass("visible");
+            matchedObject.addClass("hidden");
 
             // retrieves the appropriate name for the event to be
             // triggered indicating the state the window has closed,
@@ -315,7 +317,7 @@
             // verfies if the current window is visible and if that's
             // not the case returns immedaitely, avoiding possible extra
             // usage of resources (position operation is expensive)
-            var isVisible = matchedObject.is(":visible");
+            var isVisible = matchedObject.hasClass("visible");
             if (!isVisible) {
                 return;
             }
@@ -566,16 +568,27 @@
         var __ensureModal = function(matchedObject, options) {
             // retrieves the current visible set of windows (only
             // one should be visible at a certain time)
-            var visibleWindow = jQuery(".window:visible");
+            var visibleWindow = jQuery(".window.visible");
             if (visibleWindow.length === 0) {
                 return false;
             }
 
             // hides the current set of windows that are visible and
             // at the end of the hide operation shows the window
-            visibleWindow.fadeOut(150, function() {
+            visibleWindow.removeClass("visible");
+            visibleWindow.addClass("hidden");
+
+            // tries to retrieve the total duration of the animation
+            // for the visible windows (may be zero)
+            var duration = visibleWindow.css("animation-duration");
+            duration = duration ? parseFloat(duration) : 0;
+            duration = duration * 1000;
+
+            // schedules the show of the real window for after the
+            // animation of the window has been completed (as expected)
+            setTimeout(function() {
                 matchedObject.uxwindow("show");
-            });
+            }, duration);
             return true;
         };
 
