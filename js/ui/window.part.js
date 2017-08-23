@@ -279,6 +279,12 @@
             var duration = __duration(matchedObject);
             overlay.triggerHandler("hide", [duration]);
 
+            // schedules an operation that is going to remove the invible
+            // class after the appropriate amount of time (garbage collection)
+            setTimeout(function() {
+                visibleWindow.removeClass("invisible");
+            }, duration);
+
             // retrieves the appropriate name for the event to be
             // triggered indicating the state the window has closed,
             // note that the options map is used for the fallback
@@ -594,6 +600,7 @@
             // schedules the show of the real window for after the
             // animation of the window has been completed (as expected)
             setTimeout(function() {
+                visibleWindow.removeClass("invisible");
                 matchedObject.uxwindow("show");
             }, duration);
             return true;
