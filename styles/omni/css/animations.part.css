@@ -93,3 +93,77 @@
         transform: scale(1);
     }
 }
+
+@-webkit-keyframes fade-shrink {
+    from {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale(0.96);
+    }
+}
+
+@keyframes fade-shrink {
+    from {
+        opacity: 1;
+        transform: scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96);
+    }
+}
+
+@-webkit-keyframes fade-grow-visibility {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0.96);
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        visibility: visible;
+    }
+}
+
+@keyframes fade-grow-visibility {
+    from {
+        opacity: 0;
+        transform: scale(0.96);
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+}
+
+@-webkit-keyframes fade-shrink-visibility {
+    from {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: scale(0.96);
+        visibility: hidden;
+    }
+}
+
+@keyframes fade-shrink-visibility {
+    from {
+        opacity: 1;
+        transform: scale(1);
+        visibility: visible;
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.96);
+        visibility: hidden;
+    }
+}
