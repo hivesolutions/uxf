@@ -19,13 +19,12 @@
     -webkit-animation: fade-grow 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
 }
 
-.omni-style.animations .window.hidden {
+.omni-style.animations .window.invisible {
     animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
-    display: block;
 }
 
 .omni-style .window h1 {
