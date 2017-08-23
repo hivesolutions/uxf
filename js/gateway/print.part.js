@@ -90,11 +90,12 @@
                     },
                     print: function(showDialog, dataBase64) {
                         var jobUrl = printUrl + "nodes/" + printNode + "/";
-                        jobUrl += printPrinter ? "printers/" + printPrinter + "/print" : "print";
+                        jobUrl += printPrinter ? "printers/print" : "print";
                         jQuery.ajax({
                             type: "post",
                             url: jobUrl,
                             data: {
+                                printer: printPrinter,
                                 data_b64: dataBase64,
                                 skey: printKey
                             },
