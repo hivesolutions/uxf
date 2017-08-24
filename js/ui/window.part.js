@@ -194,6 +194,12 @@
                 _element.bind("collect", function() {
                     _collect(_element, options);
                 });
+
+                // registers for the animation end event so that
+                // if required it's possible to collect its garbage
+                _element.bind("animationend", function() {
+                    _collect(_element, options);
+                });
             });
         };
 
@@ -312,13 +318,9 @@
             var timing = __timing(matchedObject);
             overlay.triggerHandler("hide", [duration / 0.75, timing]);
 
-            // schedules an operation that is going to remove the invisible
-            // class after the appropriate amount of time (garbage collection)
-            if (duration) {
-                matchedObject.one("animationend", function() {
-                    _collect(matchedObject, options);
-                });
-            } else {
+            // in case no animation exists (no duration) then runs the
+            // (garbage) collect operation immediately
+            if (!duration) {
                 _collect(matchedObject, options);
             }
 
@@ -367,6 +369,12 @@
         };
 
         var _collect = function(matchedObject, options) {
+            // verifies that the current object is meant to be collected
+            // and if that's not the case returns immediately
+            if (!matchedObject.hasClass("gc")) {
+                return;
+            }
+
             // removes the complete set of classes from the current
             // element so that it's restored to the original state
             matchedObject.removeClass("visible");
@@ -644,13 +652,9 @@
             // for the visible windows (may be zero)
             var duration = __duration(visibleWindow);
 
-            // schedules the operation that is going to remove the
-            // invisible flag from the visible window (garbage collection)
-            if (duration) {
-                visibleWindow.one("animationend", function() {
-                    _collect(visibleWindow, options);
-                });
-            } else {
+            // in case no animation exists (no duration) then runs the
+            // (garbage) collect operation immediately (for the visible window)
+            if (!duration) {
                 _collect(visibleWindow, options);
             }
 

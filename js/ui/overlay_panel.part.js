@@ -107,6 +107,15 @@
                 _collect(element, options);
             });
 
+            // registers for the animation end event so that if
+            // the curernt object is in a invible mode it is gc
+            matchedObject.bind("animationend", function() {
+                // retrieves the current element for the event
+                // and runs the appropriate collect operation
+                var element = jQuery(this);
+                _collect(element, options);
+            });
+
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
@@ -271,13 +280,9 @@
             var timing = __timing(matchedObject);
             overlay.triggerHandler("hide", [duration / 0.75, timing]);
 
-            // schedules an operation that is going to remove the invisible
-            // class after the appropriate amount of time (garbage collection)
-            if (duration) {
-                matchedObject.one("animationend", function() {
-                    _collect(matchedObject, options);
-                });
-            } else {
+            // in case no animation exists (no duration) then runs the
+            // (garbage) collect operation immediately
+            if (!duration) {
                 _collect(matchedObject, options);
             }
 
@@ -287,6 +292,12 @@
         };
 
         var _collect = function(matchedObject, options) {
+            // verifies that the current object is meant to be collected
+            // and if that's not the case returns immediately
+            if (!matchedObject.hasClass("gc")) {
+                return;
+            }
+
             // removes the complete set of classes from the current
             // element so that it's restored to the original state
             matchedObject.removeClass("visible");
