@@ -3,6 +3,8 @@
         "Confirm": "Confirmar",
         "Cancel": "Cancelar",
         "Information": "Informação",
+        "Warning": "Alerta",
+        "Error": "Erro",
         "Loading": "Carregando",
         "January": "Janeiro",
         "February": "Fevereiro",
