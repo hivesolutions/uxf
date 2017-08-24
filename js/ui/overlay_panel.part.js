@@ -217,6 +217,10 @@
         };
 
         var _show = function(matchedObject, options) {
+            // retrieves the reference to the top level body element
+            // that is going to be used for global operations
+            var _body = jQuery("body");
+
             // verifies if the current window is already visible and
             // if that's the case returns immediately, as there's nothing
             // pending to be performed (as expected)
@@ -224,6 +228,10 @@
             if (isVisible) {
                 return;
             }
+
+            // triggers the hide modal event that is going to ensure
+            // that no modal windows are present in the screen
+            _body.triggerHandler("hide_modal");
 
             // retrieves the vertical offset and parses it
             // as a float to be used in the center operation
