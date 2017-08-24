@@ -247,9 +247,12 @@
             // that no modal windows are present in the screen
             _body.triggerHandler("hide_modal");
 
+            // runs the collect operation on the current element to
+            // restore it to a base state (so that it can be used)
+            _collect(matchedObject, options);
+
             // toggles the multiple classes of the object so that
             // it may become visible (as expected)
-            matchedObject.removeClass("invisible");
             matchedObject.addClass("visible");
 
             // tries to retrieve the total duration of the animation
