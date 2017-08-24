@@ -7,6 +7,10 @@
     color: #2d2d2d;
     overflow: auto;
     padding: 20px 20px 20px 20px;
+    transition: filter 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-transition: filter 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-transition: filter 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-transition: filter 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     width: 420px;
     z-index: 30;
 }
@@ -77,6 +81,30 @@
 
 .omni-style .window-buttons > .button-cancel {
     margin-left: 10px;
+}
+
+.omni-style .window.masked > *:not(.window-mask) {
+    filter: blur(1px);
+    -o-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -khtml-filter: blur(1px);
+    -webkit-filter: blur(1px);
+}
+
+.omni-style .window .window-mask {
+    background-color: rgba(128, 128, 128, 0.1);
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.omni-style .window .window-mask > .window-mask-contents {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -khtml-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
 }
 
 .omni-style.dark .window {

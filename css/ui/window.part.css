@@ -25,8 +25,30 @@
 
 .window .window-mask {
     display: none;
+    height: 100%;
     left: 0px;
     position: absolute;
     text-align: center;
     top: 0px;
+    width: 100%;
+}
+
+.window .window-mask.visible {
+    animation: fade-in-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-in-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-in-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-in-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-in-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    display: block;
+    visibility: visible;
+}
+
+.window .window-mask.invisible {
+    animation: fade-out-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-out-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-out-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-out-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-out-visibility 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    display: block;
+    visibility: hidden;
 }
