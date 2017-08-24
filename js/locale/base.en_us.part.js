@@ -57,6 +57,7 @@
         "count": "count",
         "sum": "sum",
         "average": "average",
+        "There was an error retrieving JSON data": "There was an error retrieving JSON data",
         "COUNTRIES": ["Afghanistan", "Albania", "Algeria", "Andorra",
             "Angola", "Antigua & Deps", "Argentina", "Armenia",
             "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain",

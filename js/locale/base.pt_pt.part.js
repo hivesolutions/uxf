@@ -57,6 +57,7 @@
         "count": "contagem",
         "sum": "somatório",
         "average": "média",
+        "There was an error retrieving JSON data": "Occoreu um erro a obter a informação em JSON",
         "COUNTRIES": ["Afeganistão", "Albania", "Argélia", "Andorra",
             "Angola", "Antigua e Dependencias", "Argentina", "Arménia",
             "Austrália", "Austria", "Azerbaijão", "Bahamas", "Bahrein",

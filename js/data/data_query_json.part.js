@@ -233,7 +233,7 @@
                         // shows an info window about the problem retrieving
                         // the data from the remote data source
                         _body.uxinfo(
-                            "There was an error retrieving json data",
+                            "There was an error retrieving JSON data",
                             "Warning", "warning");
 
                         // calls the callback with the failure values
