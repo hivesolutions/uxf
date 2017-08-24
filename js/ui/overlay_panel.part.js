@@ -56,8 +56,10 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the window
+            // retrieves the reference to both the window
+            // and the body global elements
             var _window = jQuery(window);
+            var _body = jQuery("body");
 
             // tries to retrieve the global overlay element in case it
             // does not exists creates a new element and then appends it
@@ -117,6 +119,7 @@
             });
 
             // iterates over all the elements in the matched object
+            // so that one on one events may be registered
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
                 var _element = jQuery(element);
@@ -169,6 +172,14 @@
                     // centers the current element with the
                     // current vertical offset in percentage
                     _element.uxcenter(offsetFloat);
+                });
+
+                // registers for the global hide modal event
+                // so that the overlay panel is properly hidden
+                _body.bind("hide_modal", function() {
+                    // runs the hide operation for the current
+                    // overlay panel under a clojure
+                    _hide(_element, options);
                 });
 
                 // registers for the (pre) hide event in the overlay
