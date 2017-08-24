@@ -6,6 +6,14 @@
     -webkit-animation: fade-grow 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
 }
 
+.omni-style.animations .overlay-panel.invisible {
+    animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -o-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -moz-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -webkit-animation: fade-shrink-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+}
+
 .omni-style .overlay-panel.overlay-search {
     background-color: #f6f6f6;
     border: 1px solid #666666;

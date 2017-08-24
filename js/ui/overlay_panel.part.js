@@ -125,7 +125,7 @@
                 // in the global scope
                 !keyIsNaN && jQuery.uxctrl(keyInteger, function() {
                     // checks if the element is visible
-                    var elementVisible = _element.is(":visible");
+                    var elementVisible = _element.hasClass("visible");
 
                     // in case the element is visible, must hide hide
                     // in order to toggel visibility
@@ -159,7 +159,7 @@
                     // checks if the element is visible and in case
                     // the element is not visible returns immediately,
                     // nothing pending to be done
-                    var elementVisible = _element.is(":visible");
+                    var elementVisible = _element.hasClass("visible");
                     if (!elementVisible) {
                         return;
                     }
@@ -175,7 +175,7 @@
                     // checks if the element is visible and in case
                     // the element is not visible returns immediately,
                     // nothing pending to be done
-                    var elementVisible = _element.is(":visible");
+                    var elementVisible = _element.hasClass("visible");
                     if (!elementVisible) {
                         return;
                     }
@@ -188,11 +188,11 @@
         };
 
         var _show = function(matchedObject, options) {
-            // verifies if the current object is visible and if
-            // that's already the case returns immediately
-            var visible = matchedObject.data("visible") || false;
-            matchedObject.data("visible", true);
-            if (visible) {
+            // verifies if the current window is already visible and
+            // if that's the case returns immediately, as there's nothing
+            // pending to be performed (as expected)
+            var isVisible = matchedObject.hasClass("visible");
+            if (isVisible) {
                 return;
             }
 
@@ -215,12 +215,17 @@
             // for situations where theres an offscreen resize
             matchedObject.uxcenter(offsetFloat);
 
-            // shows the overlay using a fade in approach so that the
-            // effect is as smoth as possible and then applies the same
-            // fadding effect to the overlay panel, as both the panel
-            // and the overlay are going to be shown at the same time
-            overlay.triggerHandler("show", [100]);
-            matchedObject.fadeIn(100);
+            // toggles the multiple classes of the object so that
+            // it may become visible (as expected)
+            matchedObject.removeClass("invisible");
+            matchedObject.addClass("visible");
+
+            // tries to retrieve the total duration of the animation
+            // for the matched overlay (may be zero), and uses the value
+            // in the hide operation of the overlay
+            var duration = __duration(matchedObject);
+            var timing = __timing(matchedObject);
+            overlay.triggerHandler("show", [duration / 1.25, null, null, timing]);
 
             // focus in the text field as this is the default behaviour
             // to be executed uppon showing the overlay panel, note that
@@ -233,25 +238,54 @@
         };
 
         var _hide = function(matchedObject, options) {
-            // verifies if the current object is not visible and if
-            // that's already the case returns immediately
-            var visible = matchedObject.data("visible") || false;
-            matchedObject.data("visible", false);
-            if (!visible) {
+            // verifies if the current window is already invisible and
+            // if that's the case returns immediately, as there's nothing
+            // pending to be performed (as expected)
+            var isVisible = matchedObject.hasClass("visible");
+            if (!isVisible) {
                 return;
             }
 
             // retrieves the overlay element
             var overlay = jQuery(".overlay:first");
 
-            // hides both the global overlay and the current overlay panel
-            // at the same time and using a smoth based effect
-            overlay.triggerHandler("hide", [200]);
-            matchedObject.fadeOut(200);
+            // toggles the multiple classes of the object so that
+            // it may become invisible (as expected)
+            matchedObject.removeClass("visible");
+            matchedObject.addClass("invisible");
+
+            // tries to retrieve the total duration of the animation
+            // for the matched window (may be zero), and uses the value
+            // in the hide operation of the overlay
+            var duration = __duration(matchedObject);
+            var timing = __timing(matchedObject);
+            overlay.triggerHandler("hide", [duration / 0.75, timing]);
+
+            // schedules an operation that is going to remove the invisible
+            // class after the appropriate amount of time (garbage collection)
+            setTimeout(function() {
+                matchedObject.removeClass("invisible");
+            }, duration);
 
             // triggers the hidden event indicating that the overlay panel
             // has just finished being hidden as expected by the specification
             matchedObject.triggerHandler("hidden");
+        };
+
+        var __duration = function(element) {
+            // computes the duration in milliseconds extracting it
+            // from the associated css property
+            var duration = element.css("animation-duration");
+            duration = duration ? parseFloat(duration) : 0;
+            duration = duration * 1000;
+            return duration;
+        };
+
+        var __timing = function(element) {
+            // computes the timing function for  animation extracting it
+            // from the associated css property
+            var timing = element.css("animation-timing-function");
+            return timing;
         };
 
         // initializes the plugin

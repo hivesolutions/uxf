@@ -227,7 +227,7 @@
             // in the hide operation of the overlay
             var duration = __duration(matchedObject);
             var timing = __timing(matchedObject);
-            overlay.triggerHandler("show", [duration, null, null, timing]);
+            overlay.triggerHandler("show", [duration / 1.25, null, null, timing]);
 
             // registers for the click event on the global overlay
             // so that the window hides in such case
@@ -271,6 +271,7 @@
             __unregisterKey(matchedObject, options);
 
             // toggles the multiple classes of the object so that
+            // it may become invisible (as expected)
             matchedObject.removeClass("visible");
             matchedObject.addClass("invisible");
 
@@ -279,9 +280,9 @@
             // in the hide operation of the overlay
             var duration = __duration(matchedObject);
             var timing = __timing(matchedObject);
-            overlay.triggerHandler("hide", [duration, timing]);
+            overlay.triggerHandler("hide", [duration / 0.75, timing]);
 
-            // schedules an operation that is going to remove the invible
+            // schedules an operation that is going to remove the invisible
             // class after the appropriate amount of time (garbage collection)
             setTimeout(function() {
                 matchedObject.removeClass("invisible");
