@@ -98,6 +98,15 @@
                 _hide(element, options);
             });
 
+            // registers for the collect event and if it's
+            // triggered the collect operation should run
+            matchedObject.bind("collect", function() {
+                // retrieves the current element for the event
+                // and runs the appropriate collect operation
+                var element = jQuery(this);
+                _collect(element, options);
+            });
+
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
@@ -253,6 +262,7 @@
             // it may become invisible (as expected)
             matchedObject.removeClass("visible");
             matchedObject.addClass("invisible");
+            matchedObject.addClass("gc");
 
             // tries to retrieve the total duration of the animation
             // for the matched window (may be zero), and uses the value
@@ -263,13 +273,25 @@
 
             // schedules an operation that is going to remove the invisible
             // class after the appropriate amount of time (garbage collection)
-            setTimeout(function() {
-                matchedObject.removeClass("invisible");
-            }, duration);
+            if (duration) {
+                matchedObject.one("animationend", function() {
+                    _collect(matchedObject, options);
+                });
+            } else {
+                _collect(matchedObject, options);
+            }
 
             // triggers the hidden event indicating that the overlay panel
             // has just finished being hidden as expected by the specification
             matchedObject.triggerHandler("hidden");
+        };
+
+        var _collect = function(matchedObject, options) {
+            // removes the complete set of classes from the current
+            // element so that it's restored to the original state
+            matchedObject.removeClass("visible");
+            matchedObject.removeClass("invisible");
+            matchedObject.removeClass("gc");
         };
 
         var __duration = function(element) {

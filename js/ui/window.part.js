@@ -158,6 +158,20 @@
                     _hide(_element, options, false);
                 });
 
+                // registers for the show operation on the current
+                // window, this is considered to be an explicit
+                // reques to show it as soon as possible
+                _element.bind("show", function() {
+                    _show(_element, options);
+                });
+
+                // registers for the hide operation on the current
+                // window, this is considered to be an explicit
+                // reques to hide it as soon as possible
+                _element.bind("hide", function() {
+                    _hide(_element, options);
+                });
+
                 // registers the changing of contents in
                 // the internal structure of the window
                 _element.bind("layout", function() {
@@ -174,6 +188,12 @@
                     // for the new added elements
                     _registerButtons(_element, options);
                 });
+
+                // registers for the (garbage) collect event so that
+                // if required it's possible to collect its garbage
+                _element.bind("collect", function() {
+                    _collect(_element, options);
+                });
             });
         };
 
@@ -185,6 +205,10 @@
             if (isVisible) {
                 return;
             }
+
+            // triggers the pre show handler so that any handler
+            // may be notified about the visibility change
+            matchedObject.triggerHandler("pre_show");
 
             // retrieves the reference to the top level body element
             // that is going to be used for global operations
@@ -247,7 +271,8 @@
 
             // triggers the show handler so that any handler
             // may be notified about the visibility change
-            matchedObject.triggerHandler("show");
+            matchedObject.triggerHandler("post_show");
+            matchedObject.triggerHandler("shown");
         };
 
         var _hide = function(matchedObject, options, success) {
@@ -258,6 +283,10 @@
             if (!isVisible) {
                 return;
             }
+
+            // triggers the pre hide handler so that any handler
+            // may be notified about the visibility change
+            matchedObject.triggerHandler("pre_hide");
 
             // retrieves the overlay element
             var overlay = jQuery(".overlay:first");
@@ -274,6 +303,7 @@
             // it may become invisible (as expected)
             matchedObject.removeClass("visible");
             matchedObject.addClass("invisible");
+            matchedObject.addClass("gc");
 
             // tries to retrieve the total duration of the animation
             // for the matched window (may be zero), and uses the value
@@ -284,9 +314,13 @@
 
             // schedules an operation that is going to remove the invisible
             // class after the appropriate amount of time (garbage collection)
-            setTimeout(function() {
-                matchedObject.removeClass("invisible");
-            }, duration);
+            if (duration) {
+                matchedObject.one("animationend", function() {
+                    _collect(matchedObject, options);
+                });
+            } else {
+                _collect(matchedObject, options);
+            }
 
             // retrieves the appropriate name for the event to be
             // triggered indicating the state the window has closed,
@@ -296,7 +330,8 @@
 
             // triggers the hide handler so that any handler
             // may be notified about the visibility change
-            matchedObject.triggerHandler("hide");
+            matchedObject.triggerHandler("post_hide");
+            matchedObject.triggerHandler("hidden");
             matchedObject.triggerHandler(name);
         };
 
@@ -329,6 +364,14 @@
 
             // hides the window mask
             mask.fadeOut(250);
+        };
+
+        var _collect = function(matchedObject, options) {
+            // removes the complete set of classes from the current
+            // element so that it's restored to the original state
+            matchedObject.removeClass("visible");
+            matchedObject.removeClass("invisible");
+            matchedObject.removeClass("gc");
         };
 
         var _positionWindow = function(matchedObject, options, noLimit) {
@@ -595,15 +638,25 @@
             // at the end of the hide operation shows the window
             visibleWindow.removeClass("visible");
             visibleWindow.addClass("invisible");
+            visibleWindow.addClass("gc");
 
             // tries to retrieve the total duration of the animation
             // for the visible windows (may be zero)
             var duration = __duration(visibleWindow);
 
+            // schedules the operation that is going to remove the
+            // invisible flag from the visible window (garbage collection)
+            if (duration) {
+                visibleWindow.one("animationend", function() {
+                    _collect(visibleWindow, options);
+                });
+            } else {
+                _collect(visibleWindow, options);
+            }
+
             // schedules the show of the real window for after the
             // animation of the window has been completed (as expected)
             setTimeout(function() {
-                visibleWindow.removeClass("invisible");
                 matchedObject.uxwindow("show");
             }, duration);
             return true;
@@ -651,6 +704,13 @@
             case "hide_mask":
                 // hide the mask in the matched object
                 _hideMask(matchedObject, options);
+
+                // breaks the switch
+                break;
+
+            case "collect":
+                // runs the (garbage) collection operation
+                _collect(matchedObject, options);
 
                 // breaks the switch
                 break;
