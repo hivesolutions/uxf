@@ -1,9 +1,17 @@
 .ulite-style .radio-field {
+    appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
     -webkit-appearance: none;
     background: white url(../images/radio-field.png) no-repeat 0px 0px;
     border: 1px solid #bbbbbb;
     border-radius: 16px 16px 16px 16px;
+    -o-border-radius: 16px 16px 16px 16px;
+    -ms-border-radius: 16px 16px 16px 16px;
     -moz-border-radius: 16px 16px 16px 16px;
+    -khtml-border-radius: 16px 16px 16px 16px;
     -webkit-border-radius: 16px 16px 16px 16px;
     cursor: pointer;
     height: 17px;
@@ -26,6 +34,11 @@
 
 .ulite-style .radio-field:focus {
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .ulite-style .radio-field-label {

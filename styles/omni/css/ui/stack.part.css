@@ -1,7 +1,9 @@
 .omni-style .stack > .stack-in {
     transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -ms-transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -khtml-transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-transition: left 0.35s cubic-bezier(0.645, 0.045, 0.355, 1.0);
 }
 

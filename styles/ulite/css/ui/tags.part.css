@@ -19,4 +19,9 @@
 
 .ulite-style .tag.lower {
     opacity: 0.75;
+    -o-opacity: 0.75;
+    -ms-opacity: 0.75;
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    -webkit-opacity: 0.75;
 }

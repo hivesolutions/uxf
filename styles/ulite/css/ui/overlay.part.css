@@ -1,5 +1,10 @@
 .ulite-style .overlay {
     background-color: #000000;
     opacity: 0.5;
+    -o-opacity: 0.5;
+    -ms-opacity: 0.5;
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    -webkit-opacity: 0.5;
     z-index: 10;
 }

@@ -1,10 +1,20 @@
 @-webkit-keyframes fade-in-visibility {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         visibility: hidden;
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         visibility: visible;
     }
 }
@@ -12,10 +22,20 @@
 @keyframes fade-in-visibility {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         visibility: hidden;
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         visibility: visible;
     }
 }
@@ -23,10 +43,20 @@
 @-webkit-keyframes fade-out-visibility {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         visibility: visible;
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         visibility: hidden;
     }
 }
@@ -34,10 +64,20 @@
 @keyframes fade-out-visibility {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         visibility: visible;
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         visibility: hidden;
     }
 }

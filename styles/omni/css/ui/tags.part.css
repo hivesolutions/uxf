@@ -36,16 +36,27 @@
 
 .omni-style .tag.inset {
     box-shadow: inset 0px 0px 3px #666666;
+    -o-box-shadow: inset 0px 0px 3px #666666;
+    -ms-box-shadow: inset 0px 0px 3px #666666;
     -moz-box-shadow: inset 0px 0px 3px #666666;
+    -khtml-box-shadow: inset 0px 0px 3px #666666;
     -webkit-box-shadow: inset 0px 0px 3px #666666;
 }
 
 .omni-style .tag.lower {
     opacity: 0.75;
+    -o-opacity: 0.75;
+    -ms-opacity: 0.75;
+    -moz-opacity: 0.75;
+    -khtml-opacity: 0.75;
+    -webkit-opacity: 0.75;
 }
 
 .omni-style.round .tag {
     border-radius: 12px 12px 12px 12px;
+    -o-border-radius: 12px 12px 12px 12px;
+    -ms-border-radius: 12px 12px 12px 12px;
     -moz-border-radius: 12px 12px 12px 12px;
+    -khtml-border-radius: 12px 12px 12px 12px;
     -webkit-border-radius: 12px 12px 12px 12px;
 }

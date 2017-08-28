@@ -3,7 +3,10 @@
     background-position: right center;
     background-repeat: no-repeat;
     box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
     -moz-box-shadow: none;
+    -khtml-box-shadow: none;
     -webkit-box-shadow: none;
     height: 26px;
     padding-right: 28px;

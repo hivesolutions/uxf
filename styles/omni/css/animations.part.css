@@ -31,10 +31,30 @@
 @-webkit-keyframes fade-into-drop {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: translateY(-6px);
+        -o-transform: translateY(-6px);
+        -ms-transform: translateY(-6px);
+        -moz-transform: translateY(-6px);
+        -khtml-transform: translateY(-6px);
         -webkit-transform: translateY(-6px);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: translateY(0px);
+        -o-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -khtml-transform: translateY(0px);
         -webkit-transform: translateY(0px);
     }
 }
@@ -42,21 +62,61 @@
 @keyframes fade-into-drop {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: translateY(-6px);
+        -o-transform: translateY(-6px);
+        -ms-transform: translateY(-6px);
+        -moz-transform: translateY(-6px);
+        -khtml-transform: translateY(-6px);
+        -webkit-transform: translateY(-6px);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: translateY(0px);
+        -o-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -khtml-transform: translateY(0px);
+        -webkit-transform: translateY(0px);
     }
 }
 
 @-webkit-keyframes fade-into-rise {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: translateY(6px);
+        -o-transform: translateY(6px);
+        -ms-transform: translateY(6px);
+        -moz-transform: translateY(6px);
+        -khtml-transform: translateY(6px);
         -webkit-transform: translateY(6px);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: translateY(0px);
+        -o-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -khtml-transform: translateY(0px);
         -webkit-transform: translateY(0px);
     }
 }
@@ -64,21 +124,61 @@
 @keyframes fade-into-rise {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: translateY(6px);
+        -o-transform: translateY(6px);
+        -ms-transform: translateY(6px);
+        -moz-transform: translateY(6px);
+        -khtml-transform: translateY(6px);
+        -webkit-transform: translateY(6px);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: translateY(0px);
+        -o-transform: translateY(0px);
+        -ms-transform: translateY(0px);
+        -moz-transform: translateY(0px);
+        -khtml-transform: translateY(0px);
+        -webkit-transform: translateY(0px);
     }
 }
 
 @-webkit-keyframes fade-grow {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
         -webkit-transform: scale(0.96);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
         -webkit-transform: scale(1);
     }
 }
@@ -86,21 +186,61 @@
 @keyframes fade-grow {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
+        -webkit-transform: scale(0.96);
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
+        -webkit-transform: scale(1);
     }
 }
 
 @-webkit-keyframes fade-shrink {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
         -webkit-transform: scale(1);
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
         -webkit-transform: scale(0.96);
     }
 }
@@ -108,22 +248,62 @@
 @keyframes fade-shrink {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
+        -webkit-transform: scale(1);
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
+        -webkit-transform: scale(0.96);
     }
 }
 
 @-webkit-keyframes fade-grow-visibility {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
         -webkit-transform: scale(0.96);
         visibility: hidden;
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
         -webkit-transform: scale(1);
         visibility: visible;
     }
@@ -132,12 +312,32 @@
 @keyframes fade-grow-visibility {
     from {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
+        -webkit-transform: scale(0.96);
         visibility: hidden;
     }
     to {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
+        -webkit-transform: scale(1);
         visibility: visible;
     }
 }
@@ -145,11 +345,31 @@
 @-webkit-keyframes fade-shrink-visibility {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
+        transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
         -webkit-transform: scale(1);
         visibility: visible;
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
+        transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
         -webkit-transform: scale(0.96);
         visibility: hidden;
     }
@@ -158,12 +378,32 @@
 @keyframes fade-shrink-visibility {
     from {
         opacity: 1;
+        -o-opacity: 1;
+        -ms-opacity: 1;
+        -moz-opacity: 1;
+        -khtml-opacity: 1;
+        -webkit-opacity: 1;
         transform: scale(1);
+        -o-transform: scale(1);
+        -ms-transform: scale(1);
+        -moz-transform: scale(1);
+        -khtml-transform: scale(1);
+        -webkit-transform: scale(1);
         visibility: visible;
     }
     to {
         opacity: 0;
+        -o-opacity: 0;
+        -ms-opacity: 0;
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        -webkit-opacity: 0;
         transform: scale(0.96);
+        -o-transform: scale(0.96);
+        -ms-transform: scale(0.96);
+        -moz-transform: scale(0.96);
+        -khtml-transform: scale(0.96);
+        -webkit-transform: scale(0.96);
         visibility: hidden;
     }
 }

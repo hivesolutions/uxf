@@ -81,7 +81,10 @@
 
 .omni-style .stats-panel .chart .bar-container .bar {
     box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
     -moz-box-shadow: none;
+    -khtml-box-shadow: none;
     -webkit-box-shadow: none;
     height: 2px;
     margin: 0px 0px 0px 0px;

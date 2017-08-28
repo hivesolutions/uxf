@@ -7,6 +7,11 @@
     line-height: 36px;
     padding: 0px 18px 0px 18px;
     text-shadow: 0px -1px 0px #4a7b38;
+    -o-text-shadow: 0px -1px 0px #4a7b38;
+    -ms-text-shadow: 0px -1px 0px #4a7b38;
+    -moz-text-shadow: 0px -1px 0px #4a7b38;
+    -khtml-text-shadow: 0px -1px 0px #4a7b38;
+    -webkit-text-shadow: 0px -1px 0px #4a7b38;
 }
 
 .omni-style.retina-s .button.button-solid,
@@ -31,6 +36,11 @@
 .omni-style .button.button-green.disabled {
     background-position: left top;
     opacity: 0.6;
+    -o-opacity: 0.6;
+    -ms-opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-opacity: 0.6;
 }
 
 .omni-style .button.button-blue {
@@ -41,6 +51,11 @@
     line-height: 36px;
     padding: 0px 18px 0px 18px;
     text-shadow: 0px -1px 0px #3a5070;
+    -o-text-shadow: 0px -1px 0px #3a5070;
+    -ms-text-shadow: 0px -1px 0px #3a5070;
+    -moz-text-shadow: 0px -1px 0px #3a5070;
+    -khtml-text-shadow: 0px -1px 0px #3a5070;
+    -webkit-text-shadow: 0px -1px 0px #3a5070;
 }
 
 .omni-style.retina-s .button.button-blue {
@@ -60,6 +75,11 @@
 .omni-style .button.button-blue.disabled {
     background-position: left top;
     opacity: 0.6;
+    -o-opacity: 0.6;
+    -ms-opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-opacity: 0.6;
 }
 
 .omni-style .button.button-red {
@@ -70,6 +90,11 @@
     line-height: 36px;
     padding: 0px 18px 0px 18px;
     text-shadow: 0px -1px 0px #9e4651;
+    -o-text-shadow: 0px -1px 0px #9e4651;
+    -ms-text-shadow: 0px -1px 0px #9e4651;
+    -moz-text-shadow: 0px -1px 0px #9e4651;
+    -khtml-text-shadow: 0px -1px 0px #9e4651;
+    -webkit-text-shadow: 0px -1px 0px #9e4651;
 }
 
 .omni-style.retina-s .button.button-blue {
@@ -89,6 +114,11 @@
 .omni-style .button.button-red.disabled {
     background-position: left top;
     opacity: 0.6;
+    -o-opacity: 0.6;
+    -ms-opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-opacity: 0.6;
 }
 
 .omni-style .button.button-grey {
@@ -99,6 +129,11 @@
     line-height: 36px;
     padding: 0px 18px 0px 18px;
     text-shadow: 0px -1px 0px #999999;
+    -o-text-shadow: 0px -1px 0px #999999;
+    -ms-text-shadow: 0px -1px 0px #999999;
+    -moz-text-shadow: 0px -1px 0px #999999;
+    -khtml-text-shadow: 0px -1px 0px #999999;
+    -webkit-text-shadow: 0px -1px 0px #999999;
 }
 
 .omni-style.retina-s .button.button-grey {
@@ -118,6 +153,11 @@
 .omni-style .button.button-grey.disabled {
     background-position: left top;
     opacity: 0.6;
+    -o-opacity: 0.6;
+    -ms-opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-opacity: 0.6;
 }
 
 .omni-style .button.large {
@@ -134,6 +174,11 @@
     padding: 0px 0px 0px 0px;
     text-align: center;
     text-shadow: -1px -1px 0px #999999;
+    -o-text-shadow: -1px -1px 0px #999999;
+    -ms-text-shadow: -1px -1px 0px #999999;
+    -moz-text-shadow: -1px -1px 0px #999999;
+    -khtml-text-shadow: -1px -1px 0px #999999;
+    -webkit-text-shadow: -1px -1px 0px #999999;
     width: 120px;
 }
 
@@ -158,6 +203,11 @@
     background-position: 0px -144px;
     cursor: default;
     opacity: 0.5;
+    -o-opacity: 0.5;
+    -ms-opacity: 0.5;
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    -webkit-opacity: 0.5;
 }
 
 .omni-style .button.large .button-icon {
@@ -168,6 +218,11 @@
     background-image: url(../images/button-large-red.png);
     border-color: #be5463;
     text-shadow: -1px -1px 0px #9e4651;
+    -o-text-shadow: -1px -1px 0px #9e4651;
+    -ms-text-shadow: -1px -1px 0px #9e4651;
+    -moz-text-shadow: -1px -1px 0px #9e4651;
+    -khtml-text-shadow: -1px -1px 0px #9e4651;
+    -webkit-text-shadow: -1px -1px 0px #9e4651;
 }
 
 .omni-style.retina-s .button.large.button-red {
@@ -178,6 +233,11 @@
     background-image: url(../images/button-large-green.png);
     border-color: #598543;
     text-shadow: -1px -1px 0px #4a7b38;
+    -o-text-shadow: -1px -1px 0px #4a7b38;
+    -ms-text-shadow: -1px -1px 0px #4a7b38;
+    -moz-text-shadow: -1px -1px 0px #4a7b38;
+    -khtml-text-shadow: -1px -1px 0px #4a7b38;
+    -webkit-text-shadow: -1px -1px 0px #4a7b38;
 }
 
 .omni-style.retina-s .button.large.button-green {
@@ -188,6 +248,11 @@
     background-image: url(../images/button-large-orange.png);
     border-color: #d98a23;
     text-shadow: -1px -1px 0px #bf8100;
+    -o-text-shadow: -1px -1px 0px #bf8100;
+    -ms-text-shadow: -1px -1px 0px #bf8100;
+    -moz-text-shadow: -1px -1px 0px #bf8100;
+    -khtml-text-shadow: -1px -1px 0px #bf8100;
+    -webkit-text-shadow: -1px -1px 0px #bf8100;
 }
 
 .omni-style.retina-s .button.large.button-orange {
@@ -198,6 +263,11 @@
     background-image: url(../images/button-large-yellow.png);
     border-color: #baaa57;
     text-shadow: -1px -1px 0px #b99200;
+    -o-text-shadow: -1px -1px 0px #b99200;
+    -ms-text-shadow: -1px -1px 0px #b99200;
+    -moz-text-shadow: -1px -1px 0px #b99200;
+    -khtml-text-shadow: -1px -1px 0px #b99200;
+    -webkit-text-shadow: -1px -1px 0px #b99200;
 }
 
 .omni-style.retina-s .button.large.button-yellow {
@@ -208,6 +278,11 @@
     background-image: url(../images/button-large-grey.png);
     border-color: #999999;
     text-shadow: -1px -1px 0px #999999;
+    -o-text-shadow: -1px -1px 0px #999999;
+    -ms-text-shadow: -1px -1px 0px #999999;
+    -moz-text-shadow: -1px -1px 0px #999999;
+    -khtml-text-shadow: -1px -1px 0px #999999;
+    -webkit-text-shadow: -1px -1px 0px #999999;
 }
 
 .omni-style.retina-s .button.large.button-grey {
@@ -242,6 +317,11 @@
     padding: 0px 0px 0px 0px;
     text-align: center;
     text-shadow: none;
+    -o-text-shadow: none;
+    -ms-text-shadow: none;
+    -moz-text-shadow: none;
+    -khtml-text-shadow: none;
+    -webkit-text-shadow: none;
     text-transform: uppercase;
     width: 86px;
 }
@@ -263,6 +343,11 @@
     background-position: 0px 0px;
     cursor: default;
     opacity: 0.5;
+    -o-opacity: 0.5;
+    -ms-opacity: 0.5;
+    -moz-opacity: 0.5;
+    -khtml-opacity: 0.5;
+    -webkit-opacity: 0.5;
 }
 
 .omni-style .button.small.button-grey {
@@ -284,6 +369,11 @@
     margin-top: 12px;
     text-align: center;
     text-shadow: 0px 1px 0px #ffffff;
+    -o-text-shadow: 0px 1px 0px #ffffff;
+    -ms-text-shadow: 0px 1px 0px #ffffff;
+    -moz-text-shadow: 0px 1px 0px #ffffff;
+    -khtml-text-shadow: 0px 1px 0px #ffffff;
+    -webkit-text-shadow: 0px 1px 0px #ffffff;
     width: 100%;
 }
 
@@ -294,7 +384,10 @@
 
 .omni-style .button.button-more:hover {
     box-shadow: 0px 0px 4px #cccccc;
+    -o-box-shadow: 0px 0px 4px #cccccc;
+    -ms-box-shadow: 0px 0px 4px #cccccc;
     -moz-box-shadow: 0px 0px 4px #cccccc;
+    -khtml-box-shadow: 0px 0px 4px #cccccc;
     -webkit-box-shadow: 0px 0px 4px #cccccc;
 }
 
@@ -325,6 +418,9 @@
 
 .omni-style.round .button.button-more {
     border-radius: 6px 6px 6px 6px;
+    -o-border-radius: 6px 6px 6px 6px;
+    -ms-border-radius: 6px 6px 6px 6px;
     -moz-border-radius: 6px 6px 6px 6px;
+    -khtml-border-radius: 6px 6px 6px 6px;
     -webkit-border-radius: 6px 6px 6px 6px;
 }

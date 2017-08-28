@@ -1,9 +1,17 @@
 .omni-style .radio-field {
+    appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
     -webkit-appearance: none;
     background: #ffffff url(../images/radio-field.png) no-repeat 0px 0px;
     border: 1px solid #bbbbbb;
     border-radius: 3px 3px 3px 3px;
+    -o-border-radius: 3px 3px 3px 3px;
+    -ms-border-radius: 3px 3px 3px 3px;
     -moz-border-radius: 3px 3px 3px 3px;
+    -khtml-border-radius: 3px 3px 3px 3px;
     -webkit-border-radius: 3px 3px 3px 3px;
     color: #818285;
     cursor: pointer;
@@ -32,6 +40,11 @@
 
 .omni-style .radio-field:focus {
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .omni-style.explorer .radio-field {

@@ -1,3 +1,8 @@
 .transform-container {
+    perspective: 1000;
+    -o-perspective: 1000;
+    -ms-perspective: 1000;
+    -moz-perspective: 1000;
+    -khtml-perspective: 1000;
     -webkit-perspective: 1000;
 }

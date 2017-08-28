@@ -15,7 +15,10 @@
 .omni-style .chart .bar {
     background-color: #4d4d4d;
     box-shadow: 2px 2px 2px #e0e0e0;
+    -o-box-shadow: 2px 2px 2px #e0e0e0;
+    -ms-box-shadow: 2px 2px 2px #e0e0e0;
     -moz-box-shadow: 2px 2px 2px #e0e0e0;
+    -khtml-box-shadow: 2px 2px 2px #e0e0e0;
     -webkit-box-shadow: 2px 2px 2px #e0e0e0;
     color: #fefefe;
     float: left;
@@ -48,7 +51,10 @@
 .omni-style .chart .bar-transparent {
     background-color: transparent;
     box-shadow: none;
+    -o-box-shadow: none;
+    -ms-box-shadow: none;
     -moz-box-shadow: none;
+    -khtml-box-shadow: none;
     -webkit-box-shadow: none;
     color: #4d4d4d;
     margin-left: 6px;

@@ -1,6 +1,7 @@
 .overlay-panel {
     animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -ms-animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-in-visibility 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
@@ -15,6 +16,7 @@
 .overlay-panel.invisible {
     animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -ms-animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-out-visibility 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);

@@ -1,6 +1,11 @@
 .ulite-style .link {
     color: #4d4d4d;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
     text-decoration: none;
     text-transform: uppercase;
 }

@@ -2,7 +2,10 @@
     background: #3668c6 url(../images/banner-blue.png) repeat-x center center;
     border-bottom: 1px solid #203e76;
     box-shadow: 0px 1px 4px #eeeeee;
+    -o-box-shadow: 0px 1px 4px #eeeeee;
+    -ms-box-shadow: 0px 1px 4px #eeeeee;
     -moz-box-shadow: 0px 1px 4px #eeeeee;
+    -khtml-box-shadow: 0px 1px 4px #eeeeee;
     -webkit-box-shadow: 0px 1px 4px #eeeeee;
     font-size: 14px;
     height: 52px;
@@ -58,4 +61,9 @@
     font-weight: bold;
     text-align: center;
     text-shadow: 0px 1px 0px #444444;
+    -o-text-shadow: 0px 1px 0px #444444;
+    -ms-text-shadow: 0px 1px 0px #444444;
+    -moz-text-shadow: 0px 1px 0px #444444;
+    -khtml-text-shadow: 0px 1px 0px #444444;
+    -webkit-text-shadow: 0px 1px 0px #444444;
 }

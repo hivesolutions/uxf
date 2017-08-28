@@ -22,22 +22,47 @@
 
 .omni-style .button-group .button > .button-icon {
     opacity: 0.7;
+    -o-opacity: 0.7;
+    -ms-opacity: 0.7;
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    -webkit-opacity: 0.7;
 }
 
 .omni-style .button-group .button:hover > .button-icon {
     opacity: 1.0;
+    -o-opacity: 1.0;
+    -ms-opacity: 1.0;
+    -moz-opacity: 1.0;
+    -khtml-opacity: 1.0;
+    -webkit-opacity: 1.0;
 }
 
 .omni-style .button-group .button.selected > .button-icon {
     opacity: 1.0;
+    -o-opacity: 1.0;
+    -ms-opacity: 1.0;
+    -moz-opacity: 1.0;
+    -khtml-opacity: 1.0;
+    -webkit-opacity: 1.0;
 }
 
 .omni-style .button-group .button.disabled:hover > .button-icon {
     opacity: 0.7;
+    -o-opacity: 0.7;
+    -ms-opacity: 0.7;
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    -webkit-opacity: 0.7;
 }
 
 .omni-style .button-group .button.disabled.selected > .button-icon {
     opacity: 0.7;
+    -o-opacity: 0.7;
+    -ms-opacity: 0.7;
+    -moz-opacity: 0.7;
+    -khtml-opacity: 0.7;
+    -webkit-opacity: 0.7;
 }
 
 .omni-style .button-group .button:first-child {

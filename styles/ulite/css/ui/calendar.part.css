@@ -2,12 +2,16 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     box-shadow: 0px 1px 4px #eeeeee;
+    -o-box-shadow: 0px 1px 4px #eeeeee;
+    -ms-box-shadow: 0px 1px 4px #eeeeee;
     -moz-box-shadow: 0px 1px 4px #eeeeee;
+    -khtml-box-shadow: 0px 1px 4px #eeeeee;
     -webkit-box-shadow: 0px 1px 4px #eeeeee;
     display: inline-block;
     font-size: 12px;
     user-select: none;
     -o-user-select: none;
+    -ms-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -32,12 +36,22 @@
     cursor: pointer;
     height: 8px;
     opacity: 0.6;
+    -o-opacity: 0.6;
+    -ms-opacity: 0.6;
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    -webkit-opacity: 0.6;
     padding: 14px 14px 14px 14px;
     width: 6px;
 }
 
 .ulite-style .calendar-header .calendar-arrow:hover {
     opacity: 1;
+    -o-opacity: 1;
+    -ms-opacity: 1;
+    -moz-opacity: 1;
+    -khtml-opacity: 1;
+    -webkit-opacity: 1;
 }
 
 .ulite-style .calendar-header .calendar-arrow-left {

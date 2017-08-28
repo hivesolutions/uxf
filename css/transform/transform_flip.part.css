@@ -1,13 +1,28 @@
 .transform-flip {
+    transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -khtml-transform-style: preserve-3d;
     -webkit-transform-style: preserve-3d;
 }
 
 .transform-face {
+    backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -khtml-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     position: absolute;
 }
 
 .transform-face-relative {
+    backface-visibility: hidden;
+    -o-backface-visibility: hidden;
+    -ms-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -khtml-backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     position: relative;
 }
@@ -17,10 +32,20 @@
 }
 
 .transform-face-back {
+    transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -khtml-transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
 }
 
 .transform-flip.flip {
+    transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -khtml-transform: rotateY(180deg);
     -webkit-transform: rotateY(180deg);
 }
 

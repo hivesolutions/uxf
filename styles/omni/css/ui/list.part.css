@@ -31,7 +31,10 @@
     background-color: #f0f0f0;
     border: 1px solid #d0d0d0;
     box-shadow: 0px 0px 6px #e4e4e4;
+    -o-box-shadow: 0px 0px 6px #e4e4e4;
+    -ms-box-shadow: 0px 0px 6px #e4e4e4;
     -moz-box-shadow: 0px 0px 6px #e4e4e4;
+    -khtml-box-shadow: 0px 0px 6px #e4e4e4;
     -webkit-box-shadow: 0px 0px 6px #e4e4e4;
     margin: 0px 0px 0px 0px;
     padding: 9px 9px 9px 9px;
@@ -113,7 +116,10 @@
 
 .omni-style .list.entity-options-list .entity-picture {
     border-radius: 4px 4px 4px 4px;
+    -o-border-radius: 4px 4px 4px 4px;
+    -ms-border-radius: 4px 4px 4px 4px;
     -moz-border-radius: 4px 4px 4px 4px;
+    -khtml-border-radius: 4px 4px 4px 4px;
     -webkit-border-radius: 4px 4px 4px 4px;
     height: 96px;
     width: 96px;
@@ -121,7 +127,10 @@
 
 .omni-style.round .list.entity-options-list .entity-picture {
     border-radius: 0px 32px 0px 32px;
+    -o-border-radius: 0px 32px 0px 32px;
+    -ms-border-radius: 0px 32px 0px 32px;
     -moz-border-radius: 0px 32px 0px 32px;
+    -khtml-border-radius: 0px 32px 0px 32px;
     -webkit-border-radius: 0px 32px 0px 32px;
 }
 

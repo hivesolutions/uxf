@@ -200,6 +200,7 @@
     padding: 0px 0px 0px 0px;
     user-select: none;
     -o-user-select: none;
+    -ms-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -208,6 +209,7 @@
 .ulite-style .list.product-description-list > .product-area > .item {
     user-select: all;
     -o-user-select: all;
+    -ms-user-select: all;
     -moz-user-select: all;
     -khtml-user-select: all;
     -webkit-user-select: all;
@@ -215,9 +217,16 @@
 
 .ulite-style .list.product-description-list > .list-area > .item {
     opacity: 0.0;
+    -o-opacity: 0.0;
+    -ms-opacity: 0.0;
+    -moz-opacity: 0.0;
+    -khtml-opacity: 0.0;
+    -webkit-opacity: 0.0;
     transition: opacity 0.50s linear;
     -o-transition: opacity 0.50s linear;
+    -ms-transition: opacity 0.50s linear;
     -moz-transition: opacity 0.50s linear;
+    -khtml-transition: opacity 0.50s linear;
     -webkit-transition: opacity 0.50s linear;
 }
 
@@ -287,7 +296,10 @@
     background-color: #ffffff;
     border: 1px solid #d9d9d9;
     box-shadow: 0px 1px 2px #d4d4d4;
+    -o-box-shadow: 0px 1px 2px #d4d4d4;
+    -ms-box-shadow: 0px 1px 2px #d4d4d4;
     -moz-box-shadow: 0px 1px 2px #d4d4d4;
+    -khtml-box-shadow: 0px 1px 2px #d4d4d4;
     -webkit-box-shadow: 0px 1px 2px #d4d4d4;
     margin-left: -28px;
     margin-top: -1px;

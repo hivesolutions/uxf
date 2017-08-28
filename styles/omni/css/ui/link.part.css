@@ -1,6 +1,11 @@
 .omni-style .link {
     border-bottom: 1px solid transparent;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
     padding-bottom: 1px;
     text-decoration: none;
 }
@@ -8,7 +13,9 @@
 .omni-style.animations .link {
     transition: border-color 0.05s ease-in;
     -o-transition: border-color 0.05s ease-in;
+    -ms-transition: border-color 0.05s ease-in;
     -moz-transition: border-color 0.05s ease-in;
+    -khtml-transition: border-color 0.05s ease-in;
     -webkit-transition: border-color 0.05s ease-in;
 }
 

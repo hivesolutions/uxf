@@ -36,6 +36,7 @@
     cursor: pointer;
     user-select: none;
     -o-user-select: none;
+    -ms-user-select: none;
     -moz-user-select: none;
     -khtml-user-select: none;
     -webkit-user-select: none;
@@ -74,7 +75,10 @@
 
 .omni-style .drop-field .drop-field-contents {
     box-shadow: 0px 1px 4px #eeeeee;
+    -o-box-shadow: 0px 1px 4px #eeeeee;
+    -ms-box-shadow: 0px 1px 4px #eeeeee;
     -moz-box-shadow: 0px 1px 4px #eeeeee;
+    -khtml-box-shadow: 0px 1px 4px #eeeeee;
     -webkit-box-shadow: 0px 1px 4px #eeeeee;
     list-style: none;
     margin: 0px 0px 0px 0px;
@@ -85,6 +89,7 @@
 .omni-style.animations .drop-field .drop-field-contents {
     animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -ms-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);

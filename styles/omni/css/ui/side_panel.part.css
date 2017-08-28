@@ -2,7 +2,10 @@
     background-color: #ffffff;
     border-left: 1px solid #aaaaaa;
     box-shadow: -2px 0px 3px #cccccc;
+    -o-box-shadow: -2px 0px 3px #cccccc;
+    -ms-box-shadow: -2px 0px 3px #cccccc;
     -moz-box-shadow: -2px 0px 3px #cccccc;
+    -khtml-box-shadow: -2px 0px 3px #cccccc;
     -webkit-box-shadow: -2px 0px 3px #cccccc;
     display: none;
     min-height: 100%;

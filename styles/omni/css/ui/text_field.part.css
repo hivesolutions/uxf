@@ -2,7 +2,10 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     box-shadow: 0px 1px 0px #ffffff;
+    -o-box-shadow: 0px 1px 0px #ffffff;
+    -ms-box-shadow: 0px 1px 0px #ffffff;
     -moz-box-shadow: 0px 1px 0px #ffffff;
+    -khtml-box-shadow: 0px 1px 0px #ffffff;
     -webkit-box-shadow: 0px 1px 0px #ffffff;
     color: #2d2d2d;
     font-family: Arial, sans-serif;
@@ -15,7 +18,9 @@
 .omni-style.animations .text-field {
     transition: border-color 0.10s ease-in;
     -o-transition: border-color 0.10s ease-in;
+    -ms-transition: border-color 0.10s ease-in;
     -moz-transition: border-color 0.10s ease-in;
+    -khtml-transition: border-color 0.10s ease-in;
     -webkit-transition: border-color 0.10s ease-in;
 }
 
@@ -26,11 +31,21 @@
 .omni-style .text-field.active {
     border: 1px solid #3668c6;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .omni-style .text-field.invalid {
     border: 1px solid #f00329;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .omni-style .text-field:disabled {
@@ -117,7 +132,10 @@
     background-color: #ffffff;
     border: 1px solid #dddddd;
     box-shadow: 0px 1px 0px #ffffff;
+    -o-box-shadow: 0px 1px 0px #ffffff;
+    -ms-box-shadow: 0px 1px 0px #ffffff;
     -moz-box-shadow: 0px 1px 0px #ffffff;
+    -khtml-box-shadow: 0px 1px 0px #ffffff;
     -webkit-box-shadow: 0px 1px 0px #ffffff;
     color: #2d2d2d;
     font-family: Arial, sans-serif;
@@ -131,7 +149,9 @@
 .omni-style.animations .text-area {
     transition: border-color 0.10s ease-in;
     -o-transition: border-color 0.10s ease-in;
+    -ms-transition: border-color 0.10s ease-in;
     -moz-transition: border-color 0.10s ease-in;
+    -khtml-transition: border-color 0.10s ease-in;
     -webkit-transition: border-color 0.10s ease-in;
 }
 
@@ -142,11 +162,21 @@
 .omni-style .text-area.active {
     border: 1px solid #3668c6;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .omni-style .text-area.invalid {
     border: 1px solid #f00329;
     outline: none;
+    -o-outline: none;
+    -ms-outline: none;
+    -moz-outline: none;
+    -khtml-outline: none;
+    -webkit-outline: none;
 }
 
 .omni-style .text-area:disabled {
@@ -191,6 +221,7 @@
 .omni-style.animations .text-field-calendar {
     animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -o-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+    -ms-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -moz-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: fade-into-drop 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0);
