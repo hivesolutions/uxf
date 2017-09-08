@@ -70,12 +70,22 @@
             var _document = (element.contentWindow || element).document || element.ownerDocument ||
                 element;
 
-            // runs the fallback process of returning the body element
-            // of the current document as the scrolling element/target
-            // note that the proper element to be returned is defined
-            // using browser detection (webkit is considered special)
-            return jQuery.browser.webkit || _document.compatMode === "BackCompat" ? _document.body :
-                _document.documentElement;
+            // verifies if the current chrome version a recent one and
+            // if that's the case returns the standard document element
+            // value (as the default webkit behaviour is ignored)
+            if (jQuery.browser.chrome && parseInt(jQuery.browser.version) > 60) {
+                return _document.documentElement;
+            }
+
+            // in case the current browser is a webkit one returns the specific
+            // body value (special case)
+            if (jQuery.browser.webkit || _document.compatMode === "BackCompat") {
+                return _document.body;
+            }
+
+            // returns the default value as the document element as expected by
+            // most of the browser (default value)
+            return _document.documentElement;
         });
     };
 
@@ -189,10 +199,11 @@
 
                     attributes[key] += settings.offset[positionLower] || 0;
 
-                    if (settings.over[positionLower])
+                    if (settings.over[positionLower]) {
                         // scrolls to a fraction of its width/height
                         attributes[key] += _target[axis === "x" ? "width" : "height"]() *
-                        settings.over[positionLower];
+                            settings.over[positionLower];
+                    }
                 }
                 // otherwise no offset should be used
                 else {
