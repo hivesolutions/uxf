@@ -1186,7 +1186,7 @@
                 var templateItems = [];
 
                 // iterates over all the valid items to create
-                // proper elements
+                // proper visual/layout elements
                 _validItems.each(function(index, element) {
                     // creates the map with the options for the
                     // rendering of the template to changed the
@@ -1334,11 +1334,14 @@
                 });
 
                 // triggers the update complete event, notice that the
-                // reset flat value is passes so that the listener is
+                // reset flat value is passed so that the listener is
                 // able to determine if this is a full replace operation
-                filter.triggerHandler("update_complete", [reset]);
+                filter.triggerHandler("update_complete", [reset,
+                    templateItems
+                ]);
 
-                // updates the filter data
+                // updates the filter data, so that the it's possible
+                // to determine the "internal" and logical state of it
                 filter.data("filter_string", filterInputValue);
                 filter.data("start_record", startRecord + numberRecords);
                 filter.data("complete", !moreItems);
@@ -1612,8 +1615,7 @@
                         // document otherwise creates a new window and opend
                         // the link in it (external opening)
                         isDocument && index === 0 ? jQuery.uxlocation(link) :
-                            window
-                            .open(link, "_blank");
+                            window.open(link, "_blank");
                     });
 
                     // tries to retrieve the bulk (to many link)
