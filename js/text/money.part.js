@@ -31,11 +31,17 @@
                 var _element = jQuery(this);
                 var value = _element.attr("data-value") || _element.text();
                 var currency = _element.attr("data-currency");
+                var round = _element.attr("data-round");
+                var strategy = _element.attr("data-strategy") || "round";
+                var places = round ? 0 : null;
                 var valueF = parseFloat(value);
                 if (isNaN(valueF) || !currency) {
                     return;
                 }
-                var valueS = valueF.formatMoney(null, null, null,
+                if (round) {
+                    valueF = Math[strategy](valueF);
+                }
+                var valueS = valueF.formatMoney(places, null, null,
                     currency, true);
                 _element.text(valueS);
             });
