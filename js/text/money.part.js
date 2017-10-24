@@ -33,8 +33,8 @@
                 var currency = _element.attr("data-currency");
                 var places = _element.attr("data-places");
                 var strategy = _element.attr("data-strategy") || "round";
-                var valueF = parseFloat(value);
                 places = places === undefined || places === "" ? null : parseInt(places);
+                var valueF = parseFloat(value);
                 if (isNaN(valueF) || !currency) {
                     return;
                 }
