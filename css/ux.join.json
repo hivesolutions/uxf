@@ -23,7 +23,7 @@
             "ui/tab_panel.part.css", "ui/text_field.part.css",
             "ui/uploader.part.css", "ui/top_bar.part.css",
             "ui/window.part.css", "footer.part.css",
-            "../util/prism/prism.css"
+            "../util/lib/prism/prism.css"
         ]
     },
     "ux-min.css": {
@@ -49,7 +49,7 @@
             "ui/tab_panel.part.css", "ui/text_field.part.css",
             "ui/uploader.part.css", "ui/top_bar.part.css",
             "ui/window.part.css", "footer.part.css",
-            "../util/prism/prism.css"
+            "../util/lib/prism/prism.css"
         ],
         "minify": "css"
     },
@@ -76,7 +76,7 @@
             "ui/tab_panel.part.css", "ui/text_field.part.css",
             "ui/uploader.part.css", "ui/top_bar.part.css",
             "ui/window.part.css", "footer.part.css",
-            "../util/prism/prism.css"
+            "../util/lib/prism/prism.css"
         ],
         "minify": "css",
         "compress": "gzip"
