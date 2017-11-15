@@ -1,14 +1,5 @@
 (function(jQuery) {
-    jQuery.fn.uxenable = function(method, options) {
-        // the default values for the enable
-        var defaults = {};
-
-        // sets the default options value
-        var options = options ? options : {};
-
-        // constructs the options
-        var options = jQuery.extend(defaults, options);
-
+    jQuery.fn.uxenable = function(readonly) {
         // sets the jquery matched object
         var matchedObject = this;
 
@@ -25,13 +16,18 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
+            // calculates the proper name for the enable attribute
+            // taking into account the provided argument value for
+            // the current disable extension
+            var name = readonly ? "readonly" : "disabled";
+
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {
                 // retrieves the element reference and
                 // verifies that it is currently disabled
                 // if that's not the case returns immediately
                 var _element = jQuery(element);
-                var isDisabled = _element.hasClass("disabled") || _element.attr("disabled");
+                var isDisabled = _element.hasClass("disabled") || _element.attr(name);
                 if (!isDisabled) {
                     return;
                 }
@@ -41,9 +37,9 @@
                 _element.removeClass("disabled");
 
                 // checks if the currently matche object is an input field
-                // in case it is removes the disabled attribute
+                // in case it is removes the disabled or readonly attributes
                 var isInput = _element.is("input, textarea");
-                isInput && _element.removeAttr("disabled");
+                isInput && _element.removeAttr(name);
 
                 // triggers the enabled event on the element
                 // to indicate that it has been enabled
