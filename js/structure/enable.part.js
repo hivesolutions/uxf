@@ -38,8 +38,10 @@
 
                 // checks if the currently matche object is an input field
                 // in case it is removes the disabled or readonly attributes
+                // and also the tab index attribute for focus
                 var isInput = _element.is("input, textarea");
                 isInput && _element.removeAttr(name);
+                isInput && _element.removeAttr("tabindex");
 
                 // triggers the enabled event on the element
                 // to indicate that it has been enabled
