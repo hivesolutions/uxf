@@ -6,7 +6,7 @@
  * @author João Magalhães <joamag@hive.pt> & Luís Martinho <lmartinho@hive.pt>
  * @version 1.0
  * @category jQuery plugin
- * @copyright Copyright (c) 2008-2017 Hive Solutions Lda.
+ * @copyright Copyright (c) 2008-2018 Hive Solutions Lda.
  * @license Apache License, Version 2.0 - http://www.apache.org/licenses/
  */
 (function(jQuery) {
