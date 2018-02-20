@@ -225,7 +225,7 @@
             }
 
             // creates the browser object structure (if required) and
-            // then populatesit with the proper browser values so that
+            // then populates it with the proper browser values so that
             // they can be used later on for conditional execution
             jQuery.browser = jQuery.browser || {};
             jQuery.browser[browserName] = true;
