@@ -224,12 +224,17 @@
                 return;
             }
 
-            // creates the browser object structure and populates
-            // it with the proper browser name index set to valid
+            // creates the browser object structure (if required) and
+            // then populatesit with the proper browser values so that
+            // they can be used later on for conditional execution
             jQuery.browser = jQuery.browser || {};
             jQuery.browser[browserName] = true;
+            jQuery.browser.name = jQuery.browser.name || String(browserName);
             jQuery.browser.version = jQuery.browser.version || String(browserVersion);
+            jQuery.browser.os = jQuery.browser.os || String(browserOs);
+            jQuery.browser._name = String(browserName);
             jQuery.browser._version = String(browserVersion);
+            jQuery.browser._os = String(browserOs);
         };
 
         var _removeLegacy = function(matchedObject, isLegacy) {
