@@ -173,9 +173,9 @@
             // is considered to be a legacy one
             isLegacy && matchedObject.attr("data-browser_legacy", "1")
 
-            // applies the patch to the kquery infra-structure so that
+            // applies the patch to the jquery infra-structure so that
             // the old mode of broewser detection is still possible
-            _applyPatch(browserName, browserOs);
+            _applyPatch(browserName, browserVersion, browserOs, true);
 
             // remove the classes that are not legacy compliant if the
             // current browser is considered to be a legacy one
@@ -216,17 +216,20 @@
                 1));
         };
 
-        var _applyPatch = function(browserName, browserOs) {
+        var _applyPatch = function(browserName, browserVersion, browserOs, force) {
             // in case the browser structure is defined under the jquery
-            // dictionary there's no need to continue
-            if (jQuery.browser) {
+            // dictionary and the force flag is not set there's no need
+            // to continue with the patch apply
+            if (!force && jQuery.browser) {
                 return;
             }
 
-            // creates the browser bject structure and populates
+            // creates the browser object structure and populates
             // it with the proper browser name index set to valid
-            jQuery.browser = {}
+            jQuery.browser = jQuery.browser || {};
             jQuery.browser[browserName] = true;
+            jQuery.browser.version = jQuery.browser.version || String(browserVersion);
+            jQuery.browser._version = String(browserVersion);
         };
 
         var _removeLegacy = function(matchedObject, isLegacy) {

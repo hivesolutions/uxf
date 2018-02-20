@@ -73,8 +73,15 @@
             // verifies if the current chrome version a recent one and
             // if that's the case returns the standard document element
             // value (as the default webkit behaviour is ignored)
-            if (jQuery.browser.chrome && parseInt(jQuery.browser.version) > 60) {
+            if (jQuery.browser.chrome && parseInt(jQuery.browser._version || jQuery.browser.version) >
+                60) {
                 return _document.documentElement;
+            }
+
+            // in case the browser is still the chrome one but a more legacy
+            // version then the document body is returned instead
+            if (jQuery.browser.chrome) {
+                return _document.body;
             }
 
             // in case the current browser is a webkit one returns the specific
@@ -84,7 +91,7 @@
             }
 
             // returns the default value as the document element as expected by
-            // most of the browser (default value)
+            // most of the browsers (default value)
             return _document.documentElement;
         });
     };
