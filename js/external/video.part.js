@@ -52,23 +52,23 @@
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves the url (html) from the element
+                // retrieves the URL (HTML) from the element
                 // and then trims it
                 var url = _element.text();
                 url = url.trim();
 
-                // in case the current url value is not valid
+                // in case the current URL value is not valid
                 // must return immediately because it's not possible
                 // to go any furhter with the current processing
                 if (!url) {
                     return;
                 }
 
-                // parses the url retrieving the
-                // url information
+                // parses the URL retrieving the
+                // URL information
                 var urlInformation = parseUrl(url);
 
-                // retrieves the base name from the url information
+                // retrieves the base name from the URL information
                 var baseName = urlInformation["baseName"];
 
                 // in case the video is of type youtube
@@ -189,13 +189,13 @@
         };
 
         var parseUrl = function(url) {
-            // creates the url regex (for url validation)
+            // creates the URL regex (for URL validation)
             var urlRegex = /(\w+\:\/\/)?([^\:\/\?#]+)(\:\d+)?((\/[^\?#]+)*)\/?(\?(([^#])*))?(#(.*))?/g;
 
-            // executes the url regex against the url
+            // executes the URL regex against the URL
             var match = urlRegex.exec(url);
 
-            // retrieves and parses the various url component from
+            // retrieves and parses the various URL component from
             // the (url) match
             var protocol = match[1] ? match[1].slice(0, -3) : null;
             var baseName = match[2] ? match[2] : null;
@@ -238,8 +238,8 @@
                 optionsMap[optionName] = optionValue;
             }
 
-            // creates the url information map, from the
-            // various url components
+            // creates the URL information map, from the
+            // various URL components
             var urlInformation = {
                 protocol: protocol,
                 baseName: baseName,
@@ -250,7 +250,7 @@
                 optionsMap: optionsMap
             }
 
-            // returns the url information map
+            // returns the URL information map
             return urlInformation;
         };
 

@@ -51,7 +51,7 @@
 
                 // tries to determine the density of the screen and uses
                 // it to determine the appropriate attribute to be used
-                // to retrieve the url of the image to be loaded
+                // to retrieve the URL of the image to be loaded
                 var isRetina = _body.hasClass("retina-s");
                 var attribute = isRetina ? "data-url_retina" : "data-url";
                 var src = _element.attr(attribute);
@@ -66,7 +66,7 @@
                     _element.removeAttr("src");
                 }
 
-                // sets the target url of the image in the target attribute
+                // sets the target URL of the image in the target attribute
                 // taking into account the density of the screen
                 _element.attr(attribute, src);
 

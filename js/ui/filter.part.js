@@ -2436,7 +2436,7 @@
                     // action is possible
                     disabled = true
 
-                    // retrieves the url and the type (data source) from
+                    // retrieves the URL and the type (data source) from
                     // the associated element
                     var url = element.attr("data-surl");
                     var _type = element.attr("data-stype");
@@ -2453,7 +2453,7 @@
                         "<ul class=\"data-source\"></ul>" + "</div>");
 
                     // retrieves the data source associated with the value
-                    // field an then updates the url and the type of the
+                    // field an then updates the URL and the type of the
                     // data source to point to the "reference" elements
                     var valueSource = jQuery("> .data-source", valueField);
                     valueSource.attr("data-url", url);

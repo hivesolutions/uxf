@@ -121,13 +121,13 @@
                 filter = true;
             }
 
-            // retrieves the elements url and data values to be used
+            // retrieves the elements URL and data values to be used
             // for the processing of the "remote" query
             var url = element.data("url");
             var data = element.data("data");
             var cacheD = element.data("cache_d");
 
-            // adds the id (part) to the url (in case it's necessary)
+            // adds the id (part) to the URL (in case it's necessary)
             url += id ? "/" + id + ".json" : "";
 
             // increments the value of the number of records (to provide

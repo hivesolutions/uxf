@@ -318,8 +318,8 @@
             var method = matchedObject.attr("method") || "get";
             var action = matchedObject.attr("action");
 
-            // resolves the provided link so that were able to find out the
-            // absolute url out of it and set it as the location to be retrieved
+            // resolves the provided link so that we're able to find out the
+            // absolute URL out of it and set it as the location to be retrieved
             // using an asynchronous approach (ajax)
             var href = jQuery.uxresolve(action);
 
@@ -343,7 +343,7 @@
 
             // verifies if the current form processing is a get based one and in
             // case it's encapsulates the parameters in the current request
-            // url and removes the data payload from the request
+            // URL and removes the data payload from the request
             var isGet = method.toLowerCase() === "get";
             var hasQuery = href.indexOf("?") !== -1;
             var token = hasQuery ? "&" : "?";
@@ -362,7 +362,7 @@
             var extraParams = "x-async=1&x-partial=1";
             var extraQuery = token + extraParams;
 
-            // defines the url of the operation (final redirection) as the current
+            // defines the URL of the operation (final redirection) as the current
             // href value, resolved from the process action and get parameters
             var url = href;
 

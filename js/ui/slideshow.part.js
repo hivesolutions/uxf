@@ -135,14 +135,14 @@
             var alternates = jQuery(".slideshow-alternates > li", matchedObject);
 
             // registers for the click event on the image to trigger
-            // the url resolution and document change
+            // the URL resolution and document change
             image.click(function(event) {
                 // retrieves the current element and the parent
                 // slideshow
                 var element = jQuery(this);
                 var slideshow = element.parents(".slideshow");
 
-                // retrieves the url information from the slideshow
+                // retrieves the URL information from the slideshow
                 // data and opens the respective url, note that if
                 // the window flag is set a new window is always open
                 var url = slideshow.data("url");
@@ -154,14 +154,14 @@
             });
 
             // registers for the click event on the details to trigger
-            // the url resolution and document change
+            // the URL resolution and document change
             details.click(function() {
                 // retrieves the current element and the parent
                 // slideshow
                 var element = jQuery(this);
                 var slideshow = element.parents(".slideshow");
 
-                // retrieves the url information from the slideshow
+                // retrieves the URL information from the slideshow
                 // data and opens the respective url, note that if
                 // the window flag is set a new window is always open
                 var url = slideshow.data("url");
@@ -344,7 +344,7 @@
                 _element.html(item[name]);
             });
 
-            // updates the url with the (current) item url and the
+            // updates the URL with the (current) item URL and the
             // index value with the target index
             matchedObject.data("url", item.url);
             matchedObject.data("index", index);
@@ -366,7 +366,7 @@
 
         var __static = function(image, item) {
             // changes the source of the image directly to the target image
-            // value withou any kind of animation taking part
+            // value without any kind of animation taking part
             image.attr("src", IMAGE_CLEAR);
             image.attr("src", item.image);
         };

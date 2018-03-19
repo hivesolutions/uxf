@@ -43,8 +43,8 @@
             return false;
         }
 
-        // resolves the provided link so that were able to find out the
-        // absolute url out of it and set it as the location to be retrieved
+        // resolves the provided link so that we're able to find out the
+        // absolute URL out of it and set it as the location to be retrieved
         // using an asynchronous approach (ajax)
         href = jQuery.uxresolve(href);
 

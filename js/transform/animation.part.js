@@ -81,13 +81,13 @@
             var duration = _duration(element, options);
 
             // retrieves the background image reference and removes the
-            // proper url prefix from it, so that only the correct url
+            // proper URL prefix from it, so that only the correct url
             // is used for the processing of the image value
             var imageUrl = element.css("background-image");
             imageUrl = imageUrl.match(/^url\("?(.+?)"?\)$/);
             imageUrl = imageUrl ? imageUrl[1] : imageUrl;
 
-            // verifies if the image url that was retrieved is valid and
+            // verifies if the image URL that was retrieved is valid and
             // if that's no the case returns immediately
             if (!imageUrl) {
                 return;
@@ -105,7 +105,7 @@
                 _init(element, options, height, spriteHeight, duration);
             });
 
-            // updates the image url for the image element, this operation
+            // updates the image URL for the image element, this operation
             // should trigger the loading of the image
             image.src = imageUrl;
         };

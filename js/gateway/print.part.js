@@ -54,7 +54,7 @@
 
         var _print = function(matchedObject, options, callback) {
             // retrieves the element reference and then
-            // uses it to retrieve the url to the binie
+            // uses it to retrieve the URL to the binie
             // resource containing the document description
             var element = matchedObject;
             var binieUrl = element.attr("data-binie") || options["binie"];
@@ -139,18 +139,18 @@
                 _printQueue(binieUrls, data, gateway, callback)
             }
             // otherwise the normal printing process must be used
-            // in case a fallback url exists
+            // in case a fallback URL exists
             else {
                 // calls the callback function, marking the end of
                 // the printing execution (maintains order)
                 callback();
 
-                // tries to retrieve the fallback url and the
+                // tries to retrieve the fallback URL and the
                 // target for the link
                 var fallbackUrl = element.attr("data-fallback") || options["fallback"];
                 var target = element.attr("data-target") || options["target"];
 
-                // in case no fallback url is defined, must return
+                // in case no fallback URL is defined, must return
                 // immediately (nothing is done)
                 if (!fallbackUrl) {
                     // returns immediately, nothing can
@@ -184,10 +184,10 @@
             }
 
             // removes one element from the queue and considers
-            // it to be the binie url of the printing document
+            // it to be the binie URL of the printing document
             var binieUrl = queue.pop();
 
-            // verifies if the current binie url is valid and
+            // verifies if the current binie URL is valid and
             // not empty and if that's not the case skips the
             // current loop iteration (nothing to be done)
             if (!binieUrl) {

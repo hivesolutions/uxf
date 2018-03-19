@@ -169,7 +169,7 @@
             var textField = jQuery(".text-field", incrementalField);
             var floatvalue = textField.uxfloat();
 
-            // tries to retrive a possibly existing increment url value
+            // tries to retrive a possibly existing increment URL value
             // to be used for location change
             var incrementUrl = textField.attr("data-increment_url");
 
@@ -181,7 +181,7 @@
                 return;
             }
 
-            // verifies if the increment url is defined and if that's the
+            // verifies if the increment URL is defined and if that's the
             // cases runs the location plugin to change the current browser's
             // location to the one defined in the increment url
             if (incrementUrl) {
@@ -208,7 +208,7 @@
             var textField = jQuery(".text-field", incrementalField);
             var floatvalue = textField.uxfloat();
 
-            // tries to retrive a possibly existing decrement url value
+            // tries to retrive a possibly existing decrement URL value
             // to be used for location change
             var decrementUrl = textField.attr("data-decrement_url");
 
@@ -232,7 +232,7 @@
                 return;
             }
 
-            // verifies if the decrement url is defined and if that's the
+            // verifies if the decrement URL is defined and if that's the
             // cases runs the location plugin to change the current browser's
             // location to the one defined in the decrement url
             if (decrementUrl) {

@@ -25,18 +25,18 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the next url element from the
+            // retrieves the next URL element from the
             // matched object and then retrieves the (textual) value
             var nextUrl = jQuery(".next-url", matchedObject);
             var nextUrlValue = nextUrl.text();
 
-            // trims the next url value
+            // trims the next URL value
             nextUrlValue = nextUrlValue.trim();
 
-            // in case the next url value is not valid
+            // in case the next URL value is not valid
             if (!nextUrlValue) {
                 // returns immediately
-                // (no url change)
+                // (no URL change)
                 return;
             }
 

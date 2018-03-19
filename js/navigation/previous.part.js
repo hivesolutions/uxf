@@ -25,18 +25,18 @@
          * Creates the necessary html for the component.
          */
         var _appendHtml = function() {
-            // retrieves the previous url element from the
+            // retrieves the previous URL element from the
             // matched object and then retrieves the (textual) value
             var previousUrl = jQuery(".previous-url", matchedObject);
             var previousUrlValue = previousUrl.text();
 
-            // trims the previous url value
+            // trims the previous URL value
             previousUrlValue = previousUrlValue.trim();
 
-            // in case the previous url value is not valid
+            // in case the previous URL value is not valid
             if (!previousUrlValue) {
                 // returns immediately
-                // (no url change)
+                // (no URL change)
                 return;
             }
 
