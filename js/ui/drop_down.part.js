@@ -228,6 +228,21 @@
                 event.stopPropagation();
             });
 
+            // registers for the update operation that is responsible
+            // for the update of the element's internal structures according
+            // to the DOM structure of it
+            matchedObject.bind("update", function() {
+                var element = jQuery(this);
+                _update(element, options);
+            });
+
+            // registers for the "basic" toggle operation of the current
+            // drop down so that the element visibility is toggled
+            matchedObject.bind("toggle", function() {
+                var element = jQuery(this);
+                _toggle(element, options);
+            });
+
             // registers for the "basic" show operation of the current
             // drop down so that the element is shown
             matchedObject.bind("show", function() {
@@ -609,7 +624,6 @@
         // switches over the method that is going to be performed
         // for the current operation (as requested)
         switch (method) {
-
             case "set":
                 // sets the value in the drop down according to
                 // the requested value (provided by options)
