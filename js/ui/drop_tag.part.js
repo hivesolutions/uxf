@@ -262,23 +262,17 @@
                 // updates the component internal structures
                 // to reflect the layout changes
                 update();
-
-                // breaks the switch
                 break;
 
             case "release":
                 // updates the component internal structures
                 // to reflect the layout changes
                 release();
-
-                // breaks the switch
                 break;
 
             case "default":
                 // initializes the plugin
                 initialize();
-
-                // breaks the switch
                 break;
         }
 

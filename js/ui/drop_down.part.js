@@ -320,6 +320,11 @@
                 var dropDown = jQuery(".drop-down", container);
                 _hide(dropDown, options);
             });
+
+            // marks the complete set of elements as registered this is going to
+            // be used in the update event to determine the elements that already
+            // have the event handler registered and the one that don't
+            elements.data("registered", true)
         };
 
         var _set = function(matchedObject, options) {
@@ -361,6 +366,41 @@
             var input = jQuery("input", container);
             var value = input.val();
             return value;
+        };
+
+        var _update = function(matchedObject, options) {
+            // retrieves the complete set of elements for the current object
+            // and then filters the ones that are already registered (to avoid
+            // a double registration operation)
+            var elements = jQuery("> li", matchedObject);
+            elements = elements.filter((function(index) {
+                var _element = jQuery(this);
+                var isRegistered = _element.data("registered") || false;
+                return isRegistered === false;
+            }));
+
+            // registers the "new" elements for the click operation so
+            // that the state of the drop down gets updated
+            elements.click(function(event) {
+                // retrieves the reference to the "clicked" element and
+                // the associated parent and child elements that are
+                // going to be used in the selection change operation
+                var element = jQuery(this);
+                var container = element.parents(".drop-down-container");
+                var dropDown = jQuery(".drop-down", container);
+
+                // runs the select operation on the target element as
+                // "requested" by the click operation in it
+                _select(dropDown, options, __element);
+
+                // stops the event propagation, avoiding possible issues with
+                // the propagation of the click event on the element
+                event.stopPropagation();
+            });
+
+            // marks the new elements as registered so that further calls
+            // to this method do not register new event handlers
+            elements.data("registered", true)
         };
 
         var _toggle = function(matchedObject, options) {
@@ -569,6 +609,7 @@
         // switches over the method that is going to be performed
         // for the current operation (as requested)
         switch (method) {
+
             case "set":
                 // sets the value in the drop down according to
                 // the requested value (provided by options)
@@ -580,6 +621,19 @@
                 // then returns the same value to the caller method
                 var value = _value(matchedObject, options);
                 return value;
+
+            case "update":
+                // updates the component internal structures
+                // to reflect the layout changes
+                _update(matchedObject, options);
+                break
+
+            case "toggle":
+                // runs the tpggçe operation on the currently matched
+                // object so that the proper contents are shown or hidden
+                // according to their current state
+                _toggle(matchedObject, options);
+                break;
 
             case "show":
                 // runs the show operation on the currently matched
