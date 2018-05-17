@@ -406,7 +406,7 @@
 
                 // runs the select operation on the target element as
                 // "requested" by the click operation in it
-                _select(dropDown, options, __element);
+                _select(dropDown, options, element);
 
                 // stops the event propagation, avoiding possible issues with
                 // the propagation of the click event on the element
