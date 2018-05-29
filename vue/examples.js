@@ -1,5 +1,6 @@
 import Vue from "vue";
 import jQuery from "jquery";
+import "../bin/js/ux";
 
 import {
     UxButton,

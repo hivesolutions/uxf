@@ -1,19 +1,7 @@
 <template>
 <ul class="drop-down" data-name="Drop Down">
-    <li>
-        <span>No Operation 1</span>
-    </li>
-    <li>
-        <span>No Operation 2</span>
-    </li>
-    <li>
-        <span>No Operation 3</span>
-    </li>
-    <li>
-        <a href="http://www.hive.pt" target="_blank">Hive Website</a>
-    </li>
-    <li>
-        <a href="/about">About</a>
+    <li v-for="item in items" v-bind:key="item.name">
+        <span>{{ item.text }}</span>
     </li>
 </ul>
 </template>
@@ -28,7 +16,8 @@ import jQuery from "jquery";
 export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
         return {
-            isEnabled: true
+            isEnabled: true,
+            items: []
         };
     },
     mounted: function() {
@@ -48,6 +37,9 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         }
     },
     watch: {
+        items: function(val) {
+            jQuery(this.$el).triggerHandler("update");
+        },
         isEnabled: function(val) {
             if (val) {
                 jQuery(this.$el).uxenable();
