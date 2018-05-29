@@ -20,7 +20,12 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         };
     },
     props: {
-        items: []
+        items: {
+            type: Array,
+            default: function() {
+                return [];
+            }
+        }
     },
     mounted: function() {
         var vm = this;
