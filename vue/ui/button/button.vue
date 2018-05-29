@@ -16,6 +16,13 @@ export const UxButton = Vue.component("uxbutton", {
             isEnabled: true
         };
     },
+    mounted: function () {
+        var vm = this;
+        var element = jQuery(this.$el);
+        element.bind("click", function() {
+            vm.$emit("click", this.value)
+        });
+    },
     methods: {
         enable: function() {
             this.isEnabled = true;
