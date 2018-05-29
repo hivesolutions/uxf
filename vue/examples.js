@@ -25,6 +25,9 @@ export const examples = function() {
             }]
         },
         methods: {
+            onClick: function(value) {
+                alert(`Clicked: ${value || "normal"}`);
+            },
             onValueChange: function(value) {
                 alert(`Selected: ${value}`);
             }

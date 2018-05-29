@@ -13,9 +13,11 @@
     <script type="text/javascript" src="https://libs.bemisc.com/uxf/js/ux.js"></script>
     <script type="text/javascript" src="https://libs.bemisc.com/layout/js/layout.js"></script>
     <div id="app" class="app">
-        <ux-button ref="button">Button</ux-button>
-        <ux-button ref="button" v-bind:color="'green'">Button Green</ux-button>
-        <ux-button ref="button" v-bind:color="'red'">Button Red</ux-button>
+        <ux-button ref="button" v-on:click="onClick">Button</ux-button>
+        <ux-button ref="button" v-bind:color="'green'"
+                   v-on:click="onClick('green')">Button Green</ux-button>
+        <ux-button ref="button" v-bind:color="'red'"
+                   v-on:click="onClick('red')">Button Red</ux-button>
         <ux-drop-down ref="drop_down" v-bind:values="items"
                       v-on:value_change="onValueChange"></ux-drop-down>
     </div>
