@@ -1,6 +1,6 @@
 const config = require("./webpack.config");
 
-config.output.filename = "vue-uxf.full.min.js?[hash]";
+config.output.filename = "ux-vue.full.min.js?[hash]";
 
 delete config.externals.vue;
 

@@ -10,7 +10,7 @@
 <script>
 import Vue from "vue";
 
-export const UxButton = Vue.component("uxbutton", {
+export const UxButton = Vue.component("ux-button", {
     data: function() {
         return {
             isEnabled: true
@@ -21,7 +21,7 @@ export const UxButton = Vue.component("uxbutton", {
         var element = jQuery(this.$el);
         element.uxbutton();
         element.bind("click", function() {
-            vm.$emit("click")
+            vm.$emit("click");
         });
     },
     methods: {

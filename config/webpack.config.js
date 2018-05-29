@@ -9,8 +9,8 @@ module.exports = {
     entry: "./vue",
     output: {
         path: path.join(__dirname, "../dist"),
-        filename: "vue-uxf.min.js?[hash]",
-        library: "UXF",
+        filename: "ux-vue.min.js?[hash]",
+        library: "UxVue",
         libraryTarget: "umd"
     },
     plugins: [

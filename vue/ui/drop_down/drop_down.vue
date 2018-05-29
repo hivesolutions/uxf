@@ -24,7 +24,7 @@
 <script>
 import Vue from "vue";
 
-export const UxDropDown = Vue.component("uxdropdown", {
+export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
         return {
             isEnabled: true
