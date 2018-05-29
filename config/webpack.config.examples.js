@@ -1,4 +1,4 @@
-const config = require("./webpack.config");
+const config = require("./webpack.config.full");
 
 config.entry = "./vue/examples";
 config.output.filename = "vue-uxf.examples.min.js?[hash]";
