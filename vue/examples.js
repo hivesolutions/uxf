@@ -16,11 +16,13 @@ export const examples = function() {
             UxDropDown
         },
         data: {
-            items: [
-                { text: "first" },
-                { text: "second" },
-                { text: "third" }
-            ]
+            items: [{
+                text: "first"
+            }, {
+                text: "second"
+            }, {
+                text: "third"
+            }]
         },
         methods: {
             onValueChange: function(value) {
