@@ -1,14 +1,16 @@
 import Vue from "vue";
 
 import {
-    UxButton
+    UxButton,
+    UxDropDown
 } from "./ui";
 
 export const examples = function() {
     const app = new Vue({
         el: "#app",
         components: {
-            UxButton
+            UxButton,
+            UxDropDown
         }
     });
     return app;

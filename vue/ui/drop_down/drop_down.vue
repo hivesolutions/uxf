@@ -1,7 +1,21 @@
 <template>
-<div class="button button-color">
-    <slot></slot>
-</div>
+<ul class="drop-down" data-name="Drop Down">
+    <li>
+        <span>No Operation 1</span>
+    </li>
+    <li>
+        <span>No Operation 2</span>
+    </li>
+    <li>
+        <span>No Operation 3</span>
+    </li>
+    <li>
+        <a href="http://www.hive.pt" target="_blank">Hive Website</a>
+    </li>
+    <li>
+        <a href="/about">About</a>
+    </li>
+</ul>
 </template>
 
 <style scoped>
@@ -10,7 +24,7 @@
 <script>
 import Vue from "vue";
 
-export const UxButton = Vue.component("uxbutton", {
+export const UxDropDown = Vue.component("uxdropdown", {
     data: function() {
         return {
             isEnabled: true
@@ -19,10 +33,7 @@ export const UxButton = Vue.component("uxbutton", {
     mounted: function () {
         var vm = this;
         var element = jQuery(this.$el);
-        element.uxbutton();
-        element.bind("click", function() {
-            vm.$emit("click", this.value)
-        });
+        element.uxdropdown();
     },
     methods: {
         enable: function() {
@@ -43,5 +54,5 @@ export const UxButton = Vue.component("uxbutton", {
     }
 });
 
-export default UxButton;
+export default UxDropDown;
 </script>
