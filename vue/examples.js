@@ -23,6 +23,9 @@ export const examples = function() {
             ]
         }
     });
+    app.$refs.drop_down.$on("value_change", function(value) {
+        alert(value);
+    });
     return app;
 };
 
