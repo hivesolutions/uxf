@@ -4,7 +4,7 @@
         // context and tries to extract the queue from it using
         // the provided queue name (qname) or the global one
         var matchedObject = this;
-        var qname = qname || "global";
+        qname = qname || "global";
         var queue = matchedObject.data("queue-" + qname) || [];
         matchedObject.data("queue-" + qname, queue);
 

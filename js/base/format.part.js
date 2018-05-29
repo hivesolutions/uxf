@@ -39,7 +39,7 @@
          */
         var _getStringValue = function(value, valueLength, padding) {
             // retrieves the padding value
-            var padding = padding ? padding : "0";
+            padding = padding || "0";
 
             // converts the value to a string and retrives
             // the length of it
