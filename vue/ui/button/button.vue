@@ -1,5 +1,5 @@
 <template>
-<div class="button button-color" v-bind:class="{ visible: isVisible }">
+<div class="button button-color">
     <slot></slot>
 </div>
 </template>
@@ -13,15 +13,24 @@ import Vue from "vue";
 export const UxButton = Vue.component("uxbutton", {
     data: function() {
         return {
-            isVisible: false
+            isEnabled: true
         };
     },
     methods: {
-        show: function() {
-            this.isVisible = true;
+        enable: function() {
+            this.isEnabled = true;
         },
-        hide: function() {
-            this.isVisible = false;
+        disable: function() {
+            this.isEnabled = false;
+        }
+    },
+    watch: {
+        isEnabled: function(val) {
+            if (val) {
+                jQuery(this.$el).uxenable();
+            } else {
+                jQuery(this.$el).uxdisable();
+            }
         }
     }
 });
