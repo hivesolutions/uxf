@@ -11,6 +11,10 @@
     "bugs": {
         "url": "https://github.com/hivesolutions/uxf/issues"
     },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hivesolutions/uxf.git"
+    },
     "license": "Apache-2.0",
     "author": "Hive Solutions",
     "files": [
@@ -21,14 +25,15 @@
         "vue/**/*.vue"
     ],
     "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hivesolutions/uxf.git"
-    },
     "scripts": {
         "test": "mocha",
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config config/webpack.config.js"
+    },
+    "dependencies": {
+        "consola": "^1.4.1",
+        "hive-js-util": "^0.1.15",
+        "vue": "^2.5.16"
     },
     "devDependencies": {
         "babel-loader": "^7.1.4",
@@ -50,7 +55,6 @@
         "vue-loader": "^15.2.2",
         "vue-template-compiler": "^2.5.16",
         "webpack": "^4.10.1",
-        "webpack-cli": "^2.1.4",
-        "vue": "^2.5.16"
+        "webpack-cli": "^2.1.4"
     }
 }
