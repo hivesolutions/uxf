@@ -1,2 +1,5 @@
+package-lock.json
+
 /externals
+/node_modules
 /styles/*/bin

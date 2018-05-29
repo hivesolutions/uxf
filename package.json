@@ -3,13 +3,17 @@
     "version": "0.1.0",
     "description": "Simple client side framework for people who want fast results",
     "keywords": [
-        "uxf",
+        "components",
         "ui",
-        "components"
+        "uxf"
     ],
     "homepage": "https://github.com/hivesolutions/uxf#readme",
     "bugs": {
         "url": "https://github.com/hivesolutions/uxf/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hivesolutions/uxf.git"
     },
     "license": "Apache-2.0",
     "author": "Hive Solutions",
@@ -20,10 +24,6 @@
         "vue/**/*.vue"
     ],
     "main": "index.js",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/hivesolutions/uxf.git"
-    },
     "scripts": {
         "test": "mocha",
         "upgrade": "npx sort-package-json && ncu -au"
