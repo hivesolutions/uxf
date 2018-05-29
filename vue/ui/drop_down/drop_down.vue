@@ -25,9 +25,6 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             type: Array,
             default: function() {
                 return [];
-            },
-            watch: function(val) {
-                this.$data.items = val;
             }
         }
     },
@@ -38,7 +35,7 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         element.bind("value_change", function(event, value, text, same) {
             vm.$emit("value_change", value, text, same);
         });
-        this.$data.items = this.$props.values;
+        this.items = this.$props.values;
     },
     methods: {
         enable: function() {
@@ -50,7 +47,7 @@ export const UxDropDown = Vue.component("ux-drop-down", {
     },
     watch: {
         values: function(val) {
-            this.$data.items = val;
+            this.items = val;
         },
         items: function(val) {
             var vm = this;

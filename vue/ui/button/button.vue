@@ -1,5 +1,5 @@
 <template>
-<div class="button button-color">
+<div class="button button-color" v-bind:class="buttonColor">
     <slot></slot>
 </div>
 </template>
@@ -16,6 +16,14 @@ export const UxButton = Vue.component("ux-button", {
         return {
             isEnabled: true
         };
+    },
+    props: {
+        color: {
+            type: String,
+            default: function() {
+                return "";
+            }
+        }
     },
     mounted: function() {
         var vm = this;
@@ -40,6 +48,11 @@ export const UxButton = Vue.component("ux-button", {
             } else {
                 jQuery(this.$el).uxdisable();
             }
+        }
+    },
+    computed: {
+        buttonColor: function() {
+            return this.color ? `button-${this.color}` : null;
         }
     }
 });
