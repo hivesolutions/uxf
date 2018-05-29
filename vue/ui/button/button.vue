@@ -21,7 +21,7 @@ export const UxButton = Vue.component("uxbutton", {
         var element = jQuery(this.$el);
         element.uxbutton();
         element.bind("click", function() {
-            vm.$emit("click", this.value)
+            vm.$emit("click")
         });
     },
     methods: {
