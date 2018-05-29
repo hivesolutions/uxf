@@ -16,14 +16,18 @@ import jQuery from "jquery";
 export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
         return {
-            isEnabled: true
+            isEnabled: true,
+            items: []
         };
     },
     props: {
-        items: {
+        values: {
             type: Array,
             default: function() {
                 return [];
+            },
+            watch: function(val) {
+                this.$data.items = val;
             }
         }
     },
@@ -34,6 +38,8 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         element.bind("value_change", function(event, value, text, same) {
             vm.$emit("click", value, text, same);
         });
+        
+        this.$data.items = this.$props.values;
     },
     methods: {
         enable: function() {
@@ -44,6 +50,9 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         }
     },
     watch: {
+        values: function(val) {
+            this.$data.items = val;
+        },
         items: function(val) {
             var vm = this;
             setTimeout(function() {
