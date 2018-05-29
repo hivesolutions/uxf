@@ -38,7 +38,10 @@ export const UxDropDown = Vue.component("ux-drop-down", {
     },
     watch: {
         items: function(val) {
-            jQuery(this.$el).triggerHandler("update");
+            var vm = this;
+            setTimeout(function() {
+                jQuery(vm.$el).triggerHandler("update");
+            });
         },
         isEnabled: function(val) {
             if (val) {
