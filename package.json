@@ -30,10 +30,6 @@
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config config/webpack.config.js"
     },
-    "dependencies": {
-        "consola": "^1.4.1",
-        "hive-js-util": "^0.1.15"
-    },
     "devDependencies": {
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.7.0",
