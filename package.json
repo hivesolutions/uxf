@@ -1,0 +1,51 @@
+{
+    "name": "uxf",
+    "version": "0.1.0",
+    "description": "Simple client side framework for people who want fast results",
+    "keywords": [
+        "uxf",
+        "ui",
+        "components"
+    ],
+    "homepage": "https://github.com/hivesolutions/uxf#readme",
+    "bugs": {
+        "url": "https://github.com/hivesolutions/uxf/issues"
+    },
+    "license": "Apache-2.0",
+    "author": "Hive Solutions",
+    "files": [
+        "index.js",
+        "js/**/*.js",
+        "css/**/*.css"
+    ],
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hivesolutions/uxf.git"
+    },
+    "scripts": {
+        "start": "node app.js",
+        "test": "mocha",
+        "upgrade": "npx sort-package-json && ncu -au"
+    },
+    "dependencies": {
+        "consola": "^1.4.1",
+        "express": "^4.16.3",
+        "hive-js-util": "^0.1.15",
+        "mz": "^2.7.0",
+        "qr-image": "^3.2.0",
+        "qrcode": "^1.2.0"
+    },
+    "devDependencies": {
+        "eslint": "^4.19.1",
+        "eslint-config-standard": "^11.0.0",
+        "eslint-plugin-import": "^2.12.0",
+        "eslint-plugin-mocha": "^5.0.0",
+        "eslint-plugin-node": "^6.0.1",
+        "eslint-plugin-promise": "^3.8.0",
+        "eslint-plugin-standard": "^3.1.0",
+        "mocha": "^5.2.0",
+        "npm-check-updates": "^2.14.2",
+        "sort-package-json": "^1.15.0"
+    }
+}
