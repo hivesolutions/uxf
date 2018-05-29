@@ -1,5 +1,5 @@
 (function(jQuery) {
-    jQuery.uxctrl = function(keycode, callback, arguments) {
+    jQuery.uxctrl = function(keycode, callback, parameters) {
         // retrieves the document element
         var _document = jQuery(document);
 
@@ -8,8 +8,8 @@
             // retrieves the key value
             var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode : event.which;
 
-            // sets the default arguments
-            var arguments = arguments ? arguments : [];
+            // sets the default parameters
+            parameters = parameters || [];
 
             // in case the control key is set and the currently
             // pressed key is the one defined for registration
