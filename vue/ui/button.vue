@@ -1,6 +1,5 @@
 <template>
-<div class="button button-color" v-bind:class="{ visible: isVisible }">
-</div>
+<div class="button button-color" v-bind:class="{ visible: isVisible }">Button</div>
 </template>
 
 <style scoped>
