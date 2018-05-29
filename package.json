@@ -26,12 +26,12 @@
     ],
     "main": "index.js",
     "scripts": {
+        "dev": "webpack-dev-server --config config/webpack.config.examples.js --mode development --watch --hot",
         "test": "mocha",
         "upgrade": "npx sort-package-json && ncu -au",
-        "dev": "webpack-dev-server --config config/webpack.config.examples.js --mode development --watch --hot",
         "webpack": "webpack --config config/webpack.config.js",
-        "webpack-full": "webpack --config config/webpack.config.full.js",
-        "webpack-examples": "webpack --config config/webpack.config.examples.js"
+        "webpack-examples": "webpack --config config/webpack.config.examples.js",
+        "webpack-full": "webpack --config config/webpack.config.full.js"
     },
     "dependencies": {
         "consola": "^1.4.1",
@@ -42,7 +42,6 @@
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.7.0",
         "css-loader": "^0.28.11",
-        "html-webpack-plugin": "^3.2.0",
         "eslint": "^4.19.1",
         "eslint-config-standard": "^11.0.0",
         "eslint-loader": "^2.0.0",
@@ -52,6 +51,8 @@
         "eslint-plugin-promise": "^3.8.0",
         "eslint-plugin-standard": "^3.1.0",
         "eslint-plugin-vue": "^4.5.0",
+        "html-webpack-plugin": "^3.2.0",
+        "jquery": "^3.3.1",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",
         "sort-package-json": "^1.15.0",

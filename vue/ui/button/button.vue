@@ -9,6 +9,7 @@
 
 <script>
 import Vue from "vue";
+import jQuery from "jquery";
 
 export const UxButton = Vue.component("ux-button", {
     data: function() {
@@ -16,7 +17,7 @@ export const UxButton = Vue.component("ux-button", {
             isEnabled: true
         };
     },
-    mounted: function () {
+    mounted: function() {
         var vm = this;
         var element = jQuery(this.$el);
         element.uxbutton();

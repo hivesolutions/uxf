@@ -16,9 +16,10 @@ config.devServer = {
 
 config.plugins.push(
     new HtmlWebpackPlugin({
-        title: "UXF Vue",
+        title: "UX Framework Vue",
         template: "examples/vue/index.html",
         cache: false,
+        inject: "head",
         minify: {
             removeComments: true,
             collapseWhitespace: true,

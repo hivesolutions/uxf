@@ -23,6 +23,7 @@
 
 <script>
 import Vue from "vue";
+import jQuery from "jquery";
 
 export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
@@ -30,7 +31,7 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             isEnabled: true
         };
     },
-    mounted: function () {
+    mounted: function() {
         var vm = this;
         var element = jQuery(this.$el);
         element.uxdropdown();
