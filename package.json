@@ -15,8 +15,9 @@
     "author": "Hive Solutions",
     "files": [
         "index.js",
+        "css/**/*.css",
         "js/**/*.js",
-        "css/**/*.css"
+        "vue/**/*.vue"
     ],
     "main": "index.js",
     "repository": {
