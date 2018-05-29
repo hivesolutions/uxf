@@ -29,7 +29,8 @@
         "test": "mocha",
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config config/webpack.config.js",
-        "webpack-full": "webpack --config config/webpack.config.full.js"
+        "webpack-full": "webpack --config config/webpack.config.full.js",
+        "webpack-examples": "webpack --config config/webpack.config.examples.js"
     },
     "dependencies": {
         "consola": "^1.4.1",
