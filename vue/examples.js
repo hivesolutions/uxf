@@ -14,6 +14,13 @@ export const examples = function() {
         components: {
             UxButton,
             UxDropDown
+        },
+        data: {
+            items: [
+                { text: "first" },
+                { text: "second" },
+                { text: "third" }
+            ]
         }
     });
     return app;

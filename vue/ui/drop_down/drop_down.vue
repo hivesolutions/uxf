@@ -16,9 +16,11 @@ import jQuery from "jquery";
 export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
         return {
-            isEnabled: true,
-            items: []
+            isEnabled: true
         };
+    },
+    props: {
+        items: []
     },
     mounted: function() {
         var vm = this;

@@ -6,15 +6,15 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body onload="UxVue.examples();">
-    <link rel="stylesheet" type="text/css" href="https://libs.platforme.com/uxf/css/ux.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.platforme.com/layout/css/layout.flat.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.platforme.com/layout/css/layout.extras.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.platforme.com/layout/css/layout.data.css" />
-    <script type="text/javascript" src="https://libs.platforme.com/uxf/js/ux.js"></script>
-    <script type="text/javascript" src="https://libs.platforme.com/layout/js/layout.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/uxf/css/ux.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.flat.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.extras.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.data.css" />
+    <script type="text/javascript" src="https://libs.bemisc.com/uxf/js/ux.js"></script>
+    <script type="text/javascript" src="https://libs.bemisc.com/layout/js/layout.js"></script>
     <div id="app" class="app">
         <ux-button>Example</ux-button>
-        <ux-drop-down></ux-drop-down>
+        <ux-drop-down v-bind:items="items"></ux-drop-down>
     </div>
 </body>
 </html>
