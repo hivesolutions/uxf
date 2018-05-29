@@ -38,7 +38,6 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         element.bind("value_change", function(event, value, text, same) {
             vm.$emit("click", value, text, same);
         });
-        
         this.$data.items = this.$props.values;
     },
     methods: {
