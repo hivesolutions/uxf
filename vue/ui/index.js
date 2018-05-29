@@ -1,4 +1,3 @@
 export {
     UxButton
-}
-from "./button/button.vue";
+} from "./button/button.vue";
