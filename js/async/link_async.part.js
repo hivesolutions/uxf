@@ -51,7 +51,7 @@
         // runs the regular expression that will verify if the current link
         // is local and in case it's not returns immediately with the error
         // flag set indicating that no processing has been done
-        var isLocal = HOST_REGEX.test(href)
+        var isLocal = HOST_REGEX.test(href);
         if (!isLocal) {
             return false;
         }
