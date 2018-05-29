@@ -21,10 +21,12 @@ export const examples = function() {
                 { text: "second" },
                 { text: "third" }
             ]
+        },
+        methods: {
+            onValueChange: function(value) {
+                alert(`Selected: ${value}`);
+            }
         }
-    });
-    app.$refs.drop_down.$on("value_change", function(value) {
-        alert(value);
     });
     return app;
 };
