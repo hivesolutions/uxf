@@ -25,17 +25,12 @@
         "url": "git+https://github.com/hivesolutions/uxf.git"
     },
     "scripts": {
-        "start": "node app.js",
         "test": "mocha",
         "upgrade": "npx sort-package-json && ncu -au"
     },
     "dependencies": {
         "consola": "^1.4.1",
-        "express": "^4.16.3",
-        "hive-js-util": "^0.1.15",
-        "mz": "^2.7.0",
-        "qr-image": "^3.2.0",
-        "qrcode": "^1.2.0"
+        "hive-js-util": "^0.1.15"
     },
     "devDependencies": {
         "eslint": "^4.19.1",
