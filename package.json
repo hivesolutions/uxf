@@ -35,7 +35,7 @@
     },
     "dependencies": {
         "consola": "^1.4.1",
-        "hive-js-util": "^0.1.15",
+        "hive-js-util": "^0.1.16",
         "vue": "^2.5.16"
     },
     "devDependencies": {
@@ -59,7 +59,7 @@
         "style-loader": "^0.21.0",
         "vue-loader": "^15.2.2",
         "vue-template-compiler": "^2.5.16",
-        "webpack": "^4.10.1",
+        "webpack": "^4.10.2",
         "webpack-cli": "^2.1.4",
         "webpack-dev-server": "^3.1.4"
     }
