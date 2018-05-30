@@ -13,7 +13,7 @@ deploy:
   provider: npm
   email: development@hive.pt
   api_key:
-    secure: LSb7O+cmwIoUQMeSx8S4tabyBPE74mXaqvhb+b+mcVaqIbUYA3AbV0PU4k+dgJBUIjnCDThxfSiZXZPFlcvbPJ32g6GfcOg3ke26OoNuiZ/ER4xtgpJkpSOSYnlIIMfA90O4QzWQ47u78qosLb7YRyQLQuc3KKJrLtl2EZ576Vo=
+    secure: YgDw/fhZGYvN/sdaX4+Le4XqEdNah+b5KMtJguagne7cix3bm1uf4Xr3Vd2w2AApNST2dn2gcTwih7t3SgupasSxdhlrqZx08BsRIWiOvtUDxUifRTOdl1Fjkc3uqZG1QXPj3aj26yiSLs+h/kEGvitfSsQdMR6o/9ovW/tIH8s=
   on:
     tags: true
     node_js: "7"
