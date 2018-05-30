@@ -9,10 +9,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -60,7 +60,7 @@
             // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
-            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords
+            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords;
 
             // sets the initial filter flag value
             var filter = false;

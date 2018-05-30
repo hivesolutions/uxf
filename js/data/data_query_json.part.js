@@ -13,10 +13,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -75,7 +75,7 @@
             // the requested number of records is not infinite (minus one)
             var startRecord = query["startRecord"] || 0;
             var numberRecords = query["numberRecords"] || MAX_RECORDS;
-            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords
+            numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords;
 
             // unpacks the sort value and the sort oder from the
             // sort tuple and uses them to create the "final" sort
@@ -102,7 +102,7 @@
                 // all of its values arround the separator token
                 var isSequence = typeof value === "object";
                 if (isSequence) {
-                    value = value.join(";")
+                    value = value.join(";");
                 }
 
                 // creates the serialized filter string and adds it
@@ -158,7 +158,7 @@
                 filters: _filters,
                 start_record: startRecord,
                 number_records: numberRecords
-            }
+            };
             var queryHash = _queryHash(query);
 
             // retrieves the current timestamp as the identifier
