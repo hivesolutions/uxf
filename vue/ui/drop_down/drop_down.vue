@@ -1,8 +1,9 @@
 <template>
 <ul class="drop-down" data-name="Drop Down">
     <input type="hidden" v-if="persist" />
-    <li v-for="item in items" v-bind:key="item.name">
-        <span v-bind:data-value="item.value">{{ item.text }}</span>
+    <li v-for="item in items" v-bind:key="item.name"
+        v-bind:data-value="item.value">
+        <span>{{ item.text }}</span>
     </li>
 </ul>
 </template>
