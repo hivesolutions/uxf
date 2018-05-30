@@ -71,7 +71,8 @@ module.exports = {
     },
     performance: {
         hints: false
-    }
+    },
+    devtool: "inline-source-map"
 };
 
 if (process.env.NODE_ENV === "production") {
