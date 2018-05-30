@@ -17,11 +17,14 @@ export const examples = function() {
         },
         data: {
             items: [{
-                text: "first"
+                text: "first",
+                value: "first"
             }, {
-                text: "second"
+                text: "second",
+                value: "second"
             }, {
-                text: "third"
+                text: "third",
+                value: "third"
             }]
         },
         methods: {

@@ -18,7 +18,7 @@
                    v-on:click="onClick('green')">Button Green</ux-button>
         <ux-button ref="button" v-bind:color="'red'"
                    v-on:click="onClick('red')">Button Red</ux-button>
-        <ux-drop-down ref="drop_down" v-bind:values="items"
+        <ux-drop-down ref="drop_down" v-bind:values="items" v-bind:persist="true"
                       v-on:value_change="onValueChange"></ux-drop-down>
     </div>
 </body>

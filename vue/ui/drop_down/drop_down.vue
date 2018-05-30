@@ -1,7 +1,8 @@
 <template>
 <ul class="drop-down" data-name="Drop Down">
+    <input type="hidden" v-if="persist" />
     <li v-for="item in items" v-bind:key="item.name">
-        <span>{{ item.text }}</span>
+        <span v-bind:data-value="item.value">{{ item.text }}</span>
     </li>
 </ul>
 </template>
@@ -25,6 +26,12 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             type: Array,
             default: function() {
                 return [];
+            }
+        },
+        persist: {
+            type: Boolean,
+            default: function() {
+                return false;
             }
         }
     },

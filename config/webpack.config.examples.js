@@ -16,7 +16,7 @@ config.devServer = {
 
 config.plugins.push(
     new HtmlWebpackPlugin({
-        title: "UX Framework Vue",
+        title: "uxFramework Vue",
         template: "examples/vue/index.html",
         cache: false,
         inject: "head",
