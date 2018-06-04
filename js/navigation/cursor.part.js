@@ -1,13 +1,13 @@
 (function(jQuery) {
-    jQuery.fn.uxcursor = function(position) {
+    jQuery.fn.uxcursor = function(position, options) {
         // the default values for the next
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object and retrieves
         // the first element from it
