@@ -21,6 +21,7 @@
         "index.js",
         "css/**/*.css",
         "js/**/*.js",
+        "test/**/*.js",
         "vue/**/*.js",
         "vue/**/*.vue"
     ],
