@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+<body onload="UxVue.examples();">
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/uxf/css/ux.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.flat.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.extras.css" />
+    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.data.css" />
+    <link rel="shortcut icon" href="ux.ico" />
+    <script type="text/javascript" src="https://libs.bemisc.com/uxf/js/ux.js"></script>
+    <script type="text/javascript" src="https://libs.bemisc.com/layout/js/layout.js"></script>
+    <div id="app" class="app">
+        <ux-button ref="button" v-on:click="onClick">Button</ux-button>
+        <ux-button ref="button" v-bind:color="'green'"
+                   v-on:click="onClick('green')">Button Green</ux-button>
+        <ux-button ref="button" v-bind:color="'red'"
+                   v-on:click="onClick('red')">Button Red</ux-button>
+        <ux-drop-down ref="drop_down" v-bind:values="items" v-bind:persist="true"
+                      v-on:value_change="onValueChange"></ux-drop-down>
+    </div>
+</body>
+</html>

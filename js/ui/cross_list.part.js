@@ -15,13 +15,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method ? method : "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options ? options : {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -49,7 +49,7 @@
 
                 // retrieves both the list that contains the various items
                 // to populate the target list and the items themselves
-                var items = jQuery(".items", _element)
+                var items = jQuery(".items", _element);
                 var itemsList = jQuery("li", items) || jQuery();
 
                 // retrieves the various attributes from the element to
@@ -208,7 +208,7 @@
                 // the target data source and in case it does returns
                 // false so that it gets invalidated
                 var exists = targetItems.indexOfObject(item) !== -1;
-                return exists ? false : true;
+                return !exists;
             });
 
             // registers for the order changed event in the target
@@ -244,7 +244,7 @@
 
                 // clears the target element list from all the element
                 // inserted (going to reconstruct it)
-                targetItems.splice(0, targetItems.length)
+                targetItems.splice(0, targetItems.length);
 
                 // iterates over all the items currently in the target
                 // list to insert their value in the target items list
@@ -257,7 +257,7 @@
                     // to the text represention in case none is provided
                     var dataValue = item.attr("data-value");
                     var htmlValue = item.text();
-                    dataValue = dataValue ? dataValue : htmlValue;
+                    dataValue = dataValue || htmlValue;
 
                     // adds the data value to the target items list
                     targetItems.push(dataValue);
@@ -472,8 +472,6 @@
                 // to retrieve the parent form for pre submit event interception
                 var _element = jQuery(this);
                 var parentForm = _element.parents("form");
-                var targetList = jQuery(".target-section .source-list",
-                    _element);
 
                 // registers for the submit event in the parent form so that it's
                 // possible to create the hidden input values for the form
@@ -494,7 +492,7 @@
 
                     // removes all the input elements contained inside the
                     // current select list (avoid duplicated submission)
-                    var inputs = jQuery("input", targetList)
+                    var inputs = jQuery("input", targetList);
                     inputs.remove("input");
 
                     // retrieves the complete set of elements in the current
@@ -519,7 +517,7 @@
                         var listItem = jQuery(listItems[index]);
                         var dataValue = listItem.attr("data-value");
                         var htmlValue = listItem.html();
-                        dataValue = dataValue ? dataValue : htmlValue;
+                        dataValue = dataValue || htmlValue;
 
                         // adds the input element representing the list item
                         // to the target list itself

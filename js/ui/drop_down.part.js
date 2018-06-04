@@ -16,13 +16,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -155,6 +155,7 @@
                 // verifies if the drop down is empty and for that case
                 // the container is hidden (not going to be displayed)
                 isEmpty && container.hide();
+                _element.data("empty", true);
 
                 // updates the original (logical) value of the drop down
                 // and then runs the original operation to restore it to the
@@ -282,7 +283,7 @@
             // drop down so that the element is restored to empty state
             matchedObject.bind("reset", function() {
                 var element = jQuery(this);
-                _reset(element, options)
+                _reset(element, options);
             });
 
             // register for the key down event in the body,
@@ -339,7 +340,7 @@
             // marks the complete set of elements as registered this is going to
             // be used in the update event to determine the elements that already
             // have the event handler registered and the one that don't
-            elements.data("registered", true)
+            elements.data("registered", true);
         };
 
         var _set = function(matchedObject, options) {
@@ -379,20 +380,29 @@
             // logical value from it (as it's expected)
             var container = matchedObject.parents(".drop-down-container");
             var input = jQuery("input", container);
-            var value = input.val();
+            value = input.val();
             return value;
         };
 
         var _update = function(matchedObject, options) {
+            // saves the state value that determins if the current drop down
+            // for update was empty before the update
+            var wasEmpty = matchedObject.data("empty") || false;
+
+            // retrieves the reference to the parent container of the element
+            // to be used for the container level operations
+            var container = matchedObject.parents(".drop-down-container");
+
             // retrieves the complete set of elements for the current object
             // and then filters the ones that are already registered (to avoid
             // a double registration operation)
             var elements = jQuery("> li", matchedObject);
-            elements = elements.filter((function(index) {
+            var isEmpty = elements.length === 0;
+            elements = elements.filter(function(index) {
                 var _element = jQuery(this);
                 var isRegistered = _element.data("registered") || false;
                 return isRegistered === false;
-            }));
+            });
 
             // registers the "new" elements for the click operation so
             // that the state of the drop down gets updated
@@ -415,7 +425,15 @@
 
             // marks the new elements as registered so that further calls
             // to this method do not register new event handlers
-            elements.data("registered", true)
+            elements.data("registered", true);
+
+            // verifies if the drop down is empty and if that's not
+            // the case and the drop down was previously empty
+            // then shows it re-displaying it again
+            if (!isEmpty && wasEmpty) {
+                container.show();
+                matchedObject.data("empty", false);
+            }
         };
 
         var _toggle = function(matchedObject, options) {
@@ -628,7 +646,7 @@
                 // sets the value in the drop down according to
                 // the requested value (provided by options)
                 _set(matchedObject, options);
-                break
+                break;
 
             case "value":
                 // retrieves the value from the matched object and
@@ -640,7 +658,7 @@
                 // updates the component internal structures
                 // to reflect the layout changes
                 _update(matchedObject, options);
-                break
+                break;
 
             case "toggle":
                 // runs the tpggçe operation on the currently matched

@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -87,7 +87,7 @@
                             // breaks the switch
                             break;
                     }
-                }
+                };
 
                 // registers for the key up in the target
                 // object element and then sets the element

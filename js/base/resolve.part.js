@@ -5,7 +5,7 @@
         var oldHref = oldBase && oldBase.href;
         var docHead = doc.head || doc.getElementsByTagName("head")[0];
         var ourBase = oldBase || docHead.appendChild(doc.createElement("base"));
-        var resolver = doc.createElement("a")
+        var resolver = doc.createElement("a");
         var resolvedUrl;
 
         baseUrl = baseUrl || (oldBase && oldBase.href) || "";

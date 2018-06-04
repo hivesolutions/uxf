@@ -46,7 +46,7 @@
             // the current element (key reference)
             valueF = first[element];
             valueS = second[element];
-            type = typeof(valueF);
+            type = typeof valueF;
 
             // by default the comparision of the elements is
             // considered to be valid

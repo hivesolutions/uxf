@@ -4,8 +4,7 @@
         var result = body.triggerHandler("location", [location]);
         if (result === false) {
             return;
-        } else {
-            document.location = location;
         }
+        document.location = location;
     };
 })(jQuery);
