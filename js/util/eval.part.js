@@ -12,10 +12,10 @@
         var method = method ? method : "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -94,7 +94,7 @@
                 // retrieves the selector using a fall back
                 // to the body element selector then uses the
                 // selector to retrieve the trigger element
-                selector = selector ? selector : "body";
+                selector = selector || "body";
                 var triggerElement = jQuery(selector);
 
                 // retrieves the various event handlers from the element
@@ -216,8 +216,8 @@
                 // evaluates the matched object
                 _eval(matchedObject, options);
 
-                // returns the value
-                return value;
+                // breaks the switch
+                break;
 
             case "default":
                 // initializes the plugin
