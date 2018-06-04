@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -69,7 +69,7 @@
                 // the value string into integer and decimal part
                 if (magnitudeSeparator) {
                     // retrieves the value for the separator
-                    separator = separator ? separator : ".";
+                    separator = separator || ".";
 
                     // splits the value string and then retrives
                     // the integer part of the value

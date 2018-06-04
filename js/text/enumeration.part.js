@@ -8,10 +8,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -35,12 +35,12 @@
                 var _element = jQuery(element);
 
                 // retrieves the enum attribute, for latter
-                // json parsing
+                // JSON parsing
                 var _enum = _element.attr("data-enum");
 
                 // replaces the string character in the error
-                // message list and then parses it as json
-                var _enum = _enum.replace(STRING_CHARACTER_REGEX, "\"");
+                // message list and then parses it as JSON
+                _enum = _enum.replace(STRING_CHARACTER_REGEX, "\"");
                 var enumList = jQuery.parseJSON(_enum);
 
                 // retrieves the (element) value
