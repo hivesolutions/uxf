@@ -19,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -225,7 +225,7 @@
             // top level body element (default behaviour)
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
-                var _body = jQuery("body");
+                _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
                 overlay.uxoverlay();
                 _body.prepend(overlay);
@@ -358,7 +358,7 @@
             mask.addClass("visible");
 
             // sets the interval handler in the mask
-            mask.data("interval_handler", intervalHandler)
+            mask.data("interval_handler", intervalHandler);
         };
 
         var _hideMask = function(matchedObject, options) {
@@ -465,7 +465,7 @@
             // retrieves the complete set of fields (form fields)
             // for the current window and then retrieves the first
             // of these elements (to be focused)
-            var fields = matchedObject.uxfields()
+            var fields = matchedObject.uxfields();
             var first = jQuery(fields[0]);
 
             // resets the complete set of form fields and then
@@ -482,7 +482,7 @@
 
             // retrieves the window mask dots contents and length
             var windowMaskDotsContents = windowMaskDots.html();
-            windowMaskDotsContentsLength = windowMaskDotsContents.length;
+            var windowMaskDotsContentsLength = windowMaskDotsContents.length;
 
             // in case the dots contents length overflows
             if (windowMaskDotsContentsLength === 3) {
@@ -496,10 +496,10 @@
             }
 
             // starts the "new" window mask dots contentes
-            var windowMaskDotsContents = "";
+            windowMaskDotsContents = "";
 
             // iterates over the dots contents range
-            for (index = 0; index < windowMaskDotsContentsLength; index++) {
+            for (var index = 0; index < windowMaskDotsContentsLength; index++) {
                 // adds a new dot to the contents
                 windowMaskDotsContents += ".";
             }
