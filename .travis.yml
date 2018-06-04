@@ -9,6 +9,8 @@ node_js:
 install:
   - npm install
 script: npm test
+git:
+  submodules: false
 deploy:
   provider: npm
   email: development@hive.pt
