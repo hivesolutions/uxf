@@ -15,13 +15,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -95,7 +95,6 @@
             // current wizard and then counts them obtain
             // the length of the panels
             var panels = jQuery(".panel-stack > .panel", matchedObject);
-            var panelsLength = panels.length;
 
             // retrieves the last index of the panel either from
             // the attribute in the object or from the default value
