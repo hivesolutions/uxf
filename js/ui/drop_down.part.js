@@ -380,7 +380,7 @@
             // logical value from it (as it's expected)
             var container = matchedObject.parents(".drop-down-container");
             var input = jQuery("input", container);
-            var value = input.val();
+            value = input.val();
             return value;
         };
 
