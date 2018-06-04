@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -37,7 +37,7 @@
             // features with the proper test function/method
             var features = {
                 transition: __transition
-            }
+            };
 
             // iterates over the complete set of features to be
             // validated and runs the validation for each of them
@@ -60,7 +60,7 @@
         var _registerHandlers = function() {};
 
         var __transition = function() {
-            var b = document.body || document.documentElement
+            var b = document.body || document.documentElement;
             var s = b.style;
             var p = "transition";
 
@@ -79,7 +79,7 @@
             }
 
             return false;
-        }
+        };
 
         // initializes the plugin
         initialize();
