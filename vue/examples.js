@@ -6,6 +6,8 @@ import {
     UxDropDown
 } from "./ui";
 
+import "../examples/vue/ux.ico";
+
 window.$ = window.jQuery = jQuery;
 
 export const examples = function() {
