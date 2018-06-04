@@ -16,4 +16,4 @@ deploy:
     secure: YgDw/fhZGYvN/sdaX4+Le4XqEdNah+b5KMtJguagne7cix3bm1uf4Xr3Vd2w2AApNST2dn2gcTwih7t3SgupasSxdhlrqZx08BsRIWiOvtUDxUifRTOdl1Fjkc3uqZG1QXPj3aj26yiSLs+h/kEGvitfSsQdMR6o/9ovW/tIH8s=
   on:
     tags: true
-    node_js: "7"
+    node_js: "7" 
