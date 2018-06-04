@@ -5,7 +5,7 @@
 
         // sets the default options value and then
         // runs the proper extension/construction
-        options = options ? options : {};
+        options = options || {};
         options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
@@ -47,7 +47,7 @@
                     if (!value) {
                         // retrieves the "original" name of the element
                         // to create a backup value
-                        var name = _element.attr("name", nameEmpty);
+                        var name = _element.attr("name");
 
                         // retrieves the name empty value to change the
                         // attribute name in the element
