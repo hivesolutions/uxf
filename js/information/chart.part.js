@@ -48,24 +48,28 @@
                 // in a linear manner (linear scale)
                 var linear = _element.attr("data-linear");
 
+                // starts the ratio variable with the default value,
+                // this is going to be updated further in the method
+                var ratio = null;
+
                 // in case the linear flag is set the ratio is
                 // meant to be the percentage itself
                 if (linear) {
                     // sets the percentage as the ratio to be used
                     // in the bar
-                    var ratio = percentage;
+                    ratio = percentage;
                 }
                 // otherwise the ratio must be controlled using a
                 // logarithmic approach
                 else {
                     // calculates the ratio for the current bar, takes
                     // into account the cases where the value is invalid
-                    var ratio = (Math.log(percentage + 1) / Math.log(101.0)) * 100.0;
+                    ratio = (Math.log(percentage + 1) / Math.log(101.0)) * 100.0;
                     ratio = percentage > 0 ? ratio : 0.0;
                 }
 
                 // converts the ratio into a fixed sized string
-                var ratio = ratio.toFixed(0);
+                ratio = ratio.toFixed(0);
 
                 // sets the ratio as the element width
                 _element.width(ratio + "%");
