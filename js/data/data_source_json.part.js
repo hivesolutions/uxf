@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxdatasourcejson = function(options) {
         // the default values for the data source json
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -43,8 +47,8 @@
         var _updateQueryElement = function(element, options) {
             // retrieves the various attributes that are
             // going to be used for configuration
-            var url = element.attr("data-url")
-            var cacheDisabled = element.attr("data-cache_disabled")
+            var url = element.attr("data-url");
+            var cacheDisabled = element.attr("data-cache_disabled");
 
             // updates the element data
             element.data("type", "json");

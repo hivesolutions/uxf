@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxdatasourceitems = function(options) {
         // the default values for the data source local
@@ -38,7 +42,7 @@
                 // and adds the item elements into it, then runs the
                 // initializer of the local data source extension
                 _element.attr("data-type", "local");
-                for (var index = 0; index < items.length; index++) {
+                for (index = 0; index < items.length; index++) {
                     // retrieves the current item in iteration and checks
                     // if the type of it is a string, conditional action
                     var item = items[index];

@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxdatasourcelocal = function(options) {
         // the default values for the data source local
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -75,10 +79,14 @@
                 var children = _element.children();
                 var containsChildren = children.length > 0;
 
+                // starts the element value to the default value
+                // to be populated by the condition expression
+                var elementValue = null;
+
                 // in case the element contains children
                 if (containsChildren) {
                     // retrieves the "composite" element value
-                    var elementValue = _getElements(_element);
+                    elementValue = _getElements(_element);
                 }
                 // otherwise there are no children and
                 // the ement contents must be directly
@@ -86,7 +94,7 @@
                 else {
                     // retrieves the element value directly
                     // from the element contents
-                    var elementValue = _element.text();
+                    elementValue = _element.text();
                 }
 
                 // in case the data structure is a list

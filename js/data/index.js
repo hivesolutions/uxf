@@ -1,0 +1,23 @@
+const dataQueryJson = require("./data_query_json.part");
+const dataQueryLocal = require("./data_query_local.part");
+const dataQuery = require("./data_query.part");
+const dataSourceCountries = require("./data_source_countries.part");
+const dataSourceGenders = require("./data_source_genders.part");
+const dataSourceIsocountries = require("./data_source_isocountries.part");
+const dataSourceItems = require("./data_source_items.part");
+const dataSourceJson = require("./data_source_json.part");
+const dataSourceLocal = require("./data_source_local.part");
+const dataSource = require("./data_source.part");
+const source = require("./source.part");
+
+Object.assign(module.exports, dataQueryJson);
+Object.assign(module.exports, dataQueryLocal);
+Object.assign(module.exports, dataQuery);
+Object.assign(module.exports, dataSourceCountries);
+Object.assign(module.exports, dataSourceGenders);
+Object.assign(module.exports, dataSourceIsocountries);
+Object.assign(module.exports, dataSourceItems);
+Object.assign(module.exports, dataSourceJson);
+Object.assign(module.exports, dataSourceLocal);
+Object.assign(module.exports, dataSource);
+Object.assign(module.exports, source);

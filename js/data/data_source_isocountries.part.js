@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxdatasourceisocountries = function(options) {
         // the default values for the data source local
@@ -29,6 +33,11 @@
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
                 var _element = jQuery(element);
+
+                // starts the somne of variables that are going to be used
+                // multiple times under this context
+                var country = null;
+                var countryL = null;
 
                 // creates the list that is going to be used as the basis
                 // for the storage of the complete set of countries, this
@@ -64,21 +73,21 @@
                 // iterates over the ordered countries to create the proper
                 // mapper dictionary that will map the localized version of
                 // the country with the "more" locale one for usage
-                for (var index = 0; index < COUNTRIES.length; index++) {
-                    var country = COUNTRIES[index];
-                    var countryL = COUNTRIES_L[index];
+                for (index = 0; index < COUNTRIES.length; index++) {
+                    country = COUNTRIES[index];
+                    countryL = COUNTRIES_L[index];
                     mapper[countryL] = country;
                 }
 
                 // iterates over the range of the countries list to create
                 // the various items that are part of the data source
-                for (var index = 0; index < COUNTRIES.length; index++) {
-                    var countryL = COUNTRIES_LS[index];
-                    var country = mapper[countryL];
+                for (index = 0; index < COUNTRIES.length; index++) {
+                    countryL = COUNTRIES_LS[index];
+                    country = mapper[countryL];
                     var item = {
                         name: countryL,
                         value: country
-                    }
+                    };
                     items.push(item);
                 }
 
