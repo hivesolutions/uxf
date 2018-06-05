@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxgateway = function(options) {
         // the name of the gateway plugin, should not
@@ -8,10 +12,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -46,7 +50,7 @@
             hasPlugin
                 && matchedObject.append(
                     "<object id=\"colony-gateway\" type=\"application/x-colony-gateway\" width=\"0\" height=\"0\"></object>"
-                )
+                );
         };
 
         /**

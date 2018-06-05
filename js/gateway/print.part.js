@@ -1,16 +1,20 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxgprint = function(method, options) {
         // the default values for the print
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -105,7 +109,7 @@
                             }
                         });
                     }
-                }
+                };
             }
 
             // in case the gateway was successfully retrieved
@@ -136,7 +140,7 @@
                 // that the callback should be called only after the
                 // complete set of queue elements have been processed
                 binieUrls = binieUrls.reverse();
-                _printQueue(binieUrls, data, gateway, callback)
+                _printQueue(binieUrls, data, gateway, callback);
             }
             // otherwise the normal printing process must be used
             // in case a fallback URL exists

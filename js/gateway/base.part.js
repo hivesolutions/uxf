@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxg = function(strict) {
         // the name of the gateway plugin, should not
@@ -5,7 +9,7 @@
         var GATEWAY_PLUGIN_NAME = "Colony Gateway Plugin";
 
         // retrieves the values for the strict option
-        strict = strict ? strict : false;
+        strict = strict || false;
 
         // sets the jquery matched object
         var matchedObject = this;
