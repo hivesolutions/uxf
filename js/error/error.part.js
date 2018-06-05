@@ -8,10 +8,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -61,12 +61,12 @@
 
                 // replaces the string character in the error
                 // message list
-                var error = error.replace(STRING_CHARACTER_REGEX, "\"");
+                error = error.replace(STRING_CHARACTER_REGEX, "\"");
 
                 // replaces the list joining character in order
                 // to virtually "join" multiple lists
                 var listJoinCharacter = new RegExp("\\]\\[", "g");
-                var error = error.replace(listJoinCharacter, ", ");
+                error = error.replace(listJoinCharacter, ", ");
 
                 try {
                     // parses the error structure
@@ -75,12 +75,12 @@
                     // sets the error structure with no error enabled
                     // from the provided error (must be a simmple
                     // error string element)
-                    var errorStructure = []
+                    var errorStructure = [];
                 }
 
                 // iterates over all the error messages in the
                 // error structure (errors list)
-                for (var index = 0; index < errorStructure.length; index++) {
+                for (index = 0; index < errorStructure.length; index++) {
                     // retrieves the current error message
                     var errorMessage = errorStructure[index];
 
