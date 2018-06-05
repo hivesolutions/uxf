@@ -27,13 +27,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -68,7 +68,7 @@
             }
 
             // finishes the week days string
-            weekDaysString += "</tr>"
+            weekDaysString += "</tr>";
 
             // adds the calendar header component to the matched object
             matchedObject.append("<div class=\"calendar-header\">" +
@@ -156,7 +156,7 @@
 
             // unpacks the current value into year and month
             var year = current["year"];
-            var month = current["month"]
+            var month = current["month"];
 
             // updates the year and month values
             // in the matched object
@@ -187,7 +187,7 @@
 
             // unpacks the current value into year and month
             var year = current["year"];
-            var month = current["month"]
+            var month = current["month"];
 
             // updates the year and month values
             // in the matched object
@@ -257,7 +257,7 @@
             var nextMonth = intialDayNext.getMonth();
 
             // creates the initial list of days
-            var days = []
+            var days = [];
 
             // iterates over all the final days of the previous month
             for (var index = 0; index < initialDayWeek; index++) {
@@ -340,7 +340,7 @@
                     if (lineOpen) {
                         // adds the close line tag to the
                         // html code
-                        htmlCode += "</tr>"
+                        htmlCode += "</tr>";
                     }
                     // otherwise it must be the first line
                     else {

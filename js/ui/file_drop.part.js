@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -38,7 +38,7 @@
                 event.preventDefault();
 
                 // triggers the file enter event
-                matchedObject.triggerHandler("file_enter", [])
+                matchedObject.triggerHandler("file_enter", []);
             });
 
             // registers the matched object for the drag leave event
@@ -49,7 +49,7 @@
                 event.preventDefault();
 
                 // triggers the file leave event
-                matchedObject.triggerHandler("file_leave", [])
+                matchedObject.triggerHandler("file_leave", []);
             });
 
             // registers the matched object for the drag over event
@@ -73,7 +73,7 @@
                 var files = dataTransfer.files;
 
                 // triggers the file drop event
-                matchedObject.triggerHandler("file_drop", [files])
+                matchedObject.triggerHandler("file_drop", [files]);
             });
         };
 
