@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     var BUNDLE_EN_ISO = {
         "COUNTRIES": ["Afghanistan", "Albania", "Algeria", "Andorra",
@@ -44,7 +48,7 @@
             "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia",
             "Zimbabwe"
         ]
-    }
+    };
 
-    jQuery.uxloadbundle(BUNDLE_EN_ISO, "en-iso")
+    jQuery.uxloadbundle(BUNDLE_EN_ISO, "en-iso");
 })(jQuery);

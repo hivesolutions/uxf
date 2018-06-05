@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxcenter = function(topOffset, leftOffset, useMargin, avoidTop, avoidLeft, keep, reference, position) {
         // sets the jquery matched object that is going to be centered

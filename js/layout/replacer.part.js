@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery replacer plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a replacer component.

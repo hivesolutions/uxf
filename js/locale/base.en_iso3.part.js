@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     var BUNDLE_EN_ISO3 = {
         "COUNTRIES": ["AFG", "ALB", "DZA", "AND", "AGO", "ATG", "ARG", "ARM",
@@ -23,7 +27,7 @@
             "TUN", "TUR", "TKM", "TUV", "UGA", "UKR", "ARE", "GBR", "USA",
             "URY", "UZB", "VUT", "VAT", "VEN", "VNM", "YEM", "ZMB", "ZWE"
         ]
-    }
+    };
 
-    jQuery.uxloadbundle(BUNDLE_EN_ISO3, "en-iso3")
+    jQuery.uxloadbundle(BUNDLE_EN_ISO3, "en-iso3");
 })(jQuery);

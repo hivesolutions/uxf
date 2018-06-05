@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     var BUNDLE_EN_US = {
         "Confirm": "Confirm",
@@ -104,7 +108,7 @@
             "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia",
             "Zimbabwe"
         ]
-    }
+    };
 
-    jQuery.uxloadbundle(BUNDLE_EN_US, "en-us")
+    jQuery.uxloadbundle(BUNDLE_EN_US, "en-us");
 })(jQuery);

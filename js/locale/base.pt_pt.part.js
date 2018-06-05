@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     var BUNDLE_PT_PT = {
         "Confirm": "Confirmar",
@@ -105,7 +109,7 @@
             "Vaticano", "Venezuela", "Vietname", "Iémen", "Zâmbia",
             "Zimbabwe"
         ]
-    }
+    };
 
-    jQuery.uxloadbundle(BUNDLE_PT_PT, "pt-pt")
+    jQuery.uxloadbundle(BUNDLE_PT_PT, "pt-pt");
 })(jQuery);

@@ -234,13 +234,7 @@ if (typeof require !== "undefined") {
             // retrieves the various data attribute from the target
             // object for the scanning
             var sequence = targetObject.data("sequence") || "";
-            var previousTime = targetObject.data("previous_time") || currentTime;
             var initialTime = targetObject.data("initial_time") || currentTime;
-            var ignoring = targetObject.data("ignoring") || false;
-
-            // calculates the delta (difference) value between the
-            // current time and the previous time
-            var delta = currentTime - previousTime;
 
             // retrieves the key value for the current event
             var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode : event.which;
