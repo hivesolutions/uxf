@@ -3,7 +3,7 @@ require("../../js");
 
 describe("UxButton", function() {
     describe("#basic()", function() {
-        it("should be able to modify DOM properly", () => {
+        it("should be able to read DOM properly", () => {
             const jQuery = global.jQuery;
 
             jQuery("body").empty();
