@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxscan = function(element, options) {
         // the ammount of time to considered between letter sending any letter
@@ -177,7 +181,7 @@
                         // in case the sequence is considered to be valid
                         // the scan event is triggered
                         isValid
-                            && targetObject.trigger("scan", [sequence])
+                            && targetObject.trigger("scan", [sequence]);
 
                         // resets the various data values in the
                         // the target object to reflect the default values
@@ -267,7 +271,7 @@
             // to stop the event propagation
             if (!isValid) {
                 // returns immediately (avoids event propagation)
-                return
+                return;
             }
 
             // the sequence is considered valid and so the event must

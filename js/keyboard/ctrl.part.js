@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.uxctrl = function(keycode, callback, parameters) {
         // retrieves the document element
@@ -23,7 +27,6 @@
                 // returns immediately, no more logic executed
                 event.preventDefault();
                 event.stopPropagation();
-                return;
             }
         });
     };
