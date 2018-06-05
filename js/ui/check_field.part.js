@@ -15,10 +15,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -90,7 +90,7 @@
 
                     // removes all the input elements contained inside the
                     // current tag field (avoid duplicated submission)
-                    var inputs = jQuery("input", _element)
+                    var inputs = jQuery("input", _element);
                     inputs.remove("input");
 
                     // in case the current element is checked no need to
@@ -120,7 +120,7 @@
             // retrieves the current checked state from the matched
             // object and "invert" it to toggle the state
             var checked = matchedObject.is(":checked");
-            var _checked = checked ? false : true;
+            var _checked = !checked;
 
             // checks the current matched object by setting
             // the its checked attribute
