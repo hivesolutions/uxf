@@ -1,3 +1,11 @@
+if (typeof require !== "undefined") {
+    var jsdom = require("jsdom");
+    var jquery = require("jquery");
+    global.dom = global.dom || new jsdom.JSDOM("");
+    global.jQuery = global.jQuery || jquery(global.dom.window);
+    var jQuery = global.jQuery;
+}
+
 /**
  * jQuery drop down plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a drop down component. Should be used for situations
@@ -530,18 +538,23 @@
             var elements = jQuery("> li", matchedObject);
             var originalElement = elements.filter("[data-value=\"" + original + "\"]");
 
+            // starts some of the values that are going to be latter populated
+            // by following code execution
+            var originalText = null;
+            var originalExtra = null;
+
             // verifies if an element was selected (original element) and if
             // that's the case retrieves the proper original text either from
             // it's content of from it's complete text
             if (originalElement.length > 0) {
-                var originalText = originalElement.uxcontent().trim() || originalElement.text().trim();
-                var originalExtra = null;
+                originalText = originalElement.uxcontent().trim() || originalElement.text().trim();
+                originalExtra = null;
             }
             // otherwise sets the original text as the name of the drop field
             // as no original value has been selected
             else {
-                var originalText = name;
-                var originalExtra = extra;
+                originalText = name;
+                originalExtra = extra;
             }
 
             // hides the current drop down as it's no longer going to be
