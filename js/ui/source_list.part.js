@@ -15,16 +15,16 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {
+        options = options || {
             numberOptions: null,
             filterOptions: true
         };
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -129,10 +129,6 @@
                 // retrieves th current element
                 var element = jQuery(this);
                 var sourceList = element.parent(".source-list");
-                var selectList = jQuery(".select-list", sourceList);
-
-                // retrieves the event key code
-                var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
                 // retrieves the event key code
                 var eventKeyCode = event.keyCode ? event.keyCode : event.which;
