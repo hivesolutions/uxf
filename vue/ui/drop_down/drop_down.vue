@@ -14,6 +14,7 @@
 <script>
 import Vue from "vue";
 import jQuery from "jquery";
+import "base";
 
 export const UxDropDown = Vue.component("ux-drop-down", {
     data: function() {
