@@ -1,5 +1,6 @@
 if (typeof require !== "undefined") {
     var jQuery = require("../_compat").jQuery;
+    var location = global.dom.window.location
 }
 
 (function(jQuery) {
