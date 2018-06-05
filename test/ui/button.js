@@ -3,6 +3,11 @@ require("../../js");
 
 describe("UxButton", function() {
     describe("#basic()", function() {
+        it("should be defined", () => {
+            const jQuery = global.jQuery;
+            assert.notEqual(jQuery.fn.uxbutton, undefined);
+        });
+
         it("should be able to read DOM properly", () => {
             const jQuery = global.jQuery;
 
