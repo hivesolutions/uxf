@@ -10,7 +10,7 @@
         // the top level element entrypoints, relevant to
         // determined the correct entry hierarchy levels
         // for each of the graphical components/elements
-        var isElement = transparent ? false : true;
+        var isElement = !transparent;
 
         // iterates over the complete set of selected elements
         // in order to change their internal structure
