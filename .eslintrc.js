@@ -12,7 +12,8 @@ module.exports = {
         "semi": ["error", "always"],
         "space-before-function-paren": ["error", "never"],
         "mocha/no-exclusive-tests": "error",
-        "no-debugger": "warn"
+        "no-debugger": "warn",
+        "brace-style": "off"
     },
     "env": {
         "jasmine": true
