@@ -37,9 +37,12 @@
     "dependencies": {
         "consola": "^1.4.1",
         "hive-js-util": "^0.1.17",
+        "jquery": "^3.3.1",
+        "jsdom": "^11.11.0",
         "vue": "^2.5.16"
     },
     "devDependencies": {
+        "babel-core": "^6.26.3",
         "babel-loader": "^7.1.4",
         "babel-preset-env": "^1.7.0",
         "css-loader": "^0.28.11",
@@ -54,15 +57,14 @@
         "eslint-plugin-vue": "^4.5.0",
         "file-loader": "^1.1.11",
         "html-webpack-plugin": "^3.2.0",
-        "jquery": "^3.3.1",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",
         "sort-package-json": "^1.15.0",
         "style-loader": "^0.21.0",
         "vue-loader": "^15.2.4",
         "vue-template-compiler": "^2.5.16",
-        "webpack": "^4.10.2",
-        "webpack-cli": "^3.0.1",
+        "webpack": "^4.11.0",
+        "webpack-cli": "^3.0.2",
         "webpack-dev-server": "^3.1.4"
     }
 }

@@ -1,3 +1,10 @@
+if (typeof require !== "undefined") {
+    var jQuery = null;
+    var jsdom = require("jsdom");
+    const dom = new jsdom.JSDOM("");
+    jQuery = require("jquery")(dom.window);
+}
+
 /**
  * jQuery button plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a button component.
