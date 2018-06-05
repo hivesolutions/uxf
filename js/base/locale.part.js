@@ -1,5 +1,8 @@
-(function(jQuery) {
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
 
+(function(jQuery) {
     /**
      * The map of symbols associating the value with a map containing all of its
      * localized values.
