@@ -18,16 +18,16 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {
+        options = options || {
             numberOptions: 6,
             filterOptions: true
         };
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -85,7 +85,7 @@
                 var linkAttribute = _element.attr("data-link_attribute") || "link";
 
                 // retrieves any possible filter information, both the name
-                //and the operation, these values may be used to change the
+                // and the operation, these values may be used to change the
                 // default behavior of the query so that a "composite" filter
                 // is used instead giveing more flexibility to the query
                 var filterName = _element.attr("data-filter_name") || null;
@@ -113,7 +113,7 @@
 
                     // creates the text field element and sets the various
                     // attributes in it (attribute propagation)
-                    var textField = jQuery("<input type=\"text\" class=\"text-field\" />");
+                    textField = jQuery("<input type=\"text\" class=\"text-field\" />");
                     textField.val(value);
                     textField.attr("name", name);
                     textField.attr("placeholder", placeholder);
@@ -268,7 +268,7 @@
                     if (dropFieldContents.is(":visible")) {
                         // hides the drop field contents, so that the
                         // options are removed from user's visibility
-                        _hide(dropField)
+                        _hide(dropField);
                     }
                     // otherwise it should show the updated
                     // drop field contents
@@ -1028,7 +1028,7 @@
                 }
 
                 // empties (clears) the drop field contents
-                dropFieldContents.empty()
+                dropFieldContents.empty();
 
                 // in case no valid items were retrieves, must show
                 // the no results element
@@ -1646,7 +1646,7 @@
             // index and updates the data attribute of the drop
             // field accordingly, then runs the update selection
             // to update the graphics
-            var selectionIndex = element.index() + 1
+            var selectionIndex = element.index() + 1;
             dropField.data("selection", selectionIndex);
             _updateSelection(dropField, options);
 
@@ -1681,7 +1681,7 @@
                 // note that the value gets defaulted to zero
                 var settings = {
                     offset: isNaN(offsetInteger) ? 0 : offsetInteger
-                }
+                };
 
                 // scrolls to the reference using the proper
                 // plugin operation (performing smooth effect)
@@ -1788,7 +1788,7 @@
             case "set":
                 // sets the value in the drop field value
                 _set(matchedObject, options);
-                break
+                break;
 
             case "reset":
                 // resets the drop field value
@@ -1799,7 +1799,7 @@
                 // selects the proper index value in the drop
                 // field, usefull for drop field select elements
                 _index(matchedObject, options);
-                break
+                break;
 
             case "value":
                 // retrieves the value and returns it to the
