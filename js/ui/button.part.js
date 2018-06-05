@@ -1,8 +1,8 @@
 if (typeof require !== "undefined") {
     var jsdom = require("jsdom");
     var jquery = require("jquery");
-    var dom = new jsdom.JSDOM("");
-    var jQuery = jquery.jQuery(dom.window);
+    global.dom = global.dom || new jsdom.JSDOM("");
+    global.jQuery = global.jQuery || jquery.jQuery(global.dom.window);
 }
 
 /**
