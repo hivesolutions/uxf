@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -62,7 +62,7 @@
                 // for the lazy retrieval, note that for this strategy
                 // the src attribute is removed (may create size issues)
                 if (!src) {
-                    src = _element.attr("src")
+                    src = _element.attr("src");
                     _element.removeAttr("src");
                 }
 
@@ -183,6 +183,8 @@
         };
 
         var isVisible = function(element, relaxed) {
+            relaxed = relaxed || element.hasClass("relaxed");
+
             var _window = jQuery(window);
             var windowTop = _window.scrollTop();
             var windowHeight = _window.height();
@@ -190,7 +192,6 @@
             var elementHeight = element.outerHeight(true);
             var headerOffset = getHeaderOffset(element);
             var footerOffset = getFooterOffset(element);
-            var relaxed = relaxed || element.hasClass("relaxed");
             var displayed = relaxed ? true : element.is(":visible");
 
             var belowTop = elementTop + elementHeight >= windowTop + headerOffset;
@@ -223,7 +224,7 @@
         var _getOffset = function(element, selectorAttribute, defaultSelector) {
             var _body = jQuery("body");
             var selector = element.attr(selectorAttribute);
-            selector = selector ? selector : defaultSelector;
+            selector = selector || defaultSelector;
             var container = jQuery(selector, _body);
             var height = container.outerHeight(true);
 
