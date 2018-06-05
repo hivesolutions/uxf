@@ -14,6 +14,7 @@ module.exports = {
         "mocha/no-exclusive-tests": "error",
         "no-debugger": "warn",
         "brace-style": "off",
+        "operator-linebreak" : "off",
         "standard/no-callback-literal": "off"
     },
     "env": {
