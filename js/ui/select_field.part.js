@@ -15,13 +15,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -44,9 +44,8 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the text field and the data source
+            // retrieves the reference to the text field
             var textField = jQuery(".text-field", matchedObject);
-            var dataSource = jQuery("> .data-source", matchedObject);
 
             // registers for the change in the text field
             // (select) this occurs when a new option is selected
@@ -131,7 +130,7 @@
             // retrieves the current set of elements present
             // in the select field and removes them, then adds
             // the new item (template item) to the select field
-            var element = jQuery(".element", selectField);
+            element = jQuery(".element", selectField);
             element.remove();
             selectField.append(templateItem);
         };
