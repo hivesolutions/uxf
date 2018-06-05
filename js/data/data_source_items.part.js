@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -56,7 +56,7 @@
                         // iterates over all the keys in the item to
                         // create the various span elements representing
                         // the various attributes
-                        for (key in item) {
+                        for (var key in item) {
                             // retrieves the value associated the current key
                             // and appends the span associated with the key
                             var value = item[key];

@@ -4,10 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -58,7 +58,7 @@
 
                 // creates the final locale sorted version that is going to
                 // be used as the main driver in items creation
-                COUNTRIES_LS = COUNTRIES_L.slice();
+                var COUNTRIES_LS = COUNTRIES_L.slice();
                 COUNTRIES_LS.sort();
 
                 // iterates over the ordered countries to create the proper
