@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxanimend = function(name, callback) {
         // retrieves the currently defined context as the matched
@@ -32,7 +36,7 @@
                 }
                 callback.call(this);
                 element.unbind("animationend", onEnd);
-            }
+            };
 
             // registers for the animation end event note that
             // the callback is only called in case the name based

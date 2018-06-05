@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxtransend = function(property, callback) {
         // retrieves the currently defined context as the matched
@@ -15,7 +19,7 @@
             // property the callback is called immediately
             var element = jQuery(this);
             var propertyS = element.css("transition-property");
-            var propertys = propertyS.split(",")
+            var propertys = propertyS.split(",");
             if (property && propertys.indexOf(property) === -1) {
                 callback.call(this);
                 return;
