@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxerror = function(method, options) {
         // the regex for string character regex,
@@ -55,7 +59,6 @@
 
                 // retrieves the parent form to retrieve
                 // the error box to be shown
-                var form = _element.parents("form");
                 var errorBox = jQuery(".error-box");
                 errorBox.show();
 
@@ -68,14 +71,17 @@
                 var listJoinCharacter = new RegExp("\\]\\[", "g");
                 error = error.replace(listJoinCharacter, ", ");
 
+                // sets the initial value of the error structure
+                var errorStructure = null;
+
                 try {
                     // parses the error structure
-                    var errorStructure = jQuery.parseJSON(error);
+                    errorStructure = jQuery.parseJSON(error);
                 } catch (exception) {
                     // sets the error structure with no error enabled
                     // from the provided error (must be a simmple
                     // error string element)
-                    var errorStructure = [];
+                    errorStructure = [];
                 }
 
                 // iterates over all the error messages in the
@@ -91,7 +97,7 @@
                     // creates the error description element and adds it
                     // after the element
                     var errorDescription = jQuery(errorDescriptionHtml);
-                    jQuery(errorDescriptionHtml).insertAfter(_element);
+                    errorDescription.insertAfter(_element);
                 }
             });
         };
