@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxvideo = function(options) {
         // the map for the youtube
@@ -25,10 +29,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -108,8 +112,8 @@
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
-            width = width ? width : 560;
-            height = height ? height : 315;
+            width = width || 560;
+            height = height || 315;
 
             // calculates the various technology dependent values, taking
             // into account if the player support is going to be action
@@ -147,8 +151,8 @@
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
-            width = width ? width : 560;
-            height = height ? height : 315;
+            width = width || 560;
+            height = height || 315;
 
             // calculates the info value
             var infoValue = autoPlay ? "title=1&byline=1&portrait=1" : "title=0&byline=0&portrait=0";
@@ -174,8 +178,8 @@
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
-            width = width ? width : 560;
-            height = height ? height : 315;
+            width = width || 560;
+            height = height || 315;
 
             // calculates the the various parameters that are going to be
             // set for the inclusion of the video player
@@ -190,7 +194,7 @@
 
         var parseUrl = function(url) {
             // creates the URL regex (for URL validation)
-            var urlRegex = /(\w+\:\/\/)?([^\:\/\?#]+)(\:\d+)?((\/[^\?#]+)*)\/?(\?(([^#])*))?(#(.*))?/g;
+            var urlRegex = /(\w+:\/\/)?([^:/?#]+)(:\d+)?((\/[^?#]+)*)\/?(\?(([^#])*))?(#(.*))?/g;
 
             // executes the URL regex against the URL
             var match = urlRegex.exec(url);
@@ -248,7 +252,7 @@
                 options: options,
                 location: location,
                 optionsMap: optionsMap
-            }
+            };
 
             // returns the URL information map
             return urlInformation;
