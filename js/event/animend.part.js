@@ -19,7 +19,7 @@ if (typeof require !== "undefined") {
             // name the callback is called immediately
             var element = jQuery(this);
             var nameS = element.css("animation-name");
-            var names = nameS.split(",")
+            var names = nameS.split(",");
             if (name && names.indexOf(name) === -1) {
                 callback.call(this);
                 return;
