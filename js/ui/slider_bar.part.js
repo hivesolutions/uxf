@@ -15,16 +15,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
-
-        // sets the jquery matched object
-        var matchedObject = this;
+        options = jQuery.extend(defaults, options);
 
         /**
          * Initializer of the plugin, runs the necessary functions to initialize

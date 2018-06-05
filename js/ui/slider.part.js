@@ -17,13 +17,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -75,7 +75,7 @@
             // to the current body element (default action)
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
-                var _body = jQuery("body");
+                _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
                 overlay.uxoverlay();
                 _body.prepend(overlay);
@@ -226,9 +226,6 @@
             var slider = matchedObject;
             var sliderContents = jQuery(".slider-contents", matchedObject);
 
-            // checks if the slider is visible
-            var sliderVisible = slider.is(":visible");
-
             // checks if the slider is visible and in case it's
             // not returns immediately as there's nothing to be done
             var sliderVisible = slider.is(":visible");
@@ -345,7 +342,6 @@
             var _window = jQuery(window);
 
             // retrieves the window dimensions
-            var windowHeight = _window.height();
             var windowWidth = _window.width();
 
             // retrieves the windows scroll left
