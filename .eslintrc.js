@@ -13,7 +13,8 @@ module.exports = {
         "space-before-function-paren": ["error", "never"],
         "mocha/no-exclusive-tests": "error",
         "no-debugger": "warn",
-        "brace-style": "off"
+        "brace-style": "off",
+        "standard/no-callback-literal": "off"
     },
     "env": {
         "jasmine": true
