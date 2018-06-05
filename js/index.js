@@ -9,6 +9,7 @@ const external = require("./external");
 const gateway = require("./gateway");
 const information = require("./information");
 const keyboard = require("./keyboard");
+const layout = require("./layout");
 const ui = require("./ui");
 
 Object.assign(module.exports, async);
@@ -22,6 +23,7 @@ Object.assign(module.exports, external);
 Object.assign(module.exports, gateway);
 Object.assign(module.exports, information);
 Object.assign(module.exports, keyboard);
+Object.assign(module.exports, layout);
 Object.assign(module.exports, ui);
 
 module.exports.VERSION = "__VERSION__";
