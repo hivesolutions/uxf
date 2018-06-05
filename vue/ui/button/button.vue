@@ -11,6 +11,8 @@
 import Vue from "vue";
 import jQuery from "jquery";
 
+import "ui";
+
 export const UxButton = Vue.component("ux-button", {
     data: function() {
         return {

@@ -63,6 +63,8 @@ module.exports = {
     },
     resolve: {
         alias: {
+            "base$": "../../../js",
+            "ui$": "../../../js/ui",
             "vue$": "vue/dist/vue.esm.js"
         }
     },
