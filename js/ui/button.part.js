@@ -3,6 +3,7 @@ if (typeof require !== "undefined") {
     var jquery = require("jquery");
     global.dom = global.dom || new jsdom.JSDOM("");
     global.jQuery = global.jQuery || jquery.jQuery(global.dom.window);
+    var jQuery = global.jQuery;
 }
 
 /**
