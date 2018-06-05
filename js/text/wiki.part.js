@@ -4,13 +4,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
-
-        // sets the jquery matched object
-        var matchedObject = this;
+        options = jQuery.extend(defaults, options);
 
         // creates the various regular expressions for substitution
         var newlineRegex = RegExp("\\\\n", "g");
@@ -40,9 +37,9 @@
 
         var _process = function(message) {
             // replaces the various message items
-            var message = message.replace(newlineRegex, "<br/>");
-            var message = message.replace(boldStartRegex, "<b>");
-            var message = message.replace(boldEndRegex, "</b>");
+            message = message.replace(newlineRegex, "<br/>");
+            message = message.replace(boldStartRegex, "<b>");
+            message = message.replace(boldEndRegex, "</b>");
 
             // returns the (processed) message
             return message;
@@ -52,7 +49,7 @@
         initialize();
 
         // processes the message
-        var message = _process(message);
+        message = _process(message);
 
         // returns the (processed) message
         return message;

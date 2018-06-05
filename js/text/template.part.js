@@ -4,17 +4,17 @@
         var defaults = {};
 
         // sets the default attributes value
-        var attributes = attributes ? attributes : {};
+        attributes = attributes || {};
 
         // sets the default options value
-        var options = options ? options : {
+        options = options || {
             apply: true,
             nullify: true,
             defaultValue: ""
         };
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -72,7 +72,7 @@
 
             // returns the template element (cloned element)
             return templateElement;
-        }
+        };
 
         /**
          * Applies the given attributes to the given template contents string.
@@ -102,11 +102,8 @@
         var _applyAttributes = function(templateContents, attributes, nullify, localize, defaultValue, baseKey) {
             // retrieves the various default value to be used
             // in the template rendering
-            var defaultValue = defaultValue ? defaultValue : "";
-            var baseKey = baseKey ? baseKey : "";
-
-            // converts the attribute to (jquery) element
-            var attributesElement = jQuery(attributes);
+            defaultValue = defaultValue || "";
+            baseKey = baseKey || "";
 
             // iterates over all the attributes
             for (var key in attributes) {

@@ -24,13 +24,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -171,7 +171,7 @@
          */
         var _getStringValue = function(value, valueLength, padding) {
             // retrieves the padding value
-            var padding = padding ? padding : "0";
+            padding = padding || "0";
 
             // converts the value to a string and retrives
             // the length of it
