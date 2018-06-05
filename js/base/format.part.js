@@ -56,26 +56,36 @@
             return stringValue;
         };
 
+        // sets the default values for the multiple time units that
+        // are going to be used in the date format
+        var year = null;
+        var month = null;
+        var day = null;
+        var hours = null;
+        var minutes = null;
+        var seconds = null;
+        var dateString = null;
+
         // verifies if the provided object is of type date in case
         // it's not must create a date object that represent it
         var isDate = date.getDate !== undefined;
         if (!isDate) {
-            var year = date["year"];
-            var month = date["month"] || 1;
-            var day = date["day"] || 1;
-            var hours = date["hours"] || 0;
-            var minutes = date["minutes"] || 0;
-            var seconds = date["seconds"] || 0;
+            year = date["year"];
+            month = date["month"] || 1;
+            day = date["day"] || 1;
+            hours = date["hours"] || 0;
+            minutes = date["minutes"] || 0;
+            seconds = date["seconds"] || 0;
             date = new Date(year, month - 1, day, hours, minutes, seconds);
         }
 
         // retrieves the various components of the date
-        var year = utc ? date.getUTCFullYear() : date.getFullYear();
-        var month = utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;
-        var day = utc ? date.getUTCDate() : date.getDate();
-        var hours = utc ? date.getUTCHours() : date.getHours();
-        var minutes = utc ? date.getUTCMinutes() : date.getMinutes();
-        var seconds = utc ? date.getUTCSeconds() : date.getSeconds();
+        year = utc ? date.getUTCFullYear() : date.getFullYear();
+        month = utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;
+        day = utc ? date.getUTCDate() : date.getDate();
+        hours = utc ? date.getUTCHours() : date.getHours();
+        minutes = utc ? date.getUTCMinutes() : date.getMinutes();
+        seconds = utc ? date.getUTCSeconds() : date.getSeconds();
 
         // retrieves the full and abbreviated month values and then
         // localizes them into the proper locale representation
@@ -102,16 +112,16 @@
                 abbreviatedMonth);
 
             // sets the date string as the final format
-            var dateString = format;
+            dateString = format;
         }
         // otherwise the default date format is to be used, this is defined
         // in accordance with the iso standards
         else {
             // creates the date string with the default
             // (complete) format in accordance with standard
-            var dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) + " " +
+            dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) + " " +
                 _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" + _getStringValue(seconds,
-                    2)
+                    2);
         }
 
         // returns the processed date string to the caller method
