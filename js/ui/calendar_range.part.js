@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxcalendarrange = function(options) {
         // the default values for the data source
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -197,7 +201,7 @@
             calendar.bind("current_change", function(event, current) {
                 // retrieves the current element and uses it to retrieve the
                 // calendar range associated and then the focused text field
-                var element = jQuery(this)
+                var element = jQuery(this);
                 var range = element.parents(".calendar-range");
                 var focused = jQuery(".focus", range);
 
@@ -222,7 +226,7 @@
                 // retrieves the current element and uses it to retrieve
                 // the associated calendar range and then uses it to retrieve
                 /// the focused text field in order to avoid the next blur
-                var element = jQuery(this)
+                var element = jQuery(this);
                 var range = element.parents(".calendar-range");
                 var focused = jQuery(".focus", range);
 
