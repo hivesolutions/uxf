@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery filter plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a filter component.
@@ -17,10 +21,10 @@
         };
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -118,7 +122,7 @@
 
                 // in case the text field is still not found the extra no input
                 // class is aded to the currently selected filter element
-                textField.length === 0 && _element.addClass("no-input")
+                textField.length === 0 && _element.addClass("no-input");
 
                 // creates the element representing the buttons for the filter
                 // fild (the more oprtions and the view changer) and adds it
@@ -200,7 +204,7 @@
 
                 // checks if the filtering is enabled and valid for the
                 // current context of execution
-                var hasFiltering = filterFiltering.length > 0 ? true : false;
+                var hasFiltering = Boolean(filterFiltering.length > 0);
 
                 // in case the advanced mode is active adds the initial filter
                 // line to the filters area, but only in case there are valid
@@ -342,7 +346,7 @@
                     cache[uniqueId] = {
                         item: templateItem,
                         data: element
-                    }
+                    };
                 }
 
                 // sets the object identifier information in the template
@@ -717,7 +721,7 @@
 
                 // creates the list for the elements to be selected
                 // to be part of the selection
-                var selection = []
+                var selection = [];
 
                 // iterates over the number of elements to insert the
                 // index into the selection list
@@ -1008,7 +1012,7 @@
             // as it's not possible to run the update operation without
             // any valid/enabled data source element
             if (dataSource.length === 0) {
-                return
+                return;
             }
 
             // in case the value in the filter input
@@ -1247,7 +1251,7 @@
                             cache[uniqueId] = {
                                 item: templateItem,
                                 data: element
-                            }
+                            };
                         }
                     }
 
@@ -1355,9 +1359,7 @@
 
             // retrieves the reference to the window, document,
             // body and the reference to the current context menu
-            var _window = jQuery(window);
-            var _document = jQuery(document);
-            var _body = jQuery("body")
+            var _body = jQuery("body");
             var contextMenus = jQuery("> .context-menu", _body);
             var menu = jQuery(".context-menu", element);
             var menuContents = jQuery(".context-menu .menu-contents", element);
@@ -1416,7 +1418,7 @@
 
             // updates the menu contents attributes to reflect
             // the proper attributes (position)
-            menuContents.css("position", "fixed")
+            menuContents.css("position", "fixed");
             menuContents.css("margin-left", 0 + "px");
             menuContents.css("margin-top", 0 + "px");
             menuContents.css("top", event.pageY - scrollY + "px");
@@ -1647,7 +1649,7 @@
                             }
 
                             // adds the identifier to the identifiers list
-                            identifiersList += objectId
+                            identifiersList += objectId;
                         });
 
                         // updates the current documents location to the bulk
@@ -2150,7 +2152,7 @@
 
             // creates a new list to hold the new selection values resulting
             // from the range selection
-            var _selection = []
+            var _selection = [];
 
             // iterates over the range values to add the selected indexes to
             // the selection list
@@ -2208,7 +2210,7 @@
                         // creates the settings map based on the offset
                         var settings = {
                             offset: isNaN(offsetInteger) ? 0 : offsetInteger
-                        }
+                        };
 
                         // scrolls to the reference
                         jQuery.uxscrollto(valueLink, durationInteger, settings);
@@ -2276,7 +2278,7 @@
             // sets the proper postion attributes for the
             // submenu so that it's positioned to the right
             // of the action element
-            subMenu.css("position", "fixed")
+            subMenu.css("position", "fixed");
             subMenu.css("margin-left", marginLeft + "px");
             subMenu.css("margin-top", 0 + "px");
             subMenu.css("top", (top - scrollY) + "px");
@@ -2434,7 +2436,7 @@
 
                     // sets the disabled flag so that no operation changing
                     // action is possible
-                    disabled = true
+                    disabled = true;
 
                     // retrieves the URL and the type (data source) from
                     // the associated element
@@ -2583,10 +2585,10 @@
 
             // creates the initial list to hold the items, types and names associated
             // with them, the index should be associative between them
-            var items = []
-            var types = []
-            var names = []
-            var elements = []
+            var items = [];
+            var types = [];
+            var names = [];
+            var elements = [];
 
             // iterates over each of the data filtering elements to
             // be able to "parse" the items and insert them into the
