@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxbrowser = function(options) {
         // the data browser values
@@ -98,10 +102,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -165,13 +169,13 @@
             // updates a series of attributes in the body so that
             // it's possible to access browser and operative system
             // information from the matched object
-            matchedObject.attr("data-browser", browserName)
-            matchedObject.attr("data-browser_version", browserVersion)
-            matchedObject.attr("data-os", browserOs)
+            matchedObject.attr("data-browser", browserName);
+            matchedObject.attr("data-browser_version", browserVersion);
+            matchedObject.attr("data-os", browserOs);
 
             // adds the extra legacy attribute in the current browser
             // is considered to be a legacy one
-            isLegacy && matchedObject.attr("data-browser_legacy", "1")
+            isLegacy && matchedObject.attr("data-browser_legacy", "1");
 
             // applies the patch to the jquery infra-structure so that
             // the old mode of broewser detection is still possible

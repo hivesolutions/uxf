@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.uxfullscreen = function(leave) {
         // retrieves the reference to the top level elements, that
@@ -19,7 +23,7 @@
                     var isFullscreen = this.fullScreen || this.mozFullScreen || this.webkitIsFullScreen;
                     isFullscreen = isFullscreen || this.fullscreenElement || this.mozFullScreenElement || this.webkitFullscreenElement ||
                         this.msFullscreenElement;
-                    isFullscreen = isFullscreen ? true : false;
+                    isFullscreen = Boolean(isFullscreen);
                     if (isFullscreen) {
                         _body.addClass("full-window");
                     } else {
@@ -33,7 +37,7 @@
         var isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ||
             document.msFullscreenElement;
         isFullscreen = isFullscreen || leave;
-        isFullscreen = isFullscreen ? true : false;
+        isFullscreen = Boolean(isFullscreen);
 
         if (!isFullscreen) {
             _body.addClass("full-window");

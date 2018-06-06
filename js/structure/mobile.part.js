@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxmobile = function(options) {
         // the regular expression that is going to be used
@@ -23,10 +27,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -65,7 +69,7 @@
             var prefix = data.substr(0, 4);
             var mobile = MOBILE_REGEX.test(data);
             var mobilePrefix = MOBILE_PREFIX_REGEX.test(prefix);
-            var isMobile = mobile || mobilePrefix ? true : false;
+            var isMobile = mobile || Boolean(mobilePrefix);
             return isMobile;
         };
 
@@ -73,7 +77,7 @@
             var prefix = data.substr(0, 4);
             var tablet = TABLET_REGEX.test(data);
             var tabletPrefix = MOBILE_PREFIX_REGEX.test(prefix);
-            var isTablet = tablet || tabletPrefix ? true : false;
+            var isTablet = tablet || Boolean(tabletPrefix);
             return isTablet && !_isMobile(data);
         };
 
