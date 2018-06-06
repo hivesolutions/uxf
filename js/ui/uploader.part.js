@@ -49,6 +49,10 @@ if (typeof require !== "undefined") {
                 var original = _element.text();
                 _element.data("original", original);
 
+                // starts the form variable that is going to be
+                // populate in the conditional statements
+                var form = null;
+
                 // in case the action value is set the action form
                 // must be create enclosing the element, after
                 // the wrapping retrieves it for latter usage
@@ -56,10 +60,10 @@ if (typeof require !== "undefined") {
                     _element.wrap("<form action=\"" + action +
                         "\" method=\"post\" enctype=\"multipart/form-data\" class=\"form\"></form>"
                     );
-                    var form = _element.parent(".form");
+                    form = _element.parent(".form");
                     form.uxform();
                 } else {
-                    var form = _element.parent(".form");
+                    form = _element.parent(".form");
                 }
 
                 // inserts the uploader input afeter the element

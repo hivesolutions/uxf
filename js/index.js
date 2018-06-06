@@ -16,6 +16,7 @@ const structure = require("./structure");
 const text = require("./text");
 const transform = require("./transform");
 const ui = require("./ui");
+const util = require("./util");
 
 Object.assign(module.exports, async);
 Object.assign(module.exports, attr);
@@ -35,5 +36,6 @@ Object.assign(module.exports, structure);
 Object.assign(module.exports, text);
 Object.assign(module.exports, transform);
 Object.assign(module.exports, ui);
+Object.assign(module.exports, util);
 
 module.exports.VERSION = "__VERSION__";

@@ -1,6 +1,8 @@
 export {
     UxButton
-} from "./button/button.vue";
+}
+from "./button/button.vue";
 export {
     UxDropDown
-} from "./drop_down/drop_down.vue";
+}
+from "./drop_down/drop_down.vue";
