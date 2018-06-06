@@ -1,5 +1,9 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
-    jQuery.fn.uxeval = function(element, options) {
+    jQuery.fn.uxeval = function(element, method, options) {
         // the defaut timeout for eval
         var DEFAULT_TIMEOUT = 1000;
 
@@ -9,7 +13,7 @@
         };
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
         options = options || {};
