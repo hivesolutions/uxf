@@ -19,10 +19,10 @@ if (typeof require !== "undefined") {
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -91,7 +91,7 @@ if (typeof require !== "undefined") {
             // text area in case it's not the target for focus
             // should be a sub element that is a text field (or area)
             var isTextField = target.hasClass("text-field") || target.hasClass("text-area");
-            focusTarget = isTextField ? target : jQuery(
+            var focusTarget = isTextField ? target : jQuery(
                 ".text-field, .text-area", target);
 
             // hides the matched object and then shows (and focus)
