@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery code plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a code component.

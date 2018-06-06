@@ -270,7 +270,7 @@ if (typeof require !== "undefined") {
                 var previousDay = finalDayPreviousNumber - (initialDayWeek - index) + 1;
 
                 // in case the (current) previous day is the currently select day
-                if (previousYear === currentDayYear && previousMonth === currentDayMonth && previousDay ==
+                if (previousYear === currentDayYear && previousMonth === currentDayMonth && previousDay ===
                     currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([previousYear, previousMonth, previousDay,
@@ -313,7 +313,7 @@ if (typeof require !== "undefined") {
                 var nextDay = index - daysLength + 1;
 
                 // in case the (current) next day is the currently select day
-                if (nextYear === currentDayYear && nextMonth === currentDayMonth && nextDay ==
+                if (nextYear === currentDayYear && nextMonth === currentDayMonth && nextDay ===
                     currentDayNumber) {
                     // adds the day tuple with the active class in it
                     days.push([nextYear, nextMonth, nextDay, "faded active"]);

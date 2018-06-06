@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxchanger = function(path, callback, options) {
         // the default timeout to be used in the changer
@@ -10,10 +14,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -54,7 +58,7 @@
                 setInterval(function() {
                     // updates the changer value to show the "next" section
                     _update(_element, options);
-                }, timeout)
+                }, timeout);
             });
         };
 
@@ -79,7 +83,7 @@
 
                 // in case the current value "overflows" the current
                 // section count the index calue is reseted
-                index === sectionCount ? index = 0 : index = index;
+                index = index === sectionCount ? 0 : index;
 
                 // adds the new section calss and shows the matched object
                 // with a fade effect

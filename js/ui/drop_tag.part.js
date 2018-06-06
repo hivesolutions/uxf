@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery drop tag plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a drop tag component. This component should be used for
@@ -17,13 +21,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -155,7 +159,7 @@
 
                 // triggers the item unselected event the event is
                 // triggered without any arguments
-                dropTag.triggerHandler("item_unselected", [])
+                dropTag.triggerHandler("item_unselected", []);
             });
 
             // registers for the click event on the various list items
@@ -181,7 +185,7 @@
 
                 // triggers the item selected event using the element
                 // as the argument for the event handler
-                dropTag.triggerHandler("item_selected", [element])
+                dropTag.triggerHandler("item_selected", [element]);
             });
 
             // registers for the click event on the body element
@@ -222,7 +226,7 @@
 
                 // triggers the item selected event using the element
                 // as the argument for the event handler
-                dropTag.triggerHandler("item_selected", [element])
+                dropTag.triggerHandler("item_selected", [element]);
             });
         };
 
@@ -253,7 +257,7 @@
 
             // triggers the item unselected event the event is
             // triggered without any arguments
-            dropTag.triggerHandler("item_unselected", [])
+            dropTag.triggerHandler("item_unselected", []);
         };
 
         // switches over the method

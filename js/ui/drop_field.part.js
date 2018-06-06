@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery drop field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a drop field component. The most
@@ -553,7 +557,6 @@
                             // and the value link from the selected list item
                             var value = listItemSelected.attr("data-display");
                             var valueLogic = listItemSelected.attr("data-value");
-                            var valueLink = listItemSelected.attr("data-link");
 
                             // retrieves the complete set of value fields from the drop
                             // field to apply the item values into them
@@ -1110,13 +1113,13 @@
                     // retrieves the default values for the display
                     // and values taking into account the type of
                     // the retrieved values (in case it's map resolves again)
-                    currentDisplayAttribute = currentDisplayAttribute && typeof currentDisplayAttribute ==
+                    currentDisplayAttribute = currentDisplayAttribute && typeof currentDisplayAttribute ===
                         "object" ? currentDisplayAttribute["name"] : currentDisplayAttribute;
-                    currentExtraAttribute = currentExtraAttribute && typeof currentExtraAttribute ==
+                    currentExtraAttribute = currentExtraAttribute && typeof currentExtraAttribute ===
                         "object" ? currentExtraAttribute["extra"] : currentExtraAttribute;
-                    currentValueAttribute = currentValueAttribute && typeof currentValueAttribute ==
+                    currentValueAttribute = currentValueAttribute && typeof currentValueAttribute ===
                         "object" ? currentValueAttribute["value"] : currentValueAttribute;
-                    currentLinkAttribute = currentLinkAttribute && typeof currentLinkAttribute ==
+                    currentLinkAttribute = currentLinkAttribute && typeof currentLinkAttribute ===
                         "object" ? currentLinkAttribute["link"] : currentLinkAttribute;
 
                     // in case the template is defined
@@ -1177,7 +1180,7 @@
                         cache[uniqueId] = {
                             item: templateItem,
                             data: currentItem
-                        }
+                        };
                     }
 
                     // adds the template item item to the

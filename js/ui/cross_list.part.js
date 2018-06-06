@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery cross list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a cross list component.
@@ -15,10 +19,10 @@
         var defaults = {};
 
         // sets the default method value
-        method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        options = options ? options : {};
+        options = options || {};
 
         // constructs the options
         options = jQuery.extend(defaults, options);
@@ -56,10 +60,8 @@
                 // be used in propagation and as options
                 var elementOrder = _element.attr("data-order");
                 var sourceName = _element.attr("data-source");
-                var sourceName = _element.attr("data-source");
                 var targetName = _element.attr("data-target");
                 var numberOptions = _element.attr("data-number_options");
-                var duplicates = _element.attr("data-duplicates") || false;
                 var displayAttribute = matchedObject.attr("data-display_attribute") || "name";
                 var valueAttribute = matchedObject.attr("data-value_attribute") || "value";
                 var linkAttribute = matchedObject.attr("data-link_attribute") || "link";
