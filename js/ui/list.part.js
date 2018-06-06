@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxlist = function(options) {
         // the default values for the link confirm
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -77,7 +81,7 @@
 
                 // retrieves the imediate parent list item and the
                 // associated sub list (for empty verification)
-                var listItem = jQuery(_element.parents("li")[0])
+                var listItem = jQuery(_element.parents("li")[0]);
                 var subList = jQuery("> .list", listItem);
                 var subListChildren = subList.children();
 
@@ -108,7 +112,7 @@
             }
 
             // retrieves the links from the matched object
-            var links = jQuery("> li > a", matchedObject)
+            var links = jQuery("> li > a", matchedObject);
 
             // registers for the click event on the links
             // from the list
@@ -120,7 +124,7 @@
                 // element (first list parent) and then uses it
                 // to retrieve the (child) list
                 var listItem = element.parent("li");
-                var list = jQuery("> .list", listItem)
+                var list = jQuery("> .list", listItem);
 
                 // retrieves the parent (upper) list from the
                 // current list item
