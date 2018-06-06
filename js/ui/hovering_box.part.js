@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxhoveringbox = function(options) {
         // the default values for the hovering box
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -54,20 +58,18 @@
             // the matched object
             var timeoutHandler = matchedObject.data("timeout_handler");
 
-            // in case there is already a
-            // timeout handler (schedule pending)
+            // in case there is already a timeout handler (schedule pending)
+            // returns the control flow immediately
             if (timeoutHandler) {
-                // returns immediately
                 return;
             }
 
             // sets the timeout for the showing of the
             // hovering box template
-            var timeoutHandler = setTimeout(function() {
-                // showes the template for the given options
-                _showTemplate(matchedObject, options);
-
+            timeoutHandler = setTimeout(function() {
+                // showes the template for the given options and then
                 // unsets the timeout handler in the matched object
+                _showTemplate(matchedObject, options);
                 matchedObject.data("timeout_handler", null);
             }, 500);
 
@@ -111,11 +113,10 @@
             // box (template) to be used
             var hoveringBoxId = matchedObject.attr("data-hovering-box-id");
 
-            // retrieves the data source id
+            // retrieves the data source id and then
+            // converts the data source id into an integer
             var dataSourceId = matchedObject.attr("data-data-source-id");
-
-            // converts the data source id to integer
-            var dataSourceId = parseInt(dataSourceId)
+            dataSourceId = parseInt(dataSourceId);
 
             // retrieves the hovering box template and the data
             // source (elements)
@@ -152,7 +153,7 @@
 
                 // retrieves both the matched object width
                 // and the template item width
-                var matchedObjectWidth = matchedObject.outerWidth()
+                var matchedObjectWidth = matchedObject.outerWidth();
                 var templateItemWidth = templateItem.width();
 
                 // calculates the template item margin left

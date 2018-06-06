@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxform = function(options) {
         // the default values for the form
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -112,7 +116,7 @@
 
                     // updates the submited flag to the original invalid value
                     // so that the form may be re-submited latter on
-                    element.data("submited", false)
+                    element.data("submited", false);
 
                     // stops the event propagation and prevents
                     // the default behavior (avoids duplicate
@@ -176,7 +180,7 @@
                     // and the value associated, then verifies if
                     // the data type from it is string an in case it's not
                     // ignores the current value
-                    var _element = jQuery(this)
+                    var _element = jQuery(this);
                     var value = _element.uxvalue();
                     if (typeof value !== "string") {
                         return;
@@ -217,7 +221,6 @@
                 // the server side should be performed using an async strategy then
                 // runs an extra validation to check if the current layout
                 // is ready to be changed using an async approach
-                var _body = jQuery("body");
                 var async = _body.data("async");
                 async &= element.hasClass("no-async") === false;
                 async &= _body.triggerHandler("async") !== false;
@@ -429,7 +432,6 @@
                 // that the target link is set as the current document's url
                 // so that it does not change, this allows correct reload
                 // handling of the page (improved user experience)
-                var _body = jQuery("body");
                 _body.triggerHandler("data", [data, url || document.URL, null,
                     isGet, href
                 ]);
@@ -534,7 +536,7 @@
                         // using as base the form success template provided then
                         // adds the result to the matched object
                         var formSuccessItem = formSuccess.uxtemplate(data);
-                        formSuccessItem.addClass("item")
+                        formSuccessItem.addClass("item");
                         matchedObject.append(formSuccessItem);
 
                         // hides the other items in the form as shows the just
@@ -592,7 +594,7 @@
                         // invalid class to it also (error state adding)
                         var selector = "[name=" + name + "], [data-name=" + name + "]";
                         var field = jQuery(selector, matchedObject);
-                        parents = field.parents("[data-top]");
+                        var parents = field.parents("[data-top]");
                         field = field.filter("[data-top]");
                         field = field.add(parents);
                         field.attr("data-error", _errorsString);

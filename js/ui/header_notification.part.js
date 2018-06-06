@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery header notification plugin, this jQuery plugin provides the base
  * infra-structure for the creation of an header notification component.
@@ -15,10 +19,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -56,9 +60,6 @@
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // retrieves the window
-            var _window = jQuery(window);
-
             // retrieves the close links for the notification and the
             // set of header notitications that are meant to be closable
             var linkClose = jQuery("> .link-close", matchedObject);
