@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxnumber = function(options) {
         // the default values for the name change
@@ -76,17 +80,21 @@
                     var valueStringSplit = valueString.split(separator);
                     var integerPart = valueStringSplit[0];
 
+                    // starts the decimal part value, going to be populated
+                    // by the next conditional statement
+                    var decimalPart = null;
+
                     // in case the value string split contains
                     // at least two elements (decimal part exists)
                     if (valueStringSplit.length > 1) {
                         // retrieves the decimal part from the
                         // value string split
-                        var decimalPart = valueStringSplit[1];
+                        decimalPart = valueStringSplit[1];
                     }
                     // otherwise no decimal part exists
                     else {
                         // unsets the decimal part
-                        var decimalPart = null;
+                        decimalPart = null;
                     }
 
                     // retrieves the initial index value, using
@@ -100,7 +108,7 @@
 
                     // iterates over the rest of the integer part to separate
                     // it using the magnitude separator
-                    for (var index = initialIndex; index < integerPart.length; index += 3) {
+                    for (index = initialIndex; index < integerPart.length; index += 3) {
                         // adds the magnitude separator and current slice of the integer part
                         // to the current re-calculated integer part
                         _integerPart += magnitudeSeparator + integerPart.slice(index, index + 3);

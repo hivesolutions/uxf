@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxtimestamp = function(method, options) {
         // the various regex values for the time
@@ -102,6 +106,10 @@
         var _registerHandlers = function() {};
 
         var _processDate = function(date, format, utc) {
+            // starts the date string value to be populated by the condition
+            // in the current function
+            var dateString = null;
+
             // retrieves the various components of the date
             var year = utc ? date.getUTCFullYear() : date.getFullYear();
             var month = utc ? date.getUTCMonth() + 1 : date.getMonth() + 1;
@@ -137,20 +145,20 @@
                     abbreviatedMonth);
 
                 // sets the date string as the final format
-                var dateString = format;
+                dateString = format;
             }
             // otherwise the default date format is to be used
             else {
                 // creates the date string with the default
                 // (complete) format
-                var dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) +
+                dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) +
                     " " + _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" +
-                    _getStringValue(seconds, 2)
+                    _getStringValue(seconds, 2);
             }
 
             // returns the processed date string
             return dateString;
-        }
+        };
 
         /**
          * Converts the given value to a string and appends the padding
