@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxlink = function(options) {
         // the default values for the link
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -113,7 +117,7 @@
                     // is going to be passed to the scroll extension
                     var settings = {
                         offset: isNaN(offsetInteger) ? 0 : offsetInteger
-                    }
+                    };
 
                     // in case the hash triggering value is defined
                     // updates the current hash with the href value

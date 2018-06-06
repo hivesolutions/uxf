@@ -1,13 +1,17 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxlightbox = function(path, callback, largePath, options) {
         // the default values for the alert
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -81,10 +85,6 @@
             // registers for the end of the image loading, because
             // after that the window must be repositioned in the center
             windowImage.load(function() {
-                // retrieves the current element it should reflect the
-                // selcted image (the one that has finished the loading)
-                var element = jQuery(this);
-
                 // adds the loaded class meaning that at least the first
                 // image has already been loaded, more images of larger
                 // size may be loaded latter
