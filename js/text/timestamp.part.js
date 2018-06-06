@@ -151,9 +151,9 @@ if (typeof require !== "undefined") {
             else {
                 // creates the date string with the default
                 // (complete) format
-                dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) +
-                    " " + _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" +
-                    _getStringValue(seconds, 2);
+                dateString = year + "-" + _getStringValue(month, 2) + "-" + _getStringValue(day, 2) + " " +
+                    _getStringValue(hours, 2) + ":" + _getStringValue(minutes, 2) + ":" + _getStringValue(
+                        seconds, 2);
             }
 
             // returns the processed date string

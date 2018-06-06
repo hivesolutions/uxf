@@ -14,6 +14,7 @@ const locale = require("./locale");
 const navigation = require("./navigation");
 const structure = require("./structure");
 const text = require("./text");
+const transform = require("./transform");
 const ui = require("./ui");
 
 Object.assign(module.exports, async);
@@ -32,6 +33,7 @@ Object.assign(module.exports, locale);
 Object.assign(module.exports, navigation);
 Object.assign(module.exports, structure);
 Object.assign(module.exports, text);
+Object.assign(module.exports, transform);
 Object.assign(module.exports, ui);
 
 module.exports.VERSION = "__VERSION__";
