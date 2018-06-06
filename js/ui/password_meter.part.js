@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxpasswordmeter = function(options) {
         // the various regex values for password
@@ -11,10 +15,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -38,7 +42,7 @@
                 var _element = jQuery(element);
 
                 // adds some html to the password meter
-                _element.append("<div class=\"password-meter-contents level-0\"></div>")
+                _element.append("<div class=\"password-meter-contents level-0\"></div>");
 
                 // sets the initial data in the element
                 _element.data("level", 0);
@@ -84,7 +88,6 @@
                     // strength value
                     _element.data("level", passwordStrength);
                 });
-
             });
         };
 
@@ -129,7 +132,7 @@
             // or equal to eight
             if (passwordLength >= 8) {
                 // increments the strength value
-                strengthValue++
+                strengthValue++;
             }
 
             // in case the password length is more

@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery select field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a select field component.

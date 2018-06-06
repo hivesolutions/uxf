@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery source list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a source list component.
@@ -297,7 +301,7 @@
                 }
 
                 // empties (clears) the select list
-                selectList.empty()
+                selectList.empty();
 
                 // iterates over all the valid and filtered items
                 // to adds them to the select list

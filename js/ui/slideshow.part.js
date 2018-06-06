@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery slideshow plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a slideshow component. The slideshow component provides a
@@ -23,10 +27,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -88,9 +92,9 @@
                     elements.each(function(index, element) {
                         // retrieves the current element and the name (key)
                         // attribute and the contents as the value
-                        var element = jQuery(this);
-                        var name = element.attr("data-name");
-                        var value = element.html();
+                        var _element = jQuery(this);
+                        var name = _element.attr("data-name");
+                        var value = _element.html();
 
                         // update the item with the key associated
                         // with the value
@@ -100,7 +104,7 @@
 
                 // iteates over the range of the item to inset the
                 // list item representing the alternative for the item
-                for (var index = 0; index < _items.length; index++) {
+                for (index = 0; index < _items.length; index++) {
                     alternates.append("<li></li>");
                 }
 
@@ -148,7 +152,7 @@
                 var url = slideshow.data("url");
                 var open = slideshow.attr("data-window");
                 if (url) {
-                    var _window = event.which === 2
+                    var _window = event.which === 2;
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
                 }
             });
@@ -167,7 +171,7 @@
                 var url = slideshow.data("url");
                 var open = slideshow.attr("data-window");
                 if (url) {
-                    var _window = event.which === 2
+                    var _window = event.which === 2;
                     _window || open ? window.open(url) : jQuery.uxlocation(url);
                 }
             });
@@ -196,7 +200,7 @@
             matchedObject.bind("pause", function() {
                 // retrives the current element (slideshow) and uses it to
                 // gather the registered interval to cancel it (no more iterations)
-                var element = jQuery(this);
+                var slideshow = jQuery(this);
                 var interval = slideshow.data("interval");
                 clearInterval(interval);
             });
@@ -237,7 +241,7 @@
 
             // sets the default value for the items value, so that
             // a valid sequence allways exists
-            var items = items || []
+            items = items || [];
 
             // calculates the proper next index value, taking into account
             // the current state and then runs the selection on the
@@ -254,7 +258,7 @@
 
             // sets the default value for the items value, so that
             // a valid sequence allways exists
-            var items = items || []
+            items = items || [];
 
             // calculates the proper previous index value, taking into account
             // the current state and then runs the selection on the
@@ -360,7 +364,7 @@
                     break;
                 case "fade":
                     __fade(image, item);
-                    break
+                    break;
             }
         };
 

@@ -1,16 +1,20 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxrating = function(method, options) {
         // the default values for the text field
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -59,7 +63,7 @@
 
                 // iterates over the range of requested rating values to
                 // create the various values (as requested)
-                for (var index = 0; index < count; index++) {
+                for (index = 0; index < count; index++) {
                     _element.append("<div class=\"rating-item\"></div>");
                 }
 
@@ -170,17 +174,22 @@
             items.removeClass("hover");
             items.removeClass("inactive");
 
+            // initializes the index counter and the item vlaue that are
+            // going to be used in multiple iteration sequences
+            var index = null;
+            var item = null;
+
             // iterates over all the items until the provided values so
             // that these items are "marked" as active
-            for (var index = 0; index < value; index++) {
-                var item = jQuery(items[index]);
+            for (index = 0; index < value; index++) {
+                item = jQuery(items[index]);
                 item.addClass("active");
             }
 
             // iterates over the second part of the range from the target
             // value until the removing the active "mark" from them
-            for (var index = value; index < count; index++) {
-                var item = jQuery(items[index]);
+            for (index = value; index < count; index++) {
+                item = jQuery(items[index]);
                 item.removeClass("active");
             }
 
@@ -199,17 +208,22 @@
             // rating component (to be used latter)
             var count = element.data("count");
 
+            // initializes the index counter and the item vlaue that are
+            // going to be used in multiple iteration sequences
+            var index = null;
+            var item = null;
+
             // iterates over the complete set of items until the provided
             // index marking them as "hovered" (as expected)
-            for (var index = 0; index < _index + 1; index++) {
-                var item = jQuery(items[index]);
+            for (index = 0; index < _index + 1; index++) {
+                item = jQuery(items[index]);
                 item.addClass("hover");
             }
 
             // iterates over the "remaning" set of items in order to mark
             // them as inactive because they are not hovered
-            for (var index = _index + 1; index < count; index++) {
-                var item = jQuery(items[index]);
+            for (index = _index + 1; index < count; index++) {
+                item = jQuery(items[index]);
                 item.addClass("inactive");
             }
         };

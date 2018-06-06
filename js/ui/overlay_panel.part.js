@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery overlay panel plugin, this jQuery plugin provides the base
  * infra-structure for the creation of an overlay panel component.
@@ -15,10 +19,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -66,7 +70,6 @@
             // to the current body element (default action)
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
-                var _body = jQuery("body");
                 overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
                 overlay.uxoverlay();
                 _body.prepend(overlay);

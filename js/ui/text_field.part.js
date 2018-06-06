@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery text field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a text field component.
@@ -15,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -761,7 +765,7 @@
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
                 var name = element.attr("name") || element.attr("data-name");
-                element.attr("data-name", name)
+                element.attr("data-name", name);
                 element.removeAttr("name");
 
                 // in case the name is not defined or the value is unset must
@@ -792,7 +796,7 @@
             var _window = jQuery(window);
 
             // checks if the no calendar class (flag) is set
-            var noCalendar = element.hasClass("no-calendar")
+            var noCalendar = element.hasClass("no-calendar");
 
             // in case the no calendar flag is set
             // no need to create the text field calendar
@@ -888,7 +892,7 @@
 
             // registers for the mouse down event on the calendar
             calendar.mousedown(function() {
-                //element to avoid the next (blur)
+                // element to avoid the next (blur)
                 element.data("avoid_next", true);
             });
 
@@ -972,7 +976,7 @@
                 // retrieves the name attribute from the element
                 // and then removes it to avoid sending the literal date value
                 var name = element.attr("name") || element.attr("data-name");
-                element.attr("data-name", name)
+                element.attr("data-name", name);
                 element.removeAttr("name");
 
                 // in case the name is not defined or the value is unset must
@@ -1046,7 +1050,7 @@
 
         var __showdate = function(element, options) {
             // tries to retrieve the calendar from the element
-            var calendar = element.data("calendar")
+            var calendar = element.data("calendar");
 
             // in case no calendar is defined
             if (!calendar) {
@@ -1078,7 +1082,7 @@
             calendar.css("left", calendarLeft + "px");
 
             // "resets" the state of the ux calendar
-            calendar.uxcalendar("reset")
+            calendar.uxcalendar("reset");
 
             // shows the calendar
             calendar.show();
@@ -1109,7 +1113,7 @@
 
             // checks id the length of the current string value is smaller
             // than the maximum allowed length (minus one value)
-            valid = stringValue.length <= lengthInteger - 1;
+            var valid = stringValue.length <= lengthInteger - 1;
 
             // returns the result of the length result
             return valid;
@@ -1135,8 +1139,7 @@
             // then using it checks if the float number is still
             // valid (decimal places within range)
             var separatorIndex = stringValue.indexOf(".");
-            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex === -
-                1;
+            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex === -1;
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run

@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery tag field plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a tag field component.
@@ -15,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -58,10 +62,6 @@
                 // then initializes the drop field compoenent
                 _element.addClass("drop-field");
                 _element.uxdropfield();
-
-                // retrieves the reference to the container of the
-                // tag element for the current element (tag field)
-                var tagsContainer = jQuery(".tag-field-tags", _element);
 
                 // retrieves the text field element, that is going to
                 // be used for some of the "simple" updates
@@ -167,7 +167,7 @@
                     // current tag field (avoid duplicated submission)
                     var inputs = jQuery(
                         "input:not(.text-field, .tag-empty-field)",
-                        _element)
+                        _element);
                     inputs.remove("input");
 
                     // retrieves the complete set of tags in the current
@@ -184,7 +184,7 @@
                         var tag = jQuery(tags[index]);
                         var dataValue = tag.attr("data-value");
                         var displayValue = tag.attr("data-display");
-                        dataValue = dataValue ? dataValue : displayValue;
+                        dataValue = dataValue || displayValue;
 
                         // adds the input element representing the list item
                         // to the list item itself
@@ -569,7 +569,7 @@
                 var tag = jQuery(tags[index]);
                 var dataValue = tag.attr("data-value");
                 var displayValue = tag.attr("data-display");
-                dataValue = dataValue ? dataValue : displayValue;
+                dataValue = dataValue || displayValue;
 
                 // adds the current data value to the value and then
                 // completes it with a comma

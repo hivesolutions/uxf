@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery panel plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a panel component.
@@ -15,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -53,13 +57,13 @@
 
         var _push = function(matchedObject, options) {
             // retrieves the "new" panel to be pushed
-            var panel = options["panel"];
+            var panelHtml = options["panel"];
 
             // retrieves the panels list
             var panels = matchedObject.data("panels");
 
             // composes the panel with the panel item class
-            var panel = "<div class=\"panel-item\">" + panel + "</div>";
+            var panel = "<div class=\"panel-item\">" + panelHtml + "</div>";
 
             // retrieves the last panel and hides it
             var lastPanel = matchedObject.children(".panel-item:last-child");
@@ -70,7 +74,7 @@
 
             // retrieves the "new" last panel and applies the ux
             // components to it
-            var lastPanel = matchedObject.children(".panel-item:last-child");
+            lastPanel = matchedObject.children(".panel-item:last-child");
             lastPanel.uxapply();
 
             // increments the number of panels and saves
@@ -88,7 +92,7 @@
             lastPanel.remove();
 
             // retrieves the "new" last panel and shows it
-            var lastPanel = matchedObject.children(".panel-item:last-child");
+            lastPanel = matchedObject.children(".panel-item:last-child");
             lastPanel.show();
 
             // decrements the number of panels and saves

@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery stack plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a special "stackable" panel that may be used as a navigation
@@ -16,13 +20,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -139,7 +143,6 @@
 
         var pop = function(element) {
             var stackIn = jQuery("> .stack-in", element);
-            var stackOut = jQuery("> .stack-out", element);
             var stackItems = jQuery("> .stack-item", stackIn);
             var stackTop = jQuery("> .stack-item.stack-top", stackIn);
             if (stackItems.length === 1) {
@@ -187,7 +190,7 @@
                 stackIn.css("-ms-transition-duration", "");
                 stackIn.css("-moz-transition-duration", "");
                 stackIn.css("-khtml-transition-duration", "");
-                stackIn.css("-webkit-transition-duration", "")
+                stackIn.css("-webkit-transition-duration", "");
             });
         };
 

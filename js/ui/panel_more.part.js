@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery panel more plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a panel more component.
@@ -15,10 +19,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -41,16 +45,16 @@
             matchedObject.each(function(index, element) {
                 // retrieves the current element (panel more)
                 // and the associated more string
-                var element = jQuery(this);
-                var moreString = element.attr("data-more");
+                var _element = jQuery(this);
+                var moreString = _element.attr("data-more");
 
                 // wrapps the current element inside the panel more
                 // contents to be able to change the visibility
-                element.wrapInner("<div class=\"panel-more-contents\"></div>");
+                _element.wrapInner("<div class=\"panel-more-contents\"></div>");
 
                 // adds the panel more action container with the
                 // button and the divider
-                element.append("<div class=\"panel-more-action\">" + "<li class=\"list-more\">" +
+                _element.append("<div class=\"panel-more-action\">" + "<li class=\"list-more\">" +
                     "<span class=\"button\">" + moreString + "</span>" + "</li>" +
                     "<li class=\"list-divider\"></li>" + "</div>");
             });

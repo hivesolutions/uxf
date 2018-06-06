@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery toggle field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a toggle field component.
@@ -15,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -185,7 +189,7 @@
         var _setMode = function(matchedObject, options, index) {
             // retrieves the complete set of modes for the current
             // matched object and in case none is set returns immediately
-            var modes = matchedObject.data("modes", modes);
+            var modes = matchedObject.data("modes");
             if (!modes) {
                 return;
             }
@@ -199,8 +203,8 @@
             // them from the button
             var button = jQuery(".button", matchedObject);
             for (var _index = 0; _index < modes.length; _index++) {
-                var mode = modes[_index];
-                button.removeClass(mode);
+                var _mode = modes[_index];
+                button.removeClass(_mode);
             }
 
             // retrieves the "target" mode based on the defined index and

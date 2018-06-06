@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery overlay plugin, this jQuery plugin provides the base infra-structure
  * for the creation of an overlay component.
@@ -19,10 +23,10 @@
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -189,7 +193,7 @@
 
             // updates the autohide value of the matched object
             // with the proper (and new) value
-            matchedObject.data("autohide", autohide)
+            matchedObject.data("autohide", autohide);
 
             // shows the matched object and then runs
             // the show operation for the overlay element
@@ -322,7 +326,7 @@
         };
 
         var __transition = function(matchedObject, options, timeout, timing) {
-            var timing = timing || "ease-in-out";
+            timing = timing || "ease-in-out";
             var value = "opacity " + String(timeout) + "ms " + timing;
             matchedObject.css("transition", value);
             matchedObject.css("-o-transition", value);

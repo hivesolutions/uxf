@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery table plugin, this jQuery plugin provides the base infra-structure for
  * the creation of a table component.
@@ -19,13 +23,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -381,7 +385,7 @@
 
                 // checks if the current row for which the
                 // line will be added is the last one in such // case the var
-                isLastRow = elementRow.hasClass("last");
+                var isLastRow = elementRow.hasClass("last");
 
                 // in case the current row is not the last one
                 // no need to proceed with the last row update
@@ -453,9 +457,6 @@
                 var binder = function(event) {
                     // retrieves the element
                     var element = jQuery(this);
-
-                    // retrieves the filter
-                    var filter = element.parents(".filter");
 
                     // retrieves the event key code
                     var eventKeyCode = event.keyCode ? event.keyCode : event.which;
@@ -625,7 +626,7 @@
                     for (var _index = 0; _index < columns.length; _index++) {
                         // tries to retrieve the current element to be used in the
                         // operation that is going to populate the value
-                        current = initial ? initial : _next(
+                        var current = initial || _next(
                             current,
                             "> [data-object]:not([disabled], .disabled)",
                             null, null, true);
@@ -760,7 +761,7 @@
             // retrieves the index of the current row to check
             // it it's the last row
             var index = templateItem.index();
-            var isLastRow = index === rowCount
+            var isLastRow = index === rowCount;
 
             // in case the current row is the last one the last
             // classes must be updated to reflect that

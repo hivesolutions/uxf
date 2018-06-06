@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 /**
  * jQuery select list plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a select list component.
@@ -15,13 +19,13 @@
         var defaults = {};
 
         // sets the default method value
-        var method = method ? method : "default";
+        method = method || "default";
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -199,7 +203,7 @@
 
                     // removes all the input elements contained inside the
                     // current select list (avoid duplicated submission)
-                    var inputs = jQuery("input", _element)
+                    var inputs = jQuery("input", _element);
                     inputs.remove("input");
 
                     // retrieves the complete set of elements in the current
@@ -224,7 +228,7 @@
                         var listItem = jQuery(listItems[index]);
                         var dataValue = listItem.attr("data-value");
                         var htmlValue = listItem.html();
-                        dataValue = dataValue ? dataValue : htmlValue;
+                        dataValue = dataValue || htmlValue;
 
                         // adds the input element representing the list item
                         // to the list item itself
