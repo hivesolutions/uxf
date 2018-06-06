@@ -15,7 +15,8 @@ module.exports = {
         "no-debugger": "warn",
         "brace-style": "off",
         "operator-linebreak": "off",
-        "standard/no-callback-literal": "off"
+        "standard/no-callback-literal": "off",
+        "standard/computed-property-even-spacing": "off"
     },
     "env": {
         "jasmine": true

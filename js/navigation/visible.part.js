@@ -1,26 +1,27 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.uxvisible = function(element, offset, delta, parent) {
         // retreives the offset value, talking into
         // acccount the default value
-        offset = offset ? offset : 0;
+        offset = offset || 0;
 
         // retrieves the delta value that can be used to
         // control the poistion of the element to be teste
         // for visibility (margin delta)
-        delta = delta ? delta : 0;
+        delta = delta || 0;
 
         // retrieves the parent element for which the check
         // for visibility will be made, in case none is provided
         // the check is considered global (window)
-        parent = parent ? parent : window;
+        parent = parent || window;
 
         // retrieves the window and the "proper"
         // element reference
         var _parent = jQuery(parent);
-        var element = jQuery(element);
-
-        // retrieves the element height (for overflow calculation)
-        var elementHeight = element.outerHeight();
+        element = jQuery(element);
 
         // retrieves the offset values for the parent element (view)
         // and calculates the height of that view taking into account

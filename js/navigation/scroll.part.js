@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("../_compat").jQuery;
+}
+
 (function(jQuery) {
     jQuery.fn.uxscroll = function(options) {
         // the default values for the scrill
@@ -8,10 +12,10 @@
         };
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -49,7 +53,6 @@
 
             // retrieves the top elements and then uses them
             // to retrieve the current offset to top in the viewport
-            var topElements = jQuery("html, body");
             var htmlElement = jQuery("html");
             var _body = jQuery("body");
             var htmlScrollTop = htmlElement.scrollTop();
@@ -82,7 +85,7 @@
             // into account if the element is below the viewport or
             // abover, this calculus also takes into account the offset
             // and padding values
-            var scrollTop = isBelow ? offsetTop - parentOffsetTop - parentHeight + height + padding :
+            scrollTop = isBelow ? offsetTop - parentOffsetTop - parentHeight + height + padding :
                 offsetTop - parentOffsetTop - offset - padding;
 
             // changes the scroll top value in the parent element,
