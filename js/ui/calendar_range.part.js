@@ -37,17 +37,17 @@ if (typeof require !== "undefined") {
 
             // creates both the range and the calendar elements that
             // will be added to the currently matched object latter
-            var range = "<div class=\"range\">" +
+            var rangeHtml = "<div class=\"range\">" +
                 "<input type=\"text\" class=\"text-field start-date\" data-original_value=\"" + startDate +
                 "\" />" + "<span class=\"range-separator\">" + to + "</span>" +
                 "<input type=\"text\" class=\"text-field end-date\" data-original_value=\"" + endDate +
                 "\" />" + "</div>";
-            var calendar = "<div class=\"calendar no-layout\"></div>";
+            var calendarHtml = "<div class=\"calendar no-layout\"></div>";
 
             // adds both the range and the calendar part of the
             // component to the inner part of it
-            matchedObject.append(range);
-            matchedObject.append(calendar);
+            matchedObject.append(rangeHtml);
+            matchedObject.append(calendarHtml);
 
             // retrieves the various text field element contained
             // in the range part of the component
