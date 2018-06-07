@@ -15,6 +15,7 @@ module.exports = {
         "no-debugger": "warn",
         "brace-style": "off",
         "no-useless-escape": "off",
+        "no-mixed-operators": "off",
         "operator-linebreak": "off",
         "standard/no-callback-literal": "off",
         "standard/computed-property-even-spacing": "off"

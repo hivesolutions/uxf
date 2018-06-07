@@ -222,19 +222,24 @@ if (typeof require !== "undefined") {
                 // splits the option arround the separator
                 var optionSplit = option.split("=");
 
+                // starts the value for the option varialbes
+                // that are going to store characteristics
+                var optionName = null;
+                var optionValue = null;
+
                 // in case there are at least two
                 // values in the option split
                 if (optionSplit.length > 1) {
                     // retrieves the name and the value
                     // from the option split
-                    var optionName = optionSplit[0];
-                    var optionValue = optionSplit[1];
+                    optionName = optionSplit[0];
+                    optionValue = optionSplit[1];
                 } else {
                     // retrieves the name from the
                     // option split and sets the value
                     // to null
-                    var optionName = optionSplit[0];
-                    var optionValue = null;
+                    optionName = optionSplit[0];
+                    optionValue = null;
                 }
 
                 // sets the option in the options map
@@ -270,7 +275,7 @@ if (typeof require !== "undefined") {
     };
 })(jQuery);
 
-function onYoutubeStateChange(state) {
+function onYoutubeStateChange(state) { // eslint-disable-line no-unused-vars
     if (state === 0) {
         var video = jQuery("#youtube-player");
         var parent = video.parents(".video");
@@ -278,7 +283,7 @@ function onYoutubeStateChange(state) {
     }
 }
 
-function onYouTubePlayerReady(id) {
+function onYouTubePlayerReady(id) { // eslint-disable-line no-unused-vars
     var video = jQuery("#youtube-player");
     var videoElement = video[0];
     videoElement.addEventListener("onStateChange", "onYoutubeStateChange");
