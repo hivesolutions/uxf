@@ -147,7 +147,6 @@ if (typeof require !== "undefined") {
             // change the way the video is going to be embedded
             var width = matchedObject.attr("data-width");
             var height = matchedObject.attr("data-height");
-            var info = matchedObject.attr("data-info");
             var autoPlay = matchedObject.attr("data-auto_play");
 
             // calculates the default width and height values
