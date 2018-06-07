@@ -42,8 +42,6 @@ if (typeof require !== "undefined") {
 
         var _initialize = function(matchedObject, options) {
             matchedObject.prepend("<canvas></canvas>");
-            var canvas = jQuery("canvas", matchedObject);
-            canvas = canvas[0];
         };
 
         // initializes the plugin

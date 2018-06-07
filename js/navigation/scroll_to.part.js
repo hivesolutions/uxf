@@ -174,12 +174,20 @@ if (typeof require !== "undefined") {
                     // relative selector, avoids break
                     _target = jQuery(_target, this);
 
-                case "object":
-                    // in case it's a dom element or jquery element
                     if (_target.is || _target.style) {
                         // retrieves the real position of the target
                         targetOffset = (_target = jQuery(_target)).offset();
                     }
+
+                    break;
+
+                case "object":
+                    // in case it's a DOM element or jQuery element
+                    if (_target.is || _target.style) {
+                        // retrieves the real position of the target
+                        targetOffset = (_target = jQuery(_target)).offset();
+                    }
+                    break;
             }
 
             // in case the target is not defined or in case it's

@@ -1122,11 +1122,15 @@ if (typeof require !== "undefined") {
                     currentLinkAttribute = currentLinkAttribute && typeof currentLinkAttribute ===
                         "object" ? currentLinkAttribute["link"] : currentLinkAttribute;
 
+                    // initializes the template item value to its original
+                    // value, to be populated under the conditional
+                    var templateItem = null;
+
                     // in case the template is defined
                     if (template.length > 0) {
                         // applies the template to the template (item)
                         // retrieving the resulting template item
-                        var templateItem = template.uxtemplate(currentItem);
+                        templateItem = template.uxtemplate(currentItem);
 
                         // sets the data display and data value
                         // attributes in the template item
@@ -1144,7 +1148,7 @@ if (typeof require !== "undefined") {
                     else {
                         // creates the base template item from
                         // the current item
-                        var templateItem = jQuery("<li data-display=\"" + currentDisplayAttribute +
+                        templateItem = jQuery("<li data-display=\"" + currentDisplayAttribute +
                             "\" data-value=\"" + currentValueAttribute + "\">" +
                             currentDisplayAttribute + "</li>");
 

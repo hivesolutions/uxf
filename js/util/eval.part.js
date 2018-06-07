@@ -165,7 +165,7 @@ if (typeof require !== "undefined") {
 
             // "evals" the eval string retrieving
             // the (eval) result
-            var evalResult = eval(evalString);
+            var evalResult = eval(evalString); // eslint-disable-line no-eval
 
             // checks if the matched object is of type input
             // (attribute value oriented) and if it's a text
