@@ -263,8 +263,12 @@ if (typeof require !== "undefined") {
             // creates the initial list of days
             var days = [];
 
+            // starts the index variable to its default value, as it's
+            // going to be used multiple times
+            var index = null;
+
             // iterates over all the final days of the previous month
-            for (var index = 0; index < initialDayWeek; index++) {
+            for (index = 0; index < initialDayWeek; index++) {
                 // calculates the (current) previous day from the final day
                 // of the previous month, the initial week day and the index
                 var previousDay = finalDayPreviousNumber - (initialDayWeek - index) + 1;
@@ -287,7 +291,7 @@ if (typeof require !== "undefined") {
             }
 
             // iterates over all the days of the current month
-            for (var index = 0; index < finalDayNumber; index++) {
+            for (index = 0; index < finalDayNumber; index++) {
                 // calculates the (current) day
                 var day = index + 1;
 
@@ -307,7 +311,7 @@ if (typeof require !== "undefined") {
             // of the days list for "extra" days calculus
             var daysLength = days.length;
 
-            for (var index = daysLength; index < NUMBER_DAYS; index++) {
+            for (index = daysLength; index < NUMBER_DAYS; index++) {
                 // calculates the (current) next day from the days length
                 // and the current index
                 var nextDay = index - daysLength + 1;
@@ -332,7 +336,7 @@ if (typeof require !== "undefined") {
             var lineOpen = false;
 
             // iterates over all the days created in the days list
-            for (var index = 0; index < days.length; index++) {
+            for (index = 0; index < days.length; index++) {
                 // checks if the current cell is of type
                 // start (line) cell (end/start of week)
                 var isStartCell = index % 7 === 0;
