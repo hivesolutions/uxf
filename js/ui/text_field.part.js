@@ -704,7 +704,7 @@ if (typeof require !== "undefined") {
             return result;
         };
 
-        var __startdatetime = function(element, options) {
+        var __startdatetime = function(element, options) { // eslint-disable-line no-unused-vars
             // retrieves the value of the utc offset flag
             // (if the utc flag is set the date is set to work
             // in the utc zone)
@@ -794,7 +794,7 @@ if (typeof require !== "undefined") {
             });
         };
 
-        var __startdate = function(element, options) {
+        var __startdate = function(element, options) { // eslint-disable-line no-unused-vars
             // retrieves the reference to the top level
             // window element
             var _window = jQuery(window);
@@ -802,18 +802,22 @@ if (typeof require !== "undefined") {
             // checks if the no calendar class (flag) is set
             var noCalendar = element.hasClass("no-calendar");
 
+            // starts the calendar variable that is going to be
+            // used by both parts of the conditin
+            var calendar = null;
+
             // in case the no calendar flag is set
             // no need to create the text field calendar
             if (noCalendar) {
                 // creates the empty element representing
                 // the calendar
-                var calendar = jQuery();
+                calendar = jQuery();
             }
             // otherwise the calendar element must be created
             else {
                 // creates the calendar component from the
                 // html code and inserts it after the element
-                var calendar = jQuery("<div class=\"calendar text-field-calendar\"></div>");
+                calendar = jQuery("<div class=\"calendar text-field-calendar\"></div>");
                 element.after(calendar);
 
                 // unsets the autocomplete feature in the text field
@@ -1008,7 +1012,7 @@ if (typeof require !== "undefined") {
             element.data("calendar", calendar);
         };
 
-        var __fvaluefloatp = function(element, value) {
+        var __fvaluefloatp = function(element, value) { // eslint-disable-line no-unused-vars
             // retrieves the decimal places number and tries to
             // parse it as an integer, incase it fails returns
             // immediately the number without processing
@@ -1026,7 +1030,7 @@ if (typeof require !== "undefined") {
             return valueF.toFixed(decimalPlaces);
         };
 
-        var __fvaluefloat = function(element, value) {
+        var __fvaluefloat = function(element, value) { // eslint-disable-line no-unused-vars
             // retrieves the decimal places number and tries to
             // parse it as an integer, incase it fails returns
             // immediately the number without processing
@@ -1044,7 +1048,7 @@ if (typeof require !== "undefined") {
             return valueF.toFixed(decimalPlaces);
         };
 
-        var __valuedate = function(element, options) {
+        var __valuedate = function(element, options) { // eslint-disable-line no-unused-vars
             // retrieves the current value and then uses it to parse
             // it as current timestamp then returns it
             var currentValue = element.val();
@@ -1052,7 +1056,7 @@ if (typeof require !== "undefined") {
             return currentTimestamp;
         };
 
-        var __showdate = function(element, options) {
+        var __showdate = function(element, options) { // eslint-disable-line no-unused-vars
             // tries to retrieve the calendar from the element
             var calendar = element.data("calendar");
 
@@ -1092,7 +1096,7 @@ if (typeof require !== "undefined") {
             calendar.show();
         };
 
-        var __hidedate = function(element, options) {
+        var __hidedate = function(element, options) { // eslint-disable-line no-unused-vars
             // tries to retrieve the associated
             // calendar and hides it if necessary
             var calendar = element.data("calendar");
