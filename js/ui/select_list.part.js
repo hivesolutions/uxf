@@ -89,12 +89,14 @@ if (typeof require !== "undefined") {
                     return;
                 }
 
+                var action = null;
+
                 if (event.ctrlKey || event.metaKey) {
-                    var action = "change";
+                    action = "change";
                 } else if (event.shiftKey) {
-                    var action = "contiguous";
+                    action = "contiguous";
                 } else {
-                    var action = "normal";
+                    action = "normal";
                 }
 
                 // switches over the action to be performed
