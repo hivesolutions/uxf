@@ -2069,7 +2069,6 @@ if (typeof require !== "undefined") {
             // retrieves the pivot value and the current selection
             // for the filter reference, then retrieves the current
             // selection reference element
-            var pivot = filter.data("pivot");
             var selection = filter.data("selection");
             var _selection = selection[selection.length - 1];
 
