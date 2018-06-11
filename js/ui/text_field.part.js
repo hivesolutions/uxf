@@ -398,8 +398,14 @@ if (typeof require !== "undefined") {
             // tries to retrieve the value from options
             var value = options.value;
 
-            // in case it's a "normal" get operation
-            // (no value defined)
+            // starts a series of values that are going to be populated
+            // by both sides of the condition
+            var type = null;
+            var valueMethodName = null;
+            var hasMethod = null;
+
+            // in case it's a "normal" get operation (no value defined),
+            // the current internal logic value should be returned
             if (value === undefined) {
                 // updates the current value base on the current status
                 // and then retrieves the data based value (logical value)
@@ -411,9 +417,9 @@ if (typeof require !== "undefined") {
                 // and uses it to create the (possible) value type
                 // retrieval method then calls it in case it exists
                 // otherwise uses the normal element value
-                var type = matchedObject.attr("data-type");
-                var valueMethodName = "__value" + type;
-                var hasMethod = __hasMethod(valueMethodName, matchedObject,
+                type = matchedObject.attr("data-type");
+                valueMethodName = "__value" + type;
+                hasMethod = __hasMethod(valueMethodName, matchedObject,
                     options);
                 elementValue = hasMethod ? __callMethod(valueMethodName,
                     matchedObject, options) : elementValue;
@@ -421,8 +427,8 @@ if (typeof require !== "undefined") {
                 // returns the retrieved value
                 return elementValue;
             }
-            // otherwise the "target" value is valid
-            // it's a set operation
+            // otherwise the "target" value is valid and the operations is
+            // considered to be a set one (instead of get/read)
             else {
                 // retrieves the data type for the matached object
                 // and uses it to create the (possible) format value
@@ -430,11 +436,11 @@ if (typeof require !== "undefined") {
                 // otherwise uses the normal value, note that the method
                 // is not called in case the value is empty (nothing will
                 // be formatted for such case)
-                var type = matchedObject.attr("data-type");
-                var valueMethodName = "__fvalue" + type;
-                var hasMethod = __hasMethod(valueMethodName, matchedObject,
+                type = matchedObject.attr("data-type");
+                valueMethodName = "__fvalue" + type;
+                hasMethod = __hasMethod(valueMethodName, matchedObject,
                     options);
-                var value = hasMethod && value !== "" ? __callMethod(
+                value = hasMethod && value !== "" ? __callMethod(
                     valueMethodName, matchedObject, value) : value;
 
                 // sets the value in the attributes
