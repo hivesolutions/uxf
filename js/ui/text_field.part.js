@@ -314,6 +314,10 @@ if (typeof require !== "undefined") {
                     // to chose between send a hidden field or a normal field
                     var isLower = elementReference.hasClass("lower");
 
+                    // starts some of the variables that are going to be shared
+                    // ammong multiple conditions
+                    var elementValue = null;
+
                     // in case the current text field is lowered, must create
                     // an empty field to represent it
                     if (isLower) {
@@ -330,7 +334,7 @@ if (typeof require !== "undefined") {
 
                         // retrieves the element value, to update the hidden
                         // field accordingly
-                        var elementValue = elementReference.attr("data-value");
+                        elementValue = elementReference.attr("data-value");
 
                         // sets the element value in the cloned element and then
                         // adds the cloned element after the text field
@@ -345,7 +349,7 @@ if (typeof require !== "undefined") {
                         // be used in the proper value to be set, this trick avoids
                         // problems leading with "lowered" values
                         __updateValue(elementReference, options);
-                        var elementValue = elementReference.attr("data-value");
+                        elementValue = elementReference.attr("data-value");
 
                         // sets the element value in the input field
                         elementReference.val(elementValue);
@@ -411,7 +415,7 @@ if (typeof require !== "undefined") {
                 var valueMethodName = "__value" + type;
                 var hasMethod = __hasMethod(valueMethodName, matchedObject,
                     options);
-                var elementValue = hasMethod ? __callMethod(valueMethodName,
+                elementValue = hasMethod ? __callMethod(valueMethodName,
                     matchedObject, options) : elementValue;
 
                 // returns the retrieved value
