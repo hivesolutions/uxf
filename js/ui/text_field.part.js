@@ -692,15 +692,15 @@ if (typeof require !== "undefined") {
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
             var evalString = "if(typeof " + methodName + " !== \"undefined\") { var result = " + methodName +
-                "(element, options)} else { var result = null; }";
-            eval(evalString);
+                "(element, options)} else { var result = null; } result;";
+            var result = eval(evalString); // eslint-disable-line no-eval
             return result;
         };
 
         var __hasMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "var result = typeof " + methodName + " !== \"undefined\";";
-            eval(evalString);
+            var evalString = "var result = typeof " + methodName + " !== \"undefined\"; result;";
+            var result = eval(evalString); // eslint-disable-line no-eval
             return result;
         };
 
