@@ -67,23 +67,28 @@ if (typeof require !== "undefined") {
         var matchedObjectHeight = matchedObject.outerHeight(true);
         var matchedObjectWidth = matchedObject.outerWidth(true);
 
+        // starts some of the variables that are going to be populated
+        // under the next conditional statement
+        var topPosition = null;
+        var leftPosition = null;
+
         // calculates the element positions, taking into account the proper
         // target position to be used for the positioning, note that it's
         // not possible to control the horizontal position
         switch (position) {
             case "center":
-                var topPosition = ((referenceHeight - matchedObjectHeight) / 2);
-                var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
+                topPosition = ((referenceHeight - matchedObjectHeight) / 2);
+                leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
 
             case "top":
-                var topPosition = 0;
-                var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
+                topPosition = 0;
+                leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
 
             case "bottom":
-                var topPosition = referenceHeight - matchedObjectHeight;
-                var leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
+                topPosition = referenceHeight - matchedObjectHeight;
+                leftPosition = ((referenceWidth - matchedObjectWidth) / 2);
                 break;
         }
 
