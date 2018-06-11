@@ -10,35 +10,35 @@ if (typeof require !== "undefined") {
 
         // triggers the centering event meaning that the object that has
         // been selected is going to start the centering process
-        matchedObject.triggerHandler("centering")
+        matchedObject.triggerHandler("centering");
 
         // retrieves the top and left offsets
-        var topOffset = topOffset ? topOffset : 0;
-        var leftOffset = leftOffset ? leftOffset : 0;
+        topOffset = topOffset || 0;
+        leftOffset = leftOffset || 0;
 
         // retrieves the use margin flag
-        var useMargin = useMargin ? useMargin : false;
+        useMargin = useMargin || false;
 
         // retrieves the avoid top and avoid left
         // flags values, going to be used in decisions
-        var avoidTop = avoidTop ? avoidTop : false;
-        var avoidLeft = avoidLeft ? avoidLeft : false;
+        avoidTop = avoidTop || false;
+        avoidLeft = avoidLeft || false;
 
         // if the centering operation should be performed
         // as a persistent operation (global resizing trigger
         // a new center operation)
-        var keep = keep ? keep : false;
+        keep = keep || false;
 
         // retrieves the window, taking into account if other
         // reference exists, if that's the case the reference
         // element is used instead of the base (global window)
         var _window = jQuery(window);
-        var reference = reference ? reference : _window;
+        reference = reference || _window;
 
         // retrieves the proper reference position to be used in
         // the centering of the element, not that in case no
         // options is provided the default center value is used
-        var position = position ? position : "center";
+        position = position || "center";
 
         // retrieves the kind of positioning strategy that is
         // currently being used for the position of the object
@@ -150,7 +150,7 @@ if (typeof require !== "undefined") {
 
         // triggers the centered event meaning that the window has just
         // finished the centering operation and the layout has been updated
-        matchedObject.triggerHandler("centered")
+        matchedObject.triggerHandler("centered");
 
         // returns the object
         return this;
