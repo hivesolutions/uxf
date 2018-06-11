@@ -1806,8 +1806,8 @@ if (typeof require !== "undefined") {
                 // retrieves the current the previous and the next
                 // selections (for processing)
                 var _selection = selection[index];
-                var _previous_selection = selection[index - 1];
-                var _next_selection = selection[index + 1];
+                var _previousSelection = selection[index - 1];
+                var _nextSelection = selection[index + 1];
 
                 // retrieves the list item to be selected
                 var _selectedListItem = jQuery(".filter-contents > :nth-child(" + _selection + ")",
@@ -1818,7 +1818,7 @@ if (typeof require !== "undefined") {
 
                 // in case the current index is the first or in case the
                 // current selection is not preceded by a contiguous value
-                if (index === 0 || _previous_selection !== _selection - 1) {
+                if (index === 0 || _previousSelection !== _selection - 1) {
                     // adds the first class to the current selected
                     // list item (indicates that it is the first of
                     // a contiguous selection)
@@ -1827,7 +1827,7 @@ if (typeof require !== "undefined") {
 
                 // in case the current index if the last or in case the
                 // the current selection is not succeeded by a contiguous value
-                if (index === selection.length - 1 || _next_selection !== _selection + 1) {
+                if (index === selection.length - 1 || _nextSelection !== _selection + 1) {
                     // adds the last class to the current selected
                     // list item (indicates that it is the last of
                     // a contiguous selection)
