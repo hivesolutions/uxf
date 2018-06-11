@@ -6,12 +6,7 @@
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body onload="UxVue.examples();">
-    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/uxf/css/ux.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.flat.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.extras.css" />
-    <link rel="stylesheet" type="text/css" href="https://libs.bemisc.com/layout/css/layout.data.css" />
     <link rel="shortcut icon" href="ux.ico" />
-    <script type="text/javascript" src="https://libs.bemisc.com/layout/js/layout.js"></script>
     <div id="app" class="app">
         <ux-button ref="button" v-on:click="onClick">Button</ux-button>
         <ux-button ref="button" v-bind:color="'green'"

@@ -6,6 +6,15 @@ import {
     UxDropDown
 } from "./ui";
 
+import "hive-layout";
+import "hive-js-util";
+
+import "../bin/css/ux.css";
+
+import "hive-layout/css/layout.flat.css";
+import "hive-layout/css/layout.extras.css";
+import "hive-layout/css/layout.data.css";
+
 import "../examples/vue/ux.ico";
 
 window.$ = window.jQuery = jQuery;
