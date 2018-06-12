@@ -319,6 +319,11 @@ if (typeof require !== "undefined") {
                 var filterContents = jQuery(".filter-contents", filter);
                 var template = jQuery(".template", filter);
 
+                // retrieves the cache map to be used to determine if the
+                // various elements should be contructed from scratch or
+                // if an already existing element should be used instead
+                var cache = filter.data("cache") || {};
+
                 // creates the map with the options for the
                 // rendering of the template to changed the
                 // default value to be used
@@ -1211,6 +1216,10 @@ if (typeof require !== "undefined") {
                     // current item to be used as the cache key
                     var uniqueId = element["unique_id"] || element["uid"];
 
+                    // starts the template item to an invalid value, the
+                    // concrete value is going to be set after condition
+                    var templateItem = null;
+
                     // retrieves the cache map from the filter and
                     // tries to find the cache item for the unique identifier
                     // validates it so that the data contained in it matches
@@ -1229,7 +1238,7 @@ if (typeof require !== "undefined") {
                         // item so that no construction occurs then removes
                         // the selection classes from it (avoiding possible
                         // layout problems)
-                        var templateItem = cacheItem;
+                        templateItem = cacheItem;
                         templateItem.removeClass("selected");
                         templateItem.removeClass("first");
                         templateItem.removeClass("last");
@@ -1246,7 +1255,7 @@ if (typeof require !== "undefined") {
                         // retrieving the resulting template item and
                         // setting it the cache map for the unique id
                         // only in case the unique id is valid (set)
-                        var templateItem = template.uxtemplate(
+                        templateItem = template.uxtemplate(
                             element, options);
                         if (uniqueId) {
                             cache[uniqueId] = {
