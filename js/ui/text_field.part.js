@@ -1153,8 +1153,8 @@ if (typeof require !== "undefined") {
             // then using it checks if the float number is still
             // valid (decimal places within range)
             var separatorIndex = stringValue.indexOf(".");
-            var valid = separatorIndex >= stringValue.length - decimalPlacesInteger || separatorIndex === -
-                1;
+            var valid = separatorIndex === -1 || separatorIndex >= stringValue.length -
+                decimalPlacesInteger;
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run
