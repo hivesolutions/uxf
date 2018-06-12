@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link rel="shortcut icon" href="ux.ico" />
     <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
 <body onload="UxVue.examples();">
-    <link rel="shortcut icon" href="ux.ico" />
     <div id="app" class="app">
         <ux-button ref="button" v-on:click="onClick">Button</ux-button>
         <ux-button ref="button" v-bind:color="'green'"
