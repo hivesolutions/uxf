@@ -395,9 +395,6 @@ if (typeof require !== "undefined") {
 
             // registers for the key down event in the text field
             textField.keydown(function(event) {
-                // retrieves the element
-                var element = jQuery(this);
-
                 // retrieves the event key code
                 var eventKeyCode = event.keyCode ? event.keyCode : event.which;
 
@@ -2117,6 +2114,11 @@ if (typeof require !== "undefined") {
         };
 
         var _rangeSelection = function(index, matchedObject, options) {
+            // starts some more global variables that are going
+            // to be re-used through the function
+            var _initial = null;
+            var _final = null;
+
             // sets the matched object as the filter reference
             // for further usage
             var filter = matchedObject;
@@ -2141,16 +2143,16 @@ if (typeof require !== "undefined") {
             if (index >= pivot) {
                 // sets the proper initial and final values
                 // for the "down" range
-                var _initial = pivot;
-                var _final = index + 1;
+                _initial = pivot;
+                _final = index + 1;
             }
             // otherwise in case the index value is lesser than the pivot
             // index it's a range for the up
             else if (index <= pivot) {
                 // sets the proper initial and final values
                 // for the "upper" range
-                var _initial = index;
-                var _final = pivot + 1;
+                _initial = index;
+                _final = pivot + 1;
             }
 
             // creates a new list to hold the new selection values resulting
@@ -2159,9 +2161,9 @@ if (typeof require !== "undefined") {
 
             // iterates over the range values to add the selected indexes to
             // the selection list
-            for (var index = _initial; index < _final; index++) {
+            for (var _index = _initial; _index < _final; _index++) {
                 // adds the index to the list of the selections
-                _selection.push(index);
+                _selection.push(_index);
             }
 
             // updates the selection list in the filter
