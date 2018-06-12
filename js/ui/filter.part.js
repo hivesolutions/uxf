@@ -884,8 +884,8 @@ if (typeof require !== "undefined") {
                 matchedObject.data("avoid_next", false);
 
                 // in case the avoid next flag is set
+                // returns the control flow immediately
                 if (avoidNext) {
-                    // returns immediately
                     return;
                 }
 
