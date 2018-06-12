@@ -15,6 +15,10 @@ if (typeof require !== "undefined") {
  */
 (function(jQuery) {
     jQuery.fn.uxsourcelist = function(method, options) {
+        // the array of types that are considered valid for the values
+        // to be retrieved from the data source
+        var VALID_TYPES = ["object", "string", "number", "boolean"];
+
         // the default values for the plugin
         var defaults = {};
 
@@ -311,18 +315,12 @@ if (typeof require !== "undefined") {
 
                     // retrieves both the display and the value
                     // attributes for the current item
-                    var currentDisplayAttribute = displayAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[displayAttribute]) ? currentItem[displayAttribute] :
-                        currentItem;
-                    var currentValueAttribute = valueAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[valueAttribute]) ? currentItem[valueAttribute] :
-                        currentItem;
-                    var currentLinkAttribute = linkAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[linkAttribute]) ? currentItem[linkAttribute] :
-                        null;
+                    var currentDisplayAttribute = displayAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        displayAttribute]) ? currentItem[displayAttribute] : currentItem;
+                    var currentValueAttribute = valueAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        valueAttribute]) ? currentItem[valueAttribute] : currentItem;
+                    var currentLinkAttribute = linkAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        linkAttribute]) ? currentItem[linkAttribute] : null;
 
                     // triggers the event that will handle the validation of
                     // the item creation and in case the return value of it

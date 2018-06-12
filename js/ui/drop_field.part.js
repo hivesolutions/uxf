@@ -18,6 +18,10 @@ if (typeof require !== "undefined") {
  */
 (function(jQuery) {
     jQuery.fn.uxdropfield = function(method, options) {
+        // the array of types that are considered valid for the values
+        // to be retrieved from the data source
+        var VALID_TYPES = ["object", "string", "number", "boolean"];
+
         // the default values for the drop field
         var defaults = {};
 
@@ -1093,22 +1097,14 @@ if (typeof require !== "undefined") {
 
                     // retrieves both the display and the value
                     // attributes for the current item
-                    var currentDisplayAttribute = displayAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[displayAttribute]) ? currentItem[displayAttribute] :
-                        currentItem;
-                    var currentExtraAttribute = extraAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[extraAttribute]) ? currentItem[extraAttribute] :
-                        null;
-                    var currentValueAttribute = valueAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[valueAttribute]) ? currentItem[valueAttribute] :
-                        currentItem;
-                    var currentLinkAttribute = linkAttribute && ["object", "string", "number",
-                            "boolean"
-                        ].isIn(typeof currentItem[linkAttribute]) ? currentItem[linkAttribute] :
-                        null;
+                    var currentDisplayAttribute = displayAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        displayAttribute]) ? currentItem[displayAttribute] : currentItem;
+                    var currentExtraAttribute = extraAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        extraAttribute]) ? currentItem[extraAttribute] : null;
+                    var currentValueAttribute = valueAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        valueAttribute]) ? currentItem[valueAttribute] : currentItem;
+                    var currentLinkAttribute = linkAttribute && VALID_TYPES.isIn(typeof currentItem[
+                        linkAttribute]) ? currentItem[linkAttribute] : null;
 
                     // retrieves the default values for the display
                     // and values taking into account the type of
@@ -1479,6 +1475,11 @@ if (typeof require !== "undefined") {
             // the visual value is provided but the logical one not
             var incomplete = value && !valueLogic;
 
+            // verifies if the incomplete mode is set (just visual) and
+            // the forced mode is set, for this situation the data source
+            // update operation is still going to be performed
+            var force = incomplete && options.force;
+
             // retrieves the complete set of value fields from the drop
             // field to apply the item values into them
             var valueFields = dropField.data("value_fields");
@@ -1516,22 +1517,20 @@ if (typeof require !== "undefined") {
             // in case the bootstrap mode is enabled an extra update
             // operation is scheduled to update the values of the drop
             // field according to the logic attribute that has been set
-            bootstrap
-                && _update(dropField, options, true, [
-                    [valueAttribute,
-                        "equals", valueLogic
-                    ]
-                ]);
+            bootstrap && _update(dropField, options, true, [
+                [valueAttribute,
+                    "equals", valueLogic
+                ]
+            ]);
 
-            // in case the imcimplete mode is enabled an extra operation
-            // is sheduled to update the drop field accordingly, this is
+            // in case the incomplete mode is enabled an extra operation
+            // is scheduled to update the drop field accordingly, this is
             // performed only if the force option is set
-            incomplete
-                && options.force && _update(dropField, options, true, [
-                    [displayAttribute,
-                        "equals", value
-                    ]
-                ]);
+            force && _update(dropField, options, true, [
+                [displayAttribute,
+                    "equals", value
+                ]
+            ]);
         };
 
         var _reset = function(matchedObject, options) {
