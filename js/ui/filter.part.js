@@ -231,8 +231,8 @@ if (typeof require !== "undefined") {
                 if (filterContents.length === 0) {
                     // creates the filter contents element and adds it to the
                     // filter according to the filter more status
-                    var filterContents = jQuery("<div class=\"filter-contents\"></div>");
-                    var filterClear = jQuery("<div class=\"filter-clear\"></div>");
+                    filterContents = jQuery("<div class=\"filter-contents\"></div>");
+                    filterClear = jQuery("<div class=\"filter-clear\"></div>");
                     filterMoreLength > 0 ? filterContents.insertBefore(filterMore) && filterClear.insertBefore(
                         filterMore) : _element.append(filterContents);
                 }
@@ -1062,6 +1062,10 @@ if (typeof require !== "undefined") {
             // various filter tuples and then add them to the base filters
             // list that will be used for the query in the data source
             filters.each(function() {
+                // starts some of the values that are going to be re-used
+                // over the function execution
+                var value = null;
+
                 // retrieves the current element in iteration
                 var element = jQuery(this);
 
@@ -1086,11 +1090,11 @@ if (typeof require !== "undefined") {
                     // field and uses its value as the value
                     var hiddenField = jQuery(".hidden-field",
                         valueField);
-                    var value = hiddenField.val();
+                    value = hiddenField.val();
                 } else {
                     // retrieves the value of the value field using the text
                     // field based approach
-                    var value = valueField.uxtextfield("value");
+                    value = valueField.uxtextfield("value");
                 }
 
                 // in case no value is present this filter is ignored
@@ -1362,7 +1366,6 @@ if (typeof require !== "undefined") {
             var _body = jQuery("body");
             var contextMenus = jQuery("> .context-menu", _body);
             var menu = jQuery(".context-menu", element);
-            var menuContents = jQuery(".context-menu .menu-contents", element);
 
             // in case there's no context menu for the
             // current element no need to continue
@@ -1886,18 +1889,22 @@ if (typeof require !== "undefined") {
             var first = selection[0];
             var last = selection[selection.length - 1];
 
+            // initializes the variable ahead of the conditional as
+            // it is going to be used by both results
+            var value = null;
+
             // in case the current first element is the pivot
             // need to use the last value as reference
             if (first === pivot) {
                 // increments the last value and sets it as
                 // the proper value
-                var value = last - 1;
+                value = last - 1;
             }
             // otherwise uses the first value as reference
             else {
                 // decrement the first value and sets it as
                 // the proper value
-                var value = first - 1;
+                value = first - 1;
             }
 
             // in case the current index value is zero
@@ -1922,16 +1929,18 @@ if (typeof require !== "undefined") {
             var margin = jQuery(".margin");
             var pageOffset = margin.outerHeight(true);
 
+            var item = null;
+
             // in case the current first element is the pivot
             // need to use the last value as reference
             if (first === pivot) {
                 // retrieves the last item as the reference one
-                var item = jQuery(selectedListItem[selectedListItem.length - 1]);
+                item = jQuery(selectedListItem[selectedListItem.length - 1]);
             }
             // otherwise must use the first one
             else {
                 // retrieves the first item as the reference one
-                var item = jQuery(selectedListItem[0]);
+                item = jQuery(selectedListItem[0]);
             }
 
             // checks if the item is visible and in case it's
@@ -2028,11 +2037,6 @@ if (typeof require !== "undefined") {
             // sets the matched object as the filter reference
             // for further usage
             var filter = matchedObject;
-
-            // retrieves the pivot value and the current selection
-            // for the filter reference
-            var pivot = filter.data("pivot");
-            var selection = filter.data("selection");
 
             // runs the range selection process for the currently
             // selected value and then updates the selection
@@ -2185,7 +2189,7 @@ if (typeof require !== "undefined") {
                 // selected list item, then uses it to retrieve
                 // its hyperlink reference (in case it's necessary)
                 var linkElement = jQuery("a", _listItem);
-                var valueLink = valueLink ? valueLink : linkElement.attr("href");
+                valueLink = valueLink || linkElement.attr("href");
 
                 // in case the value link is set
                 if (valueLink) {
@@ -2354,6 +2358,11 @@ if (typeof require !== "undefined") {
             // be set in)
             valueField.remove();
 
+            // defaults some of the internal values to be set during the
+            // switch conditional execution
+            var _items = [];
+            var _operations = [];
+
             // switched over the type of the value that was selected
             // (different type will have different operation and different
             // value fields)
@@ -2361,14 +2370,14 @@ if (typeof require !== "undefined") {
                 case "string":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["contains", "matches", "begins with",
+                    _items = ["contains", "matches", "begins with",
                         "ends with"
                     ];
-                    var _operations = ["like", "equals", "rlike", "llike"];
+                    _operations = ["like", "equals", "rlike", "llike"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery(
+                    valueField = jQuery(
                         "<input type=\"text\" class=\"text-field small value-field\" />");
                     valueField.insertAfter(operationField);
                     valueField.uxtextfield();
@@ -2379,12 +2388,12 @@ if (typeof require !== "undefined") {
                 case "number":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["equals", "greater than", "less than"];
-                    var _operations = ["equals", "greater", "lesser"];
+                    _items = ["equals", "greater than", "less than"];
+                    _operations = ["equals", "greater", "lesser"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery(
+                    valueField = jQuery(
                         "<input type=\"text\" class=\"text-field small value-field\" data-type=\"integer\" />"
                     );
                     valueField.insertAfter(operationField);
@@ -2396,12 +2405,12 @@ if (typeof require !== "undefined") {
                 case "float":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["equals", "greater than", "less than"];
-                    var _operations = ["equals", "greater", "lesser"];
+                    _items = ["equals", "greater than", "less than"];
+                    _operations = ["equals", "greater", "lesser"];
 
                     // creates the value field as a text field, inserts it
                     // after the operation field and initializes it
-                    var valueField = jQuery(
+                    valueField = jQuery(
                         "<input type=\"text\" class=\"text-field small value-field\" data-type=\"float\" />"
                     );
                     valueField.insertAfter(operationField);
@@ -2413,12 +2422,12 @@ if (typeof require !== "undefined") {
                 case "date":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["in", "after", "before"];
-                    var _operations = ["in_day", "greater", "lesser"];
+                    _items = ["in", "after", "before"];
+                    _operations = ["in_day", "greater", "lesser"];
 
                     // creates the value field as a text field (calendar field),
                     // inserts it after the operation field and initializes it
-                    var valueField = jQuery(
+                    valueField = jQuery(
                         "<input type=\"text\" class=\"text-field small value-field\" data-type=\"date\" data-original_value=\"yyyy/mm/dd\" />"
                     );
                     valueField.insertAfter(operationField);
@@ -2430,8 +2439,8 @@ if (typeof require !== "undefined") {
                 case "reference":
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["search"];
-                    var _operations = ["equals"];
+                    _items = ["search"];
+                    _operations = ["equals"];
 
                     // sets the disabled flag so that no operation changing
                     // action is possible
@@ -2449,7 +2458,7 @@ if (typeof require !== "undefined") {
 
                     // creates the value field as a drop field (reference field),
                     // inserts it after the operation field and initializes it
-                    var valueField = jQuery("<div class=\"drop-field small value-field\">" +
+                    valueField = jQuery("<div class=\"drop-field small value-field\">" +
                         "<input type=\"hidden\" class=\"hidden-field\" />" +
                         "<ul class=\"data-source\"></ul>" + "</div>");
 
@@ -2475,8 +2484,8 @@ if (typeof require !== "undefined") {
                 default:
                     // creates the list of items and then creates the list
                     // of equivalent operations (index based association)
-                    var _items = ["undefined"];
-                    var _operations = [""];
+                    _items = ["undefined"];
+                    _operations = [""];
 
                     // breaks the switch
                     break;

@@ -115,16 +115,6 @@ if (typeof require !== "undefined") {
                 _filters.push(_filter);
             }
 
-            // sets the initial filter flag value
-            var filter = false;
-
-            // in case the start record and the number
-            // of records is set
-            if (startRecord !== null && startRecord !== undefined && numberRecords !== null &&
-                numberRecords !== undefined) {
-                filter = true;
-            }
-
             // retrieves the elements URL and data values to be used
             // for the processing of the "remote" query
             var url = element.data("url");
@@ -155,7 +145,7 @@ if (typeof require !== "undefined") {
             // query to be sent to the data source, then creates
             // the corresponding hash value to be used as the
             // (unique) identifier of the query
-            var query = {
+            query = {
                 filter_string: filterString,
                 insensitive: insensitive,
                 sort: sortString,
@@ -323,7 +313,7 @@ if (typeof require !== "undefined") {
             // of the query and creates the digest for it returning it to
             // the caller function
             var queryString = filterString + sort + _filters + String(startRecord) + String(numberRecords);
-            var hash = Md5.digest(queryString);
+            var hash = Md5.digest(queryString); // eslint-disable-line no-undef
             return hash;
         };
 

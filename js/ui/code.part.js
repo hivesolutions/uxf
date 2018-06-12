@@ -54,7 +54,7 @@ if (typeof require !== "undefined") {
                 // the highlight operation in it setting the run
                 // flag in it afterwards
                 var domElement = _element[0];
-                Prism.highlightElement(domElement);
+                Prism.highlightElement(domElement); // eslint-disable-line no-undef
                 _element.data("highlighted", true);
             });
         };
