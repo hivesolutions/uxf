@@ -1,5 +1,5 @@
 <template>
-<input type="text" class="text-field" />
+<input type="text" class="text-field" v-bind:data-original_value="this.originalValue" />
 </template>
 
 <style scoped>
@@ -16,6 +16,14 @@ import {
 
 export const UxTextField = Vue.component("ux-text-field", {
     mixins: [state],
+    props: {
+        "originalValue": {
+            type: String,
+            default: function() {
+                return "";
+            }
+        }
+    },
     mounted: function() {
         var vm = this;
         var element = jQuery(this.$el);
