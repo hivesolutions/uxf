@@ -77,6 +77,11 @@ if (typeof require !== "undefined") {
             // registers for the click event on the list items
             // to change their selection states
             listItems.click(function(event) {
+                // starts some of the global values to be used through
+                // the current function execution
+                var index = null;
+                var listItems = null;
+
                 // retrieves the current element reference and uses
                 // it to retrive the current select list
                 var element = jQuery(this);
@@ -138,7 +143,7 @@ if (typeof require !== "undefined") {
                         }
 
                         // retrieves the currently selected list items
-                        var listItems = jQuery("li.selected", selectList);
+                        listItems = jQuery("li.selected", selectList);
                         listItems.removeClass("selected");
 
                         // iterates over the range of index values (base and target)
@@ -155,7 +160,7 @@ if (typeof require !== "undefined") {
 
                     case "normal":
                         // retrieves the currently selected list items
-                        var listItems = jQuery("li.selected", selectList);
+                        listItems = jQuery("li.selected", selectList);
 
                         // removes the selected class from all the list items
                         // and then adds then selects the current element
@@ -180,7 +185,7 @@ if (typeof require !== "undefined") {
                 var selectList = element.parent(".select-list");
 
                 // triggers the select event in the element
-                element.trigger("selected", [element]);
+                selectList.trigger("selected", [element]);
             });
 
             // iterates over each of the matched objects
@@ -242,6 +247,11 @@ if (typeof require !== "undefined") {
         };
 
         var _update = function(matchedObject, options) {
+            // starts some of the global variables that are going
+            // to be re-used over the function execution
+            var listItems = null;
+            var orderIcons = null;
+
             // retrieves the current element in iteration
             // to be used to add the order element
             var _element = matchedObject;
@@ -253,8 +263,8 @@ if (typeof require !== "undefined") {
                 // retrieves the complete set of list items that
                 // are considered part of a order structure then
                 // retrieves it order icons
-                var listItems = jQuery("li.order", _element);
-                var orderIcons = jQuery(".order-icon", listItems);
+                listItems = jQuery("li.order", _element);
+                orderIcons = jQuery(".order-icon", listItems);
 
                 // removes the order class from the list items and
                 // removes the order icons elements
@@ -271,7 +281,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the set of list items in the select
             // list and adds the order icon to them
-            var listItems = jQuery("li:not(.order)", _element);
+            listItems = jQuery("li:not(.order)", _element);
             listItems.prepend(orderIcon);
 
             // adds the order class to the list items to "notify"
@@ -280,7 +290,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the complete set of order icons currently
             // listed under the list items
-            var orderIcons = jQuery(".order-icon", listItems);
+            orderIcons = jQuery(".order-icon", listItems);
 
             // registers for the mouse down event in the order icons
             // to be used for the sorting of the elements

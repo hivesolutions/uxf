@@ -538,6 +538,10 @@ if (typeof require !== "undefined") {
             // registers for the paste operation so that it's possible
             // to correctly parse it as a dynamic value
             textField.bind("paste", function(event) {
+                // starts some of the more "global" values thata are going
+                // to be used through the function
+                var index = null;
+
                 // retrieves the reference to the current element (text field)
                 // that is going to be used in the processing operation
                 var element = jQuery(this);
@@ -583,7 +587,7 @@ if (typeof require !== "undefined") {
 
                 // iterates over the complete set of possible (line) endings trying to
                 // find the one that best fits the current text data scenario
-                for (var index = 0; index < ENDINGS.length; index++) {
+                for (index = 0; index < ENDINGS.length; index++) {
                     var _ending = ENDINGS[index];
                     var exists = textData.indexOf(_ending) !== -1;
                     if (!exists) {
@@ -610,7 +614,7 @@ if (typeof require !== "undefined") {
 
                 // iterates over the miltiple lines contained in the text to populate
                 // the associated lines in the table
-                for (var index = 0; index < lines.length; index++) {
+                for (index = 0; index < lines.length; index++) {
                     // retrieves the current line and splits arrount its columns
                     var line = lines[index];
                     var columns = line.split("\t");
@@ -638,8 +642,8 @@ if (typeof require !== "undefined") {
                         // retrieves the current column in iteration (value) and uses
                         // it to populate the current element using the normal value
                         // setting operation (as expected)
-                        var column = columns[_index];
-                        current.uxvalue(column);
+                        var columnValue = columns[_index];
+                        current.uxvalue(columnValue);
                         current.uxfocus();
                     }
 
@@ -755,8 +759,8 @@ if (typeof require !== "undefined") {
             // retrieves all the rows from the element reference
             // so that it's possible to check id the current element
             // is the last in the list
-            var rows = jQuery("tbody > tr:not(.template)", matchedObject);
-            var rowCount = rows.length;
+            rows = jQuery("tbody > tr:not(.template)", matchedObject);
+            rowCount = rows.length;
 
             // retrieves the index of the current row to check
             // it it's the last row
@@ -924,6 +928,10 @@ if (typeof require !== "undefined") {
         };
 
         var _next = function(element, selector, column, row, force, noNext) {
+            // starts some of the global variable to be re-used through
+            // the function execution
+            var columns = null;
+
             // tries to retrieve the reference column and row using
             // either the provided ones or the current element context
             column = column || element.parents("td");
@@ -972,8 +980,8 @@ if (typeof require !== "undefined") {
 
                 // retieves the next row and the column in set as the first one
                 // so that its possible to continue the loop
-                var row = row.next();
-                var columns = jQuery("> td", row);
+                row = row.next();
+                columns = jQuery("> td", row);
                 column = jQuery(columns.get(0));
             }
 
@@ -983,7 +991,7 @@ if (typeof require !== "undefined") {
                 var table = row.parents(".table");
                 var tableBody = jQuery("tbody", table);
                 row = _newLine(table, tableBody);
-                var columns = jQuery("> td", row);
+                columns = jQuery("> td", row);
                 column = jQuery(columns.get(0));
                 return _next(element, selector, column, row, false, true);
             }
