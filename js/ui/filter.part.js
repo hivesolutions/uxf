@@ -1950,6 +1950,11 @@ if (typeof require !== "undefined") {
         };
 
         var _decrementRange = function(matchedObject, options) {
+            // creates some variables that are going to be re-used
+            // through the function execution
+            var value = null;
+            var item = null;
+
             // sets the matched object as the filter reference
             // for further usage
             var filter = matchedObject;
@@ -1973,13 +1978,13 @@ if (typeof require !== "undefined") {
             if (last === pivot) {
                 // increments the first value and sets it as
                 // the proper value
-                var value = first + 1;
+                value = first + 1;
             }
             // otherwise uses the last value as reference
             else {
                 // increments the last value and sets it as
                 // the proper value
-                var value = last + 1;
+                value = last + 1;
             }
 
             // retrieves the "current" list items
@@ -2013,12 +2018,12 @@ if (typeof require !== "undefined") {
             // need to use the first value as reference
             if (last === pivot) {
                 // retrieves the first item as the reference one
-                var item = jQuery(selectedListItem[0]);
+                item = jQuery(selectedListItem[0]);
             }
             // otherwise must use the last one
             else {
                 // retrieves the last item as the reference one
-                var item = jQuery(selectedListItem[selectedListItem.length - 1]);
+                item = jQuery(selectedListItem[selectedListItem.length - 1]);
             }
 
             // checks if the item is visible and in case it's
