@@ -51,6 +51,13 @@ if (typeof require !== "undefined") {
         };
 
         var _getResults = function(element, query, callback) {
+            // starts some of the variables that are going to be
+            // re-used over the function execution
+            var index = null;
+            var _index = null;
+            var compareString = null;
+            var compareStrings = null;
+
             // retrieves the id part of the url
             var id = query["id"];
 
@@ -108,7 +115,7 @@ if (typeof require !== "undefined") {
                 var itemsId = [];
 
                 // iterates over the range of items (indexes)
-                for (var index = 0; index < items.length; index++) {
+                for (index = 0; index < items.length; index++) {
                     // retrieves the current item, and
                     // then retrieves and casts the item id
                     var item = items[index];
@@ -137,7 +144,7 @@ if (typeof require !== "undefined") {
 
             // iterates over all the items to check for a valid
             // prefix (starts with)
-            for (var index = 0; index < items.length; index++) {
+            for (index = 0; index < items.length; index++) {
                 // retrieves the current item, that is going to be used as
                 // the basis of the comparision operation
                 var currentItem = items[index];
@@ -154,10 +161,10 @@ if (typeof require !== "undefined") {
                     // retrieves the current filter in iteration and then
                     // unpacks the complete set of attributes for it according
                     // to the current filter specification
-                    var filter = filters[findex];
-                    var name = filter[0];
-                    var operator = filter[1];
-                    var value = filter[2];
+                    var _filter = filters[findex];
+                    var name = _filter[0];
+                    var operator = _filter[1];
+                    var value = _filter[2];
 
                     // in case the operator of the filter is not the equals one
                     // or the current item is not an object, must skip the current
@@ -190,16 +197,16 @@ if (typeof require !== "undefined") {
                 // compare strings than the usual for the operation
                 if (filterAttributes) {
                     // starts the compare strings list
-                    var compareStrings = [];
+                    compareStrings = [];
 
                     // iterates over all the filter attributes
-                    for (var _index = 0; _index < filterAttributes.length; _index++) {
+                    for (_index = 0; _index < filterAttributes.length; _index++) {
                         // retrieves the current filter attribute
                         var filterAttribute = filterAttributes[_index];
 
                         // retrieves the compare string and adds it
                         // to the compare strings list
-                        var compareString = currentItem[filterAttribute];
+                        compareString = currentItem[filterAttribute];
                         compareStrings.push(compareString);
                     }
                 }
@@ -208,24 +215,23 @@ if (typeof require !== "undefined") {
                 else if (typeof currentItem === "object") {
                     // retrieves the name attribute from the current
                     // item and sets it in the list of compaare strings
-                    var name = currentItem["name"];
-                    var compareStrings = [name];
+                    compareStrings = [currentItem["name"]];
                 }
                 // otherwise the current item must be a string
                 // and so it's used directly as the compare strings
                 else {
                     // sets the current item as the only
                     // compare string
-                    var compareStrings = [currentItem];
+                    compareStrings = [currentItem];
                 }
 
                 // iterates over all the compare strings for the filter
                 // string comparison so that the prper validations should
                 // be applied to the proper element
-                for (var _index = 0; _index < compareStrings.length; _index++) {
+                for (_index = 0; _index < compareStrings.length; _index++) {
                     // retrieves the current compare string and converts it into
                     // a lowercased string in case the insensitive flag is set
-                    var compareString = compareStrings[_index];
+                    compareString = compareStrings[_index];
                     compareString = insensitive ? compareString.toLowerCase() : compareString;
 
                     // checks if the compare string (current item) starts with the
