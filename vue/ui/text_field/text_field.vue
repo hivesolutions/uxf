@@ -1,5 +1,7 @@
 <template>
-<input type="text" class="text-field" v-bind:data-original_value="this.originalValue" />
+<input type="text" class="text-field"
+       v-bind:data-type="this.type"
+       v-bind:data-original_value="this.originalValue" />
 </template>
 
 <style scoped>
@@ -17,6 +19,12 @@ import {
 export const UxTextField = Vue.component("ux-text-field", {
     mixins: [state],
     props: {
+        "type": {
+            type: String,
+            default: function() {
+                return "text";
+            }
+        },
         "originalValue": {
             type: String,
             default: function() {

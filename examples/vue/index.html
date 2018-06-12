@@ -8,14 +8,13 @@
 </head>
 <body onload="UxVue.examples();">
     <div id="app" class="app">
-        <ux-button ref="button" v-on:click="onClick">Button</ux-button>
-        <ux-button ref="button" color="green"
-                   v-on:click="onClick('green')">Button Green</ux-button>
-        <ux-button ref="button" color="red"
-                   v-on:click="onClick('red')">Button Red</ux-button>
-        <ux-drop-down ref="drop_down" v-bind:values="items" v-bind:persist="true"
+        <ux-button v-on:click="onClick">Button</ux-button>
+        <ux-button color="green" v-on:click="onClick('green')">Button Green</ux-button>
+        <ux-button color="red" v-on:click="onClick('red')">Button Red</ux-button>
+        <ux-drop-down v-bind:values="items" v-bind:persist="true"
                       v-on:value_change="onValueChange"></ux-drop-down>
-        <ux-text-field ref="text_field" original-value="Put some text" />
+        <ux-text-field original-value="Put some text"></ux-text-field>
+        <ux-text-field type="date"></ux-text-field>
     </div>
 </body>
 </html>
