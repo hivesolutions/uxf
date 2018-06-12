@@ -185,7 +185,7 @@ if (typeof require !== "undefined") {
                 var selectList = element.parent(".select-list");
 
                 // triggers the select event in the element
-                selectList.trigger("selected", [element]);
+                selectList.triggerHandler("selected", [element]);
             });
 
             // iterates over each of the matched objects
