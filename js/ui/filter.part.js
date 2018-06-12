@@ -107,7 +107,7 @@ if (typeof require !== "undefined") {
 
                     // creates the text field element and sets the various
                     // attributes in it
-                    var textField = jQuery(
+                    textField = jQuery(
                         "<input type=\"text\" class=\"text-field filter-input\" />");
                     textField.val(value);
                     textField.attr("name", name);
