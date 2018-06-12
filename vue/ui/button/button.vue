@@ -12,12 +12,10 @@ import Vue from "vue";
 import jQuery from "jquery";
 import "base";
 
+import state from "../../mixins";
+
 export const UxButton = Vue.component("ux-button", {
-    data: function() {
-        return {
-            isEnabled: true
-        };
-    },
+    mixins: [state],
     props: {
         color: {
             type: String,
@@ -33,23 +31,6 @@ export const UxButton = Vue.component("ux-button", {
         element.bind("click", function() {
             vm.$emit("click");
         });
-    },
-    methods: {
-        enable: function() {
-            this.isEnabled = true;
-        },
-        disable: function() {
-            this.isEnabled = false;
-        }
-    },
-    watch: {
-        isEnabled: function(val) {
-            if (val) {
-                jQuery(this.$el).uxenable();
-            } else {
-                jQuery(this.$el).uxdisable();
-            }
-        }
     },
     computed: {
         buttonColor: function() {

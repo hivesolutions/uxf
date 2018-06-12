@@ -16,10 +16,12 @@ import Vue from "vue";
 import jQuery from "jquery";
 import "base";
 
+import state from "../../mixins";
+
 export const UxDropDown = Vue.component("ux-drop-down", {
+    mixins: [state],
     data: function() {
         return {
-            isEnabled: true,
             items: []
         };
     },
@@ -46,14 +48,6 @@ export const UxDropDown = Vue.component("ux-drop-down", {
         });
         this.items = this.$props.values;
     },
-    methods: {
-        enable: function() {
-            this.isEnabled = true;
-        },
-        disable: function() {
-            this.isEnabled = false;
-        }
-    },
     watch: {
         values: function(val) {
             this.items = val;
@@ -63,13 +57,6 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             setTimeout(function() {
                 jQuery(vm.$el).triggerHandler("update");
             });
-        },
-        isEnabled: function(val) {
-            if (val) {
-                jQuery(this.$el).uxenable();
-            } else {
-                jQuery(this.$el).uxdisable();
-            }
         }
     }
 });

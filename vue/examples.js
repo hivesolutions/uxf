@@ -3,7 +3,8 @@ import jQuery from "jquery";
 
 import {
     UxButton,
-    UxDropDown
+    UxDropDown,
+    UxTextField
 } from "./ui";
 
 import "hive-layout";
@@ -24,7 +25,8 @@ export const examples = function() {
         el: "#app",
         components: {
             UxButton,
-            UxDropDown
+            UxDropDown,
+            UxTextField
         },
         data: {
             items: [{
