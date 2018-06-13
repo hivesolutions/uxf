@@ -8,4 +8,5 @@ if (typeof __webpack_require__ === "undefined") { // eslint-disable-line camelca
 } else {
     module.exports.jQuery = jquery;
     module.exports.window = window;
+    window.$ = window.jQuery = jquery;
 }
