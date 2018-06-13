@@ -21,7 +21,8 @@
     "author": "Hive Solutions",
     "files": [
         "index.html",
-        "main.js"
+        "main.js",
+        "ux.ico"
     ],
     "main": "js/main.js",
     "scripts": {
