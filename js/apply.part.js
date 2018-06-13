@@ -2,9 +2,6 @@ if (typeof require !== "undefined") {
     var jQuery = require("./_compat").jQuery;
 }
 
-var _alert = null; // eslint-disable-line no-unused-vars
-var _confirm = null; // eslint-disable-line no-unused-vars
-
 (function(jQuery) {
     jQuery.fn.uxapply = function(options) {
         // the default values for the apply
@@ -356,8 +353,10 @@ var _confirm = null; // eslint-disable-line no-unused-vars
                 // functions under some more obscure global
                 // variables so that they may be used latter
                 // if that's required by the developer
-                _alert = alert;
-                _confirm = confirm;
+                var _alert = alert;
+                var _confirm = confirm;
+                _body.data("_alert", _alert);
+                _body.data("_alert", _confirm);
 
                 // overrides the current alert function
                 // with the ux alert method
