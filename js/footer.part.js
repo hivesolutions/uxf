@@ -1,3 +1,7 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("./_compat").jQuery;
+}
+
 // registers for the ready event in
 // the body element
 jQuery(document).ready(function() {

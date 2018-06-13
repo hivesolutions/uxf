@@ -34,6 +34,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "webpack-dev-server --config config/webpack.config.examples.js --mode development --watch --hot",
+        "lint": "eslint js/**/*.js",
         "test": "mocha --recursive",
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config config/webpack.config.js",

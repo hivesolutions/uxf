@@ -1,13 +1,20 @@
+if (typeof require !== "undefined") {
+    var jQuery = require("./_compat").jQuery;
+}
+
+var _alert = null; // eslint-disable-line no-unused-vars
+var _confirm = null; // eslint-disable-line no-unused-vars
+
 (function(jQuery) {
     jQuery.fn.uxapply = function(options) {
         // the default values for the apply
         var defaults = {};
 
         // sets the default options value
-        var options = options ? options : {};
+        options = options || {};
 
         // constructs the options
-        var options = jQuery.extend(defaults, options);
+        options = jQuery.extend(defaults, options);
 
         // sets the jquery matched object
         var matchedObject = this;
@@ -354,7 +361,7 @@
 
                 // overrides the current alert function
                 // with the ux alert method
-                alert = function(message, callback) {
+                alert = function(message, callback) { // eslint-disable-line no-global-assign
                     // shows the alert window
                     _body.uxalert(message, callback);
 
@@ -365,7 +372,7 @@
 
                 // overrides the current confirm function
                 // with the ux confirm method
-                confirm = function(message, callback) {
+                confirm = function(message, callback) { // eslint-disable-line no-global-assign
                     // shows the confirm window
                     _body.uxconfirm(message, callback);
 
