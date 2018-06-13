@@ -33,7 +33,6 @@
     },
     "dependencies": {
         "hive-layout": "^0.1.2",
-        "uxf": "^0.2.0",
         "vue": "^2.5.16"
     },
     "devDependencies": {
