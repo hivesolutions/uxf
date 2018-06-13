@@ -1,0 +1,40 @@
+{
+    "name": "uxf-vue-example",
+    "version": "0.1.1",
+    "description": "Simple example of UXF and Vue.js",
+    "keywords": [
+        "components",
+        "ui",
+        "uxf"
+    ],
+    "homepage": "https://github.com/hivesolutions/uxf#readme",
+    "bugs": {
+        "url": "https://github.com/hivesolutions/uxf/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hivesolutions/uxf.git"
+    },
+    "license": "Apache-2.0",
+    "author": "Hive Solutions",
+    "files": [
+        "index.html",
+        "main.js"
+    ],
+    "main": "js/main.js",
+    "scripts": {
+        "dev": "webpack-dev-server --config webpack.config.js --mode development --watch --hot",
+        "lint": "eslint ./**/*.js",
+        "test": "mocha --recursive",
+        "upgrade": "npx sort-package-json && ncu -au",
+        "webpack": "webpack --config webpack.config.js"
+    },
+    "dependencies": {
+        "hive-layout": "^0.1.2",
+        "uxf": "^0.2.0",
+        "vue": "^2.5.16"
+    },
+    "devDependencies": {
+        "uxf-webpack": "^0.1.4"
+    }
+}
