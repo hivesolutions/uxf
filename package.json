@@ -1,6 +1,6 @@
 {
     "name": "uxf",
-    "version": "0.1.5",
+    "version": "0.2.0",
     "description": "Simple client side framework for people who want fast results",
     "keywords": [
         "components",
