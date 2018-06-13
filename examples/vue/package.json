@@ -1,11 +1,13 @@
 {
     "name": "uxf-vue-example",
-    "version": "0.1.1",
+    "version": "0.1.0",
     "description": "Simple example of UXF and Vue.js",
     "keywords": [
         "components",
         "ui",
-        "uxf"
+        "uxf",
+        "vue",
+        "example"
     ],
     "homepage": "https://github.com/hivesolutions/uxf#readme",
     "bugs": {
