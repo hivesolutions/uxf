@@ -46,14 +46,8 @@
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
         "eslint": "^4.19.1",
-        "eslint-config-standard": "^11.0.0",
+        "eslint-config-hive": "^0.1.1",
         "eslint-loader": "^2.0.0",
-        "eslint-plugin-import": "^2.12.0",
-        "eslint-plugin-mocha": "^5.0.0",
-        "eslint-plugin-node": "^6.0.1",
-        "eslint-plugin-promise": "^3.8.0",
-        "eslint-plugin-standard": "^3.1.0",
-        "eslint-plugin-vue": "^4.5.0",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",
         "sort-package-json": "^1.15.0"
