@@ -33,12 +33,12 @@
     ],
     "main": "index.js",
     "scripts": {
-        "lint": "eslint js/**/*.js",
+        "lint": "eslint ./js/**/*.js ./vue/**/*.vue",
         "test": "mocha --recursive",
         "upgrade": "npx sort-package-json && ncu -au"
     },
     "dependencies": {
-        "hive-js-util": "^0.1.18",
+        "hive-js-util": "^0.1.20",
         "jquery": "^3.3.1",
         "jsdom": "^11.11.0",
         "vue": "^2.5.16"
@@ -46,7 +46,7 @@
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
         "eslint": "^4.19.1",
-        "eslint-config-hive": "^0.1.1",
+        "eslint-config-hive": "^0.1.2",
         "eslint-loader": "^2.0.0",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",

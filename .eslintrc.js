@@ -1,5 +1,3 @@
 module.exports = {
-    "extends": [
-        "hive"
-    ]
+    "extends": "hive/vue"
 };
