@@ -6,6 +6,9 @@ node_js:
   - "8"
   - "9"
   - "10"
+before_install:
+  - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
+  - git submodule update --init --recursive
 install:
   - npm install
 script: npm test
