@@ -11,7 +11,7 @@ describe("UxButton", function() {
             const jQuery = global.jQuery;
 
             jQuery("body").empty();
-            jQuery("body").append("<div class=\"button\" data-link=\"http://hive.pt\"></div>");
+            jQuery("body").append('<div class="button" data-link="http://hive.pt"></div>');
             jQuery(".button").uxbutton();
 
             const result = jQuery(".button").data("link");
