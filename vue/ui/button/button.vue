@@ -12,9 +12,7 @@ import Vue from "vue";
 import jQuery from "jquery";
 import "base";
 
-import {
-    state
-} from "../../mixins";
+import { state } from "../../mixins";
 
 export const UxButton = Vue.component("ux-button", {
     mixins: [state],

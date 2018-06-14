@@ -12,20 +12,18 @@ import Vue from "vue";
 import jQuery from "jquery";
 import "base";
 
-import {
-    state
-} from "../../mixins";
+import { state } from "../../mixins";
 
 export const UxTextField = Vue.component("ux-text-field", {
     mixins: [state],
     props: {
-        "type": {
+        type: {
             type: String,
             default: function() {
                 return "text";
             }
         },
-        "originalValue": {
+        originalValue: {
             type: String,
             default: function() {
                 return "";

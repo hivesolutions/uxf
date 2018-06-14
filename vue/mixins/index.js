@@ -1,3 +1,1 @@
-export {
-    state
-} from "./state.js";
+export { state } from "./state.js";
