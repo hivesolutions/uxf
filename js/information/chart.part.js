@@ -35,7 +35,7 @@ if (typeof require !== "undefined") {
 
             // wraps the bars into the bar container, this
             // should include the proper visuals
-            bars.wrap("<div class=\"bar-container\"></div>");
+            bars.wrap('<div class="bar-container"></div>');
 
             // iterates over all the bars of the matched object for
             // width calculation
@@ -104,7 +104,7 @@ if (typeof require !== "undefined") {
 
                 // creates a new transparent bar to hold the external label and
                 // adds it to the dom after the element
-                var transparentBar = jQuery("<div class=\"bar bar-transparent\"></div>");
+                var transparentBar = jQuery('<div class="bar bar-transparent"></div>');
                 _element.after(transparentBar);
 
                 // moves the contents to the transparent bar (external label)

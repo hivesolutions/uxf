@@ -112,8 +112,7 @@ if (typeof require !== "undefined") {
                         // adds or removes the selected class from it for
                         // each case (complementary)
                         var isSelected = element.hasClass("selected");
-                        isSelected
-                            ? element.removeClass("selected") : element.addClass("selected");
+                        isSelected ? element.removeClass("selected") : element.addClass("selected");
 
                         // sets the previous element in the select list
                         // useful for later referral
@@ -222,8 +221,7 @@ if (typeof require !== "undefined") {
                     // value with the same name is posted (so that an empty value
                     // is submitted), required for compliance
                     if (listItems.length === 0) {
-                        _element.append("<input type=\"hidden\" name=\"" + elementName +
-                            "\" />");
+                        _element.append('<input type="hidden" name="' + elementName + '" />');
                     }
 
                     // iterates over all the element in the list items to
@@ -239,8 +237,13 @@ if (typeof require !== "undefined") {
 
                         // adds the input element representing the list item
                         // to the list item itself
-                        _element.append("<input type=\"hidden\" name=\"" + elementName +
-                            "\" value=\"" + dataValue + "\" />");
+                        _element.append(
+                            '<input type="hidden" name="' +
+                                elementName +
+                                '" value="' +
+                                dataValue +
+                                '" />'
+                        );
                     }
                 });
             });
@@ -277,7 +280,7 @@ if (typeof require !== "undefined") {
 
             // creates the element to be used to sort the elements
             // of the select list
-            var orderIcon = jQuery("<div class=\"order-icon\"></div>");
+            var orderIcon = jQuery('<div class="order-icon"></div>');
 
             // retrieves the set of list items in the select
             // list and adds the order icon to them
@@ -361,7 +364,7 @@ if (typeof require !== "undefined") {
 
                     // calculates the target y (vertical) position
                     // for the currenly selected element
-                    var targetY = mouseY - (clonedHeight / 2);
+                    var targetY = mouseY - clonedHeight / 2;
 
                     // checks if the target position is overflowing
                     // the top position of the select list
@@ -396,11 +399,17 @@ if (typeof require !== "undefined") {
                     // valid (new position) taking into account
                     // the direction of the movement then in case
                     // it's valid executes the position change
-                    var isValid = offsetY > previousOffsetY ? _index + 1 !== element.index() :
-                        _index + 2 !== element.index();
-                    isValid && listElement[0] !== element[0] && listElement.after(element) &&
+                    var isValid =
+                        offsetY > previousOffsetY
+                            ? _index + 1 !== element.index()
+                            : _index + 2 !== element.index();
+                    isValid &&
+                        listElement[0] !== element[0] &&
+                        listElement.after(element) &&
                         selectList.trigger("order_changed");
-                    offsetY === 0 && listElement[0] !== element[0] && cloned.after(element) &&
+                    offsetY === 0 &&
+                        listElement[0] !== element[0] &&
+                        cloned.after(element) &&
                         selectList.trigger("order_changed");
 
                     // updates the top position of the cloned element

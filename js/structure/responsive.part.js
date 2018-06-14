@@ -142,8 +142,7 @@ if (typeof require !== "undefined") {
 
             // in case the device has changed a device change event is raised
             // so thtat any listner is notified about such changed
-            deviceChanged
-                && matchedObject.triggerHandler("device_change", [nextDevice]);
+            deviceChanged && matchedObject.triggerHandler("device_change", [nextDevice]);
         };
 
         var watchDelayed = function() {

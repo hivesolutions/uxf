@@ -79,35 +79,37 @@ if (typeof require !== "undefined") {
                 dataSource.bind("data_ready", function() {
                     // runs the initial data query in the data source to
                     // set the options in the select field
-                    dataSource.uxdataquery({
-                        filterString: "",
-                        filterAttributes: [value]
-                    }, function(validItems, moreItems) {
-                        // in case there are no valid items
-                        // returns immediately nothing to be done
-                        if (validItems.length === 0) {
-                            // returns immediately
-                            return;
+                    dataSource.uxdataquery(
+                        {
+                            filterString: "",
+                            filterAttributes: [value]
+                        },
+                        function(validItems, moreItems) {
+                            // in case there are no valid items
+                            // returns immediately nothing to be done
+                            if (validItems.length === 0) {
+                                // returns immediately
+                                return;
+                            }
+
+                            // iterates over all the valid items to create the
+                            // proper options and set them in the text field
+                            for (var index = 0; index < validItems.length; index++) {
+                                // retrieves the current valid item and then creates
+                                // the option and set the proper data item
+                                var validItem = validItems[index];
+                                var option = jQuery("<option>" + validItem[display] + "</option>");
+                                option.data("item", validItem);
+
+                                // adds the option to the text field (select)
+                                textField.append(option);
+                            }
+
+                            // updates the current text field setting the proper
+                            // value in the template item (render value)
+                            _update(textField, options);
                         }
-
-                        // iterates over all the valid items to create the
-                        // proper options and set them in the text field
-                        for (var index = 0; index < validItems.length; index++) {
-                            // retrieves the current valid item and then creates
-                            // the option and set the proper data item
-                            var validItem = validItems[index];
-                            var option = jQuery("<option>" + validItem[display] +
-                                "</option>");
-                            option.data("item", validItem);
-
-                            // adds the option to the text field (select)
-                            textField.append(option);
-                        }
-
-                        // updates the current text field setting the proper
-                        // value in the template item (render value)
-                        _update(textField, options);
-                    });
+                    );
                 });
             });
         };

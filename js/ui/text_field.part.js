@@ -60,9 +60,7 @@ if (typeof require !== "undefined") {
 
                 // starts the type specific structures
                 var startMethodName = "__start" + type;
-                type
-                    && __callMethod(startMethodName,
-                        elementReference, options);
+                type && __callMethod(startMethodName, elementReference, options);
 
                 // starts the element
                 __start(elementReference, options);
@@ -110,15 +108,22 @@ if (typeof require !== "undefined") {
 
                 // retrieves the key value, the key code and
                 // the which value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                var keyValue = event.keyCode
+                    ? event.keyCode
+                    : event.charCode
+                        ? event.charCode
+                        : event.which;
                 var keyCode = event.keyCode;
                 var which = event.which;
 
                 // in case the pressed key is a backspace,
                 // cursor, enter or any other movement key
                 // the default behavior must be prevented
-                if (keyCode === 8 || keyCode === 13 || keyCode > 8 && keyCode <= 46 && which === 0) {
+                if (
+                    keyCode === 8 ||
+                    keyCode === 13 ||
+                    (keyCode > 8 && keyCode <= 46 && which === 0)
+                ) {
                     // returns since the key press is valid
                     return true;
                 }
@@ -150,7 +155,7 @@ if (typeof require !== "undefined") {
                         // breaks the switch
                         break;
 
-                        // in case the type is integer
+                    // in case the type is integer
                     case "integer":
                         // tests the input against the regular expression
                         validInput = /^-|\d$/.test(keyValueString);
@@ -158,43 +163,46 @@ if (typeof require !== "undefined") {
                         // breaks the switch
                         break;
 
-                        // in case the type is float
+                    // in case the type is float
                     case "float":
                         // tests the input against the regular expression
                         // and then in case the input is still valid runs the test
                         // on the number of decimal places
                         validInput = /^-|\d|\.$/.test(keyValueString);
-                        validInput = validInput ? __testplaces(value,
-                            decimalPlaces, caret) : validInput;
+                        validInput = validInput
+                            ? __testplaces(value, decimalPlaces, caret)
+                            : validInput;
 
                         // breaks the switch
                         break;
 
-                        // in case the type is float positive
+                    // in case the type is float positive
                     case "floatp":
                         // tests the input against the regular expression
                         // and then in case the input is still valid runs the test
                         // on the number of decimal places
                         validInput = /^\d|\.$/.test(keyValueString);
-                        validInput = validInput ? __testplaces(value,
-                            decimalPlaces, caret) : validInput;
+                        validInput = validInput
+                            ? __testplaces(value, decimalPlaces, caret)
+                            : validInput;
 
                         // breaks the switch
                         break;
 
-                        // in case the type is percent
+                    // in case the type is percent
                     case "percent":
                         // tests the input against the regular expression
                         // and then in case the input is still valid runs the test
                         // on the number of decimal places
                         validInput = /^-|\d|\.$/.test(keyValueString);
-                        validInput = validInput ? __testplaces(value,
-                            decimalPlaces, caret) : validInput;
+                        validInput = validInput
+                            ? __testplaces(value, decimalPlaces, caret)
+                            : validInput;
 
                         // breaks the switch
                         break;
 
-                        // in case the type is regex
+                    // in case the type is regex
                     case "regex":
                         // tests the input against the regular expression
                         var regex = new RegExp(regexString);
@@ -224,8 +232,11 @@ if (typeof require !== "undefined") {
                 }
 
                 // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                var keyValue = event.keyCode
+                    ? event.keyCode
+                    : event.charCode
+                        ? event.charCode
+                        : event.which;
 
                 // in case the escape key is pressed
                 // need to blur the text field
@@ -325,8 +336,9 @@ if (typeof require !== "undefined") {
                         // and then uses it to create a clone of the element
                         // with the hidden type and with the same name
                         var elementName = elementReference.attr("name");
-                        var elementClone = jQuery("<input type=\"hidden\" name=\"" +
-                            elementName + "\"/>");
+                        var elementClone = jQuery(
+                            '<input type="hidden" name="' + elementName + '"/>'
+                        );
 
                         // removes the name attribute from the element, it's
                         // no longer required and avoids unwanted submits
@@ -419,10 +431,10 @@ if (typeof require !== "undefined") {
                 // otherwise uses the normal element value
                 type = matchedObject.attr("data-type");
                 valueMethodName = "__value" + type;
-                hasMethod = __hasMethod(valueMethodName, matchedObject,
-                    options);
-                elementValue = hasMethod ? __callMethod(valueMethodName,
-                    matchedObject, options) : elementValue;
+                hasMethod = __hasMethod(valueMethodName, matchedObject, options);
+                elementValue = hasMethod
+                    ? __callMethod(valueMethodName, matchedObject, options)
+                    : elementValue;
 
                 // returns the retrieved value
                 return elementValue;
@@ -438,10 +450,11 @@ if (typeof require !== "undefined") {
                 // be formatted for such case)
                 type = matchedObject.attr("data-type");
                 valueMethodName = "__fvalue" + type;
-                hasMethod = __hasMethod(valueMethodName, matchedObject,
-                    options);
-                value = hasMethod && value !== "" ? __callMethod(
-                    valueMethodName, matchedObject, value) : value;
+                hasMethod = __hasMethod(valueMethodName, matchedObject, options);
+                value =
+                    hasMethod && value !== ""
+                        ? __callMethod(valueMethodName, matchedObject, value)
+                        : value;
 
                 // sets the value in the attributes
                 matchedObject.val(value);
@@ -667,9 +680,8 @@ if (typeof require !== "undefined") {
 
             // triggers the value change event in case the previous
             // input field value is different from the current
-            inputFieldValue !== previousInputFieldValue && matchedObject.triggerHandler("value_change", [
-                inputFieldValue
-            ]);
+            inputFieldValue !== previousInputFieldValue &&
+                matchedObject.triggerHandler("value_change", [inputFieldValue]);
         };
 
         var __updateError = function(matchedObject, options) {
@@ -697,20 +709,27 @@ if (typeof require !== "undefined") {
 
         var __callMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "if(typeof " + methodName + " !== \"undefined\") { var result = " + methodName +
+            var evalString =
+                "if(typeof " +
+                methodName +
+                ' !== "undefined") { var result = ' +
+                methodName +
                 "(element, options)} else { var result = null; } result;";
-            var result = eval(evalString); // eslint-disable-line no-eval
+            // eslint-disable-next-line no-eval
+            var result = eval(evalString);
             return result;
         };
 
         var __hasMethod = function(methodName, element, options) {
             // creates the string to be eavluated and then evaluates it
-            var evalString = "var result = typeof " + methodName + " !== \"undefined\"; result;";
-            var result = eval(evalString); // eslint-disable-line no-eval
+            var evalString = "var result = typeof " + methodName + ' !== "undefined"; result;';
+            // eslint-disable-next-line no-eval
+            var result = eval(evalString);
             return result;
         };
 
-        var __startdatetime = function(element, options) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __startdatetime = function(element, options) {
             // retrieves the value of the utc offset flag
             // (if the utc flag is set the date is set to work
             // in the utc zone)
@@ -743,8 +762,18 @@ if (typeof require !== "undefined") {
                 var hoursString = hours > 9 ? String(hours) : "0" + String(hours);
                 var minutesString = minutes > 9 ? String(minutes) : "0" + String(minutes);
                 var secondsString = seconds > 9 ? String(seconds) : "0" + String(seconds);
-                var dateString = yearString + "/" + monthString + "/" + dayString + " " + hoursString + ":" +
-                    minutesString + ":" + secondsString;
+                var dateString =
+                    yearString +
+                    "/" +
+                    monthString +
+                    "/" +
+                    dayString +
+                    " " +
+                    hoursString +
+                    ":" +
+                    minutesString +
+                    ":" +
+                    secondsString;
 
                 // updates both the logical value and the real value
                 element.attr("data-value", dateString);
@@ -764,8 +793,9 @@ if (typeof require !== "undefined") {
                 // retrieves the current value and then uses it to parse
                 // it as current timestamp
                 var currentValue = element.val();
-                var currentTimestamp = utc ? (Date.parse(currentValue + " UTC") / 1000) : (Date.parseUtc(
-                    currentValue) / 1000);
+                var currentTimestamp = utc
+                    ? Date.parse(currentValue + " UTC") / 1000
+                    : Date.parseUtc(currentValue) / 1000;
 
                 // retrieves the proper string representation of the current
                 // timestamp value taking into account if the current value
@@ -786,7 +816,7 @@ if (typeof require !== "undefined") {
 
                 // tries to retrieve and remove any previously existing
                 // hidden element representing the current value
-                var previous = element.next("input[type=hidden][name=\"" + name + "\"]");
+                var previous = element.next('input[type=hidden][name="' + name + '"]');
                 previous.remove();
 
                 // calculates the apropriate value taking into account
@@ -795,12 +825,12 @@ if (typeof require !== "undefined") {
 
                 // creates the hidden field to submit the timestamp value
                 // described in the text field
-                element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value +
-                    "\" />");
+                element.after('<input type="hidden" name="' + name + '" value="' + value + '" />');
             });
         };
 
-        var __startdate = function(element, options) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __startdate = function(element, options) {
             // retrieves the reference to the top level
             // window element
             var _window = jQuery(window);
@@ -809,7 +839,7 @@ if (typeof require !== "undefined") {
             var noCalendar = element.hasClass("no-calendar");
 
             // starts the calendar variable that is going to be
-            // used by both parts of the conditin
+            // used by both parts of the condition
             var calendar = null;
 
             // in case the no calendar flag is set
@@ -823,7 +853,7 @@ if (typeof require !== "undefined") {
             else {
                 // creates the calendar component from the
                 // html code and inserts it after the element
-                calendar = jQuery("<div class=\"calendar text-field-calendar\"></div>");
+                calendar = jQuery('<div class="calendar text-field-calendar"></div>');
                 element.after(calendar);
 
                 // unsets the autocomplete feature in the text field
@@ -1001,7 +1031,7 @@ if (typeof require !== "undefined") {
 
                 // tries to retrieve and remove any previously existing
                 // hidden element representing the current value
-                var previous = element.next("input[type=hidden][name=\"" + name + "\"]");
+                var previous = element.next('input[type=hidden][name="' + name + '"]');
                 previous.remove();
 
                 // calculates the apropriate value taking into account
@@ -1010,15 +1040,15 @@ if (typeof require !== "undefined") {
 
                 // creates the hidden field to submit the timestamp value
                 // described in the text field
-                element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" + value +
-                    "\" />");
+                element.after('<input type="hidden" name="' + name + '" value="' + value + '" />');
             });
 
             // sets the calendar in the element
             element.data("calendar", calendar);
         };
 
-        var __fvaluefloatp = function(element, value) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __fvaluefloatp = function(element, value) {
             // retrieves the decimal places number and tries to
             // parse it as an integer, incase it fails returns
             // immediately the number without processing
@@ -1036,7 +1066,8 @@ if (typeof require !== "undefined") {
             return valueF.toFixed(decimalPlaces);
         };
 
-        var __fvaluefloat = function(element, value) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __fvaluefloat = function(element, value) {
             // retrieves the decimal places number and tries to
             // parse it as an integer, incase it fails returns
             // immediately the number without processing
@@ -1054,7 +1085,8 @@ if (typeof require !== "undefined") {
             return valueF.toFixed(decimalPlaces);
         };
 
-        var __valuedate = function(element, options) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __valuedate = function(element, options) {
             // retrieves the current value and then uses it to parse
             // it as current timestamp then returns it
             var currentValue = element.val();
@@ -1062,7 +1094,8 @@ if (typeof require !== "undefined") {
             return currentTimestamp;
         };
 
-        var __showdate = function(element, options) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __showdate = function(element, options) {
             // tries to retrieve the calendar from the element
             var calendar = element.data("calendar");
 
@@ -1102,7 +1135,8 @@ if (typeof require !== "undefined") {
             calendar.show();
         };
 
-        var __hidedate = function(element, options) { // eslint-disable-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
+        var __hidedate = function(element, options) {
             // tries to retrieve the associated
             // calendar and hides it if necessary
             var calendar = element.data("calendar");
@@ -1153,8 +1187,9 @@ if (typeof require !== "undefined") {
             // then using it checks if the float number is still
             // valid (decimal places within range)
             var separatorIndex = stringValue.indexOf(".");
-            var valid = separatorIndex === -1 || separatorIndex >= stringValue.length -
-                decimalPlacesInteger;
+            var valid =
+                separatorIndex === -1 ||
+                separatorIndex >= stringValue.length - decimalPlacesInteger;
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run

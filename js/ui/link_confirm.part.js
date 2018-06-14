@@ -63,21 +63,25 @@ if (typeof require !== "undefined") {
             // calls the confirm window in the document, note that
             // in case the window value is set the proper window is
             // going to be used for the confirmation display
-            _body.uxconfirm(message, function(result) {
-                // in case the result is cancel avoids the current
-                // execution and returns immediately
-                if (result === false) {
-                    return;
-                }
+            _body.uxconfirm(
+                message,
+                function(result) {
+                    // in case the result is cancel avoids the current
+                    // execution and returns immediately
+                    if (result === false) {
+                        return;
+                    }
 
-                // retrieves the matched object location and
-                // sets it in the document effectively changing
-                // the location of the current document
-                var location = matchedObject.attr("href");
-                jQuery.uxlocation(location);
-            }, {
-                window: window
-            });
+                    // retrieves the matched object location and
+                    // sets it in the document effectively changing
+                    // the location of the current document
+                    var location = matchedObject.attr("href");
+                    jQuery.uxlocation(location);
+                },
+                {
+                    window: window
+                }
+            );
         };
 
         // initializes the plugin

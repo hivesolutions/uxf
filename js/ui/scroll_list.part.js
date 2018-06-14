@@ -42,10 +42,11 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // wraps the matched object arround a scroll list container and then
             // retrieves it and adds the previous and next scroll buttons
-            matchedObject.wrap("<div class=\"scroll-list-container\"></div>");
+            matchedObject.wrap('<div class="scroll-list-container"></div>');
             var scrollListContainer = matchedObject.parents(".scroll-list-container");
-            scrollListContainer.prepend("<div class=\"scroll-previous\"></div>" +
-                "<div class=\"scroll-next\"></div>");
+            scrollListContainer.prepend(
+                '<div class="scroll-previous"></div>' + '<div class="scroll-next"></div>'
+            );
 
             matchedObject.each(function(index, element) {
                 // retrieves the current element and uses it to retrieve the
@@ -104,9 +105,12 @@ if (typeof require !== "undefined") {
 
                 // animates the scroll right operation using the
                 // default animation mechanisms
-                scrollListContainer.animate({
-                    scrollLeft: "-=" + scrollWidth
-                }, 400);
+                scrollListContainer.animate(
+                    {
+                        scrollLeft: "-=" + scrollWidth
+                    },
+                    400
+                );
             });
 
             scrollNext.click(function() {
@@ -126,9 +130,12 @@ if (typeof require !== "undefined") {
 
                 // animates the scroll left operation using the
                 // default animation mechanisms
-                scrollListContainer.animate({
-                    scrollLeft: "+=" + scrollWidth
-                }, 400);
+                scrollListContainer.animate(
+                    {
+                        scrollLeft: "+=" + scrollWidth
+                    },
+                    400
+                );
             });
         };
 
@@ -149,8 +156,10 @@ if (typeof require !== "undefined") {
             // width is retrieved taking into accoun that a proper
             // outer width retrieval may fail under certain conditions
             var first = jQuery(children[0]);
-            var firstWidth = first.outerWidth(true) > first.outerWidth(false) ? first.outerWidth(true) :
-                first.outerWidth(false);
+            var firstWidth =
+                first.outerWidth(true) > first.outerWidth(false)
+                    ? first.outerWidth(true)
+                    : first.outerWidth(false);
             var width = firstWidth * count;
 
             // calculates the complete scroll width to check if the
@@ -174,9 +183,10 @@ if (typeof require !== "undefined") {
             // the case schedules one more width refresh operation in order
             // to ensure the proper and correct values are displayed
             var isVisible = first.is(":visible");
-            !isVisible && setTimeout(function() {
-                _refreshWidth(matchedObject, options);
-            });
+            !isVisible &&
+                setTimeout(function() {
+                    _refreshWidth(matchedObject, options);
+                });
         };
 
         // initializes the plugin

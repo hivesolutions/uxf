@@ -21,7 +21,8 @@ if (typeof require !== "undefined") {
         // the base64 code of an image that may be used to
         // clear an image based element, this is used to provide
         // a way to clear the element between image transitions
-        var IMAGE_CLEAR = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+        var IMAGE_CLEAR =
+            "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
 
         // the default values for the data query json
         var defaults = {};
@@ -60,9 +61,14 @@ if (typeof require !== "undefined") {
 
                 // adds the image and the controls section to the current element
                 // so that the normal placeholders are available
-                _element.prepend("<div class=\"slideshow-image\">" + "<img />" + "</div>" +
-                    "<div class=\"slideshow-controls\">" +
-                    "<ul class=\"slideshow-alternates\"></ul>" + "</div>");
+                _element.prepend(
+                    '<div class="slideshow-image">' +
+                        "<img />" +
+                        "</div>" +
+                        '<div class="slideshow-controls">' +
+                        '<ul class="slideshow-alternates"></ul>' +
+                        "</div>"
+                );
 
                 // retrieves both the alternates and the items section
                 // of the current element to be used for the construction
@@ -282,8 +288,12 @@ if (typeof require !== "undefined") {
             // in case the index value is not set selects the next
             // value (takes care of overflow) otherwise defaults to
             // the request index (from parameter)
-            index = index === null || index === undefined ? current + 1 < items.length ? current + 1 : 0 :
-                index;
+            index =
+                index === null || index === undefined
+                    ? current + 1 < items.length
+                        ? current + 1
+                        : 0
+                    : index;
 
             // in case the current index is the same as the (target)
             // index, no need to select it (returns immediately)
@@ -298,14 +308,15 @@ if (typeof require !== "undefined") {
 
             // retrieves the list of (selected) alternates and disables
             // the value (going to change the item)
-            var alternates = jQuery(".slideshow-alternates > li.active",
-                matchedObject);
+            var alternates = jQuery(".slideshow-alternates > li.active", matchedObject);
             alternates.removeClass("active");
 
             // retrieves the target index alternate and selects it by adding
             // the active class to it
-            var alternate = jQuery(".slideshow-alternates > li:nth-child(" + (index + 1) + ")",
-                matchedObject);
+            var alternate = jQuery(
+                ".slideshow-alternates > li:nth-child(" + (index + 1) + ")",
+                matchedObject
+            );
             alternate.addClass("active");
 
             // retrieves the image element for the slideshow and then retrieves

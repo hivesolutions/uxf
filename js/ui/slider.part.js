@@ -46,11 +46,10 @@ if (typeof require !== "undefined") {
          */
         var _appendHtml = function() {
             // wraps the slider contents structure
-            matchedObject.wrapInner("<div class=\"slider-contents\"></div>");
+            matchedObject.wrapInner('<div class="slider-contents"></div>');
 
             // retrieves the first slider panel
-            var firstSliderPanel = jQuery(".slider-panel:first-child",
-                matchedObject);
+            var firstSliderPanel = jQuery(".slider-panel:first-child", matchedObject);
 
             // adds the active class to the first slider panel
             firstSliderPanel.addClass("active");
@@ -80,17 +79,15 @@ if (typeof require !== "undefined") {
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
                 _body = jQuery("body");
-                overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                overlay = jQuery('<div id="overlay" class="overlay"></div>');
                 overlay.uxoverlay();
                 _body.prepend(overlay);
             }
 
             // retrieves the slider panel arows
             // from the matched object
-            var sliderPanelArrowNext = jQuery(".slider-panel-arrow-next",
-                matchedObject);
-            var sliderPanelArrowPrevious = jQuery(
-                ".slider-panel-arrow-previous", matchedObject);
+            var sliderPanelArrowNext = jQuery(".slider-panel-arrow-next", matchedObject);
+            var sliderPanelArrowPrevious = jQuery(".slider-panel-arrow-previous", matchedObject);
 
             // registers for the click event in the slide panel
             // arrow next so that the next element is displayed
@@ -154,8 +151,11 @@ if (typeof require !== "undefined") {
             // on the arrow key pressing
             _body.keydown(function(event) {
                 // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                var keyValue = event.keyCode
+                    ? event.keyCode
+                    : event.charCode
+                        ? event.charCode
+                        : event.which;
 
                 // switches over the key value
                 switch (keyValue) {
@@ -352,12 +352,12 @@ if (typeof require !== "undefined") {
             var windowSrollLeft = _window.scrollLeft();
 
             // retrieves the first slider panel
-            var firstSliderPanel = jQuery(".slider-panel:first-child",
-                matchedObject);
+            var firstSliderPanel = jQuery(".slider-panel:first-child", matchedObject);
             var firstSliderPanelWidth = firstSliderPanel.outerWidth();
 
             // calculates the left position for the slider contents
-            var leftPosition = ((windowWidth - firstSliderPanelWidth) / 2) + windowSrollLeft - offsetLeft;
+            var leftPosition =
+                (windowWidth - firstSliderPanelWidth) / 2 + windowSrollLeft - offsetLeft;
 
             // changes the margin left of the slider contents to the
             // new value (new panel to be shown)

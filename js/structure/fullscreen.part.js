@@ -16,12 +16,17 @@ if (typeof require !== "undefined") {
 
         // in case the plugin is not yet registered for the fullscreen
         // change event registers for such operation
-        !isRegistered
-            && _document.bind(
+        !isRegistered &&
+            _document.bind(
                 "fullscreenchange webkitfullscreenchange mozfullscreenchange",
                 function() {
-                    var isFullscreen = this.fullScreen || this.mozFullScreen || this.webkitIsFullScreen;
-                    isFullscreen = isFullscreen || this.fullscreenElement || this.mozFullScreenElement || this.webkitFullscreenElement ||
+                    var isFullscreen =
+                        this.fullScreen || this.mozFullScreen || this.webkitIsFullScreen;
+                    isFullscreen =
+                        isFullscreen ||
+                        this.fullscreenElement ||
+                        this.mozFullScreenElement ||
+                        this.webkitFullscreenElement ||
                         this.msFullscreenElement;
                     isFullscreen = Boolean(isFullscreen);
                     if (isFullscreen) {
@@ -30,11 +35,15 @@ if (typeof require !== "undefined") {
                         _body.removeClass("full-window");
                     }
                     _body.triggerHandler("fullscreen_change", [isFullscreen]);
-                });
+                }
+            );
 
         // tries to determine if the current screen is being displayed
         // in fullscreen or if it's under a window mode
-        var isFullscreen = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ||
+        var isFullscreen =
+            document.fullscreenElement ||
+            document.mozFullScreenElement ||
+            document.webkitFullscreenElement ||
             document.msFullscreenElement;
         isFullscreen = isFullscreen || leave;
         isFullscreen = Boolean(isFullscreen);

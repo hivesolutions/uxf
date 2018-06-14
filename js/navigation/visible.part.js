@@ -33,8 +33,8 @@ if (typeof require !== "undefined") {
 
         // retrieves the offset top the top of the element taking into
         // account if the current parent in use is the window element
-        var elementOffsetTop = _parent[0] === window ? element.offset().top : element.offset().top +
-            viewScrollTop;
+        var elementOffsetTop =
+            _parent[0] === window ? element.offset().top : element.offset().top + viewScrollTop;
 
         // retrieves the top and bottom positions of the
         // view(port) element
@@ -47,7 +47,11 @@ if (typeof require !== "undefined") {
 
         // runs the intersection test on the element against
         // the view(port) values
-        return ((elementBottom >= viewTop) && (elementTop <= viewBottom) && (elementBottom <= viewBottom) && (
-            elementTop >= viewTop));
+        return (
+            elementBottom >= viewTop &&
+            elementTop <= viewBottom &&
+            elementBottom <= viewBottom &&
+            elementTop >= viewTop
+        );
     };
 })(jQuery);

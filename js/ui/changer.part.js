@@ -50,8 +50,9 @@ if (typeof require !== "undefined") {
 
                 // retrieves the timeout value from the element
                 // defaulting to the default timeout (constant) value
-                var timeout = _element.attr("data-timeout") ? parseInt(_element.attr("data-timeout")) :
-                    DEFAULT_TIMEOUT;
+                var timeout = _element.attr("data-timeout")
+                    ? parseInt(_element.attr("data-timeout"))
+                    : DEFAULT_TIMEOUT;
 
                 // sets the interval handler using the "just" retrieved
                 // timeout value
@@ -65,8 +66,9 @@ if (typeof require !== "undefined") {
         var _update = function(matchedObject, options) {
             // retrieves the number of sections in the matched object
             // defaulting to the default section count
-            var sectionCount = matchedObject.attr("data-section_count") ? parseInt(matchedObject.attr(
-                "data-section_count")) : DEFAULT_SECTION_COUNT;
+            var sectionCount = matchedObject.attr("data-section_count")
+                ? parseInt(matchedObject.attr("data-section_count"))
+                : DEFAULT_SECTION_COUNT;
 
             // retrieves the current index from the matched object
             var index = matchedObject.data("index");

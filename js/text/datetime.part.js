@@ -57,8 +57,9 @@ if (typeof require !== "undefined") {
 
                     // retrieves the current value and then uses it to parse
                     // it as current timestamp
-                    var currentTimestamp = utc ? (Date.parse(dateString + " UTC") / 1000) :
-                        Date.parseUtc(dateString) / 1000;
+                    var currentTimestamp = utc
+                        ? Date.parse(dateString + " UTC") / 1000
+                        : Date.parseUtc(dateString) / 1000;
 
                     // retrieves the name attribute from the date element
                     // and then removes it to avoid sending the literal date value
@@ -68,8 +69,13 @@ if (typeof require !== "undefined") {
 
                     // creates the hidden field to submit the timestamp value
                     // described in the text field
-                    time.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" +
-                        String(currentTimestamp) + "\" />");
+                    time.after(
+                        '<input type="hidden" name="' +
+                            name +
+                            '" value="' +
+                            String(currentTimestamp) +
+                            '" />'
+                    );
                 });
             });
         };

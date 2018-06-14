@@ -173,8 +173,7 @@ if (typeof require !== "undefined") {
             var cacheItem = cache[queryHash];
             if (cacheItem) {
                 setTimeout(function() {
-                    callback(cacheItem.validItems, cacheItem.moreItems,
-                        cacheItem.extraItems);
+                    callback(cacheItem.validItems, cacheItem.moreItems, cacheItem.extraItems);
                 });
                 return;
             }
@@ -228,7 +227,9 @@ if (typeof require !== "undefined") {
                         // the data from the remote data source
                         _body.uxinfo(
                             "There was an error retrieving JSON data",
-                            "Warning", "warning");
+                            "Warning",
+                            "warning"
+                        );
 
                         // calls the callback with the failure values
                         callback(null, null);
@@ -248,9 +249,7 @@ if (typeof require !== "undefined") {
 
                             // constructs a list of valid items
                             // from the single valid item
-                            validItems = baseValue ? validItems[baseValue] : [
-                                validItems
-                            ];
+                            validItems = baseValue ? validItems[baseValue] : [validItems];
                         }
 
                         // retrieves the valid items length to check if there
@@ -269,11 +268,13 @@ if (typeof require !== "undefined") {
                         // (representing) query hash value, note that if the
                         // cache disable flag is set no value is set in cache
                         var cache = matchedObject.data("cache") || {};
-                        cache[queryHash] = cacheD ? null : {
-                            validItems: validItems,
-                            moreItems: moreItems,
-                            extraItems: extraItems
-                        };
+                        cache[queryHash] = cacheD
+                            ? null
+                            : {
+                                  validItems: validItems,
+                                  moreItems: moreItems,
+                                  extraItems: extraItems
+                              };
 
                         // retrieves the current identifier from the
                         // matched object and checks it against the
@@ -312,8 +313,10 @@ if (typeof require !== "undefined") {
             // creates the final query string from the various components
             // of the query and creates the digest for it returning it to
             // the caller function
-            var queryString = filterString + sort + _filters + String(startRecord) + String(numberRecords);
-            var hash = Md5.digest(queryString); // eslint-disable-line no-undef
+            var queryString =
+                filterString + sort + _filters + String(startRecord) + String(numberRecords);
+            // eslint-disable-next-line no-undef
+            var hash = Md5.digest(queryString);
             return hash;
         };
 

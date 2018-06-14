@@ -16,12 +16,33 @@ if (typeof require !== "undefined") {
         var ABBREVIATED_MONTH_CHARACTER = new RegExp("%b", "g");
 
         // the lists for the month string values
-        var FULL_MONTHS = ["January", "February", "March", "April", "May",
-            "June", "July", "August", "September", "October", "November",
+        var FULL_MONTHS = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
             "December"
         ];
-        var ABBREVIATED_MONTHS = ["JanS", "FebS", "MarS", "AprS", "MayS",
-            "JunS", "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"
+        var ABBREVIATED_MONTHS = [
+            "JanS",
+            "FebS",
+            "MarS",
+            "AprS",
+            "MayS",
+            "JunS",
+            "JulS",
+            "AugS",
+            "SepS",
+            "OctS",
+            "NovS",
+            "DecS"
         ];
 
         // the default values for the timestamp
@@ -131,18 +152,13 @@ if (typeof require !== "undefined") {
                 // replaces all the format values wit the proper
                 // date values in the format string
                 format = format.replace(YEAR_CHARACTER, year);
-                format = format.replace(MONTH_CHARACTER, _getStringValue(month,
-                    2));
+                format = format.replace(MONTH_CHARACTER, _getStringValue(month, 2));
                 format = format.replace(DAY_CHARACTER, _getStringValue(day, 2));
-                format = format.replace(HOUR_CHARACTER, _getStringValue(hours,
-                    2));
-                format = format.replace(MINUTE_CHARACTER, _getStringValue(
-                    minutes, 2));
-                format = format.replace(SECOND_CHARACTER, _getStringValue(
-                    seconds, 2));
+                format = format.replace(HOUR_CHARACTER, _getStringValue(hours, 2));
+                format = format.replace(MINUTE_CHARACTER, _getStringValue(minutes, 2));
+                format = format.replace(SECOND_CHARACTER, _getStringValue(seconds, 2));
                 format = format.replace(FULL_MONTH_CHARACTER, fullMonth);
-                format = format.replace(ABBREVIATED_MONTH_CHARACTER,
-                    abbreviatedMonth);
+                format = format.replace(ABBREVIATED_MONTH_CHARACTER, abbreviatedMonth);
 
                 // sets the date string as the final format
                 dateString = format;

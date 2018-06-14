@@ -30,7 +30,7 @@ if (typeof require !== "undefined") {
          */
         var _appendHtml = function() {
             // wraps the matched objec in an highlight box container
-            matchedObject.wrap("<div class=\"highlight-box-container\"></div>");
+            matchedObject.wrap('<div class="highlight-box-container"></div>');
         };
 
         /**

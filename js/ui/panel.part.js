@@ -63,7 +63,7 @@ if (typeof require !== "undefined") {
             var panels = matchedObject.data("panels");
 
             // composes the panel with the panel item class
-            var panel = "<div class=\"panel-item\">" + panelHtml + "</div>";
+            var panel = '<div class="panel-item">' + panelHtml + "</div>";
 
             // retrieves the last panel and hides it
             var lastPanel = matchedObject.children(".panel-item:last-child");

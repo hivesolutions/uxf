@@ -93,8 +93,7 @@ if (typeof require !== "undefined") {
                 // menu contents
                 var menu = menuSelector ? jQuery(menuSelector) : element.parents(".menu");
                 var menuButton = jQuery("> .menu-button", menu);
-                var menuContents = jQuery(
-                    "> .menu-contents:not(.sub-menu)", menu);
+                var menuContents = jQuery("> .menu-contents:not(.sub-menu)", menu);
 
                 // retrieves the current set of visible menus and menu
                 // contents to be able to control them
@@ -209,110 +208,115 @@ if (typeof require !== "undefined") {
 
             // register for the key down event in the body,
             // only in case the registration was not already made
-            !isRegistered && _body.keydown(function(event) {
-                // retrieves the element
-                var element = jQuery(this);
+            !isRegistered &&
+                _body.keydown(function(event) {
+                    // retrieves the element
+                    var element = jQuery(this);
 
-                // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                    // retrieves the key value
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
-                // in case the key that was pressed in not the
-                // escape one there's nothing to be done and so
-                // the control flow is returned immediately
-                if (keyValue !== 27) {
-                    return;
-                }
+                    // in case the key that was pressed in not the
+                    // escape one there's nothing to be done and so
+                    // the control flow is returned immediately
+                    if (keyValue !== 27) {
+                        return;
+                    }
 
-                // retrieves the menu to retieve the and uses it to
-                // retrieve the reference to the menu contents
-                var menu = jQuery(".menu.active", element);
-                var menuContents = jQuery(".menu-contents:visible",
-                    menu);
+                    // retrieves the menu to retieve the and uses it to
+                    // retrieve the reference to the menu contents
+                    var menu = jQuery(".menu.active", element);
+                    var menuContents = jQuery(".menu-contents:visible", menu);
 
-                // checks if the current menu is of type drop
-                // (it must be removed and not hidden)
-                var isDrop = menu.hasClass("drop-menu");
+                    // checks if the current menu is of type drop
+                    // (it must be removed and not hidden)
+                    var isDrop = menu.hasClass("drop-menu");
 
-                // in case the current menu is of type drop
-                // (must be removed)
-                if (isDrop) {
-                    // removes the menu from the environment
-                    menu.remove();
-                }
-                // otherwise the normal behavior applies (hidding)
-                else {
-                    // tries to retrieve the current owner of the menu
-                    // contents and in case it exists removes the active
-                    // class from it
-                    var owner = menu.data("owner");
-                    owner && owner.removeClass("active");
+                    // in case the current menu is of type drop
+                    // (must be removed)
+                    if (isDrop) {
+                        // removes the menu from the environment
+                        menu.remove();
+                    }
+                    // otherwise the normal behavior applies (hidding)
+                    else {
+                        // tries to retrieve the current owner of the menu
+                        // contents and in case it exists removes the active
+                        // class from it
+                        var owner = menu.data("owner");
+                        owner && owner.removeClass("active");
 
-                    // removes the active class from the menu and
-                    // then hides the menu contents
-                    menu.removeClass("active");
-                    menuContents.hide();
-                    menuContents.triggerHandler("hidden");
-                }
-            });
+                        // removes the active class from the menu and
+                        // then hides the menu contents
+                        menu.removeClass("active");
+                        menuContents.hide();
+                        menuContents.triggerHandler("hidden");
+                    }
+                });
 
             // register for the click event in the body,
             // only in case the registration was not already made
-            !isRegistered && _body.click(function(event) {
-                // retrieves the element
-                var element = jQuery(this);
+            !isRegistered &&
+                _body.click(function(event) {
+                    // retrieves the element
+                    var element = jQuery(this);
 
-                // retrieves the menu to retieve the
-                // menu contents
-                var menu = jQuery(".menu.active", element);
-                var menuContents = jQuery(".menu-contents:visible",
-                    menu);
+                    // retrieves the menu to retieve the
+                    // menu contents
+                    var menu = jQuery(".menu.active", element);
+                    var menuContents = jQuery(".menu-contents:visible", menu);
 
-                // checks if the current menu is of type drop
-                // (it must be removed and not hidden)
-                var isDrop = menu.hasClass("drop-menu");
+                    // checks if the current menu is of type drop
+                    // (it must be removed and not hidden)
+                    var isDrop = menu.hasClass("drop-menu");
 
-                // in case the current menu is of type drop
-                // (must be removed)
-                if (isDrop) {
-                    // removes the menu from the environment
-                    menu.remove();
-                }
-                // otherwise the normal behavior applies (hidding)
-                else {
-                    // tries to retrieve the current owner of the menu
-                    // contents and in case it exists removes the active
-                    // class from it
-                    var owner = menu.data("owner");
-                    owner && owner.removeClass("active");
+                    // in case the current menu is of type drop
+                    // (must be removed)
+                    if (isDrop) {
+                        // removes the menu from the environment
+                        menu.remove();
+                    }
+                    // otherwise the normal behavior applies (hidding)
+                    else {
+                        // tries to retrieve the current owner of the menu
+                        // contents and in case it exists removes the active
+                        // class from it
+                        var owner = menu.data("owner");
+                        owner && owner.removeClass("active");
 
-                    // removes the active class from the menu and
-                    // then hides the menu contents
-                    menu.removeClass("active");
-                    menuContents.hide();
-                    menuContents.triggerHandler("hidden");
-                }
-            });
+                        // removes the active class from the menu and
+                        // then hides the menu contents
+                        menu.removeClass("active");
+                        menuContents.hide();
+                        menuContents.triggerHandler("hidden");
+                    }
+                });
 
             // register for the right click event in the body,
             // only in case the registration was not already made
-            !isRegistered && _window.resize(function() {
-                // retrieves the currently active drop menus
-                // to be able to remove them
-                var menu = jQuery(".drop-menu.active");
+            !isRegistered &&
+                _window.resize(function() {
+                    // retrieves the currently active drop menus
+                    // to be able to remove them
+                    var menu = jQuery(".drop-menu.active");
 
-                // removes the (drop) menu
-                menu.remove();
-            });
+                    // removes the (drop) menu
+                    menu.remove();
+                });
 
-            !isRegistered && _window.scroll(function() {
-                // retrieves the currently active drop menus
-                // to be able to remove them
-                var menu = jQuery(".drop-menu.active");
+            !isRegistered &&
+                _window.scroll(function() {
+                    // retrieves the currently active drop menus
+                    // to be able to remove them
+                    var menu = jQuery(".drop-menu.active");
 
-                // removes the (drop) menu
-                menu.remove();
-            });
+                    // removes the (drop) menu
+                    menu.remove();
+                });
         };
 
         /**
@@ -399,10 +403,9 @@ if (typeof require !== "undefined") {
             // be able to position the menu to the left of the corresponding link
             // in case the menu is meant bo displayed to the right no margin is
             // applies as the menu contents should be displayed to the right already
-            var contentsMarginLeft = ((contentsWidth - buttonWidth) - borderWidth) * -1;
+            var contentsMarginLeft = (contentsWidth - buttonWidth - borderWidth) * -1;
             contentsMarginLeft = right ? 0 : contentsMarginLeft;
-            !isReference
-                && menuContents.css("margin-left", contentsMarginLeft + "px");
+            !isReference && menuContents.css("margin-left", contentsMarginLeft + "px");
         };
 
         // switches over the method

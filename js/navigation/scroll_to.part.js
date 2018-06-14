@@ -17,10 +17,10 @@ if (typeof require !== "undefined") {
 (function(jQuery) {
     // sets the scroll to to be the global function
     // scrolling the window
-    var uxscrollto = jQuery.uxscrollto = function(target, duration, settings) {
+    var uxscrollto = (jQuery.uxscrollto = function(target, duration, settings) {
         var _window = jQuery(window);
         _window.uxscrollto(target, duration, settings);
-    };
+    });
 
     // creates the map of scroll default values, note that the
     // creation takes into account the current jquery version
@@ -58,9 +58,14 @@ if (typeof require !== "undefined") {
             // checks if the current element is in fact
             // a window, by checking it's value against a
             // series of pre-defined values
-            var isWindow = !element.nodeName || jQuery.inArray(element.nodeName.toLowerCase(), [
-                "iframe", "#document", "html", "body"
-            ]) !== -1;
+            var isWindow =
+                !element.nodeName ||
+                jQuery.inArray(element.nodeName.toLowerCase(), [
+                    "iframe",
+                    "#document",
+                    "html",
+                    "body"
+                ]) !== -1;
 
             // in case the element is not a window it's immediately
             // considered scrollable and so it's returned to the
@@ -71,14 +76,16 @@ if (typeof require !== "undefined") {
 
             // retrieves the document from the window taking into account
             // the element's possible owner value (for legacy support)
-            var _document = (element.contentWindow || element).document || element.ownerDocument ||
-                element;
+            var _document =
+                (element.contentWindow || element).document || element.ownerDocument || element;
 
             // verifies if the current chrome version a recent one and
             // if that's the case returns the standard document element
             // value (as the default webkit behaviour is ignored)
-            if (jQuery.browser.chrome && parseInt(jQuery.browser._version || jQuery.browser.version) >
-                60) {
+            if (
+                jQuery.browser.chrome &&
+                parseInt(jQuery.browser._version || jQuery.browser.version) > 60
+            ) {
                 return _document.documentElement;
             }
 
@@ -148,133 +155,143 @@ if (typeof require !== "undefined") {
         settings.offset = both(settings.offset);
         settings.over = both(settings.over);
 
-        return this._scrollable().each(function() {
-            // retrieves the element and then based on
-            // it retrieves the jquery element, target
-            // target offset, attributes and window
-            var element = this;
-            var _element = jQuery(element);
-            var _target = target;
-            var targetOffset;
-            var attributes = {};
-            var win = _element.is("html, body");
+        return this._scrollable()
+            .each(function() {
+                // retrieves the element and then based on
+                // it retrieves the jquery element, target
+                // target offset, attributes and window
+                var element = this;
+                var _element = jQuery(element);
+                var _target = target;
+                var targetOffset;
+                var attributes = {};
+                var win = _element.is("html, body");
 
-            // switches over the target data type, so that the proper
-            // target manipulation is performed (target normalized)
-            switch (typeof _target) {
-                // in case it's a number or string
-                // will pass the regex
-                case "number":
-                case "string":
-                    if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(_target)) {
-                        _target = both(_target);
+                // switches over the target data type, so that the proper
+                // target manipulation is performed (target normalized)
+                switch (typeof _target) {
+                    // in case it's a number or string
+                    // will pass the regex
+                    case "number":
+                    case "string":
+                        if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(_target)) {
+                            _target = both(_target);
+                            break;
+                        }
+
+                        // relative selector, avoids break
+                        _target = jQuery(_target, this);
+
+                        if (_target.is || _target.style) {
+                            // retrieves the real position of the target
+                            targetOffset = (_target = jQuery(_target)).offset();
+                        }
+
                         break;
-                    }
 
-                    // relative selector, avoids break
-                    _target = jQuery(_target, this);
-
-                    if (_target.is || _target.style) {
-                        // retrieves the real position of the target
-                        targetOffset = (_target = jQuery(_target)).offset();
-                    }
-
-                    break;
-
-                case "object":
-                    // in case it's a DOM element or jQuery element
-                    if (_target.is || _target.style) {
-                        // retrieves the real position of the target
-                        targetOffset = (_target = jQuery(_target)).offset();
-                    }
-                    break;
-            }
-
-            // in case the target is not defined or in case it's
-            // an empty array, must return immdiately, nothing to be done
-            if (!_target || _target.length === 0) {
-                return;
-            }
-
-            jQuery.each(settings.axis.split(""), function(index, axis) {
-                // retrieves the position and converts it to lower case
-                // then retrieves the key to the position, the old
-                // element and the maximum between the axis and the element
-                var position = axis === "x" ? "Left" : "Top";
-                var positionLower = position.toLowerCase();
-                var key = "scroll" + position;
-                var old = element[key];
-                var max = uxscrollto.max(element, axis);
-
-                // in case there is a target offset defined
-                if (targetOffset) {
-                    attributes[key] = targetOffset[positionLower] + (win ? 0 : old - _element.offset()[
-                        positionLower]);
-
-                    // in case it's a dom element, reduces the margin
-                    if (settings.margin) {
-                        attributes[key] -= parseInt(_target.css("margin" + position)) || 0;
-                        attributes[key] -= parseInt(_target.css("border" + position + "Width")) ||
-                            0;
-                    }
-
-                    attributes[key] += settings.offset[positionLower] || 0;
-
-                    if (settings.over[positionLower]) {
-                        // scrolls to a fraction of its width/height
-                        attributes[key] += _target[axis === "x" ? "width" : "height"]() *
-                            settings.over[positionLower];
-                    }
-                }
-                // otherwise no offset should be used
-                else {
-                    // sets the value as the target position
-                    var value = _target[positionLower];
-
-                    // handles the percentage values
-                    attributes[key] = value.slice && value.slice(-1) === "%" ? parseFloat(value) /
-                        100 * max : value;
+                    case "object":
+                        // in case it's a DOM element or jQuery element
+                        if (_target.is || _target.style) {
+                            // retrieves the real position of the target
+                            targetOffset = (_target = jQuery(_target)).offset();
+                        }
+                        break;
                 }
 
-                // in case it's umber or "number"
-                if (/^\d+$/.test(attributes[key])) {
-                    // checks the limits
-                    attributes[key] = attributes[key] <= 0 ? 0 : Math.min(
-                        attributes[key], max);
+                // in case the target is not defined or in case it's
+                // an empty array, must return immdiately, nothing to be done
+                if (!_target || _target.length === 0) {
+                    return;
                 }
 
-                // in case it's queueing axes
-                if (!index && settings.queue) {
-                    // avoids wasting time animating, if there's no need
-                    if (old !== attributes[key]) {
-                        // intermediate animation
-                        animate(settings.onAfterFirst);
+                jQuery.each(settings.axis.split(""), function(index, axis) {
+                    // retrieves the position and converts it to lower case
+                    // then retrieves the key to the position, the old
+                    // element and the maximum between the axis and the element
+                    var position = axis === "x" ? "Left" : "Top";
+                    var positionLower = position.toLowerCase();
+                    var key = "scroll" + position;
+                    var old = element[key];
+                    var max = uxscrollto.max(element, axis);
+
+                    // in case there is a target offset defined
+                    if (targetOffset) {
+                        attributes[key] =
+                            targetOffset[positionLower] +
+                            (win ? 0 : old - _element.offset()[positionLower]);
+
+                        // in case it's a dom element, reduces the margin
+                        if (settings.margin) {
+                            attributes[key] -= parseInt(_target.css("margin" + position)) || 0;
+                            attributes[key] -=
+                                parseInt(_target.css("border" + position + "Width")) || 0;
+                        }
+
+                        attributes[key] += settings.offset[positionLower] || 0;
+
+                        if (settings.over[positionLower]) {
+                            // scrolls to a fraction of its width/height
+                            attributes[key] +=
+                                _target[axis === "x" ? "width" : "height"]() *
+                                settings.over[positionLower];
+                        }
+                    }
+                    // otherwise no offset should be used
+                    else {
+                        // sets the value as the target position
+                        var value = _target[positionLower];
+
+                        // handles the percentage values
+                        attributes[key] =
+                            value.slice && value.slice(-1) === "%"
+                                ? (parseFloat(value) / 100) * max
+                                : value;
                     }
 
-                    // avoids animating this axis again in the next iteration
-                    delete attributes[key];
-                }
-            });
+                    // in case it's umber or "number"
+                    if (/^\d+$/.test(attributes[key])) {
+                        // checks the limits
+                        attributes[key] = attributes[key] <= 0 ? 0 : Math.min(attributes[key], max);
+                    }
 
-            /**
-             * Animate function that run the animation and calls the given
-             * callback at the end of the animation.
-             *
-             * @param {Function}
-             *            callback The callback to be called at the end of the
-             *            animation.
-             */
-            var animate = function(callback) {
-                _element.animate(attributes, duration, settings.easing,
-                    callback && function() {
-                        callback.call(this, target, settings);
-                    });
-            };
+                    // in case it's queueing axes
+                    if (!index && settings.queue) {
+                        // avoids wasting time animating, if there's no need
+                        if (old !== attributes[key]) {
+                            // intermediate animation
+                            animate(settings.onAfterFirst);
+                        }
 
-            // runs the animation and calls
-            // the on after callback at the end
-            animate(settings.onAfter);
-        }).end();
+                        // avoids animating this axis again in the next iteration
+                        delete attributes[key];
+                    }
+                });
+
+                /**
+                 * Animate function that run the animation and calls the given
+                 * callback at the end of the animation.
+                 *
+                 * @param {Function}
+                 *            callback The callback to be called at the end of the
+                 *            animation.
+                 */
+                var animate = function(callback) {
+                    _element.animate(
+                        attributes,
+                        duration,
+                        settings.easing,
+                        callback &&
+                            function() {
+                                callback.call(this, target, settings);
+                            }
+                    );
+                };
+
+                // runs the animation and calls
+                // the on after callback at the end
+                animate(settings.onAfter);
+            })
+            .end();
     };
 
     /**
@@ -323,9 +340,11 @@ if (typeof require !== "undefined") {
      * @return {Map} The map with the top and left key set to the value.
      */
     var both = function(value) {
-        return typeof value === "object" ? value : {
-            top: value,
-            left: value
-        };
+        return typeof value === "object"
+            ? value
+            : {
+                  top: value,
+                  left: value
+              };
     };
 })(jQuery);

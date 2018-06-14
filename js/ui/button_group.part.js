@@ -71,8 +71,7 @@ if (typeof require !== "undefined") {
                 // for this event must defines if the event should be
                 // completely handled (click enabling)
                 var buttonGroup = element.parents(".button-group");
-                var continueChange = buttonGroup.triggerHandler(
-                    "index_changed", [index, element]);
+                var continueChange = buttonGroup.triggerHandler("index_changed", [index, element]);
                 if (continueChange === false) {
                     return;
                 }
@@ -87,9 +86,7 @@ if (typeof require !== "undefined") {
 
                 // triggers the index selected event, so that any listener is
                 // notified about the selection changing (after change)
-                buttonGroup.triggerHandler("index_selected", [index,
-                    element
-                ]);
+                buttonGroup.triggerHandler("index_selected", [index, element]);
             });
 
             // registers for the pre submit event on the associated parent
@@ -127,8 +124,9 @@ if (typeof require !== "undefined") {
                     // creates the hidden input value and prepend it to the
                     // button group element
                     var value = selected.attr("data-value") || selected.attr("value");
-                    _element.prepend("<input type=\"hidden\" name=\"" + name +
-                        "\" value=\"" + value + "\" />");
+                    _element.prepend(
+                        '<input type="hidden" name="' + name + '" value="' + value + '" />'
+                    );
                 });
             });
 

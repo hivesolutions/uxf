@@ -131,8 +131,7 @@ if (typeof require !== "undefined") {
             // retrieves the current panel in the to be shown
             // and shows it in the current context, note that
             // the visibility attribute is also set
-            var currentPanel = jQuery("> .panel:nth(" + index + ")",
-                matchedObject);
+            var currentPanel = jQuery("> .panel:nth(" + index + ")", matchedObject);
             currentPanel.show();
             currentPanel.css("visibility", "visible");
         };

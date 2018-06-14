@@ -91,8 +91,7 @@ if (typeof require !== "undefined") {
             // text area in case it's not the target for focus
             // should be a sub element that is a text field (or area)
             var isTextField = target.hasClass("text-field") || target.hasClass("text-area");
-            var focusTarget = isTextField ? target : jQuery(
-                ".text-field, .text-area", target);
+            var focusTarget = isTextField ? target : jQuery(".text-field, .text-area", target);
 
             // hides the matched object and then shows (and focus)
             // the target (element)

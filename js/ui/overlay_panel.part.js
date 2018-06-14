@@ -70,7 +70,7 @@ if (typeof require !== "undefined") {
             // to the current body element (default action)
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
-                overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                overlay = jQuery('<div id="overlay" class="overlay"></div>');
                 overlay.uxoverlay();
                 _body.prepend(overlay);
             }
@@ -147,21 +147,22 @@ if (typeof require !== "undefined") {
 
                 // registers for the control key combination
                 // in the global scope
-                !keyIsNaN && jQuery.uxctrl(keyInteger, function() {
-                    // checks if the element is visible
-                    var elementVisible = _element.hasClass("visible");
+                !keyIsNaN &&
+                    jQuery.uxctrl(keyInteger, function() {
+                        // checks if the element is visible
+                        var elementVisible = _element.hasClass("visible");
 
-                    // in case the element is visible, must hide hide
-                    // in order to toggel visibility
-                    if (elementVisible) {
-                        _hide(_element, options);
-                    }
-                    // otherwise the element must be invisible and then
-                    // it must be shown in the screen
-                    else {
-                        _show(_element, options);
-                    }
-                });
+                        // in case the element is visible, must hide hide
+                        // in order to toggel visibility
+                        if (elementVisible) {
+                            _hide(_element, options);
+                        }
+                        // otherwise the element must be invisible and then
+                        // it must be shown in the screen
+                        else {
+                            _show(_element, options);
+                        }
+                    });
 
                 // registers the resize in the window
                 _window.resize(function(event) {

@@ -126,35 +126,40 @@ if (typeof require !== "undefined") {
 
             // registers for the key down operation on the body
             // so that the carousel may move accordingly
-            !isRegistered && _body.keydown(function(event) {
-                var element = jQuery(this);
-                var carousel = jQuery(".carousel", element);
+            !isRegistered &&
+                _body.keydown(function(event) {
+                    var element = jQuery(this);
+                    var carousel = jQuery(".carousel", element);
 
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
-                switch (keyValue) {
-                    case 37:
-                        _previous(carousel, options);
-                        _schedule(carousel, options);
-                        break;
+                    switch (keyValue) {
+                        case 37:
+                            _previous(carousel, options);
+                            _schedule(carousel, options);
+                            break;
 
-                    case 39:
-                        _next(carousel, options);
-                        _schedule(carousel, options);
-                        break;
-                }
-            });
+                        case 39:
+                            _next(carousel, options);
+                            _schedule(carousel, options);
+                            break;
+                    }
+                });
 
             // registers for the resize event on the window
             // so that the current width and position are updated
-            !isRegistered && _window.resize(function() {
-                var carousel = jQuery(".carousel", _body);
-                carousel.each(function(index, element) {
-                    var _element = jQuery(this);
-                    _update(_element, options);
+            !isRegistered &&
+                _window.resize(function() {
+                    var carousel = jQuery(".carousel", _body);
+                    carousel.each(function(index, element) {
+                        var _element = jQuery(this);
+                        _update(_element, options);
+                    });
                 });
-            });
         };
 
         var _init = function(matchedObject, options) {
@@ -202,8 +207,7 @@ if (typeof require !== "undefined") {
             var viewItems = jQuery("> li", views);
             var width = matchedObject.outerWidth();
             var index = matchedObject.data("index");
-            var activeItem = jQuery(
-                "> li:nth-child(" + String(index + 1) + ")", views);
+            var activeItem = jQuery("> li:nth-child(" + String(index + 1) + ")", views);
             viewItems.removeClass("active");
             activeItem.addClass("active");
             items.css("margin-left", String(width * index * -1) + "px");

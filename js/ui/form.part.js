@@ -42,8 +42,7 @@ if (typeof require !== "undefined") {
                 var submitButton = jQuery("input[type=submit]", _element);
                 var hasSubmit = submitButton.length > 0;
                 var requiresSubmit = !noKeyboard && !hasSubmit;
-                requiresSubmit
-                    && _element.append("<input type=\"submit\" class=\"submit-button\" />");
+                requiresSubmit && _element.append('<input type="submit" class="submit-button" />');
             });
         };
 
@@ -175,46 +174,47 @@ if (typeof require !== "undefined") {
                 // contained in the form  an itreates over them
                 // so that trailing spaces are removed
                 var fields = jQuery(".text-field[data-object]", element);
-                !noTrim && fields.each(function(index, element) {
-                    // retrieves the current element in iteration
-                    // and the value associated, then verifies if
-                    // the data type from it is string an in case it's not
-                    // ignores the current value
-                    var _element = jQuery(this);
-                    var value = _element.uxvalue();
-                    if (typeof value !== "string") {
-                        return;
-                    }
+                !noTrim &&
+                    fields.each(function(index, element) {
+                        // retrieves the current element in iteration
+                        // and the value associated, then verifies if
+                        // the data type from it is string an in case it's not
+                        // ignores the current value
+                        var _element = jQuery(this);
+                        var value = _element.uxvalue();
+                        if (typeof value !== "string") {
+                            return;
+                        }
 
-                    // verifies if the current element is "lowered" and if
-                    // that's the case skips the trim operation as it's
-                    // considered to be and invalid element to be operated
-                    var isLower = _element.hasClass("lower");
-                    if (isLower) {
-                        return;
-                    }
+                        // verifies if the current element is "lowered" and if
+                        // that's the case skips the trim operation as it's
+                        // considered to be and invalid element to be operated
+                        var isLower = _element.hasClass("lower");
+                        if (isLower) {
+                            return;
+                        }
 
-                    // "gathers" the original value so that it's able
-                    // to detect if there was a change in the value
-                    // (resulting from the trim operation) that should
-                    // trigger the changing of the element's value
-                    var _value = value;
+                        // "gathers" the original value so that it's able
+                        // to detect if there was a change in the value
+                        // (resulting from the trim operation) that should
+                        // trigger the changing of the element's value
+                        var _value = value;
 
-                    // trims the value removing any trailing and leading
-                    // spaces and then verifies if the value is different
-                    // from the original value if that's not the case skips
-                    // the current iteration as there's nothing to be done
-                    value = value.trim();
-                    if (_value === value) {
-                        return;
-                    }
+                        // trims the value removing any trailing and leading
+                        // spaces and then verifies if the value is different
+                        // from the original value if that's not the case skips
+                        // the current iteration as there's nothing to be done
+                        value = value.trim();
+                        if (_value === value) {
+                            return;
+                        }
 
-                    // updates both the "physical" and the logical value
-                    // representation of the value in the element, so that
-                    // its value becomes trimmed as expected
-                    _element.val(value);
-                    _element.attr("data-value", value);
-                });
+                        // updates both the "physical" and the logical value
+                        // representation of the value in the element, so that
+                        // its value becomes trimmed as expected
+                        _element.val(value);
+                        _element.attr("data-value", value);
+                    });
 
                 // retrieves the current body element and uses it to retrieve
                 // the async flag state, that indicates if the interactions with
@@ -342,7 +342,8 @@ if (typeof require !== "undefined") {
             // the form is not of type multipart the default serialization
             // process is used instead to create a "query string"
             var form = matchedObject[0];
-            var data = enctype === "multipart/form-data" ? new FormData(form) : matchedObject.serialize();
+            var data =
+                enctype === "multipart/form-data" ? new FormData(form) : matchedObject.serialize();
 
             // verifies if the current form processing is a get based one and in
             // case it's encapsulates the parameters in the current request
@@ -432,9 +433,7 @@ if (typeof require !== "undefined") {
                 // that the target link is set as the current document's url
                 // so that it does not change, this allows correct reload
                 // handling of the page (improved user experience)
-                _body.triggerHandler("data", [data, url || document.URL, null,
-                    isGet, href
-                ]);
+                _body.triggerHandler("data", [data, url || document.URL, null, isGet, href]);
             };
             request.readystatechange = function() {
                 // in case the current request state is not headers ready there's
@@ -529,8 +528,7 @@ if (typeof require !== "undefined") {
                     if (hasFormSuccess) {
                         // retrieves the complate set of items in the form
                         // that are not part of the form success panel
-                        var otherItems = jQuery("> :not(.form-success)",
-                            matchedObject);
+                        var otherItems = jQuery("> :not(.form-success)", matchedObject);
 
                         // uses the form success panel to render it as a template
                         // using as base the form success template provided then

@@ -10,9 +10,12 @@ if (typeof require !== "undefined") {
         // tries to retrieve the complete set of arguments
         // for the value operation (in case an argument is
         // provided this is a set operation)
-        var options = arguments.length > 0 ? {
-            value: arguments[0]
-        } : {};
+        var options =
+            arguments.length > 0
+                ? {
+                      value: arguments[0]
+                  }
+                : {};
 
         // verifies if the provided first argument is an object
         // and if that's the case uses it as the options that
@@ -30,7 +33,9 @@ if (typeof require !== "undefined") {
         // value for the component
         var object = matchedObject.attr("data-object");
         var method = matchedObject["ux" + object];
-        var value = method ? method.apply(matchedObject, _arguments) : valueF.apply(matchedObject, arguments);
+        var value = method
+            ? method.apply(matchedObject, _arguments)
+            : valueF.apply(matchedObject, arguments);
 
         // returns the just retrieved value from the component
         // to the caller method

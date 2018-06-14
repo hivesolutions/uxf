@@ -5,97 +5,117 @@ if (typeof require !== "undefined") {
 (function(jQuery) {
     jQuery.fn.uxbrowser = function(options) {
         // the data browser values
-        var DATA_BROWSER = [{
-            string: navigator.userAgent,
-            subString: "Edge",
-            identity: "Edge",
-            versionSearch: "Edge"
-        }, {
-            string: navigator.userAgent,
-            subString: "Chrome",
-            identity: "Chrome"
-        }, {
-            string: navigator.userAgent,
-            subString: "OmniWeb",
-            versionSearch: "OmniWeb/",
-            identity: "OmniWeb"
-        }, {
-            string: navigator.vendor,
-            subString: "Apple",
-            identity: "Safari",
-            versionSearch: "Version"
-        }, {
-            prop: window.opera,
-            identity: "Opera"
-        }, {
-            string: navigator.vendor,
-            subString: "iCab",
-            identity: "iCab"
-        }, {
-            string: navigator.vendor,
-            subString: "KDE",
-            identity: "Konqueror"
-        }, {
-            string: navigator.userAgent,
-            subString: "Firefox",
-            identity: "Firefox"
-        }, {
-            string: navigator.vendor,
-            subString: "Camino",
-            identity: "Camino"
-        }, {
-            string: navigator.userAgent,
-            subString: "Netscape",
-            identity: "Netscape"
-        }, {
-            string: navigator.userAgent,
-            subString: "MSIE",
-            identity: "Explorer",
-            versionSearch: "MSIE"
-        }, {
-            string: navigator.userAgent,
-            subString: "Trident",
-            identity: "Explorer",
-            versionSearch: "rv"
-        }, {
-            string: navigator.userAgent,
-            subString: "Gecko",
-            identity: "Mozilla",
-            versionSearch: "rv"
-        }, {
-            string: navigator.userAgent,
-            subString: "Mozilla",
-            identity: "Netscape",
-            versionSearch: "Mozilla"
-        }];
+        var DATA_BROWSER = [
+            {
+                string: navigator.userAgent,
+                subString: "Edge",
+                identity: "Edge",
+                versionSearch: "Edge"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Chrome",
+                identity: "Chrome"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "OmniWeb",
+                versionSearch: "OmniWeb/",
+                identity: "OmniWeb"
+            },
+            {
+                string: navigator.vendor,
+                subString: "Apple",
+                identity: "Safari",
+                versionSearch: "Version"
+            },
+            {
+                prop: window.opera,
+                identity: "Opera"
+            },
+            {
+                string: navigator.vendor,
+                subString: "iCab",
+                identity: "iCab"
+            },
+            {
+                string: navigator.vendor,
+                subString: "KDE",
+                identity: "Konqueror"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Firefox",
+                identity: "Firefox"
+            },
+            {
+                string: navigator.vendor,
+                subString: "Camino",
+                identity: "Camino"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Netscape",
+                identity: "Netscape"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "MSIE",
+                identity: "Explorer",
+                versionSearch: "MSIE"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Trident",
+                identity: "Explorer",
+                versionSearch: "rv"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Gecko",
+                identity: "Mozilla",
+                versionSearch: "rv"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "Mozilla",
+                identity: "Netscape",
+                versionSearch: "Mozilla"
+            }
+        ];
 
         // the data os values, to be used for proper
         // indeitification of the operative systems
-        var DATA_OS = [{
-            string: navigator.platform,
-            subString: "Win",
-            identity: "Windows"
-        }, {
-            string: navigator.platform,
-            subString: "Mac",
-            identity: "Mac"
-        }, {
-            string: navigator.userAgent,
-            subString: "iPhone",
-            identity: "iPhone/iPod"
-        }, {
-            string: navigator.platform,
-            subString: "Linux",
-            identity: "Linux"
-        }];
+        var DATA_OS = [
+            {
+                string: navigator.platform,
+                subString: "Win",
+                identity: "Windows"
+            },
+            {
+                string: navigator.platform,
+                subString: "Mac",
+                identity: "Mac"
+            },
+            {
+                string: navigator.userAgent,
+                subString: "iPhone",
+                identity: "iPhone/iPod"
+            },
+            {
+                string: navigator.platform,
+                subString: "Linux",
+                identity: "Linux"
+            }
+        ];
 
         // the legacy dictionary that is going to map the
         // name of the browser with the minimum version from
         // which the browser is considered not legacy (or current)
         var BROWSER_LEGACY = {
-            "chrome": 40,
-            "firefox": 30,
-            "explorer": 10
+            chrome: 40,
+            firefox: 30,
+            explorer: 10
         };
 
         // the default values for the browser
@@ -133,7 +153,9 @@ if (typeof require !== "undefined") {
 
             // retrieves the browser information
             var browserName = _searchString(DATA_BROWSER) || "Unknown browser";
-            var browserVersion = _searchVersion(navigator.userAgent) || _searchVersion(navigator.appVersion) ||
+            var browserVersion =
+                _searchVersion(navigator.userAgent) ||
+                _searchVersion(navigator.appVersion) ||
                 "Unknown version";
             var browserOs = _searchString(DATA_OS) || "Unknown OS";
 
@@ -145,8 +167,9 @@ if (typeof require !== "undefined") {
             // tries to retrieve the minimum version version from which the
             // browser is considered to be a current one (not legacy) either
             // from the current element or the static definitions
-            var versionLegacy = matchedObject.attr("data-" + browserName + "_legacy") || BROWSER_LEGACY[
-                browserName];
+            var versionLegacy =
+                matchedObject.attr("data-" + browserName + "_legacy") ||
+                BROWSER_LEGACY[browserName];
             versionLegacy = parseInt(versionLegacy);
 
             // tries to determine if the current browser is a legacy one, that
@@ -195,7 +218,8 @@ if (typeof require !== "undefined") {
             for (var index = 0; index < data.length; index++) {
                 var dataString = data[index].string;
                 var dataProp = data[index].prop;
-                jQuery.fn.uxbrowser.versionSearchString = data[index].versionSearch || data[index].identity;
+                jQuery.fn.uxbrowser.versionSearchString =
+                    data[index].versionSearch || data[index].identity;
                 if (dataString) {
                     if (dataString.indexOf(data[index].subString) !== -1) {
                         return data[index].identity;
@@ -216,8 +240,9 @@ if (typeof require !== "undefined") {
                 return;
             }
 
-            return parseFloat(dataString.substring(index + jQuery.fn.uxbrowser.versionSearchString.length +
-                1));
+            return parseFloat(
+                dataString.substring(index + jQuery.fn.uxbrowser.versionSearchString.length + 1)
+            );
         };
 
         var _applyPatch = function(browserName, browserVersion, browserOs, force) {

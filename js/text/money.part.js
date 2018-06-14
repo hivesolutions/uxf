@@ -46,8 +46,7 @@ if (typeof require !== "undefined") {
                     var power = Math.pow(10, places);
                     valueF = Math[strategy](valueF * power) / power;
                 }
-                var valueS = valueF.formatMoney(places, null, null,
-                    currency, true);
+                var valueS = valueF.formatMoney(places, null, null, currency, true);
                 _element.text(valueS);
             });
         };

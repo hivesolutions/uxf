@@ -58,14 +58,20 @@ if (typeof require !== "undefined") {
                 // of it (default behaviour)
                 var items = jQuery("> .items", _element);
                 if (items.length === 0) {
-                    _element.append("<ul class=\"items\"></ul>");
+                    _element.append('<ul class="items"></ul>');
                 }
 
                 // adds the drop tag header and tag element to the
                 // drop tag taking into account the title
-                _element.prepend("<div class=\"drop-tag-header\">" + title + "</div>" +
-                    "<div class=\"drop-tag-tag\">" + "<span class=\"drop-tag-text\"></span>" +
-                    "<span class=\"drop-tag-close\"></span>" + "</div>");
+                _element.prepend(
+                    '<div class="drop-tag-header">' +
+                        title +
+                        "</div>" +
+                        '<div class="drop-tag-tag">' +
+                        '<span class="drop-tag-text"></span>' +
+                        '<span class="drop-tag-close"></span>' +
+                        "</div>"
+                );
             });
         };
 

@@ -103,7 +103,14 @@ if (typeof require !== "undefined") {
          *            baseKey The base key value to be used in all of the keys.
          * @return {String} The resulting template contents (after apply).
          */
-        var _applyAttributes = function(templateContents, attributes, nullify, localize, defaultValue, baseKey) {
+        var _applyAttributes = function(
+            templateContents,
+            attributes,
+            nullify,
+            localize,
+            defaultValue,
+            baseKey
+        ) {
             // retrieves the various default value to be used
             // in the template rendering
             defaultValue = defaultValue || "";
@@ -142,9 +149,14 @@ if (typeof require !== "undefined") {
                     // applies the attributes to the template contens
                     // based in the current attribute value and with
                     // the new base key value
-                    templateContents = _applyAttributes(templateContents,
-                        attributeValue, nullify, localize, defaultValue,
-                        newBaseKey);
+                    templateContents = _applyAttributes(
+                        templateContents,
+                        attributeValue,
+                        nullify,
+                        localize,
+                        defaultValue,
+                        newBaseKey
+                    );
                 }
                 // otherwise the attribute value must be a simple basic type
                 // and the normal replace strategy is applied
@@ -156,7 +168,9 @@ if (typeof require !== "undefined") {
                     // in case the localize flag is set, tries to localize the
                     // current attribute value into the current locale, the return
                     // value should default to the proper value in case of failure
-                    var attributeLocale = localize ? jQuery.uxlocale(attributeValue) : attributeValue;
+                    var attributeLocale = localize
+                        ? jQuery.uxlocale(attributeValue)
+                        : attributeValue;
 
                     // creates the replacer function that is going to be used by
                     // the replace operation to determine if the raw string should
@@ -174,8 +188,7 @@ if (typeof require !== "undefined") {
                     // replaces the template strings in the html with the proper attribute
                     // values this may be an expesive operation in case it's repeated
                     // frequently for a lot of times (modify with care)
-                    templateContents = templateContents.replace(keyRegex,
-                        replacer);
+                    templateContents = templateContents.replace(keyRegex, replacer);
                 }
             }
 
@@ -193,7 +206,8 @@ if (typeof require !== "undefined") {
 
             // retrirves the for each elments for the current template element
             var foreachElements = jQuery(".template-foreach", templateElement).not(
-                ".template-foreach .template-foreach");
+                ".template-foreach .template-foreach"
+            );
 
             // iterates over all the for each elements
             foreachElements.each(function(index, element) {
@@ -220,13 +234,12 @@ if (typeof require !== "undefined") {
                     var _templateElement = _element.clone();
 
                     // applies the template to the current element
-                    var forEachTemplateElement = __applyTemplate(
-                        _templateElement, variableItem);
+                    var forEachTemplateElement = __applyTemplate(_templateElement, variableItem);
 
                     // adds the new element to the for each
                     // buffer string value
-                    forEachBuffer += "<" + target + ">" + forEachTemplateElement + "</" + target +
-                        ">";
+                    forEachBuffer +=
+                        "<" + target + ">" + forEachTemplateElement + "</" + target + ">";
                 }
 
                 // replaces the element value with the value
@@ -239,9 +252,9 @@ if (typeof require !== "undefined") {
 
             // applies the attributes to the template contents
             // in case the template contents is correctly set
-            templateContents = templateContents ? _applyAttributes(
-                templateContents, attributes, nullify, localize,
-                defaultValue) : templateContents;
+            templateContents = templateContents
+                ? _applyAttributes(templateContents, attributes, nullify, localize, defaultValue)
+                : templateContents;
 
             // returns the template contents
             return templateContents;

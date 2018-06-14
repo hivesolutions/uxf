@@ -44,7 +44,7 @@ if (typeof require !== "undefined") {
 
                 // replaces the string character in the error
                 // message list and then parses it as JSON
-                _enum = _enum.replace(STRING_CHARACTER_REGEX, "\"");
+                _enum = _enum.replace(STRING_CHARACTER_REGEX, '"');
                 var enumList = jQuery.parseJSON(_enum);
 
                 // retrieves the (element) value

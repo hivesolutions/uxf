@@ -33,9 +33,13 @@ if (typeof require !== "undefined") {
             // in case the elements do not exists creates a new element
             var window = jQuery(".window.window-lightbox", matchedObject);
             if (window.length === 0) {
-                window = jQuery("<div class=\"window window-lightbox\">" +
-                    "<div class=\"button-confirm\"></div>" + "<div class=\"button-expand\"></div>" +
-                    "<img alt=\"\" />" + "</div>");
+                window = jQuery(
+                    '<div class="window window-lightbox">' +
+                        '<div class="button-confirm"></div>' +
+                        '<div class="button-expand"></div>' +
+                        '<img alt="" />' +
+                        "</div>"
+                );
                 window.uxwindow();
                 matchedObject.append(window);
             }

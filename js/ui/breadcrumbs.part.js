@@ -130,8 +130,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the current breadcrumb in the breadcrumbs
             // and selects it in the current context
-            var currebtBreadcrumb = jQuery("> li:nth(" + index + ")",
-                matchedObject);
+            var currebtBreadcrumb = jQuery("> li:nth(" + index + ")", matchedObject);
             currebtBreadcrumb.addClass("selected");
         };
 

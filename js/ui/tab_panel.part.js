@@ -166,8 +166,7 @@ if (typeof require !== "undefined") {
             // matched object that are going to be used in the operation
             var tabs = jQuery(".tab", matchedObject);
             var tabSelectors = jQuery(".tab-selector", matchedObject);
-            var tabSelector = jQuery(".tab-selector[href=\"" + hash + "\"]",
-                matchedObject);
+            var tabSelector = jQuery('.tab-selector[href="' + hash + '"]', matchedObject);
 
             // removes the active class from (all) the tabs
             // and from (all) the tab selectors

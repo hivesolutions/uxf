@@ -200,17 +200,18 @@ if (typeof require !== "undefined") {
 
             // calls the confirm window in the document, because the action
             // must be first validated before any redirection occurs
-            isConfirm && _body.uxconfirm(message, function(result) {
-                // in case the result is cancel (false),
-                // avoids execution and returns immediately
-                if (result === false) {
-                    return;
-                }
+            isConfirm &&
+                _body.uxconfirm(message, function(result) {
+                    // in case the result is cancel (false),
+                    // avoids execution and returns immediately
+                    if (result === false) {
+                        return;
+                    }
 
-                // executes the "punching" of the button this should trigger
-                // the proper behavior to be executed
-                __punch(matchedObject, options);
-            });
+                    // executes the "punching" of the button this should trigger
+                    // the proper behavior to be executed
+                    __punch(matchedObject, options);
+                });
 
             // in case the is confirm flag is set the control flow must
             // return immediately to the caller function to avoid any

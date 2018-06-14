@@ -41,7 +41,7 @@ if (typeof require !== "undefined") {
                 var _element = jQuery(this);
                 var width = _element.outerWidth(true);
                 var side = _element.attr("data-side") || "right";
-                _element.css(side, (width * -1) + "px");
+                _element.css(side, width * -1 + "px");
                 _element.addClass("side-panel-" + side);
             });
         };
@@ -103,21 +103,22 @@ if (typeof require !== "undefined") {
 
             // registers for the global hide modal event
             // so that the side panel is properly hidden
-            !isRegistered && _body.bind("hide_modal", function() {
-                // retrieves the current element (body) and uses it
-                // to retrieve the complete set of side panels
-                var element = jQuery(this);
-                var sidePanels = jQuery(".side-panel", element);
+            !isRegistered &&
+                _body.bind("hide_modal", function() {
+                    // retrieves the current element (body) and uses it
+                    // to retrieve the complete set of side panels
+                    var element = jQuery(this);
+                    var sidePanels = jQuery(".side-panel", element);
 
-                // iterates over the complete set of side panels present
-                // to be able to hide everyone
-                sidePanels.each(function() {
-                    // runs the hide operation for the current
-                    // element (side panel in iteration)
-                    var _element = jQuery(this);
-                    _hide(_element, options);
+                    // iterates over the complete set of side panels present
+                    // to be able to hide everyone
+                    sidePanels.each(function() {
+                        // runs the hide operation for the current
+                        // element (side panel in iteration)
+                        var _element = jQuery(this);
+                        _hide(_element, options);
+                    });
                 });
-            });
         };
 
         var _ensureOverlay = function() {
@@ -129,7 +130,7 @@ if (typeof require !== "undefined") {
                 return overlay;
             }
             var _body = jQuery("body");
-            overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+            overlay = jQuery('<div id="overlay" class="overlay"></div>');
             overlay.uxoverlay();
             _body.prepend(overlay);
             return overlay;
@@ -148,7 +149,7 @@ if (typeof require !== "undefined") {
             overlay.triggerHandler("show", [350]);
             var animation = {};
             animation[side] = 0;
-            matchedObject.css(side, (width * -1) + "px");
+            matchedObject.css(side, width * -1 + "px");
             matchedObject.show();
             matchedObject.animate(animation, {
                 duration: 350,
@@ -213,8 +214,11 @@ if (typeof require !== "undefined") {
             var _document = jQuery(document);
             var handler = _document.keydown(function(event) {
                 // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                var keyValue = event.keyCode
+                    ? event.keyCode
+                    : event.charCode
+                        ? event.charCode
+                        : event.which;
 
                 // switches over the key value
                 switch (keyValue) {

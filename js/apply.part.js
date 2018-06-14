@@ -64,7 +64,9 @@ if (typeof require !== "undefined") {
             // values (attribute based selection)
             var dataWidth = jQuery("[data-width]", matchedObject).not(".template [data-width]");
             var dataPivot = jQuery("[data-pivot]", matchedObject).not(".template [data-pivot]");
-            var dataDisabled = jQuery("[data-disabled]", matchedObject).not(".template [data-disabled]");
+            var dataDisabled = jQuery("[data-disabled]", matchedObject).not(
+                ".template [data-disabled]"
+            );
 
             // retrieves the various elements
             var overlay = jQuery(".overlay", matchedObject).not(".template .overlay");
@@ -79,7 +81,8 @@ if (typeof require !== "undefined") {
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(
-                ".template .incremental-field");
+                ".template .incremental-field"
+            );
             var toggleField = jQuery(".toggle-field", matchedObject).not(".template .toggle-field");
             var fileField = jQuery(".file-field", matchedObject).not(".template .file-field");
             var dropList = jQuery(".drop-list", matchedObject).not(".template .drop-list");
@@ -88,13 +91,19 @@ if (typeof require !== "undefined") {
             var table = jQuery(".table", matchedObject).not(".template .table");
             var image = jQuery(".image", matchedObject).not(".template .image");
             var calendar = jQuery(".calendar", matchedObject).not(".template .calendar");
-            var calendarRange = jQuery(".calendar-range", matchedObject).not(".template .calendar-range");
+            var calendarRange = jQuery(".calendar-range", matchedObject).not(
+                ".template .calendar-range"
+            );
             var menu = jQuery(".menu", matchedObject).not(".template .menu");
             var menuLink = jQuery(".menu-link", matchedObject).not(".template .menu-link");
             var slider = jQuery(".slider", matchedObject).not(".template .slider");
             var scrollList = jQuery(".scroll-list", matchedObject).not(".template .scroll-list");
-            var overlayPanel = jQuery(".overlay-panel", matchedObject).not(".template .overaly-panel");
-            var overlaySearch = jQuery(".overlay-search", matchedObject).not(".template .overaly-search");
+            var overlayPanel = jQuery(".overlay-panel", matchedObject).not(
+                ".template .overaly-panel"
+            );
+            var overlaySearch = jQuery(".overlay-search", matchedObject).not(
+                ".template .overaly-search"
+            );
             var window = jQuery(".window", matchedObject).not(".template .window");
             var wizard = jQuery(".wizard", matchedObject).not(".template .wizard");
             var panel = jQuery(".panel", matchedObject).not(".template .panel");
@@ -104,13 +113,16 @@ if (typeof require !== "undefined") {
             var panelStack = jQuery(".panel-stack", matchedObject).not(".template .panel-stack");
             var stack = jQuery(".stack", matchedObject).not(".template .stack");
             var breadcrumbs = jQuery(".breadcrumbs", matchedObject).not(".template .breadcrumbs");
-            var hightlightBox = jQuery(".hightlight-box", matchedObject).not(".template .hightlight-box");
+            var hightlightBox = jQuery(".hightlight-box", matchedObject).not(
+                ".template .hightlight-box"
+            );
             var replacer = jQuery(".replacer", matchedObject).not(".template .replacer");
             var dataSource = jQuery(".data-source", matchedObject).not(".template .data-source");
             var filter = jQuery(".filter", matchedObject).not(".template .filter");
             var hoveringbox = jQuery(".hovering-box", matchedObject).not(".template .hovering-box");
-            var headerNotification = jQuery(".header-notification",
-                matchedObject).not(".template .header-notification");
+            var headerNotification = jQuery(".header-notification", matchedObject).not(
+                ".template .header-notification"
+            );
             var link = jQuery(".link", matchedObject).not(".template .link");
             var linkConfirm = jQuery(".link-confirm", matchedObject).not(".template .link-confirm");
             var imageLazy = jQuery(".image-lazy", matchedObject).not(".template .image-lazy");
@@ -120,10 +132,14 @@ if (typeof require !== "undefined") {
             var crossList = jQuery(".cross-list", matchedObject).not(".template .cross-list");
             var option = jQuery(".option", matchedObject).not(".template .option");
             var progressBar = jQuery(".progress-bar", matchedObject).not(".template .progress-bar");
-            var passwordMeter = jQuery(".password-meter", matchedObject).not(".template .password-meter");
+            var passwordMeter = jQuery(".password-meter", matchedObject).not(
+                ".template .password-meter"
+            );
             var rating = jQuery(".rating", matchedObject).not(".template .rating");
             var changer = jQuery(".changer", matchedObject).not(".template .changer");
-            var contentChanger = jQuery(".content-changer", matchedObject).not(".template .content-changer");
+            var contentChanger = jQuery(".content-changer", matchedObject).not(
+                ".template .content-changer"
+            );
             var dateTime = jQuery(".date-time", matchedObject).not(".template .date-time");
             var enumeration = jQuery(".enumeration", matchedObject).not(".template .enumeration");
             var number = jQuery(".number", matchedObject).not(".template .number");
@@ -137,7 +153,9 @@ if (typeof require !== "undefined") {
             var code = jQuery(".code", matchedObject).not(".template .code");
             var uploader = jQuery(".uploader", matchedObject).not(".template .uploader");
             var animation = jQuery(".animation", matchedObject).not(".template .animation");
-            var transformFlip = jQuery(".transform-flip", matchedObject).not(".template .transform-flip");
+            var transformFlip = jQuery(".transform-flip", matchedObject).not(
+                ".template .transform-flip"
+            );
             var fileDrop = jQuery(".file-drop", matchedObject).not(".template .file-drop");
             var imageUpload = jQuery(".image-upload", matchedObject).not(".template .image-upload");
             var shortcuts = jQuery(".shortcuts", matchedObject).not(".template .shortcuts");
@@ -148,7 +166,9 @@ if (typeof require !== "undefined") {
             var _eval = jQuery(".eval", matchedObject).not(".template .eval");
 
             // retrieves the various gateway elements
-            var gatewayPrint = jQuery(".gateway-print", matchedObject).not(".template .gateway-print");
+            var gatewayPrint = jQuery(".gateway-print", matchedObject).not(
+                ".template .gateway-print"
+            );
 
             // checks if the body element is meant to have the gateway plugin
             // loaded on it (for external symbol access)
@@ -360,7 +380,8 @@ if (typeof require !== "undefined") {
 
                 // overrides the current alert function
                 // with the ux alert method
-                alert = function(message, callback) { // eslint-disable-line no-global-assign
+                // eslint-disable-next-line no-global-assign
+                alert = function(message, callback) {
                     // shows the alert window
                     _body.uxalert(message, callback);
 
@@ -371,7 +392,8 @@ if (typeof require !== "undefined") {
 
                 // overrides the current confirm function
                 // with the ux confirm method
-                confirm = function(message, callback) { // eslint-disable-line no-global-assign
+                // eslint-disable-next-line no-global-assign
+                confirm = function(message, callback) {
                     // shows the confirm window
                     _body.uxconfirm(message, callback);
 

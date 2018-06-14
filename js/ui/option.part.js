@@ -32,7 +32,7 @@ if (typeof require !== "undefined") {
             // adds the clear element to the complete set of selected
             // options elements, this is required to provide a correct
             // alyout structure in terms of breaking
-            matchedObject.append("<div class=\"option-clear\"></div>");
+            matchedObject.append('<div class="option-clear"></div>');
         };
 
         /**

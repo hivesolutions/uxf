@@ -42,7 +42,7 @@ if (typeof require !== "undefined") {
                 var _element = jQuery(element);
 
                 // adds some html to the password meter
-                _element.append("<div class=\"password-meter-contents level-0\"></div>");
+                _element.append('<div class="password-meter-contents level-0"></div>');
 
                 // sets the initial data in the element
                 _element.data("level", 0);
@@ -59,8 +59,7 @@ if (typeof require !== "undefined") {
                 var _element = jQuery(element);
 
                 // retrieves the password meter contents
-                var passwordMeterContents = jQuery(".password-meter-contents",
-                    _element);
+                var passwordMeterContents = jQuery(".password-meter-contents", _element);
 
                 // retrieves the target reference and then
                 // retrieves the target element

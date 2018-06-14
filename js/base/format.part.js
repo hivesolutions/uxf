@@ -16,11 +16,33 @@ if (typeof require !== "undefined") {
 
     // the lists for the month string values both in full
     // name mode and in abreviated mode
-    var FULL_MONTHS = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
+    var FULL_MONTHS = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
     ];
-    var ABBREVIATED_MONTHS = ["JanS", "FebS", "MarS", "AprS", "MayS", "JunS",
-        "JulS", "AugS", "SepS", "OctS", "NovS", "DecS"
+    var ABBREVIATED_MONTHS = [
+        "JanS",
+        "FebS",
+        "MarS",
+        "AprS",
+        "MayS",
+        "JunS",
+        "JulS",
+        "AugS",
+        "SepS",
+        "OctS",
+        "NovS",
+        "DecS"
     ];
 
     jQuery.uxformat = function(date, format, utc) {
@@ -107,13 +129,10 @@ if (typeof require !== "undefined") {
             format = format.replace(MONTH_CHARACTER, _getStringValue(month, 2));
             format = format.replace(DAY_CHARACTER, _getStringValue(day, 2));
             format = format.replace(HOUR_CHARACTER, _getStringValue(hours, 2));
-            format = format.replace(MINUTE_CHARACTER, _getStringValue(minutes,
-                2));
-            format = format.replace(SECOND_CHARACTER, _getStringValue(seconds,
-                2));
+            format = format.replace(MINUTE_CHARACTER, _getStringValue(minutes, 2));
+            format = format.replace(SECOND_CHARACTER, _getStringValue(seconds, 2));
             format = format.replace(FULL_MONTH_CHARACTER, fullMonth);
-            format = format.replace(ABBREVIATED_MONTH_CHARACTER,
-                abbreviatedMonth);
+            format = format.replace(ABBREVIATED_MONTH_CHARACTER, abbreviatedMonth);
 
             // sets the date string as the final format
             dateString = format;

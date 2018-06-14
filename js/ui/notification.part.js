@@ -61,8 +61,16 @@ if (typeof require !== "undefined") {
 
             // creates the message element from the html code
             // that is going to be used as the base for display
-            var messageElement = jQuery("<div class=\"notification\">" + "<p class=\"notification-title\">" +
-                title + "</p>" + "<p class=\"notification-text\">" + message + "</p>" + "</div>");
+            var messageElement = jQuery(
+                '<div class="notification">' +
+                    '<p class="notification-title">' +
+                    title +
+                    "</p>" +
+                    '<p class="notification-text">' +
+                    message +
+                    "</p>" +
+                    "</div>"
+            );
 
             // adds message element to the matched object making
             // it ready in ters of visual display (ui display)
@@ -85,12 +93,13 @@ if (typeof require !== "undefined") {
             // registers for the click event on the created
             // message element so that it fades out when a
             // click occurs in it (as expected)
-            link && messageElement.click(function() {
-                var element = jQuery(this);
-                element.fadeOut(fadeTimeout, function() {
-                    element.remove();
+            link &&
+                messageElement.click(function() {
+                    var element = jQuery(this);
+                    element.fadeOut(fadeTimeout, function() {
+                        element.remove();
+                    });
                 });
-            });
         };
 
         /**

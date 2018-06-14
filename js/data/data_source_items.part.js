@@ -64,7 +64,7 @@ if (typeof require !== "undefined") {
                             // retrieves the value associated the current key
                             // and appends the span associated with the key
                             var value = item[key];
-                            _string += "<span name=\"" + key + "\">" + value + "</span>";
+                            _string += '<span name="' + key + '">' + value + "</span>";
                         }
 
                         // adds the final list reference to the string and then

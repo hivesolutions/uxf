@@ -60,10 +60,14 @@ if (typeof require !== "undefined") {
             acceptButton.data("window_button", true);
 
             // adds the window mask to the window in case it does not exist
-            !windowMaskExists
-                && matchedObject.append("<div class=\"window-mask\">" +
-                    "<div class=\"window-mask-contents\">Loading " +
-                    "<span class=\"window-mask-dots\"></span>" + "</div>" + "</div>");
+            !windowMaskExists &&
+                matchedObject.append(
+                    '<div class="window-mask">' +
+                        '<div class="window-mask-contents">Loading ' +
+                        '<span class="window-mask-dots"></span>' +
+                        "</div>" +
+                        "</div>"
+                );
 
             // positions the window
             _positionWindow(matchedObject, options);
@@ -230,7 +234,7 @@ if (typeof require !== "undefined") {
             var overlay = jQuery(".overlay:first");
             if (overlay.length === 0) {
                 _body = jQuery("body");
-                overlay = jQuery("<div id=\"overlay\" class=\"overlay\"></div>");
+                overlay = jQuery('<div id="overlay" class="overlay"></div>');
                 overlay.uxoverlay();
                 _body.prepend(overlay);
             }
@@ -545,8 +549,11 @@ if (typeof require !== "undefined") {
             var _document = jQuery(document);
             var handler = _document.keydown(function(event) {
                 // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                var keyValue = event.keyCode
+                    ? event.keyCode
+                    : event.charCode
+                        ? event.charCode
+                        : event.which;
 
                 // switches over the key value
                 switch (keyValue) {

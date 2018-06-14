@@ -98,8 +98,7 @@ if (typeof require !== "undefined") {
 
         var _containsTemplate = function(matchedObject, options) {
             // retrieves the hovering box template
-            var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                matchedObject);
+            var hoveringBoxTemplate = jQuery(".hovering-box-template", matchedObject);
 
             // checks if the hovering box already contains the template
             var containsTemplate = hoveringBoxTemplate.length > 0;
@@ -128,40 +127,43 @@ if (typeof require !== "undefined") {
             var hoveringBoxRight = matchedObject.hasClass("hovering-box-right");
 
             // runs the query in the data source
-            dataSource.uxdataquery({
-                id: dataSourceId
-            }, function(validItems, moreItems) {
-                // retrieves the current (and only)
-                // item from the list of valid items
-                var currentItem = validItems[0];
+            dataSource.uxdataquery(
+                {
+                    id: dataSourceId
+                },
+                function(validItems, moreItems) {
+                    // retrieves the current (and only)
+                    // item from the list of valid items
+                    var currentItem = validItems[0];
 
-                // applies the template to the hovering box
-                // template (item) retrieving the resulting
-                // template item
-                var templateItem = hoveringBoxTemplate.uxtemplate(currentItem);
+                    // applies the template to the hovering box
+                    // template (item) retrieving the resulting
+                    // template item
+                    var templateItem = hoveringBoxTemplate.uxtemplate(currentItem);
 
-                // adds the template item item to the
-                // element (hovering box)
-                matchedObject.append(templateItem);
+                    // adds the template item item to the
+                    // element (hovering box)
+                    matchedObject.append(templateItem);
 
-                // in case the hovering box right flag
-                // is not set (no need to align to the right)
-                if (!hoveringBoxRight) {
-                    // returns immediately
-                    return;
+                    // in case the hovering box right flag
+                    // is not set (no need to align to the right)
+                    if (!hoveringBoxRight) {
+                        // returns immediately
+                        return;
+                    }
+
+                    // retrieves both the matched object width
+                    // and the template item width
+                    var matchedObjectWidth = matchedObject.outerWidth();
+                    var templateItemWidth = templateItem.width();
+
+                    // calculates the template item margin left
+                    var templateItemMarginLeft = (templateItemWidth - matchedObjectWidth) * -1;
+
+                    // sets the template item margin left
+                    templateItem.css("margin-left", templateItemMarginLeft + "px");
                 }
-
-                // retrieves both the matched object width
-                // and the template item width
-                var matchedObjectWidth = matchedObject.outerWidth();
-                var templateItemWidth = templateItem.width();
-
-                // calculates the template item margin left
-                var templateItemMarginLeft = (templateItemWidth - matchedObjectWidth) * -1;
-
-                // sets the template item margin left
-                templateItem.css("margin-left", templateItemMarginLeft + "px");
-            });
+            );
         };
 
         var _showTemplate = function(matchedObject, options) {
@@ -173,8 +175,7 @@ if (typeof require !== "undefined") {
             !containsTemplate && _createTemplate(matchedObject, options);
 
             // retrieves the hovering box template
-            var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                matchedObject);
+            var hoveringBoxTemplate = jQuery(".hovering-box-template", matchedObject);
 
             // hides the hovering box template
             hoveringBoxTemplate.show();
@@ -182,8 +183,7 @@ if (typeof require !== "undefined") {
 
         var _hideTemplate = function(matchedObject, options) {
             // retrieves the hovering box template
-            var hoveringBoxTemplate = jQuery(".hovering-box-template",
-                matchedObject);
+            var hoveringBoxTemplate = jQuery(".hovering-box-template", matchedObject);
 
             // hides the hovering box template
             hoveringBoxTemplate.hide();

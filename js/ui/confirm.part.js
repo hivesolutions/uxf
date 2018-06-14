@@ -41,10 +41,19 @@ if (typeof require !== "undefined") {
             // retrieves the window (alert window) elements
             var window = jQuery(windowSelector, matchedObject);
             if (window.length === 0) {
-                window = jQuery("<div class=\"window window-alert window-hide\">" + "<h1></h1>" +
-                    "<p class=\"single\"></p>" + "<div class=\"window-buttons\">" +
-                    "<span class=\"button button-cancel\">" + cancel + "</span>" +
-                    "<span class=\"button button-confirm\">" + confirm + "</span>" + "</div>");
+                window = jQuery(
+                    '<div class="window window-alert window-hide">' +
+                        "<h1></h1>" +
+                        '<p class="single"></p>' +
+                        '<div class="window-buttons">' +
+                        '<span class="button button-cancel">' +
+                        cancel +
+                        "</span>" +
+                        '<span class="button button-confirm">' +
+                        confirm +
+                        "</span>" +
+                        "</div>"
+                );
                 window.uxwindow();
                 matchedObject.append(window);
             }
@@ -98,7 +107,7 @@ if (typeof require !== "undefined") {
                 // defined, note that the result of the hide
                 // operation is considered to be success
                 window.uxwindow("hide", {
-                    "reason": "success"
+                    reason: "success"
                 });
                 callback && callback(true);
             });
@@ -114,7 +123,7 @@ if (typeof require !== "undefined") {
                 // if defined, note that the result of the
                 // hide operation is considered to be cancel
                 window.uxwindow("hide", {
-                    "reason": "cancel"
+                    reason: "cancel"
                 });
                 callback && callback(false);
             });

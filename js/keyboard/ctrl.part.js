@@ -10,7 +10,11 @@ if (typeof require !== "undefined") {
         // registers for the key down press in the document
         _document.keydown(function(event) {
             // retrieves the key value
-            var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode : event.which;
+            var keyValue = event.keyCode
+                ? event.keyCode
+                : event.charCode
+                    ? event.charCode
+                    : event.which;
 
             // sets the default parameters
             parameters = parameters || [];

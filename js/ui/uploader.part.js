@@ -57,8 +57,10 @@ if (typeof require !== "undefined") {
                 // must be create enclosing the element, after
                 // the wrapping retrieves it for latter usage
                 if (action) {
-                    _element.wrap("<form action=\"" + action +
-                        "\" method=\"post\" enctype=\"multipart/form-data\" class=\"form\"></form>"
+                    _element.wrap(
+                        '<form action="' +
+                            action +
+                            '" method="post" enctype="multipart/form-data" class="form"></form>'
                     );
                     form = _element.parent(".form");
                     form.uxform();
@@ -68,8 +70,7 @@ if (typeof require !== "undefined") {
 
                 // inserts the uploader input afeter the element
                 // and then retrieves it from the element
-                _element.after("<input name=\"" + name +
-                    "\" type=\"file\" class=\"uploader-input\" />");
+                _element.after('<input name="' + name + '" type="file" class="uploader-input" />');
                 var uploaderInput = jQuery("+ .uploader-input", _element);
 
                 // in cas the current browser is of type mozilla
@@ -206,7 +207,7 @@ if (typeof require !== "undefined") {
             // sets the uploader input css attributes according
             // to the matched object attributes
             uploaderInput.css("width", width + "px");
-            uploaderInput.css("margin-left", (width * -1) + "px");
+            uploaderInput.css("margin-left", width * -1 + "px");
             uploaderInput.css("padding", "0px 0px 0px 0px");
         };
 

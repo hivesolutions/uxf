@@ -72,7 +72,7 @@ if (typeof require !== "undefined") {
                 // iterates over the files
                 _files.each(function(index, element) {
                     // creates the image element and adds it to the image upload
-                    var image = jQuery("<img class=\"image-upload-image\" />");
+                    var image = jQuery('<img class="image-upload-image" />');
                     imageUpload.append(image);
 
                     // creates a new file reader for reading the file

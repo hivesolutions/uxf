@@ -60,9 +60,9 @@ if (typeof require !== "undefined") {
             // creates the upper structure for the drop down, this should
             // include the button part so that it's possible to active the
             // drop down contents using the "usual" manner
-            matchedObject.wrap("<div class=\"drop-down-container\"></div>");
+            matchedObject.wrap('<div class="drop-down-container"></div>');
             var container = matchedObject.parents(".drop-down-container");
-            container.prepend("<div class=\"button button-drop-down\"></div>");
+            container.prepend('<div class="button button-drop-down"></div>');
 
             // iterates over the complete set of drop down elements so that
             // it's possible to properly set each button's name
@@ -98,7 +98,7 @@ if (typeof require !== "undefined") {
                 // down exists and if that the case created or re-uses
                 // the input associated with the drop down container
                 if (input && inputElement.length === 0) {
-                    container.prepend("<input type=\"hidden\" name=\"" + input + "\"/>");
+                    container.prepend('<input type="hidden" name="' + input + '"/>');
                 } else if (input) {
                     container.prepend(inputElement);
                 }
@@ -142,8 +142,7 @@ if (typeof require !== "undefined") {
 
                 // in case there's a valid extra (note) name to be added to
                 // the drop down button it's added at the end of the button
-                extra
-                    && button.append("<span class=\"extra\">" + extra + "</span>");
+                extra && button.append('<span class="extra">' + extra + "</span>");
 
                 // updates the drop down classes with the parent values
                 // of classes according to the specification
@@ -292,54 +291,60 @@ if (typeof require !== "undefined") {
 
             // register for the key down event in the body,
             // only in case the registration was not already made
-            !isRegistered && _body.keydown(function(event) {
-                // retrieves the element
-                var element = jQuery(this);
+            !isRegistered &&
+                _body.keydown(function(event) {
+                    // retrieves the element
+                    var element = jQuery(this);
 
-                // retrieves the key value
-                var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                    event.which;
+                    // retrieves the key value
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
-                // in case the key that was pressed in not the
-                // escape one there's nothing to be done and so
-                // the control flow is returned immediately
-                if (keyValue !== 27) {
-                    return;
-                }
+                    // in case the key that was pressed in not the
+                    // escape one there's nothing to be done and so
+                    // the control flow is returned immediately
+                    if (keyValue !== 27) {
+                        return;
+                    }
 
-                // retrieves the reference to the complete set of drop down
-                // conatainers that are visible for the current body and then
-                // runs the hide operation for the associated drop down
-                var container = jQuery(".drop-down-container.visible", element);
-                var dropDown = jQuery(".drop-down", container);
-                _hide(dropDown, options);
-            });
+                    // retrieves the reference to the complete set of drop down
+                    // conatainers that are visible for the current body and then
+                    // runs the hide operation for the associated drop down
+                    var container = jQuery(".drop-down-container.visible", element);
+                    var dropDown = jQuery(".drop-down", container);
+                    _hide(dropDown, options);
+                });
 
-            !isRegistered && _body.click(function(event) {
-                // retrieves the reference to the current element, this should
-                // be a top level body element (from dom structure)
-                var element = jQuery(this);
+            !isRegistered &&
+                _body.click(function(event) {
+                    // retrieves the reference to the current element, this should
+                    // be a top level body element (from dom structure)
+                    var element = jQuery(this);
 
-                // retrieves the reference to the complete set of drop down
-                // conatainers that are visible for the current body and then
-                // runs the hide operation for the associated drop down
-                var container = jQuery(".drop-down-container.visible", element);
-                var dropDown = jQuery(".drop-down", container);
-                _hide(dropDown, options);
-            });
+                    // retrieves the reference to the complete set of drop down
+                    // conatainers that are visible for the current body and then
+                    // runs the hide operation for the associated drop down
+                    var container = jQuery(".drop-down-container.visible", element);
+                    var dropDown = jQuery(".drop-down", container);
+                    _hide(dropDown, options);
+                });
 
-            !isRegistered && _window.click(function(event) {
-                // retrieves the reference to the body element, this should
-                // be a top level body element (from dom structure)
-                var element = jQuery("body");
+            !isRegistered &&
+                _window.click(function(event) {
+                    // retrieves the reference to the body element, this should
+                    // be a top level body element (from dom structure)
+                    var element = jQuery("body");
 
-                // retrieves the reference to the complete set of drop down
-                // conatainers that are visible for the current body and then
-                // runs the hide operation for the associated drop down
-                var container = jQuery(".drop-down-container.visible", element);
-                var dropDown = jQuery(".drop-down", container);
-                _hide(dropDown, options);
-            });
+                    // retrieves the reference to the complete set of drop down
+                    // conatainers that are visible for the current body and then
+                    // runs the hide operation for the associated drop down
+                    var container = jQuery(".drop-down-container.visible", element);
+                    var dropDown = jQuery(".drop-down", container);
+                    _hide(dropDown, options);
+                });
 
             // marks the complete set of elements as registered this is going to
             // be used in the update event to determine the elements that already
@@ -358,7 +363,7 @@ if (typeof require !== "undefined") {
             // provided drop down (matched object) and then filters
             // the one that contains the target value
             var elements = jQuery("> li", matchedObject);
-            var element = elements.filter("[data-value=\"" + value + "\"]");
+            var element = elements.filter('[data-value="' + value + '"]');
 
             // runs the select operation on the target element as
             // "requested" by the click operation in it
@@ -532,7 +537,7 @@ if (typeof require !== "undefined") {
             var extra = matchedObject.attr("data-extra") || "";
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
-            var originalElement = elements.filter("[data-value=\"" + original + "\"]");
+            var originalElement = elements.filter('[data-value="' + original + '"]');
 
             // starts some of the values that are going to be latter populated
             // by following code execution
@@ -573,8 +578,7 @@ if (typeof require !== "undefined") {
 
             // in case there's a valid extra (note) name to be added to
             // the drop down button it's added at the end of the button
-            originalExtra
-                && button.append("<span class=\"extra\">" + originalExtra + "</span>");
+            originalExtra && button.append('<span class="extra">' + originalExtra + "</span>");
         };
 
         var _reset = function(matchedObject, options) {

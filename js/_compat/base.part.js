@@ -1,5 +1,6 @@
 var jquery = require("jquery");
-if (typeof __webpack_require__ === "undefined") { // eslint-disable-line camelcase
+// eslint-disable-next-line camelcase
+if (typeof __webpack_require__ === "undefined") {
     var jsdom = require("jsdom");
     global.dom = global.dom || new jsdom.JSDOM("");
     global.jQuery = global.jQuery || jquery(global.dom.window);

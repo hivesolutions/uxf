@@ -67,31 +67,31 @@ if (typeof require !== "undefined") {
                 var linkAttribute = matchedObject.attr("data-link_attribute") || "link";
 
                 // creates the various section elements
-                var sourceSection = jQuery("<div class=\"section source-section\"></div>");
-                var crossSection = jQuery("<div class=\"section cross-section\"></div>");
-                var targetSection = jQuery("<div class=\"section target-section\"></div>");
+                var sourceSection = jQuery('<div class="section source-section"></div>');
+                var crossSection = jQuery('<div class="section cross-section"></div>');
+                var targetSection = jQuery('<div class="section target-section"></div>');
 
                 // creates the various title elements
                 var sourceTitle = jQuery("<h2>" + sourceName + "</h2>");
                 var targetTitle = jQuery("<h2>" + targetName + "</h2>");
 
                 // creates the various source elements
-                var sourceList = jQuery("<div class=\"source-list\"></div>");
-                var targetList = jQuery("<div class=\"source-list\"></div>");
+                var sourceList = jQuery('<div class="source-list"></div>');
+                var targetList = jQuery('<div class="source-list"></div>');
 
                 // creates the (local) data source to be used in the target
                 // section, this data source is going to be constantly manpulated
                 // throught the internal items list
-                var targetSource = jQuery("<ul class=\"data-source\" data-type=\"local\"></ul>");
+                var targetSource = jQuery('<ul class="data-source" data-type="local"></ul>');
 
                 // creates the various arrow elements to be used to "cross" the
                 // elements from one side to the other
-                var arrowRight = jQuery("<div class=\"arrow arrow-right\"></div>");
-                var arrowLeft = jQuery("<div class=\"arrow arrow-left\"></div>");
+                var arrowRight = jQuery('<div class="arrow arrow-right"></div>');
+                var arrowLeft = jQuery('<div class="arrow arrow-left"></div>');
 
                 // creates the clear element to be used to clear the ui after the
                 // creation of the various "floating" sections
-                var clear = jQuery("<div class=\"clear\"></div>");
+                var clear = jQuery('<div class="clear"></div>');
 
                 // iterates over each of the items in the list of predefined items
                 // to add them to the local (and target) data souce, initial setting
@@ -106,20 +106,14 @@ if (typeof require !== "undefined") {
                 // list then in case the element name is defined sets it in the target
                 // list to provide correct form submission
                 dataSource.length && sourceList.append(dataSource);
-                displayAttribute
-                    && sourceList.attr("data-display_attribute",
-                        displayAttribute);
-                valueAttribute
-                    && sourceList.attr("data-value_attribute",
-                        valueAttribute);
-                linkAttribute
-                    && sourceList.attr("data-link_attribute", linkAttribute);
+                displayAttribute && sourceList.attr("data-display_attribute", displayAttribute);
+                valueAttribute && sourceList.attr("data-value_attribute", valueAttribute);
+                linkAttribute && sourceList.attr("data-link_attribute", linkAttribute);
                 elementOrder && targetList.attr("data-order", elementOrder);
 
                 // in case the number of options is set propagates the setting to the
                 // source list so that the number of options is limited
-                numberOptions
-                    && sourceList.attr("data-number_options", numberOptions);
+                numberOptions && sourceList.attr("data-number_options", numberOptions);
 
                 // starts the target data source and then adds it to the target list
                 // this data source is going to be manipulated through the items
@@ -167,16 +161,13 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // retrieves both the target and the source list
             // for the currently selected object
-            var sourceList = jQuery(".source-section .select-list",
-                matchedObject);
-            var targetList = jQuery(".target-section .select-list",
-                matchedObject);
+            var sourceList = jQuery(".source-section .select-list", matchedObject);
+            var targetList = jQuery(".target-section .select-list", matchedObject);
 
             // retrieves the source list value as the source
             // element to be able to register it for the valide
             // item event (and filter the ones in the target)
-            var sourceElement = jQuery(".source-section .source-list",
-                matchedObject);
+            var sourceElement = jQuery(".source-section .source-list", matchedObject);
 
             // retrieves the arrows for the currently matched object
             // these "buttons" control the flow between sections
@@ -202,8 +193,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the target data source and uses it to
                 // retrieve the associated items for filtering
-                var targetSource = jQuery(
-                    ".target-section .data-source", crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // verifies if the current item in validation exists in
@@ -236,8 +226,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the target data source and then
                 // uses it to retrieve the items from its data
-                var targetSource = jQuery(".target-section .data-source",
-                    crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // retrieves the complete set of items in the select
@@ -280,15 +269,12 @@ if (typeof require !== "undefined") {
 
                 // retrieves the source and target lists associated with the
                 // current cross list (current context) for usage
-                var sourceList = jQuery(".source-section .source-list",
-                    crossList);
-                var targetList = jQuery(".target-section .source-list",
-                    crossList);
+                var sourceList = jQuery(".source-section .source-list", crossList);
+                var targetList = jQuery(".target-section .source-list", crossList);
 
                 // retrieves the target data source and then
                 // uses it to retrieve the items from its data
-                var targetSource = jQuery(
-                    ".target-section .data-source", crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // removes the selected class from the element, it's
@@ -325,15 +311,12 @@ if (typeof require !== "undefined") {
 
                 // retrieves the source and target lists associated with the
                 // current cross list (current context) for usage
-                var sourceList = jQuery(".source-section .source-list",
-                    crossList);
-                var targetList = jQuery(".target-section .source-list",
-                    crossList);
+                var sourceList = jQuery(".source-section .source-list", crossList);
+                var targetList = jQuery(".target-section .source-list", crossList);
 
                 // retrieves the target data source and then
                 // uses it to retrieve the items from its data
-                var targetSource = jQuery(
-                    ".target-section .data-source", crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // removes the selected class from the element, it's
@@ -367,15 +350,12 @@ if (typeof require !== "undefined") {
 
                 // retrieves the source and target lists associated with the
                 // current cross list (current context) for usage
-                var sourceList = jQuery(".source-section .source-list",
-                    crossList);
-                var targetList = jQuery(".target-section .source-list",
-                    crossList);
+                var sourceList = jQuery(".source-section .source-list", crossList);
+                var targetList = jQuery(".target-section .source-list", crossList);
 
                 // retrieves the target data source and then
                 // uses it to retrieve the items from its data
-                var targetSource = jQuery(
-                    ".target-section .data-source", crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // retrieves the list of selected items in the target list
@@ -421,15 +401,12 @@ if (typeof require !== "undefined") {
 
                 // retrieves the source and target lists associated with the
                 // current cross list (current context) for usage
-                var sourceList = jQuery(".source-section .source-list",
-                    crossList);
-                var targetList = jQuery(".target-section .source-list",
-                    crossList);
+                var sourceList = jQuery(".source-section .source-list", crossList);
+                var targetList = jQuery(".target-section .source-list", crossList);
 
                 // retrieves the target data source and then
                 // uses it to retrieve the items from its data
-                var targetSource = jQuery(
-                    ".target-section .data-source", crossList);
+                var targetSource = jQuery(".target-section .data-source", crossList);
                 var targetItems = targetSource.data("items");
 
                 // retrieves the list of selected items in the source list
@@ -489,8 +466,7 @@ if (typeof require !== "undefined") {
 
                     // retrieves the reference to the target select list that
                     // is going to be used in the retrieval of the list item
-                    var targetList = jQuery(
-                        ".target-section .select-list", _element);
+                    var targetList = jQuery(".target-section .select-list", _element);
 
                     // removes all the input elements contained inside the
                     // current select list (avoid duplicated submission)
@@ -506,8 +482,7 @@ if (typeof require !== "undefined") {
                     // value with the same name is posted (so that an empty value
                     // is submitted), required for compliance
                     if (listItems.length === 0) {
-                        targetList.append("<input type=\"hidden\" name=\"" + elementName +
-                            "\" />");
+                        targetList.append('<input type="hidden" name="' + elementName + '" />');
                     }
 
                     // iterates over all the elements in the list items to
@@ -523,8 +498,13 @@ if (typeof require !== "undefined") {
 
                         // adds the input element representing the list item
                         // to the target list itself
-                        targetList.append("<input type=\"hidden\" name=\"" + elementName +
-                            "\" value=\"" + dataValue + "\" />");
+                        targetList.append(
+                            '<input type="hidden" name="' +
+                                elementName +
+                                '" value="' +
+                                dataValue +
+                                '" />'
+                        );
                     }
                 });
             });

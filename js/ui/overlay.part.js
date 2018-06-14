@@ -129,19 +129,17 @@ if (typeof require !== "undefined") {
 
             // registers for the toggle (visibility) event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("toggle",
-                function(event, timeout, extra, autohide) {
-                    var element = jQuery(this);
-                    _toggle(element, options, timeout, extra, autohide);
-                });
+            matchedObject.bind("toggle", function(event, timeout, extra, autohide) {
+                var element = jQuery(this);
+                _toggle(element, options, timeout, extra, autohide);
+            });
 
             // registers for the show event so that the proper
             // hide operation is performed in the associated overlay
-            matchedObject.bind("show",
-                function(event, timeout, extra, autohide, timing) {
-                    var element = jQuery(this);
-                    _show(element, options, timeout, extra, autohide, timing);
-                });
+            matchedObject.bind("show", function(event, timeout, extra, autohide, timing) {
+                var element = jQuery(this);
+                _show(element, options, timeout, extra, autohide, timing);
+            });
 
             // registers for the hide event so that the proper
             // hide operation is performed in the associated overlay

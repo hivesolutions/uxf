@@ -50,13 +50,20 @@ if (typeof require !== "undefined") {
 
                 // wrapps the current element inside the panel more
                 // contents to be able to change the visibility
-                _element.wrapInner("<div class=\"panel-more-contents\"></div>");
+                _element.wrapInner('<div class="panel-more-contents"></div>');
 
                 // adds the panel more action container with the
                 // button and the divider
-                _element.append("<div class=\"panel-more-action\">" + "<li class=\"list-more\">" +
-                    "<span class=\"button\">" + moreString + "</span>" + "</li>" +
-                    "<li class=\"list-divider\"></li>" + "</div>");
+                _element.append(
+                    '<div class="panel-more-action">' +
+                        '<li class="list-more">' +
+                        '<span class="button">' +
+                        moreString +
+                        "</span>" +
+                        "</li>" +
+                        '<li class="list-divider"></li>' +
+                        "</div>"
+                );
             });
         };
 
@@ -106,8 +113,7 @@ if (typeof require !== "undefined") {
         var _show = function(matchedObject, options) {
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the show operation
-            var panelMoreContents = jQuery(".panel-more-contents",
-                matchedObject);
+            var panelMoreContents = jQuery(".panel-more-contents", matchedObject);
             var moreButton = jQuery("li.list-more .button", matchedObject);
 
             // retrieves the string that is going to be used to
@@ -123,8 +129,7 @@ if (typeof require !== "undefined") {
         var _hide = function(matchedObject, options) {
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the hide operation
-            var panelMoreContents = jQuery(".panel-more-contents",
-                matchedObject);
+            var panelMoreContents = jQuery(".panel-more-contents", matchedObject);
             var moreButton = jQuery("li.list-more .button", matchedObject);
 
             // retrieves the string that is going to be used to
@@ -140,8 +145,7 @@ if (typeof require !== "undefined") {
         var _toggle = function(matchedObject, options) {
             // retrieves the various (sub)-element that are going
             // to be used for the processing of the toggle operation
-            var panelMoreContents = jQuery(".panel-more-contents",
-                matchedObject);
+            var panelMoreContents = jQuery(".panel-more-contents", matchedObject);
 
             // checks if the the panel more contents is currently
             // visible, to toggle the visibility

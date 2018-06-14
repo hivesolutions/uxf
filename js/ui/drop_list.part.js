@@ -180,8 +180,9 @@ if (typeof require !== "undefined") {
 
                     // creates the hidden input field representing the selected item
                     // and prepends it to the current drop list element
-                    _element.prepend("<input type=\"hidden\" name=\"" + name +
-                        "\" value=\"" + value + "\" />");
+                    _element.prepend(
+                        '<input type="hidden" name="' + name + '" value="' + value + '" />'
+                    );
                 });
             });
         };

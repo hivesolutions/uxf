@@ -47,9 +47,9 @@ if (typeof require !== "undefined") {
 
             // adds the colony gateway code to the current matched object
             // only in case the plugin exists in the current environment
-            hasPlugin
-                && matchedObject.append(
-                    "<object id=\"colony-gateway\" type=\"application/x-colony-gateway\" width=\"0\" height=\"0\"></object>"
+            hasPlugin &&
+                matchedObject.append(
+                    '<object id="colony-gateway" type="application/x-colony-gateway" width="0" height="0"></object>'
                 );
         };
 

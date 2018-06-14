@@ -131,12 +131,37 @@ if (typeof require !== "undefined") {
 
             // updates the matched object html with the video embed object
             // that will include a flash object into the code
-            matchedObject.html("<" + tag + " id=\"youtube-player\" width=\"" + width + "\" height=\"" +
-                height + "\" src=\"//www.youtube.com/" + prefixUrl + "/" + videoId + "?" + hdValue +
-                "&" + infoValue + "&" + controlsValue + "&" + autoPlayValue +
-                "&playerapiid=youtube-player" + "&version=3" + "&enablejsapi=1" +
-                "\" frameborder=\"0\"" + " allowfullscreen=\"true\"" + " allowscriptaccess=\"always\"" +
-                " type=\"" + type + "\"></" + tag + ">");
+            matchedObject.html(
+                "<" +
+                    tag +
+                    ' id="youtube-player" width="' +
+                    width +
+                    '" height="' +
+                    height +
+                    '" src="//www.youtube.com/' +
+                    prefixUrl +
+                    "/" +
+                    videoId +
+                    "?" +
+                    hdValue +
+                    "&" +
+                    infoValue +
+                    "&" +
+                    controlsValue +
+                    "&" +
+                    autoPlayValue +
+                    "&playerapiid=youtube-player" +
+                    "&version=3" +
+                    "&enablejsapi=1" +
+                    '" frameborder="0"' +
+                    ' allowfullscreen="true"' +
+                    ' allowscriptaccess="always"' +
+                    ' type="' +
+                    type +
+                    '"></' +
+                    tag +
+                    ">"
+            );
         };
 
         var updateVimeo = function(matchedObject, options, urlInformation) {
@@ -154,15 +179,27 @@ if (typeof require !== "undefined") {
             height = height || 315;
 
             // calculates the info value
-            var infoValue = autoPlay ? "title=1&byline=1&portrait=1" : "title=0&byline=0&portrait=0";
+            var infoValue = autoPlay
+                ? "title=1&byline=1&portrait=1"
+                : "title=0&byline=0&portrait=0";
 
             // calculates the auto play value
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
             // updates the matched object html with the video iframe
-            matchedObject.html("<iframe src=\"//player.vimeo.com/video" + resourceReference + "?" +
-                infoValue + "&" + autoPlayValue + "\" width=\"" + width + "\" height=\"" + height +
-                "\" frameborder=\"0\" webkitAllowFullScreen allowFullScreen></iframe>");
+            matchedObject.html(
+                '<iframe src="//player.vimeo.com/video' +
+                    resourceReference +
+                    "?" +
+                    infoValue +
+                    "&" +
+                    autoPlayValue +
+                    '" width="' +
+                    width +
+                    '" height="' +
+                    height +
+                    '" frameborder="0" webkitAllowFullScreen allowFullScreen></iframe>'
+            );
         };
 
         var updateDailyMotion = function(matchedObject, options, urlInformation) {
@@ -186,9 +223,19 @@ if (typeof require !== "undefined") {
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
             // updates the matched object html with the video iframe
-            matchedObject.html("<iframe src=\"//www.dailymotion.com/embed" + resourceReference + "?" +
-                chromelessValue + "&" + autoPlayValue + "\" width=\"" + width + "\" height=\"" + height +
-                "\" frameborder=\"0\" webkitAllowFullScreen allowfullscreen></iframe>");
+            matchedObject.html(
+                '<iframe src="//www.dailymotion.com/embed' +
+                    resourceReference +
+                    "?" +
+                    chromelessValue +
+                    "&" +
+                    autoPlayValue +
+                    '" width="' +
+                    width +
+                    '" height="' +
+                    height +
+                    '" frameborder="0" webkitAllowFullScreen allowfullscreen></iframe>'
+            );
         };
 
         var parseUrl = function(url) {
@@ -275,7 +322,8 @@ if (typeof require !== "undefined") {
     };
 })(jQuery);
 
-function onYoutubeStateChange(state) { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+function onYoutubeStateChange(state) {
     if (state === 0) {
         var video = jQuery("#youtube-player");
         var parent = video.parents(".video");
@@ -283,7 +331,8 @@ function onYoutubeStateChange(state) { // eslint-disable-line no-unused-vars
     }
 }
 
-function onYouTubePlayerReady(id) { // eslint-disable-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+function onYouTubePlayerReady(id) {
     var video = jQuery("#youtube-player");
     var videoElement = video[0];
     videoElement.addEventListener("onStateChange", "onYoutubeStateChange");

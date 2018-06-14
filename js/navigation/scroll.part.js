@@ -85,8 +85,9 @@ if (typeof require !== "undefined") {
             // into account if the element is below the viewport or
             // abover, this calculus also takes into account the offset
             // and padding values
-            scrollTop = isBelow ? offsetTop - parentOffsetTop - parentHeight + height + padding : offsetTop -
-                parentOffsetTop - offset - padding;
+            scrollTop = isBelow
+                ? offsetTop - parentOffsetTop - parentHeight + height + padding
+                : offsetTop - parentOffsetTop - offset - padding;
 
             // changes the scroll top value in the parent element,
             // this should make visible the matched object

@@ -63,8 +63,11 @@ if (typeof require !== "undefined") {
                 // enviroment that will increment and decrement the current page
                 var handler = function(event) {
                     // retrieves the key value
-                    var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                        event.which;
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
                     // switches over the key value
                     switch (keyValue) {
@@ -77,7 +80,7 @@ if (typeof require !== "undefined") {
                             // breaks the switch
                             break;
 
-                            // in case it's a k key
+                        // in case it's a k key
                         case 75:
                             // sends the current element to the
                             // previous "element"
@@ -86,7 +89,7 @@ if (typeof require !== "undefined") {
                             // breaks the switch
                             break;
 
-                            // in case it's default
+                        // in case it's default
                         default:
                             // breaks the switch
                             break;

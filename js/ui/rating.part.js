@@ -64,7 +64,7 @@ if (typeof require !== "undefined") {
                 // iterates over the range of requested rating values to
                 // create the various values (as requested)
                 for (index = 0; index < count; index++) {
-                    _element.append("<div class=\"rating-item\"></div>");
+                    _element.append('<div class="rating-item"></div>');
                 }
 
                 // selects the initial value by triggering the value change
@@ -146,14 +146,14 @@ if (typeof require !== "undefined") {
                     // tries to retrieve and remove any previously existing
                     // hidden element representing the current value, this
                     // avoids problems whild using ajax based form submit
-                    var previous = _element.next("input[type=hidden][name=\"" + name +
-                        "\"]");
+                    var previous = _element.next('input[type=hidden][name="' + name + '"]');
                     previous.remove();
 
                     // creates the hidden input field that is going to represent the
                     // rating element with the proper name and value set
-                    _element.after("<input type=\"hidden\" name=\"" + name + "\" value=\"" +
-                        value + "\" />");
+                    _element.after(
+                        '<input type="hidden" name="' + name + '" value="' + value + '" />'
+                    );
                 });
             });
         };

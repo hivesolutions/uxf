@@ -19,7 +19,7 @@ if (typeof require !== "undefined") {
         var integer = Math.abs(parseInt(value / 1));
         var count = integer === 0 ? 1 : parseInt(Math.log10(integer)) + 1;
         var places = FLOAT_PRECISION - count;
-        places = places < 1 ? places = 1 : places;
+        places = places < 1 ? (places = 1) : places;
         var delta = 1 / Math.pow(10, places);
         return delta;
     };

@@ -106,8 +106,7 @@ if (typeof require !== "undefined") {
 
                     // adds the input element representing the unset
                     // check field value to the proper element
-                    _element.append("<input type=\"hidden\" name=\"" + elementName +
-                        "\" value=\"\" />");
+                    _element.append('<input type="hidden" name="' + elementName + '" value="" />');
                 });
             });
         };

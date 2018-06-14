@@ -42,8 +42,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the links that represent expanded sub lists
             // for empty sub list verification
-            var epandedLinks = jQuery("> li > a > .link-expand:contains(+)",
-                matchedObject);
+            var epandedLinks = jQuery("> li > a > .link-expand:contains(+)", matchedObject);
 
             // opens the menus for all the selected links
             // of the list, changes also the expand icon
@@ -60,8 +59,7 @@ if (typeof require !== "undefined") {
                 // retrieves the list item link and the list item
                 // link expand
                 var listItemLink = jQuery("> a", listItem);
-                var listItemLinkExpand = jQuery(".link-expand",
-                    listItem);
+                var listItemLinkExpand = jQuery(".link-expand", listItem);
 
                 // shows the the list (sub list)
                 list.show();
@@ -139,8 +137,7 @@ if (typeof require !== "undefined") {
                 // retrieves the list item link and the list item
                 // link expand
                 var listItemLink = jQuery("> a", listItem);
-                var listItemLinkExpand = jQuery(".link-expand",
-                    listItem);
+                var listItemLinkExpand = jQuery(".link-expand", listItem);
 
                 // in case the element is open (has class
                 // open) need to close the list
@@ -164,8 +161,7 @@ if (typeof require !== "undefined") {
                     // links expands
                     var subListsItems = subLists.parent("li");
                     var subListsLinks = jQuery("a", subListsItems);
-                    var subListsLinkExpands = jQuery(".link-expand",
-                        subListsLinks);
+                    var subListsLinkExpands = jQuery(".link-expand", subListsLinks);
 
                     // hides the the lists (sub list)
                     subLists.slideUp(350);

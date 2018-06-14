@@ -64,7 +64,7 @@ if (typeof require !== "undefined") {
 
                 // replaces the string character in the error
                 // message list
-                error = error.replace(STRING_CHARACTER_REGEX, "\"");
+                error = error.replace(STRING_CHARACTER_REGEX, '"');
 
                 // replaces the list joining character in order
                 // to virtually "join" multiple lists
@@ -91,8 +91,8 @@ if (typeof require !== "undefined") {
                     var errorMessage = errorStructure[index];
 
                     // creates the error description html
-                    var errorDescriptionHtml = "<div class=\"error-description\">" + errorMessage +
-                        "</div>";
+                    var errorDescriptionHtml =
+                        '<div class="error-description">' + errorMessage + "</div>";
 
                     // creates the error description element and adds it
                     // after the element

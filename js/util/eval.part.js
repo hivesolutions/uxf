@@ -44,8 +44,9 @@ if (typeof require !== "undefined") {
 
                 // retrieves the element eval attribute or html
                 // as the eval string
-                var evalString = _element.attr("data-eval") ? _element.attr("data-eval") : _element
-                    .html();
+                var evalString = _element.attr("data-eval")
+                    ? _element.attr("data-eval")
+                    : _element.html();
 
                 // in case the eval string is not valid
                 if (!evalString) {
@@ -90,10 +91,12 @@ if (typeof require !== "undefined") {
                 // sets the interval for continuous evaluation
                 // in case the continuous flag is set and there
                 // is no (key) selector defined
-                continuous && !selector && setInterval(function() {
-                    // evaluates the element components
-                    _eval(_element, options);
-                }, _timeout);
+                continuous &&
+                    !selector &&
+                    setInterval(function() {
+                        // evaluates the element components
+                        _eval(_element, options);
+                    }, _timeout);
 
                 // retrieves the selector using a fall back
                 // to the body element selector then uses the
@@ -111,33 +114,35 @@ if (typeof require !== "undefined") {
                 // for the handlers that are already bound (defined in the element)
                 keyUpHandler && triggerElement.unbind("keyup", keyUpHandler);
                 changeHandler && triggerElement.unbind("change", changeHandler);
-                valueChangedHandler
-                    && triggerElement.unbind("value_change",
-                        valueChangedHandler);
+                valueChangedHandler && triggerElement.unbind("value_change", valueChangedHandler);
 
                 // sets the key up event handler in the selector in
                 // case the continuous flag is set
-                continuous && triggerElement.keyup(keyUpHandler = function() {
-                    // evaluates the element components
-                    _eval(_element, options);
-                });
+                continuous &&
+                    triggerElement.keyup(
+                        (keyUpHandler = function() {
+                            // evaluates the element components
+                            _eval(_element, options);
+                        })
+                    );
 
                 // sets the change event handler in the selector in
                 // case the continuous flag is set
-                continuous && triggerElement.change(changeHandler = function() {
-                    // evaluates the element components
-                    _eval(_element, options);
-                });
+                continuous &&
+                    triggerElement.change(
+                        (changeHandler = function() {
+                            // evaluates the element components
+                            _eval(_element, options);
+                        })
+                    );
 
                 // sets the vlaue change event handler in the selector in
                 // case the continuous flag is set
-                continuous
-                    && triggerElement.bind(
-                        valueChangedHandler = "value_change",
-                        function() {
-                            // evaluates the element components
-                            _eval(_element, options);
-                        });
+                continuous &&
+                    triggerElement.bind((valueChangedHandler = "value_change"), function() {
+                        // evaluates the element components
+                        _eval(_element, options);
+                    });
 
                 // saves the various handlers in the element
                 // so that any further eveal request will unbind
@@ -163,9 +168,9 @@ if (typeof require !== "undefined") {
             // matched object
             var evalString = matchedObject.data("eval_string");
 
-            // "evals" the eval string retrieving
-            // the (eval) result
-            var evalResult = eval(evalString); // eslint-disable-line no-eval
+            // "evals" the eval string retrieving the (eval) result
+            // eslint-disable-next-line no-eval
+            var evalResult = eval(evalString);
 
             // checks if the matched object is of type input
             // (attribute value oriented) and if it's a text

@@ -19,8 +19,18 @@ if (typeof require !== "undefined") {
         var WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
         // the list of year month in english language
-        var YEAR_MONTHS = ["January", "February", "March", "April", "May",
-            "June", "July", "August", "September", "October", "November",
+        var YEAR_MONTHS = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
             "December"
         ];
 
@@ -75,14 +85,23 @@ if (typeof require !== "undefined") {
             weekDaysString += "</tr>";
 
             // adds the calendar header component to the matched object
-            matchedObject.append("<div class=\"calendar-header\">" +
-                "<a class=\"calendar-arrow calendar-arrow-left\"></a>" +
-                "<span class=\"calendar-title\"></span>" +
-                "<a class=\"calendar-arrow calendar-arrow-right\"></a>" + "</div>");
+            matchedObject.append(
+                '<div class="calendar-header">' +
+                    '<a class="calendar-arrow calendar-arrow-left"></a>' +
+                    '<span class="calendar-title"></span>' +
+                    '<a class="calendar-arrow calendar-arrow-right"></a>' +
+                    "</div>"
+            );
 
             // adds the calendar content component to the matched object
-            matchedObject.append("<table class=\"calendar-content\">" + "<thead>" + weekDaysString +
-                "</thead>" + "<tbody></tbody>" + "</table>");
+            matchedObject.append(
+                '<table class="calendar-content">' +
+                    "<thead>" +
+                    weekDaysString +
+                    "</thead>" +
+                    "<tbody></tbody>" +
+                    "</table>"
+            );
 
             // creates a new date object to retrieve
             // the current year, month and day
@@ -274,19 +293,18 @@ if (typeof require !== "undefined") {
                 var previousDay = finalDayPreviousNumber - (initialDayWeek - index) + 1;
 
                 // in case the (current) previous day is the currently select day
-                if (previousYear === currentDayYear && previousMonth === currentDayMonth && previousDay ===
-                    currentDayNumber) {
+                if (
+                    previousYear === currentDayYear &&
+                    previousMonth === currentDayMonth &&
+                    previousDay === currentDayNumber
+                ) {
                     // adds the day tuple with the active class in it
-                    days.push([previousYear, previousMonth, previousDay,
-                        "faded active"
-                    ]);
+                    days.push([previousYear, previousMonth, previousDay, "faded active"]);
                 }
                 // otherwise it's just a "normal" day
                 else {
                     // adds the day tuple
-                    days.push([previousYear, previousMonth, previousDay,
-                        "faded"
-                    ]);
+                    days.push([previousYear, previousMonth, previousDay, "faded"]);
                 }
             }
 
@@ -296,7 +314,11 @@ if (typeof require !== "undefined") {
                 var day = index + 1;
 
                 // in case the (current) day is the currently select day
-                if (year === currentDayYear && month === currentDayMonth && day === currentDayNumber) {
+                if (
+                    year === currentDayYear &&
+                    month === currentDayMonth &&
+                    day === currentDayNumber
+                ) {
                     // adds the day tuple with the active class in it
                     days.push([year, month, day, "active"]);
                 }
@@ -317,8 +339,11 @@ if (typeof require !== "undefined") {
                 var nextDay = index - daysLength + 1;
 
                 // in case the (current) next day is the currently select day
-                if (nextYear === currentDayYear && nextMonth === currentDayMonth && nextDay ===
-                    currentDayNumber) {
+                if (
+                    nextYear === currentDayYear &&
+                    nextMonth === currentDayMonth &&
+                    nextDay === currentDayNumber
+                ) {
                     // adds the day tuple with the active class in it
                     days.push([nextYear, nextMonth, nextDay, "faded active"]);
                 }
@@ -373,8 +398,18 @@ if (typeof require !== "undefined") {
                 var dayClass = dayTuple[3];
 
                 // adds the cell code to the html code string
-                htmlCode += "<td class=\"" + dayClass + "\" data-year=\"" + _year + "\" data-month=\"" +
-                    _month + "\" data-day=\"" + _day + "\" >" + _day + "</td>";
+                htmlCode +=
+                    '<td class="' +
+                    dayClass +
+                    '" data-year="' +
+                    _year +
+                    '" data-month="' +
+                    _month +
+                    '" data-day="' +
+                    _day +
+                    '" >' +
+                    _day +
+                    "</td>";
             }
 
             // in case there is a line (still) open

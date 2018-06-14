@@ -47,9 +47,9 @@ if (typeof require !== "undefined") {
             // element so that the buttons may be added, then retrieves
             // the "just" created toggle field and adds the button
             // to it (to be used for toggling the state)
-            matchedObject.wrap("<div class=\"toggle-field\"></div>");
+            matchedObject.wrap('<div class="toggle-field"></div>');
             var toggleField = matchedObject.parents(".toggle-field");
-            toggleField.prepend("<div class=\"button\"></div>");
+            toggleField.prepend('<div class="button"></div>');
 
             // sets the ux global object representation as toggle
             // field, this value may be used latter for fast ux

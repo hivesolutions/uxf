@@ -63,8 +63,11 @@ if (typeof require !== "undefined") {
                 // in the key element
                 var handler = function(event) {
                     // retrieves the key value
-                    var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                        event.which;
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
                     // in case the ctrl or the alt keys
                     // are pressed no need to handle the event
@@ -84,7 +87,7 @@ if (typeof require !== "undefined") {
                             // breaks the switch
                             break;
 
-                            // in case it's default
+                        // in case it's default
                         default:
                             // breaks the switch
                             break;

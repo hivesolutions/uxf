@@ -30,9 +30,7 @@ if (typeof require !== "undefined") {
         /**
          * Creates the necessary html for the component.
          */
-        var _appendHtml = function() {
-
-        };
+        var _appendHtml = function() {};
 
         /**
          * Registers the event handlers for the created objects.

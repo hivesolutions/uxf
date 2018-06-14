@@ -66,9 +66,7 @@ if (typeof require !== "undefined") {
                 // retrieves all the rows from the element reference
                 // and all the text fields associated with the element reference
                 var rows = jQuery("tbody > tr:not(.template)", elementReference);
-                var textFields = jQuery(
-                    "tbody > tr:not(.template) .text-field",
-                    elementReference);
+                var textFields = jQuery("tbody > tr:not(.template) .text-field", elementReference);
 
                 // iterates over all the items in the matched object
                 rows.each(function(index, element) {
@@ -77,8 +75,7 @@ if (typeof require !== "undefined") {
 
                     // retrieves the last row and adds the last class
                     // to it to signal the last element
-                    var lastRow = jQuery(":last-child",
-                        elementReference);
+                    var lastRow = jQuery(":last-child", elementReference);
                     lastRow.addClass("last");
 
                     // sets the line id in the element reference
@@ -130,7 +127,10 @@ if (typeof require !== "undefined") {
             var newLine = jQuery(".table-new-line", matchedObject);
 
             // retrieves the row elements (without the table header, footer and templates)
-            var rows = jQuery("tr", matchedObject).not("thead tr").not("tfoot tr").not(".template");
+            var rows = jQuery("tr", matchedObject)
+                .not("thead tr")
+                .not("tfoot tr")
+                .not(".template");
 
             // registers for the click event in the newline element
             newLine.click(function() {
@@ -187,8 +187,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // retrieves the rows from the element reference
-                    var rows = jQuery("tbody > tr:not(.template)",
-                        elementReference);
+                    var rows = jQuery("tbody > tr:not(.template)", elementReference);
 
                     // in case there are no rows available
                     if (rows.length === 0) {
@@ -199,10 +198,8 @@ if (typeof require !== "undefined") {
 
                     // retrieves the table empty field to remove and then
                     // and retrieve the table default field to disable it
-                    var tableEmptyField = jQuery(".table-empty-field",
-                        elementReference);
-                    var tableDefaultField = jQuery(".table-default-field",
-                        elementReference);
+                    var tableEmptyField = jQuery(".table-empty-field", elementReference);
+                    var tableDefaultField = jQuery(".table-default-field", elementReference);
 
                     // retrieves the default input (text field) to be disabled
                     // and then removes the name attribute from it disables
@@ -213,16 +210,15 @@ if (typeof require !== "undefined") {
                     // retries the name attribute from the table empty field
                     // from each of the name fields and then (re)-sets it in
                     // each of the name fields (so that it may be restored)
-                    var name = tableEmptyField.attr("name") || tableEmptyField.attr(
-                        "data-name");
+                    var name = tableEmptyField.attr("name") || tableEmptyField.attr("data-name");
                     tableEmptyField.attr("name", name);
                     tableEmptyField.attr("data-name", name);
 
                     // in case there is only one table field element
                     // the table empty field is removed to avoid it from
                     // being submited (this should only be submited in empty table)
-                    (rows.length - tableDefaultField.length > 0) && tableEmptyField.removeAttr(
-                        "name");
+                    rows.length - tableDefaultField.length > 0 &&
+                        tableEmptyField.removeAttr("name");
                 });
 
                 // in case the table is of type edit and the table is emtpy
@@ -279,9 +275,10 @@ if (typeof require !== "undefined") {
             }
 
             // creates the add and remove buttons html
-            var addButtonHtml = "<td class=\"table-add\">" + "<div class=\"inline-add\"></div>" + "</td>";
-            var removeButtonHtml = "<td class=\"table-remove\">" + "<div class=\"inline-remove\"></div>" +
-                "</td>";
+            var addButtonHtml =
+                '<td class="table-add">' + '<div class="inline-add"></div>' + "</td>";
+            var removeButtonHtml =
+                '<td class="table-remove">' + '<div class="inline-remove"></div>' + "</td>";
 
             // adds the add and remove button html to the row
             row.append(removeButtonHtml);
@@ -332,9 +329,7 @@ if (typeof require !== "undefined") {
                 // be invisible during the first calculus, note that
                 // this valud is only set in case the value is valid
                 // (not defined as not a number)
-                isValid
-                    && addButton.css("margin-left",
-                        addButtonMarginLeft + "px");
+                isValid && addButton.css("margin-left", addButtonMarginLeft + "px");
 
                 // updates the buttons visibility
                 addButton.addClass("visible");
@@ -400,8 +395,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the current last row and then add the last
                 // class to it (updating it's structure)
-                var lastRow = jQuery("tbody > tr:not(.template):last",
-                    matchedObject);
+                var lastRow = jQuery("tbody > tr:not(.template):last", matchedObject);
                 lastRow.addClass("last");
 
                 // triggers the removed line event, sends the removed
@@ -550,9 +544,7 @@ if (typeof require !== "undefined") {
                 // in the processing of the paste event on the table
                 var column = element.parents("td");
                 var table = column.parents(".table");
-                var target = jQuery(
-                    "> [data-object]:not([disabled], .disabled)",
-                    column);
+                var target = jQuery("> [data-object]:not([disabled], .disabled)", column);
 
                 // verifies if the paste feature has been explicitly disabled for
                 // the current table and if that's the case returns immedidately
@@ -630,10 +622,15 @@ if (typeof require !== "undefined") {
                     for (var _index = 0; _index < columns.length; _index++) {
                         // tries to retrieve the current element to be used in the
                         // operation that is going to populate the value
-                        var current = initial || _next(
-                            current,
-                            "> [data-object]:not([disabled], .disabled)",
-                            null, null, true);
+                        var current =
+                            initial ||
+                            _next(
+                                current,
+                                "> [data-object]:not([disabled], .disabled)",
+                                null,
+                                null,
+                                true
+                            );
                         initial = null;
                         if (!current) {
                             break;
@@ -661,7 +658,10 @@ if (typeof require !== "undefined") {
                     initial = _next(
                         null,
                         "> [data-object]:not([disabled], .disabled)",
-                        lastColumn, null, true);
+                        lastColumn,
+                        null,
+                        true
+                    );
 
                     // in case the next initial is an invalid one (not possible to set it)
                     // must break the current iteration no more rows available in table
@@ -704,11 +704,14 @@ if (typeof require !== "undefined") {
             // applies no attributes to the template (item)
             // retrieving the resulting template item, avoids
             // the auto apply (avoids problem requesting the form)
-            var templateItem = template.uxtemplate({
-                line_id: currentLineId
-            }, {
-                apply: false
-            });
+            var templateItem = template.uxtemplate(
+                {
+                    line_id: currentLineId
+                },
+                {
+                    apply: false
+                }
+            );
 
             // chekc if the current table is in edit mode
             var isEdit = matchedObject.hasClass("table-edit");
@@ -841,17 +844,14 @@ if (typeof require !== "undefined") {
             // retrieves the current set of next horizontal and
             // next vertical invalid values and then remvoes their
             // repsective classes (restores the original next invalid values)
-            var allHorizontalInvalid = jQuery(".next-horizontal-invalid",
-                matchedObject);
-            var allVerticalInvalid = jQuery(".next-vertical-invalid",
-                matchedObject);
+            var allHorizontalInvalid = jQuery(".next-horizontal-invalid", matchedObject);
+            var allVerticalInvalid = jQuery(".next-vertical-invalid", matchedObject);
             allHorizontalInvalid.removeClass("next-horizontal-invalid");
             allVerticalInvalid.removeClass("next-vertical-invalid");
 
             // retrieves all the text fields from the matched object that are valid
             // and then iterates over them to set the proper invalid values
-            var textFields = jQuery("tbody > tr:not(.template) .text-field",
-                matchedObject);
+            var textFields = jQuery("tbody > tr:not(.template) .text-field", matchedObject);
             textFields.each(function(index, element) {
                 // retrieves the current iteration element
                 // reference for reference

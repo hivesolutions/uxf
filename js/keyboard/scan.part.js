@@ -93,8 +93,11 @@ if (typeof require !== "undefined") {
                     var delta = currentTime - previousTime;
 
                     // retrieves the key value for the current event
-                    var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode :
-                        event.which;
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                            ? event.charCode
+                            : event.which;
 
                     // in case the ignoring mode is set need
                     // to check if we can get out of it
@@ -111,8 +114,7 @@ if (typeof require !== "undefined") {
 
                             // updates the previous time data in the target
                             // object and returns the control
-                            targetObject.data("previous_time",
-                                currentTime);
+                            targetObject.data("previous_time", currentTime);
                             return;
                         }
                         // otherwise the scan interval time has passed and
@@ -141,8 +143,7 @@ if (typeof require !== "undefined") {
                             // updates the target object data to reflect
                             // the ignore mode entrance and returns the control
                             targetObject.data("sequence", null);
-                            targetObject.data("previous_time",
-                                currentTime);
+                            targetObject.data("previous_time", currentTime);
                             targetObject.data("initial_time", null);
                             targetObject.data("ignoring", true);
                             return;
@@ -168,20 +169,17 @@ if (typeof require !== "undefined") {
                         // calculates the delta value to the total time and them
                         // verifies if it is valid
                         var deltaTotal = currentTime - initialTime;
-                        var deltaValid = deltaTotal < sequenceLength * WORD_RATIO *
-                            LETTER_INTERVAL;
+                        var deltaValid = deltaTotal < sequenceLength * WORD_RATIO * LETTER_INTERVAL;
 
                         // checks if the current sequence is valid, it is
                         // considered to be valid in case it's not empty
                         // the length respect the minimum size and the delta
                         // time for the word is valid
-                        var isValid = sequence && sequence.length >= MINIMUM_LENGTH &&
-                            deltaValid;
+                        var isValid = sequence && sequence.length >= MINIMUM_LENGTH && deltaValid;
 
                         // in case the sequence is considered to be valid
                         // the scan event is triggered
-                        isValid
-                            && targetObject.trigger("scan", [sequence]);
+                        isValid && targetObject.trigger("scan", [sequence]);
 
                         // resets the various data values in the
                         // the target object to reflect the default values
@@ -237,7 +235,11 @@ if (typeof require !== "undefined") {
             var initialTime = targetObject.data("initial_time") || currentTime;
 
             // retrieves the key value for the current event
-            var keyValue = event.keyCode ? event.keyCode : event.charCode ? event.charCode : event.which;
+            var keyValue = event.keyCode
+                ? event.keyCode
+                : event.charCode
+                    ? event.charCode
+                    : event.which;
 
             // in case the key is not an enter no need to do any
             // extra verification

@@ -54,8 +54,8 @@ if (typeof require !== "undefined") {
 
             // adds to extra elements to the stack representing the items
             // that are inside the stack and the ones that are outside it
-            matchedObject.append("<div class=\"stack-in\"></div>");
-            matchedObject.append("<div class=\"stack-out\"></div>");
+            matchedObject.append('<div class="stack-in"></div>');
+            matchedObject.append('<div class="stack-out"></div>');
 
             // iterates over each of the selected elements to start the
             // stack structure for each of them
@@ -63,10 +63,9 @@ if (typeof require !== "undefined") {
                 var _element = jQuery(this);
                 var stackOut = jQuery("> .stack-out", _element);
                 var stackItems = jQuery("> .stack-item", _element);
-                var stackTop = jQuery("> .stack-item.stack-top",
-                    _element);
-                stackTop = stackTop.length === 0 ? jQuery(
-                    "> .stack-item:first", _element) : stackTop;
+                var stackTop = jQuery("> .stack-item.stack-top", _element);
+                stackTop =
+                    stackTop.length === 0 ? jQuery("> .stack-item:first", _element) : stackTop;
                 stackOut.append(stackItems);
                 push(_element, stackTop, false);
             });
@@ -116,13 +115,14 @@ if (typeof require !== "undefined") {
                 popAll(element);
             });
 
-            !isRegistered && _window.bind("size", function() {
-                var stacks = jQuery(".stack", _body);
-                stacks.each(function(index, value) {
-                    var _element = jQuery(this);
-                    _reposition(_element);
+            !isRegistered &&
+                _window.bind("size", function() {
+                    var stacks = jQuery(".stack", _body);
+                    stacks.each(function(index, value) {
+                        var _element = jQuery(this);
+                        _reposition(_element);
+                    });
                 });
-            });
         };
 
         var push = function(element, target, animated) {
@@ -209,7 +209,7 @@ if (typeof require !== "undefined") {
                 itemsOffset += isGarbage ? 0 : elementWidth;
             });
             stackIn.width(itemsWidth);
-            stackIn.css("left", String((itemsOffset * -1) + stackTopWidth) + "px");
+            stackIn.css("left", String(itemsOffset * -1 + stackTopWidth) + "px");
         };
 
         var _gc = function(element) {

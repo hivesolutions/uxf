@@ -77,10 +77,14 @@ if (typeof require !== "undefined") {
             // tries to retrieve the complete set of element for the
             // colony cloud print action, in case they are defined
             // they will take priority for usage of print infra-structure
-            var printUrl = window.localStorage && localStorage.getItem("uxf:gateway:base_url") || "";
-            var printKey = window.localStorage && window.localStorage.getItem("uxf:gateway:key") || "";
-            var printNode = window.localStorage && window.localStorage.getItem("uxf:gateway:node:id") || "";
-            var printPrinter = window.localStorage && window.localStorage.getItem("uxf:gateway:printer:id") ||
+            var printUrl =
+                (window.localStorage && localStorage.getItem("uxf:gateway:base_url")) || "";
+            var printKey =
+                (window.localStorage && window.localStorage.getItem("uxf:gateway:key")) || "";
+            var printNode =
+                (window.localStorage && window.localStorage.getItem("uxf:gateway:node:id")) || "";
+            var printPrinter =
+                (window.localStorage && window.localStorage.getItem("uxf:gateway:printer:id")) ||
                 "";
 
             // in case the complete set of required colony print field
@@ -104,8 +108,7 @@ if (typeof require !== "undefined") {
                                 skey: printKey
                             },
                             beforeSend: function(xhr) {
-                                xhr.setRequestHeader("X-Secret-Key",
-                                    printKey);
+                                xhr.setRequestHeader("X-Secret-Key", printKey);
                             }
                         });
                     }
@@ -223,8 +226,10 @@ if (typeof require !== "undefined") {
                     var _body = jQuery("body");
                     _body.uxinfo(
                         "There was an error retrieving remote print data.<br />" +
-                        "Please try again latter or contact the support team.",
-                        "Error", "warning");
+                            "Please try again latter or contact the support team.",
+                        "Error",
+                        "warning"
+                    );
                 }
             });
         };

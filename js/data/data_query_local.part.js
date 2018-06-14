@@ -80,8 +80,12 @@ if (typeof require !== "undefined") {
             // of records is set the filtering mosde should
             // be enabled so that only a slice of the results
             // is returned at the end of the query process
-            if (startRecord !== null && startRecord !== undefined && numberRecords !== null &&
-                numberRecords !== undefined) {
+            if (
+                startRecord !== null &&
+                startRecord !== undefined &&
+                numberRecords !== null &&
+                numberRecords !== undefined
+            ) {
                 filter = true;
             }
 
@@ -254,7 +258,9 @@ if (typeof require !== "undefined") {
 
             // filters "some" valid items (in
             // case the filter options flag is set)
-            validItems = filter ? validItems.slice(startRecord, startRecord + numberRecords) : validItems;
+            validItems = filter
+                ? validItems.slice(startRecord, startRecord + numberRecords)
+                : validItems;
 
             // schedules the calling of the callback with the "valid" items
             // for the next event loop "tick", this better simulates the

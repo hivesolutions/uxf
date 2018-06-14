@@ -59,8 +59,9 @@ if (typeof require !== "undefined") {
                 // retrieves the timeout of the element, to be
                 // used in case the timeout mode is enabled, defaults
                 // to the default timeout
-                var timeout = _element.attr("data-timeout") ? parseInt(_element.attr("data-timeout")) :
-                    DEFAULT_TIMEOUT;
+                var timeout = _element.attr("data-timeout")
+                    ? parseInt(_element.attr("data-timeout"))
+                    : DEFAULT_TIMEOUT;
 
                 // in case the trigger mode is enable must bind the
                 // element to the change event

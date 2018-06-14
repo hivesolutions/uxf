@@ -45,8 +45,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // retrieves the currently selected panel (if any) and then
             // calculates the initial panel index based on it
-            var selectedPanel = jQuery(".panel-stack > .panel.selected",
-                matchedObject);
+            var selectedPanel = jQuery(".panel-stack > .panel.selected", matchedObject);
             var index = selectedPanel.length > 0 ? selectedPanel.index() : 0;
 
             // tries to update the initial index value based on the index

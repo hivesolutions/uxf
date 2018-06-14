@@ -50,7 +50,7 @@ if (typeof require !== "undefined") {
 
             // adds the tag field tags to the matched object, this
             // is the container to the tag representations
-            matchedObject.prepend("<div class=\"tag-field-tags\"></div>");
+            matchedObject.prepend('<div class="tag-field-tags"></div>');
 
             // iterates over each of the matched object to load
             // its contents, as an individual operation
@@ -97,8 +97,7 @@ if (typeof require !== "undefined") {
 
                     // adds a new tag to the tags container, this operation
                     // will not trigger any layout change
-                    _addTag(_element, options, dataHtml,
-                        dataValue, true);
+                    _addTag(_element, options, dataHtml, dataValue, true);
                 });
 
                 // removes the targs list from the tag field, this is
@@ -122,8 +121,7 @@ if (typeof require !== "undefined") {
                     // update operation for the final part of the update
                     // lifecycle this way a new refresh happends after the
                     // complete layout is rendered
-                    isVisible
-                        ? _update(_element, options) : _update(_element, options, true);
+                    isVisible ? _update(_element, options) : _update(_element, options, true);
                 });
             });
         };
@@ -165,9 +163,7 @@ if (typeof require !== "undefined") {
 
                     // removes all the input elements contained inside the
                     // current tag field (avoid duplicated submission)
-                    var inputs = jQuery(
-                        "input:not(.text-field, .tag-empty-field)",
-                        _element);
+                    var inputs = jQuery("input:not(.text-field, .tag-empty-field)", _element);
                     inputs.remove("input");
 
                     // retrieves the complete set of tags in the current
@@ -188,16 +184,20 @@ if (typeof require !== "undefined") {
 
                         // adds the input element representing the list item
                         // to the list item itself
-                        _element.append("<input type=\"hidden\" name=\"" + elementName +
-                            "\" value=\"" + dataValue + "\" />");
+                        _element.append(
+                            '<input type="hidden" name="' +
+                                elementName +
+                                '" value="' +
+                                dataValue +
+                                '" />'
+                        );
                     }
 
                     // retrieves the empty field used to submit a default
                     // value in case no tags are selected and then tries
                     // to retrieve the name associated with it so that it
                     // may be used in the submission manipulation
-                    var tagEmptyField = jQuery(".tag-empty-field",
-                        _element);
+                    var tagEmptyField = jQuery(".tag-empty-field", _element);
                     var name = tagEmptyField.attr("name") || tagEmptyField.attr("data-name");
                     tagEmptyField.attr("name", name);
                     tagEmptyField.attr("data-name", name);
@@ -209,30 +209,29 @@ if (typeof require !== "undefined") {
                 });
             });
 
-            matchedObject.bind("value_select",
-                function(event, value, valueLogic, item) {
-                    // retrieves the target element clicked
-                    var element = jQuery(this);
+            matchedObject.bind("value_select", function(event, value, valueLogic, item) {
+                // retrieves the target element clicked
+                var element = jQuery(this);
 
-                    // in case no value is select nothing is to
-                    // be done, returns immediately
-                    if (!value) {
-                        return;
-                    }
+                // in case no value is select nothing is to
+                // be done, returns immediately
+                if (!value) {
+                    return;
+                }
 
-                    // retrieves the text field assiciated with the
-                    // element and resets its value no value present
-                    var textField = jQuery(".text-field", element);
-                    textField.val("");
+                // retrieves the text field assiciated with the
+                // element and resets its value no value present
+                var textField = jQuery(".text-field", element);
+                textField.val("");
 
-                    // adds a new tag to the tags container, this operation
-                    // will not trigger any layout change
-                    _addTag(element, options, value, valueLogic);
+                // adds a new tag to the tags container, this operation
+                // will not trigger any layout change
+                _addTag(element, options, value, valueLogic);
 
-                    // updates the current tag field layout to reflect
-                    // the changes of adding the new tag
-                    _update(element, options);
-                });
+                // updates the current tag field layout to reflect
+                // the changes of adding the new tag
+                _update(element, options);
+            });
 
             tagsContainer.mousedown(function(event) {
                 // stops the event propagation and prevents the
@@ -309,9 +308,15 @@ if (typeof require !== "undefined") {
 
             // constructs the tag element and updates its
             // (logic) data value reference in case it exists
-            var tag = jQuery("<div class=\"tag-field-tag\">" + "<div class=\"tag-field-label\">" + value +
-                "</div>" + "<div class=\"tag-field-remove\"></div>" +
-                "<div class=\"tag-field-clear\"></div>" + "</div>");
+            var tag = jQuery(
+                '<div class="tag-field-tag">' +
+                    '<div class="tag-field-label">' +
+                    value +
+                    "</div>" +
+                    '<div class="tag-field-remove"></div>' +
+                    '<div class="tag-field-clear"></div>' +
+                    "</div>"
+            );
             value && tag.attr("data-display", value);
             valueLogic && tag.attr("data-value", valueLogic);
 
@@ -392,9 +397,10 @@ if (typeof require !== "undefined") {
             // delay the update operation until the next tick, note that
             // this is only possible when the element is contained (in dom)
             if (tagsContainerHeight === 0 && tags.length > 0) {
-                isContained && setTimeout(function() {
-                    _update(matchedObject, options, noWidth);
-                }, 100);
+                isContained &&
+                    setTimeout(function() {
+                        _update(matchedObject, options, noWidth);
+                    }, 100);
                 return;
             }
 
@@ -409,8 +415,9 @@ if (typeof require !== "undefined") {
 
             // tries to retrieve the "original" height value for the text field
             // and updates the register to this same value (only one retrieval)
-            var textFieldHeight = textField.data("height") || (isBorderBox ? textField.outerHeight() :
-                textField.height());
+            var textFieldHeight =
+                textField.data("height") ||
+                (isBorderBox ? textField.outerHeight() : textField.height());
             textField.data("height", textFieldHeight);
 
             // retrieves the last tag in the tag sequence then uses
@@ -496,7 +503,8 @@ if (typeof require !== "undefined") {
             var borderBottomWidth = textField.css("border-bottom-width");
             borderBottomWidth = parseInt(borderBottomWidth);
             var borderWidth = borderTopWidth + borderBottomWidth;
-            var deltaMarginTop = ((textFieldHeight + (isBorderBox ? 0 : borderWidth) - lineHeight) / 2);
+            var deltaMarginTop =
+                (textFieldHeight + (isBorderBox ? 0 : borderWidth) - lineHeight) / 2;
 
             // retrieves the various extra components of the text field
             // and adds them together to calculate the extra pixel values
@@ -504,8 +512,8 @@ if (typeof require !== "undefined") {
             var textFieldPaddingRight = parseInt(textField.css("padding-right"));
             var textFieldBorderRight = parseInt(textField.css("border-right-width"));
             var textFieldBorderLeft = parseInt(textField.css("border-left-width"));
-            var textFieldExtra = lineWidth + textFieldPaddingRight + textFieldBorderRight +
-                textFieldBorderLeft;
+            var textFieldExtra =
+                lineWidth + textFieldPaddingRight + textFieldBorderRight + textFieldBorderLeft;
 
             // calculates the "new" width value to be used validating it
             // to be a positive value (avoids possible problems)
@@ -514,8 +522,10 @@ if (typeof require !== "undefined") {
 
             // updates the margin top of the tag container according to the
             // margin top of the text field
-            tagsContainer.css("margin-top", (textFieldMarginTop + textFieldPaddingTop + deltaMarginTop) +
-                "px");
+            tagsContainer.css(
+                "margin-top",
+                textFieldMarginTop + textFieldPaddingTop + deltaMarginTop + "px"
+            );
 
             // updates the padding top of the text field according
             // to the calculated value
@@ -546,8 +556,10 @@ if (typeof require !== "undefined") {
 
             // updates the maximum width value for the tag container
             // according to the size values of the text field
-            tagsContainer.css("max-width", (textFieldWidth - textFieldPaddingRight - textFieldPaddingLeft) +
-                "px");
+            tagsContainer.css(
+                "max-width",
+                textFieldWidth - textFieldPaddingRight - textFieldPaddingLeft + "px"
+            );
         };
 
         var _value = function(matchedObject, options) {
@@ -583,8 +595,8 @@ if (typeof require !== "undefined") {
 
         var _isDuplicate = function(matchedObject, value, valueLogic) {
             var selector = ".tag-field-tag";
-            selector += value ? "[data-display=\"" + value + "\"]" : "";
-            selector += valueLogic ? "[data-value=\"" + valueLogic + "\"]" : "";
+            selector += value ? '[data-display="' + value + '"]' : "";
+            selector += valueLogic ? '[data-value="' + valueLogic + '"]' : "";
             var result = jQuery(selector, matchedObject);
             return result.length > 0;
         };

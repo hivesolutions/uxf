@@ -59,8 +59,8 @@ if (typeof require !== "undefined") {
                     // creates the item structure with the name
                     // and the value set
                     var _item = {
-                        "name": name,
-                        "value": value
+                        name: name,
+                        value: value
                     };
 
                     // adds the item to the "logical" list

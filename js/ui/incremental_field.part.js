@@ -47,10 +47,10 @@ if (typeof require !== "undefined") {
             // element so that the buttons may be added, then retrieves
             // the "just" created incremental field and adds the buttons
             // to it (minus and plus buttons)
-            matchedObject.wrap("<div class=\"incremental-field\"></div>");
+            matchedObject.wrap('<div class="incremental-field"></div>');
             var incrementalField = matchedObject.parents(".incremental-field");
-            incrementalField.prepend("<div class=\"button minus\"></div>");
-            incrementalField.append("<div class=\"button plus\"></div>");
+            incrementalField.prepend('<div class="button minus"></div>');
+            incrementalField.append('<div class="button plus"></div>');
 
             // sets the ux global object representation as incremental
             // field, this value may be used latter for fast ux
