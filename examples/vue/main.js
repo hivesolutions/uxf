@@ -1,11 +1,7 @@
 import Vue from "vue";
 import jQuery from "jquery";
 
-import {
-    UxButton,
-    UxDropDown,
-    UxTextField
-} from "../../vue/ui";
+import { UxButton, UxDropDown, UxTextField } from "../../vue/ui";
 
 import "hive-layout";
 import "hive-js-util";
@@ -29,16 +25,20 @@ export const examples = function() {
             UxTextField
         },
         data: {
-            items: [{
-                text: "first",
-                value: "first"
-            }, {
-                text: "second",
-                value: "second"
-            }, {
-                text: "third",
-                value: "third"
-            }]
+            items: [
+                {
+                    text: "first",
+                    value: "first"
+                },
+                {
+                    text: "second",
+                    value: "second"
+                },
+                {
+                    text: "third",
+                    value: "third"
+                }
+            ]
         },
         methods: {
             onClick: function(value) {

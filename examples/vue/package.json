@@ -29,6 +29,7 @@
         "dev": "webpack-dev-server --config webpack.config.js --mode development --watch --hot",
         "lint": "eslint ./**/*.js",
         "test": "mocha --recursive",
+        "prettier": "prettier ./**/*.js ./**/*.vue --write",
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config webpack.config.js"
     },
@@ -37,6 +38,6 @@
         "vue": "^2.5.16"
     },
     "devDependencies": {
-        "uxf-webpack": "^0.1.4"
+        "uxf-webpack": "^0.1.8"
     }
 }
