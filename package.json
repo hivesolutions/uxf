@@ -33,9 +33,9 @@
     ],
     "main": "index.js",
     "scripts": {
-        "lint": "eslint './js/**/*.js' './vue/**/*.vue'",
+        "lint": "eslint \"./{js,vue}/**/*.{js,vue,json}\"",
         "test": "mocha --recursive",
-        "prettier": "prettier './js/**/*.js' './test/**/*.js' './vue/**/*.js' './vue/**/*.vue' --write",
+        "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
         "upgrade": "npx sort-package-json && ncu -au"
     },
     "dependencies": {
