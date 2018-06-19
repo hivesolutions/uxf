@@ -48,7 +48,6 @@
         "babel-preset-env": "^1.7.0",
         "eslint": "^4.19.1",
         "eslint-config-hive": "^0.1.4",
-        "eslint-loader": "^2.0.0",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",
         "prettier": "^1.13.5",
