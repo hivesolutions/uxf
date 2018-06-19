@@ -33,7 +33,7 @@
     ],
     "main": "index.js",
     "scripts": {
-        "lint": "eslint \"./{js,vue}/**/*.{js,vue,json}\"",
+        "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
         "test": "mocha --recursive",
         "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
         "upgrade": "npx sort-package-json && ncu -au"
