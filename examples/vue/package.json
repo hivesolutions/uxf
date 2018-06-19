@@ -27,9 +27,9 @@
     "main": "js/main.js",
     "scripts": {
         "dev": "webpack-dev-server --config webpack.config.js --mode development --watch --hot",
-        "lint": "eslint ./**/*.js",
+        "lint": "eslint \"./**/*.js\"",
         "test": "mocha --recursive",
-        "prettier": "prettier ./**/*.js ./**/*.vue --write",
+        "prettier": "prettier \"./**/*.{js,vue,json}\" --write",
         "upgrade": "npx sort-package-json && ncu -au",
         "webpack": "webpack --config webpack.config.js"
     },
