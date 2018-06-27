@@ -124,6 +124,7 @@
     font-size: 80%;
 }
 
+.omni-style .drop-field.tiny,
 .omni-style .drop-field.small {
     font-size: 10px;
     line-height: 24px;
@@ -131,16 +132,19 @@
     width: 140px;
 }
 
+.omni-style .drop-field.tiny .drop-field-contents li,
 .omni-style .drop-field.small .drop-field-contents li {
     font-size: 10px;
     padding: 2px 6px 2px 6px;
 }
 
+.omni-style .drop-field.tiny > .text-field,
 .omni-style .drop-field.small > .text-field {
     font-size: 11px;
     height: 20px;
 }
 
+.omni-style .drop-field.tiny.drop-field-select > .text-field,
 .omni-style .drop-field.small.drop-field-select > .text-field {
     background-image: url(../images/drop-field-select-small.png);
     font-size: 10px;
@@ -149,18 +153,30 @@
     text-transform: uppercase;
 }
 
+.omni-style.retina-s .drop-field.tiny.drop-field-select > .text-field,
 .omni-style.retina-s .drop-field.small.drop-field-select > .text-field {
     background-image: url(../images/drop-field-select-small-2x.png);
     background-size: 940px 24px;
 }
 
+.omni-style .drop-field.tiny.drop-field-select.drop-field-lock > .text-field,
 .omni-style .drop-field.small.drop-field-select.drop-field-lock > .text-field {
     background-image: url(../images/drop-field-select-small.png);
 }
 
+.omni-style.retina-s .drop-field.tiny.drop-field-select.drop-field-lock > .text-field,
 .omni-style.retina-s .drop-field.small.drop-field-select.drop-field-lock > .text-field {
     background-image: url(../images/drop-field-select-small-2x.png);
     background-size: 940px 24px;
+}
+
+.omni-style .drop-field.tiny {
+    line-height: 18px;
+    width: 120px;
+}
+
+.omni-style .drop-field.tiny.drop-field-select > .text-field {
+    height: 18px;
 }
 
 .omni-style .drop-field .entity-name,
