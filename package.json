@@ -32,6 +32,7 @@
         "vue/**/*.vue"
     ],
     "main": "index.js",
+    "unpkg": "bin/js/ux.js",
     "scripts": {
         "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
         "test": "mocha --recursive",
