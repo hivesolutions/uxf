@@ -171,7 +171,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // retrieves the complete set of (input) fields
-                // contained in the form  an itreates over them
+                // contained in the form  an itereates over them
                 // so that trailing spaces are removed
                 var fields = jQuery(".text-field[data-object]", element);
                 !noTrim &&
@@ -659,8 +659,8 @@ if (typeof require !== "undefined") {
             // then triggers the layout event to update any "upper" elements
             var formSuccessItem = jQuery(".form-success.item", matchedObject);
             var otherItems = jQuery("> :not(.form-success)", matchedObject);
-            formSuccessItem.remove();
-            otherItems.show();
+            formSuccessItem.length && formSuccessItem.remove();
+            formSuccessItem.length && otherItems.show();
             matchedObject.trigger("layout");
         };
 
