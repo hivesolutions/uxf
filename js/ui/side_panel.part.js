@@ -141,18 +141,20 @@ if (typeof require !== "undefined") {
             if (isVisible) {
                 return;
             }
+            var timeout = matchedObject.attr("data-timeout") || "350";
+            timeout = parseInt(timeout);
             matchedObject.data("visible", true);
             var overlay = _ensureOverlay();
             var width = matchedObject.outerWidth(true);
             var side = matchedObject.attr("data-side") || "right";
             overlay.triggerHandler("resize");
-            overlay.triggerHandler("show", [350]);
+            overlay.triggerHandler("show", [timeout]);
             var animation = {};
             animation[side] = 0;
             matchedObject.css(side, width * -1 + "px");
             matchedObject.show();
             matchedObject.animate(animation, {
-                duration: 350,
+                duration: timeout,
                 easing: "swing",
                 complete: function() {
                     __registerClick(matchedObject, options);
@@ -166,18 +168,20 @@ if (typeof require !== "undefined") {
             if (!isVisible) {
                 return;
             }
+            var timeout = matchedObject.attr("data-timeout") || "350";
+            timeout = parseInt(timeout);
             matchedObject.data("visible", false);
             var overlay = _ensureOverlay();
             var width = matchedObject.outerWidth(true);
             var side = matchedObject.attr("data-side") || "right";
             __unregisterClick(matchedObject, options);
             __unregisterKey(matchedObject, options);
-            overlay.triggerHandler("hide", [350]);
+            overlay.triggerHandler("hide", [timeout]);
             var animation = {};
             animation[side] = width * -1;
             matchedObject.css(side, 0 + "px");
             matchedObject.animate(animation, {
-                duration: 350,
+                duration: timeout,
                 easing: "swing",
                 complete: function() {
                     matchedObject.hide();
