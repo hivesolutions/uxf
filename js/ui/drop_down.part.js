@@ -364,6 +364,7 @@ if (typeof require !== "undefined") {
             // the one that contains the target value
             var elements = jQuery("> li", matchedObject);
             var element = elements.filter('[data-value="' + value + '"]');
+            element = element.length > 0 ? jQuery(element[0]) : element;
 
             // runs the select operation on the target element as
             // "requested" by the click operation in it
@@ -538,6 +539,7 @@ if (typeof require !== "undefined") {
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
             var originalElement = elements.filter('[data-value="' + original + '"]');
+            originalElement = originalElement.length > 0 ? jQuery(originalElement[0]) : originalElement;
 
             // starts some of the values that are going to be latter populated
             // by following code execution
