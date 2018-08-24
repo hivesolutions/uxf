@@ -958,12 +958,16 @@ if (typeof require !== "undefined") {
                         // the visibility test is done agains the top
                         var delta = filterMore.outerHeight() * -1;
 
-                        // checks if the element is currentyl visible
+                        // checks if the element is currently visible, so that
+                        // proper decisions may be taken
                         var isVisible = filterMore.length
                             ? jQuery.uxvisible(filterMore, pageOffset, delta)
                             : false;
+                        var isInvalid = filterMore.hasClass("invalid");
+                        isVisible &= !isInvalid;
 
-                        // updates the filter state
+                        // updates the filter state, so that more information
+                        // is going to be loaded from data source
                         isVisible && _update(filter, options);
                     })
                 );
@@ -992,6 +996,12 @@ if (typeof require !== "undefined") {
             var filterMore = jQuery(".filter-more", filter);
             var dataSource = jQuery("> .data-source", filter);
             var template = jQuery(".template", filter);
+
+            // retrieves the amount of times in between multiple requests
+            // for the loading (and reloading) of values triggered by the
+            // load more operation, notice that this invalid value is only
+            // going to be respected by the infinite loading mode
+            var sickTime = parseInt(filter.attr("data-sick") || "100");
 
             // retrieves the filter options, to be used to evaluate
             // the current state of the filter element
@@ -1321,14 +1331,17 @@ if (typeof require !== "undefined") {
                     }
 
                     // in case there are more items available
-                    // to be retrieved
+                    // to be retrieved, shows the filter more item
                     if (moreItems) {
-                        // shows the filter more item
                         filterMore.show();
+                        filterMore.addClass("invalid");
+                        setTimeout(function() {
+                            filterMore.removeClass("invalid");
+                        }, sickTime);
                     }
                     // otherwise the are no more items to be shown
+                    // and the more items element should be hidden
                     else {
-                        // hides the filter more item
                         filterMore.hide();
                     }
 
