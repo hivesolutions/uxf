@@ -169,11 +169,20 @@ if (typeof require !== "undefined") {
                     // disables the button element in order
                     // to avoid further submits
                     _element.uxdisable();
+
+                    // adds the locked class to the button meaning that the
+                    // button is considered to be in a special state where
+                    // no interation is considered due to outside action
+                    _element.addClass("locked");
                 });
                 parentForm.bind("unlock", function() {
                     // re-enables the button to the normal state
                     // (because the form is in the normal state again)
                     _element.uxenable();
+
+                    // removes the locked class as the button should resume
+                    // the original behaviour (unlock operation)
+                    _element.removeClass("locked");
                 });
             });
         };
