@@ -5,7 +5,7 @@ describe("UxButton", function() {
     describe("#basic", function() {
         it("should be defined", () => {
             const jQuery = global.jQuery;
-            assert.notEqual(jQuery.fn.uxbutton, undefined);
+            assert.notStrictEqual(jQuery.fn.uxbutton, undefined);
         });
         it("should be able to read DOM properly", () => {
             const jQuery = global.jQuery;
@@ -15,7 +15,7 @@ describe("UxButton", function() {
             jQuery(".button").uxbutton();
 
             const result = jQuery(".button").data("link");
-            assert.equal(result, "http://hive.pt");
+            assert.strictEqual(result, "http://hive.pt");
         });
     });
 });
