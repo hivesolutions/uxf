@@ -32,7 +32,6 @@
         "vue/**/*.vue"
     ],
     "main": "index.js",
-    "unpkg": "bin/js/ux.js",
     "scripts": {
         "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
         "test": "mocha --recursive",
@@ -42,17 +41,18 @@
     "dependencies": {
         "hive-js-util": "^0.1.20",
         "jquery": "^3.3.1",
-        "jsdom": "^11.11.0",
-        "vue": "^2.5.16"
+        "jsdom": "^12.0.0",
+        "vue": "^2.5.17"
     },
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
-        "eslint": "^4.19.1",
-        "eslint-config-hive": "^0.1.4",
+        "eslint": "^5.6.0",
+        "eslint-config-hive": "^0.1.7",
         "mocha": "^5.2.0",
         "npm-check-updates": "^2.14.2",
-        "prettier": "^1.13.5",
+        "prettier": "^1.14.3",
         "prettier-config-hive": "^0.1.1",
         "sort-package-json": "^1.15.0"
-    }
+    },
+    "unpkg": "bin/js/ux.js"
 }
