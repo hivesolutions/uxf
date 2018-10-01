@@ -185,12 +185,10 @@ if (typeof require !== "undefined") {
             toggleField.bind("change_mode", function(event, mode) {
                 // retrieves the reference to the current element (toggle field)
                 var element = jQuery(this);
-                var textField = jQuery(".text-field", element);
 
                 // retrieves both the modes sequence and the currently
-                // set index to be used to calculates the new index
+                // set index to be used to calculate the new index
                 var modes = element.data("modes");
-                var index = element.data("index");
 
                 // calculates the new mode index value and sets it in
                 // the (parent) toggle field
