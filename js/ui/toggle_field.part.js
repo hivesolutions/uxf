@@ -178,6 +178,25 @@ if (typeof require !== "undefined") {
                 textField.uxdisable();
                 buttons.uxdisable();
             });
+
+            // registers for the change mode event operation so
+            // that it's possible to change the mode of the toggle
+            // field from a programming way
+            toggleField.bind("change_mode", function(event, mode) {
+                // retrieves the reference to the current element (toggle field)
+                var element = jQuery(this);
+                var textField = jQuery(".text-field", element);
+
+                // retrieves both the modes sequence and the currently
+                // set index to be used to calculates the new index
+                var modes = element.data("modes");
+                var index = element.data("index");
+
+                // calculates the new mode index value and sets it in
+                // the (parent) toggle field
+                var _index = modes.indexOf(mode);
+                _setMode(element, options, _index);
+            });
         };
 
         var _reset = function(matchedObject, options) {
