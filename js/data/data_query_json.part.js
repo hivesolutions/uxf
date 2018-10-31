@@ -220,16 +220,26 @@ if (typeof require !== "undefined") {
                             return;
                         }
 
-                        // retrieves the body
+                        // tries to parse the error information provided by the
+                        // server side as a JSON based object
+                        var errorMap = jQuery.parseJSON(request.responseText) || {};
+                        var message = errorMap.message;
+                        var uid = errorMap.uid;
+
+                        // localizes the basic (static) message and then adds the extra
+                        // components if that's required by the current spec
+                        var text = jQuery.uxlocale("There was an error retrieving JSON data");
+                        text += message ? "\\n" + "[[" + message + "]]" : "";
+                        text += uid ? "\\n" + "Trace UID: " + uid : "";
+                        text = matchedObject.uxwiki(text);
+
+                        // retrieves the body element to be used in the
+                        // creation of the info window
                         var _body = jQuery("body");
 
                         // shows an info window about the problem retrieving
                         // the data from the remote data source
-                        _body.uxinfo(
-                            "There was an error retrieving JSON data",
-                            "Warning",
-                            "warning"
-                        );
+                        _body.uxinfo(text, "Warning", "warning");
 
                         // calls the callback with the failure values
                         callback(null, null);

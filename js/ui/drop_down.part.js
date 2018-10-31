@@ -539,7 +539,8 @@ if (typeof require !== "undefined") {
             var original = matchedObject.data("original");
             var elements = jQuery("> li", matchedObject);
             var originalElement = elements.filter('[data-value="' + original + '"]');
-            originalElement = originalElement.length > 0 ? jQuery(originalElement[0]) : originalElement;
+            originalElement =
+                originalElement.length > 0 ? jQuery(originalElement[0]) : originalElement;
 
             // starts some of the values that are going to be latter populated
             // by following code execution
