@@ -1,3 +1,19 @@
+.omni-style .button > span.base {
+    display: inline;
+}
+
+.omni-style .button > span.locked {
+    display: none;
+}
+
+.omni-style .button.locked > span.base {
+    display: none;
+}
+
+.omni-style .button.locked > span.locked {
+    display: inline;
+}
+
 .omni-style .button.button-solid,
 .omni-style .button.button-green {
     background: #598543 url(../images/button-green.png) repeat-x left top;
