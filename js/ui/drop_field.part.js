@@ -1006,6 +1006,10 @@ if (typeof require !== "undefined") {
                 }
             }
 
+            // adds the updating class as we should be waiting for the results
+            // this may take some time in case the data source is remote
+            dropField.addClass("updating");
+
             // nullifies the number of options in case it's necessary
             numberOptions = filterOptions ? numberOptions : null;
 
@@ -1020,6 +1024,10 @@ if (typeof require !== "undefined") {
                     numberRecords: numberOptions
                 },
                 function(validItems, moreItems) {
+                    // removes the updating class as the element is no longer under
+                    // the updating state (returned information)
+                    dropField.removeClass("updating");
+
                     // in case the valid items value is not valid (error occurred)
                     // so items are avaiable for the update (must avoid update)
                     if (!validItems) {
