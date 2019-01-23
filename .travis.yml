@@ -6,6 +6,7 @@ node_js:
   - "8"
   - "9"
   - "10"
+  - "11"
 before_install:
   - sed -i 's/git@github.com:/https:\/\/github.com\//' .gitmodules
   - git submodule update --init --recursive
