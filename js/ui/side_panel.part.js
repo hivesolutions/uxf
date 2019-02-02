@@ -161,6 +161,7 @@ if (typeof require !== "undefined") {
                     __registerKey(matchedObject, options);
                 }
             });
+            matchedObject.triggerHandler("post_show");
         };
 
         var _hide = function(matchedObject, options) {
@@ -187,6 +188,7 @@ if (typeof require !== "undefined") {
                     matchedObject.hide();
                 }
             });
+            matchedObject.triggerHandler("post_hide");
         };
 
         var __registerClick = function(matchedObject, options) {
