@@ -9,12 +9,26 @@
     background-repeat: no-repeat;
     float: left;
     padding-right: 28px;
+    transition: background-image 0.15s ease-in;
+    -o-transition: background-image 0.15s ease-in;
+    -ms-transition: background-image 0.15s ease-in;
+    -moz-transition: background-image 0.15s ease-in;
+    -khtml-transition: background-image 0.15s ease-in;
+    -webkit-transition: background-image 0.15s ease-in;
     width: 248px;
 }
 
 .omni-style.retina-s .drop-field > .text-field {
     background-image: url(../images/drop-field-dots-2x.png);
     background-size: 23px 16px;
+}
+
+.omni-style .drop-field.updating > .text-field {
+    background-image: url(../images/drop-field-dots-color.png);
+}
+
+.omni-style.retina-s .drop-field.updating > .text-field {
+    background-image: url(../images/drop-field-dots-color-2x.png);
 }
 
 .omni-style .drop-field.strong > .text-field {
