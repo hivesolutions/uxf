@@ -36,7 +36,7 @@
         "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
         "test": "mocha --recursive",
         "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
-        "upgrade": "npx sort-package-json && ncu -au"
+        "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
         "hive-js-util": "^0.2.0",
@@ -47,9 +47,9 @@
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
         "eslint": "^5.15.3",
-        "eslint-config-hive": "^0.1.7",
+        "eslint-config-hive": "^0.1.8",
         "mocha": "^6.0.2",
-        "npm-check-updates": "^3.1.0",
+        "npm-check-updates": "^3.1.1",
         "prettier": "^1.16.4",
         "prettier-config-hive": "^0.1.1",
         "sort-package-json": "^1.21.0"
