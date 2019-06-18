@@ -1,6 +1,6 @@
 <template>
     <div class="button button-color" v-bind:class="buttonColor">
-        <slot></slot>
+        <slot />
     </div>
 </template>
 
@@ -23,6 +23,11 @@ export const UxButton = Vue.component("ux-button", {
             }
         }
     },
+    computed: {
+        buttonColor() {
+            return this.color ? `button-${this.color}` : null;
+        }
+    },
     mounted: function() {
         var vm = this;
         var element = jQuery(this.$el);
@@ -30,11 +35,6 @@ export const UxButton = Vue.component("ux-button", {
         element.bind("click", function() {
             vm.$emit("click");
         });
-    },
-    computed: {
-        buttonColor: function() {
-            return this.color ? `button-${this.color}` : null;
-        }
     }
 });
 

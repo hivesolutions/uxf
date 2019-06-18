@@ -34,8 +34,10 @@
     "main": "index.js",
     "scripts": {
         "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
-        "test": "mocha --recursive",
+        "lint-fix": "eslint \"./{js,vue}/**/*.{js,vue}\" --fix",
         "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
+        "pretty": "npm run prettier && npm run lint-fix",
+        "test": "mocha --recursive",
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {

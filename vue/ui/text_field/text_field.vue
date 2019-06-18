@@ -2,8 +2,8 @@
     <input
         type="text"
         class="text-field"
-        v-bind:data-type="this.type"
-        v-bind:data-original_value="this.originalValue"
+        v-bind:data-type="type"
+        v-bind:data-original_value="originalValue"
     />
 </template>
 

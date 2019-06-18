@@ -1,7 +1,7 @@
 <template>
     <ul class="drop-down" data-name="Drop Down">
         <input type="hidden" v-if="persist" />
-        <li v-for="item in items" v-bind:key="item.name" v-bind:data-value="item.value">
+        <li v-bind:data-value="item.value" v-for="item in items" v-bind:key="item.name">
             <span>{{ item.text }}</span>
         </li>
     </ul>
@@ -18,11 +18,6 @@ import { state } from "../../mixins";
 
 export const UxDropDown = Vue.component("ux-drop-down", {
     mixins: [state],
-    data: function() {
-        return {
-            items: []
-        };
-    },
     props: {
         values: {
             type: Array,
@@ -37,6 +32,22 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             }
         }
     },
+    data: function() {
+        return {
+            items: []
+        };
+    },
+    watch: {
+        values(val) {
+            this.items = val;
+        },
+        items(val) {
+            var vm = this;
+            setTimeout(function() {
+                jQuery(vm.$el).triggerHandler("update");
+            });
+        }
+    },
     mounted: function() {
         var vm = this;
         var element = jQuery(this.$el);
@@ -45,17 +56,6 @@ export const UxDropDown = Vue.component("ux-drop-down", {
             vm.$emit("value_change", value, text, same);
         });
         this.items = this.$props.values;
-    },
-    watch: {
-        values: function(val) {
-            this.items = val;
-        },
-        items: function(val) {
-            var vm = this;
-            setTimeout(function() {
-                jQuery(vm.$el).triggerHandler("update");
-            });
-        }
     }
 });
 
