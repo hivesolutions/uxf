@@ -3,18 +3,20 @@ if (typeof require !== "undefined") {
 }
 
 (function(jQuery) {
-    jQuery.fn.uxcontent = function(value) {
+    jQuery.fn.uxcontent = function(value, method) {
         var element = jQuery(this);
         var other = element.clone();
         var children = other.children();
         children.remove();
 
+        method = method || "html";
+
         if (typeof value === "string") {
-            other.html(value);
-            element.html(children);
+            other[method](value);
+            element[method](children);
             element.prepend(value);
         }
 
-        return other.html();
+        return other[method]();
     };
 })(jQuery);
