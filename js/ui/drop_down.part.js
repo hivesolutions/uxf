@@ -300,8 +300,8 @@ if (typeof require !== "undefined") {
                     var keyValue = event.keyCode
                         ? event.keyCode
                         : event.charCode
-                            ? event.charCode
-                            : event.which;
+                        ? event.charCode
+                        : event.which;
 
                     // in case the key that was pressed in not the
                     // escape one there's nothing to be done and so
@@ -551,7 +551,8 @@ if (typeof require !== "undefined") {
             // that's the case retrieves the proper original text either from
             // it's content of from it's complete text
             if (originalElement.length > 0) {
-                originalText = originalElement.uxcontent(null, "text").trim() || originalElement.text().trim();
+                originalText =
+                    originalElement.uxcontent(null, "text").trim() || originalElement.text().trim();
                 originalExtra = null;
             }
             // otherwise sets the original text as the name of the drop field

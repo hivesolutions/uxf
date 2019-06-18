@@ -1,11 +1,13 @@
 <template>
-<input type="text" class="text-field"
-       v-bind:data-type="this.type"
-       v-bind:data-original_value="this.originalValue" />
+    <input
+        type="text"
+        class="text-field"
+        v-bind:data-type="this.type"
+        v-bind:data-original_value="this.originalValue"
+    />
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
 
 <script>
 import Vue from "vue";

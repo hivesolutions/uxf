@@ -217,8 +217,8 @@ if (typeof require !== "undefined") {
                     var keyValue = event.keyCode
                         ? event.keyCode
                         : event.charCode
-                            ? event.charCode
-                            : event.which;
+                        ? event.charCode
+                        : event.which;
 
                     // in case the key that was pressed in not the
                     // escape one there's nothing to be done and so

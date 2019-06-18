@@ -39,20 +39,20 @@
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
-        "hive-js-util": "^0.2.0",
-        "jquery": "^3.3.1",
-        "jsdom": "^14.0.0",
+        "hive-js-util": "^0.2.1",
+        "jquery": "^3.4.1",
+        "jsdom": "^15.1.1",
         "vue": "^2.6.10"
     },
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
-        "eslint": "^5.15.3",
-        "eslint-config-hive": "^0.1.8",
-        "mocha": "^6.0.2",
-        "npm-check-updates": "^3.1.1",
-        "prettier": "^1.16.4",
+        "eslint": "^5.16.0",
+        "eslint-config-hive": "^0.1.21",
+        "mocha": "^6.1.4",
+        "npm-check-updates": "^3.1.11",
+        "prettier": "^1.18.2",
         "prettier-config-hive": "^0.1.1",
-        "sort-package-json": "^1.21.0"
+        "sort-package-json": "^1.22.1"
     },
     "unpkg": "bin/js/ux.js"
 }

@@ -96,8 +96,8 @@ if (typeof require !== "undefined") {
                     var keyValue = event.keyCode
                         ? event.keyCode
                         : event.charCode
-                            ? event.charCode
-                            : event.which;
+                        ? event.charCode
+                        : event.which;
 
                     // in case the ignoring mode is set need
                     // to check if we can get out of it
@@ -238,8 +238,8 @@ if (typeof require !== "undefined") {
             var keyValue = event.keyCode
                 ? event.keyCode
                 : event.charCode
-                    ? event.charCode
-                    : event.which;
+                ? event.charCode
+                : event.which;
 
             // in case the key is not an enter no need to do any
             // extra verification

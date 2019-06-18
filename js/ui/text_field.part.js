@@ -111,8 +111,8 @@ if (typeof require !== "undefined") {
                 var keyValue = event.keyCode
                     ? event.keyCode
                     : event.charCode
-                        ? event.charCode
-                        : event.which;
+                    ? event.charCode
+                    : event.which;
                 var keyCode = event.keyCode;
                 var which = event.which;
 
@@ -235,8 +235,8 @@ if (typeof require !== "undefined") {
                 var keyValue = event.keyCode
                     ? event.keyCode
                     : event.charCode
-                        ? event.charCode
-                        : event.which;
+                    ? event.charCode
+                    : event.which;
 
                 // in case the escape key is pressed
                 // need to blur the text field

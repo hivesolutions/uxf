@@ -66,8 +66,8 @@ if (typeof require !== "undefined") {
                     var keyValue = event.keyCode
                         ? event.keyCode
                         : event.charCode
-                            ? event.charCode
-                            : event.which;
+                        ? event.charCode
+                        : event.which;
 
                     // in case the ctrl or the alt keys
                     // are pressed no need to handle the event

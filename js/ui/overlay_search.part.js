@@ -61,8 +61,8 @@ if (typeof require !== "undefined") {
                 var keyValue = event.keyCode
                     ? event.keyCode
                     : event.charCode
-                        ? event.charCode
-                        : event.which;
+                    ? event.charCode
+                    : event.which;
 
                 // in case the escape key is pressed
                 // need to hide the overlay search

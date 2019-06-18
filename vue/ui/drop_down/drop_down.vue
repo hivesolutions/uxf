@@ -1,15 +1,13 @@
 <template>
-<ul class="drop-down" data-name="Drop Down">
-    <input type="hidden" v-if="persist" />
-    <li v-for="item in items" v-bind:key="item.name"
-        v-bind:data-value="item.value">
-        <span>{{ item.text }}</span>
-    </li>
-</ul>
+    <ul class="drop-down" data-name="Drop Down">
+        <input type="hidden" v-if="persist" />
+        <li v-for="item in items" v-bind:key="item.name" v-bind:data-value="item.value">
+            <span>{{ item.text }}</span>
+        </li>
+    </ul>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
 
 <script>
 import Vue from "vue";

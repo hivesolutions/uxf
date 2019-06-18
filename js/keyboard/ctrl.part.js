@@ -13,8 +13,8 @@ if (typeof require !== "undefined") {
             var keyValue = event.keyCode
                 ? event.keyCode
                 : event.charCode
-                    ? event.charCode
-                    : event.which;
+                ? event.charCode
+                : event.which;
 
             // sets the default parameters
             parameters = parameters || [];
