@@ -880,7 +880,7 @@ if (typeof require !== "undefined") {
             var rows = jQuery("tbody > tr:not(.template)", matchedObject);
 
             // removes the current set of rows (empties the table)
-            // this should be able to set no ui items in the table
+            // this should be able to set no UI items in the table
             rows.remove();
 
             // in case the table is of type edit a line must be added
