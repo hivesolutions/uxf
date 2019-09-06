@@ -20,7 +20,7 @@ if (typeof require !== "undefined") {
             // in case the current value does not have
             // the current attribute (invalid attribute)
             // must skip current iteration
-            if (value[name] !== undefined) {
+            if (value[name] === undefined) {
                 continue;
             }
 
