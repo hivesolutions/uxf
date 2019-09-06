@@ -62,7 +62,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // creates the week days string (with the initial
@@ -354,7 +354,7 @@ if (typeof require !== "undefined") {
                 }
             }
 
-            // starts the html code string
+            // starts the HTML code string
             var htmlCode = "";
 
             // unsets the line open flag
@@ -372,7 +372,7 @@ if (typeof require !== "undefined") {
                     // in case there is a line open
                     if (lineOpen) {
                         // adds the close line tag to the
-                        // html code
+                        // HTML code
                         htmlCode += "</tr>";
                     }
                     // otherwise it must be the first line
@@ -382,7 +382,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // adds the open line tag to the
-                    // html code
+                    // HTML code
                     htmlCode += "<tr>";
                 }
 
@@ -397,7 +397,7 @@ if (typeof require !== "undefined") {
                 var _day = dayTuple[2];
                 var dayClass = dayTuple[3];
 
-                // adds the cell code to the html code string
+                // adds the cell code to the HTML code string
                 htmlCode +=
                     '<td class="' +
                     dayClass +
@@ -415,7 +415,7 @@ if (typeof require !== "undefined") {
             // in case there is a line (still) open
             if (lineOpen) {
                 // adds the close line tag to the
-                // html code
+                // HTML code
                 htmlCode += "</tr>";
             }
 
@@ -424,7 +424,7 @@ if (typeof require !== "undefined") {
             var tableBody = jQuery("tbody", matchedObject);
             tableBody.empty();
 
-            // adds the (generated) html code to the table body
+            // adds the (generated) HTML code to the table body
             tableBody.append(htmlCode);
 
             // retrieves the year month values and then localizes the

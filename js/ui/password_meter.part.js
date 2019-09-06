@@ -33,7 +33,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
@@ -41,7 +41,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // adds some html to the password meter
+                // adds some HTML to the password meter
                 _element.append('<div class="password-meter-contents level-0"></div>');
 
                 // sets the initial data in the element

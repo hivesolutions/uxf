@@ -145,7 +145,7 @@ if (typeof require !== "undefined") {
         // encapsulates the request object around an acessor and then registers
         // for the ready state change event so that the conten type may be validated
         // as soon as possible (headers received stage) and the request canceled in
-        // case it does not correspond to an html message
+        // case it does not correspond to an HTML message
         var reference = jQuery(request);
         reference.bind("readystatechange", function() {
             // retrieves the current context as the request that is going to
@@ -173,7 +173,7 @@ if (typeof require !== "undefined") {
             // gathers the target location (redirection) in case it exists, then
             // retrieves the content type for the current request and processes
             // the value retrieving only the basic value for it, then verifies
-            // that the mime type of it is html and in case it's returns valid as
+            // that the mime type of it is HTML and in case it's returns valid as
             // the provided request is considered to be an async request
             var location = request.getResponseHeader("Location");
             var contentType = request.getResponseHeader("Content-Type") || "";

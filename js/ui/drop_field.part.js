@@ -50,7 +50,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // sets the ux global object representation as drop
@@ -147,7 +147,7 @@ if (typeof require !== "undefined") {
                 // is correctly set (otherwise)
                 textFieldValue = textFieldIsLower ? "" : textFieldValue;
 
-                // adds the "extra" html to the matched object,
+                // adds the "extra" HTML to the matched object,
                 // in case no drop field contents is found
                 dropFieldContents.length === 0 &&
                     _element.append('<div class="drop-field-clear"></div>') &&

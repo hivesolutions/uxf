@@ -40,7 +40,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // sets the ux global object representation as text
@@ -91,7 +91,7 @@ if (typeof require !== "undefined") {
 
                     // retrieves the (possible virtual) value of the
                     // current tag element to be inserted then retrieves
-                    // the html value of the tag (visual value)
+                    // the HTML value of the tag (visual value)
                     var dataValue = __element.attr("data-value");
                     var dataHtml = __element.html();
 
@@ -176,7 +176,7 @@ if (typeof require !== "undefined") {
                     for (var index = 0; index < tags.length; index++) {
                         // retrieves the current list items in iteration
                         // and retrieves the value to be used as data value
-                        // defaulting to the html value in case none is provided
+                        // defaulting to the HTML value in case none is provided
                         var tag = jQuery(tags[index]);
                         var dataValue = tag.attr("data-value");
                         var displayValue = tag.attr("data-display");
@@ -577,7 +577,7 @@ if (typeof require !== "undefined") {
             for (var index = 0; index < tags.length; index++) {
                 // retrieves the current list items in iteration
                 // and retrieves the value to be used as data value
-                // defaulting to the html value in case none is provided
+                // defaulting to the HTML value in case none is provided
                 var tag = jQuery(tags[index]);
                 var dataValue = tag.attr("data-value");
                 var displayValue = tag.attr("data-display");

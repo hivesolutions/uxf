@@ -45,7 +45,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // verifies if the current user agent represents a mobile browser

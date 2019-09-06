@@ -33,7 +33,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {};
 
@@ -185,7 +185,7 @@ if (typeof require !== "undefined") {
                         return isRaw ? attributeValue : attributeLocale;
                     };
 
-                    // replaces the template strings in the html with the proper attribute
+                    // replaces the template strings in the HTML with the proper attribute
                     // values this may be an expesive operation in case it's repeated
                     // frequently for a lot of times (modify with care)
                     templateContents = templateContents.replace(keyRegex, replacer);

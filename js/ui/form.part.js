@@ -26,7 +26,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the matched objects
@@ -734,7 +734,7 @@ if (typeof require !== "undefined") {
             // gathers the target location (redirection) in case it exists, then
             // retrieves the content type for the current request and processes
             // the value retrieving only the basic value for it, then verifies
-            // that the mime type of it is html and in case it's returns valid as
+            // that the mime type of it is HTML and in case it's returns valid as
             // the provided request is considered to be an async request
             var location = request.getResponseHeader("Location");
             var contentType = request.getResponseHeader("Content-Type") || "";

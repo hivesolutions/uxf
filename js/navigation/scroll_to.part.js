@@ -310,7 +310,7 @@ if (typeof require !== "undefined") {
         var dimensions = axis === "x" ? "Width" : "Height";
         var scroll = "scroll" + dimensions;
 
-        // in case the element represents an html or
+        // in case the element represents an HTML or
         // body element
         if (!jQuery(element).is("html, body")) {
             // returns the element scroll minus the element
@@ -319,15 +319,15 @@ if (typeof require !== "undefined") {
         }
 
         // creates the size key and retrieves
-        // the html and body elements from the
+        // the HTML and body elements from the
         // element's owner document
         var size = "client" + dimensions;
-        var html = element.ownerDocument.documentElement;
+        var HTML = element.ownerDocument.documentElement;
         var body = element.ownerDocument.body;
 
         // returns the maximum between the scroll of
-        // the html and body minus the minimum between
-        // the html and body size
+        // the HTML and body minus the minimum between
+        // the HTML and body size
         return Math.max(html[scroll], body[scroll]) - Math.min(html[size], body[size]);
     };
 

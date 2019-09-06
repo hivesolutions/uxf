@@ -42,7 +42,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // retrieves the title and the message
@@ -59,7 +59,7 @@ if (typeof require !== "undefined") {
             // defines the target for a click in the notification
             var link = options["link"];
 
-            // creates the message element from the html code
+            // creates the message element from the HTML code
             // that is going to be used as the base for display
             var messageElement = jQuery(
                 '<div class="notification">' +

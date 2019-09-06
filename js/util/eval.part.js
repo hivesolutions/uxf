@@ -34,7 +34,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the elements in the matched object
@@ -42,7 +42,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves the element eval attribute or html
+                // retrieves the element eval attribute or HTML
                 // as the eval string
                 var evalString = _element.attr("data-eval")
                     ? _element.attr("data-eval")
@@ -155,7 +155,7 @@ if (typeof require !== "undefined") {
 
         /**
          * Evaluates the eval string in the matched object emmiting the
-         * resulting value to the html contents of it. The evaluation of the
+         * resulting value to the HTML contents of it. The evaluation of the
          * matched object is considered dangerous and must be used carefully.
          *
          * @param {Element}
@@ -179,7 +179,7 @@ if (typeof require !== "undefined") {
             var isTextField = matchedObject.hasClass("text-field");
 
             // retrieves the current matched object
-            // value or html value and compares it to the eval
+            // value or HTML value and compares it to the eval
             // result to check for differences and then checks
             // if the current element has focus
             var current = isInput ? matchedObject.val() : matchedObject.html();
@@ -210,10 +210,10 @@ if (typeof require !== "undefined") {
                 // according to the result of the eval
                 matchedObject.val(evalResult);
             }
-            // otherwise it's a general component and the html
+            // otherwise it's a general component and the HTML
             // code must be changed
             else {
-                // changes the html code of the target component
+                // changes the HTML code of the target component
                 // according to the result of the eval
                 matchedObject.html(evalResult);
             }

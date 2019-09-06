@@ -42,7 +42,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // sets the ux global object representation as drop
@@ -130,7 +130,7 @@ if (typeof require !== "undefined") {
                 var dropItem = jQuery(".drop-item", dropList);
                 var dropItems = jQuery(".drop-options > li", dropList);
 
-                // retrieves the html based contents and the "logical" value for the
+                // retrieves the HTML based contents and the "logical" value for the
                 // currently selected element, to be used in the update
                 var contents = element.html();
                 var value = element.attr("data-value") || "";

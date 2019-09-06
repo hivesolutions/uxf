@@ -39,7 +39,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // retrieves the base options
@@ -191,7 +191,7 @@ if (typeof require !== "undefined") {
                     // iteration to be added
                     var _element = jQuery(this);
 
-                    // retrieves the html (text) value of the current element
+                    // retrieves the HTML (text) value of the current element
                     // in iteration and uses it to create the filter sort option
                     // element and then adds it to the filter sort (from clear)
                     var valueHtml = _element.html();
@@ -236,7 +236,7 @@ if (typeof require !== "undefined") {
                 // retrieves the filter more length
                 var filterMoreLength = filterMore.length;
 
-                // adds the "extra" html to the matched object,
+                // adds the "extra" HTML to the matched object,
                 // in case no filter contents is found
                 if (filterContents.length === 0) {
                     // creates the filter contents element and adds it to the
@@ -2668,14 +2668,14 @@ if (typeof require !== "undefined") {
                 // retrives the current element in iteration
                 var _element = jQuery(this);
 
-                // retrieves the html value of the element and
+                // retrieves the HTML value of the element and
                 // retrieves the data type attribute of it to
                 // be used both as the item and the type
                 var dataHtml = _element.html();
                 var dataType = _element.attr("data-type");
                 var dataName = _element.attr("data-name");
 
-                // adds the data html (item) and the data type
+                // adds the data HTML (item) and the data type
                 // to the corresponding lists
                 items.push(dataHtml);
                 types.push(dataType);

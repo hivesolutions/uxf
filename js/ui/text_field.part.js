@@ -40,7 +40,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // sets the ux global object representation as text
@@ -852,7 +852,7 @@ if (typeof require !== "undefined") {
             // otherwise the calendar element must be created
             else {
                 // creates the calendar component from the
-                // html code and inserts it after the element
+                // HTML code and inserts it after the element
                 calendar = jQuery('<div class="calendar text-field-calendar"></div>');
                 element.after(calendar);
 

@@ -30,7 +30,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the matched objects
@@ -90,7 +90,7 @@ if (typeof require !== "undefined") {
                     // retrieves the current error message
                     var errorMessage = errorStructure[index];
 
-                    // creates the error description html
+                    // creates the error description HTML
                     var errorDescriptionHtml =
                         '<div class="error-description">' + errorMessage + "</div>";
 

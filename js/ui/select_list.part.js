@@ -40,7 +40,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over each of the matched object to arrange
@@ -229,7 +229,7 @@ if (typeof require !== "undefined") {
                     for (var index = 0; index < listItems.length; index++) {
                         // retrieves the current list items in iteration
                         // and retrieves the value to be used as data value
-                        // defaulting to the html value in case none is provided
+                        // defaulting to the HTML value in case none is provided
                         var listItem = jQuery(listItems[index]);
                         var dataValue = listItem.attr("data-value");
                         var htmlValue = listItem.html();

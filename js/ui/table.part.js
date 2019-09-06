@@ -44,7 +44,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the items in the matched object
@@ -274,13 +274,13 @@ if (typeof require !== "undefined") {
                 return;
             }
 
-            // creates the add and remove buttons html
+            // creates the add and remove buttons HTML
             var addButtonHtml =
                 '<td class="table-add">' + '<div class="inline-add"></div>' + "</td>";
             var removeButtonHtml =
                 '<td class="table-remove">' + '<div class="inline-remove"></div>' + "</td>";
 
-            // adds the add and remove button html to the row
+            // adds the add and remove button HTML to the row
             row.append(removeButtonHtml);
             row.append(addButtonHtml);
 

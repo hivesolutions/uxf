@@ -47,7 +47,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Creates the necessary html for the component.
+         * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
             // iterates over all the matched object
@@ -129,7 +129,7 @@ if (typeof require !== "undefined") {
             var controlsValue = chromeless ? "controls=0" : "controls=1";
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
-            // updates the matched object html with the video embed object
+            // updates the matched object HTML with the video embed object
             // that will include a flash object into the code
             matchedObject.html(
                 "<" +
@@ -186,7 +186,7 @@ if (typeof require !== "undefined") {
             // calculates the auto play value
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
-            // updates the matched object html with the video iframe
+            // updates the matched object HTML with the video iframe
             matchedObject.html(
                 '<iframe src="//player.vimeo.com/video' +
                     resourceReference +
@@ -222,7 +222,7 @@ if (typeof require !== "undefined") {
             var chromelessValue = chromeless ? "chromeless=1" : "chromeless=0";
             var autoPlayValue = autoPlay ? "autoplay=1" : "autoplay=0";
 
-            // updates the matched object html with the video iframe
+            // updates the matched object HTML with the video iframe
             matchedObject.html(
                 '<iframe src="//www.dailymotion.com/embed' +
                     resourceReference +
