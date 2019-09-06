@@ -564,9 +564,9 @@ if (typeof require !== "undefined") {
                     // be used as the root of the exception object
                     var data = request.response || request.responseText;
                     var jsonData = jQuery.parseJSON(data) || {};
-                    var exception = jsonData["exception"] || jsonData;
-                    var message = jsonData["message"] || "There was an error";
-                    var errors = exception["errors"] || {};
+                    var exception = jsonData.exception || jsonData;
+                    var message = jsonData.message || "There was an error";
+                    var errors = exception.errors || {};
 
                     // runs the localization operation in the message so that the proper
                     // locale version is going to be displayed

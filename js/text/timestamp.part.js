@@ -221,9 +221,9 @@ if (typeof require !== "undefined") {
                 // retrieve both the date, the format and the utc from the map
                 // of provided options, to be sent to the process date
                 // function for processing
-                var date = options["date"];
-                var format = options["format"];
-                var utc = options["utc"];
+                var date = options.date;
+                var format = options.format;
+                var utc = options.utc;
 
                 // processes (formats the date) and returns it
                 return _processDate(date, format, utc);

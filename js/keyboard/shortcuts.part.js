@@ -40,7 +40,7 @@ if (typeof require !== "undefined") {
          */
         var _registerHandlers = function() {
             // retrieves the global option
-            var global = options["global"] ? options["global"] : true;
+            var global = options.global ? options.global : true;
 
             // iterates over all the matched objects
             matchedObject.each(function(index, element) {

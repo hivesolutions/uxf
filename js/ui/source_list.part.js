@@ -57,8 +57,8 @@ if (typeof require !== "undefined") {
 
             // retrieves the options values that are going to
             // condition the way the source list is initialized
-            var numberOptions = options["numberOptions"];
-            var filterOptions = options["filterOptions"];
+            var numberOptions = options.numberOptions;
+            var filterOptions = options.filterOptions;
 
             // creates the text field element and the select list
             var textField = jQuery('<input type="text" class="text-field" />');

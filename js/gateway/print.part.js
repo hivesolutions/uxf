@@ -61,7 +61,7 @@ if (typeof require !== "undefined") {
             // uses it to retrieve the URL to the binie
             // resource containing the document description
             var element = matchedObject;
-            var binieUrl = element.attr("data-binie") || options["binie"];
+            var binieUrl = element.attr("data-binie") || options.binie;
 
             // splits the retrieved binie attribute as it may contain
             // multiple (valid) attributes (to be used)
@@ -154,8 +154,8 @@ if (typeof require !== "undefined") {
 
                 // tries to retrieve the fallback URL and the
                 // target for the link
-                var fallbackUrl = element.attr("data-fallback") || options["fallback"];
-                var target = element.attr("data-target") || options["target"];
+                var fallbackUrl = element.attr("data-fallback") || options.fallback;
+                var target = element.attr("data-target") || options.target;
 
                 // in case no fallback URL is defined, must return
                 // immediately (nothing is done)
@@ -284,7 +284,7 @@ if (typeof require !== "undefined") {
 
         // updates the data structure with the device with and length
         // for the defined paper size
-        data["width"] = defaultDevice["width"];
-        data["height"] = defaultDevice["length"];
+        data.width = defaultDevice.width;
+        data.height = defaultDevice.length;
     };
 })(jQuery);

@@ -46,7 +46,7 @@ if (typeof require !== "undefined") {
             // retrieves the ux apply option, taking into account
             // if the element contains any reference to the no apply
             // attribute that would disable the apply operation
-            var apply = options["apply"];
+            var apply = options.apply;
             apply = element.attr("data-no_apply") ? false : apply;
 
             // clones the element creating the template element value
@@ -200,9 +200,9 @@ if (typeof require !== "undefined") {
             // retrieves the various options for the template
             // rendering operation that will condition the
             // execution of the rendering
-            var nullify = options["nullify"];
-            var localize = options["localize"];
-            var defaultValue = options["defaultValue"];
+            var nullify = options.nullify;
+            var localize = options.localize;
+            var defaultValue = options.defaultValue;
 
             // retrirves the for each elments for the current template element
             var foreachElements = jQuery(".template-foreach", templateElement).not(

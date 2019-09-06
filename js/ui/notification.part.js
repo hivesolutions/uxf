@@ -47,17 +47,17 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // retrieves the title and the message
             // from the options
-            var title = options["title"];
-            var message = options["message"];
+            var title = options.title;
+            var message = options.message;
 
             // retrieves the timeout to be used in the notification
             // from the options
-            var timeout = options["timeout"];
-            var fadeTimeout = options["fadeTimeout"];
+            var timeout = options.timeout;
+            var fadeTimeout = options.fadeTimeout;
 
             // retrieves the optional link element that
             // defines the target for a click in the notification
-            var link = options["link"];
+            var link = options.link;
 
             // creates the message element from the HTML code
             // that is going to be used as the base for display

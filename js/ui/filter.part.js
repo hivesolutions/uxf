@@ -43,7 +43,7 @@ if (typeof require !== "undefined") {
          */
         var _appendHtml = function() {
             // retrieves the base options
-            var numberRecords = options["numberRecords"];
+            var numberRecords = options.numberRecords;
 
             // retrieves the filter input
             var filterInput = jQuery(".filter-input", matchedObject);
@@ -351,11 +351,11 @@ if (typeof require !== "undefined") {
 
                 // tries to retrieve the object identifier from the
                 // current item to be used as identifier of the element
-                var objectId = element["object_id"] || element["oid"];
+                var objectId = element.object_id || element.oid;
 
                 // tries to retrieve the unique identifier from the
                 // current item to be used as the cache key
-                var uniqueId = element["unique_id"] || element["uid"];
+                var uniqueId = element.unique_id || element.uid;
 
                 // applies the template to the template (item)
                 // retrieving the resulting template item and
@@ -1249,11 +1249,11 @@ if (typeof require !== "undefined") {
 
                         // tries to retrieve the object identifier from the
                         // current item to be used as identifier of the element
-                        var objectId = element["object_id"] || element["oid"];
+                        var objectId = element.object_id || element.oid;
 
                         // tries to retrieve the unique identifier from the
                         // current item to be used as the cache key
-                        var uniqueId = element["unique_id"] || element["uid"];
+                        var uniqueId = element.unique_id || element.uid;
 
                         // starts the template item to an invalid value, the
                         // concrete value is going to be set after condition
@@ -2320,8 +2320,8 @@ if (typeof require !== "undefined") {
             // for the current element (these are the offset
             // position of it)
             var offset = element.offset();
-            var top = offset["top"];
-            var left = offset["left"];
+            var top = offset.top;
+            var left = offset.left;
 
             // retrieves the element with and then uses
             // it to calculate the margin left for the

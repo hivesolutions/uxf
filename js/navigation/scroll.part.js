@@ -41,9 +41,9 @@ if (typeof require !== "undefined") {
             }
 
             // retrieves the offset and padding from the options
-            var offset = options["offset"];
-            var padding = options["padding"];
-            var parent = options["parent"];
+            var offset = options.offset;
+            var padding = options.padding;
+            var parent = options.parent;
 
             // retrieves the matched object height and
             // offset to top (from offset)

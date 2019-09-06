@@ -106,7 +106,7 @@ if (typeof require !== "undefined") {
         var _set = function(matchedObject, options) {
             // retrieves the index value to be used to update
             // the stack panel index (argument)
-            var index = options["index"] ? options["index"] : 0;
+            var index = options.index ? options.index : 0;
 
             // updates the index value in the matched object
             // and runs the update function on top of the matched

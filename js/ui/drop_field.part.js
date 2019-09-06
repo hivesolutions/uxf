@@ -71,8 +71,8 @@ if (typeof require !== "undefined") {
 
                 // retrieves the number of options and the filter
                 // options from the provided options map
-                var numberOptions = options["numberOptions"];
-                var filterOptions = options["filterOptions"];
+                var numberOptions = options.numberOptions;
+                var filterOptions = options.filterOptions;
 
                 // retrieves the number of options attribute and then tries to
                 // parse it as an integer value in case it fails falls back to
@@ -1087,7 +1087,7 @@ if (typeof require !== "undefined") {
 
                         // tries to retrieve the unique identifier from the
                         // current item to be used as the cache key
-                        var uniqueId = currentItem["unique_id"] || currentItem["uid"];
+                        var uniqueId = currentItem.unique_id || currentItem.uid;
 
                         // retrieves the cache map from the drop field and
                         // tries to find the cache item for the unique identifier
@@ -1140,19 +1140,19 @@ if (typeof require !== "undefined") {
                         // the retrieved values (in case it's map resolves again)
                         currentDisplayAttribute =
                             currentDisplayAttribute && typeof currentDisplayAttribute === "object"
-                                ? currentDisplayAttribute["name"]
+                                ? currentDisplayAttribute.name
                                 : currentDisplayAttribute;
                         currentExtraAttribute =
                             currentExtraAttribute && typeof currentExtraAttribute === "object"
-                                ? currentExtraAttribute["extra"]
+                                ? currentExtraAttribute.extra
                                 : currentExtraAttribute;
                         currentValueAttribute =
                             currentValueAttribute && typeof currentValueAttribute === "object"
-                                ? currentValueAttribute["value"]
+                                ? currentValueAttribute.value
                                 : currentValueAttribute;
                         currentLinkAttribute =
                             currentLinkAttribute && typeof currentLinkAttribute === "object"
-                                ? currentLinkAttribute["link"]
+                                ? currentLinkAttribute.link
                                 : currentLinkAttribute;
 
                         // initializes the template item value to its original
@@ -1264,7 +1264,7 @@ if (typeof require !== "undefined") {
                         // selected element and updates the options map with
                         // this value to condition the index change call
                         var index = element.index();
-                        options["index"] = index;
+                        options.index = index;
 
                         // changes the index of the current drop field to match
                         // the one "required" in the provided options map
@@ -1338,7 +1338,7 @@ if (typeof require !== "undefined") {
                             // if this logic is reached there was a match with the list
                             // item value and the proper index change should be triggered
                             index = _element.index();
-                            options["index"] = index;
+                            options.index = index;
                             _index(dropField, options);
                         });
 
@@ -1363,7 +1363,7 @@ if (typeof require !== "undefined") {
                             // if this logic is reached there was a match with the list
                             // item value and the proper index change should be triggered
                             index = _element.index();
-                            options["index"] = index;
+                            options.index = index;
                             _index(dropField, options);
                         });
                 }
@@ -1503,12 +1503,12 @@ if (typeof require !== "undefined") {
         var _set = function(matchedObject, options) {
             // retrieves both the value of the item and the logic
             // value to be set in the hidden field
-            var value = options["value"];
-            var valueLogic = options["valueLogic"];
+            var value = options.value;
+            var valueLogic = options.valueLogic;
 
             // tries to retieve the item definition from the
             // options in case it's defined
-            var item = options["item"] || {};
+            var item = options.item || {};
 
             // retrieves the drop field elements and the final
             // value for the value attribute name of the drop field
@@ -1628,7 +1628,7 @@ if (typeof require !== "undefined") {
             // retrievs the target index from the provided options
             // map, this value will be used to retrieved the correct
             // child element for the change
-            var index = options["index"];
+            var index = options.index;
 
             // retrieves the the various elements required for
             // the changing of the index on the drop field, note

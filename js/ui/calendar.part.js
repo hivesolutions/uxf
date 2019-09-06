@@ -175,11 +175,11 @@ if (typeof require !== "undefined") {
          */
         var _set = function(matchedObject, options) {
             // retrieves the "new" current value for the calendar
-            var current = options["current"];
+            var current = options.current;
 
             // unpacks the current value into year and month
-            var year = current["year"];
-            var month = current["month"];
+            var year = current.year;
+            var month = current.month;
 
             // updates the year and month values
             // in the matched object
@@ -209,8 +209,8 @@ if (typeof require !== "undefined") {
             var current = matchedObject.data("current");
 
             // unpacks the current value into year and month
-            var year = current["year"];
-            var month = current["month"];
+            var year = current.year;
+            var month = current.month;
 
             // updates the year and month values
             // in the matched object
@@ -250,9 +250,9 @@ if (typeof require !== "undefined") {
 
             // unpacks the current day into year, month
             // and day
-            var currentDayYear = current["year"];
-            var currentDayMonth = current["month"] - 1;
-            var currentDayNumber = current["day"];
+            var currentDayYear = current.year;
+            var currentDayMonth = current.month - 1;
+            var currentDayNumber = current.day;
 
             // creates the dates for the initial and the final
             // day of the month

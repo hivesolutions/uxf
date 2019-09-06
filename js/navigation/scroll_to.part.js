@@ -322,7 +322,7 @@ if (typeof require !== "undefined") {
         // the HTML and body elements from the
         // element's owner document
         var size = "client" + dimensions;
-        var HTML = element.ownerDocument.documentElement;
+        var html = element.ownerDocument.documentElement;
         var body = element.ownerDocument.body;
 
         // returns the maximum between the scroll of

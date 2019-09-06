@@ -31,7 +31,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // tries to retrieve the window selector from the options
             // and in case it does not exists uses the default one
-            var windowSelector = options["window"] || ".window.window-alert";
+            var windowSelector = options.window || ".window.window-alert";
 
             // localizes the various values that are going to be used in the
             // contruction of the alert window
@@ -89,7 +89,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // tries to retrieve the window selector from the options
             // and in case it does not exists uses the default one
-            var windowSelector = options["window"] || ".window.window-alert";
+            var windowSelector = options.window || ".window.window-alert";
 
             // retrieves the window (alert window) elements
             var window = jQuery(windowSelector, matchedObject);

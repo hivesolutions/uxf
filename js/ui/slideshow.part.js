@@ -341,7 +341,7 @@ if (typeof require !== "undefined") {
             } else {
                 // changes the source field of the image directly to
                 // take effect immediately
-                image.attr("src", item["image"]);
+                image.attr("src", item.image);
             }
 
             // retrieves the detail section of the slideshow to update

@@ -73,7 +73,7 @@ if (typeof require !== "undefined") {
                 var urlInformation = parseUrl(url);
 
                 // retrieves the base name from the URL information
-                var baseName = urlInformation["baseName"];
+                var baseName = urlInformation.baseName;
 
                 // in case the video is of type youtube
                 if (YOUTUBE_MAP[baseName]) {
@@ -93,8 +93,8 @@ if (typeof require !== "undefined") {
         var updateYoutube = function(matchedObject, options, urlInformation) {
             // retrieves the options map to then retrieve
             // the video id from it
-            var optionsMap = urlInformation["optionsMap"];
-            var videoId = optionsMap["v"];
+            var optionsMap = urlInformation.optionsMap;
+            var videoId = optionsMap.v;
 
             // retrieves the width and the height
             var width = matchedObject.attr("data-width");
@@ -166,7 +166,7 @@ if (typeof require !== "undefined") {
 
         var updateVimeo = function(matchedObject, options, urlInformation) {
             // retrieves the resource reference
-            var resourceReference = urlInformation["resourceReference"];
+            var resourceReference = urlInformation.resourceReference;
 
             // retrieves the reference to the various attributes that will
             // change the way the video is going to be embedded
@@ -204,7 +204,7 @@ if (typeof require !== "undefined") {
 
         var updateDailyMotion = function(matchedObject, options, urlInformation) {
             // retrieves the resource reference
-            var resourceReference = urlInformation["resourceReference"];
+            var resourceReference = urlInformation.resourceReference;
 
             // retrieves the reference to the various attributes that will
             // change the way the video is going to be embedded

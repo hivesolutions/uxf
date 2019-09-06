@@ -57,7 +57,7 @@ if (typeof require !== "undefined") {
 
         var _push = function(matchedObject, options) {
             // retrieves the "new" panel to be pushed
-            var panelHtml = options["panel"];
+            var panelHtml = options.panel;
 
             // retrieves the panels list
             var panels = matchedObject.data("panels");

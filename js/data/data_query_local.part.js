@@ -59,18 +59,18 @@ if (typeof require !== "undefined") {
             var compareStrings = null;
 
             // retrieves the id part of the url
-            var id = query["id"];
+            var id = query.id;
 
             // retrieves the "main" filter string and attribute, that
             // are going to be used for local matching
-            var filterString = query["filterString"];
-            var filterAttributes = query["filterAttributes"];
-            var filters = query["filters"] || [];
+            var filterString = query.filterString;
+            var filterAttributes = query.filterAttributes;
+            var filters = query.filters || [];
 
             // retrieves the record count information and validates that
             // the requested number of records is not infinite (minus one)
-            var startRecord = query["startRecord"] || 0;
-            var numberRecords = query["numberRecords"] || MAX_RECORDS;
+            var startRecord = query.startRecord || 0;
+            var numberRecords = query.numberRecords || MAX_RECORDS;
             numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords;
 
             // sets the initial filter flag value
@@ -123,7 +123,7 @@ if (typeof require !== "undefined") {
                     // retrieves the current item, and
                     // then retrieves and casts the item id
                     var item = items[index];
-                    var itemId = parseInt(item["id"]);
+                    var itemId = parseInt(item.id);
 
                     // in case the item id does not
                     // represent a number
@@ -219,7 +219,7 @@ if (typeof require !== "undefined") {
                 else if (typeof currentItem === "object") {
                     // retrieves the name attribute from the current
                     // item and sets it in the list of compaare strings
-                    compareStrings = [currentItem["name"]];
+                    compareStrings = [currentItem.name];
                 }
                 // otherwise the current item must be a string
                 // and so it's used directly as the compare strings

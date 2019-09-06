@@ -56,29 +56,29 @@ if (typeof require !== "undefined") {
 
         var _getResults = function(element, query, callback) {
             // retrieves the id part of the url
-            var id = query["id"];
+            var id = query.id;
 
             // retrieves the "main" filter string, this is going to be
             // used for plain text free search with non exact matching
-            var filterString = query["filterString"];
+            var filterString = query.filterString;
 
             // determines if the "main" filter string value should be
             // used in an insnsitive way, meaning that the uppercase
             // or lowercase structure should be ignored
-            var insensitive = query["insensitive"];
+            var insensitive = query.insensitive;
 
             // retrieves the sort tuple to be used to sort
             // the resulting set of elements
-            var sort = query["sort"] || ["default", "descending"];
+            var sort = query.sort || ["default", "descending"];
 
             // retrieves the filter tuples to be used to filter
             // the result set around certain rules
-            var filters = query["filters"] || [];
+            var filters = query.filters || [];
 
             // retrieves the record count information and validates that
             // the requested number of records is not infinite (minus one)
-            var startRecord = query["startRecord"] || 0;
-            var numberRecords = query["numberRecords"] || MAX_RECORDS;
+            var startRecord = query.startRecord || 0;
+            var numberRecords = query.numberRecords || MAX_RECORDS;
             numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords;
 
             // unpacks the sort value and the sort oder from the

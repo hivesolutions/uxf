@@ -355,8 +355,8 @@ if (typeof require !== "undefined") {
         var _set = function(matchedObject, options) {
             // tries to retrieve the (new) value to be set either from
             // the value of the value logic fields
-            var value = options["value"];
-            var valueLogic = options["valueLogic"];
+            var value = options.value;
+            var valueLogic = options.valueLogic;
             value = value || valueLogic;
 
             // retrieves the complete set of element present in the
@@ -375,7 +375,7 @@ if (typeof require !== "undefined") {
             // tries to retrieve a possible value from the set of
             // provided options, this value is going to be used to
             // set a new value in case that's required
-            var value = options["value"];
+            var value = options.value;
 
             // determines if the current operation is a set one and
             // if that's the case redirects the control flow to the

@@ -75,7 +75,7 @@ if (typeof require !== "undefined") {
          */
         var _change = function(matchedObject, options) {
             // retrieves the percentage value from the options
-            var percentage = options["percentage"] ? options["percentage"] : 0;
+            var percentage = options.percentage ? options.percentage : 0;
 
             // calculates the remaining percentage for the right
             // handed bar

@@ -874,8 +874,8 @@ if (typeof require !== "undefined") {
             // calculates the calendar top and left
             // positions from the element offset and height
             // and then sets them in the calendar
-            var calendarTop = offset["top"] + height;
-            var calendarLeft = offset["left"];
+            var calendarTop = offset.top + height;
+            var calendarLeft = offset.left;
             calendar.css("top", calendarTop + "px");
             calendar.css("left", calendarLeft + "px");
 
@@ -991,8 +991,8 @@ if (typeof require !== "undefined") {
                 // calculates the calendar top and left
                 // positions from the element offset and height
                 // and then sets them in the calendar
-                var calendarTop = offset["top"] + height;
-                var calendarLeft = offset["left"];
+                var calendarTop = offset.top + height;
+                var calendarLeft = offset.left;
                 calendar.css("top", calendarTop + "px");
                 calendar.css("left", calendarLeft + "px");
             });
@@ -1123,8 +1123,8 @@ if (typeof require !== "undefined") {
             // calculates the calendar top and left
             // positions from the element offset and height
             // and then sets them in the calendar
-            var calendarTop = offset["top"] + height;
-            var calendarLeft = offset["left"];
+            var calendarTop = offset.top + height;
+            var calendarLeft = offset.left;
             calendar.css("top", calendarTop + "px");
             calendar.css("left", calendarLeft + "px");
 

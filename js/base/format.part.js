@@ -96,12 +96,12 @@ if (typeof require !== "undefined") {
         // it's not must create a date object that represent it
         var isDate = date.getDate !== undefined;
         if (!isDate) {
-            year = date["year"];
-            month = date["month"] || 1;
-            day = date["day"] || 1;
-            hours = date["hours"] || 0;
-            minutes = date["minutes"] || 0;
-            seconds = date["seconds"] || 0;
+            year = date.year;
+            month = date.month || 1;
+            day = date.day || 1;
+            hours = date.hours || 0;
+            minutes = date.minutes || 0;
+            seconds = date.seconds || 0;
             date = new Date(year, month - 1, day, hours, minutes, seconds);
         }
 

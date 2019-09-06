@@ -147,7 +147,7 @@ if (typeof require !== "undefined") {
         var _set = function(matchedObject, options) {
             // retrieves the target index from the options
             // to update the current wizard index
-            var index = options["index"];
+            var index = options.index;
 
             // retrieves the panels associated with the
             // current wizard and then uses then to calculate

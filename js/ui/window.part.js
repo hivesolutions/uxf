@@ -338,7 +338,7 @@ if (typeof require !== "undefined") {
             // retrieves the appropriate name for the event to be
             // triggered indicating the state the window has closed,
             // note that the options map is used for the fallback
-            var name = options["reason"] || "cancel";
+            var name = options.reason || "cancel";
             name = success ? "success" : name;
 
             // triggers the hide handler so that any handler

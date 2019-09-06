@@ -98,7 +98,7 @@ if (typeof require !== "undefined") {
                 // button and in such case sets the new window
                 // option to open the link in a new window
                 var window = event.which === 2;
-                options["window"] = window;
+                options.window = window;
 
                 // triggers the handling of the click event to
                 // the button sub system
@@ -280,7 +280,7 @@ if (typeof require !== "undefined") {
         var __submit = function(matchedObject, options) {
             // in case the window flag is set returns immediately
             // no need to submit the form
-            var _window = matchedObject.data("window") || options["window"];
+            var _window = matchedObject.data("window") || options.window;
             if (_window) {
                 return;
             }
@@ -297,7 +297,7 @@ if (typeof require !== "undefined") {
         var __action = function(matchedObject, options) {
             // in case the window flag is set returns immediately
             // no need to take any action
-            var _window = matchedObject.data("window") || options["window"];
+            var _window = matchedObject.data("window") || options.window;
             if (_window) {
                 return;
             }
@@ -316,7 +316,7 @@ if (typeof require !== "undefined") {
             // retrieves the matched object link and the
             // (open in) window flag
             var link = matchedObject.data("link");
-            var _window = matchedObject.data("window") || options["window"];
+            var _window = matchedObject.data("window") || options.window;
 
             // checks the window flag and in case it's set
             // opens a new window with the link otherwise
