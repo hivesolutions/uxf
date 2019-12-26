@@ -142,7 +142,9 @@
 .omni-style .table .table-new-line-row > .table-new-line {
     background-color: #777777;
     color: #ffffff;
-    font-size: 10px;
+    display: inline-block;
+    font-size: 9px;
+    font-weight: bold;
     letter-spacing: 1px;
     padding: 2px 10px 2px 10px;
     text-transform: uppercase;
