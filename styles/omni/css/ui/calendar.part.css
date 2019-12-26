@@ -88,19 +88,18 @@
 }
 
 .omni-style .calendar-content thead tr th {
-    color: #2d2d2d;
-    font-weight: normal;
+    color: #6d6d6d;
+    font-weight: 600;
     text-align: center;
 }
 
 .omni-style .calendar-content tbody tr td {
-    border: 1px solid #f6f6f6;
     color: #2d2d2d;
     cursor: pointer;
-    line-height: 28px;
+    line-height: 30px;
     margin: 0px 0px 0px 0px;
     min-height: 28px;
-    min-width: 28px;
+    min-width: 30px;
     padding: 0px 0px 0px 0px;
     text-align: center;
 }
