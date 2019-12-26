@@ -44,6 +44,7 @@
 
 .omni-style .stats-panel > .link-panel {
     font-size: 10px;
+    font-weight: 600;
     text-align: center;
     text-transform: uppercase;
 }
