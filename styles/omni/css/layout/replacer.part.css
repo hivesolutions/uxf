@@ -1,5 +1,6 @@
 .omni-style .replacer {
     cursor: pointer;
+    font-weight: 600;
 }
 
 .omni-style.animations .replacer-target {
