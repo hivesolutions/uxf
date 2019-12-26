@@ -147,6 +147,7 @@
     cursor: pointer;
     float: left;
     font-size: 10px;
+    font-weight: 600;
     margin: 2px 6px 2px 0px;
     padding: 4px 12px 4px 12px;
     text-transform: uppercase;

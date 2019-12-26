@@ -13,6 +13,7 @@
 .omni-style .panel-more > .panel-more-action > li.list-more span {
     background-color: #777777;
     color: #ffffff;
+    display: inline-block;
     font-size: 9px;
     font-weight: bold;
     letter-spacing: 1px;
