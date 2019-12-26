@@ -319,6 +319,11 @@
     background-color: #e8e8e8;
 }
 
+.omni-style .button.large.button-light-grey.disabled {
+    background-color: #f4f4f4;
+    border-color: #dddddd;
+}
+
 .omni-style .button.small {
     background-color: transparent;
     background-position: 0px 0px;
