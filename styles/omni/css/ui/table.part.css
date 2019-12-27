@@ -26,6 +26,12 @@
     text-transform: uppercase;
 }
 
+.omni-style.mobile-s .table tr th {
+    height: auto !important;
+    min-width: auto !important;
+    width: auto !important;
+}
+
 .omni-style .table.table-show tr th {
     padding-left: 0px;
 }
@@ -138,6 +144,10 @@
     position: absolute;
     text-align: center;
     width: 532px;
+}
+
+.omni-style.mobile-s .table .table-new-line-row {
+    padding-top: 6px;
 }
 
 .omni-style .table .table-new-line-row > .table-new-line {
