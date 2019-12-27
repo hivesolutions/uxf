@@ -13,3 +13,7 @@
 .filter .filter-clear {
     clear: both;
 }
+
+.filter.no-results .filter-contents {
+    display: none;
+}

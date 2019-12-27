@@ -44,7 +44,7 @@
 .omni-style .filter .filter-input-buttons {
     position: absolute;
     right: 0px;
-    top: 0px;
+    top: 1px;
 }
 
 .omni-style .filter .filter-input-buttons.lower {
