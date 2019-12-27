@@ -96,9 +96,7 @@
 }
 
 .omni-style .table .table-add.visible,
-.omni-style .table .table-remove.visible,
-.omni-style.touch .table .table-add,
-.omni-style.touch .table .table-remove {
+.omni-style .table .table-remove.visible {
     opacity: 1.0;
     -o-opacity: 1.0;
     -ms-opacity: 1.0;
