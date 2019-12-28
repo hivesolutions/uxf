@@ -71,7 +71,8 @@ if (typeof require !== "undefined") {
             var isRegistered = _body.data("menu_link_click");
             _body.data("menu_link_click", true);
 
-            // registers for the click in the matched object
+            // registers for the click in the matched object, so
+            // that the menu is show in the screen
             matchedObject.click(function(event) {
                 // retrieves the element
                 var element = jQuery(this);
@@ -116,6 +117,10 @@ if (typeof require !== "undefined") {
                 // so that their contents are properly disabled/hidden
                 _menu.trigger("hide");
                 _menuContents.trigger("hide");
+
+                // triggers the hide modal event on the body, making sure that
+                // all of the modal windows in it are hidden
+                _body.triggerHandler("hide_modal");
 
                 // in case the menu already has the active class
                 // (the menu is shown)
