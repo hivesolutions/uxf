@@ -124,7 +124,7 @@ if (typeof require !== "undefined") {
         var _show = function(matchedObject, options) {
             var _body = jQuery("body");
             var menuContents = jQuery(".menu-contents", matchedObject);
-            _body.triggerHandler("hide_modal");
+            !options.noHideModal && _body.triggerHandler("hide_modal");
             matchedObject.addClass("active");
             menuContents.show();
             menuContents.triggerHandler("shown");
