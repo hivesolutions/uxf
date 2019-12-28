@@ -102,7 +102,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the global hide modal event
-            // so that the side panel is properly hidden
+            // so that the menu is properly hidden
             !isRegistered &&
                 _body.bind("hide_modal", function() {
                     // retrieves the current element (body) and uses it
@@ -114,7 +114,7 @@ if (typeof require !== "undefined") {
                     // to be able to hide everyone
                     menus.each(function() {
                         // runs the hide operation for the current
-                        // element (side panel in iteration)
+                        // element (menu in iteration)
                         var _element = jQuery(this);
                         _hide(_element, options);
                     });
@@ -124,10 +124,10 @@ if (typeof require !== "undefined") {
         var _show = function(matchedObject, options) {
             var _body = jQuery("body");
             var menuContents = jQuery(".menu-contents", matchedObject);
+            _body.triggerHandler("hide_modal");
             matchedObject.addClass("active");
             menuContents.show();
             menuContents.triggerHandler("shown");
-            !options.noHideModal && _body.triggerHandler("hide_modal");
         };
 
         var _hide = function(matchedObject, options) {
