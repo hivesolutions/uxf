@@ -118,10 +118,6 @@ if (typeof require !== "undefined") {
                 _menu.trigger("hide");
                 _menuContents.trigger("hide");
 
-                // triggers the hide modal event on the body, making sure that
-                // all of the modal windows in it are hidden
-                _body.triggerHandler("hide_modal");
-
                 // in case the menu already has the active class
                 // (the menu is shown)
                 if (isActive) {

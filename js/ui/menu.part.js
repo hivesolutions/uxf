@@ -93,10 +93,12 @@ if (typeof require !== "undefined") {
         };
 
         var _show = function(matchedObject, options) {
+            var _body = jQuery("body");
             var menuContents = jQuery(".menu-contents", matchedObject);
             matchedObject.addClass("active");
             menuContents.show();
             menuContents.triggerHandler("shown");
+            !options.noHideModal && _body.triggerHandler("hide_modal");
         };
 
         var _hide = function(matchedObject, options) {
