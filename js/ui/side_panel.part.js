@@ -62,7 +62,7 @@ if (typeof require !== "undefined") {
             var cancel = jQuery(".button-cancel", matchedObject);
 
             // checks if the side panel value is already
-            // registerrd in the body and sets the variable as
+            // registered in the body and sets the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("side_panel");
             _body.data("side_panel", true);

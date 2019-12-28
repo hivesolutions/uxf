@@ -57,9 +57,19 @@ if (typeof require !== "undefined") {
                 return;
             }
 
+            // retrieves the reference to the parent body element
+            // to be used in global registration
+            var _body = jQuery("body");
+
             // retrieves the contents section of the menu so
             // that it's possible to register foe events in it
             var menuContents = jQuery(".menu-contents", matchedObject);
+
+            // checks if the menu value is already
+            // registered in the body and sets the variable as
+            // true to avoid further registrations
+            var isRegistered = _body.data("menu");
+            _body.data("menu", true);
 
             // registers for the show operation in the current object
             // to be able to show its visual contents
@@ -90,6 +100,25 @@ if (typeof require !== "undefined") {
                 var menu = element.parents(".menu");
                 _hide(menu, options);
             });
+
+            // registers for the global hide modal event
+            // so that the side panel is properly hidden
+            !isRegistered &&
+                _body.bind("hide_modal", function() {
+                    // retrieves the current element (body) and uses it
+                    // to retrieve the complete set of menus
+                    var element = jQuery(this);
+                    var menus = jQuery(".menu", element);
+
+                    // iterates over the complete set of menus present
+                    // to be able to hide everyone
+                    menus.each(function() {
+                        // runs the hide operation for the current
+                        // element (side panel in iteration)
+                        var _element = jQuery(this);
+                        _hide(_element, options);
+                    });
+                });
         };
 
         var _show = function(matchedObject, options) {
