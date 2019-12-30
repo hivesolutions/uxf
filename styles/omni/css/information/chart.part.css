@@ -2,6 +2,12 @@
     padding: 5px 0px 5px 0px;
 }
 
+.omni-style .chart:after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
 .omni-style .chart .title {
     margin-bottom: 12px;
     margin-top: 12px;
