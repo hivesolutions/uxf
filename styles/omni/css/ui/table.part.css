@@ -147,7 +147,9 @@
 }
 
 .omni-style.mobile-s .table .table-new-line-row {
+    left: 0px;
     padding-top: 2px;
+    width: 100%;
 }
 
 .omni-style .table .table-new-line-row > .table-new-line {
