@@ -351,11 +351,16 @@ if (typeof require !== "undefined") {
             // internal and more accurate computation
             var menuButtonElement = menuButton[0];
 
+            // "resets" the left margin of the contents as this is usefull
+            // to obtain better left offset values
+            menuContents.css("margin-left", "0px");
+
             // retrieves the various dimensions from the various elements
             // associated with the menu to be repositioned
             var buttonWidth = menuButton.outerWidth();
             var contentsWidth = menuContents.outerWidth();
             var contentsHeight = menuContents.outerHeight(true);
+            var contentsLeft = menuContents.offset().left;
 
             // tries to retrive the button bounding (box) and then uses
             // it as the button with value in case it exists, this is
@@ -405,6 +410,7 @@ if (typeof require !== "undefined") {
             // in case the menu is meant bo displayed to the right no margin is
             // applies as the menu contents should be displayed to the right already
             var contentsMarginLeft = (contentsWidth - buttonWidth - borderWidth) * -1;
+            contentsMarginLeft = Math.max(contentsMarginLeft, contentsLeft * -1);
             contentsMarginLeft = right ? 0 : contentsMarginLeft;
             !isReference && menuContents.css("margin-left", contentsMarginLeft + "px");
         };
