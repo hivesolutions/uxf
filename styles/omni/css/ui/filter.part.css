@@ -204,8 +204,18 @@
     margin: 0px 0px 8px 0px;
 }
 
+.omni-style.mobile-s .filter .filter-advanced-filter {
+    font-size: 0px;
+    line-height: 14px;
+}
+
 .omni-style .filter .filter-advanced-filter > .drop-field {
     float: left;
+}
+
+.omni-style.mobile-s .filter .filter-advanced-filter > .drop-field {
+    display: inline-block;
+    float: none;
 }
 
 .omni-style .filter .filter-advanced-filter > .drop-field.drop-field-select > .text-field {
@@ -215,6 +225,11 @@
 .omni-style .filter .filter-advanced-filter > .text-field.value-field {
     float: left;
     width: 186px;
+}
+
+.omni-style.mobile-s .filter .filter-advanced-filter > .text-field.value-field {
+    display: inline-block;
+    float: none;
 }
 
 .omni-style .filter .filter-advanced-filter > .drop-field.value-field {
@@ -230,6 +245,11 @@
     float: left;
     margin-left: 4px;
     margin-top: 6px;
+}
+
+.omni-style.mobile-s .filter .filter-advanced-filter > .filter-input-add,
+.omni-style.mobile-s .filter .filter-advanced-filter > .filter-input-remove {
+    float: right;
 }
 
 .omni-style .filter .filter-advanced-buttons {
@@ -284,6 +304,13 @@
     margin-left: 509px;
     margin-top: 11px;
     position: absolute;
+}
+
+.omni-style.mobile-s .filter .filter-input-first {
+    float: right;
+    margin-left: 0px;
+    margin-right: 10px;
+    position: static;
 }
 
 .omni-style .filter.entities-list {
