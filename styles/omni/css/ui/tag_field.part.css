@@ -1,4 +1,5 @@
 .omni-style .tag-field > .text-field {
+    max-width: 100%;
     width: 312px;
 }
 

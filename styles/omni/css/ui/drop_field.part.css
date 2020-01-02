@@ -1,6 +1,6 @@
 .omni-style .drop-field {
     line-height: 26px;
-    width: 284px;
+    max-width: 100%;
 }
 
 .omni-style .drop-field > .text-field {
