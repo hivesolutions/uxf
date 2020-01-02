@@ -68,6 +68,7 @@ if (typeof require !== "undefined") {
             templateElement.uxattr("data-name", "name");
             templateElement.uxattr("data-class", "class");
             templateElement.uxattr("data-src", "src");
+            templateElement.uxattr("data-srcset", "srcset");
 
             // applies the ux in the element, in case the/ apply flag is set,
             // note that it might be/ disabled using either the options of the

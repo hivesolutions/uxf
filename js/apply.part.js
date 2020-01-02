@@ -55,6 +55,7 @@ if (typeof require !== "undefined") {
             template.uxattr("name", "data-name");
             template.uxattr("class", "data-class");
             template.uxattr("src", "data-src");
+            template.uxattr("srcset", "data-srcset");
 
             // retrieves the meta source element to be started in the
             // first state of the apply (going to create functions)
