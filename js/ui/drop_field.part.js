@@ -1523,16 +1523,16 @@ if (typeof require !== "undefined") {
             // verifies if the bootstrap mode is set meaning that the
             // logic value has been set but the visual one not, this
             // should trigger an extra query to the data source
-            var bootstrap = !value && valueLogic;
+            var bootstrap = Boolean(!value && valueLogic);
 
             // verifies if the incomplete mode is enabled, meaning that
             // the visual value is provided but the logic one not
-            var incomplete = value && !valueLogic;
+            var incomplete = Boolean(value && !valueLogic);
 
             // verifies if the incomplete mode is set (just visual) and
             // the forced mode is set, for this situation the data source
             // update operation is still going to be performed
-            var force = incomplete && options.force;
+            var force = Boolean(incomplete && options.force);
 
             // retrieves the complete set of value fields from the drop
             // field to apply the item values into them
@@ -1567,11 +1567,18 @@ if (typeof require !== "undefined") {
 
             // defines if the value to be set has valid meaning
             // by using the value and value logic definition
-            var hasValue = value || (valueLogic !== null && valueLogic !== undefined);
+            var hasValue = Boolean(value || (valueLogic !== null && valueLogic !== undefined));
 
-            // adds the drop field lock class from the drop field
-            // adds the lock symbol to the drop field
-            hasValue && dropField.addClass("drop-field-lock");
+            // in case there's a valid value in the drop field adds
+            // the drop field lock class to the drop field (symbol)
+            if (hasValue) {
+                dropField.addClass("drop-field-lock");
+            }
+            // otherwise there's no valid value and then the drop field
+            // lock should be removed from the drop field
+            else {
+                dropField.removeClass("drop-field-lock");
+            }
 
             // in case the bootstrap mode is enabled an extra update
             // operation is scheduled to update the values of the drop
