@@ -211,6 +211,7 @@
 
 .omni-style .filter .filter-advanced-filter > .drop-field {
     float: left;
+    margin-right: 4px;
 }
 
 .omni-style.mobile-s .filter .filter-advanced-filter > .drop-field {
