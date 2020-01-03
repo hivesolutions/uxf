@@ -1526,7 +1526,7 @@ if (typeof require !== "undefined") {
             var bootstrap = !value && valueLogic;
 
             // verifies if the incomplete mode is enabled, meaning that
-            // the visual value is provided but the logical one not
+            // the visual value is provided but the logic one not
             var incomplete = value && !valueLogic;
 
             // verifies if the incomplete mode is set (just visual) and
@@ -1565,9 +1565,13 @@ if (typeof require !== "undefined") {
                 field.val(_value);
             }
 
+            // defines if the value to be set has valid meaning
+            // by using the value and value logic definition
+            var hasValue = value || (valueLogic !== null && valueLogic !== undefined);
+
             // adds the drop field lock class from the drop field
             // adds the lock symbol to the drop field
-            dropField.addClass("drop-field-lock");
+            hasValue && dropField.addClass("drop-field-lock");
 
             // in case the bootstrap mode is enabled an extra update
             // operation is scheduled to update the values of the drop
