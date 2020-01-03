@@ -143,7 +143,6 @@
     font-size: 10px;
     line-height: 24px;
     text-transform: uppercase;
-    width: 140px;
 }
 
 .omni-style .drop-field.tiny .drop-field-contents li,
@@ -163,7 +162,8 @@
     background-image: url(../images/drop-field-select-small.png);
     font-size: 10px;
     height: 22px;
-    padding-top: 0px;
+    padding-bottom: 1px;
+    padding-top: 1px;
     text-transform: uppercase;
 }
 
@@ -186,7 +186,6 @@
 
 .omni-style .drop-field.tiny {
     line-height: 18px;
-    width: 120px;
 }
 
 .omni-style .drop-field.tiny.drop-field-select > .text-field {
