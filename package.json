@@ -17,6 +17,8 @@
     },
     "license": "Apache-2.0",
     "author": "Hive Solutions",
+    "main": "index.js",
+    "unpkg": "bin/js/ux.js",
     "files": [
         "index.js",
         "bin/**/*.css",
@@ -31,7 +33,6 @@
         "vue/**/*.js",
         "vue/**/*.vue"
     ],
-    "main": "index.js",
     "scripts": {
         "lint": "eslint \"./{js,vue}/**/*.{js,vue}\"",
         "lint-fix": "eslint \"./{js,vue}/**/*.{js,vue}\" --fix",
@@ -41,20 +42,19 @@
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
-        "hive-js-util": "^0.2.1",
-        "jquery": "^3.4.1",
-        "jsdom": "^15.1.1",
-        "vue": "^2.6.10"
+        "hive-js-util": "^0.2.2",
+        "jquery": "^3.5.0",
+        "jsdom": "^16.2.2",
+        "vue": "^2.6.11"
     },
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
-        "eslint": "^6.3.0",
-        "eslint-config-hive": "^0.1.22",
-        "mocha": "^6.2.0",
-        "npm-check-updates": "^3.1.21",
-        "prettier": "^1.18.2",
-        "prettier-config-hive": "^0.1.1",
-        "sort-package-json": "^1.22.1"
-    },
-    "unpkg": "bin/js/ux.js"
+        "eslint": "^6.8.0",
+        "eslint-config-hive": "^0.2.2",
+        "mocha": "^7.1.1",
+        "npm-check-updates": "^4.1.2",
+        "prettier": "^2.0.4",
+        "prettier-config-hive": "^0.1.7",
+        "sort-package-json": "^1.41.0"
+    }
 }

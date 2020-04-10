@@ -127,10 +127,7 @@ if (typeof require !== "undefined") {
             var newLine = jQuery(".table-new-line", matchedObject);
 
             // retrieves the row elements (without the table header, footer and templates)
-            var rows = jQuery("tr", matchedObject)
-                .not("thead tr")
-                .not("tfoot tr")
-                .not(".template");
+            var rows = jQuery("tr", matchedObject).not("thead tr").not("tfoot tr").not(".template");
 
             // registers for the click event in the newline element
             newLine.click(function() {
