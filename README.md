@@ -8,7 +8,7 @@ UX Framework is currently licensed under the [Apache License, Version 2.0](http:
 
 ## Build Automation
 
-[![Build Status](https://travis-ci.org/hivesolutions/uxf.svg?branch=master)](https://travis-ci.org/hivesolutions/uxf)
+[![Build Status](https://travis-ci.com/hivesolutions/uxf.svg?branch=master)](https://travis-ci.com/hivesolutions/uxf)
 [![Build Status GitHub](https://github.com/hivesolutions/uxf/workflows/Main%20Workflow/badge.svg)](https://github.com/hivesolutions/uxf/actions)
 [![npm Status](https://img.shields.io/npm/v/uxf.svg)](https://www.npmjs.com/package/uxf)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://www.apache.org/licenses/)
