@@ -701,7 +701,7 @@ if (typeof require !== "undefined") {
             matchedObject.removeClass("error");
 
             // updates the current state of the form element so that it reflects
-            // the orginal state of the form elements (as expected)
+            // the original state of the form elements (as expected)
             matchedObject.data("submited", false);
             matchedObject.data("confirmed", false);
 
