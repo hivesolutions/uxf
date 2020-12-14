@@ -155,7 +155,7 @@ if (typeof require !== "undefined") {
                 // registers for the submit event on them
                 // so that the button may be disabled registers
                 // also for the unlock event so that the disabled
-                // class is remove in such ocasions
+                // class is remove in such occasions
                 var parentForm = _element.parents("form");
                 parentForm.bind("pre_submit", function() {
                     // verifies if the button is a child of a form
@@ -172,7 +172,7 @@ if (typeof require !== "undefined") {
 
                     // adds the locked class to the button meaning that the
                     // button is considered to be in a special state where
-                    // no interation is considered due to outside action
+                    // no interaction is considered due to outside action
                     _element.addClass("locked");
                 });
                 parentForm.bind("unlock", function() {
@@ -195,7 +195,7 @@ if (typeof require !== "undefined") {
 
             // verifies if the current button is of type confirm
             // if that's the case a confirmation must be first processed
-            // and only then the peopr rediction is done
+            // and only then the proper redirection is done
             var isConfirm = matchedObject.hasClass("button-confirm");
 
             // tries to retrieve the message that is going to be used in

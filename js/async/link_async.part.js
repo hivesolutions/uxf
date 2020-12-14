@@ -65,15 +65,15 @@ if (typeof require !== "undefined") {
         // if that's not the case the extra query is not going to be applied
         var hasExtra = _body.hasClass("extra-query");
 
-        // calculates the aditional set of values of the base href value
+        // calculates the additional set of values of the base href value
         // so that this request may be "marked" as special avoiding possible
         // errors with cache in the browser/client side
         var hasQuery = href.indexOf("?") !== -1;
         var extraParams = "x-async=1&x-partial=1";
         var extraQuery = hasQuery ? "&" + extraParams : "?" + extraParams;
 
-        // trigers the async operation start handler indicating that an
-        // asyncronous request is going to start, this trigger should
+        // triggers the async operation start handler indicating that an
+        // asynchronous request is going to start, this trigger should
         // enable all the visuals so that the user is notified about the
         // remote communication that is going to occur
         _body.triggerHandler("async_start");

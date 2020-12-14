@@ -70,6 +70,11 @@ if (typeof require !== "undefined") {
                 var message = matchedObject.attr("data-message");
                 isConfirm = isConfirm && message;
 
+                // retrieves the value of the "managed" flag of the
+                // form that determines if the form component handles
+                // the form submission by "himself"
+                var managed = element.attr("data-managed") || false;
+
                 // retrieves the currently set attribute value
                 // for the trim operation on the form
                 var noTrim = element.attr("data-no_trim") || false;
@@ -79,15 +84,23 @@ if (typeof require !== "undefined") {
                 // round-trip that should be handled carefully
                 var confirmed = element.data("confirmed");
 
-                // retrieves the state of the submited flag
-                // and then updates it to the valid value
-                var submited = element.data("submited");
+                // in case the current form submission handling is done by
+                // other event handler (self-managed) then ignores the current
+                // event handler and returns the control flow immediately
+                if (managed) {
+                    return;
+                }
+
+                // retrieves the state of the submitted flag
+                // and then updates it to the valid value,
+                // notice that this value contains a spelling error
+                var submitted = element.data("submited");
                 element.data("submited", true);
 
-                // in case the form was not already submited
-                // need to prevent the event from bubling and
+                // in case the form was not already submitted
+                // need to prevent the event from bubbling and
                 // then the function must return immediately
-                if (submited) {
+                if (submitted) {
                     // stops the event propagation and prevents
                     // the default behavior (avoids duplicate
                     // submission) then returns the function
@@ -107,14 +120,14 @@ if (typeof require !== "undefined") {
                 var result = confirmed || element.triggerHandler("pre_submit");
                 if (result === false) {
                     // triggers the unlock (elements) events to emulate the
-                    // end of the submission of the form (compatability)
+                    // end of the submission of the form (compatibility)
                     // this should release the elements state to the normal
                     // state so that they may be re-used again
                     element.triggerHandler("unlock");
                     element.triggerHandler("post_submit");
 
-                    // updates the submited flag to the original invalid value
-                    // so that the form may be re-submited latter on
+                    // updates the submitted flag to the original invalid value
+                    // so that the form may be re-submitted latter on
                     element.data("submited", false);
 
                     // stops the event propagation and prevents
@@ -137,7 +150,7 @@ if (typeof require !== "undefined") {
                         // partial state and then return the control flow
                         if (result === false) {
                             // triggers the unlock (elements) events to emulate the
-                            // end of the submission of the form (compatability)
+                            // end of the submission of the form (compatibility)
                             // this should release the elements state to the normal
                             // state so that they may be re-used again
                             element.triggerHandler("unlock");
@@ -158,8 +171,8 @@ if (typeof require !== "undefined") {
                     // are contained in the current form (avoids glitches)
                     inputs.blur();
 
-                    // unsets the submited flag for the current form, so
-                    // that the form may be submited on confirm (latter)
+                    // unsets the submitted flag for the current form, so
+                    // that the form may be submitted on confirm (latter)
                     element.data("submited", false);
 
                     // stops the event propagation so that the current submit
@@ -171,7 +184,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // retrieves the complete set of (input) fields
-                // contained in the form  an itereates over them
+                // contained in the form and iterates over them
                 // so that trailing spaces are removed
                 var fields = jQuery(".text-field[data-object]", element);
                 !noTrim &&
@@ -316,7 +329,7 @@ if (typeof require !== "undefined") {
             var _body = jQuery("body");
 
             // retrieves the proper values from the matched object (form)
-            // so that the correct strategy is going to be used while submiting
+            // so that the correct strategy is going to be used while submitting
             // the data to the server side
             var method = matchedObject.attr("method") || "get";
             var action = matchedObject.attr("action");
@@ -326,8 +339,8 @@ if (typeof require !== "undefined") {
             // using an asynchronous approach (ajax)
             var href = jQuery.uxresolve(action);
 
-            // trigers the async operation start handler indicating that an
-            // asyncronous request is going to start, this trigger should
+            // triggers the async operation start handler indicating that an
+            // asynchronous request is going to start, this trigger should
             // enable all the visuals so that the user is notified about the
             // remote communication that is going to occur
             _body.triggerHandler("async_start");
@@ -338,7 +351,7 @@ if (typeof require !== "undefined") {
             var enctype = matchedObject.attr("enctype") || "application/x-www-form-urlencoded";
 
             // creates the form data object from the form element, this is the
-            // object that is going to be used for the asyncronous request in
+            // object that is going to be used for the asynchronous request in
             // the form is not of type multipart the default serialization
             // process is used instead to create a "query string"
             var form = matchedObject[0];
@@ -358,7 +371,7 @@ if (typeof require !== "undefined") {
             // if that's not the case the extra query is not going to be applied
             var hasExtra = _body.hasClass("extra-query");
 
-            // calculates the aditional set of values of the base href value
+            // calculates the additional set of values of the base href value
             // so that this request may be "marked" as special avoiding possible
             // errors with cache in the browser/client side
             hasQuery = href.indexOf("?") !== -1;
@@ -370,7 +383,7 @@ if (typeof require !== "undefined") {
             // href value, resolved from the process action and get parameters
             var url = href;
 
-            // creates the asyncronous object rerence and opens it to the link
+            // creates the asynchronous object reference and opens it to the link
             // reference defined in the form than triggers its load and then
             // forces the content type header for the requested encoding
             // type in case the form is not of type multipart
@@ -416,7 +429,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // retrieves the reference to the body element to be used in the
-                // current reponse handler for a series of operations
+                // current response handler for a series of operations
                 var _body = jQuery("body");
 
                 // trigger the async end(ed) event that notifies the current
@@ -497,7 +510,7 @@ if (typeof require !== "undefined") {
                 },
                 success: function(data) {
                     // in case no data was received the connection is
-                    // assumed to be down (no data receved) an error
+                    // assumed to be down (no data received) an error
                     // is triggered and the control returned immediately
                     if (!data) {
                         matchedObject.triggerHandler("error");
@@ -526,7 +539,7 @@ if (typeof require !== "undefined") {
                     var formSuccess = jQuery(".form-success", matchedObject);
                     var hasFormSuccess = formSuccess.length;
                     if (hasFormSuccess) {
-                        // retrieves the complate set of items in the form
+                        // retrieves the complete set of items in the form
                         // that are not part of the form success panel
                         var otherItems = jQuery("> :not(.form-success)", matchedObject);
 
@@ -539,7 +552,7 @@ if (typeof require !== "undefined") {
 
                         // hides the other items in the form as shows the just
                         // rendered form success item, tries to refresh contents
-                        // of the upper levels by raisinn and event indicating
+                        // of the upper levels by raising and event indicating
                         // the intent to refresh contents, and then triggers a
                         // layout event to render any changes in the "upper" levels
                         otherItems.hide();
@@ -548,7 +561,7 @@ if (typeof require !== "undefined") {
                         matchedObject.trigger("layout");
                     }
 
-                    // triggerrs the success event on the matched object, this
+                    // triggers the success event on the matched object, this
                     // should indicate that the form was correctly submited
                     matchedObject.triggerHandler("success", [data]);
                 },
@@ -604,7 +617,7 @@ if (typeof require !== "undefined") {
                     // "upper" components associated with the form
                     matchedObject.trigger("layout");
 
-                    // triggerrs the error event on the matched object, this
+                    // triggers the error event on the matched object, this
                     // should indicate that there was a problem in the form submission
                     matchedObject.triggerHandler("error", [exception, message]);
                 }
@@ -624,7 +637,7 @@ if (typeof require !== "undefined") {
             _body.triggerHandler("async_end");
 
             // removes the submited flag from the form (allows re-submit)
-            // then set the form as non asyncronous and submits it, removing
+            // then set the form as non asynchronous and submits it, removing
             // the same flag after the submit operation is completed, so that's
             // possible to re-use the form after the initial submission
             matchedObject.data("submited", false);
@@ -721,7 +734,7 @@ if (typeof require !== "undefined") {
             matchedObject.removeClass("error");
 
             // updates the current state of the form element so that it reflects
-            // the orginal state of the form elements (as expected)
+            // the original state of the form elements (as expected)
             matchedObject.data("submited", false);
             matchedObject.data("confirmed", false);
 
