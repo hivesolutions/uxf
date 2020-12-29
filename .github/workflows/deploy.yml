@@ -12,10 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     container: node:${{ matrix.node-version }}
     steps:
-      - uses: actions/checkout@v2
-        with:
-          ssh-key: ${{ secrets.SSH_KEY }}}
-          submodules: true
+      - uses: actions/checkout@v1
+      - run: |
+          git submodule init
+          git submodule update
       - run: node --version
       - run: npm install
       - run: npm install --only=dev
