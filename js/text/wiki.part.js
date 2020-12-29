@@ -14,9 +14,9 @@ if (typeof require !== "undefined") {
         options = jQuery.extend(defaults, options);
 
         // creates the various regular expressions for substitution
-        var newlineRegex = RegExp("\\\\n", "g");
-        var boldStartRegex = RegExp("\\[", "g");
-        var boldEndRegex = RegExp("\\]", "g");
+        var newlineRegex = /\\n/g;
+        var boldStartRegex = /\[/g;
+        var boldEndRegex = /\]/g;
 
         /**
          * Initializer of the plugin, runs the necessary functions to initialize

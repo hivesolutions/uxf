@@ -6,14 +6,14 @@ if (typeof require !== "undefined") {
     jQuery.fn.uxtimestamp = function(method, options) {
         // the various regex values for the time
         // date format part replacement
-        var YEAR_CHARACTER = new RegExp("%Y", "g");
-        var MONTH_CHARACTER = new RegExp("%m", "g");
-        var DAY_CHARACTER = new RegExp("%d", "g");
-        var HOUR_CHARACTER = new RegExp("%H", "g");
-        var MINUTE_CHARACTER = new RegExp("%M", "g");
-        var SECOND_CHARACTER = new RegExp("%S", "g");
-        var FULL_MONTH_CHARACTER = new RegExp("%B", "g");
-        var ABBREVIATED_MONTH_CHARACTER = new RegExp("%b", "g");
+        var YEAR_CHARACTER = /%Y/g;
+        var MONTH_CHARACTER = /%m/g;
+        var DAY_CHARACTER = /%d/g;
+        var HOUR_CHARACTER = /%H/g;
+        var MINUTE_CHARACTER = /%M/g;
+        var SECOND_CHARACTER = /%S/g;
+        var FULL_MONTH_CHARACTER = /%B/g;
+        var ABBREVIATED_MONTH_CHARACTER = /%b/g;
 
         // the lists for the month string values
         var FULL_MONTHS = [

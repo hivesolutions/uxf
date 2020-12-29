@@ -7,7 +7,7 @@ if (typeof require !== "undefined") {
      * The regular expression that is going to be used to match possible illegal
      * attribute values (template ones).
      */
-    var ATTR_REGEX = new RegExp("%\\[.*\\]");
+    var ATTR_REGEX = /%\[.*\]/;
 
     jQuery.fn.uxattr = function(attrName, attrNameTarget) {
         // sets the jquery matched object

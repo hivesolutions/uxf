@@ -6,10 +6,10 @@ if (typeof require !== "undefined") {
     jQuery.fn.uxpasswordmeter = function(options) {
         // the various regex values for password
         // strength validation
-        var NUMBER_REGEX = new RegExp("\\d+");
-        var LETTER_LOWER_REGEX = new RegExp("[a-z]");
-        var LETTER_UPPER_REGEX = new RegExp("[A-Z]");
-        var SPECIAL_CHARACTER_REGEX = new RegExp("[.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]");
+        var NUMBER_REGEX = /\d+/;
+        var LETTER_LOWER_REGEX = /[a-z]/;
+        var LETTER_UPPER_REGEX = /[A-Z]/;
+        var SPECIAL_CHARACTER_REGEX = /[.[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]/;
 
         // the default values for the name change
         var defaults = {};
@@ -142,7 +142,7 @@ if (typeof require !== "undefined") {
             }
 
             // in case the password contains at least
-            // a number in it
+            // one number in it
             if (NUMBER_REGEX.test(password)) {
                 // increments the strength value
                 strengthValue++;

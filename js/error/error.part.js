@@ -6,7 +6,7 @@ if (typeof require !== "undefined") {
     jQuery.fn.uxerror = function(method, options) {
         // the regex for string character regex,
         // for string replacement
-        var STRING_CHARACTER_REGEX = new RegExp("'", "g");
+        var STRING_CHARACTER_REGEX = /'/g;
 
         // the default values for the error
         var defaults = {};
@@ -68,7 +68,7 @@ if (typeof require !== "undefined") {
 
                 // replaces the list joining character in order
                 // to virtually "join" multiple lists
-                var listJoinCharacter = new RegExp("\\]\\[", "g");
+                var listJoinCharacter = /\]\[/g;
                 error = error.replace(listJoinCharacter, ", ");
 
                 // sets the initial value of the error structure

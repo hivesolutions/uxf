@@ -6,7 +6,7 @@ if (typeof require !== "undefined") {
     jQuery.fn.uxenumeration = function(options) {
         // the regex for string character regex,
         // for string replacement
-        var STRING_CHARACTER_REGEX = new RegExp("'", "g");
+        var STRING_CHARACTER_REGEX = /'/g;
 
         // the default values for the name change
         var defaults = {};
