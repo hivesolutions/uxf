@@ -42,19 +42,19 @@
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
-        "hive-js-util": "^0.2.2",
-        "jquery": "^3.5.0",
-        "jsdom": "^16.2.2",
-        "vue": "^2.6.11"
+        "hive-js-util": "^0.3.1",
+        "jquery": "^3.5.1",
+        "jsdom": "^16.4.0",
+        "vue": "^2.6.12"
     },
     "devDependencies": {
         "babel-preset-env": "^1.7.0",
-        "eslint": "^6.8.0",
-        "eslint-config-hive": "^0.2.2",
-        "mocha": "^7.1.1",
-        "npm-check-updates": "^4.1.2",
-        "prettier": "^2.0.4",
+        "eslint": "^7.16.0",
+        "eslint-config-hive": "^0.5.3",
+        "mocha": "^8.2.1",
+        "npm-check-updates": "^10.2.5",
+        "prettier": "^2.2.1",
         "prettier-config-hive": "^0.1.7",
-        "sort-package-json": "^1.41.0"
+        "sort-package-json": "^1.48.0"
     }
 }
