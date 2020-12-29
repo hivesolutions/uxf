@@ -34,6 +34,7 @@
         "vue/**/*.vue"
     ],
     "scripts": {
+        "build": "cleanup .",
         "lint": "eslint \"./{js,test,vue}/**/*.{js,vue}\"",
         "lint-fix": "eslint \"./{js,test,vue}/**/*.{js,vue}\" --fix",
         "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
