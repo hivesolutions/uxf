@@ -42,11 +42,17 @@ if (typeof require !== "undefined") {
             var delay = matchedObject.attr("data-delay") || 0;
             delay = parseInt(delay);
 
+            // tries to determine if the current print logic should
+            // be effectively applied to the current context, if not
+            // no printing operation is going to be performed
+            var noPrint = matchedObject.attr("data-no_print") || false;
+            noPrint = Boolean(noPrint);
+
             // prints the current document to the printer, this
             // should be a blocking operation and may block the
             // current browser interaction
             setTimeout(function() {
-                window.print();
+                if (!noPrint) window.print();
             }, delay);
         };
 
