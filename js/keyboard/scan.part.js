@@ -4,21 +4,21 @@ if (typeof require !== "undefined") {
 
 (function(jQuery) {
     jQuery.fn.uxscan = function(element, options) {
-        // the ammount of time to considered between letter sending any letter
-        // sending in bettwen this value is discarded, This value should be
-        // small enought do discard the keyboard presses
+        // the amount of time to considered between letter sending any letter
+        // sending in between this value is discarded, This value should be
+        // small enough do discard the keyboard presses
         var LETTER_INTERVAL = 80;
 
-        // the ration value to be used to calculate the complete interval for
+        // the ratio value to be used to calculate the complete interval for
         // the word based on the length of it (in letters), this value is going
         // to be multiplied by the letter interval
         var WORD_RATIO = 0.8;
 
-        // the ammount of time to considered between scannings any scanning in
-        // bettwen this value is discarded
+        // the amount of time to considered between scannings any scanning in
+        // between this value is discarded
         var SCAN_INTERVAL = 400;
 
-        // the minimum length of the sequence to be consdiered a valid scan
+        // the minimum length of the sequence to be considered a valid scan
         // value
         var MINIMUM_LENGTH = 6;
 
@@ -159,7 +159,7 @@ if (typeof require !== "undefined") {
                         }
                     }
 
-                    // in case the current key is an enters, must check if
+                    // in case the current key is an enter, must check if
                     // the sequence can be finished
                     if (keyValue === 13) {
                         // retrieves the length of the current sequence, defaulting
