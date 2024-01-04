@@ -12,7 +12,7 @@ if (typeof require !== "undefined") {
  * @author João Magalhães <joamag@hive.pt>
  * @version 1.0
  * @category jQuery plugin
- * @copyright Copyright (c) 2008-2020 Hive Solutions Lda.
+ * @copyright Copyright (c) 2008-2024 Hive Solutions Lda.
  * @license Apache License, Version 2.0 - http://www.apache.org/licenses/
  */
 (function(jQuery) {
