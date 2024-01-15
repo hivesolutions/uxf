@@ -78,10 +78,9 @@ if (typeof require !== "undefined") {
             // only the first (and major one is selected)
             var overlay = jQuery(".overlay:first");
 
-            // hides both the overlay and the current
-            // object (as expected by the search overlay)
+            // triggers the hide event in the overlay
+            // so that it's hidden from the screen
             overlay.triggerHandler("hide", [200]);
-            matchedObject.fadeOut(200);
         };
 
         // initializes the plugin
