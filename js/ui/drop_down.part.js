@@ -5,7 +5,7 @@ if (typeof require !== "undefined") {
 /**
  * jQuery drop down plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a drop down component. Should be used for situations
- * where a menu should be displayed uppon a button based action.
+ * where a menu should be displayed upon a button based action.
  *
  * @name uxf-drop-down.js
  * @author João Magalhães <joamag@hive.pt>

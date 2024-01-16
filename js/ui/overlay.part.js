@@ -44,7 +44,7 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // verifies if there's at leat on matched object and if that's
+            // verifies if there's at least on matched object and if that's
             // not the case returns immediately (avoiding possible issues)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -54,7 +54,7 @@ if (typeof require !== "undefined") {
             // operation so that it becomes of the correct size, then
             // adds the resizable class to the current element to identify
             // the element as an element that is meant to be resizes, this
-            // is imporant to avoid error in the resize operations
+            // is important to avoid error in the resize operations
             _resize(matchedObject, options);
             matchedObject.addClass("resizable");
 
@@ -73,7 +73,7 @@ if (typeof require !== "undefined") {
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // verifies if there's at leat on matched object and if that's
+            // verifies if there's at least on matched object and if that's
             // not the case returns immediately (avoiding possible issues)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -89,7 +89,7 @@ if (typeof require !== "undefined") {
                 _resize(matchedObject, options);
             });
 
-            // registers the laod event in the window, avoids
+            // registers the load event in the window, avoids
             // possible initial resize problem
             _window.load(function(event) {
                 // resizes the overlay in the screen
@@ -99,7 +99,7 @@ if (typeof require !== "undefined") {
             // registers the resize in the window, this is a custom
             // event triggered at the correct timing of the window
             // sizing workflow, this will trigger a delayed based
-            // resizing operation on the oeverlay element
+            // resizing operation on the overlay element
             _window.bind("size", function(event) {
                 // resizes the overlay in the screen
                 _resizeDelay(matchedObject, options);
@@ -109,7 +109,7 @@ if (typeof require !== "undefined") {
             // no propagation of it is done
             matchedObject.click(function(event) {
                 // retrieves the current element (overlay) and the
-                // reference to the body top elemenet
+                // reference to the body top element
                 var element = jQuery(this);
                 var _body = jQuery("body");
 
@@ -148,7 +148,7 @@ if (typeof require !== "undefined") {
                 _hide(element, options, timeout, timing);
             });
 
-            // registers for the resize event on the overlayy
+            // registers for the resize event on the overlay
             // so that the overlay may be resized in for such events
             matchedObject.bind("resize", function() {
                 // retrieves teh current element and uses it
@@ -157,7 +157,7 @@ if (typeof require !== "undefined") {
                 _resize(element, options);
             });
 
-            // registers for the transition end envet so that the
+            // registers for the transition end event so that the
             // visual state of the element is properly updated
             matchedObject.bind("transitionend", function(event) {
                 var element = jQuery(this);
@@ -219,7 +219,7 @@ if (typeof require !== "undefined") {
 
         var _reset = function(matchedObject, options) {
             // verifies if the current element is visible (block),
-            // retrieving then the opcity value of it so that's it's
+            // retrieving then the opacity value of it so that's it's
             // considered the original value (to be restored latter)
             // then and in case the element is invisible sets the
             // opacity to the default zero value (for animation)

@@ -76,7 +76,7 @@ if (typeof require !== "undefined") {
             }
 
             // registers for the click event on the element
-            // to aovid propagation
+            // to avoid propagation
             matchedObject.click(function(event) {
                 // stops the event propagation, no need
                 // to propagate clicks to the upper levels
@@ -87,7 +87,7 @@ if (typeof require !== "undefined") {
             // triggered the show function is called for the
             // associated element (indirect show)
             matchedObject.bind("show", function() {
-                // retrieves the current elemenet and runs the hide
+                // retrieves the current element and runs the hide
                 // operation in it (to hide it)
                 var element = jQuery(this);
                 _show(element, options);
@@ -97,7 +97,7 @@ if (typeof require !== "undefined") {
             // triggered the hide function is called for the
             // associated element (indirect hide)
             matchedObject.bind("hide", function() {
-                // retrieves the current elemenet and runs the hide
+                // retrieves the current element and runs the hide
                 // operation in it (to hide it)
                 var element = jQuery(this);
                 _hide(element, options);
@@ -272,11 +272,11 @@ if (typeof require !== "undefined") {
             overlay.triggerHandler("show", [duration / 1.25, null, null, timing]);
 
             // focus in the text field as this is the default behaviour
-            // to be executed uppon showing the overlay panel, note that
+            // to be executed upon showing the overlay panel, note that
             // if no text field exists nothing happens
             textField.focus();
 
-            // thiggers the shown event indicating that the overlay panel
+            // triggers the shown event indicating that the overlay panel
             // has just finished beeing shown
             matchedObject.triggerHandler("shown");
         };

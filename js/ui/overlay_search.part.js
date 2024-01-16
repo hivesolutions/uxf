@@ -78,10 +78,15 @@ if (typeof require !== "undefined") {
             // only the first (and major one is selected)
             var overlay = jQuery(".overlay:first");
 
+            // checks if the current component is also an overlay
+            // panel, this is going to change the way the hide
+            // is going to be performed
+            var isOverlayPanel = matchedObject.hasClass("overlay-panel");
+
             // hides both the overlay and the current
             // object (as expected by the search overlay)
             overlay.triggerHandler("hide", [200]);
-            matchedObject.fadeOut(200);
+            !isOverlayPanel && matchedObject.fadeOut(200);
         };
 
         // initializes the plugin
