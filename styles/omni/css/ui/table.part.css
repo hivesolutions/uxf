@@ -147,6 +147,9 @@
     width: 532px;
 }
 
+.omni-style .table.max-rows .table-new-line-row {
+    display: none;
+
 .omni-style.mobile-s .table .table-new-line-row {
     left: 0px;
     padding-top: 2px;

@@ -371,6 +371,10 @@ if (typeof require !== "undefined") {
                 var elementRow = element.parents("tr");
                 elementRow.remove();
 
+                // removes the max row classes effectively indicating
+                // that the max rows rule is no longe applicable
+                matchedObject.removeClass("max-rows");
+
                 // updates the invalid values on the current
                 // matched object (global reset)
                 _updateInvalid(matchedObject, options);
@@ -677,18 +681,24 @@ if (typeof require !== "undefined") {
 
         var _newLine = function(matchedObject, elementRow, options) {
             // retrieves all the rows from the element reference
-            // so that it's possible to check for overlfows
+            // so that it's possible to check for overflows
             var rows = jQuery("tbody > tr:not(.template)", matchedObject);
             var rowCount = rows.length;
 
             // retrieves the value for the maximum number of rows and tries
             // to convert it into an integer representation, then in case it
-            // is a valid integere validates it agains the row count value
+            // is a valid integer validates it against the row count value
             // (only in case the maximum number of rows is available)
             var maximumRows = matchedObject.attr("data-maximum_rows");
             var maximumRowsInteger = parseInt(maximumRows);
             if (maximumRows && rowCount >= maximumRowsInteger) {
                 return;
+            }
+
+            // in case the maximum rows have been reached then adds a
+            // specific class to make sure we can act accordingly
+            if (maximumRows && ((rowCount + 1) >= maximumRowsInteger)) {
+                matchedObject.addClass("max-rows");
             }
 
             // retrieves the template element
