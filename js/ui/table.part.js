@@ -373,7 +373,7 @@ if (typeof require !== "undefined") {
 
                 // removes the max row classes effectively indicating
                 // that the max rows rule is no longe applicable
-                element.removeClass("max-rows");
+                table.removeClass("max-rows");
 
                 // updates the invalid values on the current
                 // matched object (global reset)
