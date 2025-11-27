@@ -79,7 +79,7 @@ if (typeof require !== "undefined") {
                     errorStructure = jQuery.parseJSON(error);
                 } catch (exception) {
                     // sets the error structure with no error enabled
-                    // from the provided error (must be a simmple
+                    // from the provided error (must be a simple
                     // error string element)
                     errorStructure = [];
                 }
