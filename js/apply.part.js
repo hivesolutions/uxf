@@ -100,10 +100,10 @@ if (typeof require !== "undefined") {
             var slider = jQuery(".slider", matchedObject).not(".template .slider");
             var scrollList = jQuery(".scroll-list", matchedObject).not(".template .scroll-list");
             var overlayPanel = jQuery(".overlay-panel", matchedObject).not(
-                ".template .overaly-panel"
+                ".template .overlay-panel"
             );
             var overlaySearch = jQuery(".overlay-search", matchedObject).not(
-                ".template .overaly-search"
+                ".template .overlay-search"
             );
             var window = jQuery(".window", matchedObject).not(".template .window");
             var wizard = jQuery(".wizard", matchedObject).not(".template .wizard");
