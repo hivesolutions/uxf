@@ -38,7 +38,7 @@ if (typeof require !== "undefined") {
             // retrieves the elements to be able to apply their styles
             // and use them as the base reference for the rest of the
             // apply operation, note that the started flag is used to
-            // controll the ammount of times the body is initialized
+            // control the amount of times the body is initialized
             var _body = jQuery("body");
             var started = _body.data("started");
             _body.data("started", true);
