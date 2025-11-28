@@ -697,7 +697,7 @@ if (typeof require !== "undefined") {
 
             // in case the maximum rows have been reached then adds a
             // specific class to make sure we can act accordingly
-            if (maximumRows && ((rowCount + 1) >= maximumRowsInteger)) {
+            if (maximumRows && rowCount + 1 >= maximumRowsInteger) {
                 matchedObject.addClass("max-rows");
             }
 

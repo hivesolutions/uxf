@@ -20,7 +20,7 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // calculates the proper name for the disable attrbute
+            // calculates the proper name for the disable attribute
             // taking into account the provided argument value for
             // the current disable extension
             var name = readonly ? "readonly" : "disabled";

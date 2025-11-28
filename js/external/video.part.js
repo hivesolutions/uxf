@@ -240,7 +240,8 @@ if (typeof require !== "undefined") {
 
         var parseUrl = function(url) {
             // creates the URL regex (for URL validation)
-            var urlRegex = /(\w+\:\/\/)?([^\:\/\?#]+)(\:\d+)?((\/[^\?#]+)*)\/?(\?(([^#])*))?(#(.*))?/g;
+            var urlRegex =
+                /(\w+\:\/\/)?([^\:\/\?#]+)(\:\d+)?((\/[^\?#]+)*)\/?(\?(([^#])*))?(#(.*))?/g;
 
             // executes the URL regex against the URL
             var match = urlRegex.exec(url);

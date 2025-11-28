@@ -68,6 +68,9 @@ if (typeof require !== "undefined") {
             var dataDisabled = jQuery("[data-disabled]", matchedObject).not(
                 ".template [data-disabled]"
             );
+            var dataReadonly = jQuery("[data-readonly]", matchedObject).not(
+                ".template [data-readonly]"
+            );
 
             // retrieves the various elements
             var overlay = jQuery(".overlay", matchedObject).not(".template .overlay");
@@ -336,6 +339,7 @@ if (typeof require !== "undefined") {
             // applies the various attribute based plugins (post
             // structure construction apply)
             dataDisabled.uxdisable();
+            dataReadonly.uxenable(true);
 
             // shows the body in case it's meant to be
             // shown only after the ux script execution
