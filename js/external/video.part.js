@@ -265,12 +265,12 @@ if (typeof require !== "undefined") {
             // split list
             for (var index = 0; index < optionsSplit.length; index++) {
                 // retrieves the (current) option
-                var option = optionsSplit[0];
+                var option = optionsSplit[index];
 
-                // splits the option arround the separator
+                // splits the option around the separator
                 var optionSplit = option.split("=");
 
-                // starts the value for the option varialbes
+                // starts the value for the option variables
                 // that are going to store characteristics
                 var optionName = null;
                 var optionValue = null;
