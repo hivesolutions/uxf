@@ -339,7 +339,7 @@ if (typeof require !== "undefined") {
             // applies the various attribute based plugins (post
             // structure construction apply)
             dataDisabled.uxdisable();
-            dataReadonly.uxenable(true);
+            dataReadonly.uxdisable(true);
 
             // shows the body in case it's meant to be
             // shown only after the ux script execution
