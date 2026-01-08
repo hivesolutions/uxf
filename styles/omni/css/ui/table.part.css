@@ -42,6 +42,11 @@
     word-break: break-all;
 }
 
+.omni-style .table.monospace tr td {
+    font-family: monospace;
+    font-size: 11px;
+}
+
 .omni-style .table tr td.selected {
     border-color: #3668c6;
 }
