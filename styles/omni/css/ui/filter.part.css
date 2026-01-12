@@ -234,6 +234,7 @@
 }
 
 .omni-style .filter .filter-advanced-filter > .drop-field.value-field {
+    margin-right: 4px;
     width: 200px;
 }
 
