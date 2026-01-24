@@ -47,6 +47,10 @@
     font-size: 11px;
 }
 
+.omni-style .table.monospace.monospace-large tr td {
+    font-size: 13px;
+}
+
 .omni-style .table tr td.selected {
     border-color: #3668c6;
 }
