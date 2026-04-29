@@ -243,7 +243,7 @@ if (typeof require !== "undefined") {
                 var async = _body.data("async");
                 async &= element.hasClass("no-async") === false;
                 async &= _body.triggerHandler("async") !== false;
-                async &= !hasTarget;
+                async &= hasTarget === false;
 
                 // checks if the current element has the ajax form
                 // class, in such cases must avoid normal submission
@@ -263,6 +263,17 @@ if (typeof require !== "undefined") {
                 } else if (async && window.FormData) {
                     submit(element, options);
                     event.preventDefault();
+                } else if (hasTarget) {
+                    // schedules the triggering of the post submit and
+                    // success events for the next tick so that the native
+                    // submission is handed off to the browser before any
+                    // listener (eg: parent window auto-close) reacts to it,
+                    // emulating the async submission cycle as the current
+                    // page is not going to be unloaded in this scenario
+                    setTimeout(function() {
+                        element.triggerHandler("post_submit");
+                        element.triggerHandler("success");
+                    }, 0);
                 }
             });
 
