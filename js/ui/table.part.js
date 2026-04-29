@@ -213,7 +213,7 @@ if (typeof require !== "undefined") {
 
                     // in case there is only one table field element
                     // the table empty field is removed to avoid it from
-                    // being submited (this should only be submited in empty table)
+                    // being submitted (this should only be submitted in empty table)
                     rows.length - tableDefaultField.length > 0 &&
                         tableEmptyField.removeAttr("name");
                 });

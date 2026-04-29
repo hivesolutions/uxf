@@ -667,7 +667,7 @@ if (typeof require !== "undefined") {
                 var template = jQuery(".template", dropField);
 
                 // verifies if the drop field is currently configured to
-                // be submited after the pressing of the action
+                // be submitted after the pressing of the action
                 var isSubmit = dropField.attr("data-submit");
 
                 // retrieves the current value for the hidden field
@@ -1654,7 +1654,7 @@ if (typeof require !== "undefined") {
             var element = jQuery("> :nth-child(" + (index + 1) + ")", dropFieldContents);
 
             // verifies if the drop field is currently configured to
-            // be submited after the pressing of the action
+            // be submitted after the pressing of the action
             var isSubmit = dropField.attr("data-submit");
 
             // retrieves the value, the logic value

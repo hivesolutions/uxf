@@ -160,7 +160,7 @@ if (typeof require !== "undefined") {
 
                 // registers for the pre submit event, so that it's possible
                 // to create an hidden input representing the value that
-                // will be submited accordint to the drop list
+                // will be submitted accordint to the drop list
                 parentForm.bind("pre_submit", function() {
                     // retrieves the name of the element, this value is
                     // going to be used in the input element to be create
