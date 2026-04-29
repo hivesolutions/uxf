@@ -229,6 +229,12 @@ if (typeof require !== "undefined") {
                         _element.attr("data-value", value);
                     });
 
+                // in case the current form submission target is set to open in a new
+                // window/tab then the async strategy is not applied as the form
+                // submission is expected to be handled by the browser and not by
+                // the framework
+                var hasTarget = ["blank", "_blank"].includes(element.attr("target"));
+
                 // retrieves the current body element and uses it to retrieve
                 // the async flag state, that indicates if the interactions with
                 // the server side should be performed using an async strategy then
@@ -237,6 +243,7 @@ if (typeof require !== "undefined") {
                 var async = _body.data("async");
                 async &= element.hasClass("no-async") === false;
                 async &= _body.triggerHandler("async") !== false;
+                async &= !hasTarget;
 
                 // checks if the current element has the ajax form
                 // class, in such cases must avoid normal submission
