@@ -68,9 +68,13 @@ if (typeof require !== "undefined") {
                     form = _element.parent(".form");
                 }
 
-                // inserts the uploader input afeter the element
-                // and then retrieves it from the element
-                _element.after('<input name="' + name + '" type="file" class="uploader-input" />');
+                // inserts the uploader input after the element
+                // and then retrieves it from the element, the input
+                // is created without a name attribute so that empty
+                // placeholder slots are not included in the form
+                // serialization (the name is set once the user picks
+                // a file via the change handler below)
+                _element.after('<input type="file" class="uploader-input" />');
                 var uploaderInput = jQuery("+ .uploader-input", _element);
 
                 // in cas the current browser is of type mozilla
@@ -106,6 +110,14 @@ if (typeof require !== "undefined") {
                     // parent that is going to be used as replacer target
                     var element = jQuery(this);
                     var parent = element.parent();
+
+                    // assigns the name attribute to the input so that the
+                    // selected file gets serialized as part of the form
+                    // submission (the input was created without a name to
+                    // avoid empty placeholder slots being included in the
+                    // form), the operation is a no-op when the input
+                    // already has the proper name set
+                    element.attr("name", name);
 
                     // in case the multiple uploads flag is set for the
                     // current uploader element the parent element must
