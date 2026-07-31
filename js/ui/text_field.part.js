@@ -44,7 +44,7 @@ if (typeof require !== "undefined") {
          */
         var _appendHtml = function() {
             // sets the ux global object representation as text
-            // field, this value may be used latter for fast ux
+            // field, this value may be used later for fast ux
             // object type access (hash based conditions)
             matchedObject.uxobject("textfield");
 
@@ -77,7 +77,7 @@ if (typeof require !== "undefined") {
             // registers for focus event
             matchedObject.focus(function() {
                 // retrieves the element and runs the focus
-                // mrthod on top of it (focus the text field)
+                // method on top of it (focus the text field)
                 var element = jQuery(this);
                 _focus(element, options);
             });
@@ -85,7 +85,7 @@ if (typeof require !== "undefined") {
             // registers for blur event
             matchedObject.blur(function(event) {
                 // retrieves the element and runs the blur
-                // mrthod on top of it (blurs the text field)
+                // method on top of it (blurs the text field)
                 var element = jQuery(this);
                 _blur(element, options);
             });
@@ -296,7 +296,7 @@ if (typeof require !== "undefined") {
             // new text field contents are properly updated
             matchedObject.bind("paste", function() {
                 // retrieves the reference to the current text element
-                // and uses it to trigger the update value and the rese
+                // and uses it to trigger the update value and the reset
                 // error operation for the current element
                 var element = jQuery(this);
                 setTimeout(function() {
@@ -322,11 +322,11 @@ if (typeof require !== "undefined") {
                 // registers for the submit event
                 parentForm.bind("pre_submit", function() {
                     // checks if the text field is "lower", to be able
-                    // to chose between send a hidden field or a normal field
+                    // to choose between send a hidden field or a normal field
                     var isLower = elementReference.hasClass("lower");
 
                     // starts some of the variables that are going to be shared
-                    // ammong multiple conditions
+                    // among multiple conditions
                     var elementValue = null;
 
                     // in case the current text field is lowered, must create
@@ -382,8 +382,8 @@ if (typeof require !== "undefined") {
                 // in the text field, note that in case the text
                 // field gets out of the dom the interval is removed
                 var interval = setInterval(function() {
-                    // verifiers if the text field is still defined in
-                    // the dome and if that's not the case removes/clear
+                    // verifies if the text field is still defined in
+                    // the dom and if that's not the case removes/clear
                     // the interval to allow proper removal
                     var inDom = elementReference.uxindom();
                     if (!inDom) {
@@ -425,7 +425,7 @@ if (typeof require !== "undefined") {
                 __updateValue(matchedObject, options);
                 var elementValue = matchedObject.attr("data-value");
 
-                // retrieves the data type for the matached object
+                // retrieves the data type for the matched object
                 // and uses it to create the (possible) value type
                 // retrieval method then calls it in case it exists
                 // otherwise uses the normal element value
@@ -442,7 +442,7 @@ if (typeof require !== "undefined") {
             // otherwise the "target" value is valid and the operations is
             // considered to be a set one (instead of get/read)
             else {
-                // retrieves the data type for the matached object
+                // retrieves the data type for the matched object
                 // and uses it to create the (possible) format value
                 // retrieval method then calls it in case it exists
                 // otherwise uses the normal value, note that the method
@@ -495,7 +495,7 @@ if (typeof require !== "undefined") {
                 return;
             }
 
-            // blurs all the active text fields (avoids bluring
+            // blurs all the active text fields (avoids blurring
             // the current text field)
             __bluractive(element, options);
 
@@ -594,7 +594,7 @@ if (typeof require !== "undefined") {
             var originalValue = matchedObject.attr("data-original_value");
 
             // retrieves the force complete value, this value controls
-            // if the autcomplete feature must be forced in non compliant
+            // if the autocomplete feature must be forced in non compliant
             // browsers (eg: firefox)
             var forceComplete = matchedObject.attr("data-force_complete");
 
@@ -603,7 +603,7 @@ if (typeof require !== "undefined") {
             // autocomplete strategy for the text field
             var autoComplete = matchedObject.attr("autocomplete");
 
-            // sets the proper original value that is going to be used latter
+            // sets the proper original value that is going to be used later
             // for the original event to restore original state
             matchedObject.data("original", originalValue || elementValue || inputFieldValue);
 
@@ -614,7 +614,7 @@ if (typeof require !== "undefined") {
             }
 
             // unsets the autocomplete feature in the text field
-            // to avoid possible (unwanted) autocomplete sugestions
+            // to avoid possible (unwanted) autocomplete suggestions
             // this is only done in case the force complete flag
             // is unset (default behavior) and no explicit autocomplete
             // value exists, respecting the author's intention
@@ -640,7 +640,7 @@ if (typeof require !== "undefined") {
             var elementValue = matchedObject.attr("data-value");
 
             // in case the element value is not empty must return
-            // immedidately as the original value cannot be set
+            // immediately as the original value cannot be set
             // (would override the current value)
             if (elementValue !== "") {
                 return;
@@ -714,7 +714,7 @@ if (typeof require !== "undefined") {
         };
 
         var __callMethod = function(methodName, element, options) {
-            // creates the string to be eavluated and then evaluates it
+            // creates the string to be evaluated and then evaluates it
             var evalString =
                 "if(typeof " +
                 methodName +
@@ -727,7 +727,7 @@ if (typeof require !== "undefined") {
         };
 
         var __hasMethod = function(methodName, element, options) {
-            // creates the string to be eavluated and then evaluates it
+            // creates the string to be evaluated and then evaluates it
             var evalString = "var result = typeof " + methodName + ' !== "undefined"; result;';
             // eslint-disable-next-line no-eval
             var result = eval(evalString);
@@ -805,7 +805,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the proper string representation of the current
                 // timestamp value taking into account if the current value
-                // rerpresents a number or not (invalid value validation)
+                // represents a number or not (invalid value validation)
                 var currentTimestampS = isNaN(currentTimestamp) ? "" : String(currentTimestamp);
 
                 // retrieves the name attribute from the element
@@ -825,7 +825,7 @@ if (typeof require !== "undefined") {
                 var previous = element.next('input[type=hidden][name="' + name + '"]');
                 previous.remove();
 
-                // calculates the apropriate value taking into account
+                // calculates the appropriate value taking into account
                 // if the no process flag is currently set
                 var value = noProcess ? currentValue : currentTimestampS;
 
@@ -863,7 +863,7 @@ if (typeof require !== "undefined") {
                 element.after(calendar);
 
                 // unsets the autocomplete feature in the text field
-                // to avoid possible (unwanted) autocomplete sugestions
+                // to avoid possible (unwanted) autocomplete suggestions
                 element.attr("autocomplete", "off");
             }
 
@@ -968,7 +968,7 @@ if (typeof require !== "undefined") {
 
                 // creates the date object from the timestamp
                 // and then uses it to unpack the various date
-                // values fro it (value decomposition)
+                // values from it (value decomposition)
                 var date = new Date(timestamp);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
@@ -1020,7 +1020,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the proper string representation of the current
                 // timestamp value taking into account if the current value
-                // rerpresents a number or not (invalid value validation)
+                // represents a number or not (invalid value validation)
                 var currentTimestampS = isNaN(currentTimestamp) ? "" : String(currentTimestamp);
 
                 // retrieves the name attribute from the element
@@ -1040,7 +1040,7 @@ if (typeof require !== "undefined") {
                 var previous = element.next('input[type=hidden][name="' + name + '"]');
                 previous.remove();
 
-                // calculates the apropriate value taking into account
+                // calculates the appropriate value taking into account
                 // if the no process flag is currently set
                 var value = noProcess ? currentValue : currentTimestampS;
 
@@ -1056,7 +1056,7 @@ if (typeof require !== "undefined") {
         // eslint-disable-next-line no-unused-vars
         var __fvaluefloatp = function(element, value) {
             // retrieves the decimal places number and tries to
-            // parse it as an integer, incase it fails returns
+            // parse it as an integer, in case it fails returns
             // immediately the number without processing
             var decimalPlaces = element.attr("data-decimal_places");
             decimalPlaces = parseInt(decimalPlaces);
@@ -1064,8 +1064,8 @@ if (typeof require !== "undefined") {
                 return value;
             }
 
-            // converts teh provided value into a float value and
-            // then usees this value to convert it into a fixed
+            // converts the provided value into a float value and
+            // then uses this value to convert it into a fixed
             // representation with the requested number of decimal
             // places (correct specification)
             var valueF = parseFloat(value);
@@ -1075,7 +1075,7 @@ if (typeof require !== "undefined") {
         // eslint-disable-next-line no-unused-vars
         var __fvaluefloat = function(element, value) {
             // retrieves the decimal places number and tries to
-            // parse it as an integer, incase it fails returns
+            // parse it as an integer, in case it fails returns
             // immediately the number without processing
             var decimalPlaces = element.attr("data-decimal_places");
             decimalPlaces = parseInt(decimalPlaces);
@@ -1083,8 +1083,8 @@ if (typeof require !== "undefined") {
                 return value;
             }
 
-            // converts teh provided value into a float value and
-            // then usees this value to convert it into a fixed
+            // converts the provided value into a float value and
+            // then uses this value to convert it into a fixed
             // representation with the requested number of decimal
             // places (correct specification)
             var valueF = parseFloat(value);
@@ -1156,7 +1156,7 @@ if (typeof require !== "undefined") {
             var lengthInteger = parseInt(length);
             var isValid = !isNaN(lengthInteger);
 
-            // in case the parsing was not successfull
+            // in case the parsing was not successful
             // the places test is considered not to be
             // runnable
             if (!isValid) {
@@ -1165,7 +1165,7 @@ if (typeof require !== "undefined") {
                 return true;
             }
 
-            // checks id the length of the current string value is smaller
+            // checks if the length of the current string value is smaller
             // than the maximum allowed length (minus one value)
             var valid = stringValue.length <= lengthInteger - 1;
 
@@ -1180,7 +1180,7 @@ if (typeof require !== "undefined") {
             var decimalPlacesInteger = parseInt(decimalPlaces);
             var isValid = !isNaN(decimalPlacesInteger);
 
-            // in case the parsing was not successfull
+            // in case the parsing was not successful
             // the places test is considered not to be
             // runnable
             if (!isValid) {
@@ -1199,7 +1199,7 @@ if (typeof require !== "undefined") {
 
             // in case the places validation is valid according
             // to decimal separator validation, no need to run
-            // anyting more because no decimal places are found
+            // anything more because no decimal places are found
             if (valid) {
                 return valid;
             }
@@ -1215,7 +1215,7 @@ if (typeof require !== "undefined") {
 
         var __bluractive = function(matchedObject, options) {
             // retrieves the currently active text fields
-            // to blur them in case their are not the current
+            // to blur them in case they are not the current
             var active = jQuery(".text-field.active");
 
             // iterates over all the elements that are
@@ -1227,7 +1227,7 @@ if (typeof require !== "undefined") {
                 // checks if the current element reference
                 // dom element is the same as the matched
                 // object (top level reference) in such
-                // case the object cannot be blured
+                // case the object cannot be blurred
                 if (_element.get(0) === matchedObject.get(0)) {
                     // returns immediately, avoids blur
                     return;
