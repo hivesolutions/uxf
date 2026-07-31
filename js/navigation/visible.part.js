@@ -4,12 +4,12 @@ if (typeof require !== "undefined") {
 
 (function(jQuery) {
     jQuery.uxvisible = function(element, offset, delta, parent) {
-        // retreives the offset value, talking into
-        // acccount the default value
+        // retrieves the offset value, talking into
+        // account the default value
         offset = offset || 0;
 
         // retrieves the delta value that can be used to
-        // control the poistion of the element to be teste
+        // control the position of the element to be teste
         // for visibility (margin delta)
         delta = delta || 0;
 

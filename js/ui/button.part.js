@@ -326,7 +326,7 @@ if (typeof require !== "undefined") {
 
         var __show = function(matchedObject, options) {
             // retrieves the show value from the matched object
-            // this valud should contain the target selector
+            // this value should contain the target selector
             var show = matchedObject.data("show");
 
             // retrieves the target to be show and display it on

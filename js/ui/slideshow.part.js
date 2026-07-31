@@ -108,7 +108,7 @@ if (typeof require !== "undefined") {
                     });
                 });
 
-                // iteates over the range of the item to inset the
+                // iterates over the range of the item to inset the
                 // list item representing the alternative for the item
                 for (index = 0; index < _items.length; index++) {
                     alternates.append("<li></li>");
@@ -121,7 +121,7 @@ if (typeof require !== "undefined") {
 
                 // creates the interval to update the slideshow position
                 // to the next one and then sets it in the current element
-                // data (for possible future cancelation)
+                // data (for possible future cancellation)
                 var interval = setInterval(function() {
                     __select(_element, options, null);
                 }, 5000);
@@ -190,21 +190,21 @@ if (typeof require !== "undefined") {
                 var element = jQuery(this);
                 var slideshow = element.parents(".slideshow");
 
-                // retrieves the current interval and clears it (cancelation)
+                // retrieves the current interval and clears it (cancellation)
                 // so that no more automated changing takes place
                 var interval = slideshow.data("interval");
                 clearInterval(interval);
 
-                // retrieves the index of the curret element index
+                // retrieves the index of the current element index
                 // and selects the equivalent item in the slideshow
                 var index = element.index();
                 __select(slideshow, options, index);
             });
 
             // registers for the pause event on the matched object, that
-            // should pause the current seqeunce of images
+            // should pause the current sequence of images
             matchedObject.bind("pause", function() {
-                // retrives the current element (slideshow) and uses it to
+                // retrieves the current element (slideshow) and uses it to
                 // gather the registered interval to cancel it (no more iterations)
                 var slideshow = jQuery(this);
                 var interval = slideshow.data("interval");
@@ -246,7 +246,7 @@ if (typeof require !== "undefined") {
             var current = matchedObject.data("index");
 
             // sets the default value for the items value, so that
-            // a valid sequence allways exists
+            // a valid sequence always exists
             items = items || [];
 
             // calculates the proper next index value, taking into account
@@ -263,7 +263,7 @@ if (typeof require !== "undefined") {
             var current = matchedObject.data("index");
 
             // sets the default value for the items value, so that
-            // a valid sequence allways exists
+            // a valid sequence always exists
             items = items || [];
 
             // calculates the proper previous index value, taking into account

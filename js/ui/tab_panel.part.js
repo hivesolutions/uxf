@@ -45,7 +45,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -105,7 +105,7 @@ if (typeof require !== "undefined") {
                 element.addClass("active");
                 targetElement.addClass("active");
 
-                // triggers the tab slected event on the tab panel
+                // triggers the tab selected event on the tab panel
                 // indicating that a new tab has been selected
                 tabPanel.triggerHandler("tab_selected", [targetElement]);
 

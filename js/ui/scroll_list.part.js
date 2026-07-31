@@ -40,7 +40,7 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // wraps the matched object arround a scroll list container and then
+            // wraps the matched object around a scroll list container and then
             // retrieves it and adds the previous and next scroll buttons
             matchedObject.wrap('<div class="scroll-list-container"></div>');
             var scrollListContainer = matchedObject.parents(".scroll-list-container");
@@ -55,7 +55,7 @@ if (typeof require !== "undefined") {
                 var scrollListContainer = _element.parents(".scroll-list-container");
 
                 // retrieves the various margin value from the element
-                // to update the scoll list container with these elements
+                // to update the scroll list container with these elements
                 var marginLeft = _element.css("margin-left");
                 var marginRight = _element.css("margin-right");
                 var marginTop = _element.css("margin-top");
@@ -153,7 +153,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the first child and uses it to calculate
             // the complete width for the children, note that the
-            // width is retrieved taking into accoun that a proper
+            // width is retrieved taking into account that a proper
             // outer width retrieval may fail under certain conditions
             var first = jQuery(children[0]);
             var firstWidth =

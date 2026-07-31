@@ -106,7 +106,7 @@ if (typeof require !== "undefined") {
                         var offset = element.attr("data-offset");
                         var offsetInteger = parseInt(offset);
 
-                        // verifies if the target element for ther link
+                        // verifies if the target element for the link
                         // value is valid, and in case it's not returns
                         // the control flow immediately (as it's not possible
                         // to perform smooth scrolling)

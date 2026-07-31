@@ -156,7 +156,7 @@ if (typeof require !== "undefined") {
             var firstIndex = parseInt(matchedObject.attr("data-first_index")) || 0;
             var lastIndex = parseInt(matchedObject.attr("data-last_index")) || panels.length - 1;
 
-            // checks if the current index greater thant the
+            // checks if the current index greater than the
             // first or the last positions, in such case
             // it's not possible to set the position
             if (index < firstIndex || index > lastIndex) {
@@ -238,7 +238,7 @@ if (typeof require !== "undefined") {
                 buttonPrevious.uxdisable();
             }
             // otherwise it's a normal situation and the previous
-            // button must be displayed normaly
+            // button must be displayed normally
             else {
                 // enables the previous button, adding
                 // the action to it
@@ -259,7 +259,7 @@ if (typeof require !== "undefined") {
                 index: index
             });
 
-            // triggers the index changed in the matched obect
+            // triggers the index changed in the matched object
             // so that listeners can change their behaviour accordingly
             matchedObject.triggerHandler("index_changed", [index]);
         };

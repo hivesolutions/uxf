@@ -114,7 +114,7 @@ if (typeof require !== "undefined") {
                 // to the given format string as requested by user
                 var dateString = _processDate(date, format, utc);
 
-                // sets the "new" formated date value in the element and
+                // sets the "new" formatted date value in the element and
                 // adds the processed class to it
                 _element.html(dateString);
                 _element.addClass("processed");
@@ -149,7 +149,7 @@ if (typeof require !== "undefined") {
             // in case the format is defined, the date is
             // meant to be formatted
             if (format) {
-                // replaces all the format values wit the proper
+                // replaces all the format values with the proper
                 // date values in the format string
                 format = format.replace(YEAR_CHARACTER, year);
                 format = format.replace(MONTH_CHARACTER, _getStringValue(month, 2));
@@ -200,7 +200,7 @@ if (typeof require !== "undefined") {
             // retrieves the padding value
             padding = padding || "0";
 
-            // converts the value to a string and retrives
+            // converts the value to a string and retrieves
             // the length of it
             var stringValue = String(value);
             var stringValueLength = stringValue.length;

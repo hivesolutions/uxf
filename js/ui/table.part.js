@@ -89,7 +89,7 @@ if (typeof require !== "undefined") {
                     // reference for reference
                     var elementReference = jQuery(element);
 
-                    // in case the current element does not containts
+                    // in case the current element does not contain
                     // the invalid class no need to update the invalid
                     // stat of it
                     if (!elementReference.hasClass("invalid")) {
@@ -218,7 +218,7 @@ if (typeof require !== "undefined") {
                         tableEmptyField.removeAttr("name");
                 });
 
-                // in case the table is of type edit and the table is emtpy
+                // in case the table is of type edit and the table is empty
                 // a line must be added to the end of the table in
                 // case the table is empty
                 if (isEdit && rows.length === 0) {
@@ -324,7 +324,7 @@ if (typeof require !== "undefined") {
                 // sets the add button left margin, it's important
                 // to re-calculate this value because the table may
                 // be invisible during the first calculus, note that
-                // this valud is only set in case the value is valid
+                // this value is only set in case the value is valid
                 // (not defined as not a number)
                 isValid && addButton.css("margin-left", addButtonMarginLeft + "px");
 
@@ -365,14 +365,14 @@ if (typeof require !== "undefined") {
                 // retrieves the element
                 var element = jQuery(this);
 
-                // retrieves the element row (adn table) and
+                // retrieves the element row (and table) and
                 // removes it from the table
                 var table = element.parents(".table");
                 var elementRow = element.parents("tr");
                 elementRow.remove();
 
                 // removes the max row classes effectively indicating
-                // that the max rows rule is no longe applicable
+                // that the max rows rule is no longer applicable
                 table.removeClass("max-rows");
 
                 // updates the invalid values on the current
@@ -591,7 +591,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // verifies if the provided text data is valid for the structured paste
-                // oepration and if that's not the case reuturns immedidately
+                // operation and if that's not the case reuturns immedidately
                 var isValid = textData.indexOf(ending) !== -1 || textData.indexOf("\t") !== -1;
                 if (!isValid) {
                     return;
@@ -601,11 +601,11 @@ if (typeof require !== "undefined") {
                 // the current target should be the first to be populated
                 var initial = target;
 
-                // splits the provided text data arround the newline character to
+                // splits the provided text data around the newline character to
                 // retrieve the multiple line values of it
                 var lines = textData.split(ending);
 
-                // iterates over the miltiple lines contained in the text to populate
+                // iterates over the multiple lines contained in the text to populate
                 // the associated lines in the table
                 for (index = 0; index < lines.length; index++) {
                     // retrieves the current line and splits arrount its columns
@@ -672,7 +672,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // stops the propagation of the event and then prevents the default
-                // set of operations from happending
+                // set of operations from happening
                 event.stopPropagation();
                 event.stopImmediatePropagation();
                 event.preventDefault();
@@ -720,7 +720,7 @@ if (typeof require !== "undefined") {
                 }
             );
 
-            // chekc if the current table is in edit mode
+            // check if the current table is in edit mode
             var isEdit = matchedObject.hasClass("table-edit");
 
             // in case the table is editable, must update the
@@ -781,7 +781,7 @@ if (typeof require !== "undefined") {
             // classes must be updated to reflect that
             if (isLastRow) {
                 // removes the last class from all of the rows
-                // and then adds the last class to the tempate item
+                // and then adds the last class to the template item
                 // (the newly created row)
                 rows.removeClass("last");
                 templateItem.addClass("last");
@@ -849,8 +849,8 @@ if (typeof require !== "undefined") {
 
         var _updateInvalid = function(matchedObject, options) {
             // retrieves the current set of next horizontal and
-            // next vertical invalid values and then remvoes their
-            // repsective classes (restores the original next invalid values)
+            // next vertical invalid values and then removes their
+            // respective classes (restores the original next invalid values)
             var allHorizontalInvalid = jQuery(".next-horizontal-invalid", matchedObject);
             var allVerticalInvalid = jQuery(".next-vertical-invalid", matchedObject);
             allHorizontalInvalid.removeClass("next-horizontal-invalid");
@@ -864,7 +864,7 @@ if (typeof require !== "undefined") {
                 // reference for reference
                 var elementReference = jQuery(element);
 
-                // in case the current element does not containts
+                // in case the current element does not contain
                 // the invalid class no need to update the invalid
                 // stat of it
                 if (!elementReference.hasClass("invalid")) {
@@ -957,8 +957,8 @@ if (typeof require !== "undefined") {
             // iterates continuously trying to find the next element
             // in reference to the provided one using the provided selector
             while (true) {
-                // iterates continuosly over the complete set of remaining
-                // columns in the curren row, trying to find any that contains
+                // iterates continuously over the complete set of remaining
+                // columns in the current row, trying to find any that contains
                 // elements that comply with the provided selectors
                 while (true) {
                     // in case the current column selector is invalid, no
@@ -983,13 +983,13 @@ if (typeof require !== "undefined") {
                 }
 
                 // verifies if this is the last row if that's the case there's
-                // nothing remaing to be done and the loop must break
+                // nothing remaining to be done and the loop must break
                 var isLast = row.hasClass("last");
                 if (isLast) {
                     break;
                 }
 
-                // retieves the next row and the column in set as the first one
+                // retrieves the next row and the column in set as the first one
                 // so that its possible to continue the loop
                 row = row.next();
                 columns = jQuery("> td", row);
@@ -1007,8 +1007,8 @@ if (typeof require !== "undefined") {
                 return _next(element, selector, column, row, false, true);
             }
 
-            // reurns the default invalid value meaning that no valid next element
-            // was found according to the provided criterea
+            // returns the default invalid value meaning that no valid next element
+            // was found according to the provided criteria
             return null;
         };
 

@@ -93,7 +93,7 @@ if (typeof require !== "undefined") {
                 // retrieves the value of the attribute that defines
                 // the various modes in case the value is not defined
                 // returns immediately otherwise trims the value and
-                // splits it arround the separator value
+                // splits it around the separator value
                 var modesS = _element.attr("data-modes");
                 if (!modesS) {
                     modesS = "percent";

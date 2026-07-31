@@ -99,7 +99,7 @@ if (typeof require !== "undefined") {
                 window.removeClass("loading");
 
                 // triggers the laaded event so that any listener is
-                // notified abou the end of the image loading
+                // notified about the end of the image loading
                 window.triggerHandler("loaded");
 
                 // runs the (final) animation operation for the buttons, this
@@ -145,7 +145,7 @@ if (typeof require !== "undefined") {
                 // going to be centered in the viewport
                 var element = jQuery(this);
 
-                // retrieves the global window element refernece and
+                // retrieves the global window element reference and
                 // the image associated with the lightbox window
                 var _window = jQuery(window);
                 var windowImage = jQuery("img", element);
@@ -158,9 +158,9 @@ if (typeof require !== "undefined") {
                 var maxHeight = height - 32;
                 var maxWidth = width - 32;
 
-                // retrieves the currently defined maximum dimenstion for the
+                // retrieves the currently defined maximum dimension for the
                 // image and parses these values as integers, these values are
-                // going to be used to decide if the image maximum dimenstions
+                // going to be used to decide if the image maximum dimensions
                 // have changed or not (for recentering position)
                 var _maxHeight = windowImage.css("max-height");
                 var _maxWidth = windowImage.css("max-width");
@@ -175,7 +175,7 @@ if (typeof require !== "undefined") {
                     return;
                 }
 
-                // updates the maximum dimenstions for the image of the
+                // updates the maximum dimensions for the image of the
                 // lightbox so that no overlap exists in the window viewport
                 windowImage.css("max-height", maxHeight + "px");
                 windowImage.css("max-width", maxWidth + "px");
@@ -222,7 +222,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the value for the currently selected
                 // (image) path and uses it to determine the next
-                // (target) path for iamge source updating
+                // (target) path for image source updating
                 var currentPath = windowImage.attr("src");
                 var targetPath = currentPath === path ? largePath : path;
                 window.addClass("loading");

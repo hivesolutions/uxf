@@ -90,7 +90,7 @@ if (typeof require !== "undefined") {
             }
 
             // retrieves the element items, these should contain the
-            // list of items currently registered in the data souce
+            // list of items currently registered in the data source
             var items = element.data("items");
 
             // retrieves the value of the insensitive flag in in the
@@ -150,7 +150,7 @@ if (typeof require !== "undefined") {
             // prefix (starts with)
             for (index = 0; index < items.length; index++) {
                 // retrieves the current item, that is going to be used as
-                // the basis of the comparision operation
+                // the basis of the comparison operation
                 var currentItem = items[index];
 
                 // creates the valid flag that is going to be used to control
@@ -172,13 +172,13 @@ if (typeof require !== "undefined") {
 
                     // in case the operator of the filter is not the equals one
                     // or the current item is not an object, must skip the current
-                    // iteraion (format not compatible with filter to be applied)
+                    // iteration (format not compatible with filter to be applied)
                     if (operator !== "equals" || typeof currentItem !== "object") {
                         continue;
                     }
 
-                    // extras the calue that is going to be used as the base coparision
-                    // for the current filter and determines if the comparision is
+                    // extras the value that is going to be used as the base coparision
+                    // for the current filter and determines if the comparison is
                     // valid if that's the case continues the loop (still valid)
                     var _value = currentItem[name];
                     if (_value === value) {

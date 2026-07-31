@@ -111,7 +111,7 @@ if (typeof require !== "undefined") {
             var textField = jQuery(".text-field", sourceList);
 
             // registers the source list to the items changed event
-            // to propagate it down to the assicated select list
+            // to propagate it down to the associated select list
             sourceList.bind("items_changed", function(event) {
                 // retrieves the current element (source list) and uses
                 // it to retrieve the select list to propagate down the
@@ -193,7 +193,7 @@ if (typeof require !== "undefined") {
 
                     // in case it's the down key
                     case 40:
-                        // runs teh down action in the source list
+                        // runs the down action in the source list
                         _down(sourceList, options);
 
                         // stops the event propagation
@@ -287,7 +287,7 @@ if (typeof require !== "undefined") {
             numberOptions = _numberOptions ? parseInt(_numberOptions) : numberOptions;
 
             // runs the query in the data source to retrieve the new
-            // items and then contruct the list item from the
+            // items and then construct the list item from the
             // result provided by the data source
             dataSource.uxdataquery(
                 {

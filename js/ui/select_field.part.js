@@ -69,7 +69,7 @@ if (typeof require !== "undefined") {
                 var dataSource = jQuery("> .data-source", element);
 
                 // retrieves the name of the value to be used for
-                // the comparision and then retrieves the name of
+                // the comparison and then retrieves the name of
                 // the attribute to be used in the display
                 var value = _element.attr("data-value");
                 var display = _element.attr("data-display") || value;

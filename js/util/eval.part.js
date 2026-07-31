@@ -4,7 +4,7 @@ if (typeof require !== "undefined") {
 
 (function(jQuery) {
     jQuery.fn.uxeval = function(element, method, options) {
-        // the defaut timeout for eval
+        // the default timeout for eval
         var DEFAULT_TIMEOUT = 1000;
 
         // the default values for the eval
@@ -136,7 +136,7 @@ if (typeof require !== "undefined") {
                         })
                     );
 
-                // sets the vlaue change event handler in the selector in
+                // sets the value change event handler in the selector in
                 // case the continuous flag is set
                 continuous &&
                     triggerElement.bind((valueChangedHandler = "value_change"), function() {
@@ -154,7 +154,7 @@ if (typeof require !== "undefined") {
         };
 
         /**
-         * Evaluates the eval string in the matched object emmiting the
+         * Evaluates the eval string in the matched object emitting the
          * resulting value to the HTML contents of it. The evaluation of the
          * matched object is considered dangerous and must be used carefully.
          *

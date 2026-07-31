@@ -133,7 +133,7 @@ if (typeof require !== "undefined") {
 
                 // creates the date object from the timestamp
                 // and then uses it to unpack the various date
-                // values fro it (value decomposition)
+                // values from it (value decomposition)
                 var date = new Date(timestamp);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;
@@ -186,7 +186,7 @@ if (typeof require !== "undefined") {
 
                 // creates the date object from the timestamp
                 // and then uses it to unpack the various date
-                // values fro it (value decomposition)
+                // values from it (value decomposition)
                 var date = new Date(timestamp);
                 var year = date.getFullYear();
                 var month = date.getMonth() + 1;

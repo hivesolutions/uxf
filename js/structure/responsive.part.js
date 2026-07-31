@@ -9,7 +9,7 @@ if (typeof require !== "undefined") {
         var matchedObject = this;
         var _window = jQuery(window);
 
-        // verifies if there's at leat one valid object matched and
+        // verifies if there's at least one valid object matched and
         // if that's not the case returns the current context immediately
         if (!matchedObject || matchedObject.length === 0) {
             return this;
@@ -35,7 +35,7 @@ if (typeof require !== "undefined") {
         minimalHeight = parseInt(minimalHeight);
 
         var measure = function() {
-            // tries to retrive the pixel ratio of the current device
+            // tries to retrieve the pixel ratio of the current device
             // so that it may be used to populate global class values
             var ratio = window.devicePixelRatio;
             if (!ratio) {
@@ -141,7 +141,7 @@ if (typeof require !== "undefined") {
             matchedObject.attr("data-device", nextDevice);
 
             // in case the device has changed a device change event is raised
-            // so thtat any listner is notified about such changed
+            // so that any listener is notified about such changed
             deviceChanged && matchedObject.triggerHandler("device_change", [nextDevice]);
         };
 
@@ -154,7 +154,7 @@ if (typeof require !== "undefined") {
         };
 
         // registers for the resize event on the current window so
-        // thtat the proper watch (tick) operation is performed
+        // that the proper watch (tick) operation is performed
         _window.resize(function() {
             watch();
         });

@@ -34,7 +34,7 @@ if (typeof require !== "undefined") {
             var windowSelector = options.window || ".window.window-alert";
 
             // localizes the various values that are going to be used in the
-            // contruction of the alert window
+            // construction of the alert window
             var confirm = jQuery.uxlocale("Confirm");
             var cancel = jQuery.uxlocale("Cancel");
 
@@ -63,7 +63,7 @@ if (typeof require !== "undefined") {
             var windowButtonCancel = jQuery(".button-cancel", window);
 
             // converts the message into a string in case that's required
-            // (diferent data type) and then processes the "wiki" message
+            // (different data type) and then processes the "wiki" message
             message = typeof message === "string" ? message : String(message);
             message = matchedObject.uxwiki(message);
 

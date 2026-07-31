@@ -63,7 +63,7 @@ if (typeof require !== "undefined") {
 
                 // in case the current URL value is not valid
                 // must return immediately because it's not possible
-                // to go any furhter with the current processing
+                // to go any further with the current processing
                 if (!url) {
                     return;
                 }
@@ -255,7 +255,7 @@ if (typeof require !== "undefined") {
             var options = match[7] ? match[7] : null;
             var location = match[9] ? match[9] : null;
 
-            // splits the various options arround the and character
+            // splits the various options around the and character
             var optionsSplit = options ? options.split("&") : [];
 
             // creates the options map

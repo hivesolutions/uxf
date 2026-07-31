@@ -167,7 +167,7 @@ if (typeof require !== "undefined") {
                 });
 
                 // registers the changing of contents in
-                // the itnernal structure of the window
+                // the internal structure of the window
                 _element.bind("layout", function() {
                     _element.uxcenter(
                         topOffset,

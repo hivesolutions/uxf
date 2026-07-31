@@ -200,7 +200,7 @@ if (typeof require !== "undefined") {
             scan.uxscan();
 
             // applies the browser plugin, this should change the body
-            // classes reflecting the current environemnt in which the
+            // classes reflecting the current environment in which the
             // system is currently running, this may also patch the
             // jquery environment so that it contains the browser object
             _body.uxbrowser();
@@ -212,7 +212,7 @@ if (typeof require !== "undefined") {
 
             // applies the mobile plugin, this extension is going
             // to change the classes of the body for a mobile browser
-            // situation, that way the code may be used conditionaly
+            // situation, that way the code may be used conditionally
             // taking into account if this is a desktop or mobile browser
             _body.uxmobile();
 
@@ -328,7 +328,7 @@ if (typeof require !== "undefined") {
             // some resize event related limitations on some browsers
             _body.uxresize();
 
-            // applies the eval (javascript evalutation)
+            // applies the eval (javascript evaluation)
             // this is a dangerous operation
             _eval.uxeval();
 

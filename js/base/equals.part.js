@@ -52,12 +52,12 @@ if (typeof require !== "undefined") {
             valueS = second[element];
             type = typeof valueF;
 
-            // by default the comparision of the elements is
+            // by default the comparison of the elements is
             // considered to be valid
             valid = true;
 
             // switched over the type for the value and runs the
-            // appropriate comparision operations
+            // appropriate comparison operations
             switch (type) {
                 case "object":
                     valid = jQuery.uxequals(valueF, valueS);
@@ -68,13 +68,13 @@ if (typeof require !== "undefined") {
                     break;
             }
 
-            // in case the result of the comparision was valid
-            // continues the loop to the other comparision operations
+            // in case the result of the comparison was valid
+            // continues the loop to the other comparison operations
             if (valid) {
                 continue;
             }
 
-            // in case the the comparision operation has failed the
+            // in case the the comparison operation has failed the
             // control has reached this place and an invalid result
             // must be returned to the caller function
             return false;
@@ -82,7 +82,7 @@ if (typeof require !== "undefined") {
 
         // in case the control as reached this place all the
         // tests have passed and the structures are considered
-        // equal (deep comparision)
+        // equal (deep comparison)
         return true;
     };
 })(jQuery);

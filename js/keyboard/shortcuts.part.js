@@ -60,7 +60,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // creates the handler function with a clojure in the current
-                // enviroment that will increment and decrement the current page
+                // environment that will increment and decrement the current page
                 var handler = function(event) {
                     // retrieves the key value
                     var keyValue = event.keyCode

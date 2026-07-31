@@ -81,7 +81,7 @@ if (typeof require !== "undefined") {
 
                 // creates the (local) data source to be used in the target
                 // section, this data source is going to be constantly manpulated
-                // throught the internal items list
+                // through the internal items list
                 var targetSource = jQuery('<ul class="data-source" data-type="local"></ul>');
 
                 // creates the various arrow elements to be used to "cross" the
@@ -94,7 +94,7 @@ if (typeof require !== "undefined") {
                 var clear = jQuery('<div class="clear"></div>');
 
                 // iterates over each of the items in the list of predefined items
-                // to add them to the local (and target) data souce, initial setting
+                // to add them to the local (and target) data source, initial setting
                 // then removes the items section to avoid extra elements in dom
                 itemsList.each(function(index, element) {
                     var _element = jQuery(this);
@@ -165,7 +165,7 @@ if (typeof require !== "undefined") {
             var targetList = jQuery(".target-section .select-list", matchedObject);
 
             // retrieves the source list value as the source
-            // element to be able to register it for the valide
+            // element to be able to register it for the valid
             // item event (and filter the ones in the target)
             var sourceElement = jQuery(".source-section .source-list", matchedObject);
 
@@ -245,7 +245,7 @@ if (typeof require !== "undefined") {
                     var item = jQuery(items[index]);
 
                     // retrieves the data value from the selected item defaulting
-                    // to the text represention in case none is provided
+                    // to the text representation in case none is provided
                     var dataValue = item.attr("data-value");
                     var htmlValue = item.text();
                     dataValue = dataValue || htmlValue;
@@ -340,7 +340,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the click event on the left arrow to be
-            // able to tranfers the selected target elements back to
+            // able to transfers the selected target elements back to
             // the source list
             arrowLeft.click(function() {
                 // retrieves the current element and then uses it to
@@ -373,7 +373,7 @@ if (typeof require !== "undefined") {
                     // the list representing the target items in the data source
                     var item = _selectedItem.data("item");
 
-                    // retrieves the index of the item (valye) in the target
+                    // retrieves the index of the item (value) in the target
                     // items list and then uses it to remove the item from
                     // the list of target items
                     var _index = targetItems.indexOfObject(item);
@@ -387,7 +387,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the click event on the right arrow to be
-            // able to tranfers the selected source elements into
+            // able to transfers the selected source elements into
             // the target list
             arrowRight.click(function() {
                 // retrieves the current element and then uses it to

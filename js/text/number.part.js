@@ -69,13 +69,13 @@ if (typeof require !== "undefined") {
                 valueString = separator ? valueString.replace(".", separator) : valueString;
 
                 // in case the magnitude separator is defined
-                // there's a necessecity to process it by spliting
+                // there's a necessecity to process it by splitting
                 // the value string into integer and decimal part
                 if (magnitudeSeparator) {
                     // retrieves the value for the separator
                     separator = separator || ".";
 
-                    // splits the value string and then retrives
+                    // splits the value string and then retrieves
                     // the integer part of the value
                     var valueStringSplit = valueString.split(separator);
                     var integerPart = valueStringSplit[0];

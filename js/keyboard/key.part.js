@@ -59,7 +59,7 @@ if (typeof require !== "undefined") {
                 var targetObject = global ? jQuery(document) : _element;
 
                 // creates the handler function with a clojure in the current
-                // enviroment that will change the location to the URL defined
+                // environment that will change the location to the URL defined
                 // in the key element
                 var handler = function(event) {
                     // retrieves the key value

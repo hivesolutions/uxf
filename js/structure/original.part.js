@@ -12,14 +12,14 @@ if (typeof require !== "undefined") {
         matchedObject.each(function(index, element) {
             // retrieves the reference to the current
             // element for which the original operation will
-            // be perfomed and the value set to the original
+            // be performed and the value set to the original
             var _element = jQuery(this);
 
             // retrieves the object (type) for the currently
             // matched object then uses it to construct the method
             // name to be used and uses it to restore the state of
             // the object to its original value, note that the reset
-            // operation is unsed in case no original exists
+            // operation is used in case no original exists
             var object = _element.attr("data-object");
             var method = _element["ux" + object];
             var result = method ? method.call(_element, "original") : false;

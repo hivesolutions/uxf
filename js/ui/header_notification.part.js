@@ -61,7 +61,7 @@ if (typeof require !== "undefined") {
          */
         var _registerHandlers = function() {
             // retrieves the close links for the notification and the
-            // set of header notitications that are meant to be closable
+            // set of header notifications that are meant to be closable
             var linkClose = jQuery("> .link-close", matchedObject);
             var closables = matchedObject.filter(".link-close");
 

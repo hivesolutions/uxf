@@ -69,7 +69,7 @@ if (typeof require !== "undefined") {
                 });
 
                 // creates the jquery function associated with the
-                // newly created data souce function
+                // newly created data source function
                 jQuery.fn["uxdatasource" + name] = _dataSource(_items);
             });
         };

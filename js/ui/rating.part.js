@@ -123,7 +123,7 @@ if (typeof require !== "undefined") {
 
                 // retrieves the parent form to the current rating
                 // element, this form must be registered so that it's
-                // possible to create a hiden value element that represents
+                // possible to create a hidden value element that represents
                 // the rating component in terms of form submission
                 var parentForm = _element.parents("form");
 
@@ -168,13 +168,13 @@ if (typeof require !== "undefined") {
             // rating component (to be used latter)
             var count = element.data("count");
 
-            // removes both te hover and the inactive class from the
+            // removes both the hover and the inactive class from the
             // complete list of rating items no hover or inactive when
             // the value is selected (defined be specification)
             items.removeClass("hover");
             items.removeClass("inactive");
 
-            // initializes the index counter and the item vlaue that are
+            // initializes the index counter and the item value that are
             // going to be used in multiple iteration sequences
             var index = null;
             var item = null;
@@ -208,7 +208,7 @@ if (typeof require !== "undefined") {
             // rating component (to be used latter)
             var count = element.data("count");
 
-            // initializes the index counter and the item vlaue that are
+            // initializes the index counter and the item value that are
             // going to be used in multiple iteration sequences
             var index = null;
             var item = null;
@@ -220,7 +220,7 @@ if (typeof require !== "undefined") {
                 item.addClass("hover");
             }
 
-            // iterates over the "remaning" set of items in order to mark
+            // iterates over the "remaining" set of items in order to mark
             // them as inactive because they are not hovered
             for (index = _index + 1; index < count; index++) {
                 item = jQuery(items[index]);

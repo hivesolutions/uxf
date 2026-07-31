@@ -29,8 +29,8 @@ if (typeof require !== "undefined") {
         };
 
         // adds the callable to the queue of functions pending
-        // to be processed and then in case the queue is now empy
-        // runs the callable providing it with the callbacl
+        // to be processed and then in case the queue is now empty
+        // runs the callable providing it with the callback
         queue.push(callable);
         if (queue.length === 1) {
             callable(callback);

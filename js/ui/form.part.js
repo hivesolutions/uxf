@@ -250,7 +250,7 @@ if (typeof require !== "undefined") {
                 // and instead should submit the form in ajax
                 var isAjax = element.hasClass("form-ajax");
                 if (isAjax) {
-                    // schedules the execution of the ajax submit fo
+                    // schedules the execution of the ajax submit for
                     // the next tick so that the submit event handlers
                     // may be executed before the submission
                     setTimeout(function() {
@@ -553,7 +553,7 @@ if (typeof require !== "undefined") {
 
                     // checks if the success for panel exists in the form
                     // in case it exist it must be shown and the other contents
-                    // fo the form hidden
+                    // of the form hidden
                     var formSuccess = jQuery(".form-success", matchedObject);
                     var hasFormSuccess = formSuccess.length;
                     if (hasFormSuccess) {
@@ -657,7 +657,7 @@ if (typeof require !== "undefined") {
             // removes the submitted flag from the form (allows re-submit)
             // then set the form as non asynchronous and submits it, removing
             // the same flag after the submit operation is completed, so that's
-            // possible to re-use the form after the initial submission
+            // possible to reuse the form after the initial submission
             matchedObject.data("submitted", false);
             matchedObject.addClass("no-async");
             matchedObject.submit();

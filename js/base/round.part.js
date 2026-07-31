@@ -5,7 +5,7 @@ if (typeof require !== "undefined") {
 (function(jQuery) {
     /**
      * The amount of precision (in decimal places) that is going to be used for
-     * the round opertion internal usage (delta calculus).
+     * the round operation internal usage (delta calculus).
      */
     var FLOAT_PRECISION = 14;
 

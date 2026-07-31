@@ -50,7 +50,7 @@ if (typeof require !== "undefined") {
             // iterates over all the matched objects to update their
             // current internal state values
             matchedObject.each(function(index, element) {
-                // retrieves the element refence
+                // retrieves the element reference
                 var _element = jQuery(element);
                 _update(_element, options);
             });
@@ -98,7 +98,7 @@ if (typeof require !== "undefined") {
         };
 
         var _update = function(matchedObject, options) {
-            // retrives the value and the checked value
+            // retrieves the value and the checked value
             var value = matchedObject.val();
             var checked = matchedObject.attr("data-checked");
 

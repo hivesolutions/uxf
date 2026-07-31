@@ -29,7 +29,7 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // wraps the matched objec in an highlight box container
+            // wraps the matched object in an highlight box container
             matchedObject.wrap('<div class="highlight-box-container"></div>');
         };
 

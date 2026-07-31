@@ -73,8 +73,8 @@ if (typeof require !== "undefined") {
                 // an input should be created if none is found
                 var noInput = _element.attr("data-no_input");
 
-                // tries to retrieve the (default and inital) sort attribute for
-                // the filter and in case it exits sets it inthe filter sate
+                // tries to retrieve the (default and initial) sort attribute for
+                // the filter and in case it exits sets it in the filter state
                 var sort = _element.attr("data-sort");
                 sort && _element.data("sort", sort.split(":"));
 
@@ -90,8 +90,8 @@ if (typeof require !== "undefined") {
                 var filterContents = jQuery("> .filter-contents", _element);
                 var filterMore = jQuery("> .filter-more", _element);
 
-                // retrieves the text field (element) assicated with the
-                // curernt filter for the main filtering
+                // retrieves the text field (element) associated with the
+                // current filter for the main filtering
                 var textField = jQuery("> .text-field", _element);
 
                 // in case there is no text field defined for the
@@ -120,7 +120,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // in case the text field is still not found the extra no input
-                // class is aded to the currently selected filter element
+                // class is added to the currently selected filter element
                 textField.length === 0 && _element.addClass("no-input");
 
                 // creates the element representing the buttons for the filter
@@ -160,7 +160,7 @@ if (typeof require !== "undefined") {
                 var isGallery = _element.hasClass("gallery-list");
 
                 // retrieves the element button that was just created to
-                // add the apropriate class
+                // add the appropriate class
                 var toggleViews = jQuery(".filter-input-toggle-views", _element);
 
                 // adds the appropriate filter input class to the toggle
@@ -205,7 +205,7 @@ if (typeof require !== "undefined") {
                     filterOption.insertBefore(filterClear);
                 });
 
-                // adds the devault sort option to the filter, this value exists for
+                // adds the default sort option to the filter, this value exists for
                 // every search and indicates that no sort will occur (default is used)
                 filterSort.prepend(
                     '<div class="filter-sort-option selected equals" data-order="equals">default</div>'
@@ -220,13 +220,13 @@ if (typeof require !== "undefined") {
                 // filters and so the filtering is enabled
                 advanced && hasFiltering && _addFilter(_element);
 
-                // in case there is currenlty no valid filtering in the data
+                // in case there is currently no valid filtering in the data
                 // source must disabled the filtering part in the advanced area
                 !hasFiltering && _disableFiltering();
 
                 // retrieves the text value from the filter more
-                // and then encapsulates it arround the text divisor
-                // then adds it in conjuction to the spinner to the
+                // and then encapsulates it around the text divisor
+                // then adds it in conjunction to the spinner to the
                 // filter more component, as the new filter more contents
                 var filterMoreText = filterMore.html();
                 filterMore.html(
@@ -303,7 +303,7 @@ if (typeof require !== "undefined") {
             var filterSelect = jQuery(".filter-advanced-select", matchedObject);
 
             // checks if the filter click event is already
-            // registerd in the body and set the variable as
+            // registered in the body and set the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("filter_click");
             matchedObject.length > 0 && _body.data("filter_click", true);
@@ -335,7 +335,7 @@ if (typeof require !== "undefined") {
                 var template = jQuery(".template", filter);
 
                 // retrieves the cache map to be used to determine if the
-                // various elements should be contructed from scratch or
+                // various elements should be constructed from scratch or
                 // if an already existing element should be used instead
                 var cache = filter.data("cache") || {};
 
@@ -762,7 +762,7 @@ if (typeof require !== "undefined") {
                 var filterString = filter.data("filter_string");
                 var filterInputValue = element.attr("data-value");
 
-                // in case no string value changes occured
+                // in case no string value changes occurred
                 if (filterString === filterInputValue) {
                     // returns immediately
                     return;
@@ -933,7 +933,7 @@ if (typeof require !== "undefined") {
 
                 // tries to retrieve the value for the infinite loading
                 // support in the matched object (by default it's disabled)
-                // in case the value is not eabled returns immediately, as
+                // in case the value is not enabled returns immediately, as
                 // there's nothing to be done for it
                 var infinite = element.attr("data-infinite") || false;
                 if (!infinite) {
@@ -955,7 +955,7 @@ if (typeof require !== "undefined") {
 
                         // retrieves the filter more element height as the
                         // delta value for the visibility testing this way
-                        // the visibility test is done agains the top
+                        // the visibility test is done against the top
                         var delta = filterMore.outerHeight() * -1;
 
                         // checks if the element is currently visible, so that
@@ -973,7 +973,7 @@ if (typeof require !== "undefined") {
                 );
 
                 // stores the on scroll event handler in the current context
-                // so thtat it may be used altter on for unregistration
+                // so that it may be used altter on for unregistration
                 element.data("on_scroll", onScroll);
 
                 // registers for the destroyed event on the element and
@@ -1027,7 +1027,7 @@ if (typeof require !== "undefined") {
             numberRecords = filter.hasClass("table-list") ? 14 : numberRecords;
 
             // determines if the provided filter value (parameter) is defined
-            // (diferent from undefined) if that's the case updates the filter
+            // (different from undefined) if that's the case updates the filter
             // value data state for the filter
             var setValue = filterValue !== null && filterValue !== undefined;
             setValue && filter.data("filter_value", filterValue || "");
@@ -1075,7 +1075,7 @@ if (typeof require !== "undefined") {
                 // in case the filter is already complete or
                 // it has data pending to be retrieved
                 if (complete || pending) {
-                    // returns immeidately (can not retrieve
+                    // returns immediately (can not retrieve
                     // any more data for now)
                     return;
                 }
@@ -1220,7 +1220,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // retrieves the cache map to be used to determine if the
-                    // various elements should be contructed from scratch or
+                    // various elements should be constructed from scratch or
                     // if an already existing element should be used instead
                     var cache = filter.data("cache") || {};
 
@@ -1286,7 +1286,7 @@ if (typeof require !== "undefined") {
                             // the specification (correct behaviour)
                             templateItem.uxapply();
                         }
-                        // otherwise must re-create the template item by runing
+                        // otherwise must re-create the template item by running
                         // the template engine again
                         else {
                             // applies the template to the template (item)
@@ -1321,7 +1321,7 @@ if (typeof require !== "undefined") {
                     // in case there are no items to be shown
                     if (validItemsLength > 0) {
                         // hides the filter no results panel and
-                        // removes the no results class from tghe
+                        // removes the no results class from the
                         // currently defined filter element
                         filterNoResults.hide();
                         filter.removeClass("no-results");
@@ -1377,7 +1377,7 @@ if (typeof require !== "undefined") {
                         // (menu) in iteration
                         var _element = jQuery(this);
 
-                        // retrieves ther complete set of buttons currently present
+                        // retrieves the complete set of buttons currently present
                         // in the menu and removes the selected class from them
                         // (avoiding any possible visual problems)
                         var buttons = jQuery(".button:not(.menu-link)", _element);
@@ -1436,7 +1436,7 @@ if (typeof require !== "undefined") {
             // a menu of type drop (provisory)
             menu.addClass("drop-menu");
 
-            // retrieves ther complete set of buttons currently present
+            // retrieves the complete set of buttons currently present
             // in the menu and removes the selected class from them
             // (avoiding any possible visual problems)
             var buttons = jQuery(".button:not(.menu-link)", menu);
@@ -1494,14 +1494,14 @@ if (typeof require !== "undefined") {
             // current menu, to be used further ahead
             var menuContents = jQuery("> .menu-contents", menu);
 
-            // retrieves ther complete set of buttons currently present
+            // retrieves the complete set of buttons currently present
             // in the menu to register for their appropriate events and
-            // remove the default buton behavior
+            // remove the default button behavior
             var buttons = jQuery(".button:not(.menu-link)", menu);
 
             // retrieves the target buttons and then retrieves also the non
             // target buttons (these button need to be registered for the
-            // varios mouse event to control the sub menu behavior)
+            // various mouse event to control the sub menu behavior)
             var targetButtons = jQuery(".button[data-target]", menu);
             var nonTargetButtons = jQuery(":not(.sub-menu) .button:not([data-target])", menu);
 
@@ -1515,7 +1515,7 @@ if (typeof require !== "undefined") {
 
                 // creates the timeout to handle the proper show of
                 // the sub menu (but only in case the element is still
-                // correctly slected)
+                // correctly selected)
                 setTimeout(function() {
                     // in case the element is not selected anymore
                     // need to avoid showing the sub menu
@@ -1659,7 +1659,7 @@ if (typeof require !== "undefined") {
                         // in case the current button refers a link that
                         // must be opened as a document and this is the first
                         // element to be parsed opens the link in the current
-                        // document otherwise creates a new window and opend
+                        // document otherwise creates a new window and opened
                         // the link in it (external opening)
                         isDocument && index === 0
                             ? jQuery.uxlocation(link)
@@ -1704,7 +1704,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // stops the event propagation and prevents
-                    // the default bahavior (avoids propagation problems)
+                    // the default behavior (avoids propagation problems)
                     event.stopPropagation();
                     event.preventDefault();
                 });
@@ -1713,7 +1713,7 @@ if (typeof require !== "undefined") {
                 // to avoid unwanted propagation
                 _element.dblclick(function(event) {
                     // stops the event propagation and prevents
-                    // the default bahavior (avoids propagation problems)
+                    // the default behavior (avoids propagation problems)
                     event.stopPropagation();
                     event.preventDefault();
                 });
@@ -1726,7 +1726,7 @@ if (typeof require !== "undefined") {
             var selection = matchedObject.data("selection");
             var _selection = selection[0];
 
-            // in case the selection row not "overlfows"
+            // in case the selection row not "overflows"
             if (_selection > 0) {
                 // decrements the current selection
                 matchedObject.data("selection", [_selection - 1]);
@@ -1746,7 +1746,7 @@ if (typeof require !== "undefined") {
             // retrieves the "current" list items
             var listItems = jQuery(".filter-contents > *", matchedObject);
 
-            // in case the selection row not "overlfows"
+            // in case the selection row not "overflows"
             if (_selection < listItems.length) {
                 // increments the current selection
                 matchedObject.data("selection", [_selection + 1]);
@@ -1841,13 +1841,13 @@ if (typeof require !== "undefined") {
             // orders the selection according
             // to the typical arithmetic function
             selection.sort(function(first, second) {
-                // returns the diference between the first
-                // adn the second elements
+                // returns the difference between the first
+                // and the second elements
                 return first - second;
             });
 
             // iterates over all the items in the selection
-            // to correclty update their control classes
+            // to correctly update their control classes
             for (var index = 0; index < selection.length; index++) {
                 // retrieves the current the previous and the next
                 // selections (for processing)
@@ -1896,7 +1896,7 @@ if (typeof require !== "undefined") {
             // reference to the selected list item
             var _element = selectedListItem.get(0);
 
-            // cheks if the element is visible using
+            // checks if the element is visible using
             // the appropriate visibility extension
             var isVisible = _element ? jQuery.uxvisible(selectedListItem, pageOffset) : true;
 
@@ -2038,7 +2038,7 @@ if (typeof require !== "undefined") {
             // retrieves the "current" list items
             var listItems = jQuery(".filter-contents > *", matchedObject);
 
-            // in case the selection row not "overlfows"
+            // in case the selection row not "overflows"
             if (value > listItems.length) {
                 // updates the matched object (runs the loading
                 // of additional values) and returns immediately
@@ -2294,7 +2294,7 @@ if (typeof require !== "undefined") {
             var target = element.attr("data-target");
             var subMenu = jQuery(target, menu);
 
-            // retrieves ther complete set of buttons currently present
+            // retrieves the complete set of buttons currently present
             // in the sub menu to register for their appropriate events
             var subButtons = jQuery(".button:not(.menu-link)", subMenu);
 
@@ -2334,7 +2334,7 @@ if (typeof require !== "undefined") {
             var scrollY = window.scrollY ? window.scrollY : document.body.scrollTop;
             var scrollX = window.scrollX ? window.scrollX : document.body.scrollLeft;
 
-            // sets the proper postion attributes for the
+            // sets the proper position attributes for the
             // submenu so that it's positioned to the right
             // of the action element
             subMenu.css("position", "fixed");
@@ -2361,7 +2361,7 @@ if (typeof require !== "undefined") {
 
             // shows the sub menu with a fade effect
             subMenu.fadeIn(150, function() {
-                // unsets the flag that controlls the
+                // unsets the flag that controls the
                 // showing state of the sub menu
                 subMenu.data("showing", false);
             });
@@ -2644,7 +2644,7 @@ if (typeof require !== "undefined") {
             );
 
             // creates the remove and add buttons for the filter line
-            // and creates the clear element to clear eht float layout strucure
+            // and creates the clear element to clear eht float layout structure
             // (in case it's necessary)
             var remove = jQuery('<div class="filter-input-remove"></div>');
             var add = jQuery('<div class="filter-input-add"></div>');
@@ -2665,7 +2665,7 @@ if (typeof require !== "undefined") {
             // be able to "parse" the items and insert them into the
             // the items and types lists
             dataFiltering.each(function(index, element) {
-                // retrives the current element in iteration
+                // retrieves the current element in iteration
                 var _element = jQuery(this);
 
                 // retrieves the HTML value of the element and
@@ -2709,7 +2709,7 @@ if (typeof require !== "undefined") {
                 _update(matchedObject, options, true);
             });
 
-            // regiters for the click event in the add button to
+            // registers for the click event in the add button to
             // add a new filter line next to the current filter
             add.click(function() {
                 // retrieves the current button element and uses it
@@ -2808,7 +2808,7 @@ if (typeof require !== "undefined") {
                 // must be processed
                 else if (event.shiftKey) {
                     // retrieves the current index for the selection to check
-                    // it agains the pivot index value
+                    // it against the pivot index value
                     var index = templateItemIndex + 1;
 
                     // actions a range selection over the current pivot

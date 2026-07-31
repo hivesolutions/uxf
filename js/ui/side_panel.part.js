@@ -29,7 +29,7 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // verifies that at leat one object is selected and if that's
+            // verifies that at least one object is selected and if that's
             // not the case returns the control flow immediately
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -50,13 +50,13 @@ if (typeof require !== "undefined") {
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {
-            // verifies that at leat one object is selected and if that's
+            // verifies that at least one object is selected and if that's
             // not the case returns the control flow immediately
             if (!matchedObject || matchedObject.length === 0) {
                 return;
             }
 
-            // retrieves the various element that are going to be registerd
+            // retrieves the various element that are going to be registered
             // for events for the current side panel element
             var _body = jQuery("body");
             var cancel = jQuery(".button-cancel", matchedObject);

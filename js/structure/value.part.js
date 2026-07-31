@@ -28,7 +28,7 @@ if (typeof require !== "undefined") {
         var valueF = matchedObject.is("input, textarea") ? matchedObject.val : matchedObject.text;
 
         // retrieves the object (type) for the currently
-        // matched object then uses it to contruct the method
+        // matched object then uses it to construct the method
         // name to be used and uses it to retrieve the the
         // value for the component
         var object = matchedObject.attr("data-object");

@@ -62,7 +62,7 @@ if (typeof require !== "undefined") {
             // drop event
             matchedObject.bind("file_drop", function(event, files) {
                 // retrieves the element and saves it
-                // as iamge upload (box)
+                // as image upload (box)
                 var element = jQuery(this);
                 var imageUpload = element;
 

@@ -50,7 +50,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -66,7 +66,7 @@ if (typeof require !== "undefined") {
             var menuContents = jQuery(".menu-contents", menu);
 
             // checks if the menu link click event is already
-            // registerd in the body and set the variable as
+            // registered in the body and set the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("menu_link_click");
             _body.data("menu_link_click", true);
@@ -90,7 +90,7 @@ if (typeof require !== "undefined") {
                 // menu references
                 var menuSelector = element.attr("data-menu");
 
-                // retrieves the menu to retieve the
+                // retrieves the menu to retrieve the
                 // menu contents
                 var menu = menuSelector ? jQuery(menuSelector) : element.parents(".menu");
                 var menuButton = jQuery("> .menu-button", menu);
@@ -181,12 +181,12 @@ if (typeof require !== "undefined") {
             // registers for the click event in the menu contents
             menuContents.click(function(event) {
                 // stops the event propagation (avoids
-                // unecessary closing of the window)
+                // unnecessary closing of the window)
                 event.stopPropagation();
             });
 
             // registers for the hide event in the menu so
-            // that if such event is triggerred the menu
+            // that if such event is triggered the menu
             // is correctly hidden from the environment
             menu.bind("hide", function() {
                 // retrieves the current element and sets it as the
@@ -228,7 +228,7 @@ if (typeof require !== "undefined") {
                         return;
                     }
 
-                    // retrieves the menu to retieve the and uses it to
+                    // retrieves the menu to retrieve the and uses it to
                     // retrieve the reference to the menu contents
                     var menu = jQuery(".menu.active", element);
                     var menuContents = jQuery(".menu-contents:visible", menu);
@@ -243,7 +243,7 @@ if (typeof require !== "undefined") {
                         // removes the menu from the environment
                         menu.remove();
                     }
-                    // otherwise the normal behavior applies (hidding)
+                    // otherwise the normal behavior applies (hiding)
                     else {
                         // tries to retrieve the current owner of the menu
                         // contents and in case it exists removes the active
@@ -266,7 +266,7 @@ if (typeof require !== "undefined") {
                     // retrieves the element
                     var element = jQuery(this);
 
-                    // retrieves the menu to retieve the
+                    // retrieves the menu to retrieve the
                     // menu contents
                     var menu = jQuery(".menu.active", element);
                     var menuContents = jQuery(".menu-contents:visible", menu);
@@ -281,7 +281,7 @@ if (typeof require !== "undefined") {
                         // removes the menu from the environment
                         menu.remove();
                     }
-                    // otherwise the normal behavior applies (hidding)
+                    // otherwise the normal behavior applies (hiding)
                     else {
                         // tries to retrieve the current owner of the menu
                         // contents and in case it exists removes the active
@@ -329,7 +329,7 @@ if (typeof require !== "undefined") {
          * @param {Element}
          *            menuButton The button used in the triggering of the menu,
          *            if any.
-         * @parm {Element} menuLink The link element used in the triggering of
+         * @param {Element} menuLink The link element used in the triggering of
          *       the menu, if any.
          */
         var _reposition = function(menu, menuButton, menuLink) {
@@ -340,18 +340,18 @@ if (typeof require !== "undefined") {
             var menuContents = jQuery(".menu-contents", menu);
 
             // in case no menu link is defined it's not possible
-            // to run the reposition operation, not enought information
+            // to run the reposition operation, not enough information
             // to archive the objective
             if (menuLink.length === 0) {
                 return;
             }
 
             // retrieves the first element from the menu button as the
-            // element that referes it, this is going to be used for
+            // element that refers it, this is going to be used for
             // internal and more accurate computation
             var menuButtonElement = menuButton[0];
 
-            // "resets" the left margin of the contents as this is usefull
+            // "resets" the left margin of the contents as this is useful
             // to obtain better left offset values
             menuContents.css("margin-left", "0px");
 
@@ -362,7 +362,7 @@ if (typeof require !== "undefined") {
             var contentsHeight = menuContents.outerHeight(true);
             var contentsLeft = menuContents.offset().left;
 
-            // tries to retrive the button bounding (box) and then uses
+            // tries to retrieve the button bounding (box) and then uses
             // it as the button with value in case it exists, this is
             // required so that it's possible to use decimal pixel values
             // for the calculus of the required offset margins

@@ -151,7 +151,7 @@ if (typeof require !== "undefined") {
             // registers for the resize event on the overlay
             // so that the overlay may be resized in for such events
             matchedObject.bind("resize", function() {
-                // retrieves teh current element and uses it
+                // retrieves the current element and uses it
                 // resize the overlay in the screen
                 var element = jQuery(this);
                 _resize(element, options);

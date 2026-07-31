@@ -138,7 +138,7 @@ if (typeof require !== "undefined") {
             target = 9e9;
         }
 
-        // exteds the settings with the default setttings
+        // exteds the settings with the default settings
         settings = jQuery.extend({}, uxscrollto.defaults, settings);
 
         // speed is still recognized for backwards compatibility
@@ -299,7 +299,7 @@ if (typeof require !== "undefined") {
      * badly) on IE, quirks mode.
      *
      * @param {Element}
-     *            element The element to be used aas reference for the scroll.
+     *            element The element to be used as reference for the scroll.
      * @param {String}
      *            axis The axis to be used in scroll reference.
      * @return {Element} The input element.

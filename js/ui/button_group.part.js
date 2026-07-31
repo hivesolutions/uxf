@@ -76,7 +76,7 @@ if (typeof require !== "undefined") {
                     return;
                 }
 
-                // retieves all the button associated with the button group
+                // retrieves all the button associated with the button group
                 // then removes the selected class from them
                 var buttons = jQuery(".button", buttonGroup);
                 buttons.removeClass("selected");
@@ -94,7 +94,7 @@ if (typeof require !== "undefined") {
             // be created in case that's required
             parentForm.bind("pre_submit", function() {
                 // retrieves the current element (form) and the associated underlying
-                // button groups for the opearation
+                // button groups for the operation
                 var element = jQuery(this);
                 var buttonGroups = jQuery(".button-group", element);
 
@@ -113,7 +113,7 @@ if (typeof require !== "undefined") {
                         return;
                     }
 
-                    // tries to retrieve the anme attribute out of the element
+                    // tries to retrieve the name attribute out of the element
                     // in case it's not defined returns immediately
                     var name = _element.attr("name");
                     if (!name) {

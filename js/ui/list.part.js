@@ -31,7 +31,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -50,7 +50,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element
                 var element = jQuery(this);
 
-                // retrieves the list that contiains the current
+                // retrieves the list that contains the current
                 // element (first list parent) and then uses it
                 // to retrieve the associated list item parent
                 var list = jQuery(element.parents(".list")[0]);
@@ -77,7 +77,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves the imediate parent list item and the
+                // retrieves the immediate parent list item and the
                 // associated sub list (for empty verification)
                 var listItem = jQuery(_element.parents("li")[0]);
                 var subList = jQuery("> .list", listItem);
@@ -103,7 +103,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -118,7 +118,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element
                 var element = jQuery(this);
 
-                // retrieves the list item that contiains the current
+                // retrieves the list item that contains the current
                 // element (first list parent) and then uses it
                 // to retrieve the (child) list
                 var listItem = element.parent("li");

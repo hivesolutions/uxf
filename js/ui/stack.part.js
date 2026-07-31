@@ -46,7 +46,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -77,7 +77,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -89,14 +89,14 @@ if (typeof require !== "undefined") {
             var _body = jQuery("body");
 
             // checks if the stack click event is already
-            // registerd in the body and sets the variable as
+            // registered in the body and sets the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("stack_click");
             _body.data("stack_click", true);
 
             // registers for the push event with the proper target
             // parameter that should push a stack item into the
-            // curent included stack
+            // current included stack
             matchedObject.bind("push", function(event, target) {
                 var element = jQuery(this);
                 push(element, target);

@@ -46,7 +46,7 @@ if (typeof require !== "undefined") {
         var _appendHtml = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -107,7 +107,7 @@ if (typeof require !== "undefined") {
                 // container element so that it may be correctly used
                 container.prepend(prepend);
 
-                // retreives the compete set of elements that are meant
+                // retrieves the compete set of elements that are meant
                 // to be defaulted in case no logical value is defined
                 // allowing proper value interface for them
                 var defaults = input ? elements : jQuery([]);
@@ -183,7 +183,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -214,7 +214,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the click operation in the element so that the
-            // visibility of the curren drop down is hidden
+            // visibility of the current drop down is hidden
             elements.click(function(event) {
                 // retrieves the reference to the "clicked" element and
                 // the associated parent and child elements that are
@@ -311,7 +311,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // retrieves the reference to the complete set of drop down
-                    // conatainers that are visible for the current body and then
+                    // containers that are visible for the current body and then
                     // runs the hide operation for the associated drop down
                     var container = jQuery(".drop-down-container.visible", element);
                     var dropDown = jQuery(".drop-down", container);
@@ -325,7 +325,7 @@ if (typeof require !== "undefined") {
                     var element = jQuery(this);
 
                     // retrieves the reference to the complete set of drop down
-                    // conatainers that are visible for the current body and then
+                    // containers that are visible for the current body and then
                     // runs the hide operation for the associated drop down
                     var container = jQuery(".drop-down-container.visible", element);
                     var dropDown = jQuery(".drop-down", container);
@@ -339,7 +339,7 @@ if (typeof require !== "undefined") {
                     var element = jQuery("body");
 
                     // retrieves the reference to the complete set of drop down
-                    // conatainers that are visible for the current body and then
+                    // containers that are visible for the current body and then
                     // runs the hide operation for the associated drop down
                     var container = jQuery(".drop-down-container.visible", element);
                     var dropDown = jQuery(".drop-down", container);
@@ -395,7 +395,7 @@ if (typeof require !== "undefined") {
         };
 
         var _update = function(matchedObject, options) {
-            // saves the state value that determins if the current drop down
+            // saves the state value that determines if the current drop down
             // for update was empty before the update
             var wasEmpty = matchedObject.data("empty") || false;
 
@@ -606,7 +606,7 @@ if (typeof require !== "undefined") {
             }
 
             // retrieves the reference to the various elements
-            // tha are going to be used in the element selection
+            // that are going to be used in the element selection
             var container = matchedObject.parents(".drop-down-container");
             var button = jQuery(".button-drop-down", container);
             var input = jQuery("input", container);
@@ -614,7 +614,7 @@ if (typeof require !== "undefined") {
 
             // retrieves both the textual/visual value of the selected
             // element and the logical/data value for it, note that the
-            // content of the elememt has priority over the complete text
+            // content of the element has priority over the complete text
             var text = element.uxcontent(null, "text").trim() || element.text().trim();
             var value = element.attr("data-value");
 
@@ -623,7 +623,7 @@ if (typeof require !== "undefined") {
             var same = element.hasClass("selected");
 
             // removes the invalid class from both the container and the
-            // drop down (matched object) element, as at leat one selection
+            // drop down (matched object) element, as at least one selection
             // has been performed (invalidation has been removed)
             matchedObject.removeClass("invalid");
             container.removeClass("invalid");

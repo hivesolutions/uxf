@@ -43,7 +43,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves the percentage from the elment
+                // retrieves the percentage from the element
                 // and parses it as a float
                 var percentage = _element.attr("data-percentage");
                 percentage = parseFloat(percentage);
@@ -95,10 +95,10 @@ if (typeof require !== "undefined") {
                 var barWidth = _element.width();
                 var contentsWidth = contents.outerWidth();
 
-                // in case the bar width is enought to hold the
+                // in case the bar width is enough to hold the
                 // contents (no overflow)
                 if (contentsWidth <= barWidth) {
-                    // retursn immediately (continues the loop)
+                    // returns immediately (continues the loop)
                     return;
                 }
 

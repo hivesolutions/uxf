@@ -66,7 +66,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {};
 
         /**
-         * Changes the current (pecentage) value for the progress bar component.
+         * Changes the current (percentage) value for the progress bar component.
          *
          * @param {Element}
          *            matchedObject The reference to the current matched object.

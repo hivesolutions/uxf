@@ -35,7 +35,7 @@ if (typeof require !== "undefined") {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // retrieves teh various attributes
+                // retrieves the various attributes
                 // from the element
                 var name = _element.attr("data-name");
                 var action = _element.attr("data-action");

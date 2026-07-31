@@ -47,7 +47,7 @@ if (typeof require !== "undefined") {
             // them according to their options
             matchedObject.each(function(index, element) {
                 // retrieves the current element and uses it
-                // to update ths current arrange structure
+                // to update the current arrange structure
                 var _element = jQuery(this);
                 _update(_element, options);
             });
@@ -83,7 +83,7 @@ if (typeof require !== "undefined") {
                 var listItems = null;
 
                 // retrieves the current element reference and uses
-                // it to retrive the current select list
+                // it to retrieve the current select list
                 var element = jQuery(this);
                 var selectList = element.parent(".select-list");
 
@@ -175,7 +175,7 @@ if (typeof require !== "undefined") {
                 }
             });
 
-            // registers for the double click event on the list itesm
+            // registers for the double click event on the list items
             // to trigger the select action
             listItems.dblclick(function(event) {
                 // retrieves the current element and then uses
@@ -188,7 +188,7 @@ if (typeof require !== "undefined") {
             });
 
             // iterates over each of the matched objects
-            // to register them agains the submission of the form
+            // to register them against the submission of the form
             matchedObject.each(function(index, element) {
                 // retrieves the current element for iteration
                 var _element = jQuery(element);
@@ -299,7 +299,7 @@ if (typeof require !== "undefined") {
             // to be used for the sorting of the elements
             orderIcons.mousedown(function() {
                 // retrieves the current element reference and uses
-                // it to retrive the current select list
+                // it to retrieve the current select list
                 var orderIcon = jQuery(this);
                 var element = orderIcon.parent("li");
                 var selectList = element.parent(".select-list");
@@ -316,7 +316,7 @@ if (typeof require !== "undefined") {
                 var _body = jQuery("body");
 
                 // retrieves the current with for the select
-                // list to be used for the contruction of the
+                // list to be used for the construction of the
                 // cloned element
                 var selectListWidth = selectList.width();
 
@@ -345,7 +345,7 @@ if (typeof require !== "undefined") {
                 _body.addClass("do-moving");
 
                 var move = function(event) {
-                    // retrives the previous data from the select list
+                    // retrieves the previous data from the select list
                     // and uses it to set the mouse position
                     var previousOffsetY = selectList.data("offset_y");
                     var previousY = selectList.data("mouse_y");
@@ -363,7 +363,7 @@ if (typeof require !== "undefined") {
                     var clonedHeight = cloned.outerHeight();
 
                     // calculates the target y (vertical) position
-                    // for the currenly selected element
+                    // for the currently selected element
                     var targetY = mouseY - clonedHeight / 2;
 
                     // checks if the target position is overflowing
@@ -424,7 +424,7 @@ if (typeof require !== "undefined") {
                 };
 
                 var remove = function() {
-                    // retrieves the items that are consideres to be
+                    // retrieves the items that are considered to be
                     // cloned elements and removes (no more usage)
                     var cloned = jQuery("li.clone", selectList);
                     cloned.remove();

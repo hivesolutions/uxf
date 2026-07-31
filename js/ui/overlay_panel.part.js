@@ -113,7 +113,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the animation end event so that if
-            // the curernt object is in a invible mode it is gc
+            // the current object is in a invible mode it is gc
             matchedObject.bind("animationend", function() {
                 // retrieves the current element for the event
                 // and runs the appropriate collect operation
@@ -153,7 +153,7 @@ if (typeof require !== "undefined") {
                         var elementVisible = _element.hasClass("visible");
 
                         // in case the element is visible, must hide hide
-                        // in order to toggel visibility
+                        // in order to toggle visibility
                         if (elementVisible) {
                             _hide(_element, options);
                         }
@@ -253,7 +253,7 @@ if (typeof require !== "undefined") {
 
             // centers the object in the screen, this is required
             // in order to avoid init glitches that would be created
-            // for situations where theres an offscreen resize
+            // for situations where there's an offscreen resize
             matchedObject.uxcenter(offsetFloat);
 
             // runs the collect operation on the current element to
@@ -277,7 +277,7 @@ if (typeof require !== "undefined") {
             textField.focus();
 
             // triggers the shown event indicating that the overlay panel
-            // has just finished beeing shown
+            // has just finished being shown
             matchedObject.triggerHandler("shown");
         };
 

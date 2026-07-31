@@ -6,7 +6,7 @@ if (typeof require !== "undefined") {
  * jQuery drop list plugin, this jQuery plugin provides the base infra-structure
  * for the creation of a drop list component. To be used in graphical operations
  * where the list of elements to be selected (both text or graphical) should not
- * allways be viewable and its visibility should be "togglable".
+ * always be viewable and its visibility should be "togglable".
  *
  * @name uxf-drop-list.js
  * @author João Magalhães <joamag@hive.pt>
@@ -100,7 +100,7 @@ if (typeof require !== "undefined") {
                 _menuContents.trigger("hide");
 
                 // verifies the current drop list status to check if it's
-                // currently acive or not in case it's active hides it
+                // currently active or not in case it's active hides it
                 // and then removes the active class
                 if (isActive) {
                     dropOptions.hide();
@@ -160,7 +160,7 @@ if (typeof require !== "undefined") {
 
                 // registers for the pre submit event, so that it's possible
                 // to create an hidden input representing the value that
-                // will be submitted accordint to the drop list
+                // will be submitted according to the drop list
                 parentForm.bind("pre_submit", function() {
                     // retrieves the name of the element, this value is
                     // going to be used in the input element to be create

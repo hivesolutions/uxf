@@ -81,7 +81,7 @@ if (typeof require !== "undefined") {
             var numberRecords = query.numberRecords || MAX_RECORDS;
             numberRecords = numberRecords === -1 ? MAX_RECORDS : numberRecords;
 
-            // unpacks the sort value and the sort oder from the
+            // unpacks the sort value and the sort order from the
             // sort tuple and uses them to create the "final" sort
             // string to be used in the query string
             var sortValue = sort ? sort[0] : null;
@@ -103,7 +103,7 @@ if (typeof require !== "undefined") {
                 var value = filter[2];
 
                 // in case the current value is a sequence must join
-                // all of its values arround the separator token
+                // all of its values around the separator token
                 var isSequence = typeof value === "object";
                 if (isSequence) {
                     value = value.join(";");
@@ -180,7 +180,7 @@ if (typeof require !== "undefined") {
 
             // sets a timeout for the request to be performed, this
             // timeout will allow the performing of a delayed request
-            // (ths way resource usage is minimized)
+            // (this way resource usage is minimized)
             setTimeout(function() {
                 // retrieves the current identifier from the
                 // matched object and checks it against the

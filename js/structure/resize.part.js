@@ -9,7 +9,7 @@ if (typeof require !== "undefined") {
         var matchedObject = this;
         var _window = jQuery(window);
 
-        // verifies if there's at leat one valid object matched and
+        // verifies if there's at least one valid object matched and
         // if that's not the case returns the current context immediately
         if (!matchedObject || matchedObject.length === 0) {
             return this;
@@ -17,7 +17,7 @@ if (typeof require !== "undefined") {
 
         // tries to retrieve the defined generate timeout value
         // from the matched object and in case it's not defined
-        // fallback to a defualt value, then uses this value to
+        // fallback to a default value, then uses this value to
         // define a timeout for the resize operation
         var timeout = matchedObject.attr("data-timeout") || 1000;
         setTimeout(function() {

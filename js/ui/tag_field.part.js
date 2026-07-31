@@ -119,7 +119,7 @@ if (typeof require !== "undefined") {
 
                     // updates (resizes) the tag field, then sets another
                     // update operation for the final part of the update
-                    // lifecycle this way a new refresh happends after the
+                    // lifecycle this way a new refresh happens after the
                     // complete layout is rendered
                     isVisible ? _update(_element, options) : _update(_element, options, true);
                 });
@@ -140,7 +140,7 @@ if (typeof require !== "undefined") {
             var textField = jQuery(".text-field", matchedObject);
 
             // iterates over each of the matched objects
-            // to register them agains the submission of the form
+            // to register them against the submission of the form
             matchedObject.each(function(index, element) {
                 // retrieves the current element for iteration
                 var _element = jQuery(element);
@@ -219,7 +219,7 @@ if (typeof require !== "undefined") {
                     return;
                 }
 
-                // retrieves the text field assiciated with the
+                // retrieves the text field associated with the
                 // element and resets its value no value present
                 var textField = jQuery(".text-field", element);
                 textField.val("");
@@ -405,7 +405,7 @@ if (typeof require !== "undefined") {
             }
 
             // verifies if the auto width mode is enabled for the tag field
-            // this is usefull for situations where the width should not
+            // this is useful for situations where the width should not
             // be computed automatically (eg: percent based width)
             var autoWidth = matchedObject.attr("data-auto_width");
 
@@ -433,7 +433,7 @@ if (typeof require !== "undefined") {
             // of the last line
             for (var index = tags.length - 1; index >= 0; index--) {
                 // retrieves the current tag and retrieves its
-                // ofsset value to the top for comparision
+                // offset value to the top for comparison
                 var tag = jQuery(tags[index]);
                 var _referenceTop = tag.offset().top;
 
@@ -466,7 +466,7 @@ if (typeof require !== "undefined") {
             lineWidth = lineWidth + tagsContainerPaddingLeft + tagsContainerPaddingRight;
 
             // calculates the size of the line using the last tag
-            // height as reference and then devides the tags container
+            // height as reference and then divides the tags container
             // height with the line height to calculate the number of
             // lines in the tags container, using it to calculate the
             // "new" padding to the top
@@ -589,7 +589,7 @@ if (typeof require !== "undefined") {
             }
 
             // returns the "just" computed sequence value comprising
-            // the list of valus separated with comas
+            // the list of values separated with commas
             return value;
         };
 

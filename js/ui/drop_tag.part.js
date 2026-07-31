@@ -49,7 +49,7 @@ if (typeof require !== "undefined") {
             // to create their internal structure
             matchedObject.each(function(index, element) {
                 // retrieves the current drop tag element and uses
-                // its title attribute to create the strcture
+                // its title attribute to create the structure
                 var _element = jQuery(this);
                 var title = _element.attr("data-title");
 
@@ -108,7 +108,7 @@ if (typeof require !== "undefined") {
                 // current drop tag
                 var items = jQuery("> .items", dropTag);
 
-                // checks if the drop tag is curently in the disable
+                // checks if the drop tag is currently in the disable
                 // state in such case returns immediately nothing to
                 // be done on a disabled drop tag
                 var isDisabled = dropTag.hasClass("disabled");
@@ -116,7 +116,7 @@ if (typeof require !== "undefined") {
                     return;
                 }
 
-                // checks if the drop tag is curently in the open
+                // checks if the drop tag is currently in the open
                 // state in order to change it
                 var isOpen = dropTag.hasClass("open");
 
@@ -171,7 +171,7 @@ if (typeof require !== "undefined") {
             // registers for the click event on the various list items
             // to select them (go into tag mode)
             listItems.click(function() {
-                // retieves the current element, the drop tag associated with
+                // retrieves the current element, the drop tag associated with
                 // it and the drop tag text
                 var element = jQuery(this);
                 var dropTag = element.parents(".drop-tag");
@@ -212,7 +212,7 @@ if (typeof require !== "undefined") {
             // registers for the click event on the various list items
             // to select them (go into tag mode)
             listItems.click(function() {
-                // retieves the current element, the drop tag associated with
+                // retrieves the current element, the drop tag associated with
                 // it and the drop tag text
                 var element = jQuery(this);
                 var dropTag = element.parents(".drop-tag");

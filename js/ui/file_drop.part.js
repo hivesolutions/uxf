@@ -71,7 +71,7 @@ if (typeof require !== "undefined") {
                 event.stopPropagation();
                 event.preventDefault();
 
-                // retrieves the data tranfer and the files
+                // retrieves the data transfer and the files
                 // rom the original event
                 var dataTransfer = event.originalEvent.dataTransfer;
                 var files = dataTransfer.files;

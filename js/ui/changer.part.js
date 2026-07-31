@@ -84,10 +84,10 @@ if (typeof require !== "undefined") {
                 index += 1;
 
                 // in case the current value "overflows" the current
-                // section count the index calue is reseted
+                // section count the index value is reset
                 index = index === sectionCount ? 0 : index;
 
-                // adds the new section calss and shows the matched object
+                // adds the new section class and shows the matched object
                 // with a fade effect
                 matchedObject.addClass("section-" + (index + 1));
                 matchedObject.fadeIn(300);

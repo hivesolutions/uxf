@@ -234,7 +234,7 @@ if (typeof require !== "undefined") {
         var _update = function(matchedObject, options) {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly update operation is not meant to
+            // immediately update operation is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -505,7 +505,7 @@ if (typeof require !== "undefined") {
             // retrieves all the (valid) cells from the matched object
             var cells = jQuery("tbody td", matchedObject);
 
-            // registrs for the click event in the cells
+            // registers for the click event in the cells
             cells.click(function() {
                 // retrieves the element
                 var element = jQuery(this);

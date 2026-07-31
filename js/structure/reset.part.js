@@ -12,7 +12,7 @@ if (typeof require !== "undefined") {
         matchedObject.each(function(index, element) {
             // retrieves the reference to the current
             // element for which the reset operation will
-            // be perfomed and the value set to the original
+            // be performed and the value set to the original
             var _element = jQuery(this);
 
             // retrieves the object (type) for the currently

@@ -173,7 +173,7 @@ if (typeof require !== "undefined") {
             var textField = jQuery(".text-field", incrementalField);
             var floatvalue = textField.uxfloat();
 
-            // tries to retrive a possibly existing increment URL value
+            // tries to retrieve a possibly existing increment URL value
             // to be used for location change
             var incrementUrl = textField.attr("data-increment_url");
 
@@ -212,7 +212,7 @@ if (typeof require !== "undefined") {
             var textField = jQuery(".text-field", incrementalField);
             var floatvalue = textField.uxfloat();
 
-            // tries to retrive a possibly existing decrement URL value
+            // tries to retrieve a possibly existing decrement URL value
             // to be used for location change
             var decrementUrl = textField.attr("data-decrement_url");
 

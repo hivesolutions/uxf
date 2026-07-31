@@ -78,7 +78,7 @@ if (typeof require !== "undefined") {
                 // otherwise the interval mode is enabled, the timeout
                 // must be used to set the interval
                 else {
-                    // sets a new inteval with the defined timeout value
+                    // sets a new interval with the defined timeout value
                     // (this is considered to be the default behavior)
                     setInterval(function() {
                         // updates the changer value to show the
@@ -108,7 +108,7 @@ if (typeof require !== "undefined") {
             index += 1;
 
             // in case the current value "overflows" the current
-            // section count the index calue is reseted
+            // section count the index value is reset
             index = index === sectionCount ? 0 : index;
 
             // retrieves the current panel to be shown and

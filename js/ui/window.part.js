@@ -168,14 +168,14 @@ if (typeof require !== "undefined") {
 
                 // registers for the show operation on the current
                 // window, this is considered to be an explicit
-                // reques to show it as soon as possible
+                // request to show it as soon as possible
                 _element.bind("show", function() {
                     _show(_element, options);
                 });
 
                 // registers for the hide operation on the current
                 // window, this is considered to be an explicit
-                // reques to hide it as soon as possible
+                // request to hide it as soon as possible
                 _element.bind("hide", function() {
                     _hide(_element, options);
                 });
@@ -309,7 +309,7 @@ if (typeof require !== "undefined") {
             var overlay = jQuery(".overlay:first");
 
             // unregisters from the click event on the global overlay
-            // so that the windows stop respoding from the event
+            // so that the windows stop responding from the event
             __unregisterClick(matchedObject, options);
 
             // unregisters from the key event for the dismissal
@@ -401,8 +401,8 @@ if (typeof require !== "undefined") {
         };
 
         var _positionWindow = function(matchedObject, options, noLimit) {
-            // verfies if the current window is visible and if that's
-            // not the case returns immedaitely, avoiding possible extra
+            // verifies if the current window is visible and if that's
+            // not the case returns immediately, avoiding possible extra
             // usage of resources (position operation is expensive)
             var isVisible = matchedObject.hasClass("visible");
             if (!isVisible) {
@@ -451,7 +451,7 @@ if (typeof require !== "undefined") {
             var maxHeight = isContentBox ? windowHeight - extraHeight : windowHeight;
 
             // decrements both the dimensions by twice the value of
-            // the paddin for both sides of the dimension
+            // the padding for both sides of the dimension
             maxWidth -= padding * 2;
             maxHeight -= padding * 2;
 

@@ -49,7 +49,7 @@ if (typeof require !== "undefined") {
             }
 
             // iterates over the complete set of selected elements
-            // to correclty initialize all of them
+            // to correctly initialize all of them
             matchedObject.each(function(index, element) {
                 var _element = jQuery(this);
                 setTimeout(function() {
@@ -233,7 +233,7 @@ if (typeof require !== "undefined") {
         };
 
         // switches over the method, to be able to correctly handle
-        // the action that was rquested by logic
+        // the action that was requested by logic
         switch (method) {
             case "next":
                 _next(matchedObject, options);

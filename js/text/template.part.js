@@ -147,7 +147,7 @@ if (typeof require !== "undefined") {
                     // sued in next iteration
                     var newBaseKey = key + ".";
 
-                    // applies the attributes to the template contens
+                    // applies the attributes to the template contents
                     // based in the current attribute value and with
                     // the new base key value
                     templateContents = _applyAttributes(
@@ -187,7 +187,7 @@ if (typeof require !== "undefined") {
                     };
 
                     // replaces the template strings in the HTML with the proper attribute
-                    // values this may be an expesive operation in case it's repeated
+                    // values this may be an expensive operation in case it's repeated
                     // frequently for a lot of times (modify with care)
                     templateContents = templateContents.replace(keyRegex, replacer);
                 }
@@ -205,7 +205,7 @@ if (typeof require !== "undefined") {
             var localize = options.localize;
             var defaultValue = options.defaultValue;
 
-            // retrirves the for each elments for the current template element
+            // retrirves the for each elements for the current template element
             var foreachElements = jQuery(".template-foreach", templateElement).not(
                 ".template-foreach .template-foreach"
             );

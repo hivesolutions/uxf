@@ -51,7 +51,7 @@ if (typeof require !== "undefined") {
         var _registerHandlers = function() {
             // in case the matched object is not defined
             // or in case it's an empty list must return
-            // immediatly initialization is not meant to
+            // immediately initialization is not meant to
             // be run (corruption may occur)
             if (!matchedObject || matchedObject.length === 0) {
                 return;
@@ -141,14 +141,14 @@ if (typeof require !== "undefined") {
         // logic is going to be performed
         switch (method) {
             case "show":
-                // runs the show operation for the selected object effectivly
+                // runs the show operation for the selected object effectively
                 // showing its inner contents (as expected)
                 _show(matchedObject, options);
                 break;
 
             case "hide":
-                // runs the hide operation for the selected object effectivly
-                // hidding its inner contents (as expected)
+                // runs the hide operation for the selected object effectively
+                // hiding its inner contents (as expected)
                 _hide(matchedObject, options);
                 break;
 

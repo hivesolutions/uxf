@@ -140,7 +140,7 @@ if (typeof require !== "undefined") {
             element.css("background-position", "0px 0px");
 
             // resets the various values of the element so that the
-            // animation is set to start from the beginning (orginal values)
+            // animation is set to start from the beginning (original values)
             element.data("height", height);
             element.data("frame", 0);
             element.data("count", frameCount);
@@ -153,7 +153,7 @@ if (typeof require !== "undefined") {
             }, frameTimeout);
 
             // updates the reference to the interval in the element so that
-            // it may be refernced latter for cancellation
+            // it may be referenced latter for cancellation
             element.data("interval", interval);
         };
 
@@ -201,7 +201,7 @@ if (typeof require !== "undefined") {
         };
 
         // switches over the method so that the proper execution is going
-        // to be perfoemed for the selected element
+        // to be performed for the selected element
         switch (method) {
             case "init":
                 // starts the sprite based animation for the current object

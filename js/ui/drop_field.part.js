@@ -5,7 +5,7 @@ if (typeof require !== "undefined") {
 /**
  * jQuery drop field plugin, this jQuery plugin provides the base
  * infra-structure for the creation of a drop field component. The most
- * "powerfull" drop based component to be used together with a data source and
+ * "powerful" drop based component to be used together with a data source and
  * provides both the select and the "find" modes of working for active (mouse
  * only) or passive (kwyboard based) models of interaction.
  *
@@ -96,7 +96,7 @@ if (typeof require !== "undefined") {
                 // retrieves any possible filter information, both the name
                 // and the operation, these values may be used to change the
                 // default behavior of the query so that a "composite" filter
-                // is used instead giveing more flexibility to the query
+                // is used instead giving more flexibility to the query
                 var filterName = _element.attr("data-filter_name") || null;
                 var filterOperation = _element.attr("data-filter_operation") || "like";
 
@@ -219,7 +219,7 @@ if (typeof require !== "undefined") {
                 // that have an hidden (logical) value defined but that don't
                 // have a valid value defined in the drop field, this is
                 // considered a "self bootstrap" operation  and should be used
-                // carrefully in order to avoid extra server side calls
+                // carefully in order to avoid extra server side calls
                 var bootstrap = !textFieldValue && hiddenFieldValue;
                 bootstrap &&
                     setTimeout(function() {
@@ -242,7 +242,7 @@ if (typeof require !== "undefined") {
             var textField = jQuery(".text-field", matchedObject);
 
             // checks if the drop field click event is already
-            // registerd in the body and set the variable as
+            // registered in the body and set the variable as
             // true to avoid further registrations
             var isRegistered = _body.data("drop_field_click");
             _body.data("drop_field_click", true);
@@ -347,7 +347,7 @@ if (typeof require !== "undefined") {
 
             // registers for the update drop event that should refresh
             // the currently associated drop list with the latest
-            // data comming from the data source
+            // data coming from the data source
             matchedObject.bind("update_drop", function() {
                 var element = jQuery(this);
                 _update(element, options, true);
@@ -459,7 +459,7 @@ if (typeof require !== "undefined") {
                 dropField.addClass("focus");
 
                 // triggers the focus event on the drop field so that
-                // any listner gets notified abou the new event
+                // any listener gets notified about the new event
                 dropField.triggerHandler("focus");
 
                 // avoids the propagation of the event otherwise
@@ -478,7 +478,7 @@ if (typeof require !== "undefined") {
                 var mouseControl = dropField.data("mouse_control");
 
                 // hides the drop field contents, only in case the mouse
-                // control flag is set, prevents the browser from hidding
+                // control flag is set, prevents the browser from hiding
                 // the drop field contents in case before the click event
                 // is propagated
                 !mouseControl && _hide(dropField);
@@ -495,7 +495,7 @@ if (typeof require !== "undefined") {
                 dropField.removeClass("focus");
 
                 // triggers the blur event on the drop field so that
-                // any listner gets notified abou the new event
+                // any listener gets notified about the new event
                 dropField.triggerHandler("blur");
 
                 // avoids the propagation of the event otherwise
@@ -774,7 +774,7 @@ if (typeof require !== "undefined") {
                         _hide(dropField);
 
                         // stops the event propagation (to
-                        // avoid colateral problem in text field)
+                        // avoid collateral problem in text field)
                         event.stopPropagation();
 
                         // breaks the switch
@@ -889,7 +889,7 @@ if (typeof require !== "undefined") {
             });
 
             // registers for the paste event on the text field so that
-            // any new text "transfered" to the text field is used to
+            // any new text "transferred" to the text field is used to
             // update the current drop field status
             textField.bind("paste", function() {
                 // retrieves the reference to the current element and
@@ -980,7 +980,7 @@ if (typeof require !== "undefined") {
             // and replaced by a single filter tuple value
             if (filterName) {
                 // runs the defaulting operation in the filters value so that
-                // the provided set of filters is allways an empty list, then
+                // the provided set of filters is always an empty list, then
                 // adds the new filter tuple to the sequence and invalidates
                 // the filter string so that no base filtering is used
                 filters = filters || [];
@@ -1035,14 +1035,14 @@ if (typeof require !== "undefined") {
                     dropField.removeClass("updating");
 
                     // in case the valid items value is not valid (error occurred)
-                    // so items are avaiable for the update (must avoid update)
+                    // so items are available for the update (must avoid update)
                     if (!validItems) {
                         return;
                     }
 
                     // in case the drop field is locked or the containing
                     // text field does not contains focus there is no need
-                    // to process the results (something occured in betweed
+                    // to process the results (something occurred in between
                     // the request and the response) must return immediately,
                     // note that this immediate return operation may be skipped
                     // in case the force flag is set (avoids skipping)
@@ -1056,11 +1056,11 @@ if (typeof require !== "undefined") {
                     // empties (clears) the drop field contents
                     dropFieldContents.empty();
 
-                    // in case no valid items were retrieves, must show
+                    // in case no valid items were retrieved, must show
                     // the no results element
                     if (validItems.length === 0) {
                         // clones the drop field no results element, to create
-                        // an instance to be added, then removes the hidding
+                        // an instance to be added, then removes the hiding
                         // class from it
                         var _dropFieldNoResults = dropFieldNoResults.clone();
                         _dropFieldNoResults.removeClass("drop-field-no-results");
@@ -1071,7 +1071,7 @@ if (typeof require !== "undefined") {
                     }
 
                     // retrieves the cache map to be used to determine if the
-                    // various elements should be contructed from scratch or
+                    // various elements should be constructed from scratch or
                     // if an already existing element should be used instead
                     var cache = dropField.data("cache") || {};
 
@@ -1279,8 +1279,8 @@ if (typeof require !== "undefined") {
 
                     // retrieves the previous selection (original selection)
                     // using the value from the text field, then tries to guess
-                    // the index by comparing the string value agains the
-                    // display value of the list item (this is usefull for the
+                    // the index by comparing the string value against the
+                    // display value of the list item (this is useful for the
                     // select type drop fields)
                     var preSelection = jQuery(
                         "li[data-display='" + textFieldValue + "']",
@@ -1327,7 +1327,7 @@ if (typeof require !== "undefined") {
                     bootstrap &&
                         listItems.each(function(index, element) {
                             // retrieves the current list item (element) in iteration and
-                            // unpacks its data value, checking it agains the currently
+                            // unpacks its data value, checking it against the currently
                             // set logic value (for proper match value)
                             var _element = jQuery(this);
                             var isValid = valueLogic === _element.attr("data-value");
@@ -1352,7 +1352,7 @@ if (typeof require !== "undefined") {
                         options.force &&
                         listItems.each(function(index, element) {
                             // retrieves the current list item (element) in iteration and
-                            // unpacks its data value, checking it agains the currently
+                            // unpacks its data value, checking it against the currently
                             // set "display" value (for proper match value)
                             var _element = jQuery(this);
                             var isValid = value === _element.attr("data-display");
@@ -1404,7 +1404,7 @@ if (typeof require !== "undefined") {
             // retrieves the current selection value
             var selection = matchedObject.data("selection");
 
-            // in case the selection row not "overlfows"
+            // in case the selection row not "overflows"
             if (selection > 0) {
                 // decrements the current selection
                 matchedObject.data("selection", selection - 1);
@@ -1421,7 +1421,7 @@ if (typeof require !== "undefined") {
             // retrieves the "current" list items
             var listItems = jQuery(".drop-field-contents > *", matchedObject);
 
-            // in case the selection row not "overlfows"
+            // in case the selection row not "overflows"
             if (selection < listItems.length) {
                 // increments the current selection
                 matchedObject.data("selection", selection + 1);
@@ -1506,7 +1506,7 @@ if (typeof require !== "undefined") {
             var value = options.value;
             var valueLogic = options.valueLogic;
 
-            // tries to retieve the item definition from the
+            // tries to retrieve the item definition from the
             // options in case it's defined
             var item = options.item || {};
 
@@ -1790,7 +1790,7 @@ if (typeof require !== "undefined") {
             var isVisible = dropFieldContents.is(":visible");
             !isVisible && dropFieldContents.show();
 
-            // determines if the drop field contents is bord box based
+            // determines if the drop field contents is border box based
             // sizing, if that the case a different sizing is going to
             // be applied to determine the width of the drop field
             var boxSizing = dropFieldContents.css("box-sizing");
@@ -1823,7 +1823,7 @@ if (typeof require !== "undefined") {
             var dropField = matchedObject;
             var dropFieldContents = jQuery(".drop-field-contents", dropField);
 
-            // tries to retieve the updated flag from the
+            // tries to retrieve the updated flag from the
             // drop field and in case it's not been already
             // updated, runs the update process on it after
             // that sets the updated flag on its data
@@ -1880,13 +1880,13 @@ if (typeof require !== "undefined") {
 
             case "index":
                 // selects the proper index value in the drop
-                // field, usefull for drop field select elements
+                // field, useful for drop field select elements
                 _index(matchedObject, options);
                 break;
 
             case "value":
                 // retrieves the value and returns it to the
-                // caler function for handling
+                // caller function for handling
                 var value = _value(matchedObject, options);
                 return value;
 

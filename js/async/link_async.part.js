@@ -16,7 +16,7 @@ if (typeof require !== "undefined") {
         var _body = jQuery("body");
 
         // normnalizes the current async reference so the href value
-        // is allways a valid string value that may be used with no
+        // is always a valid string value that may be used with no
         // dependency on its current data type
         href = href.href || href;
 
@@ -30,7 +30,7 @@ if (typeof require !== "undefined") {
 
         // in case the provided link value is invalid, not set
         // or empty there's no panel to be changed and everything
-        // shuold remain the same (no update)
+        // should remain the same (no update)
         if (!href) {
             return true;
         }
@@ -109,7 +109,7 @@ if (typeof require !== "undefined") {
                 }
 
                 // retrieves the reference to the body element to be used in the
-                // current reponse handler for a series of operations
+                // current response handler for a series of operations
                 var _body = jQuery("body");
 
                 // retrieves the current async state that is in processing in case
@@ -142,8 +142,8 @@ if (typeof require !== "undefined") {
             }
         });
 
-        // encapsulates the request object around an acessor and then registers
-        // for the ready state change event so that the conten type may be validated
+        // encapsulates the request object around an accessor and then registers
+        // for the ready state change event so that the contain type may be validated
         // as soon as possible (headers received stage) and the request canceled in
         // case it does not correspond to an HTML message
         var reference = jQuery(request);

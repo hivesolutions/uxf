@@ -48,7 +48,7 @@ if (typeof require !== "undefined") {
                 var _element = jQuery(this);
                 var moreString = _element.attr("data-more");
 
-                // wrapps the current element inside the panel more
+                // wraps the current element inside the panel more
                 // contents to be able to change the visibility
                 _element.wrapInner('<div class="panel-more-contents"></div>');
 

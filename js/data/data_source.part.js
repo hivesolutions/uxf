@@ -38,7 +38,7 @@ if (typeof require !== "undefined") {
                 _updateQueryElement(_element, options);
 
                 // triggers the ready event on the data source
-                // this should be able to notifiy possible listeners
+                // this should be able to notify possible listeners
                 // that the data is ready to be managed and "explored"
                 _element.trigger("data_ready");
             });

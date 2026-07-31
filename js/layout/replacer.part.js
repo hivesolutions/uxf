@@ -53,7 +53,7 @@ if (typeof require !== "undefined") {
                 var target = jQuery(targetSelector);
 
                 // retrieves the target element value so that it's
-                // possible to check if the target should be automaitcally
+                // possible to check if the target should be automatically
                 // shown (replaced)
                 var value = target.uxvalue();
 
