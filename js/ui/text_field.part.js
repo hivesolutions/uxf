@@ -598,6 +598,11 @@ if (typeof require !== "undefined") {
             // browsers (eg: firefox)
             var forceComplete = matchedObject.attr("data-force_complete");
 
+            // retrieves the (explicit) autocomplete value, meant to be
+            // used to determine if the author has already defined the
+            // autocomplete strategy for the text field
+            var autoComplete = matchedObject.attr("autocomplete");
+
             // sets the proper original value that is going to be used latter
             // for the original event to restore original state
             matchedObject.data("original", originalValue || elementValue || inputFieldValue);
@@ -611,8 +616,9 @@ if (typeof require !== "undefined") {
             // unsets the autocomplete feature in the text field
             // to avoid possible (unwanted) autocomplete sugestions
             // this is only done in case the force complete flag
-            // is unset (default behavior)
-            !forceComplete && matchedObject.attr("autocomplete", "off");
+            // is unset (default behavior) and no explicit autocomplete
+            // value exists, respecting the author's intention
+            !forceComplete && !autoComplete && matchedObject.attr("autocomplete", "off");
 
             // in case the input field value is the original one
             // this is a known issue with refreshing browser (need

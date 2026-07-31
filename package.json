@@ -39,7 +39,7 @@
         "lint-fix": "eslint \"./{js,test,vue}/**/*.{js,vue}\" --fix",
         "prettier": "prettier \"./*.{js,vue,json}\" \"./{js,test,vue}/**/*.{js,vue,json}\" --write",
         "pretty": "npm run prettier && npm run lint-fix",
-        "test": "mocha --recursive",
+        "test": "mocha --recursive --exit",
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
