@@ -104,6 +104,14 @@ if (typeof require !== "undefined") {
                     // shift state (eg: a colon instead of the semicolon key)
                     var key = (event.originalEvent || event).key;
 
+                    // in case the key could not be identified or is the legacy
+                    // value of the space key (eg: internet explorer) it's unset
+                    // so that the key value is used for it instead, as when the
+                    // key is not available
+                    if (key === "Unidentified" || key === "Spacebar") {
+                        key = null;
+                    }
+
                     // in case the key is not a character one (eg: the shift key
                     // pressed by the scanner for the shifted characters) there's
                     // nothing to be done as it does not represent any character
