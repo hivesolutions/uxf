@@ -307,6 +307,126 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(scans, []);
         });
+        it("should stop the propagation of the keys of a scan", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const propagated = [];
+            const code = "5474010022000000001234";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+            jQuery(document).bind("keydown keyup", event =>
+                propagated.push(event.type + ":" + event.key)
+            );
+
+            for (const character of code) {
+                keydown(jQuery, character, character.charCodeAt(0), "Digit" + character, false);
+                keyup(jQuery, character, character.charCodeAt(0), "Digit" + character, false);
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false);
+            keyup(jQuery, "Enter", 13, "Enter", false);
+
+            assert.deepStrictEqual(scans, [code]);
+            assert.deepStrictEqual(propagated, ["keydown:5"]);
+        });
+        it("should stop the propagation of the keys of an invalid scan", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const propagated = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+            jQuery(document).bind("keydown keyup", event =>
+                propagated.push(event.type + ":" + event.key)
+            );
+
+            for (const character of "jjkj") {
+                const keyCode = character.toUpperCase().charCodeAt(0);
+                keydown(jQuery, character, keyCode, "Key" + character.toUpperCase(), false);
+                keyup(jQuery, character, keyCode, "Key" + character.toUpperCase(), false);
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false);
+            keyup(jQuery, "Enter", 13, "Enter", false);
+
+            assert.deepStrictEqual(scans, []);
+            assert.deepStrictEqual(propagated, ["keydown:j"]);
+        });
+        it("should keep the propagation of the keys typed into a field", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const propagated = [];
+            const code = "5474010022000000001234";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><input type="text" />');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+            jQuery(document).bind("keydown keyup", event =>
+                propagated.push(event.type + ":" + event.key)
+            );
+
+            const input = jQuery("input");
+            for (const character of code) {
+                keydown(
+                    jQuery,
+                    character,
+                    character.charCodeAt(0),
+                    "Digit" + character,
+                    false,
+                    input
+                );
+                keyup(
+                    jQuery,
+                    character,
+                    character.charCodeAt(0),
+                    "Digit" + character,
+                    false,
+                    input
+                );
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false, input);
+            keyup(jQuery, "Enter", 13, "Enter", false, input);
+
+            assert.deepStrictEqual(scans, [code]);
+            assert.deepStrictEqual(
+                propagated,
+                [...code].flatMap(character => ["keydown:" + character, "keyup:" + character])
+            );
+        });
+        it("should keep the propagation of the keys of a person", () => {
+            const jQuery = global.jQuery;
+            const propagated = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("keydown keyup", event =>
+                propagated.push(event.type + ":" + event.key)
+            );
+
+            try {
+                clock(1000);
+                keydown(jQuery, "j", 74, "KeyJ", false);
+                clock(1100);
+                keyup(jQuery, "j", 74, "KeyJ", false);
+                clock(1300);
+                keydown(jQuery, "k", 75, "KeyK", false);
+                clock(1400);
+                keyup(jQuery, "k", 75, "KeyK", false);
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.deepStrictEqual(propagated, ["keydown:j", "keyup:j", "keydown:k", "keyup:k"]);
+        });
     });
 });
 
@@ -417,22 +537,22 @@ const clock = time => {
     };
 };
 
-const keydown = (jQuery, key, keyCode, code, shiftKey) => {
+const keydown = (jQuery, key, keyCode, code, shiftKey, target) => {
     const event = jQuery.Event("keydown", {
         key: key,
         keyCode: keyCode,
         code: code,
         shiftKey: shiftKey
     });
-    jQuery(document).trigger(event);
+    (target || jQuery(document)).trigger(event);
 };
 
-const keyup = (jQuery, key, keyCode, code, shiftKey) => {
+const keyup = (jQuery, key, keyCode, code, shiftKey, target) => {
     const event = jQuery.Event("keyup", {
         key: key,
         keyCode: keyCode,
         code: code,
         shiftKey: shiftKey
     });
-    jQuery(document).trigger(event);
+    (target || jQuery(document)).trigger(event);
 };

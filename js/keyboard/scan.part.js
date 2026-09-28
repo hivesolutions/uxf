@@ -22,6 +22,11 @@ if (typeof require !== "undefined") {
         // value
         var MINIMUM_LENGTH = 6;
 
+        // the maximum amount of time between the press and the release of
+        // a key for it to be considered typed by a scanner, as a person takes
+        // longer to release a key (the scanners release it right away)
+        var PRESS_INTERVAL = 20;
+
         // the map that associates the physical keys (codes) with the characters
         // they type, without and with shift, in the US keyboard layout (the
         // default layout of the scanners), the letter keys are not included
@@ -107,6 +112,18 @@ if (typeof require !== "undefined") {
                         pressed[(event.originalEvent || event).code] = characters;
                         targetObject.data("pressed", pressed);
                     }
+
+                    // retrieves the key value for the current event
+                    var keyValue = event.keyCode
+                        ? event.keyCode
+                        : event.charCode
+                        ? event.charCode
+                        : event.which;
+
+                    // stores the time of the press of the key and its value, so
+                    // that its release may verify how long the key was pressed
+                    targetObject.data("press_time", new Date().getTime());
+                    targetObject.data("press_value", keyValue);
                 });
 
                 targetObject.keypress(function(event) {
@@ -117,6 +134,9 @@ if (typeof require !== "undefined") {
                 // registers for the key down press in the target
                 // object reference
                 targetObject.keyup(function(event) {
+                    // verifies if the event must be propagated or not
+                    _verifyPropagation(targetObject, event);
+
                     // retrieves the current data and then uses it
                     // to retrieve the current timestamp
                     var currentDate = new Date();
@@ -335,6 +355,36 @@ if (typeof require !== "undefined") {
                 : event.charCode
                 ? event.charCode
                 : event.which;
+
+            // retrieves the time of the release of the previous key and, for
+            // the release of the last pressed key, the time of its press
+            var previousTime = targetObject.data("previous_time");
+            var pressTime =
+                event.type === "keyup" && targetObject.data("press_value") === keyValue
+                    ? targetObject.data("press_time")
+                    : null;
+
+            // verifies if the key is typed into a field (eg: a barcode scanned
+            // into an input), in which case the typing is intended and so the
+            // propagation and default behaviour of the event are kept
+            var target = event.target;
+            var isField =
+                target.isContentEditable || /^(input|textarea|select)$/i.test(target.nodeName);
+
+            // in case the key is part of a scan, pressed right after the release
+            // of the previous key or released right after its press (as only the
+            // scanners do), and not typed into a field, the event must neither be
+            // propagated nor have its default behaviour, as it could trigger other
+            // handlers of the page (eg: shortcuts), even for a scan not valid
+            var isScan =
+                (previousTime && currentTime - previousTime < LETTER_INTERVAL) ||
+                (pressTime && currentTime - pressTime < PRESS_INTERVAL);
+            if (isScan && !isField) {
+                event.stopPropagation();
+                event.stopImmediatePropagation();
+                event.preventDefault();
+                return;
+            }
 
             // in case the key is not an enter no need to do any
             // extra verification
