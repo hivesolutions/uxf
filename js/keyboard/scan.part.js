@@ -22,6 +22,35 @@ if (typeof require !== "undefined") {
         // value
         var MINIMUM_LENGTH = 6;
 
+        // the map that associates the physical keys (codes) with the characters
+        // they type, without and with shift, in the US keyboard layout (the
+        // default layout of the scanners), the letter keys are not included
+        // as their characters are the letters of their codes (eg: KeyA)
+        var US_LAYOUT = {
+            Backquote: ["`", "~"],
+            Digit1: ["1", "!"],
+            Digit2: ["2", "@"],
+            Digit3: ["3", "#"],
+            Digit4: ["4", "$"],
+            Digit5: ["5", "%"],
+            Digit6: ["6", "^"],
+            Digit7: ["7", "&"],
+            Digit8: ["8", "*"],
+            Digit9: ["9", "("],
+            Digit0: ["0", ")"],
+            Minus: ["-", "_"],
+            Equal: ["=", "+"],
+            BracketLeft: ["[", "{"],
+            BracketRight: ["]", "}"],
+            Backslash: ["\\", "|"],
+            Semicolon: [";", ":"],
+            Quote: ["'", '"'],
+            Comma: [",", "<"],
+            Period: [".", ">"],
+            Slash: ["/", "?"],
+            Space: [" ", " "]
+        };
+
         // the default values for the key
         var defaults = {};
 
@@ -66,6 +95,18 @@ if (typeof require !== "undefined") {
                 targetObject.keydown(function(event) {
                     // verifies if the event must be propagated or not
                     _verifyPropagation(targetObject, event);
+
+                    // retrieves the characters of the pressed key and in case
+                    // they exist stores them for its physical key, to be used
+                    // once the key is released, as by then the shift state may
+                    // have already changed (eg: the scanners press the shift
+                    // key of the next character before releasing the key)
+                    var characters = _characters(event);
+                    if (characters) {
+                        var pressed = targetObject.data("pressed") || {};
+                        pressed[(event.originalEvent || event).code] = characters;
+                        targetObject.data("pressed", pressed);
+                    }
                 });
 
                 targetObject.keypress(function(event) {
@@ -84,6 +125,7 @@ if (typeof require !== "undefined") {
                     // retrieves the various data attribute from the target
                     // object for the scanning
                     var sequence = targetObject.data("sequence") || "";
+                    var typedSequence = targetObject.data("typed_sequence") || "";
                     var previousTime = targetObject.data("previous_time") || currentTime;
                     var initialTime = targetObject.data("initial_time") || currentTime;
                     var ignoring = targetObject.data("ignoring") || false;
@@ -111,6 +153,19 @@ if (typeof require !== "undefined") {
                     if (key === "Unidentified" || key === "Spacebar") {
                         key = null;
                     }
+
+                    // retrieves the characters of the key from the time it was
+                    // pressed, using the one of the US keyboard layout as the key
+                    // so that the scan depends neither on the keyboard layout of
+                    // the system nor on the shift state of the key release, and
+                    // the typed one (in the keyboard layout of the system) as the
+                    // alternative for the scanners with that layout (any layout)
+                    var code = (event.originalEvent || event).code;
+                    var pressed = targetObject.data("pressed") || {};
+                    var characters = code ? pressed[code] : null;
+                    characters && delete pressed[code];
+                    var typed = characters ? characters[1] : key;
+                    key = characters ? characters[0] : key;
 
                     // in case the key is not a character one (eg: the shift key
                     // pressed by the scanner for the shifted characters) there's
@@ -165,6 +220,7 @@ if (typeof require !== "undefined") {
                             // updates the target object data to reflect
                             // the ignore mode entrance and returns the control
                             targetObject.data("sequence", null);
+                            targetObject.data("typed_sequence", null);
                             targetObject.data("previous_time", currentTime);
                             targetObject.data("initial_time", null);
                             targetObject.data("ignoring", true);
@@ -177,6 +233,7 @@ if (typeof require !== "undefined") {
                             // sets the initial time (of the sequence) to the
                             // the current timestamp
                             sequence = "";
+                            typedSequence = "";
                             initialTime = currentTime;
                         }
                     }
@@ -199,13 +256,22 @@ if (typeof require !== "undefined") {
                         // time for the word is valid
                         var isValid = sequence && sequence.length >= MINIMUM_LENGTH && deltaValid;
 
-                        // in case the sequence is considered to be valid
-                        // the scan event is triggered
-                        isValid && targetObject.trigger("scan", [sequence]);
+                        // in case the typed sequence is made only of digits and the
+                        // sequence is not (eg: a scanner with a keyboard layout where
+                        // the digits are shifted, as the French one) the typed sequence
+                        // is the scanned value and the sequence its alternative
+                        var digits = /^\d+$/.test(typedSequence) && !/^\d+$/.test(sequence);
+                        var value = digits ? typedSequence : sequence;
+                        var alternative = digits ? sequence : typedSequence;
+
+                        // in case the sequence is considered to be valid the scan
+                        // event is triggered with the value and its alternative
+                        isValid && targetObject.trigger("scan", [value, alternative]);
 
                         // resets the various data values in the
                         // the target object to reflect the default values
                         targetObject.data("sequence", null);
+                        targetObject.data("typed_sequence", null);
                         targetObject.data("previous_time", null);
                         targetObject.data("initial_time", null);
 
@@ -222,14 +288,20 @@ if (typeof require !== "undefined") {
                         event.stopImmediatePropagation();
                         event.preventDefault();
                     } else {
-                        // updates the sequence with the typed character of the key
+                        // updates the sequence with the character of the key
                         // defaulting to the character representation of the current
                         // key value in case the key is not available (appends it)
-                        sequence += key && key.length === 1 ? key : String.fromCharCode(keyValue);
+                        // and the typed sequence with the typed character, defaulting
+                        // to the character of the sequence
+                        var character =
+                            key && key.length === 1 ? key : String.fromCharCode(keyValue);
+                        sequence += character;
+                        typedSequence += typed && typed.length === 1 ? typed : character;
 
                         // updates the various target object data values to reflect
                         // the current scan state
                         targetObject.data("sequence", sequence);
+                        targetObject.data("typed_sequence", typedSequence);
                         targetObject.data("previous_time", currentTime);
                         targetObject.data("initial_time", initialTime);
                     }
@@ -298,6 +370,42 @@ if (typeof require !== "undefined") {
             event.stopPropagation();
             event.stopImmediatePropagation();
             event.preventDefault();
+        };
+
+        /**
+         * Retrieves the characters typed by the (physical) key of the provided
+         * key down event, the one of the US keyboard layout (the default layout
+         * of the scanners) for the shift state of the event and the one typed
+         * in the keyboard layout of the system (the key of the event).
+         *
+         * @param {Event}
+         *            event The key down event to retrieve the characters from.
+         * @return {Array} The character of the US keyboard layout and the typed
+         *         one, or an invalid value in case the key does not type a
+         *         character in the US keyboard layout (eg: the shift key).
+         */
+        var _characters = function(event) {
+            // retrieves the original event and uses it to retrieve
+            // the (physical) key code and the shift state
+            var original = event.originalEvent || event;
+            var code = original.code;
+            var shift = original.shiftKey;
+
+            // retrieves the characters of the key in the US keyboard layout,
+            // the ones of the letter keys are the letters of their codes
+            var characters = /^Key[A-Z]$/.test(code)
+                ? [code.charAt(3).toLowerCase(), code.charAt(3)]
+                : US_LAYOUT[code];
+
+            // in case the key does not type a character in the layout
+            // there are no characters to be returned
+            if (!characters) {
+                return null;
+            }
+
+            // returns the character of the layout for the shift state
+            // and the character typed in the layout of the system
+            return [characters[shift ? 1 : 0], original.key];
         };
 
         // initializes the plugin
