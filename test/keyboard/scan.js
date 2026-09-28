@@ -81,6 +81,25 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(scans, ["ABCD1234"]);
         });
+        it("should ignore the non character keys of the scans", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const code = "A:123456789*B:999999990*G:FS MST/000001";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            for (const character of code) {
+                keyup(jQuery, character, KEY_CODES[character] || character.charCodeAt(0));
+                for (const [key, keyCode] of NON_CHARACTER_KEYS) keyup(jQuery, key, keyCode);
+            }
+            keyup(jQuery, "Enter", 13);
+
+            assert.deepStrictEqual(scans, [code]);
+        });
         it("should not count the shift key for the minimum length", () => {
             const jQuery = global.jQuery;
             const scans = [];
@@ -105,6 +124,14 @@ describe("UxScan", function() {
 const KEY_CODES = { ":": 186, "*": 56, "/": 191, "-": 189, a: 65, b: 66, c: 67, d: 68 };
 
 const SHIFTED = ":*ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const NON_CHARACTER_KEYS = [
+    ["Control", 17],
+    ["Alt", 18],
+    ["AltGraph", 225],
+    ["CapsLock", 20],
+    ["Dead", 222]
+];
 
 const keyup = (jQuery, key, keyCode) => {
     const event = jQuery.Event("keyup", { key: key, keyCode: keyCode });
