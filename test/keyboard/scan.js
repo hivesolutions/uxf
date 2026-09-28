@@ -137,6 +137,158 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(scans, [code]);
         });
+        it("should use the characters of the US layout of the pressed keys", () => {
+            const jQuery = global.jQuery;
+            const code = "A:123456789*B:999999990*G:FS MST/000001*H:ABCD1234-000001*Q:abyz";
+
+            for (const layout of [PT_TYPED, FR_TYPED, DE_TYPED]) {
+                const scans = [];
+                const typedCode = [...code].map(character => layout[character] || character);
+
+                jQuery(document).unbind().removeData();
+                jQuery("body").empty();
+                jQuery("body").append('<div class="scan"></div>');
+                jQuery(".scan").uxscan();
+                jQuery(document).bind("scan", (event, value, alternative) =>
+                    scans.push([value, alternative])
+                );
+
+                for (const character of code) {
+                    const [physical, shift] = physicalKey(character, US_KEYS);
+                    const typed = layout[character] || character;
+                    const keyCode = KEY_CODES[character] || character.charCodeAt(0);
+                    keydown(jQuery, typed, keyCode, physical, shift);
+                    keyup(jQuery, typed, keyCode, physical, shift);
+                }
+                keyup(jQuery, "Enter", 13);
+
+                assert.deepStrictEqual(scans, [[code, typedCode.join("")]]);
+            }
+        });
+        it("should use the shift state of the key presses", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value, alternative) =>
+                scans.push([value, alternative])
+            );
+
+            for (const [type, key, code, keyCode, shiftKey] of SCANNER_EVENTS) {
+                const trigger = type === "keydown" ? keydown : keyup;
+                trigger(jQuery, key, keyCode, code, shiftKey);
+            }
+            keyup(jQuery, "Enter", 13);
+
+            assert.deepStrictEqual(scans, [["A:506721086*", "AÇ506721086("]]);
+        });
+        it("should keep the typed characters of the pressed keys", () => {
+            const jQuery = global.jQuery;
+            const code = "A:123456789*B:999999990*G:FS MST/000001*H:ABCD1234-000001*Q:abyz";
+
+            for (const [keys, value] of [
+                [PT_KEYS, "A>123456789{B>999999990{G>FS MST&000001{H>ABCD1234/000001{Q>abyz"],
+                [DE_KEYS, "A>123456789}B>999999990}G>FS MST&000001}H>ABCD1234/000001}Q>abzy"]
+            ]) {
+                const scans = [];
+
+                jQuery(document).unbind().removeData();
+                jQuery("body").empty();
+                jQuery("body").append('<div class="scan"></div>');
+                jQuery(".scan").uxscan();
+                jQuery(document).bind("scan", (event, value, alternative) =>
+                    scans.push([value, alternative])
+                );
+
+                for (const character of code) {
+                    const [physical, shift] = physicalKey(character, keys);
+                    const keyCode = KEY_CODES[character] || character.charCodeAt(0);
+                    keydown(jQuery, character, keyCode, physical, shift);
+                    keyup(jQuery, character, keyCode, physical, shift);
+                }
+                keyup(jQuery, "Enter", 13);
+
+                assert.deepStrictEqual(scans, [[value, code]]);
+            }
+        });
+        it("should use the typed digits of the scans", () => {
+            const jQuery = global.jQuery;
+            const code = "5474010022000000001234";
+
+            for (const [shift, typed, alternative] of [
+                [true, character => character, "%$&$)!))@@))))))))!@#$"],
+                [false, character => FR_TYPED[character], code]
+            ]) {
+                const scans = [];
+
+                jQuery(document).unbind().removeData();
+                jQuery("body").empty();
+                jQuery("body").append('<div class="scan"></div>');
+                jQuery(".scan").uxscan();
+                jQuery(document).bind("scan", (event, value, alternative) =>
+                    scans.push([value, alternative])
+                );
+
+                for (const character of code) {
+                    const keyCode = character.charCodeAt(0);
+                    keydown(jQuery, typed(character), keyCode, "Digit" + character, shift);
+                    keyup(jQuery, typed(character), keyCode, "Digit" + character, shift);
+                }
+                keyup(jQuery, "Enter", 13);
+
+                assert.deepStrictEqual(scans, [
+                    [code, shift ? alternative : [...code].map(typed).join("")]
+                ]);
+            }
+        });
+        it("should restart the sequences after the scan interval", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const code = "A:123456789*B:999999990";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value, alternative) =>
+                scans.push([value, alternative])
+            );
+
+            const scan = time => {
+                clock(time);
+                for (const character of code) {
+                    const [physical, shift] = physicalKey(character, US_KEYS);
+                    const typed = PT_TYPED[character] || character;
+                    keydown(jQuery, typed, KEY_CODES[character], physical, shift);
+                    keyup(jQuery, typed, KEY_CODES[character], physical, shift);
+                }
+                keyup(jQuery, "Enter", 13);
+            };
+
+            try {
+                clock(1000);
+                keydown(jQuery, "x", 88, "KeyX", false);
+                keyup(jQuery, "x", 88, "KeyX", false);
+                clock(1200);
+                keydown(jQuery, "y", 89, "KeyY", false);
+                keyup(jQuery, "y", 89, "KeyY", false);
+                scan(2000);
+                clock(3000);
+                keydown(jQuery, "z", 90, "KeyZ", false);
+                keyup(jQuery, "z", 90, "KeyZ", false);
+                scan(4000);
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.deepStrictEqual(scans, [
+                [code, "AÇ123456789(BÇ999999990"],
+                [code, "AÇ123456789(BÇ999999990"]
+            ]);
+        });
         it("should not count the shift key for the minimum length", () => {
             const jQuery = global.jQuery;
             const scans = [];
@@ -170,7 +322,117 @@ const NON_CHARACTER_KEYS = [
     ["Dead", 222]
 ];
 
-const keyup = (jQuery, key, keyCode) => {
-    const event = jQuery.Event("keyup", { key: key, keyCode: keyCode });
+const US_KEYS = {
+    ":": ["Semicolon", true],
+    "*": ["Digit8", true],
+    "/": ["Slash", false],
+    "-": ["Minus", false]
+};
+
+const PT_KEYS = {
+    ":": ["Period", true],
+    "*": ["BracketLeft", true],
+    "/": ["Digit7", true],
+    "-": ["Slash", false]
+};
+
+const DE_KEYS = {
+    ":": ["Period", true],
+    "*": ["BracketRight", true],
+    "/": ["Digit7", true],
+    "-": ["Slash", false],
+    y: ["KeyZ", false],
+    z: ["KeyY", false]
+};
+
+const PT_TYPED = { ":": "Ç", "*": "(", "/": "-", "-": "'" };
+
+const FR_TYPED = {
+    ":": "M",
+    "*": "8",
+    "/": "!",
+    "-": ")",
+    A: "Q",
+    M: "?",
+    a: "q",
+    z: "w",
+    1: "&",
+    2: "é",
+    3: '"',
+    4: "'",
+    5: "(",
+    6: "-",
+    7: "è",
+    8: "_",
+    9: "ç",
+    0: "à"
+};
+
+const DE_TYPED = { ":": "Ö", "*": "(", "/": "-", "-": "ß", y: "z", z: "y" };
+
+const SCANNER_EVENTS = [
+    ["keydown", "Shift", "ShiftLeft", 16, true],
+    ["keydown", "A", "KeyA", 65, true],
+    ["keyup", "A", "KeyA", 65, true],
+    ["keydown", "Ç", "Semicolon", 186, true],
+    ["keyup", "CapsLock", "ShiftLeft", 20, true],
+    ["keyup", "ç", "Semicolon", 186, false],
+    ["keydown", "5", "Digit5", 53, false],
+    ["keyup", "5", "Digit5", 53, false],
+    ["keydown", "0", "Digit0", 48, false],
+    ["keyup", "0", "Digit0", 48, false],
+    ["keydown", "6", "Digit6", 54, false],
+    ["keyup", "6", "Digit6", 54, false],
+    ["keydown", "7", "Digit7", 55, false],
+    ["keyup", "7", "Digit7", 55, false],
+    ["keydown", "2", "Digit2", 50, false],
+    ["keyup", "2", "Digit2", 50, false],
+    ["keydown", "1", "Digit1", 49, false],
+    ["keyup", "1", "Digit1", 49, false],
+    ["keydown", "0", "Digit0", 48, false],
+    ["keyup", "0", "Digit0", 48, false],
+    ["keydown", "8", "Digit8", 56, false],
+    ["keyup", "8", "Digit8", 56, false],
+    ["keydown", "6", "Digit6", 54, false],
+    ["keydown", "Shift", "ShiftLeft", 16, true],
+    ["keyup", "&", "Digit6", 54, true],
+    ["keydown", "(", "Digit8", 56, true],
+    ["keyup", "(", "Digit8", 56, true]
+];
+
+const DATE = global.Date;
+
+const physicalKey = (character, keys) => {
+    if (keys[character]) return keys[character];
+    if (character === " ") return ["Space", false];
+    if (character >= "0" && character <= "9") return ["Digit" + character, false];
+    return ["Key" + character.toUpperCase(), character !== character.toLowerCase()];
+};
+
+const clock = time => {
+    global.Date = class extends DATE {
+        constructor() {
+            super(time);
+        }
+    };
+};
+
+const keydown = (jQuery, key, keyCode, code, shiftKey) => {
+    const event = jQuery.Event("keydown", {
+        key: key,
+        keyCode: keyCode,
+        code: code,
+        shiftKey: shiftKey
+    });
+    jQuery(document).trigger(event);
+};
+
+const keyup = (jQuery, key, keyCode, code, shiftKey) => {
+    const event = jQuery.Event("keyup", {
+        key: key,
+        keyCode: keyCode,
+        code: code,
+        shiftKey: shiftKey
+    });
     jQuery(document).trigger(event);
 };
