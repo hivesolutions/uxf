@@ -100,6 +100,24 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(scans, [code]);
         });
+        it("should use the key codes of the unidentified keys", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            for (const character of "ABCD1234") {
+                keyup(jQuery, "Unidentified", character.charCodeAt(0));
+                if (SHIFTED.includes(character)) keyup(jQuery, "Unidentified", 16);
+            }
+            keyup(jQuery, "Unidentified", 13);
+
+            assert.deepStrictEqual(scans, ["ABCD1234"]);
+        });
         it("should not count the shift key for the minimum length", () => {
             const jQuery = global.jQuery;
             const scans = [];

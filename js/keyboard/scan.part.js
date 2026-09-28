@@ -108,8 +108,12 @@ if (typeof require !== "undefined") {
                     // pressed by the scanner for the shifted characters) there's
                     // nothing to be done as it does not represent any character
                     // of the sequence, using the key value of the shift key in
-                    // case the key is not available (the enter key is kept)
-                    if ((key && key.length > 1 && keyValue !== 13) || keyValue === 16) {
+                    // case the key is not available or not identified (the enter
+                    // key is kept)
+                    if (
+                        (key && key.length > 1 && key !== "Unidentified" && keyValue !== 13) ||
+                        keyValue === 16
+                    ) {
                         return;
                     }
 
