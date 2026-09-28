@@ -99,6 +99,19 @@ if (typeof require !== "undefined") {
                         ? event.charCode
                         : event.which;
 
+                    // retrieves the key typed for the current event, this value
+                    // already takes into account the keyboard layout and the
+                    // shift state (eg: a colon instead of the semicolon key)
+                    var key = (event.originalEvent || event).key;
+
+                    // in case the key is the shift one (pressed by the scanner
+                    // for the shifted characters) there's nothing to be done
+                    // as it does not represent any character of the sequence,
+                    // using the key value in case the key is not available
+                    if (key === "Shift" || keyValue === 16) {
+                        return;
+                    }
+
                     // in case the ignoring mode is set need
                     // to check if we can get out of it
                     if (ignoring) {
@@ -200,9 +213,10 @@ if (typeof require !== "undefined") {
                         event.stopImmediatePropagation();
                         event.preventDefault();
                     } else {
-                        // updates the sequence with the character representation
-                        // of the current key value (appends it to the sequence)
-                        sequence += String.fromCharCode(keyValue);
+                        // updates the sequence with the typed character of the key
+                        // defaulting to the character representation of the current
+                        // key value in case the key is not available (appends it)
+                        sequence += key && key.length === 1 ? key : String.fromCharCode(keyValue);
 
                         // updates the various target object data values to reflect
                         // the current scan state
