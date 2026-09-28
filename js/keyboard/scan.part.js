@@ -106,8 +106,9 @@ if (typeof require !== "undefined") {
 
                     // in case the key is the shift one (pressed by the scanner
                     // for the shifted characters) there's nothing to be done
-                    // as it does not represent any character of the sequence
-                    if (key === "Shift") {
+                    // as it does not represent any character of the sequence,
+                    // using the key value in case the key is not available
+                    if (key === "Shift" || keyValue === 16) {
                         return;
                     }
 
