@@ -118,6 +118,25 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(scans, ["ABCD1234"]);
         });
+        it("should keep the legacy space key of the scans", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const code = "A:123456789*B:999999990*G:FS MST/000001";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            for (const character of code) {
+                const key = character === " " ? "Spacebar" : character;
+                keyup(jQuery, key, KEY_CODES[character] || character.charCodeAt(0));
+            }
+            keyup(jQuery, "Enter", 13);
+
+            assert.deepStrictEqual(scans, [code]);
+        });
         it("should not count the shift key for the minimum length", () => {
             const jQuery = global.jQuery;
             const scans = [];
