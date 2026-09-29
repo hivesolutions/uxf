@@ -74,17 +74,31 @@ if (typeof require !== "undefined") {
             // gateway plugin to be used for plugin calls
             var gateway = _document.uxg();
 
+            // retrieves the reference to the body element, that may
+            // contain the (global) settings of the colony cloud print
+            var _body = jQuery("body");
+
             // tries to retrieve the complete set of element for the
             // colony cloud print action, in case they are defined
-            // they will take priority for usage of print infra-structure
+            // they will take priority for usage of print infra-structure,
+            // note that each value of the local storage takes precedence
+            // over the (global) one defined in the body, except for the
+            // printer of the body that is only used with the node of the
+            // body, as the name of a printer is only valid for its node
             var printUrl =
-                (window.localStorage && localStorage.getItem("uxf:gateway:base_url")) || "";
+                (window.localStorage && localStorage.getItem("uxf:gateway:base_url")) ||
+                _body.data("colony_print_url") ||
+                "";
             var printKey =
-                (window.localStorage && window.localStorage.getItem("uxf:gateway:key")) || "";
-            var printNode =
+                (window.localStorage && window.localStorage.getItem("uxf:gateway:key")) ||
+                _body.data("colony_print_key") ||
+                "";
+            var printNodeLocal =
                 (window.localStorage && window.localStorage.getItem("uxf:gateway:node:id")) || "";
+            var printNode = printNodeLocal || _body.data("colony_print_node") || "";
             var printPrinter =
                 (window.localStorage && window.localStorage.getItem("uxf:gateway:printer:id")) ||
+                (printNodeLocal ? "" : _body.data("colony_print_printer")) ||
                 "";
 
             // in case the complete set of required colony print field
