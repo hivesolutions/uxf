@@ -65,6 +65,38 @@ describe("UxGPrint", function() {
                 }
             ]);
         });
+        it("should keep the default printer of the node of the local storage", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, { node: "local-node" }, BODY_SETTINGS);
+            const requests = print(jQuery);
+
+            assert.deepStrictEqual(requests, [
+                BINIE_REQUEST,
+                {
+                    type: "post",
+                    url: "https://body.example.com/nodes/local-node/print",
+                    data: { printer: "", data_b64: DATA_B64, skey: "body-key" },
+                    headers: { "X-Secret-Key": "body-key" }
+                }
+            ]);
+        });
+        it("should use the printer of the local storage with the node of the body", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, { printer: "local-printer" }, BODY_SETTINGS);
+            const requests = print(jQuery);
+
+            assert.deepStrictEqual(requests, [
+                BINIE_REQUEST,
+                {
+                    type: "post",
+                    url: "https://body.example.com/nodes/body-node/printers/print",
+                    data: { printer: "local-printer", data_b64: DATA_B64, skey: "body-key" },
+                    headers: { "X-Secret-Key": "body-key" }
+                }
+            ]);
+        });
         it("should print with the default printer of the node", () => {
             const jQuery = global.jQuery;
 
