@@ -121,9 +121,14 @@ if (typeof require !== "undefined") {
                         : event.which;
 
                     // stores the time of the press of the key and its value, so
-                    // that its release may verify how long the key was pressed
-                    targetObject.data("press_time", new Date().getTime());
-                    targetObject.data("press_value", keyValue);
+                    // that its release may verify how long the key was pressed,
+                    // ignoring the repeated presses of a key held down (as its
+                    // release must be compared with its first press)
+                    var repeat = (event.originalEvent || event).repeat;
+                    if (!repeat) {
+                        targetObject.data("press_time", new Date().getTime());
+                        targetObject.data("press_value", keyValue);
+                    }
                 });
 
                 targetObject.keypress(function(event) {

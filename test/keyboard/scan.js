@@ -427,6 +427,33 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(propagated, ["keydown:j", "keyup:j", "keydown:k", "keyup:k"]);
         });
+        it("should keep the propagation of a key held by a person", () => {
+            const jQuery = global.jQuery;
+            const propagated = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("keydown keyup", event =>
+                propagated.push(event.type + ":" + event.key)
+            );
+
+            try {
+                clock(1000);
+                keydown(jQuery, "j", 74, "KeyJ", false);
+                clock(1600);
+                keydown(jQuery, "j", 74, "KeyJ", false, jQuery(document), true);
+                clock(1630);
+                keydown(jQuery, "j", 74, "KeyJ", false, jQuery(document), true);
+                clock(1635);
+                keyup(jQuery, "j", 74, "KeyJ", false);
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.deepStrictEqual(propagated, ["keydown:j", "keydown:j", "keydown:j", "keyup:j"]);
+        });
         it("should blur the focused element of a scan", () => {
             const jQuery = global.jQuery;
             const scans = [];
@@ -545,6 +572,31 @@ describe("UxScan", function() {
 
             assert.strictEqual(document.activeElement, link[0]);
         });
+        it("should keep the focus of a key held by a person", () => {
+            const jQuery = global.jQuery;
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><a href="#">link</a>');
+            jQuery(".scan").uxscan();
+
+            const link = jQuery("a");
+            link[0].focus();
+            try {
+                clock(1000);
+                keydown(jQuery, "ArrowDown", 40, "ArrowDown", false, link);
+                clock(1600);
+                keydown(jQuery, "ArrowDown", 40, "ArrowDown", false, link, true);
+                clock(1630);
+                keydown(jQuery, "ArrowDown", 40, "ArrowDown", false, link, true);
+                clock(1635);
+                keyup(jQuery, "ArrowDown", 40, "ArrowDown", false, link);
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.strictEqual(document.activeElement, link[0]);
+        });
     });
 });
 
@@ -655,12 +707,13 @@ const clock = time => {
     };
 };
 
-const keydown = (jQuery, key, keyCode, code, shiftKey, target) => {
+const keydown = (jQuery, key, keyCode, code, shiftKey, target, repeat) => {
     const event = jQuery.Event("keydown", {
         key: key,
         keyCode: keyCode,
         code: code,
-        shiftKey: shiftKey
+        shiftKey: shiftKey,
+        repeat: repeat
     });
     (target || jQuery(document)).trigger(event);
 };
