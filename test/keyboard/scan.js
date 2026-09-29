@@ -427,6 +427,124 @@ describe("UxScan", function() {
 
             assert.deepStrictEqual(propagated, ["keydown:j", "keyup:j", "keydown:k", "keyup:k"]);
         });
+        it("should blur the focused element of a scan", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const focused = [];
+            const code = "5474010022000000001234";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><a href="#">link</a>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            const link = jQuery("a");
+            link[0].focus();
+            for (const character of code) {
+                keydown(
+                    jQuery,
+                    character,
+                    character.charCodeAt(0),
+                    "Digit" + character,
+                    false,
+                    link
+                );
+                keyup(jQuery, character, character.charCodeAt(0), "Digit" + character, false, link);
+                focused.push(document.activeElement === link[0]);
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false, link);
+            keyup(jQuery, "Enter", 13, "Enter", false, link);
+
+            assert.deepStrictEqual(scans, [code]);
+            assert.deepStrictEqual(focused, [...code].fill(false));
+            assert.strictEqual(document.activeElement, document.body);
+        });
+        it("should blur the focused element of an invalid scan", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><a href="#">link</a>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            const link = jQuery("a");
+            link[0].focus();
+            for (const character of "jjkj") {
+                const keyCode = character.toUpperCase().charCodeAt(0);
+                keydown(jQuery, character, keyCode, "Key" + character.toUpperCase(), false, link);
+                keyup(jQuery, character, keyCode, "Key" + character.toUpperCase(), false, link);
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false, link);
+            keyup(jQuery, "Enter", 13, "Enter", false, link);
+
+            assert.deepStrictEqual(scans, []);
+            assert.strictEqual(document.activeElement, document.body);
+        });
+        it("should keep the focus of the field of a scan", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+            const code = "5474010022000000001234";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><input type="text" />');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            const input = jQuery("input");
+            input[0].focus();
+            for (const character of code) {
+                keydown(
+                    jQuery,
+                    character,
+                    character.charCodeAt(0),
+                    "Digit" + character,
+                    false,
+                    input
+                );
+                keyup(
+                    jQuery,
+                    character,
+                    character.charCodeAt(0),
+                    "Digit" + character,
+                    false,
+                    input
+                );
+            }
+            keydown(jQuery, "Enter", 13, "Enter", false, input);
+            keyup(jQuery, "Enter", 13, "Enter", false, input);
+
+            assert.deepStrictEqual(scans, [code]);
+            assert.strictEqual(document.activeElement, input[0]);
+        });
+        it("should keep the focus of the keys of a person", () => {
+            const jQuery = global.jQuery;
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div><a href="#">link</a>');
+            jQuery(".scan").uxscan();
+
+            const link = jQuery("a");
+            link[0].focus();
+            try {
+                clock(1000);
+                keydown(jQuery, "j", 74, "KeyJ", false, link);
+                clock(1100);
+                keyup(jQuery, "j", 74, "KeyJ", false, link);
+                clock(1300);
+                keydown(jQuery, "k", 75, "KeyK", false, link);
+                clock(1400);
+                keyup(jQuery, "k", 75, "KeyK", false, link);
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.strictEqual(document.activeElement, link[0]);
+        });
     });
 });
 

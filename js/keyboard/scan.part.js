@@ -380,6 +380,13 @@ if (typeof require !== "undefined") {
                 (previousTime && currentTime - previousTime < LETTER_INTERVAL) ||
                 (pressTime && currentTime - pressTime < PRESS_INTERVAL);
             if (isScan && !isField) {
+                // retrieves the currently focused element (eg: a link clicked
+                // before the scan) and blurs it, as the browser shows it as
+                // focused by the keyboard once any key is pressed, even when
+                // the key is neither propagated nor has its default behaviour
+                var focused = jQuery(":focus");
+                focused.blur();
+
                 event.stopPropagation();
                 event.stopImmediatePropagation();
                 event.preventDefault();
