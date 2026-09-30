@@ -206,9 +206,11 @@ if (typeof require !== "undefined") {
                 });
 
                 // adds the default sort option to the filter, this value exists for
-                // every search and indicates that no sort will occur (default is used)
+                // every search and indicates that no sort will occur (default is used),
+                // note that the name is set so that it's used even if the contents
+                // of the option are changed (eg: translated by the browser)
                 filterSort.prepend(
-                    '<div class="filter-sort-option selected equals" data-order="equals">default</div>'
+                    '<div class="filter-sort-option selected equals" data-name="default" data-order="equals">default</div>'
                 );
 
                 // checks if the filtering is enabled and valid for the
@@ -1082,9 +1084,10 @@ if (typeof require !== "undefined") {
             }
 
             // retrieves the selected sort options and then uses it
-            // to retrieve the value to be used for the sorting
+            // to retrieve the value to be used for the sorting, falling
+            // back to the text of the option (never to its markup)
             var sortSelected = jQuery(".filter-sort-option.selected", filter);
-            var sortValue = sortSelected.attr("data-name") || sortSelected.html();
+            var sortValue = sortSelected.attr("data-name") || sortSelected.text();
 
             // checks if the sort option is currently in the ascending mode
             // and "calculates" the sort order string based on it, then created
