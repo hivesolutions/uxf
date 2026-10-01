@@ -605,7 +605,7 @@ describe("UxScan", function() {
             jQuery("body").removeData("log_level");
         });
 
-        it("should log the errors of the scans", () => {
+        it("should log the errors of the scans with only their length", () => {
             const jQuery = global.jQuery;
             const errors = [];
 
@@ -620,7 +620,9 @@ describe("UxScan", function() {
             try {
                 records = capture(() => {
                     clock(1000);
-                    keyup(jQuery, "1", 49);
+                    for (const character of "secret") {
+                        keyup(jQuery, character, character.toUpperCase().charCodeAt(0));
+                    }
                     clock(1200);
                     keyup(jQuery, "Enter", 13);
                     clock(1300);
@@ -630,11 +632,12 @@ describe("UxScan", function() {
                 global.Date = DATE;
             }
 
-            assert.deepStrictEqual(errors, ["1", ""]);
+            assert.deepStrictEqual(errors, ["secret", ""]);
             assert.deepStrictEqual(records, [
-                ["DEBUG", "uxscan", "Scan error with sequence:", ["1"]],
-                ["DEBUG", "uxscan", "Scan error with sequence:", [""]]
+                ["DEBUG", "uxscan", "Scan error with length:", [6]],
+                ["DEBUG", "uxscan", "Scan error with length:", [0]]
             ]);
+            assert.strictEqual(JSON.stringify(records).includes("secret"), false);
         });
         it("should log the detected scans", () => {
             const jQuery = global.jQuery;
