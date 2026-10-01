@@ -409,6 +409,29 @@ describe("UxGPrint", function() {
                 ]
             ]);
         });
+        it("should log the failures of the label print jobs in the label node", () => {
+            const jQuery = global.jQuery;
+            const url = "https://body.example.com/nodes/body-label-node/printers/print";
+
+            configure(jQuery, {}, BODY_LABEL_SETTINGS);
+            let requests = null;
+            const records = capture(() => {
+                requests = print(jQuery, LABEL, {}, [url]);
+            });
+
+            assert.deepStrictEqual(
+                requests.map(request => request.url),
+                ["/label.binie", url]
+            );
+            assert.deepStrictEqual(records, [
+                [
+                    "ERROR",
+                    "uxgprint",
+                    "Print job failed in node:",
+                    ["body-label-node", 500, "Internal Server Error"]
+                ]
+            ]);
+        });
         it("should log the prints with no gateway nor fallback", () => {
             const jQuery = global.jQuery;
 
