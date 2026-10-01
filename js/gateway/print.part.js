@@ -105,6 +105,42 @@ if (typeof require !== "undefined") {
                 (printNodeLocal ? "" : _body.data("colony_print_printer")) ||
                 "";
 
+            // in case the print is a label one (as marked in the element)
+            // the node and the printer of the labels take precedence over
+            // the general ones, with each value of the local storage taking
+            // precedence over the (global) one defined in the body, note
+            // that the printer of the labels replaces the general one even
+            // without a node of the labels and that, as the name of a printer
+            // is only valid for its node, the node of the labels of the body
+            // is not used when the local storage has both a node and a printer
+            // of the labels (a printer of that node), nor the printer of the
+            // labels of the body with a node of the local storage
+            var label = element.attr("data-label") || options.label || false;
+            if (label) {
+                var printLabelNodeLocal =
+                    (window.localStorage &&
+                        window.localStorage.getItem("uxf:gateway:label:node:id")) ||
+                    "";
+                var printLabelPrinterLocal =
+                    (window.localStorage &&
+                        window.localStorage.getItem("uxf:gateway:label:printer:id")) ||
+                    "";
+                var printLabelNode =
+                    printLabelNodeLocal ||
+                    (printLabelPrinterLocal && printNodeLocal
+                        ? ""
+                        : _body.data("colony_print_label_node")) ||
+                    "";
+                var printLabelPrinter =
+                    printLabelPrinterLocal ||
+                    (printLabelNodeLocal || (printNodeLocal && !printLabelNode)
+                        ? ""
+                        : _body.data("colony_print_label_printer")) ||
+                    "";
+                printPrinter = printLabelPrinter || (printLabelNode ? "" : printPrinter);
+                printNode = printLabelNode || printNode;
+            }
+
             // in case the complete set of required colony print field
             // are defined the gateway object is overridden with a new
             // map that emulates the same interface but using the colony
