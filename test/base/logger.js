@@ -172,6 +172,18 @@ describe("UxLogger", function() {
             assert.deepStrictEqual(logger.handlers, []);
             assert.strictEqual(logger.propagate, true);
         });
+        it("should propagate the records of an existing logger", () => {
+            const jQuery = global.jQuery;
+            const Logging = global.Logging;
+
+            const existing = Logging.getLogger("uxexisting", {});
+            const logger = jQuery.uxlogger("uxexisting");
+            const records = capture(() => logger.error("Error message"));
+
+            assert.strictEqual(logger, existing);
+            assert.strictEqual(logger.propagate, true);
+            assert.deepStrictEqual(records, [["ERROR", "uxexisting", "Error message", []]]);
+        });
     });
 });
 

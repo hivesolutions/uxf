@@ -47,12 +47,12 @@ if (typeof require !== "undefined") {
         var root = Logging.getLogger();
         !exists && root.setFormatter(new Logging.SimpleFormatter(FORMAT));
 
-        // retrieves the logger of the plugin, with no handlers as its
-        // records are propagated to the default logger, updates its
-        // level and returns it to the caller
-        var logger = Logging.getLogger(name, {
-            propagate: true
-        });
+        // retrieves the logger of the plugin, created with no handlers as
+        // its records are propagated to the default logger (also in case
+        // it has been created by the application), updates its level and
+        // returns it to the caller
+        var logger = Logging.getLogger(name, {});
+        logger.propagate = true;
         logger.setLevel(level);
         return logger;
     };
