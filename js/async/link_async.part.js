@@ -15,6 +15,10 @@ if (typeof require !== "undefined") {
         // for async verification
         var _body = jQuery("body");
 
+        // retrieves the logger of the plugin, to be used to
+        // log the failures of the asynchronous links
+        var logger = jQuery.uxlogger("uxlinkasync");
+
         // normnalizes the current async reference so the href value
         // is always a valid string value that may be used with no
         // dependency on its current data type
@@ -137,7 +141,13 @@ if (typeof require !== "undefined") {
                 // the current layout must be updated (async fashion)
                 _body.triggerHandler("data", [data, href, uuid, !verify]);
             },
-            error: function() {
+            error: function(request, status, error) {
+                // logs the failure of the request, unless it has been aborted
+                // as its contents are not async (eg: a file to be downloaded)
+                if (status !== "abort") {
+                    logger.warn("Async link failed, loading it:", href, request.status, error);
+                }
+
                 document.location = href;
             }
         });

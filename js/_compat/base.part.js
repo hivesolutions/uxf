@@ -4,6 +4,7 @@ if (typeof __webpack_require__ === "undefined") {
     var jsdom = require("jsdom");
     global.dom = global.dom || new jsdom.JSDOM("");
     global.jQuery = global.jQuery || jquery(global.dom.window);
+    global.document = global.document || global.dom.window.document;
     module.exports.jQuery = global.jQuery;
     module.exports.window = global.dom.window;
 } else {

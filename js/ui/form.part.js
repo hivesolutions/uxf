@@ -16,6 +16,10 @@ if (typeof require !== "undefined") {
         // sets the jquery matched object
         var matchedObject = this;
 
+        // retrieves the logger of the plugin, to be used
+        // to log the failures of the submissions
+        var logger = jQuery.uxlogger("uxform");
+
         /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
@@ -531,6 +535,7 @@ if (typeof require !== "undefined") {
                     // assumed to be down (no data received) an error
                     // is triggered and the control returned immediately
                     if (!data) {
+                        logger.warn("Submission with no data received:", action);
                         matchedObject.triggerHandler("error");
                         return;
                     }
@@ -584,6 +589,10 @@ if (typeof require !== "undefined") {
                     matchedObject.triggerHandler("success", [data]);
                 },
                 error: function(request, textStatus, errorThrown) {
+                    // logs the failure of the submission, before the parsing of
+                    // the error information (that may not be valid JSON)
+                    logger.warn("Submission failed:", action, request.status, errorThrown);
+
                     // resets the form error contents to the original values
                     // this should remove all the values in it
                     resetErrors(matchedObject, options);
@@ -592,9 +601,15 @@ if (typeof require !== "undefined") {
                     // the response value) and then uses the result to retrieve the
                     // exception and then the errors list, note that in case there's
                     // no exception key value the proper json structure is going to
-                    // be used as the root of the exception object
+                    // be used as the root of the exception object, ignoring the data
+                    // in case it's not valid JSON (eg: the error page of a proxy)
                     var data = request.response || request.responseText;
-                    var jsonData = jQuery.parseJSON(data) || {};
+                    var jsonData = null;
+                    try {
+                        jsonData = jQuery.parseJSON(data) || {};
+                    } catch (exception) {
+                        jsonData = {};
+                    }
                     var exception = jsonData.exception || jsonData;
                     var message = jsonData.message || "There was an error";
                     var errors = exception.errors || {};

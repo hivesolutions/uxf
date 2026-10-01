@@ -25,6 +25,10 @@ if (typeof require !== "undefined") {
         // sets the jquery matched object
         var matchedObject = this;
 
+        // retrieves the logger of the plugin, to be used to
+        // log the failures of the requests of the data source
+        var logger = jQuery.uxlogger("uxdataqueryjson");
+
         /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
@@ -220,9 +224,19 @@ if (typeof require !== "undefined") {
                             return;
                         }
 
+                        // logs the failure of the request, before the parsing of
+                        // the error information (that may not be valid JSON)
+                        logger.error("Query of data source failed:", url, request.status, error);
+
                         // tries to parse the error information provided by the
-                        // server side as a JSON based object
-                        var errorMap = jQuery.parseJSON(request.responseText) || {};
+                        // server side as a JSON based object, ignoring it in case
+                        // it's not valid JSON (eg: the error page of a proxy)
+                        var errorMap = null;
+                        try {
+                            errorMap = jQuery.parseJSON(request.responseText) || {};
+                        } catch (exception) {
+                            errorMap = {};
+                        }
                         var message = errorMap.message;
                         var uid = errorMap.uid;
 

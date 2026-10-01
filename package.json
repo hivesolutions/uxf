@@ -43,7 +43,7 @@
         "upgrade": "npx sort-package-json && ncu -u"
     },
     "dependencies": {
-        "hive-js-util": "^0.3.1",
+        "hive-js-util": "^0.6.0",
         "jquery": "^3.5.1",
         "jsdom": "^16.4.0",
         "vue": "^2.6.12"

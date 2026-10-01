@@ -598,6 +598,89 @@ describe("UxScan", function() {
             assert.strictEqual(document.activeElement, link[0]);
         });
     });
+
+    describe("#logging", function() {
+        afterEach(() => {
+            const jQuery = global.jQuery;
+            jQuery("body").removeData("log_level");
+        });
+
+        it("should log the errors of the scans", () => {
+            const jQuery = global.jQuery;
+            const errors = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").data("log_level", "debug");
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan_error", (event, sequence) => errors.push(sequence));
+
+            let records = null;
+            try {
+                records = capture(() => {
+                    clock(1000);
+                    keyup(jQuery, "1", 49);
+                    clock(1200);
+                    keyup(jQuery, "Enter", 13);
+                    clock(1300);
+                    keyup(jQuery, "Enter", 13);
+                });
+            } finally {
+                global.Date = DATE;
+            }
+
+            assert.deepStrictEqual(errors, ["1", ""]);
+            assert.deepStrictEqual(records, [
+                ["DEBUG", "uxscan", "Scan error with sequence:", ["1"]],
+                ["DEBUG", "uxscan", "Scan error with sequence:", [""]]
+            ]);
+        });
+        it("should log the detected scans", () => {
+            const jQuery = global.jQuery;
+            const code = "A:123456789*B:999999990";
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").data("log_level", "debug");
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+
+            const records = capture(() => {
+                for (const character of code) {
+                    const [physical, shift] = physicalKey(character, US_KEYS);
+                    const typed = PT_TYPED[character] || character;
+                    keydown(jQuery, typed, KEY_CODES[character], physical, shift);
+                    keyup(jQuery, typed, KEY_CODES[character], physical, shift);
+                }
+                keyup(jQuery, "Enter", 13);
+            });
+
+            assert.deepStrictEqual(records, [
+                ["DEBUG", "uxscan", "Scan detected:", [code, "AÇ123456789(BÇ999999990"]]
+            ]);
+        });
+        it("should not log the scans with the default level", () => {
+            const jQuery = global.jQuery;
+            const scans = [];
+
+            jQuery(document).unbind().removeData();
+            jQuery("body").empty();
+            jQuery("body").append('<div class="scan"></div>');
+            jQuery(".scan").uxscan();
+            jQuery(document).bind("scan", (event, value) => scans.push(value));
+
+            const records = capture(() => {
+                for (const character of "5474010022000000001234") {
+                    keyup(jQuery, undefined, character.charCodeAt(0));
+                }
+                keyup(jQuery, undefined, 13);
+            });
+
+            assert.deepStrictEqual(scans, ["5474010022000000001234"]);
+            assert.deepStrictEqual(records, []);
+        });
+    });
 });
 
 const KEY_CODES = { ":": 186, "*": 56, "/": 191, "-": 189, a: 65, b: 66, c: 67, d: 68 };
@@ -726,4 +809,22 @@ const keyup = (jQuery, key, keyCode, code, shiftKey, target) => {
         shiftKey: shiftKey
     });
     (target || jQuery(document)).trigger(event);
+};
+
+const capture = callable => {
+    const logger = global.Logging.getLogger();
+    const handlers = logger.handlers;
+    const records = [];
+    logger.handlers = [{ handle: record => records.push(record) }];
+    try {
+        callable();
+    } finally {
+        logger.handlers = handlers;
+    }
+    return records.map(record => [
+        record.getLevelString(),
+        record.getName(),
+        record.getMessage(),
+        record.getArgs()
+    ]);
 };

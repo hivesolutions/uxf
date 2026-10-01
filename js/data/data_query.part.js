@@ -16,6 +16,10 @@ if (typeof require !== "undefined") {
         // sets the jquery matched object
         var matchedObject = this;
 
+        // retrieves the logger of the plugin, to be used
+        // to log the queries run in the data sources
+        var logger = jQuery.uxlogger("uxdataquery");
+
         /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
@@ -55,9 +59,14 @@ if (typeof require !== "undefined") {
             // immediately with no results because it was not possible
             // to retrieve any kind of data from an invalid data source
             if (elementType === null || elementType === undefined) {
+                logger.warn("Query of data source with no type:", query);
                 callback([], false);
                 return;
             }
+
+            // logs the query (debug) so that the queries run in the
+            // data sources (eg: of the filters) may be followed
+            logger.debug("Query of data source:", elementType, query);
 
             // runs the data query method for the specific
             // data source type

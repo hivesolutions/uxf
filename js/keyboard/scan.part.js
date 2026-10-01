@@ -68,6 +68,10 @@ if (typeof require !== "undefined") {
         // sets the jquery matched object
         var matchedObject = this;
 
+        // retrieves the logger of the plugin, to be used
+        // to log the detection of the scans (and errors)
+        var logger = jQuery.uxlogger("uxscan");
+
         /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
@@ -210,7 +214,8 @@ if (typeof require !== "undefined") {
                             // in case the current key is an enter
                             // (time to send the scan error)
                             if (keyValue === 13) {
-                                // triggers the scan error event
+                                // logs and triggers the scan error event
+                                logger.debug("Scan error with sequence:", sequence);
                                 targetObject.trigger("scan_error", [sequence]);
                             }
 
@@ -238,7 +243,8 @@ if (typeof require !== "undefined") {
                             // in case the current key is an enter
                             // (time to send the scan error)
                             if (keyValue === 13) {
-                                // triggers the scan error event
+                                // logs and triggers the scan error event
+                                logger.debug("Scan error with sequence:", sequence);
                                 targetObject.trigger("scan_error", [sequence]);
                             }
 
@@ -289,8 +295,9 @@ if (typeof require !== "undefined") {
                         var value = digits ? typedSequence : sequence;
                         var alternative = digits ? sequence : typedSequence;
 
-                        // in case the sequence is considered to be valid the scan
-                        // event is triggered with the value and its alternative
+                        // in case the sequence is considered to be valid the scan is
+                        // logged and its event triggered with the value and alternative
+                        isValid && logger.debug("Scan detected:", value, alternative);
                         isValid && targetObject.trigger("scan", [value, alternative]);
 
                         // resets the various data values in the
