@@ -134,6 +134,116 @@ describe("UxGPrint", function() {
             assert.deepStrictEqual(requests, []);
         });
     });
+
+    describe("#logging", function() {
+        afterEach(() => {
+            const jQuery = global.jQuery;
+            jQuery("body").removeData("log_level");
+            jQuery("body").unbind("location");
+        });
+
+        it("should log the failures of the print jobs in the node", () => {
+            const jQuery = global.jQuery;
+            const url = "https://body.example.com/nodes/body-node/printers/print";
+
+            configure(jQuery, {}, BODY_SETTINGS);
+            jQuery("body").data("log_level", "info");
+            let requests = null;
+            const records = capture(() => {
+                requests = print(jQuery, [url]);
+            });
+
+            assert.deepStrictEqual(
+                requests.map(request => request.url),
+                ["/label.binie", url]
+            );
+            assert.deepStrictEqual(records, [
+                ["INFO", "uxgprint", "Print job of document:", ["/label.binie"]],
+                [
+                    "ERROR",
+                    "uxgprint",
+                    "Print job failed in node:",
+                    ["body-node", 500, "Internal Server Error"]
+                ]
+            ]);
+        });
+        it("should log the prints with no gateway nor fallback", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, {}, null);
+            let requests = null;
+            const records = capture(() => {
+                requests = print(jQuery);
+            });
+
+            assert.deepStrictEqual(requests, []);
+            assert.deepStrictEqual(records, [
+                ["WARNING", "uxgprint", "Print with no gateway nor fallback:", ["/label.binie"]]
+            ]);
+        });
+        it("should log the fallback of the prints with no gateway", () => {
+            const jQuery = global.jQuery;
+            const locations = [];
+
+            configure(jQuery, {}, null);
+            jQuery("body").data("log_level", "info");
+            jQuery("body").bind("location", (event, location) => {
+                locations.push(location);
+                return false;
+            });
+            const records = capture(() => {
+                print(jQuery, [], ' data-fallback="/label.pdf"');
+            });
+
+            assert.deepStrictEqual(locations, ["/label.pdf"]);
+            assert.deepStrictEqual(records, [
+                ["INFO", "uxgprint", "Print with no gateway, falling back to:", ["/label.pdf"]]
+            ]);
+        });
+        it("should log the print jobs of the documents", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, LOCAL_SETTINGS, BODY_SETTINGS);
+            jQuery("body").data("log_level", "info");
+            const records = capture(() => {
+                print(jQuery);
+            });
+
+            assert.deepStrictEqual(records, [
+                ["INFO", "uxgprint", "Print job of document:", ["/label.binie"]]
+            ]);
+        });
+        it("should log the failures of the retrieval of the print data", () => {
+            const jQuery = global.jQuery;
+            const uxinfo = jQuery.fn.uxinfo;
+            const infos = [];
+
+            configure(jQuery, LOCAL_SETTINGS, BODY_SETTINGS);
+            jQuery.fn.uxinfo = function(message, title, type) {
+                infos.push(type);
+            };
+            let requests = null;
+            let records = null;
+            try {
+                records = capture(() => {
+                    requests = print(jQuery, ["/label.binie"]);
+                });
+            } finally {
+                jQuery.fn.uxinfo = uxinfo;
+            }
+
+            assert.deepStrictEqual(requests, [BINIE_REQUEST]);
+            assert.deepStrictEqual(infos, ["warning"]);
+            assert.deepStrictEqual(records, [
+                [
+                    "ERROR",
+                    "uxgprint",
+                    "Print data retrieval failed:",
+                    ["/label.binie", 500, "Internal Server Error"]
+                ]
+            ]);
+        });
+    });
 });
 
 const DATA_B64 = "SGVsbG8gV29ybGQ=";
@@ -182,7 +292,7 @@ const configure = (jQuery, local, body) => {
     }
 };
 
-const print = jQuery => {
+const print = (jQuery, failures, attributes) => {
     const requests = [];
     const ajax = jQuery.ajax;
     jQuery.ajax = options => {
@@ -195,16 +305,38 @@ const print = jQuery => {
             data: options.data,
             headers: headers
         });
-        if (options.success) options.success(DATA_B64);
+        if ((failures || []).includes(options.url)) {
+            if (options.error) options.error({ status: 500 }, "error", "Internal Server Error");
+        } else if (options.success) options.success(DATA_B64);
         if (options.complete) options.complete();
     };
     try {
         jQuery("body").empty();
-        jQuery("body").append('<a class="print" data-binie="/label.binie"></a>');
+        jQuery("body").append(
+            '<a class="print" data-binie="/label.binie"' + (attributes || "") + "></a>"
+        );
         jQuery(".print").uxgprint();
         jQuery(".print").click();
     } finally {
         jQuery.ajax = ajax;
     }
     return requests;
+};
+
+const capture = callable => {
+    const logger = global.Logging.getLogger();
+    const handlers = logger.handlers;
+    const records = [];
+    logger.handlers = [{ handle: record => records.push(record) }];
+    try {
+        callable();
+    } finally {
+        logger.handlers = handlers;
+    }
+    return records.map(record => [
+        record.getLevelString(),
+        record.getName(),
+        record.getMessage(),
+        record.getArgs()
+    ]);
 };

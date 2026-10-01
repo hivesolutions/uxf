@@ -19,6 +19,10 @@ if (typeof require !== "undefined") {
         // sets the jquery matched object
         var matchedObject = this;
 
+        // retrieves the logger of the plugin, to be used
+        // to log the print jobs (and their failures)
+        var logger = jQuery.uxlogger("uxgprint");
+
         /**
          * Initializer of the plugin, runs the necessary functions to initialize
          * the structures.
@@ -123,6 +127,14 @@ if (typeof require !== "undefined") {
                             },
                             beforeSend: function(xhr) {
                                 xhr.setRequestHeader("X-Secret-Key", printKey);
+                            },
+                            error: function(request, status, error) {
+                                logger.error(
+                                    "Print job failed in node:",
+                                    printNode,
+                                    request.status,
+                                    error
+                                );
                             }
                         });
                     }
@@ -174,10 +186,15 @@ if (typeof require !== "undefined") {
                 // in case no fallback URL is defined, must return
                 // immediately (nothing is done)
                 if (!fallbackUrl) {
-                    // returns immediately, nothing can
-                    // be done
+                    // logs the print that is not performed and returns
+                    // immediately, nothing can be done
+                    logger.warn("Print with no gateway nor fallback:", binieUrl);
                     return;
                 }
+
+                // logs the fallback of the print, as there's
+                // no gateway to be used for the printing
+                logger.info("Print with no gateway, falling back to:", fallbackUrl);
 
                 // in case the target parameter is set a new window
                 // must be created with the defined target
@@ -230,11 +247,15 @@ if (typeof require !== "undefined") {
                     _printQueue(queue, data, gateway, callback);
                 },
                 success: function(data) {
-                    // prints the "just" received data using the
-                    // gateway plugin (direct access to driver)
+                    // logs and prints the "just" received data using
+                    // the gateway plugin (direct access to driver)
+                    logger.info("Print job of document:", binieUrl);
                     gateway.print(false, data);
                 },
-                error: function() {
+                error: function(request, status, error) {
+                    // logs the failure of the retrieval of the data
+                    logger.error("Print data retrieval failed:", binieUrl, request.status, error);
+
                     // retrieves the body and uses it to raise an info message
                     // about the error in the retrieval of the data
                     var _body = jQuery("body");
