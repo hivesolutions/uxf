@@ -45,6 +45,43 @@ describe("UxGPrint", function() {
                 }
             ]);
         });
+        it("should print with the fonts of the document", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, {}, BODY_SETTINGS);
+            const requests = print(jQuery, undefined, undefined, undefined, FONTS);
+
+            assert.deepStrictEqual(requests, [
+                BINIE_REQUEST,
+                {
+                    type: "post",
+                    url: "https://body.example.com/nodes/body-node/printers/print",
+                    data: {
+                        printer: "body-printer",
+                        data_b64: DATA_B64,
+                        skey: "body-key",
+                        fonts: FONTS
+                    },
+                    headers: { "X-Secret-Key": "body-key" }
+                }
+            ]);
+        });
+        it("should print with the fonts of the document in the default printer", () => {
+            const jQuery = global.jQuery;
+
+            configure(jQuery, { node: "local-node" }, BODY_SETTINGS);
+            const requests = print(jQuery, undefined, undefined, undefined, FONTS);
+
+            assert.deepStrictEqual(requests, [
+                BINIE_REQUEST,
+                {
+                    type: "post",
+                    url: "https://body.example.com/nodes/local-node/print",
+                    data: { printer: "", data_b64: DATA_B64, skey: "body-key", fonts: FONTS },
+                    headers: { "X-Secret-Key": "body-key" }
+                }
+            ]);
+        });
         it("should prefer each setting of the local storage over the body one", () => {
             const jQuery = global.jQuery;
 
@@ -513,6 +550,10 @@ describe("UxGPrint", function() {
 
 const DATA_B64 = "SGVsbG8gV29ybGQ=";
 
+const FONTS =
+    '[{"name": "Montserrat", "style": "regular", ' +
+    '"url": "https://files.bemisc.com/fonts/montserrat/montserrat.ttf"}]';
+
 const BINIE_REQUEST = {
     type: "get",
     url: "/label.binie",
@@ -581,7 +622,7 @@ const configure = (jQuery, local, body) => {
     }
 };
 
-const print = (jQuery, attributes, options, failures) => {
+const print = (jQuery, attributes, options, failures, fonts) => {
     const requests = [];
     const ajax = jQuery.ajax;
     jQuery.ajax = options => {
@@ -596,7 +637,12 @@ const print = (jQuery, attributes, options, failures) => {
         });
         if ((failures || []).includes(options.url)) {
             if (options.error) options.error({ status: 500 }, "error", "Internal Server Error");
-        } else if (options.success) options.success(DATA_B64);
+        } else if (options.success) {
+            const request = {
+                getResponseHeader: name => (name === "X-Fonts" && fonts) || null
+            };
+            options.success(DATA_B64, "success", request);
+        }
         if (options.complete) options.complete();
     };
     try {
