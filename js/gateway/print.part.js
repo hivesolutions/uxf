@@ -150,17 +150,26 @@ if (typeof require !== "undefined") {
                     pformat: function() {
                         return "binie";
                     },
-                    print: function(showDialog, dataBase64) {
+                    print: function(showDialog, dataBase64, fonts) {
                         var jobUrl = printUrl + "nodes/" + printNode + "/";
                         jobUrl += printPrinter ? "printers/print" : "print";
+
+                        // creates the data of the print job and adds to it the
+                        // fonts declared by the document (if any), as received
+                        // (JSON), so that the node installs them on demand
+                        var jobData = {
+                            printer: printPrinter,
+                            data_b64: dataBase64,
+                            skey: printKey
+                        };
+                        if (fonts) {
+                            jobData.fonts = fonts;
+                        }
+
                         jQuery.ajax({
                             type: "post",
                             url: jobUrl,
-                            data: {
-                                printer: printPrinter,
-                                data_b64: dataBase64,
-                                skey: printKey
-                            },
+                            data: jobData,
                             beforeSend: function(xhr) {
                                 xhr.setRequestHeader("X-Secret-Key", printKey);
                             },
@@ -282,11 +291,13 @@ if (typeof require !== "undefined") {
                     // the next element is ready to be processed
                     _printQueue(queue, data, gateway, callback);
                 },
-                success: function(data) {
+                success: function(data, status, request) {
                     // logs and prints the "just" received data using
-                    // the gateway plugin (direct access to driver)
+                    // the gateway plugin (direct access to driver), with
+                    // the fonts declared by the document (if any)
                     logger.info("Print job of document:", binieUrl);
-                    gateway.print(false, data);
+                    var fonts = request.getResponseHeader("X-Fonts");
+                    gateway.print(false, data, fonts);
                 },
                 error: function(request, status, error) {
                     // logs the failure of the retrieval of the data
