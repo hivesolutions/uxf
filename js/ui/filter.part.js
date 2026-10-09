@@ -28,7 +28,7 @@ if (typeof require !== "undefined") {
         // type of the field (no validation for the remaining types)
         var VALUE_REGEX = {
             number: /^-?\d+$/,
-            float: /^-?\d+(\.\d+)?$/,
+            float: /^-?(\d+\.?\d*|\.\d+)$/,
             date: /^-?\d+$/
         };
 
@@ -120,6 +120,7 @@ if (typeof require !== "undefined") {
                 var hasInput = textField.length > 0 || !noInput;
                 var stateful = Boolean(advanced && hasInput && !noState);
                 var state = stateful ? _readState() : {};
+                var hasSearch = typeof state.filterString === "string";
                 _element.data("stateful", stateful);
 
                 // in case there is no text field defined for the
@@ -127,12 +128,16 @@ if (typeof require !== "undefined") {
                 // the no input flag is not set
                 if (textField.length === 0 && !noInput) {
                     // retrieves the various attributes from the element
-                    // to be propagated to the text field, the search value
-                    // of the state (if any) overrides the value attribute
+                    // to be propagated to the text field
                     var name = _element.attr("name");
-                    var value = state.filterString || _element.attr("value");
+                    var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
+
+                    // stores the value as the default search of the filter,
+                    // the search of the state (if any) overrides it
+                    _element.data("default_search", value || "");
+                    value = hasSearch ? state.filterString : value;
 
                     // creates the text field element and sets the various
                     // attributes in it
@@ -147,12 +152,15 @@ if (typeof require !== "undefined") {
                     _element.prepend(textField);
                     textField.uxtextfield();
                 }
-                // otherwise the text field already exists and the search
-                // value of the state (if any) must be set in it
-                else if (state.filterString) {
-                    textField.uxtextfield("value", {
-                        value: state.filterString
-                    });
+                // otherwise in case the state of the filter is bound to the
+                // URL the value of the existing text field is the default
+                // search and the search of the state (if any) is set in it
+                else if (stateful) {
+                    _element.data("default_search", textField.uxtextfield("value") || "");
+                    hasSearch &&
+                        textField.uxtextfield("value", {
+                            value: state.filterString
+                        });
                 }
 
                 // in case the text field is still not found the extra no input
@@ -1224,8 +1232,9 @@ if (typeof require !== "undefined") {
                 }
 
                 // in case no value is present this filter is ignored
-                // not possible to filter value
-                if (!value) {
+                // not possible to filter value, note that zero is a
+                // valid value (eg: the timestamp of a date)
+                if (!value && value !== 0) {
                     return;
                 }
 
@@ -2923,6 +2932,13 @@ if (typeof require !== "undefined") {
                     continue;
                 }
 
+                // in case the value is the timestamp of a date that does not
+                // exist (out of range) the filter is ignored as well
+                var date = new Date(parseInt(value) * 1000);
+                if (type === "date" && isNaN(date.getTime())) {
+                    continue;
+                }
+
                 // adds the filter (line) for the attribute after the previous
                 // one, so that the order of the filters is the one of the state
                 var filter = _addFilter(matchedObject, previous, attribute);
@@ -3023,16 +3039,19 @@ if (typeof require !== "undefined") {
                             }
 
                             // in case the item is not the one for the logic value
-                            // or it has no display value returns immediately
+                            // or it has no display value returns immediately, note
+                            // that the falsy values (eg: zero) are valid ones
+                            var display = item[displayAttribute];
                             var isValid = String(item[valueAttribute]) === value;
-                            if (!isValid || !item[displayAttribute]) {
+                            var isEmpty = display === null || display === undefined || display === "";
+                            if (!isValid || isEmpty) {
                                 return;
                             }
 
                             // updates the display value of the drop field with
                             // the resolved one, keeping the same logic value
                             valueField.uxdropfield("set", {
-                                value: String(item[displayAttribute]),
+                                value: String(display),
                                 valueLogic: value
                             });
                         }
@@ -3093,14 +3112,16 @@ if (typeof require !== "undefined") {
                 return false;
             }
 
-            // checks if the option is the one that represents no sorting
-            // (default) in such case its own order is used, otherwise the
-            // order must be valid or else nothing is selected
-            var isEquals = element.attr("data-order") === "equals";
-            sortOrder = isEquals ? "equals" : sortOrder;
-            if (!isEquals && sortOrder !== "ascending" && sortOrder !== "descending") {
+            // in case the order is not valid returns immediately
+            // as it's not possible to select the option with it
+            if (sortOrder !== "ascending" && sortOrder !== "descending") {
                 return false;
             }
+
+            // checks if the option is the one that represents no sorting
+            // (default) in such case its own order is the one to be used
+            var isEquals = element.attr("data-order") === "equals";
+            sortOrder = isEquals ? "equals" : sortOrder;
 
             // removes the selected classes from the selected
             // option, to unselect the selected option
@@ -3157,7 +3178,7 @@ if (typeof require !== "undefined") {
             // creates the map that holds the state of the filter with
             // the (default) values that represent no state at all
             var state = {
-                filterString: "",
+                filterString: null,
                 filters: [],
                 sort: null,
                 view: null
@@ -3251,9 +3272,10 @@ if (typeof require !== "undefined") {
                 STATE_PARAMETERS.indexOf(name) === -1 && _parameters.push(parameters[index]);
             }
 
-            // adds the search string to the parameters, in
-            // case it's defined (not the default value)
-            state.filterString &&
+            // adds the search string to the parameters, in case it's
+            // not the default search of the filter (may be empty)
+            var defaultSearch = matchedObject.data("default_search");
+            state.filterString !== defaultSearch &&
                 _parameters.push("filter_string=" + _encodeValue(state.filterString));
 
             // iterates over all the filters to "serialize" their data into

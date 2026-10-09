@@ -437,6 +437,14 @@ describe("UxFilter", function() {
             );
             assert.strictEqual(jQuery(".filter-input").val(), "paper");
             assert.strictEqual(queries[1].filterString, "paper");
+
+            build(
+                jQuery,
+                "https://localhost/products?filter_string=",
+                'data-advanced="1" value="initial"'
+            );
+            assert.strictEqual(jQuery(".filter-input").val(), "");
+            assert.strictEqual(queries[2].filterString, "");
         });
         it("should set the search of the state in the existing input", () => {
             const jQuery = global.jQuery;
@@ -661,6 +669,30 @@ describe("UxFilter", function() {
                 .click();
             assert.strictEqual(window.location.search, "?filters[]=stock:equals:3");
         });
+        it("should query and write the filters with the zero value", () => {
+            const jQuery = global.jQuery;
+
+            build(
+                jQuery,
+                "https://localhost/products?filters[]=create_date:in_day:0&filters[]=stock:equals:0"
+            );
+
+            assert.deepStrictEqual(lines(jQuery), [
+                ["create_date", "in", "1970/01/01"],
+                ["stock", "equals", "0"]
+            ]);
+            assert.deepStrictEqual(queries[0].filters, [
+                ["create_date", "in_day", 0],
+                ["stock", "equals", "0"]
+            ]);
+
+            jQuery(".filter-sort-option[data-name='name']").click();
+            assert.deepStrictEqual(queries[1].filters, queries[0].filters);
+            assert.strictEqual(
+                window.location.search,
+                "?filters[]=create_date:in_day:0&filters[]=stock:equals:0&sort=name:ascending"
+            );
+        });
         it("should not write the filters with no value", () => {
             const jQuery = global.jQuery;
 
@@ -800,14 +832,36 @@ describe("UxFilter", function() {
             build(
                 jQuery,
                 "https://localhost/products?filters[]=stock:equals:abc&filters[]=stock:equals:1.5" +
-                    "&filters[]=weight:equals:1,5&filters[]=weight:equals:.5" +
+                    "&filters[]=weight:equals:1,5&filters[]=weight:equals:." +
+                    "&filters[]=weight:equals:-&filters[]=weight:equals:1.2.3" +
                     "&filters[]=create_date:in_day:2026-01-01&filters[]=name:like:" +
+                    "&filters[]=create_date:in_day:9999999999999" +
                     "&filters[]=brand:equals:&filters[]=weight:lesser:2.50"
             );
 
             assert.deepStrictEqual(lines(jQuery), [["weight", "less than", "2.50"]]);
             assert.deepStrictEqual(queries[0].filters, [["weight", "lesser", "2.50"]]);
             assert.deepStrictEqual(lookups, []);
+        });
+        it("should restore the float values as accepted by the field", () => {
+            const jQuery = global.jQuery;
+
+            build(
+                jQuery,
+                "https://localhost/products?filters[]=weight:equals:.5" +
+                    "&filters[]=weight:greater:1.&filters[]=weight:lesser:-0.25"
+            );
+
+            assert.deepStrictEqual(lines(jQuery), [
+                ["weight", "equals", ".5"],
+                ["weight", "greater than", "1."],
+                ["weight", "less than", "-0.25"]
+            ]);
+            assert.deepStrictEqual(queries[0].filters, [
+                ["weight", "equals", ".5"],
+                ["weight", "greater", "1."],
+                ["weight", "lesser", "-0.25"]
+            ]);
         });
         it("should add the initial filter line when no filter of the state is valid", () => {
             const jQuery = global.jQuery;
@@ -880,6 +934,18 @@ describe("UxFilter", function() {
             assert.strictEqual(queries.length, 1);
             assert.deepStrictEqual(queries[0].filters, [["brand", "equals", "12"]]);
         });
+        it("should resolve the falsy display values of the references of the state", () => {
+            const jQuery = global.jQuery;
+
+            for (const name of [0, false]) {
+                results["/brands.json"] = [[{ object_id: 12, name: name }], false];
+                build(jQuery, "https://localhost/products?filters[]=brand:equals:12");
+
+                const valueField = jQuery(".filter-advanced-filter > .value-field");
+                assert.strictEqual(jQuery(".text-field", valueField).val(), String(name));
+                assert.strictEqual(jQuery(".hidden-field", valueField).val(), "12");
+            }
+        });
         it("should keep the identifier of the references that are not resolved", () => {
             const jQuery = global.jQuery;
 
@@ -888,7 +954,9 @@ describe("UxFilter", function() {
                 [[], false],
                 [null, null],
                 [[{ object_id: 99, name: "Casio" }], false],
-                [[{ object_id: 12 }], false]
+                [[{ object_id: 12 }], false],
+                [[{ object_id: 12, name: null }], false],
+                [[{ object_id: 12, name: "" }], false]
             ]) {
                 results["/brands.json"] = result;
                 build(jQuery, "https://localhost/products?filters[]=brand:equals:12");
@@ -898,8 +966,8 @@ describe("UxFilter", function() {
                 assert.strictEqual(jQuery(".hidden-field", valueField).val(), "12");
             }
 
-            assert.strictEqual(queries.length, 5);
-            assert.deepStrictEqual(queries[4].filters, [["brand", "equals", "12"]]);
+            assert.strictEqual(queries.length, 7);
+            assert.deepStrictEqual(queries[6].filters, [["brand", "equals", "12"]]);
         });
         it("should keep the references changed while being resolved", () => {
             const jQuery = global.jQuery;
@@ -973,6 +1041,28 @@ describe("UxFilter", function() {
 
             jQuery(".filter").triggerHandler("update");
             assert.strictEqual(window.location.search, "?sort=default:descending");
+        });
+        it("should ignore the default sort of the state with an invalid order", () => {
+            const jQuery = global.jQuery;
+
+            for (const sort of ["default:sideways", "default:equals", "default"]) {
+                build(
+                    jQuery,
+                    "https://localhost/products?sort=" + sort,
+                    'data-advanced="1" data-sort="name:ascending"'
+                );
+
+                const option = jQuery(".filter-sort-option.selected");
+                assert.strictEqual(option.length, 1);
+                assert.strictEqual(option.attr("data-name"), "name");
+                assert.strictEqual(option.hasClass("ascending"), true);
+                assert.strictEqual(
+                    jQuery(".filter-input-toggle-advanced").hasClass("filter-input-more"),
+                    true
+                );
+            }
+
+            assert.deepStrictEqual(queries[2].sort, ["name", "ascending"]);
         });
         it("should select the sort option of the state by its text", () => {
             const jQuery = global.jQuery;
@@ -1218,6 +1308,66 @@ describe("UxFilter", function() {
             jQuery(".filter-sort-option[data-name='default']").click();
             assert.deepStrictEqual(queries[3].sort, ["default", "descending"]);
             assert.strictEqual(window.location.search, "?sort=default:descending");
+        });
+        it("should write the search cleared over the default one", () => {
+            const jQuery = global.jQuery;
+
+            results["/products.json"] = [[], false];
+            build(jQuery, "https://localhost/products", 'data-advanced="1" value="initial"');
+
+            jQuery(".filter-sort-option[data-name='name']").click();
+            assert.strictEqual(queries[1].filterString, "initial");
+            assert.strictEqual(window.location.search, "?sort=name:ascending");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries[2].filterString, "");
+            assert.strictEqual(window.location.search, "?filter_string=&sort=name:ascending");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(
+                window.location.search,
+                "?filter_string=paper&sort=name:ascending"
+            );
+
+            jQuery(".filter-input").uxtextfield("value", { value: "initial" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries[4].filterString, "initial");
+            assert.strictEqual(window.location.search, "?sort=name:ascending");
+        });
+        it("should write the search cleared over the one of the existing input", () => {
+            const jQuery = global.jQuery;
+
+            for (const search of ["", "?filter_string="]) {
+                results["/products.json"] = [[], false];
+                global.dom.reconfigure({ url: "https://localhost/products" + search });
+                jQuery("body").empty();
+                jQuery("body").append(
+                    '<ul class="filter" data-advanced="1">' +
+                        '<input type="text" class="text-field filter-input" value="initial" />' +
+                        '<div class="data-source" data-url="/products.json" data-type="json">' +
+                        "</div>" +
+                        "</ul>"
+                );
+                jQuery(".filter").uxfilter();
+            }
+
+            assert.strictEqual(queries[0].filterString, "initial");
+            assert.strictEqual(queries[1].filterString, "");
+            assert.strictEqual(jQuery(".filter-input").attr("data-value"), "");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(window.location.search, "?filter_string=paper");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(window.location.search, "?filter_string=");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "initial" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(window.location.search, "");
         });
         it("should not replace the URL when the state is the same", () => {
             const jQuery = global.jQuery;
