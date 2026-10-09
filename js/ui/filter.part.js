@@ -833,8 +833,13 @@ if (typeof require !== "undefined") {
                 var filter = element.parents(".filter");
 
                 // retrieves the filter string and the filter
-                // input value (to check for string value changes)
-                var filterString = filter.data("filter_string");
+                // input value (to check for string value changes),
+                // the filter string of the pending query (if any)
+                // is used, as it's the one that is going to be set
+                var pending = filter.data("pending");
+                var filterString = pending
+                    ? filter.data("pending_string")
+                    : filter.data("filter_string");
                 var filterInputValue = element.attr("data-value");
 
                 // in case no string value changes occurred
@@ -1086,6 +1091,12 @@ if (typeof require !== "undefined") {
             var complete = filter.data("complete");
             var pending = filter.data("pending");
 
+            // in case there's a query pending its filter string is the one
+            // to be used to evaluate the changes in the filter input value,
+            // otherwise a value changed back before the end of the query
+            // would be ignored (and the results of the pending query shown)
+            filterString = pending ? filter.data("pending_string") : filterString;
+
             // retrieves the current list of defined filters, this value
             // will be used as the starting point for the gathering of
             // the various filters from the main filter element
@@ -1248,8 +1259,10 @@ if (typeof require !== "undefined") {
             });
             reset && _writeState(filter);
 
-            // sets the (query) pending flag in the filter
+            // sets the (query) pending flag in the filter and
+            // the filter string of the query that is now pending
             filter.data("pending", true);
+            filter.data("pending_string", filterInputValue);
 
             // adds the loading class so that the loading information
             // is presented to the user, note that both the button more

@@ -208,6 +208,120 @@ describe("UxFilter", function() {
         });
     });
 
+    describe("#search", function() {
+        let uxdataquery = null;
+        let queries = null;
+        let callbacks = null;
+
+        beforeEach(() => {
+            const jQuery = global.jQuery;
+            uxdataquery = jQuery.fn.uxdataquery;
+            queries = [];
+            callbacks = [];
+            jQuery.fn.uxdataquery = function(query, callback) {
+                queries.push(query);
+                callbacks.push(callback);
+            };
+        });
+
+        afterEach(() => {
+            const jQuery = global.jQuery;
+            jQuery.fn.uxdataquery = uxdataquery;
+        });
+
+        it("should query once the search changes", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                '<ul class="filter"><div class="data-source" data-type="json"></div></ul>'
+            );
+            jQuery(".filter").uxfilter();
+            callbacks[0]([], false);
+            assert.strictEqual(queries.length, 1);
+            assert.strictEqual(queries[0].filterString, "");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 2);
+            assert.strictEqual(queries[1].filterString, "paper");
+            assert.strictEqual(queries[1].startRecord, 0);
+        });
+        it("should not query while the search is the same", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                '<ul class="filter"><div class="data-source" data-type="json"></div></ul>'
+            );
+            jQuery(".filter").uxfilter();
+            callbacks[0]([], false);
+
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 1);
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 2);
+
+            callbacks[1]([], false);
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 2);
+        });
+        it("should query when the search changes before the previous query ends", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                '<ul class="filter"><div class="data-source" data-type="json"></div></ul>'
+            );
+            jQuery(".filter").uxfilter();
+            callbacks[0]([], false);
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            jQuery(".filter-input").uxtextfield("value", { value: "" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 3);
+            assert.strictEqual(queries[2].filterString, "");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 4);
+            assert.strictEqual(queries[3].filterString, "paper");
+
+            callbacks[3]([], false);
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 4);
+        });
+        it("should query again the search of a query that failed", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                '<ul class="filter"><div class="data-source" data-type="json"></div></ul>'
+            );
+            jQuery(".filter").uxfilter();
+            callbacks[0]([], false);
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            callbacks[1](null, null);
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 3);
+            assert.strictEqual(queries[2].filterString, "paper");
+
+            callbacks[2]([], false);
+            jQuery(".filter-input").uxtextfield("value", { value: "" });
+            jQuery(".filter-input").keyup();
+            callbacks[3](null, null);
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 5);
+            assert.strictEqual(queries[4].filterString, "");
+        });
+    });
+
     describe("#state", function() {
         let uxdataquery = null;
         let uxapply = null;
@@ -476,6 +590,21 @@ describe("UxFilter", function() {
             assert.strictEqual(queries.length, 2);
             assert.strictEqual(queries[1].filterString, "paper a4");
             assert.strictEqual(window.location.search, "?filter_string=paper%20a4");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 3);
+            assert.strictEqual(queries[2].filterString, "");
+            assert.strictEqual(window.location.search, "");
+        });
+        it("should write the search changed before the previous query ends", () => {
+            const jQuery = global.jQuery;
+
+            build(jQuery, "https://localhost/products");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(window.location.search, "?filter_string=paper");
 
             jQuery(".filter-input").uxtextfield("value", { value: "" });
             jQuery(".filter-input").keyup();
