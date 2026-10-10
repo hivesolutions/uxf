@@ -2932,11 +2932,17 @@ if (typeof require !== "undefined") {
                     continue;
                 }
 
-                // in case the value is the timestamp of a date that does not
-                // exist (out of range) the filter is ignored as well
-                var date = new Date(parseInt(value) * 1000);
-                if (type === "date" && isNaN(date.getTime())) {
-                    continue;
+                // in case the value is the timestamp of a date that the text
+                // field is not able to read back as the same day (eg: date
+                // out of range or year with less than three digits) the
+                // filter is ignored as well, as it would be changed by it
+                if (type === "date") {
+                    var date = new Date(parseInt(value) * 1000);
+                    var dateString = jQuery.uxformat(date, "%Y/%m/%d", true);
+                    var day = Math.floor(parseInt(value) / 86400) * 86400;
+                    if (Date.parse(dateString + " UTC") / 1000 !== day) {
+                        continue;
+                    }
                 }
 
                 // adds the filter (line) for the attribute after the previous
@@ -3272,44 +3278,49 @@ if (typeof require !== "undefined") {
                 STATE_PARAMETERS.indexOf(name) === -1 && _parameters.push(parameters[index]);
             }
 
-            // adds the search string to the parameters, in case it's
-            // not the default search of the filter (may be empty)
-            var defaultSearch = matchedObject.data("default_search");
-            state.filterString !== defaultSearch &&
-                _parameters.push("filter_string=" + _encodeValue(state.filterString));
-
-            // iterates over all the filters to "serialize" their data into
-            // a simple string and add it to the parameters
-            for (index = 0; index < state.filters.length; index++) {
-                _parameters.push("filters[]=" + _encodeValue(state.filters[index].join(":")));
-            }
-
-            // adds the sort string to the parameters, in case it's
-            // not the one of the default sort of the filter
-            var sort = state.sort.join(":");
-            var defaultSort = matchedObject.data("default_sort").join(":");
-            sort !== defaultSort && _parameters.push("sort=" + _encodeValue(sort));
-
-            // adds the view to the parameters, in case it's
-            // not the default view of the filter
-            var view = _getView(matchedObject);
-            var defaultView = matchedObject.data("default_view");
-            view && view !== defaultView && _parameters.push("view=" + view);
-
-            // builds the new URL from the path of the current one, the
-            // new query and the fragment, in case it's the same as the
-            // current one returns immediately (nothing to be done)
-            var location = window.location;
-            var query = _parameters.length > 0 ? "?" + _parameters.join("&") : "";
-            var url = location.pathname + query + location.hash;
-            if (url === location.pathname + location.search + location.hash) {
-                return;
-            }
-
-            // replaces the URL of the current history entry, keeping
-            // its state, the operation may not be possible (eg: opaque
-            // origin or rate limit) and such failure is ignored
+            // serializes the state into the parameters and replaces the URL
+            // of the current history entry, these operations may not be
+            // possible (eg: value that can't be encoded, opaque origin or
+            // rate limit) and such failure is ignored
             try {
+                // adds the search string to the parameters, in case it's
+                // not the default search of the filter (may be empty)
+                var defaultSearch = matchedObject.data("default_search");
+                state.filterString !== defaultSearch &&
+                    _parameters.push("filter_string=" + _encodeValue(state.filterString));
+
+                // iterates over all the filters to "serialize" their data into
+                // a simple string and add it to the parameters
+                for (index = 0; index < state.filters.length; index++) {
+                    _parameters.push(
+                        "filters[]=" + _encodeValue(state.filters[index].join(":"))
+                    );
+                }
+
+                // adds the sort string to the parameters, in case it's
+                // not the one of the default sort of the filter
+                var sort = state.sort.join(":");
+                var defaultSort = matchedObject.data("default_sort").join(":");
+                sort !== defaultSort && _parameters.push("sort=" + _encodeValue(sort));
+
+                // adds the view to the parameters, in case it's
+                // not the default view of the filter
+                var view = _getView(matchedObject);
+                var defaultView = matchedObject.data("default_view");
+                view && view !== defaultView && _parameters.push("view=" + view);
+
+                // builds the new URL from the path of the current one, the
+                // new query and the fragment, in case it's the same as the
+                // current one returns immediately (nothing to be done)
+                var location = window.location;
+                var query = _parameters.length > 0 ? "?" + _parameters.join("&") : "";
+                var url = location.pathname + query + location.hash;
+                if (url === location.pathname + location.search + location.hash) {
+                    return;
+                }
+
+                // replaces the URL of the current history
+                // entry, keeping the state of the entry
                 window.history.replaceState(window.history.state, null, url);
             } catch (exception) {}
         };

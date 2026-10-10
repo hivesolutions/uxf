@@ -863,6 +863,36 @@ describe("UxFilter", function() {
                 ["weight", "lesser", "-0.25"]
             ]);
         });
+        it("should ignore the dates of the state that are not read back by the field", () => {
+            const jQuery = global.jQuery;
+
+            build(
+                jQuery,
+                "https://localhost/products?filters[]=create_date:in_day:-62135596800" +
+                    "&filters[]=create_date:greater:-60589296000" +
+                    "&filters[]=create_date:lesser:-59042995200" +
+                    "&filters[]=create_date:in_day:-62198755200" +
+                    "&filters[]=create_date:in_day:-30610224000" +
+                    "&filters[]=create_date:lesser:253370764800"
+            );
+
+            assert.deepStrictEqual(lines(jQuery), [
+                ["create_date", "in", "1000/01/01"],
+                ["create_date", "before", "9999/01/01"]
+            ]);
+            assert.strictEqual(queries.length, 1);
+            assert.deepStrictEqual(queries[0].filters, [
+                ["create_date", "in_day", -30610224000],
+                ["create_date", "lesser", 253370764800]
+            ]);
+
+            jQuery(".filter-sort-option[data-name='name']").click();
+            assert.strictEqual(
+                window.location.search,
+                "?filters[]=create_date:in_day:-30610224000" +
+                    "&filters[]=create_date:lesser:253370764800&sort=name:ascending"
+            );
+        });
         it("should add the initial filter line when no filter of the state is valid", () => {
             const jQuery = global.jQuery;
 
@@ -1394,6 +1424,40 @@ describe("UxFilter", function() {
             assert.strictEqual(queries.length, 2);
             assert.deepStrictEqual(queries[1].sort, ["name", "ascending"]);
             assert.strictEqual(window.location.search, "");
+        });
+        it("should ignore the failures encoding the state", () => {
+            const jQuery = global.jQuery;
+
+            results["/products.json"] = [[], false];
+            build(jQuery, "https://localhost/products?page=2");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper \uD83D" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(queries.length, 2);
+            assert.strictEqual(queries[1].filterString, "paper \uD83D");
+            assert.strictEqual(window.location.search, "?page=2");
+
+            jQuery(".filter-input").uxtextfield("value", { value: "paper" });
+            jQuery(".filter-input").keyup();
+            assert.strictEqual(window.location.search, "?page=2&filter_string=paper");
+
+            const valueField = jQuery(".filter-advanced-filter > .value-field");
+            valueField.uxtextfield("value", { value: "\uDCC4 a4" });
+            assert.strictEqual(queries.length, 4);
+            assert.deepStrictEqual(queries[3].filters, [["name", "like", "\uDCC4 a4"]]);
+            assert.strictEqual(window.location.search, "?page=2&filter_string=paper");
+
+            valueField.uxtextfield("value", { value: "\uD83D\uDCC4 a4" });
+            assert.strictEqual(queries.length, 5);
+            assert.strictEqual(
+                window.location.search,
+                "?page=2&filter_string=paper&filters[]=name:like:%F0%9F%93%84%20a4"
+            );
+
+            queries = [];
+            build(jQuery, window.location.href);
+            assert.deepStrictEqual(lines(jQuery), [["name", "contains", "\uD83D\uDCC4 a4"]]);
+            assert.deepStrictEqual(queries[0].filters, [["name", "like", "\uD83D\uDCC4 a4"]]);
         });
         it("should not write the state without the replace state support", () => {
             const jQuery = global.jQuery;
