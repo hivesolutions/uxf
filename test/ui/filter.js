@@ -843,6 +843,64 @@ describe("UxFilter", function() {
             assert.deepStrictEqual(queries[0].filters, [["weight", "lesser", "2.50"]]);
             assert.deepStrictEqual(lookups, []);
         });
+        it("should ignore the references by object id of the state that are not numbers", () => {
+            const jQuery = global.jQuery;
+
+            results["/brands.json"] = [[{ object_id: 12, name: "Seiko" }], false];
+            build(
+                jQuery,
+                "https://localhost/products?filters[]=brand:equals:abc" +
+                    "&filters[]=brand:equals:12ab&filters[]=brand:equals:1.5" +
+                    "&filters[]=brand:equals:%2012&filters[]=brand:equals:12"
+            );
+
+            assert.deepStrictEqual(lines(jQuery), [["brand", "search", "Seiko"]]);
+            assert.strictEqual(queries.length, 1);
+            assert.deepStrictEqual(queries[0].filters, [["brand", "equals", "12"]]);
+            assert.strictEqual(lookups.length, 1);
+            assert.deepStrictEqual(lookups[0][1].filters, [["object_id", "equals", "12"]]);
+        });
+        it("should restore the references by other attributes of the state with any value", () => {
+            const jQuery = global.jQuery;
+
+            results["/countries.json"] = [[{ value: "Portugal", name: "Portugal" }], false];
+            results["/languages.json"] = [[{ code: "pt_pt", name: "Portuguese" }], false];
+            global.dom.reconfigure({
+                url:
+                    "https://localhost/products?filters[]=country:equals:Portugal" +
+                    "&filters[]=language:equals:pt_pt"
+            });
+            jQuery("body").empty();
+            jQuery("body").append(
+                '<ul class="filter" data-advanced="1">' +
+                    '<div class="data-source" data-url="/products.json" data-type="json">' +
+                    '<ul class="filtering">' +
+                    '<li data-name="country" data-type="reference" data-surl="/countries.json"' +
+                    ' data-stype="json">country</li>' +
+                    '<li data-name="language" data-type="reference" data-surl="/languages.json"' +
+                    ' data-stype="json" data-svalue_attribute="code">language</li>' +
+                    "</ul>" +
+                    "</div>" +
+                    "</ul>"
+            );
+            jQuery(".filter").uxfilter();
+
+            assert.deepStrictEqual(lines(jQuery), [
+                ["country", "search", "Portugal"],
+                ["language", "search", "Portuguese"]
+            ]);
+            assert.deepStrictEqual(queries[0].filters, [
+                ["country", "equals", "Portugal"],
+                ["language", "equals", "pt_pt"]
+            ]);
+            assert.deepStrictEqual(
+                lookups.map(lookup => [lookup[0], lookup[1].filters]),
+                [
+                    ["/countries.json", [["value", "equals", "Portugal"]]],
+                    ["/languages.json", [["code", "equals", "pt_pt"]]]
+                ]
+            );
+        });
         it("should restore the float values as accepted by the field", () => {
             const jQuery = global.jQuery;
 

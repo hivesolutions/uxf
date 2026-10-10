@@ -2880,24 +2880,29 @@ if (typeof require !== "undefined") {
             var dataSource = jQuery("> .data-source", matchedObject);
             var dataFiltering = jQuery(".filtering > li", dataSource);
 
-            // creates the initial list to hold the names and the types
-            // associated with them, the index should be associative between them
+            // creates the initial list to hold the names, the types and the
+            // value attributes (of the references) associated with them, the
+            // index should be associative between them
             var names = [];
             var types = [];
+            var valueAttributes = [];
 
             // iterates over each of the data filtering elements to
             // be able to "parse" the items and insert them into the
-            // the names and types lists
+            // the names, types and value attributes lists
             dataFiltering.each(function(index, element) {
                 // retrieves the current element in iteration
                 var _element = jQuery(this);
 
-                // retrieves the data name and the data type attributes
-                // of the element and adds them to the corresponding lists
+                // retrieves the data name, the data type and the value
+                // attribute of the element and adds them to the
+                // corresponding lists
                 var dataName = _element.attr("data-name");
                 var dataType = _element.attr("data-type");
+                var valueAttribute = _element.attr("data-svalue_attribute");
                 names.push(dataName);
                 types.push(dataType);
+                valueAttributes.push(valueAttribute);
             });
 
             // starts the reference to the previously restored filter (line)
@@ -2921,10 +2926,13 @@ if (typeof require !== "undefined") {
                 var value = _filter[2];
 
                 // retrieves the type associated with the attribute and the
-                // regular expression that validates the values of the type
+                // regular expression that validates the values of the type,
+                // the references by object id are validated as numbers, as
+                // no other value may be the identifier of an entity
                 var nameIndex = names.indexOf(attribute);
                 var type = nameIndex === -1 ? null : types[nameIndex];
-                var regex = VALUE_REGEX[type];
+                var isIdentifier = valueAttributes[nameIndex] === "object_id";
+                var regex = VALUE_REGEX[type === "reference" && isIdentifier ? "number" : type];
 
                 // in case the attribute is not one of the filtering elements
                 // or the value is not valid for its type the filter is ignored
