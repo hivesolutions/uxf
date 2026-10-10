@@ -15,6 +15,23 @@ if (typeof require !== "undefined") {
  */
 (function(jQuery) {
     jQuery.fn.uxfilter = function(options) {
+        // the array of views of the filter, each of them is associated
+        // with a class of the filter (eg: list-list for the list view)
+        var VIEWS = ["list", "table", "gallery"];
+
+        // the array of names of the URL parameters that hold the
+        // state of the filter (search, filters, sort and view)
+        var STATE_PARAMETERS = ["filter_string", "filters[]", "filters", "sort", "view"];
+
+        // the map of regular expressions that validate the values of
+        // the filter lines restored from the state, according to the
+        // type of the field (no validation for the remaining types)
+        var VALUE_REGEX = {
+            number: /^-?\d+$/,
+            float: /^-?(\d+\.?\d*|\.\d+)$/,
+            date: /^-?\d+$/
+        };
+
         // the default values for the filter
         var defaults = {
             numberRecords: 9
@@ -94,6 +111,18 @@ if (typeof require !== "undefined") {
                 // current filter for the main filtering
                 var textField = jQuery("> .text-field", _element);
 
+                // retrieves the value of the no state attribute and determines if
+                // the state of the filter (search, filters, sort and view) is bound
+                // to the URL of the page, only the filters with the advanced panel
+                // (that requires the text field) are, in such case reads the
+                // (initial) state from the URL
+                var noState = _element.attr("data-no_state");
+                var hasInput = textField.length > 0 || !noInput;
+                var stateful = Boolean(advanced && hasInput && !noState);
+                var state = stateful ? _readState() : {};
+                var hasSearch = typeof state.filterString === "string";
+                _element.data("stateful", stateful);
+
                 // in case there is no text field defined for the
                 // current element one must be created, only in case
                 // the no input flag is not set
@@ -104,6 +133,11 @@ if (typeof require !== "undefined") {
                     var value = _element.attr("value");
                     var originalValue = _element.attr("data-original_value");
                     var error = _element.attr("data-error");
+
+                    // stores the value as the default search of the filter,
+                    // the search of the state (if any) overrides it
+                    _element.data("default_search", value || "");
+                    value = hasSearch ? state.filterString : value;
 
                     // creates the text field element and sets the various
                     // attributes in it
@@ -117,6 +151,16 @@ if (typeof require !== "undefined") {
                     // the text field initializer
                     _element.prepend(textField);
                     textField.uxtextfield();
+                }
+                // otherwise in case the state of the filter is bound to the
+                // URL the value of the existing text field is the default
+                // search and the search of the state (if any) is set in it
+                else if (stateful) {
+                    _element.data("default_search", textField.uxtextfield("value") || "");
+                    hasSearch &&
+                        textField.uxtextfield("value", {
+                            value: state.filterString
+                        });
                 }
 
                 // in case the text field is still not found the extra no input
@@ -152,6 +196,12 @@ if (typeof require !== "undefined") {
                         "</div>"
                 );
                 advanced && filterAdvanced.insertAfter(filterButtons);
+
+                // stores the (default) view of the filter, the one defined by
+                // its classes, and then selects the view of the state (if any)
+                // so that the classes of the filter reflect the requested view
+                _element.data("default_view", _getView(_element));
+                state.view && _selectView(_element, state.view);
 
                 // checks for the presence of the proper list class from
                 // the element
@@ -213,14 +263,37 @@ if (typeof require !== "undefined") {
                     '<div class="filter-sort-option selected equals" data-name="default" data-order="equals">default</div>'
                 );
 
+                // selects the sort option of the (default) sort attribute so
+                // that the sort control reflects it and stores the name of the
+                // resulting option as the default sort of the filter, only then
+                // selects the sort option of the state (if any)
+                sort && _selectSort(_element, sort.split(":"));
+                _element.data("default_sort", _getSort(_element));
+                var sortRestored = Boolean(state.sort && _selectSort(_element, state.sort));
+
                 // checks if the filtering is enabled and valid for the
                 // current context of execution
                 var hasFiltering = Boolean(filterFiltering.length > 0);
 
-                // in case the advanced mode is active adds the initial filter
-                // line to the filters area, but only in case there are valid
-                // filters and so the filtering is enabled
-                advanced && hasFiltering && _addFilter(_element);
+                // in case the advanced mode is active adds the filter lines of
+                // the state to the filters area, falling back to the initial
+                // filter line in case there are none, but only in case there
+                // are valid filters and so the filtering is enabled
+                var filtersRestored =
+                    stateful && hasFiltering ? _restoreFilters(_element, state.filters) : 0;
+                advanced && hasFiltering && filtersRestored === 0 && _addFilter(_element);
+
+                // in case the state of the filter contains filter lines or a
+                // sort option the advanced panel is shown, as these are only
+                // visible in it, changing the state of the toggle button, note
+                // that the display is set explicitly as the style that hides
+                // the panel may only be applied after the start of the filter
+                if (filtersRestored > 0 || sortRestored) {
+                    var toggleAdvanced = jQuery(".filter-input-toggle-advanced", _element);
+                    toggleAdvanced.removeClass("filter-input-more");
+                    toggleAdvanced.addClass("filter-input-less");
+                    filterAdvanced.css("display", "block");
+                }
 
                 // in case there is currently no valid filtering in the data
                 // source must disabled the filtering part in the advanced area
@@ -262,6 +335,10 @@ if (typeof require !== "undefined") {
                 // updates the element (matched object) state
                 // for the initial contents
                 _update(_element, options);
+
+                // marks the state of the filter as ready, from this moment
+                // on the changes in the filter are reflected in the URL
+                _element.data("state_ready", true);
             });
         };
 
@@ -703,6 +780,10 @@ if (typeof require !== "undefined") {
                         : element.addClass("filter-input-table");
                     hasListView ? filter.addClass("list-list") : filter.addClass("table-list");
                 }
+
+                // reflects the new view of the filter in the URL, as
+                // the view is part of the state of the filter
+                _writeState(filter);
             });
 
             // registers for the click event on the filter add button
@@ -760,8 +841,13 @@ if (typeof require !== "undefined") {
                 var filter = element.parents(".filter");
 
                 // retrieves the filter string and the filter
-                // input value (to check for string value changes)
-                var filterString = filter.data("filter_string");
+                // input value (to check for string value changes),
+                // the filter string of the pending query (if any)
+                // is used, as it's the one that is going to be set
+                var pending = filter.data("pending");
+                var filterString = pending
+                    ? filter.data("pending_string")
+                    : filter.data("filter_string");
                 var filterInputValue = element.attr("data-value");
 
                 // in case no string value changes occurred
@@ -1013,6 +1099,12 @@ if (typeof require !== "undefined") {
             var complete = filter.data("complete");
             var pending = filter.data("pending");
 
+            // in case there's a query pending its filter string is the one
+            // to be used to evaluate the changes in the filter input value,
+            // otherwise a value changed back before the end of the query
+            // would be ignored (and the results of the pending query shown)
+            filterString = pending ? filter.data("pending_string") : filterString;
+
             // retrieves the current list of defined filters, this value
             // will be used as the starting point for the gathering of
             // the various filters from the main filter element
@@ -1047,6 +1139,13 @@ if (typeof require !== "undefined") {
 
             // sets the initial value for the reset flag
             var reset = false;
+
+            // in case the filter lines of the state are being restored
+            // returns immediately, the update operation is going to be
+            // performed only once after all of them are restored
+            if (filter.data("restoring")) {
+                return;
+            }
 
             // verifies if at least one data source is available for the
             // update operation and if that's not the case returns immediately
@@ -1083,18 +1182,15 @@ if (typeof require !== "undefined") {
                 }
             }
 
-            // retrieves the selected sort options and then uses it
-            // to retrieve the value to be used for the sorting, falling
-            // back to the text of the option (never to its markup)
-            var sortSelected = jQuery(".filter-sort-option.selected", filter);
-            var sortValue = sortSelected.attr("data-name") || sortSelected.text();
+            // retrieves the sorting list (tuple) of the selected sort option
+            // to be used in the query, falling back to the (default) sorting
+            // information in case there's no sort option selected
+            var sort = _getSort(filter) || _sort;
 
-            // checks if the sort option is currently in the ascending mode
-            // and "calculates" the sort order string based on it, then created
-            // the sorting list (tuple) to be used in the query
-            var isAscending = sortSelected.hasClass("ascending");
-            var sortOrder = isAscending ? "ascending" : "descending";
-            var sort = sortValue ? [sortValue, sortOrder] : _sort;
+            // creates the list that is going to hold the filter tuples of
+            // the (graphical) filter lines, the ones that are part of the
+            // state of the filter (the base filters are not part of it)
+            var _state = [];
 
             // retrieves the complete set of (graphical) filter lines to be
             // parser in search for the valid filters
@@ -1136,8 +1232,9 @@ if (typeof require !== "undefined") {
                 }
 
                 // in case no value is present this filter is ignored
-                // not possible to filter value
-                if (!value) {
+                // not possible to filter value, note that zero is a
+                // valid value (eg: the timestamp of a date)
+                if (!value && value !== 0) {
                     return;
                 }
 
@@ -1159,10 +1256,22 @@ if (typeof require !== "undefined") {
                 // and the value and then adds the filter tuple to the filters list
                 var filter = [attribute, _operation, value];
                 _filters.push(filter);
+                _state.push(filter);
             });
 
-            // sets the (query) pending flag in the filter
+            // stores the state of the filter (search, sort and filter lines)
+            // and in case this is a "new" query (reset) reflects it in the URL
+            filter.data("state", {
+                filterString: filterInputValue,
+                sort: sort,
+                filters: _state
+            });
+            reset && _writeState(filter);
+
+            // sets the (query) pending flag in the filter and
+            // the filter string of the query that is now pending
             filter.data("pending", true);
+            filter.data("pending_string", filterInputValue);
 
             // adds the loading class so that the loading information
             // is presented to the user, note that both the button more
@@ -2620,7 +2729,7 @@ if (typeof require !== "undefined") {
             });
         };
 
-        var _addFilter = function(matchedObject, target) {
+        var _addFilter = function(matchedObject, target, name) {
             // retrieves the data source for the current filter object
             // and retrieves the associated filtering objects
             var dataSource = jQuery("> .data-source", matchedObject);
@@ -2749,8 +2858,13 @@ if (typeof require !== "undefined") {
             target ? filter.insertAfter(target) : advancedFilters.prepend(filter);
 
             // selects the initial element of the "newly" created filter
-            // this is the first value to be viewed by the end user
-            _selectFilter(filter, items[0], true);
+            // this is the first value to be viewed by the end user, the
+            // one with the provided name or the first one otherwise
+            var index = name ? names.indexOf(name) : -1;
+            _selectFilter(filter, items[index === -1 ? 0 : index], true);
+
+            // returns the "newly" created filter (line) to the caller
+            return filter;
         };
 
         var _disableFiltering = function(matchedObject, options) {
@@ -2758,6 +2872,483 @@ if (typeof require !== "undefined") {
             // and disables it to avoid insertion of filters
             var filterAdd = jQuery(".filter-advanced > .filter-input-add", matchedObject);
             filterAdd.hide();
+        };
+
+        var _restoreFilters = function(matchedObject, filters) {
+            // retrieves the data source for the current filter object
+            // and retrieves the associated filtering objects
+            var dataSource = jQuery("> .data-source", matchedObject);
+            var dataFiltering = jQuery(".filtering > li", dataSource);
+
+            // creates the initial list to hold the names and the types
+            // associated with them, the index should be associative between them
+            var names = [];
+            var types = [];
+
+            // iterates over each of the data filtering elements to
+            // be able to "parse" the items and insert them into the
+            // the names and types lists
+            dataFiltering.each(function(index, element) {
+                // retrieves the current element in iteration
+                var _element = jQuery(this);
+
+                // retrieves the data name and the data type attributes
+                // of the element and adds them to the corresponding lists
+                var dataName = _element.attr("data-name");
+                var dataType = _element.attr("data-type");
+                names.push(dataName);
+                types.push(dataType);
+            });
+
+            // starts the reference to the previously restored filter (line)
+            // and the counter of the filter (lines) that have been restored
+            var previous = null;
+            var count = 0;
+
+            // sets the restoring flag in the filter so that the changes in
+            // the filter (lines) do not trigger any update operation
+            matchedObject.data("restoring", true);
+
+            // iterates over all the filter tuples of the state to create the
+            // (graphical) filter lines for them, the ones that are not valid
+            // (name, operation or value) are ignored
+            for (var index = 0; index < filters.length; index++) {
+                // retrieves the current filter in iteration and
+                // unpack it into the various components
+                var _filter = filters[index];
+                var attribute = _filter[0];
+                var operation = _filter[1];
+                var value = _filter[2];
+
+                // retrieves the type associated with the attribute and the
+                // regular expression that validates the values of the type
+                var nameIndex = names.indexOf(attribute);
+                var type = nameIndex === -1 ? null : types[nameIndex];
+                var regex = VALUE_REGEX[type];
+
+                // in case the attribute is not one of the filtering elements
+                // or the value is not valid for its type the filter is ignored
+                if (!type || !value || (regex && !regex.test(value))) {
+                    continue;
+                }
+
+                // in case the value is the timestamp of a date that the text
+                // field is not able to read back as the same day (eg: date
+                // out of range or year with less than three digits) the
+                // filter is ignored as well, as it would be changed by it
+                if (type === "date") {
+                    var date = new Date(parseInt(value) * 1000);
+                    var dateString = jQuery.uxformat(date, "%Y/%m/%d", true);
+                    var day = Math.floor(parseInt(value) / 86400) * 86400;
+                    if (Date.parse(dateString + " UTC") / 1000 !== day) {
+                        continue;
+                    }
+                }
+
+                // adds the filter (line) for the attribute after the previous
+                // one, so that the order of the filters is the one of the state
+                var filter = _addFilter(matchedObject, previous, attribute);
+
+                // retrieves the operation field of the filter (line) and the
+                // data source of it to be used for the retrieval of the items
+                // and operations lists
+                var operationField = jQuery("> .operation-field", filter);
+                var operationSource = jQuery("> .data-source", operationField);
+
+                // retrieves the lists for the items and for the operations
+                var items = operationSource.data("items");
+                var operations = operationSource.data("operations");
+
+                // retrieves the index of the (logical) operation in case it's
+                // not one of the operations of the type the filter (line) is
+                // removed and the filter is ignored
+                var itemIndex = operations.indexOf(operation);
+                if (itemIndex === -1) {
+                    filter.remove();
+                    continue;
+                }
+
+                // updates the operation field to be set to the (graphical)
+                // operation value and restores the value of the filter (line)
+                operationField.uxdropfield("set", {
+                    value: items[itemIndex]
+                });
+                _restoreValue(filter, type, value);
+
+                // updates the previous filter (line) reference and
+                // increments the counter of restored filter (lines)
+                previous = filter;
+                count++;
+            }
+
+            // unsets the restoring flag in the filter, the update
+            // operations are allowed again from this moment
+            matchedObject.data("restoring", false);
+
+            // returns the number of filter (lines) that have been restored
+            return count;
+        };
+
+        var _restoreValue = function(filter, type, value) {
+            // retrieves the reference to the value field using
+            // the filter to do so
+            var valueField = jQuery("> .value-field", filter);
+
+            // switched over the type of the value that is being restored
+            // (different type will have different value fields)
+            switch (type) {
+                case "date":
+                    // converts the (UTC) timestamp into the date string
+                    // and sets it as the value of the text field
+                    var date = new Date(parseInt(value) * 1000);
+                    valueField.uxtextfield("value", {
+                        value: jQuery.uxformat(date, "%Y/%m/%d", true)
+                    });
+
+                    // breaks the switch
+                    break;
+
+                case "reference":
+                    // retrieves the data source associated with the value
+                    // field and the hidden field that holds the logic value
+                    var valueSource = jQuery("> .data-source", valueField);
+                    var hiddenField = jQuery(".hidden-field", valueField);
+
+                    // retrieves the display and the value attributes from
+                    // the value field to be used in the resolution
+                    var displayAttribute = valueField.attr("data-display_attribute");
+                    var valueAttribute = valueField.attr("data-value_attribute");
+
+                    // sets the value as both the display and the logic value
+                    // of the drop field, so that the filter is applied right
+                    // away while the display value is not resolved
+                    valueField.uxdropfield("set", {
+                        value: value,
+                        valueLogic: value
+                    });
+
+                    // runs the query in the data source of the value field to
+                    // resolve the display value associated with the logic value
+                    valueSource.uxdataquery(
+                        {
+                            filters: [[valueAttribute, "equals", value]],
+                            startRecord: 0,
+                            numberRecords: 1
+                        },
+                        function(validItems, moreItems) {
+                            // retrieves the item that has been resolved, in case
+                            // there's none or the logic value has changed in the
+                            // meantime returns immediately (nothing to be done)
+                            var item = validItems ? validItems[0] : null;
+                            if (!item || hiddenField.val() !== value) {
+                                return;
+                            }
+
+                            // in case the item is not the one for the logic value
+                            // or it has no display value returns immediately, note
+                            // that the falsy values (eg: zero) are valid ones
+                            var display = item[displayAttribute];
+                            var isValid = String(item[valueAttribute]) === value;
+                            var isEmpty = display === null || display === undefined || display === "";
+                            if (!isValid || isEmpty) {
+                                return;
+                            }
+
+                            // updates the display value of the drop field with
+                            // the resolved one, keeping the same logic value
+                            valueField.uxdropfield("set", {
+                                value: String(display),
+                                valueLogic: value
+                            });
+                        }
+                    );
+
+                    // breaks the switch
+                    break;
+
+                default:
+                    // sets the value in the text field as it's
+                    // provided (no conversion required)
+                    valueField.uxtextfield("value", {
+                        value: value
+                    });
+
+                    // breaks the switch
+                    break;
+            }
+        };
+
+        var _getSort = function(matchedObject) {
+            // retrieves the selected sort options and then uses it
+            // to retrieve the value to be used for the sorting, falling
+            // back to the text of the option (never to its markup)
+            var sortSelected = jQuery(".filter-sort-option.selected", matchedObject);
+            var sortValue = sortSelected.attr("data-name") || sortSelected.text();
+
+            // checks if the sort option is currently in the ascending mode
+            // and "calculates" the sort order string based on it, then created
+            // the sorting list (tuple) to be used in the query
+            var isAscending = sortSelected.hasClass("ascending");
+            var sortOrder = isAscending ? "ascending" : "descending";
+            return sortValue ? [sortValue, sortOrder] : null;
+        };
+
+        var _selectSort = function(matchedObject, sort) {
+            // unpacks the sorting list (tuple) into the value
+            // and the order that are going to be selected
+            var sortValue = sort[0];
+            var sortOrder = sort[1];
+
+            // retrieves the references to the various sort options
+            // and the one that is currently selected
+            var filterOptions = jQuery(".filter-sort-option", matchedObject);
+            var selectedOption = jQuery(".filter-sort-option.selected", matchedObject);
+
+            // filters the sort options so that only the one that has
+            // the requested value remains (same value used for the sorting)
+            var element = filterOptions.filter(function() {
+                var _element = jQuery(this);
+                return (_element.attr("data-name") || _element.text()) === sortValue;
+            });
+            element = element.first();
+
+            // in case the option is not found returns immediately
+            // as it's not possible to select it (unknown value)
+            if (element.length === 0) {
+                return false;
+            }
+
+            // in case the order is not valid returns immediately
+            // as it's not possible to select the option with it
+            if (sortOrder !== "ascending" && sortOrder !== "descending") {
+                return false;
+            }
+
+            // checks if the option is the one that represents no sorting
+            // (default) in such case its own order is the one to be used
+            var isEquals = element.attr("data-order") === "equals";
+            sortOrder = isEquals ? "equals" : sortOrder;
+
+            // removes the selected classes from the selected
+            // option, to unselect the selected option
+            selectedOption.removeClass("selected");
+            selectedOption.removeClass("ascending");
+            selectedOption.removeClass("descending");
+            selectedOption.removeClass("equals");
+
+            // selects the element by adding the selected class
+            // and the class of the requested order (sort order)
+            element.addClass("selected");
+            element.addClass(sortOrder);
+            return true;
+        };
+
+        var _getView = function(matchedObject) {
+            // iterates over the names of the views to find the one that
+            // is currently set in the filter (using the associated class)
+            for (var index = 0; index < VIEWS.length; index++) {
+                if (matchedObject.hasClass(VIEWS[index] + "-list")) {
+                    return VIEWS[index];
+                }
+            }
+
+            // returns an invalid value as no view is set in the filter
+            return null;
+        };
+
+        var _selectView = function(matchedObject, view) {
+            // checks if the view is one of the possible views and if it's
+            // possible to display it for the current filter component, note
+            // that the classes of the template are obfuscated (data class)
+            // until its first use, so both attributes must be verified
+            var isValid = VIEWS.indexOf(view) !== -1;
+            var hasView =
+                isValid &&
+                jQuery("." + view + "-view, [data-class~='" + view + "-view']", matchedObject).length;
+
+            // in case the view is not valid or there's no way to display
+            // it returns immediately (the current view is kept)
+            if (!hasView) {
+                return;
+            }
+
+            // removes the classes of the views from the filter and
+            // then adds the class associated with the requested view
+            for (var index = 0; index < VIEWS.length; index++) {
+                matchedObject.removeClass(VIEWS[index] + "-list");
+            }
+            matchedObject.addClass(view + "-list");
+        };
+
+        var _readState = function() {
+            // creates the map that holds the state of the filter with
+            // the (default) values that represent no state at all
+            var state = {
+                filterString: null,
+                filters: [],
+                sort: null,
+                view: null
+            };
+
+            // retrieves the query part of the current URL and splits
+            // it into the various parameters that are part of it
+            var search = window.location.search.slice(1);
+            var parameters = search ? search.split("&") : [];
+
+            // iterates over all the parameters to populate the state
+            // with the ones that are part of it, the ones that are
+            // not valid (or not known) are ignored
+            for (var index = 0; index < parameters.length; index++) {
+                // unpacks the current parameter into the name and the
+                // value, decoding both of them (may not be possible)
+                var parameter = _splitParameter(parameters[index]);
+                var name = parameter[0];
+                var value = parameter[1];
+                var tokens = value ? value.split(":") : [];
+
+                // switches over the name of the parameter
+                switch (name) {
+                    case "filter_string":
+                        // sets the value as the search string
+                        state.filterString = value || "";
+
+                        // breaks the switch
+                        break;
+
+                    case "filters[]":
+                    case "filters":
+                        // adds the filter tuple to the filters list, the value
+                        // is the remaining of the tokens as it may contain the
+                        // separator, incomplete tuples are ignored
+                        tokens.length > 2 &&
+                            state.filters.push([
+                                tokens[0],
+                                tokens[1],
+                                tokens.slice(2).join(":")
+                            ]);
+
+                        // breaks the switch
+                        break;
+
+                    case "sort":
+                        // sets the sorting list (tuple) only in case
+                        // both the value and the order are defined
+                        state.sort = tokens.length === 2 ? tokens : null;
+
+                        // breaks the switch
+                        break;
+
+                    case "view":
+                        // sets the value as the name of the view
+                        state.view = value;
+
+                        // breaks the switch
+                        break;
+                }
+            }
+
+            // returns the state that has been read from the URL
+            return state;
+        };
+
+        var _writeState = function(matchedObject) {
+            // retrieves the state of the filter and the flags that control
+            // if the state is bound to the URL and ready to be written
+            var state = matchedObject.data("state");
+            var stateful = matchedObject.data("stateful");
+            var stateReady = matchedObject.data("state_ready");
+
+            // in case the state is not meant to be reflected in the URL or
+            // it's not possible to do so returns immediately
+            if (!state || !stateful || !stateReady || !window.history.replaceState) {
+                return;
+            }
+
+            // retrieves the query part of the current URL and splits
+            // it into the various parameters that are part of it
+            var search = window.location.search.slice(1);
+            var parameters = search ? search.split("&") : [];
+
+            // creates the list that will hold the parameters of the new
+            // query, starting with the ones of the current URL that are
+            // not part of the state of the filter (must be kept)
+            var _parameters = [];
+            for (var index = 0; index < parameters.length; index++) {
+                var name = _splitParameter(parameters[index])[0];
+                STATE_PARAMETERS.indexOf(name) === -1 && _parameters.push(parameters[index]);
+            }
+
+            // serializes the state into the parameters and replaces the URL
+            // of the current history entry, these operations may not be
+            // possible (eg: value that can't be encoded, opaque origin or
+            // rate limit) and such failure is ignored
+            try {
+                // adds the search string to the parameters, in case it's
+                // not the default search of the filter (may be empty)
+                var defaultSearch = matchedObject.data("default_search");
+                state.filterString !== defaultSearch &&
+                    _parameters.push("filter_string=" + _encodeValue(state.filterString));
+
+                // iterates over all the filters to "serialize" their data into
+                // a simple string and add it to the parameters
+                for (index = 0; index < state.filters.length; index++) {
+                    _parameters.push(
+                        "filters[]=" + _encodeValue(state.filters[index].join(":"))
+                    );
+                }
+
+                // adds the sort string to the parameters, in case it's
+                // not the one of the default sort of the filter
+                var sort = state.sort.join(":");
+                var defaultSort = matchedObject.data("default_sort").join(":");
+                sort !== defaultSort && _parameters.push("sort=" + _encodeValue(sort));
+
+                // adds the view to the parameters, in case it's
+                // not the default view of the filter
+                var view = _getView(matchedObject);
+                var defaultView = matchedObject.data("default_view");
+                view && view !== defaultView && _parameters.push("view=" + view);
+
+                // builds the new URL from the path of the current one, the
+                // new query and the fragment, in case it's the same as the
+                // current one returns immediately (nothing to be done)
+                var location = window.location;
+                var query = _parameters.length > 0 ? "?" + _parameters.join("&") : "";
+                var url = location.pathname + query + location.hash;
+                if (url === location.pathname + location.search + location.hash) {
+                    return;
+                }
+
+                // replaces the URL of the current history
+                // entry, keeping the state of the entry
+                window.history.replaceState(window.history.state, null, url);
+            } catch (exception) {}
+        };
+
+        var _splitParameter = function(parameter) {
+            // splits the parameter around the first separator
+            // into the (encoded) name and value components
+            var index = parameter.indexOf("=");
+            var name = index === -1 ? parameter : parameter.slice(0, index);
+            var value = index === -1 ? "" : parameter.slice(index + 1);
+
+            // decodes both the name and the value, in case it's not
+            // possible (malformed encoding) invalid values are returned
+            try {
+                name = decodeURIComponent(name.replace(/\+/g, " "));
+                value = decodeURIComponent(value.replace(/\+/g, " "));
+            } catch (exception) {
+                return [null, null];
+            }
+
+            // returns the tuple with the name and the value
+            return [name, value];
+        };
+
+        var _encodeValue = function(value) {
+            // encodes the value keeping the filter separator as it
+            // is (valid in the query), for a more readable URL
+            return encodeURIComponent(value).replace(/%3A/g, ":");
         };
 
         var _initTemplateItem = function(filter, templateItem) {
