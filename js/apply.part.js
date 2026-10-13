@@ -83,6 +83,7 @@ if (typeof require !== "undefined") {
             var selectField = jQuery(".select-field", matchedObject).not(".template .select-field");
             var checkField = jQuery(".check-field", matchedObject).not(".template .check-field");
             var radioField = jQuery(".radio-field", matchedObject).not(".template .radio-field");
+            var switchField = jQuery(".switch-field", matchedObject).not(".template .switch-field");
             var tagField = jQuery(".tag-field", matchedObject).not(".template .tag-field");
             var incrementalField = jQuery(".incremental-field", matchedObject).not(
                 ".template .incremental-field"
@@ -234,6 +235,7 @@ if (typeof require !== "undefined") {
             selectField.uxselectfield();
             checkField.uxcheckfield();
             radioField.uxradiofield();
+            switchField.uxswitchfield();
             tagField.uxtagfield();
             incrementalField.uxincrementalfield();
             toggleField.uxtogglefield();
