@@ -1,0 +1,76 @@
+.omni-style .switch-field {
+    appearance: none;
+    -o-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    -khtml-appearance: none;
+    -webkit-appearance: none;
+    background-color: #cccccc;
+    border-radius: 9px 9px 9px 9px;
+    -o-border-radius: 9px 9px 9px 9px;
+    -ms-border-radius: 9px 9px 9px 9px;
+    -moz-border-radius: 9px 9px 9px 9px;
+    -khtml-border-radius: 9px 9px 9px 9px;
+    -webkit-border-radius: 9px 9px 9px 9px;
+    cursor: pointer;
+    height: 18px;
+    margin: 0px 0px 0px 0px;
+    position: relative;
+    transition: background-color 0.15s ease-in;
+    -o-transition: background-color 0.15s ease-in;
+    -ms-transition: background-color 0.15s ease-in;
+    -moz-transition: background-color 0.15s ease-in;
+    -khtml-transition: background-color 0.15s ease-in;
+    -webkit-transition: background-color 0.15s ease-in;
+    vertical-align: middle;
+    width: 32px;
+}
+
+.omni-style .switch-field::before {
+    background-color: #ffffff;
+    border-radius: 50% 50% 50% 50%;
+    -o-border-radius: 50% 50% 50% 50%;
+    -ms-border-radius: 50% 50% 50% 50%;
+    -moz-border-radius: 50% 50% 50% 50%;
+    -khtml-border-radius: 50% 50% 50% 50%;
+    -webkit-border-radius: 50% 50% 50% 50%;
+    content: "";
+    height: 14px;
+    left: 2px;
+    position: absolute;
+    top: 2px;
+    transition: left 0.15s ease-in;
+    -o-transition: left 0.15s ease-in;
+    -ms-transition: left 0.15s ease-in;
+    -moz-transition: left 0.15s ease-in;
+    -khtml-transition: left 0.15s ease-in;
+    -webkit-transition: left 0.15s ease-in;
+    width: 14px;
+}
+
+.omni-style .switch-field:hover {
+    background-color: #bbbbbb;
+}
+
+.omni-style .switch-field:checked {
+    background-color: #596c8e;
+}
+
+.omni-style .switch-field:checked:hover {
+    background-color: #3a5070;
+}
+
+.omni-style .switch-field:checked::before {
+    left: 16px;
+}
+
+.omni-style.explorer .switch-field {
+    background: transparent none no-repeat 0px 0px;
+    height: auto;
+    width: auto;
+}
+
+.omni-style .switch-field-label {
+    color: #4d4d4d;
+    margin: 0px 16px 0px 8px;
+}
