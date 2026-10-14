@@ -72,6 +72,14 @@ if (typeof require !== "undefined") {
                 var element = jQuery(this);
                 var switchField = element.prev(".switch-field");
 
+                // in case the label is natively associated with the switch
+                // field (eg: label element with the for attribute) the
+                // browser already toggles it, no need to toggle it again
+                var isNative = element.is("label") && this.control === switchField[0];
+                if (isNative) {
+                    return;
+                }
+
                 // toggles the "just" retrieved switch field, this should
                 // change its boolean value
                 _toggle(switchField, options);
@@ -105,6 +113,14 @@ if (typeof require !== "undefined") {
                     var inputs = jQuery("input", _element);
                     inputs.remove("input");
 
+                    // in case the current element is disabled (either by
+                    // class or attribute) it's not meant to be submitted
+                    // and so no unset value is created for it
+                    var isDisabled = _element.hasClass("disabled") || _element.attr("disabled");
+                    if (isDisabled) {
+                        return;
+                    }
+
                     // in case the current element is checked no need to
                     // continue as the value is going to be submitted
                     var isChecked = _element.is(":checked");
@@ -121,9 +137,9 @@ if (typeof require !== "undefined") {
 
         var _toggle = function(matchedObject, options, force) {
             // verifies if the current object is disabled (has the
-            // disabled class) and if that's the case and the force
-            // flag is not set returns the control flow immediately
-            var isDisabled = matchedObject.hasClass("disabled");
+            // disabled class or attribute) and if that's the case and
+            // the force flag is not set returns the control flow immediately
+            var isDisabled = matchedObject.hasClass("disabled") || matchedObject.attr("disabled");
             if (isDisabled && !force) {
                 return;
             }
@@ -167,22 +183,35 @@ if (typeof require !== "undefined") {
             // tries to retrieve the value from options
             var value = options.value;
 
-            // retrieves the current checked state from the matched
-            // object, this is considered to be the value of the field
-            var checked = matchedObject.is(":checked");
-
             // in case it's a "normal" get operation (no value defined),
             // the current checked state should be returned
             if (value === undefined) {
-                return checked;
+                return matchedObject.is(":checked");
             }
 
             // otherwise the "target" value is valid and the operations is
             // considered to be a set one (instead of get/read), in case
             // the boolean version of the value differs from the current
-            // state the field is toggled (forced operation)
+            // state of a field, that field is toggled (forced operation)
             var _checked = !!value;
-            _checked !== checked && _toggle(matchedObject, options, true);
+            matchedObject.each(function(index, element) {
+                var _element = jQuery(element);
+                var checked = _element.is(":checked");
+                _checked !== checked && _toggle(_element, options, true);
+            });
+        };
+
+        var _original = function(matchedObject, options) {
+            // runs the set operation on each of the matched objects so
+            // that they get updated with their original (checked) values
+            matchedObject.each(function(index, element) {
+                var _element = jQuery(element);
+                var value = _element.val();
+                var checked = _element.attr("data-checked");
+                _value(_element, {
+                    value: checked === value
+                });
+            });
         };
 
         var _reset = function(matchedObject, options) {
@@ -198,6 +227,12 @@ if (typeof require !== "undefined") {
                 // the caller method for proper handling
                 var value = _value(matchedObject, options);
                 return value;
+
+            case "original":
+                // restores the switch field value to
+                // its original (checked) value
+                _original(matchedObject, options);
+                return true;
 
             case "reset":
                 // resets the current switch field value to

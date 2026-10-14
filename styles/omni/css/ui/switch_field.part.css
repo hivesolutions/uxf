@@ -64,15 +64,6 @@
     left: 16px;
 }
 
-.omni-style .switch-field:focus {
-    outline: none;
-    -o-outline: none;
-    -ms-outline: none;
-    -moz-outline: none;
-    -khtml-outline: none;
-    -webkit-outline: none;
-}
-
 .omni-style.explorer .switch-field {
     background: transparent none no-repeat 0px 0px;
     height: auto;
