@@ -39,7 +39,29 @@ if (typeof require !== "undefined") {
         /**
          * Creates the necessary HTML for the component.
          */
-        var _appendHtml = function() {};
+        var _appendHtml = function() {
+            // localizes the cancel value that is going to be used
+            // as the label of the cancel link of the overlay search
+            var cancel = jQuery.uxlocale("Cancel");
+
+            // iterates over all the elements in the matched object
+            matchedObject.each(function(index, element) {
+                // retrieves the element reference
+                var _element = jQuery(element);
+
+                // tries to retrieve the cancel link of the overlay search
+                // and in case it does not exists creates a new one, used
+                // to hide the overlay search in devices that have no escape
+                // key (eg: phones), shown only for them by the style
+                var cancelLink = jQuery(".overlay-search-cancel", _element);
+                if (cancelLink.length === 0) {
+                    cancelLink = jQuery(
+                        '<a class="link link-blue overlay-search-cancel">' + cancel + "</a>"
+                    );
+                    _element.append(cancelLink);
+                }
+            });
+        };
 
         /**
          * Registers the event handlers for the created objects.
@@ -70,6 +92,22 @@ if (typeof require !== "undefined") {
                     // hides the overlay search
                     _hide(overlaySearch, options);
                 }
+            });
+
+            // retrieves the cancel link for the matched object
+            var cancelLink = jQuery(".overlay-search-cancel", matchedObject);
+
+            // registers for the click event in the cancel link
+            // to hide the overlay search, as the escape key does
+            cancelLink.click(function() {
+                // retrieves the element
+                var element = jQuery(this);
+
+                // retrieves the parent overlay search
+                var overlaySearch = element.parents(".overlay-search");
+
+                // hides the overlay search
+                _hide(overlaySearch, options);
             });
         };
 

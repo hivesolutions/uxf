@@ -50,9 +50,13 @@ if (typeof require !== "undefined") {
                 var offset = _element.attr("data-offset");
                 var offsetFloat = parseFloat(offset);
 
+                // retrieves the position of the element
+                // in the screen (top for touch devices)
+                var position = __position();
+
                 // centers the matched object with the
                 // current vertical offset in percentage
-                _element.uxcenter(offsetFloat);
+                _element.uxcenter(offsetFloat, null, null, null, null, null, null, position);
             });
         };
 
@@ -166,16 +170,24 @@ if (typeof require !== "undefined") {
 
                 // registers the resize in the window
                 _window.resize(function(event) {
+                    // retrieves the position of the element
+                    // in the screen (top for touch devices)
+                    var position = __position();
+
                     // centers the current element with the
                     // current vertical offset in percentage
-                    _element.uxcenter(offsetFloat);
+                    _element.uxcenter(offsetFloat, null, null, null, null, null, null, position);
                 });
 
                 // registers the scroll in the window
                 _window.scroll(function() {
+                    // retrieves the position of the element
+                    // in the screen (top for touch devices)
+                    var position = __position();
+
                     // centers the current element with the
                     // current vertical offset in percentage
-                    _element.uxcenter(offsetFloat);
+                    _element.uxcenter(offsetFloat, null, null, null, null, null, null, position);
                 });
 
                 // registers for the global hide modal event
@@ -242,6 +254,10 @@ if (typeof require !== "undefined") {
             var offset = matchedObject.attr("data-offset");
             var offsetFloat = parseFloat(offset);
 
+            // retrieves the position of the overlay panel in
+            // the screen, at the top for touch devices
+            var position = __position();
+
             // retrieves eventual items of the overlay panel,
             // including a text field value
             var textField = jQuery(".text-field", matchedObject);
@@ -254,7 +270,7 @@ if (typeof require !== "undefined") {
             // centers the object in the screen, this is required
             // in order to avoid init glitches that would be created
             // for situations where there's an offscreen resize
-            matchedObject.uxcenter(offsetFloat);
+            matchedObject.uxcenter(offsetFloat, null, null, null, null, null, null, position);
 
             // runs the collect operation on the current element to
             // restore it to a base state (so that it can be used)
@@ -345,6 +361,16 @@ if (typeof require !== "undefined") {
             // from the associated css property
             var timing = element.css("animation-timing-function");
             return timing;
+        };
+
+        var __position = function() {
+            // determines the position of the overlay panel in the screen,
+            // at the top for touch devices, so that it's not covered by
+            // their (on screen) keyboard, and at the center otherwise
+            var _body = jQuery("body");
+            var isTouch = _body.hasClass("touch");
+            var position = isTouch ? "top" : "center";
+            return position;
         };
 
         // initializes the plugin
