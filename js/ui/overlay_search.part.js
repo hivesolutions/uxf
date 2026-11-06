@@ -40,25 +40,20 @@ if (typeof require !== "undefined") {
          * Creates the necessary HTML for the component.
          */
         var _appendHtml = function() {
-            // localizes the cancel value that is going to be used
-            // as the label of the cancel link of the overlay search
-            var cancel = jQuery.uxlocale("Cancel");
-
             // iterates over all the elements in the matched object
             matchedObject.each(function(index, element) {
                 // retrieves the element reference
                 var _element = jQuery(element);
 
-                // tries to retrieve the cancel link of the overlay search
+                // tries to retrieve the clear button of the overlay search
                 // and in case it does not exists creates a new one, used
-                // to hide the overlay search in devices that have no escape
-                // key (eg: phones), shown only for them by the style
-                var cancelLink = jQuery(".overlay-search-cancel", _element);
-                if (cancelLink.length === 0) {
-                    cancelLink = jQuery(
-                        '<a class="link link-blue overlay-search-cancel">' + cancel + "</a>"
-                    );
-                    _element.append(cancelLink);
+                // to clear the text field of the overlay search in devices
+                // where it fills the width of the screen (eg: phones), as
+                // shown only for them by the style
+                var clearButton = jQuery(".overlay-search-clear", _element);
+                if (clearButton.length === 0) {
+                    clearButton = jQuery('<div class="overlay-search-clear"></div>');
+                    _element.append(clearButton);
                 }
             });
         };
@@ -94,21 +89,47 @@ if (typeof require !== "undefined") {
                 }
             });
 
-            // retrieves the cancel link for the matched object
-            var cancelLink = jQuery(".overlay-search-cancel", matchedObject);
+            // retrieves the clear button for the matched object
+            var clearButton = jQuery(".overlay-search-clear", matchedObject);
 
-            // registers for the click event in the cancel link
-            // to hide the overlay search, as the escape key does
-            cancelLink.click(function() {
+            // registers for the mouse down event in the clear button
+            clearButton.mousedown(function(event) {
+                // avoids event propagation this way the focus
+                // is not lost when clicking on the clear button
+                // (this is the desired behavior)
+                event.stopPropagation();
+                event.preventDefault();
+            });
+
+            // registers for the click event in the clear button to
+            // clear the overlay search, that remains shown so that
+            // a new search may be started right away
+            clearButton.click(function() {
                 // retrieves the element
                 var element = jQuery(this);
 
                 // retrieves the parent overlay search
                 var overlaySearch = element.parents(".overlay-search");
 
-                // hides the overlay search
-                _hide(overlaySearch, options);
+                // clears the overlay search
+                _clear(overlaySearch, options);
             });
+        };
+
+        var _clear = function(matchedObject, options) {
+            // retrieves the drop field (if any) and the text
+            // field of the overlay search to be cleared
+            var dropField = jQuery(".drop-field", matchedObject);
+            var textField = jQuery(".text-field", matchedObject);
+
+            // resets the drop field and the text field to their empty
+            // state (no value nor results), hiding the (empty) list of
+            // the drop field, and then focuses the text field so that
+            // a new value may be typed right away
+            dropField.uxreset();
+            textField.uxreset();
+            dropField.triggerHandler("hide_drop");
+            textField.focus();
         };
 
         var _hide = function(matchedObject, options) {
