@@ -1040,14 +1040,16 @@ if (typeof require !== "undefined") {
                         return;
                     }
 
-                    // in case the drop field is locked or the containing
-                    // text field does not contains focus there is no need
-                    // to process the results (something occurred in between
-                    // the request and the response) must return immediately,
-                    // note that this immediate return operation may be skipped
-                    // in case the force flag is set (avoids skipping)
+                    // in case the drop field is locked, the value of the text
+                    // field is no longer the one of the request (eg: reset or
+                    // typed over) or the containing text field does not contains
+                    // focus there is no need to process the results (something
+                    // occurred in between the request and the response) must
+                    // return immediately, note that this immediate return
+                    // operation may be skipped in case the force flag is set
                     var isInvalid =
                         (!isSelect && dropField.hasClass("drop-field-lock")) ||
+                        (!isSelect && textField.val() !== textFieldValue) ||
                         !textField.hasClass("focus");
                     if (isInvalid && !force) {
                         return;
