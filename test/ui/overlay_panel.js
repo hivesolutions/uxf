@@ -64,6 +64,26 @@ describe("UxOverlayPanel", function() {
                 [0.1, "top"]
             ]);
         });
+        it("should use the touch of the body at the time of the resize and scroll", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").addClass("touch");
+            jQuery("body").append(
+                '<div class="overlay"></div><div class="overlay-panel" data-offset="0.10"></div>'
+            );
+            jQuery(".overlay-panel").uxoverlaypanel();
+            jQuery("body").removeClass("touch");
+            const centers = capture(() => {
+                jQuery(global.window).trigger("resize");
+                jQuery(global.window).trigger("scroll");
+            });
+
+            assert.deepStrictEqual(centers, [
+                [0.1, "center"],
+                [0.1, "center"]
+            ]);
+        });
         it("should center in the middle of the screen when shown without touch", () => {
             const jQuery = global.jQuery;
 
@@ -117,26 +137,6 @@ describe("UxOverlayPanel", function() {
             assert.deepStrictEqual(centers, [
                 [0.1, "top"],
                 [0.1, "top"]
-            ]);
-        });
-        it("should use the touch of the body at the time of the resize and scroll", () => {
-            const jQuery = global.jQuery;
-
-            jQuery("body").empty();
-            jQuery("body").addClass("touch");
-            jQuery("body").append(
-                '<div class="overlay"></div><div class="overlay-panel" data-offset="0.10"></div>'
-            );
-            jQuery(".overlay-panel").uxoverlaypanel();
-            jQuery("body").removeClass("touch");
-            const centers = capture(() => {
-                jQuery(global.window).trigger("resize");
-                jQuery(global.window).trigger("scroll");
-            });
-
-            assert.deepStrictEqual(centers, [
-                [0.1, "center"],
-                [0.1, "center"]
             ]);
         });
     });

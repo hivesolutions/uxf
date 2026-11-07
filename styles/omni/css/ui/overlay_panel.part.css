@@ -160,7 +160,7 @@
     width: 36px;
 }
 
-.omni-style.mobile-s.retina-s .overlay-panel.overlay-search .overlay-search-clear {
+.omni-style.retina-s .overlay-panel.overlay-search .overlay-search-clear {
     background-image: url(../images/overlay-search-clear-2x.png);
     background-size: 20px 20px;
 }
