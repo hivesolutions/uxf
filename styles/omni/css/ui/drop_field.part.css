@@ -47,6 +47,7 @@
 
 .omni-style .drop-field.drop-field-select > .text-field {
     background: transparent url(../images/drop-field-select.png) repeat-x right center;
+    caret-color: transparent;
     cursor: pointer;
     user-select: none;
     -o-user-select: none;
@@ -59,6 +60,10 @@
 .omni-style.retina-s .drop-field.drop-field-select > .text-field {
     background-image: url(../images/drop-field-select-2x.png);
     background-size: 940px 40px;
+}
+
+.omni-style .drop-field.drop-field-select > .text-field::selection {
+    background-color: transparent;
 }
 
 .omni-style .drop-field.drop-field-select.disabled > .text-field {
