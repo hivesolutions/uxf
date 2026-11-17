@@ -135,6 +135,26 @@ describe("UxNotification", function() {
             const stack = jQuery("body > .notifications-stack.bottom-left");
             assert.strictEqual(stack.children(".notification").length, 1);
         });
+        it("should use the stack of the bottom left without a position", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").uxnotification({
+                title: "Null",
+                message: "Null message",
+                position: null
+            });
+            jQuery("body").uxnotification({
+                title: "Undefined",
+                message: "Undefined message",
+                position: undefined
+            });
+
+            const stacks = jQuery("body > .notifications-stack");
+            assert.strictEqual(stacks.length, 1);
+            assert.strictEqual(stacks.attr("class"), "notifications-stack bottom-left");
+            assert.strictEqual(stacks.children(".notification").length, 2);
+        });
     });
 
     describe("#link", function() {
@@ -200,6 +220,37 @@ describe("UxNotification", function() {
                 jQuery(element).text()
             );
             assert.deepStrictEqual(texts.get(), ["Product lookup failed"]);
+        });
+        it("should keep the notification clicked removed once its timeout is reached", async () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Product not found",
+                timeout: 30
+            });
+            jQuery(".notification").click();
+            await tick(80);
+
+            assert.strictEqual(jQuery(".notification").length, 0);
+            assert.strictEqual(jQuery("body > .notifications-stack").length, 1);
+        });
+        it("should reuse the stack of the notifications removed", async () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").uxnotification({ title: "First", message: "First message" });
+            jQuery(".notification").click();
+            await tick(50);
+            jQuery("body").uxnotification({ title: "Second", message: "Second message" });
+
+            const stacks = jQuery("body > .notifications-stack");
+            assert.strictEqual(stacks.length, 1);
+            const texts = stacks
+                .find(".notification-text")
+                .map((index, element) => jQuery(element).text());
+            assert.deepStrictEqual(texts.get(), ["Second message"]);
         });
     });
 });

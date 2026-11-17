@@ -19,9 +19,6 @@ if (typeof require !== "undefined") {
         var defaults = {
             title: "Title",
             message: "Message",
-            type: null,
-            small: false,
-            position: "bottom-left",
             timeout: 7500,
             fadeTimeout: 500
         };
@@ -59,9 +56,10 @@ if (typeof require !== "undefined") {
 
             // retrieves the flag that controls if the notification is the
             // small (compact) one and the position of the window where it's
-            // shown (eg: bottom-left or top-center)
+            // shown (eg: bottom-left or top-center), defaulting to the bottom
+            // left corner of the window
             var small = options.small;
-            var position = options.position;
+            var position = options.position || "bottom-left";
 
             // retrieves the timeout to be used in the notification
             // from the options

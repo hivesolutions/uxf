@@ -130,6 +130,18 @@
     -webkit-box-shadow: 0px 0px 6px #4d4d4d;
 }
 
+.omni-style.dark .notification.success {
+    border-color: #86c795;
+}
+
+.omni-style.dark .notification.warning {
+    border-color: #f6c167;
+}
+
+.omni-style.dark .notification.error {
+    border-color: #de737c;
+}
+
 .omni-style.dark .notification.button:hover {
     border-color: #000000;
 }
