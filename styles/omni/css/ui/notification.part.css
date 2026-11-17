@@ -77,7 +77,14 @@
 }
 
 .omni-style .notification.small {
+    background-color: #ffffff;
+    border-color: #dadada;
+    height: auto;
+    line-height: normal;
     padding: 8px 12px 8px 12px;
+    text-align: left;
+    text-transform: none;
+    width: 340px;
 }
 
 .omni-style .notification.small .notification-title {
