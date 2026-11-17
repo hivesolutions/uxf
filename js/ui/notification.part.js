@@ -50,6 +50,17 @@ if (typeof require !== "undefined") {
             var title = options.title;
             var message = options.message;
 
+            // retrieves the (optional) type of the notification, that
+            // defines its style (eg: error, warning or success)
+            var type = options.type;
+
+            // retrieves the flag that controls if the notification is the
+            // small (compact) one and the position of the window where it's
+            // shown (eg: bottom-left or top-center), defaulting to the bottom
+            // left corner of the window
+            var small = options.small;
+            var position = options.position || "bottom-left";
+
             // retrieves the timeout to be used in the notification
             // from the options
             var timeout = options.timeout;
@@ -58,6 +69,16 @@ if (typeof require !== "undefined") {
             // retrieves the optional link element that
             // defines the target for a click in the notification
             var link = options.link;
+
+            // tries to retrieve the stack of the notifications of the position,
+            // that holds them, in case it does not exists creates a new one
+            // and appends it to the matched object (default action)
+            var stack = jQuery("> .notifications-stack." + position, matchedObject);
+            if (stack.length === 0) {
+                stack = jQuery('<div class="notifications-stack"></div>');
+                stack.addClass(position);
+                matchedObject.append(stack);
+            }
 
             // creates the message element from the HTML code
             // that is going to be used as the base for display
@@ -72,9 +93,14 @@ if (typeof require !== "undefined") {
                     "</div>"
             );
 
-            // adds message element to the matched object making
-            // it ready in ters of visual display (ui display)
-            matchedObject.append(messageElement);
+            // adds the type and the small flag of the notification as classes
+            // of the message element, so that it's styled accordingly
+            type && messageElement.addClass(type);
+            small && messageElement.addClass("small");
+
+            // adds message element to the stack of the notifications
+            // making it ready in ters of visual display (ui display)
+            stack.append(messageElement);
 
             // starts the notification element as button so
             // that any link in it is defined as target
@@ -93,13 +119,12 @@ if (typeof require !== "undefined") {
             // registers for the click event on the created
             // message element so that it fades out when a
             // click occurs in it (as expected)
-            link &&
-                messageElement.click(function() {
-                    var element = jQuery(this);
-                    element.fadeOut(fadeTimeout, function() {
-                        element.remove();
-                    });
+            messageElement.click(function() {
+                var element = jQuery(this);
+                element.fadeOut(fadeTimeout, function() {
+                    element.remove();
                 });
+            });
         };
 
         /**
