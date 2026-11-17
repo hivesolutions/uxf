@@ -1,18 +1,41 @@
+.omni-style .notifications-stack {
+    position: fixed;
+    z-index: 12;
+}
+
+.omni-style .notifications-stack.bottom-left {
+    bottom: 16px;
+    left: 16px;
+}
+
+.omni-style .notifications-stack.top-center {
+    display: flex;
+    flex-direction: column-reverse;
+    left: 50%;
+    margin-left: -183px;
+    top: 77px;
+}
+
 .omni-style .notification {
     background-color: #ffffff;
     border: 1px solid #dadada;
-    bottom: 16px;
     box-shadow: 0px 0px 4px #eeeeee;
     -o-box-shadow: 0px 0px 4px #eeeeee;
     -ms-box-shadow: 0px 0px 4px #eeeeee;
     -moz-box-shadow: 0px 0px 4px #eeeeee;
     -khtml-box-shadow: 0px 0px 4px #eeeeee;
     -webkit-box-shadow: 0px 0px 4px #eeeeee;
-    left: 16px;
+    cursor: pointer;
     padding: 12px 12px 12px 12px;
-    position: fixed;
     width: 340px;
-    z-index: 12;
+}
+
+.omni-style .notification + .notification {
+    margin: 8px 0px 0px 0px;
+}
+
+.omni-style .notifications-stack.top-center > .notification + .notification {
+    margin: 0px 0px 8px 0px;
 }
 
 .omni-style .notification .notification-close {
@@ -53,8 +76,47 @@
     margin: 0px 0px 0px 0px;
 }
 
-.omni-style .notification.button:hover {
+.omni-style .notification.small {
+    padding: 8px 12px 8px 12px;
+}
+
+.omni-style .notification.small .notification-title {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0px 0px 2px 0px;
+    text-transform: uppercase;
+}
+
+.omni-style .notification.success {
+    border-color: #86c795;
+}
+
+.omni-style .notification.success .notification-title {
+    color: #426725;
+}
+
+.omni-style .notification.warning {
+    border-color: #f6c167;
+}
+
+.omni-style .notification.warning .notification-title {
+    color: #936621;
+}
+
+.omni-style .notification.error {
+    border-color: #de737c;
+}
+
+.omni-style .notification.error .notification-title {
+    color: #c9273f;
+}
+
+.omni-style .notification:hover {
     background-color: #f4f4f4;
+}
+
+.omni-style .notification.button:hover {
     border-color: #cccccc;
 }
 
