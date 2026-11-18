@@ -157,6 +157,153 @@ describe("UxNotification", function() {
         });
     });
 
+    describe("#sound", function() {
+        let play = null;
+        let played = null;
+
+        beforeEach(() => {
+            const prototype = global.window.HTMLMediaElement.prototype;
+            play = prototype.play;
+            played = [];
+            prototype.play = function() {
+                played.push(this);
+                return Promise.resolve();
+            };
+        });
+
+        afterEach(() => {
+            const jQuery = global.jQuery;
+            global.window.HTMLMediaElement.prototype.play = play;
+            jQuery("body").removeData("notification_sounds");
+        });
+
+        it("should play the sound of the type of the notification", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").data("notification_sounds", SOUNDS);
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Product not found",
+                type: "error"
+            });
+
+            const sources = played.map(audio => audio.getAttribute("src"));
+            assert.deepStrictEqual(sources, ["/common/sounds/dialog-error.mp3"]);
+        });
+        it("should play the sound of the information without a type", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").data("notification_sounds", SOUNDS);
+            jQuery("body").uxnotification({
+                title: "Alice Johnson",
+                message: "edited RSTWNR000001"
+            });
+
+            const sources = played.map(audio => audio.getAttribute("src"));
+            assert.deepStrictEqual(sources, ["/common/sounds/dialog-information.mp3"]);
+        });
+        it("should play no sound for a silent notification", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").data("notification_sounds", SOUNDS);
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Product not found",
+                type: "error",
+                silent: true
+            });
+
+            assert.strictEqual(played.length, 0);
+            assert.strictEqual(jQuery(".notification").length, 1);
+        });
+        it("should play no sound without a sound for the type", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Product not found",
+                type: "error"
+            });
+            jQuery("body").data("notification_sounds", { error: SOUNDS.error });
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Scan a product before the store",
+                type: "warning"
+            });
+
+            assert.strictEqual(played.length, 0);
+            assert.strictEqual(jQuery(".notification").length, 2);
+        });
+        it("should play the sound of each notification on its own audio element", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").data("notification_sounds", SOUNDS);
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Scan a product before the store",
+                type: "warning"
+            });
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Store not available for the restock",
+                type: "warning"
+            });
+
+            assert.strictEqual(played.length, 2);
+            assert.notStrictEqual(played[0], played[1]);
+            assert.strictEqual(played[1].getAttribute("src"), "/common/sounds/dialog-warning.mp3");
+        });
+        it("should ignore a play refused by the browser", async () => {
+            const jQuery = global.jQuery;
+            const rejections = [];
+            const listener = reason => rejections.push(reason);
+
+            global.window.HTMLMediaElement.prototype.play = function() {
+                played.push(this);
+                return Promise.reject(new Error("NotAllowedError"));
+            };
+            process.on("unhandledRejection", listener);
+            try {
+                jQuery("body").empty();
+                jQuery("body").data("notification_sounds", SOUNDS);
+                jQuery("body").uxnotification({
+                    title: "Stock Adjustment",
+                    message: "The stock adjustment request was submitted for approval.",
+                    type: "success"
+                });
+                await tick(50);
+            } finally {
+                process.removeListener("unhandledRejection", listener);
+            }
+
+            assert.strictEqual(played.length, 1);
+            assert.strictEqual(rejections.length, 0);
+            assert.strictEqual(jQuery(".notification").length, 1);
+        });
+        it("should play a sound on a browser with no promise of the play", () => {
+            const jQuery = global.jQuery;
+
+            global.window.HTMLMediaElement.prototype.play = function() {
+                played.push(this);
+            };
+            jQuery("body").empty();
+            jQuery("body").data("notification_sounds", SOUNDS);
+            jQuery("body").uxnotification({
+                title: "Stock Adjustment",
+                message: "The stock adjustment request was submitted for approval.",
+                type: "success"
+            });
+
+            assert.strictEqual(played.length, 1);
+            assert.strictEqual(played[0].getAttribute("src"), "/common/sounds/complete.mp3");
+        });
+    });
+
     describe("#link", function() {
         it("should make the notification of a link a button of the link", () => {
             const jQuery = global.jQuery;
@@ -254,5 +401,12 @@ describe("UxNotification", function() {
         });
     });
 });
+
+const SOUNDS = {
+    error: "/common/sounds/dialog-error.mp3",
+    warning: "/common/sounds/dialog-warning.mp3",
+    success: "/common/sounds/complete.mp3",
+    information: "/common/sounds/dialog-information.mp3"
+};
 
 const tick = (timeout = 10) => new Promise(resolve => setTimeout(resolve, timeout));

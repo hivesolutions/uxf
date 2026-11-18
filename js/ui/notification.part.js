@@ -61,6 +61,12 @@ if (typeof require !== "undefined") {
             var small = options.small;
             var position = options.position || "bottom-left";
 
+            // retrieves the flag that controls if the notification is silent
+            // (no sound) and the sounds of the notifications by their type,
+            // from the matched object (eg: the ones of the layout of the page)
+            var silent = options.silent;
+            var sounds = matchedObject.data("notification_sounds") || {};
+
             // retrieves the timeout to be used in the notification
             // from the options
             var timeout = options.timeout;
@@ -102,6 +108,12 @@ if (typeof require !== "undefined") {
             // making it ready in ters of visual display (ui display)
             stack.append(messageElement);
 
+            // plays the sound of the type of the notification (the one of the
+            // information when it has no type), unless the notification is
+            // silent or there's no sound for its type
+            var sound = sounds[type || "information"];
+            !silent && sound && _playSound(sound);
+
             // starts the notification element as button so
             // that any link in it is defined as target
             link && messageElement.addClass("button");
@@ -131,6 +143,24 @@ if (typeof require !== "undefined") {
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {};
+
+        /**
+         * Plays the sound in the provided URL on a new audio element, so that
+         * the sounds of consecutive notifications don't cut each other.
+         *
+         * @param {String}
+         *            sound The URL of the sound to be played.
+         */
+        var _playSound = function(sound) {
+            // creates the audio element of the sound and plays it, ignoring a
+            // refused play (eg: the browser refuses to play a sound before any
+            // interaction with the page), as the sound only complements the
+            // notification
+            var audio = jQuery("<audio></audio>");
+            audio.attr("src", sound);
+            var promise = audio[0].play();
+            promise && promise.catch(function() {});
+        };
 
         // initializes the plugin
         initialize();
