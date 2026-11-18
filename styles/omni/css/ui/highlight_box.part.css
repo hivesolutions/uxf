@@ -5,11 +5,19 @@
     text-align: center;
 }
 
+.omni-style.mobile-s .highlight-box-container {
+    padding: 16px 8px 14px 8px;
+}
+
 .omni-style .hightlight-box {
     display: inline-block;
     list-style: none;
     margin: 0px 0px 0px 0px;
     padding: 0px 0px 0px 0px;
+}
+
+.omni-style.mobile-s .hightlight-box {
+    display: flex;
 }
 
 .omni-style .hightlight-box:after {
@@ -25,6 +33,13 @@
     float: left;
     text-align: center;
     width: 166px;
+}
+
+.omni-style.mobile-s .hightlight-box .hightlight-box-item {
+    flex: 1 1 0px;
+    float: none;
+    min-width: 0px;
+    width: auto;
 }
 
 .omni-style .hightlight-box .hightlight-box-item:first-child {
@@ -43,12 +58,24 @@
     text-transform: uppercase;
 }
 
+.omni-style.mobile-s .hightlight-box .hightlight-box-item > h3 {
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
 .omni-style .hightlight-box .hightlight-box-item > h1 {
     color: #444444;
     font-size: 42px;
     font-weight: normal;
     line-height: 42px;
     margin: 0px 0px 0px 0px;
+}
+
+.omni-style.mobile-s .hightlight-box .hightlight-box-item > h1 {
+    font-size: 28px;
+    line-height: 28px;
 }
 
 .omni-style .hightlight-box .hightlight-box-item.green > h1 {
