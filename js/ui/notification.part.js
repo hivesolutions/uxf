@@ -63,7 +63,7 @@ if (typeof require !== "undefined") {
 
             // retrieves the flag that controls if the notification is silent
             // (no sound) and the sounds of the notifications by their type,
-            // from the matched object (eg: the ones of the layout of the page)
+            // from the matched object, that may contain them (none by default)
             var silent = options.silent;
             var sounds = matchedObject.data("notification_sounds") || {};
 

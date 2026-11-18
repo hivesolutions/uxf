@@ -189,7 +189,7 @@ describe("UxNotification", function() {
             });
 
             const sources = played.map(audio => audio.getAttribute("src"));
-            assert.deepStrictEqual(sources, ["/common/sounds/dialog-error.mp3"]);
+            assert.deepStrictEqual(sources, ["/sounds/error.mp3"]);
         });
         it("should play the sound of the information without a type", () => {
             const jQuery = global.jQuery;
@@ -202,7 +202,7 @@ describe("UxNotification", function() {
             });
 
             const sources = played.map(audio => audio.getAttribute("src"));
-            assert.deepStrictEqual(sources, ["/common/sounds/dialog-information.mp3"]);
+            assert.deepStrictEqual(sources, ["/sounds/information.mp3"]);
         });
         it("should play no sound for a silent notification", () => {
             const jQuery = global.jQuery;
@@ -256,7 +256,7 @@ describe("UxNotification", function() {
 
             assert.strictEqual(played.length, 2);
             assert.notStrictEqual(played[0], played[1]);
-            assert.strictEqual(played[1].getAttribute("src"), "/common/sounds/dialog-warning.mp3");
+            assert.strictEqual(played[1].getAttribute("src"), "/sounds/warning.mp3");
         });
         it("should ignore a play refused by the browser", async () => {
             const jQuery = global.jQuery;
@@ -300,7 +300,7 @@ describe("UxNotification", function() {
             });
 
             assert.strictEqual(played.length, 1);
-            assert.strictEqual(played[0].getAttribute("src"), "/common/sounds/complete.mp3");
+            assert.strictEqual(played[0].getAttribute("src"), "/sounds/success.mp3");
         });
     });
 
@@ -403,10 +403,10 @@ describe("UxNotification", function() {
 });
 
 const SOUNDS = {
-    error: "/common/sounds/dialog-error.mp3",
-    warning: "/common/sounds/dialog-warning.mp3",
-    success: "/common/sounds/complete.mp3",
-    information: "/common/sounds/dialog-information.mp3"
+    error: "/sounds/error.mp3",
+    warning: "/sounds/warning.mp3",
+    success: "/sounds/success.mp3",
+    information: "/sounds/information.mp3"
 };
 
 const tick = (timeout = 10) => new Promise(resolve => setTimeout(resolve, timeout));
