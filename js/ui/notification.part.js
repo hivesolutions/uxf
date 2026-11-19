@@ -19,8 +19,7 @@ if (typeof require !== "undefined") {
         var defaults = {
             title: "Title",
             message: "Message",
-            timeout: 7500,
-            fadeTimeout: 500
+            timeout: 7500
         };
 
         // sets the default options value
@@ -70,7 +69,6 @@ if (typeof require !== "undefined") {
             // retrieves the timeout to be used in the notification
             // from the options
             var timeout = options.timeout;
-            var fadeTimeout = options.fadeTimeout;
 
             // retrieves the optional link element that
             // defines the target for a click in the notification
@@ -123,19 +121,15 @@ if (typeof require !== "undefined") {
             // sets the timeout for hiding the notification, once
             // the final timeout of the message has been reached
             setTimeout(function() {
-                messageElement.fadeOut(fadeTimeout, function() {
-                    messageElement.remove();
-                });
+                _hide(messageElement);
             }, timeout);
 
             // registers for the click event on the created
-            // message element so that it fades out when a
+            // message element so that it's hidden when a
             // click occurs in it (as expected)
             messageElement.click(function() {
                 var element = jQuery(this);
-                element.fadeOut(fadeTimeout, function() {
-                    element.remove();
-                });
+                _hide(element);
             });
         };
 
@@ -143,6 +137,70 @@ if (typeof require !== "undefined") {
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {};
+
+        /**
+         * Hides the provided notification element, running its animation of
+         * leaving (if any) and then closing the room it leaves in its stack,
+         * so that the other notifications glide into it, removing it once
+         * the room is closed (at once in case there's no animation).
+         *
+         * @param {Element}
+         *            element The notification element to be hidden.
+         */
+        var _hide = function(element) {
+            // verifies if the notification is already being hidden and if
+            // that's the case returns immediately, as its hiding is pending
+            if (element.hasClass("invisible")) {
+                return;
+            }
+
+            // marks the notification as invisible, so that its animation of
+            // leaving runs, and in case it has no animation (eg: with the
+            // animations disabled) removes it immediately
+            element.addClass("invisible");
+            if (!__duration(element, "animation-duration")) {
+                element.remove();
+                return;
+            }
+
+            // sets the current height of the notification as its height, so
+            // that the closing of its room (once it has left) transitions from
+            // it, as an automatic height doesn't transition
+            element.css("height", element.height() + "px");
+
+            // counts the ends of the animations of leaving (one per animation,
+            // eg: the slide and the fade), closing the room of the notification
+            // once all of them have ended
+            var pending = element.css("animation-name").split(",").length;
+            element.bind("animationend", function() {
+                pending--;
+                pending === 0 && _collapse(element);
+            });
+        };
+
+        /**
+         * Closes the room of the provided (invisible) notification element in
+         * its stack, from its current height to none, removing it once the
+         * room is closed (at once in case there's no transition).
+         *
+         * @param {Element}
+         *            element The notification element to be collapsed.
+         */
+        var _collapse = function(element) {
+            // marks the notification as collapsed, so that its room closes
+            // from the height set when it started leaving
+            element.addClass("collapsed");
+
+            // removes the notification once its room is closed, or at once in
+            // case there's no transition of its room
+            if (!__duration(element, "transition-duration")) {
+                element.remove();
+                return;
+            }
+            element.one("transitionend", function() {
+                element.remove();
+            });
+        };
 
         /**
          * Plays the sound in the provided URL on a new audio element, so that
@@ -160,6 +218,27 @@ if (typeof require !== "undefined") {
             audio.attr("src", sound);
             var promise = audio[0].play();
             promise && promise.catch(function() {});
+        };
+
+        /**
+         * Retrieves the duration (in milliseconds) of the provided property
+         * of the element (eg: its animation or transition duration), the
+         * longest one in case the property has several durations.
+         *
+         * @param {Element}
+         *            element The element whose duration is retrieved.
+         * @param {String}
+         *            name The name of the property of the duration.
+         * @return {Number} The duration in milliseconds, zero in case the
+         *         element has none.
+         */
+        var __duration = function(element, name) {
+            var durations = (element.css(name) || "").split(",");
+            var duration = 0;
+            for (var index = 0; index < durations.length; index++) {
+                duration = Math.max(duration, parseFloat(durations[index]) || 0);
+            }
+            return duration * 1000;
         };
 
         // initializes the plugin

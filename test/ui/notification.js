@@ -322,16 +322,6 @@ describe("UxNotification", function() {
     });
 
     describe("#dismiss", function() {
-        beforeEach(() => {
-            const jQuery = global.jQuery;
-            jQuery.fx.off = true;
-        });
-
-        afterEach(() => {
-            const jQuery = global.jQuery;
-            jQuery.fx.off = false;
-        });
-
         it("should remove the notification once its timeout is reached", async () => {
             const jQuery = global.jQuery;
 
@@ -399,8 +389,81 @@ describe("UxNotification", function() {
                 .map((index, element) => jQuery(element).text());
             assert.deepStrictEqual(texts.get(), ["Second message"]);
         });
+        it("should keep the notification leaving until its animations end and its room closes", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification and verifies that it's leaving, with its
+            // height set so that its room closes from it
+            const notification = jQuery(".notification");
+            notification.click();
+            assert.strictEqual(notification.hasClass("invisible"), true);
+            assert.strictEqual(notification.hasClass("collapsed"), false);
+            assert.notStrictEqual(notification[0].style.height, "");
+
+            // ends the first of its two animations and verifies that it keeps
+            // leaving, then ends the second one and verifies that its room is
+            // closing, the notification being kept until the room is closed
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), false);
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            assert.strictEqual(jQuery(".notification").length, 1);
+            notification.trigger("transitionend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should ignore the click and the timeout of a notification already leaving", async () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({
+                title: "Restock",
+                message: "Product not found",
+                timeout: 20
+            });
+
+            // clicks the notification twice and waits for its timeout, then
+            // verifies that it's still leaving (as its animations haven't ended)
+            // and that it's removed once its two animations end and its room
+            // closes, as a single leaving
+            const notification = jQuery(".notification");
+            notification.click();
+            notification.click();
+            await tick(50);
+            assert.strictEqual(jQuery(".notification").length, 1);
+            notification.trigger("animationend");
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            notification.trigger("transitionend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should remove the notification once it has left when its room has no transition", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                "<style>.notification.invisible { animation-name: slide; animation-duration: 0.2s; }</style>"
+            );
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            const notification = jQuery(".notification");
+            notification.click();
+            assert.strictEqual(jQuery(".notification").length, 1);
+            notification.trigger("animationend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
     });
 });
+
+const ANIMATED =
+    "<style>" +
+    ".notification.invisible { animation-name: slide, fade; animation-duration: 0.2s, 0.2s; }" +
+    ".notification.collapsed { transition-duration: 0.2s; }" +
+    "</style>";
 
 const SOUNDS = {
     error: "/sounds/error.mp3",
