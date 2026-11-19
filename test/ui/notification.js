@@ -157,6 +157,55 @@ describe("UxNotification", function() {
         });
     });
 
+    describe("#shown", function() {
+        it("should mark the notification as shown once its animations of entering end", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ENTERING);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // ends the first of its two animations of entering and verifies that
+            // it's not yet shown, then ends the second one and verifies it is
+            const notification = jQuery(".notification");
+            assert.strictEqual(notification.hasClass("shown"), false);
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("shown"), false);
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("shown"), true);
+        });
+        it("should leave the notification with no animation of entering unmarked", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+            jQuery(".notification").trigger("animationend");
+
+            const notification = jQuery(".notification");
+            assert.strictEqual(notification.attr("class"), "notification");
+        });
+        it("should not mark the notification leaving while entering as shown", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ENTERING);
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification while it's entering and ends its two
+            // animations of leaving, verifying that it's not marked as shown and
+            // that its room closes and it's removed, as for any leaving
+            const notification = jQuery(".notification");
+            notification.click();
+            notification.trigger("animationend");
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("shown"), false);
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            notification.trigger("transitionend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+    });
+
     describe("#sound", function() {
         let play = null;
         let played = null;
@@ -458,6 +507,11 @@ describe("UxNotification", function() {
         });
     });
 });
+
+const ENTERING =
+    "<style>" +
+    ".notification { animation-name: slide, fade; animation-duration: 0.25s, 0.15s; }" +
+    "</style>";
 
 const ANIMATED =
     "<style>" +

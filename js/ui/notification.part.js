@@ -106,6 +106,10 @@ if (typeof require !== "undefined") {
             // making it ready in ters of visual display (ui display)
             stack.append(messageElement);
 
+            // marks the notification as shown once it has entered, so that
+            // showing the page again doesn't run its entering once more
+            _show(messageElement);
+
             // plays the sound of the type of the notification (the one of the
             // information when it has no type), unless the notification is
             // silent or there's no sound for its type
@@ -137,6 +141,37 @@ if (typeof require !== "undefined") {
          * Registers the event handlers for the created objects.
          */
         var _registerHandlers = function() {};
+
+        /**
+         * Marks the provided notification element as shown once its animations
+         * of entering have ended, so that it's no longer animated, as the
+         * animations of the elements of a page run once more when the page is
+         * shown again (eg: once hidden while its contents are replaced).
+         *
+         * @param {Element}
+         *            element The notification element to be marked as shown.
+         */
+        var _show = function(element) {
+            // in case the notification has no animation of entering (eg: with
+            // the animations disabled) there's nothing to be run again, so it's
+            // left as it is
+            if (!__duration(element, "animation-duration")) {
+                return;
+            }
+
+            // counts the ends of the animations of entering (one per animation,
+            // eg: the slide and the fade), marking the notification as shown once
+            // all of them have ended, unless it's leaving (its animations of
+            // entering replaced by the ones of leaving)
+            var pending = element.css("animation-name").split(",").length;
+            element.bind("animationend", function() {
+                if (element.hasClass("invisible")) {
+                    return;
+                }
+                pending--;
+                pending === 0 && element.addClass("shown");
+            });
+        };
 
         /**
          * Hides the provided notification element, running its animation of

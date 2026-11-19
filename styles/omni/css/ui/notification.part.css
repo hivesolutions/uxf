@@ -47,6 +47,15 @@
     -webkit-animation: slide-from-left 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0), fade-in 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
 }
 
+.omni-style.animations .notifications-stack.bottom-left > .notification.shown {
+    animation: none;
+    -o-animation: none;
+    -ms-animation: none;
+    -moz-animation: none;
+    -khtml-animation: none;
+    -webkit-animation: none;
+}
+
 .omni-style.animations .notifications-stack.bottom-left > .notification.invisible {
     animation: slide-to-left 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0) both, fade-out 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0) 0.04s both;
     -o-animation: slide-to-left 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0) both, fade-out 0.2s cubic-bezier(0.645, 0.045, 0.355, 1.0) 0.04s both;
@@ -63,6 +72,15 @@
     -moz-animation: slide-from-top 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0), fade-in 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -khtml-animation: slide-from-top 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0), fade-in 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
     -webkit-animation: slide-from-top 0.25s cubic-bezier(0.645, 0.045, 0.355, 1.0), fade-in 0.15s cubic-bezier(0.645, 0.045, 0.355, 1.0);
+}
+
+.omni-style.animations .notifications-stack.top-center > .notification.shown {
+    animation: none;
+    -o-animation: none;
+    -ms-animation: none;
+    -moz-animation: none;
+    -khtml-animation: none;
+    -webkit-animation: none;
 }
 
 .omni-style.animations .notifications-stack.top-center > .notification.invisible {
