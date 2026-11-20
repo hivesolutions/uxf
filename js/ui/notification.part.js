@@ -206,10 +206,20 @@ if (typeof require !== "undefined") {
             // counts the ends of the animations of leaving (one per animation,
             // eg: the slide and the fade), closing the room of the notification
             // once all of them have ended
-            var pending = element.css("animation-name").split(",").length;
+            var names = element.css("animation-name").split(/,\s*/);
+            var pending = names.length;
             element.bind("animationend", function() {
                 pending--;
                 pending === 0 && _collapse(element);
+            });
+
+            // removes the notification at once in case its leaving is cancelled
+            // (eg: the page hidden while its contents are replaced), as it would
+            // run once more when the page is shown again, the cancel of its
+            // entering (replaced by its leaving) being ignored
+            element.bind("animationcancel", function(event) {
+                var name = event.originalEvent ? event.originalEvent.animationName : null;
+                names.indexOf(name) !== -1 && element.remove();
             });
         };
 
@@ -223,16 +233,20 @@ if (typeof require !== "undefined") {
          */
         var _collapse = function(element) {
             // marks the notification as collapsed, so that its room closes
-            // from the height set when it started leaving
+            // from the height set when it started leaving to none, the height
+            // being set as well, as the one set (in the element) takes the
+            // precedence over the one of the style
             element.addClass("collapsed");
+            element.css("height", "0px");
 
-            // removes the notification once its room is closed, or at once in
-            // case there's no transition of its room
+            // removes the notification once its room is closed (or once its
+            // closing is cancelled, eg: the page hidden), or at once in case
+            // there's no transition of its room
             if (!__duration(element, "transition-duration")) {
                 element.remove();
                 return;
             }
-            element.one("transitionend", function() {
+            element.one("transitionend transitioncancel", function() {
                 element.remove();
             });
         };

@@ -443,6 +443,7 @@ describe("UxNotification", function() {
 
             jQuery("body").empty();
             jQuery("body").append(ANIMATED);
+            jQuery("body").append("<style>.notification { height: 42px; }</style>");
             jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
 
             // clicks the notification and verifies that it's leaving, with its
@@ -451,7 +452,7 @@ describe("UxNotification", function() {
             notification.click();
             assert.strictEqual(notification.hasClass("invisible"), true);
             assert.strictEqual(notification.hasClass("collapsed"), false);
-            assert.notStrictEqual(notification[0].style.height, "");
+            assert.strictEqual(notification[0].style.height, "42px");
 
             // ends the first of its two animations and verifies that it keeps
             // leaving, then ends the second one and verifies that its room is
@@ -460,6 +461,7 @@ describe("UxNotification", function() {
             assert.strictEqual(notification.hasClass("collapsed"), false);
             notification.trigger("animationend");
             assert.strictEqual(notification.hasClass("collapsed"), true);
+            assert.strictEqual(notification[0].style.height, "0px");
             assert.strictEqual(jQuery(".notification").length, 1);
             notification.trigger("transitionend");
             assert.strictEqual(jQuery(".notification").length, 0);
@@ -505,6 +507,68 @@ describe("UxNotification", function() {
             notification.trigger("animationend");
             assert.strictEqual(jQuery(".notification").length, 0);
         });
+        it("should remove the notification whose leaving is cancelled", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification and cancels one of its animations of
+            // leaving (as the page hidden does), verifying that it's removed
+            // at once, as its leaving would run once more otherwise
+            const notification = jQuery(".notification");
+            notification.click();
+            assert.strictEqual(jQuery(".notification").length, 1);
+            cancel(notification[0], "animationcancel", "fade");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should ignore the cancel of the entering of the notification leaving", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(
+                "<style>" +
+                    ".notification { animation-name: enter, show; animation-duration: 0.25s, 0.15s; }" +
+                    ".notification.invisible { animation-name: slide, fade; animation-duration: 0.2s, 0.2s; }" +
+                    ".notification.collapsed { transition-duration: 0.2s; }" +
+                    "</style>"
+            );
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification while it's entering and cancels its
+            // animations of entering (replaced by the ones of leaving), then
+            // ends the ones of leaving, verifying that it keeps leaving until
+            // its room closes
+            const notification = jQuery(".notification");
+            notification.click();
+            cancel(notification[0], "animationcancel", "enter");
+            cancel(notification[0], "animationcancel", "show");
+            assert.strictEqual(jQuery(".notification").length, 1);
+            notification.trigger("animationend");
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            notification.trigger("transitionend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should remove the notification whose room closing is cancelled", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification, ends its animations of leaving and
+            // cancels the closing of its room (as the page hidden does),
+            // verifying that it's removed, as no end of the closing comes
+            const notification = jQuery(".notification");
+            notification.click();
+            notification.trigger("animationend");
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            cancel(notification[0], "transitioncancel", null);
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
     });
 });
 
@@ -527,3 +591,9 @@ const SOUNDS = {
 };
 
 const tick = (timeout = 10) => new Promise(resolve => setTimeout(resolve, timeout));
+
+const cancel = (element, type, animationName) => {
+    const event = new global.window.Event(type);
+    event.animationName = animationName;
+    element.dispatchEvent(event);
+};
