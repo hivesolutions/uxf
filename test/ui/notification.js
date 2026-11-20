@@ -158,6 +158,14 @@ describe("UxNotification", function() {
     });
 
     describe("#shown", function() {
+        beforeEach(() => {
+            Object.defineProperty(global.document, "hidden", { value: false, configurable: true });
+        });
+
+        afterEach(() => {
+            delete global.document.hidden;
+        });
+
         it("should mark the notification as shown once its animations of entering end", () => {
             const jQuery = global.jQuery;
 
@@ -371,6 +379,14 @@ describe("UxNotification", function() {
     });
 
     describe("#dismiss", function() {
+        beforeEach(() => {
+            Object.defineProperty(global.document, "hidden", { value: false, configurable: true });
+        });
+
+        afterEach(() => {
+            delete global.document.hidden;
+        });
+
         it("should remove the notification once its timeout is reached", async () => {
             const jQuery = global.jQuery;
 
@@ -505,6 +521,20 @@ describe("UxNotification", function() {
             notification.click();
             assert.strictEqual(jQuery(".notification").length, 1);
             notification.trigger("animationend");
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should remove the notification at once when the page is hidden", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // hides the page (eg: another tab shown), where the animations don't
+            // run, and clicks the notification, verifying that it's removed at
+            // once instead of waiting for the page to be shown to leave
+            Object.defineProperty(global.document, "hidden", { value: true, configurable: true });
+            jQuery(".notification").click();
             assert.strictEqual(jQuery(".notification").length, 0);
         });
         it("should remove the notification whose leaving is cancelled", () => {

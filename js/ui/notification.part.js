@@ -191,9 +191,11 @@ if (typeof require !== "undefined") {
 
             // marks the notification as invisible, so that its animation of
             // leaving runs, and in case it has no animation (eg: with the
-            // animations disabled) removes it immediately
+            // animations disabled) or the page is hidden (eg: in another tab,
+            // where the animations don't run, nobody seeing it leave) removes
+            // it immediately
             element.addClass("invisible");
-            if (!__duration(element, "animation-duration")) {
+            if (document.hidden || !__duration(element, "animation-duration")) {
                 element.remove();
                 return;
             }
