@@ -163,13 +163,26 @@ if (typeof require !== "undefined") {
             // eg: the slide and the fade), marking the notification as shown once
             // all of them have ended, unless it's leaving (its animations of
             // entering replaced by the ones of leaving)
-            var pending = element.css("animation-name").split(",").length;
+            var names = element.css("animation-name").split(/,\s*/);
+            var pending = names.length;
             element.bind("animationend", function() {
                 if (element.hasClass("invisible")) {
                     return;
                 }
                 pending--;
                 pending === 0 && element.addClass("shown");
+            });
+
+            // marks the notification as shown at once in case its entering is
+            // cancelled (eg: the page hidden while its contents are replaced), as
+            // it would enter once more when the page is shown again, the cancel
+            // of its entering by its leaving being ignored
+            element.bind("animationcancel", function(event) {
+                var name = event.originalEvent ? event.originalEvent.animationName : null;
+                if (element.hasClass("invisible") || names.indexOf(name) === -1) {
+                    return;
+                }
+                element.addClass("shown");
             });
         };
 
