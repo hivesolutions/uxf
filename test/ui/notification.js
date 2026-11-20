@@ -520,7 +520,7 @@ describe("UxNotification", function() {
             const notification = jQuery(".notification");
             notification.click();
             assert.strictEqual(jQuery(".notification").length, 1);
-            cancel(notification[0], "animationcancel", "fade");
+            dispatch(notification[0], "animationcancel", "fade");
             assert.strictEqual(jQuery(".notification").length, 0);
         });
         it("should ignore the cancel of the entering of the notification leaving", () => {
@@ -542,8 +542,8 @@ describe("UxNotification", function() {
             // its room closes
             const notification = jQuery(".notification");
             notification.click();
-            cancel(notification[0], "animationcancel", "enter");
-            cancel(notification[0], "animationcancel", "show");
+            dispatch(notification[0], "animationcancel", "enter");
+            dispatch(notification[0], "animationcancel", "show");
             assert.strictEqual(jQuery(".notification").length, 1);
             notification.trigger("animationend");
             notification.trigger("animationend");
@@ -566,7 +566,26 @@ describe("UxNotification", function() {
             notification.trigger("animationend");
             notification.trigger("animationend");
             assert.strictEqual(notification.hasClass("collapsed"), true);
-            cancel(notification[0], "transitioncancel", null);
+            dispatch(notification[0], "transitioncancel", null);
+            assert.strictEqual(jQuery(".notification").length, 0);
+        });
+        it("should remove the notification whose leaving runs again once collapsed", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ANIMATED);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // clicks the notification, ends its animations of leaving and starts
+            // one of them again (as some browsers do with the page shown again,
+            // instead of cancelling the closing of its room), verifying that it's
+            // removed, as its closing would never end
+            const notification = jQuery(".notification");
+            notification.click();
+            notification.trigger("animationend");
+            notification.trigger("animationend");
+            assert.strictEqual(notification.hasClass("collapsed"), true);
+            dispatch(notification[0], "animationstart", "slide");
             assert.strictEqual(jQuery(".notification").length, 0);
         });
     });
@@ -592,7 +611,7 @@ const SOUNDS = {
 
 const tick = (timeout = 10) => new Promise(resolve => setTimeout(resolve, timeout));
 
-const cancel = (element, type, animationName) => {
+const dispatch = (element, type, animationName) => {
     const event = new global.window.Event(type);
     event.animationName = animationName;
     element.dispatchEvent(event);

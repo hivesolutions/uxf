@@ -239,14 +239,16 @@ if (typeof require !== "undefined") {
             element.addClass("collapsed");
             element.css("height", "0px");
 
-            // removes the notification once its room is closed (or once its
-            // closing is cancelled, eg: the page hidden), or at once in case
-            // there's no transition of its room
+            // removes the notification once its room is closed, once its closing
+            // is cancelled or once its leaving runs again (both by the page
+            // hidden and shown again, as some browsers run the finished
+            // animations once more instead), or at once in case there's no
+            // transition of its room
             if (!__duration(element, "transition-duration")) {
                 element.remove();
                 return;
             }
-            element.one("transitionend transitioncancel", function() {
+            element.one("transitionend transitioncancel animationstart", function() {
                 element.remove();
             });
         };
