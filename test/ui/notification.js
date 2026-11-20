@@ -182,6 +182,24 @@ describe("UxNotification", function() {
             notification.trigger("animationend");
             assert.strictEqual(notification.hasClass("shown"), true);
         });
+        it("should mark the notification as shown at once when its entering is cancelled", () => {
+            const jQuery = global.jQuery;
+
+            jQuery("body").empty();
+            jQuery("body").append(ENTERING);
+            jQuery("body").uxnotification({ title: "Restock", message: "Product not found" });
+
+            // ends one of the animations of entering and cancels the other one
+            // (as the page hidden does), verifying that the notification is shown
+            // at once, as it would enter once more when the page is shown again,
+            // a cancel of another animation being ignored
+            const notification = jQuery(".notification");
+            dispatch(notification[0], "animationcancel", "other");
+            assert.strictEqual(notification.hasClass("shown"), false);
+            notification.trigger("animationend");
+            dispatch(notification[0], "animationcancel", "slide");
+            assert.strictEqual(notification.hasClass("shown"), true);
+        });
         it("should leave the notification with no animation of entering unmarked", () => {
             const jQuery = global.jQuery;
 
@@ -575,6 +593,7 @@ describe("UxNotification", function() {
             dispatch(notification[0], "animationcancel", "enter");
             dispatch(notification[0], "animationcancel", "show");
             assert.strictEqual(jQuery(".notification").length, 1);
+            assert.strictEqual(notification.hasClass("shown"), false);
             notification.trigger("animationend");
             notification.trigger("animationend");
             assert.strictEqual(notification.hasClass("collapsed"), true);
